@@ -1,0 +1,9 @@
+{
+ "addresses": {
+  "0x40386488": "panic_abort at /esp/esp-idf/components/esp_system/panic.c:367",
+  "0x40386b02": "esp_system_abort at /esp/esp-idf/components/esp_system/port/esp_system_chip.c:87",
+  "0x403906cc": "__ubsan_include at /esp/esp-idf/components/esp_system/ubsan.c:313",
+  "0x42067cd5": "app_main at {project}/main/hello_world_main.c:42",
+  "0x42067cd8": "app_main at {project}/main/hello_world_main.c:42"
+ }
+}

@@ -1,0 +1,46 @@
+# Citation excerpt (chip electrical characteristics). '#' lines are metadata;
+# '@@ page N' starts a segment of whole lines copied from pypdf's text of that PDF page (runs of whitespace
+# collapsed to one space; 'T able' and the minus signs '⚶' or '–' are pypdf's rendering). tests/test_m0_electrical.py
+# checks data/electrical/<chip>.json against it and, with the corpus present, every line in order on the page.
+# source_id: elec-ds-esp32s2
+# document: Espressif ESP32-S2 Series Datasheet v1.9, chapter 5 Electrical Characteristics (Tables 5-1, 5-2 and the DC Characteristics table of section 5.4). Copyright Espressif Systems; quoted for citation only.
+# url: https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_en.pdf
+# corpus: electrical/esp32-s2_datasheet_en.pdf sha256 7c0c54f11e79cc77b09ae070221f056e2c21a3746a8f3a23a0371c4efcf8e02d
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+# IOH and IOL are in the Typ column (no Min/Max given); VDD in the DC table is the I/O voltage of the pin's
+# power domain.
+@@ page 48
+T able 5-1. Absolute Maximum Ratings
+Parameter Description Min Max Unit
+Input power pins1 Allowed input voltage ⚶0.3 3.6 V
+Ioutput 2 Cumulative IO output current — 1800 mA
+TST ORE Storage temperature ⚶40 150 °C
+T able 5-2. Recommended Operating Conditions
+Parameter1 Description Min T yp Max Unit
+VDDA, VDD3P3, VDD3P3_RTCRecommended input voltage 2.8 3.3 3.6 V
+VDD3P3_RTC_IO2 Recommended input voltage 3.0 3.3 3.6 V
+VDD_SPI (as input) — 1.8 3.3 3.6 V
+VDD3P3_CPU3 Recommended input voltage 2.8 3.3 3.6 V
+IV DD Cumulative input current 0.5 — — A
+ESP32-S2 Series Datasheet v1.9
+@@ page 49
+5.4 DC Characteristics (3.3 V , 25 °C)
+T able 5-4. DC Characteristics (3.3 V , 25 °C)
+Parameter Description Min T yp Max Unit
+CIN Pin capacitance — 2 — pF
+VIH High-level input voltage 0.75 × VDD1 — VDD1 + 0.3 V
+VIL Low-level input voltage ⚶0.3 — 0.25 × VDD1 V
+IIH High-level input current — — 50 nA
+IIL Low-level input current — — 50 nA
+VOH 2 High-level output voltage 0.8 × VDD1 — — V
+VOL 2 Low-level output voltage — — 0.1 × VDD1 V
+IOH
+High-level source current (VDD1 = 3.3 V,
+VOH >= 2.64 V, PAD_DRIVER = 3) — 40 — mA
+IOL
+Low-level sink current (VDD1 = 3.3 V, VOL =
+0.495 V, PAD_DRIVER = 3) — 28 — mA
+RP U Internal weak pull-up resistor — 45 — kΩ
+1 VDD – voltage from a power pin of a respective power domain.
+2VOH and VOL are measured using high-impedance load.

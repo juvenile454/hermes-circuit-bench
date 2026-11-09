@@ -1,0 +1,29 @@
+# source_id: mod-env-si7021-ds
+# document: Silicon Labs Si7021-A20: I2C Humidity and Temperature Sensor, Rev. 1.3 (archived copy)
+# url: https://web.archive.org/web/20251104075029id_/https://www.silabs.com/documents/public/data-sheets/Si7021-A20.pdf
+# corpus: mod/env/Si7021-A20.pdf sha256 bf27225c31fb38fdcf5d6c1536aef5242458a21b7421049aede726787af68017
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 4
+Power Supply V DD 1.9 — 3.6 V
+Input Voltage High V IH SCL, SDA pins 0.7xVDD —— V
+Input Voltage Low V IL SCL, SDA pins — — 0.3xV DD V
+IDD RH conversion in progress — 150 180 μA
+Standby, –40 to +85 °C2 —0 . 0 6 0 . 6 2 μA
+Peak IDD during powerup3 —3 . 5 4 . 0 m A
+Peak IDD during I2C operations4 —3 . 5 4 . 0 m A
+Heater Current5 IHEAT — 3.1 to 94.2 — mA
+@@ page 5
+SCLK Frequency2 fSCL — — 400 kHz
+@@ page 10
+Voltage on I/O pins –0.3 — V DD+0.3 V V
+Voltage on VDD with 
+respect to GND
+–0.3 — 4.2 V
+Not Recommended for New Designs
+@@ page 12
+R1 Resistor, 10 k, ±5%, 1/16 W, 0603 CR0603-16W-103JT Venkel
+C1 Capacitor, 0.1 µF, 16 V, X7R, 0603 C0603X7R160-104M Venkel
+@@ page 18
+The Si7021 communicates with the host controller over a digital I2C interface. The 7-bit base slave address is 
+0x40.

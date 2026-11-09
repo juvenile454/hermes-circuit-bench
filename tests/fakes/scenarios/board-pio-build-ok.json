@@ -1,0 +1,22 @@
+{
+ "run": {
+  "rc": 0,
+  "stdout": "Processing {env} (platform: espressif32@6.9.0; board: esp32-s3-devkitc-1; framework: arduino)\n--------------------------------------------------------------------------------\nCompiling .pio/build/{env}/src/main.cpp.o\nLinking .pio/build/{env}/firmware.elf\nRetrieving maximum program size .pio/build/{env}/firmware.elf\nChecking size .pio/build/{env}/firmware.elf\nAdvanced Memory Usage is available via \"PlatformIO Home > Project Inspect\"\nRAM:   [=         ]   5.6% (used 18432 bytes from 327680 bytes)\nFlash: [=         ]   7.9% (used 263377 bytes from 3342336 bytes)\nBuilding .pio/build/{env}/firmware.bin\n========================= [SUCCESS] Took 4.22 seconds =========================\n",
+  "write_files": {
+   "{project_dir}/.pio/build/{env}/firmware.elf": "FAKE-ELF build 1\n",
+   "{project_dir}/.pio/build/{env}/firmware.bin": "FAKE-BIN build 1\n"
+  }
+ },
+ "metadata": {
+  "rc": 0,
+  "json": {
+   "{env}": {
+    "env_name": "{env}",
+    "build_type": "release",
+    "cc_path": "/opt/cb-fake/toolchain-xtensa-esp32s3/bin/xtensa-esp32s3-elf-gcc",
+    "gdb_path": "/opt/cb-fake/toolchain-xtensa-esp32s3/bin/xtensa-esp32s3-elf-gdb",
+    "prog_path": "{project_dir}/.pio/build/{env}/firmware.elf"
+   }
+  }
+ }
+}

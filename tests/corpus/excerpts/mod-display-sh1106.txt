@@ -1,0 +1,33 @@
+# source_id: mod-display-sh1106-ds
+# document: Sino Wealth SH1106 132 X 64 Dot Matrix OLED/PLED Segment/Common Driver with Controller, V2.3 (logo on page 1 is an image); copy hosted by Pololu
+# url: https://www.pololu.com/file/0J1813/SH1106.pdf
+# corpus: mod/display/sh1106-pololu.pdf sha256 ab5ce5f30dcd5b7e6b77ebb324b3c90489f7c0f481e72effbf77ed988219d8a7
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+  1 V2.3 
+- Logic voltage supply: VDD1 = 1.65V - 3.5V 
+display system. SH1106 consists of 132 segments, 64 commons that can support a maximum display resolution of 132 X 64. It 
+@@ page 11
+(SDA) and a serial clock line (SCL). Both lines must be connected to a positive supply via a pull-up resistor. Data transfer may 
+Note: The positive supply of pull-up resistor must equal to the value of VDD1. 
+@@ page 13
+the I2C-bus, the device that should respond is addressed first. Two 7-bit slave addresses (0111100 and 0111101) are reserved 
+for the SH1106. The least significant b it of the slave address is set by connecting the input SA0 to either logic 0(VSS) or 1 
+@@ page 35
+DC Supply Voltage (VDD1) . . . . . . . . . . . . .. . -0.3V to +3.6V 
+Input Voltage . . . . . . . . .  . . .  . . . . . . . . -0.3V to VDD1 + 0.3V 
+DC Characteristics (VSS = 0V, VDD1 = 1.65 - 3.5V TA =+25°C, unless otherwise specified) 
+VDD1 Operating voltage 1.65 - 3.5 V  
+@@ page 36
+VIHC High-level input voltage 0.8 X VDD1 - VDD1 V 
+VILC Low-level input voltage VSS - 0.2 X VDD1 V 
+@@ page 41
+(3) System buses Write characteristics 3 (For 4 wire SPI) 
+ (VDD1 = 1.65 - 3.5V, TA = +25°C) 
+tSCYC Serial clock cycle 500 - - ns  
+(VDD1 = 2.4 - 3.5V, TA = +25°C) 
+tSCYC Serial clock cycle 250 - - ns  
+@@ page 43
+fSCL SCL clock frequency DC - 400 kHz  
+Cb Capacity load on each bus line - - 400 pF  

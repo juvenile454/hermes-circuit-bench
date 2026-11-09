@@ -1,0 +1,30 @@
+# Dependency manifest of the plugin, read by Hermes when it installs the plugin (`hermes plugins install`).
+# Not published to PyPI and not a buildable package: Hermes loads the plugin from this folder.
+[project]
+name = "hermes-circuit-bench"
+version = "0.1.0"
+description = "Hermes Agent plugin: ESP32 electronics bench (pins, parts, schematics, soldering, build, flash, serial, crash decoding)"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "Timo (juvenile454)" }]
+keywords = ["hermes-agent", "hermes-plugin", "esp32", "electronics", "embedded", "platformio", "esptool"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Operating System :: POSIX :: Linux",
+  "Operating System :: MacOS",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)",
+  "Topic :: Software Development :: Embedded Systems",
+]
+dependencies = [
+  "schemdraw>=0.21,<0.24",
+  "pyserial>=3.5,<4",
+]
+
+[project.urls]
+Homepage = "https://github.com/juvenile454/hermes-circuit-bench"
+Source = "https://github.com/juvenile454/hermes-circuit-bench"
+Issues = "https://github.com/juvenile454/hermes-circuit-bench/issues"
+Changelog = "https://github.com/juvenile454/hermes-circuit-bench/blob/main/CHANGELOG.md"

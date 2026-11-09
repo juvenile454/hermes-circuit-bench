@@ -1,0 +1,39 @@
+# source_id: mod-pixel-ws2812b-ds
+# document: Worldsemi WS2812B-V5/W Intelligent control LED integrated light source, datasheet V6.1 (2022/9/8)
+# url: https://www.world-semi.com/web/userfiles/productfile/WS2812B_V5WDatasheet_V6.1_EN.pdf
+# corpus: mod/pixel/WS2812B_V5WDatasheet_V6.1_EN.pdf sha256 652e7bc44abd2d4ba24991a403f48bbc64593ea3af7fc92e153b215c50a511af
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+ Senddataatspeedsof800Kbps.
+ Theperipherydoesnotneedanyelectroniccomponentsincludingcapacitors.
+@@ page 2
+1 VDD POWERSUPPLY Powersupply
+2 DOUT DATAOUT Controldatasignaloutput
+3 VSS GROUND Ground,data&powergrounding
+4 DIN DATAIN Controldatasignalinput
+AbsoluteMaximumRatings
+Powersupplyvoltage VDD +3.7~+5.3 V
+LogicalInputVoltage VI -0.3V～VDD+0.7 V
+@@ page 3
+ElectricalCharacteristics（TA=25℃,VDD=5V,VSS=0V,unlessotherwisespecified）
+LEDCharacteristics（TA=25℃，VDD=5V，VSS=0V）
+QuiescentCurrent(centervalue):0.6mA Condition
+(Workingcurrent)Mini Typ Max Unit
+Brightness IV
+Red 300 310 500
+mcd 12mAGreen 600 780 1000
+Blue 200 215 300
+T0H 0code,highvoltagetime 220ns~380ns
+T1H 1code,highvoltagetime 580ns~1µs
+T0L 0code,lowvoltagetime 580ns~1µs
+T1L 1code,lowvoltagetime 580ns~1µs
+RES Frameunit,lowvoltagetime >280µs
+HighVoltageInput VIH 0.63VDD —— VDD+0.7V V DIN，SET
+LowVoltageInput VIL -0.3V —— 0.7V V DIN，SET
+@@ page 4
+Compositionof24bitData
+Note:DatatransmitinorderofGRB,highbitdataatfirst.
+@@ page 8
+V6.1 A
+2022/9/8 YuXingHui YinHuaPing

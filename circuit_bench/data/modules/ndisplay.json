@@ -1,0 +1,837 @@
+{
+ "schema": 1,
+ "wp": "ndisplay",
+ "note": "Values only from manufacturer documents; 'evidence' quotes a line of tests/corpus/excerpts/mod-ndisplay-*.txt.",
+ "modules": [
+  {
+   "id": "ht16k33",
+   "aliases": [
+    "ht16k33-backpack"
+   ],
+   "title": "HT16K33 16x8 LED matrix driver with key scan (I²C, 0x70–0x77)",
+   "category": "display.led",
+   "manufacturer": "Holtek Semiconductor",
+   "kind": "ic",
+   "source_ids": [
+    "mod-ndisplay-ht16k33-ds"
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 4.5,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VDD Operating Voltage — — 4.5 5 5.5 V",
+      "source_id": "mod-ndisplay-ht16k33-ds"
+     },
+     "typ": {
+      "value": 5,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VDD Operating Voltage — — 4.5 5 5.5 V",
+      "source_id": "mod-ndisplay-ht16k33-ds"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VDD Operating Voltage — — 4.5 5 5.5 V",
+      "source_id": "mod-ndisplay-ht16k33-ds"
+     },
+     "abs_max": {
+      "value": 6.5,
+      "unit": "V",
+      "page": 4,
+      "evidence": [
+       "Supply\tVoltage\t",
+       "VSS-0.3V\tto\tVSS+6.5V"
+      ],
+      "conditions": "absolute maximum rating, relative to VSS",
+      "source_id": "mod-ndisplay-ht16k33-ds"
+     }
+    }
+   },
+   "io": {
+    "domain": "VDD",
+    "vih": {
+     "rel": 0.7,
+     "of": "VDD",
+     "unit": "V",
+     "page": 5,
+     "evidence": "VIH Input high Voltage 5 SDA, SCL 0.7VDD — VDD V",
+     "conditions": "VDD 4.5–5.5 V, Ta 25 °C; SDA, SCL",
+     "source_id": "mod-ndisplay-ht16k33-ds"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VDD",
+     "unit": "V",
+     "page": 5,
+     "evidence": "VIL Input Low Voltage 5 SDA, SCL 0 — 0.3VDD V",
+     "conditions": "VDD 4.5–5.5 V, Ta 25 °C; SDA, SCL",
+     "source_id": "mod-ndisplay-ht16k33-ds"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 5,
+     "evidence": "IOL1 Low level output current 5 VOL=0.4V; SDA 6 — — mA",
+     "conditions": "VDD 4.5–5.5 V; SDA sinking at least 6 mA",
+     "source_id": "mod-ndisplay-ht16k33-ds"
+    },
+    "v_in_max": {
+     "rel_offset": 0.3,
+     "of": "VDD",
+     "unit": "V",
+     "page": 4,
+     "evidence": [
+      "Input\tVoltage\t",
+      "VSS-0.3V\tto\tVDD+0.3V"
+     ],
+     "conditions": "absolute maximum rating",
+     "source_id": "mod-ndisplay-ht16k33-ds"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "VDD",
+     "signal": "supply"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd",
+     "note": "VSS"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda"
+    },
+    {
+     "name": "SCL",
+     "signal": "i2c_scl"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "value": [
+       "0x70",
+       "0x71",
+       "0x72",
+       "0x73",
+       "0x74",
+       "0x75",
+       "0x76",
+       "0x77"
+      ],
+      "page": 22,
+      "evidence": "1 1 1 0 A2 A1 A0 R/W",
+      "source_id": "mod-ndisplay-ht16k33-ds",
+      "conditions": "28-pin package: 7-bit address 1110 A2 A1 A0; the 24-pin package has 0x70–0x73 (11100 A1 A0), the 20-pin package only 0x70"
+     },
+     "default": "0x70",
+     "f_max_hz": {
+      "value": 400000,
+      "unit": "Hz",
+      "page": 6,
+      "evidence": "fSCL Clock frequency — — 400 kHz",
+      "source_id": "mod-ndisplay-ht16k33-ds"
+     },
+     "note": "A0–A2 share pins with ROW2–ROW0: open = 0 (internal pull-low), 1 = 39 kΩ and a diode to COM0/AD (p. 22, 27). Boards set them with solder jumpers; give parts[].address for a jumpered board."
+    }
+   ],
+   "requires": [
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "value": "4k7",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "page": 27,
+     "evidence": "4.7kΩ4.7kΩ",
+     "note": "application circuit: 4.7 kΩ on SDA and SCL; with an ESP32 pull them to a rail the ESP tolerates (see mod.level_out)"
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VDD"
+     ],
+     "to": "GND",
+     "page": 27,
+     "evidence": "0.1μF",
+     "note": "application circuit: 0.1 µF between VDD and VSS"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Operating voltage 4.5–5.5 V only; SDA/SCL VIH is 0.7·VDD (3.5 V at 5 V), above an ESP32's 3.3 V output: use an I²C level shifter (e.g. PCA9306/BSS138) between a 3.3 V ESP bus and a 5 V HT16K33.",
+     "page": 5,
+     "evidence": "VIH Input high Voltage 5 SDA, SCL 0.7VDD — VDD V",
+     "verified": true,
+     "source_id": "mod-ndisplay-ht16k33-ds"
+    },
+    {
+     "text": "Logic current without LED load: typ 1 mA, max 2 mA; standby max 10 µA. The LED current comes on top (ROW source up to 40 mA, COM sink 200 mA typ, p. 5).",
+     "page": 5,
+     "evidence": "IDD Operating Current 5 No load, normal operation, INT/ROW bit is set to “0” — 1 2 mA",
+     "verified": true,
+     "source_id": "mod-ndisplay-ht16k33-ds"
+    },
+    {
+     "text": "Address pins: floating A2–A0 read 0; a 39 kΩ resistor and a diode to COM0/AD read 1.",
+     "page": 22,
+     "evidence": "are\tset\tto\t“0”,\twhen\tA2~A0\tare\tfloating",
+     "verified": true,
+     "source_id": "mod-ndisplay-ht16k33-ds"
+    },
+    {
+     "text": "0x70–0x77 is also the range of the TCA9548A I²C mux and of the PCA9685 LED All Call (0x70, on after power-up): see mod.address_conflict and mod.address_reserved.",
+     "verified": false
+    },
+    {
+     "text": "Many 8x8/14-segment backpacks run the HT16K33 at 3.3 V, below the specified 4.5 V minimum; some carry 10 kΩ I²C pull-ups to VCC.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "tm1638",
+   "aliases": [
+    "tm-1638",
+    "tm1638-ledkey"
+   ],
+   "title": "TM1638 LED driver with key scan (3-wire STB/CLK/DIO, not SPI or I²C)",
+   "category": "display.led",
+   "manufacturer": "Titan Micro Electronics",
+   "kind": "ic",
+   "source_ids": [
+    "mod-ndisplay-tm1638-ds"
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 3,
+      "unit": "V",
+      "page": 14,
+      "evidence": "逻辑电源电压 VDD 3 5 6 V -",
+      "conditions": "normal operating range; the electrical and switching characteristics are specified at VDD 4.5–5.5 V only",
+      "source_id": "mod-ndisplay-tm1638-ds"
+     },
+     "typ": {
+      "value": 5,
+      "unit": "V",
+      "page": 14,
+      "evidence": "逻辑电源电压 VDD 3 5 6 V -",
+      "conditions": "normal operating range",
+      "source_id": "mod-ndisplay-tm1638-ds"
+     },
+     "max": {
+      "value": 6,
+      "unit": "V",
+      "page": 14,
+      "evidence": "逻辑电源电压 VDD 3 5 6 V -",
+      "conditions": "normal operating range",
+      "source_id": "mod-ndisplay-tm1638-ds"
+     },
+     "abs_max": {
+      "value": 7.0,
+      "unit": "V",
+      "page": 14,
+      "evidence": "逻辑电源电压 VDD -0.5 ～+7.0 V",
+      "source_id": "mod-ndisplay-tm1638-ds"
+     }
+    }
+   },
+   "io": {
+    "domain": "VDD",
+    "vih": {
+     "rel": 0.7,
+     "of": "VDD",
+     "unit": "V",
+     "page": 14,
+     "evidence": "高电平输入电压 VIH 0.7 VDD - VDD V -",
+     "conditions": "normal operating range VDD 3–6 V",
+     "source_id": "mod-ndisplay-tm1638-ds"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VDD",
+     "unit": "V",
+     "page": 14,
+     "evidence": "低电平输入电压 VIL 0 - 0.3 VDD V -",
+     "conditions": "normal operating range VDD 3–6 V",
+     "source_id": "mod-ndisplay-tm1638-ds"
+    },
+    "v_in_max": {
+     "rel_offset": 0.5,
+     "of": "VDD",
+     "unit": "V",
+     "page": 14,
+     "evidence": "逻辑输入电压 VI1 -0.5 ～ VDD + 0.5 V",
+     "conditions": "absolute maximum rating",
+     "source_id": "mod-ndisplay-tm1638-ds"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "VDD",
+     "signal": "supply",
+     "note": "pins 4 and 15"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd",
+     "note": "pins 18 and 25"
+    },
+    {
+     "name": "STB",
+     "signal": "digital_in",
+     "active_low": true,
+     "note": "strobe: the falling edge starts a command; CLK is ignored while STB is high (p. 2)"
+    },
+    {
+     "name": "CLK",
+     "signal": "digital_in",
+     "note": "data are read on the rising edge (p. 2)"
+    },
+    {
+     "name": "DIO",
+     "signal": "digital_in",
+     "output": "open_drain",
+     "note": "bidirectional: input from the ESP, N-channel open-drain output while key data are read; needs a 1–10 kΩ pull-up (p. 2)"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "digital",
+     "f_max_hz": {
+      "value": 1000000,
+      "unit": "Hz",
+      "page": 15,
+      "evidence": "Fmax - - 1 MHz",
+      "conditions": "switching characteristics at VDD 4.5–5.5 V, 50 % duty",
+      "source_id": "mod-ndisplay-tm1638-ds"
+     },
+     "note": "3-wire serial (STB, CLK, DIO), LSB first, no address: neither I²C nor SPI in the strict sense; give it its own GPIOs"
+    }
+   ],
+   "requires": [
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "value": "10k",
+     "pins": [
+      "DIO"
+     ],
+     "page": 2,
+     "evidence": "在读键的时候需要外接1K-10K",
+     "note": "1–10 kΩ (10 kΩ recommended) for reading keys; the datasheet pulls to VCC, with an ESP32 the pull-up must go to a rail the ESP tolerates (mod.ndisplay.tm1638_dio_pullup)"
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "pins": [
+      "VDD"
+     ],
+     "to": "GND",
+     "page": 13,
+     "evidence": "VDD、GND之间滤波电容",
+     "note": "filter capacitor between VDD and GND close to the chip; the datasheet gives no value"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "DIO is an N-channel open-drain output while data are output; it needs an external pull-up to VCC (1–10 kΩ).",
+     "page": 2,
+     "evidence": [
+      "N管开漏输出,外",
+      "上拉电阻到VCC"
+     ],
+     "verified": true,
+     "source_id": "mod-ndisplay-tm1638-ds"
+    },
+    {
+     "text": "Dynamic supply current at most 5 mA without load and with the display off; the LED current comes on top (GRID sink up to 200 mA, power dissipation 400 mW, p. 14).",
+     "page": 15,
+     "evidence": "IDDdyn - - 5 mA",
+     "verified": true,
+     "source_id": "mod-ndisplay-tm1638-ds"
+    },
+    {
+     "text": "At VDD 5 V the input threshold 0.7·VDD is 3.5 V, above an ESP32's output high. Run the TM1638 at 3.3 V (inside the 3–6 V operating range) or buffer STB/CLK/DIO.",
+     "page": 14,
+     "evidence": "高电平输入电压 VIH 0.7 VDD - VDD V -",
+     "verified": true,
+     "source_id": "mod-ndisplay-tm1638-ds"
+    },
+    {
+     "text": "'LED&KEY' boards (8 digits, 8 LEDs, 8 keys) usually power the TM1638 from the module VCC; whether they carry a DIO pull-up varies.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "is31fl3731",
+   "aliases": [
+    "is31fl3731-matrix"
+   ],
+   "title": "IS31FL3731 144-LED charlieplex matrix driver (I²C, 0x74–0x77)",
+   "category": "display.led",
+   "manufacturer": "Lumissil Microsystems",
+   "kind": "ic",
+   "source_ids": [
+    "mod-ndisplay-is31fl3731-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 2.7,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VCC Supply voltage  2.7  5.5 V",
+      "source_id": "mod-ndisplay-is31fl3731-ds"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VCC Supply voltage  2.7  5.5 V",
+      "source_id": "mod-ndisplay-is31fl3731-ds"
+     },
+     "abs_max": {
+      "value": 6,
+      "unit": "V",
+      "page": 5,
+      "evidence": "Supply voltage, VCC -0.3V ~ +6V",
+      "source_id": "mod-ndisplay-is31fl3731-ds"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "value": 1.4,
+     "unit": "V",
+     "page": 5,
+     "evidence": "VIH Logic “1” input voltage V CC= 5.5V 1.4   V",
+     "conditions": "VCC = 5.5 V; SDA, SCL, AD",
+     "source_id": "mod-ndisplay-is31fl3731-ds"
+    },
+    "vil": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 5,
+     "evidence": "VIL Logic “0” input voltage V CC= 2.7V   0.4 V",
+     "conditions": "VCC = 2.7 V; SDA, SCL, AD",
+     "source_id": "mod-ndisplay-is31fl3731-ds"
+    },
+    "v_in_max": {
+     "rel_offset": 0.3,
+     "of": "VCC",
+     "unit": "V",
+     "page": 5,
+     "evidence": "Voltage at any input pin  -0.3V ~ V CC+0.3V",
+     "conditions": "absolute maximum rating",
+     "source_id": "mod-ndisplay-is31fl3731-ds"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "VCC",
+     "signal": "supply"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd",
+     "note": "and the thermal pad"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda"
+    },
+    {
+     "name": "SCL",
+     "signal": "i2c_scl"
+    },
+    {
+     "name": "AD",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "to GND, VCC, SCL or SDA (p. 7)"
+    },
+    {
+     "name": "SDB",
+     "signal": "enable_in",
+     "note": "low = hardware shutdown, registers not accessible (p. 3, 18)"
+    },
+    {
+     "name": "INTB",
+     "signal": "open_drain_out",
+     "active_low": true,
+     "note": "interrupt output (p. 3)"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "value": [
+       "0x74",
+       "0x75",
+       "0x76",
+       "0x77"
+      ],
+      "page": 7,
+      "evidence": [
+       "Value 11101 AD 0/1",
+       "AD connected to GND, AD=00;",
+       "AD connected to SDA, AD=10;"
+      ],
+      "source_id": "mod-ndisplay-is31fl3731-ds",
+      "conditions": "7-bit address 11101 AD1 AD0"
+     },
+     "default": "0x74",
+     "select": {
+      "pin": "AD",
+      "map": {
+       "GND": "0x74",
+       "SCL": "0x75",
+       "SDA": "0x76",
+       "VCC": "0x77"
+      }
+     },
+     "f_max_hz": {
+      "value": 400000,
+      "unit": "Hz",
+      "page": 6,
+      "evidence": "fSCL Serial-Clock frequency     400 kHz",
+      "source_id": "mod-ndisplay-is31fl3731-ds"
+     }
+    }
+   ],
+   "requires": [
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "value": "4k7",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "page": 7,
+     "evidence": [
+      "open-collector) with a pull-up resistor",
+      "(typically 4.7k"
+     ],
+     "note": "the datasheet names SDA (typically 4.7 kΩ); SCL needs the bus pull-up as well"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "SDB low puts the chip into hardware shutdown: registers can be neither written nor read (mod.ndisplay.is31_sdb).",
+     "page": 18,
+     "evidence": "SDB pin is pulled low. All registers",
+     "verified": true,
+     "source_id": "mod-ndisplay-is31fl3731-ds"
+    },
+    {
+     "text": "R_EXT sets the LED current, ILED = 64.7/REXT; 20 kΩ is recommended, at least 18 kΩ.",
+     "page": 6,
+     "evidence": "Note 6: ILED",
+     "verified": true,
+     "source_id": "mod-ndisplay-is31fl3731-ds"
+    },
+    {
+     "text": "Quiescent current typ 2.17 mA with all LEDs off; hardware shutdown max 5 µA. LED current comes on top (each of C1–C9 sinks up to 270 mA during the scan, p. 5).",
+     "page": 5,
+     "evidence": "ICC Quiescent",
+     "verified": true,
+     "source_id": "mod-ndisplay-is31fl3731-ds"
+    },
+    {
+     "text": "VIH (1.4 V) is specified at VCC 5.5 V and VIL (0.4 V) at VCC 2.7 V only: at other supplies the input levels stay unchecked.",
+     "page": 5,
+     "evidence": "VIH Logic “1” input voltage V CC= 5.5V 1.4   V",
+     "verified": true,
+     "source_id": "mod-ndisplay-is31fl3731-ds"
+    },
+    {
+     "text": "Breakouts (e.g. 16x9 charlieplex boards) often add I²C pull-ups and a pull-up on SDB; check the board before relying on it.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "st7735s",
+   "aliases": [
+    "st7735"
+   ],
+   "title": "ST7735S 132x162 TFT LCD controller (4-line SPI, 3.3 V logic)",
+   "category": "display.tft",
+   "manufacturer": "Sitronix",
+   "kind": "ic",
+   "source_ids": [
+    "mod-ndisplay-st7735s-ds"
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 2.5,
+      "unit": "V",
+      "page": 29,
+      "evidence": "System Voltage VDD Operating Voltage  2.5 2.75 4.8 V",
+      "source_id": "mod-ndisplay-st7735s-ds"
+     },
+     "typ": {
+      "value": 2.75,
+      "unit": "V",
+      "page": 29,
+      "evidence": "System Voltage VDD Operating Voltage  2.5 2.75 4.8 V",
+      "source_id": "mod-ndisplay-st7735s-ds"
+     },
+     "max": {
+      "value": 4.8,
+      "unit": "V",
+      "page": 29,
+      "evidence": "System Voltage VDD Operating Voltage  2.5 2.75 4.8 V",
+      "source_id": "mod-ndisplay-st7735s-ds"
+     },
+     "abs_max": {
+      "value": 4.8,
+      "unit": "V",
+      "page": 28,
+      "evidence": "Supply Voltage VDD - 0.3 ~ +4.8 V",
+      "conditions": "absolute operation range",
+      "source_id": "mod-ndisplay-st7735s-ds"
+     }
+    },
+    "VDDI": {
+     "min": {
+      "value": 1.65,
+      "unit": "V",
+      "page": 29,
+      "evidence": [
+       "Interface Operation Voltage",
+       "I/O Supply",
+       "1.65 1.8 3.7 V"
+      ],
+      "conditions": "I/O supply voltage",
+      "source_id": "mod-ndisplay-st7735s-ds"
+     },
+     "typ": {
+      "value": 1.8,
+      "unit": "V",
+      "page": 29,
+      "evidence": [
+       "Interface Operation Voltage",
+       "I/O Supply",
+       "1.65 1.8 3.7 V"
+      ],
+      "conditions": "I/O supply voltage",
+      "source_id": "mod-ndisplay-st7735s-ds"
+     },
+     "max": {
+      "value": 3.7,
+      "unit": "V",
+      "page": 29,
+      "evidence": [
+       "Interface Operation Voltage",
+       "I/O Supply",
+       "1.65 1.8 3.7 V"
+      ],
+      "conditions": "I/O supply voltage",
+      "source_id": "mod-ndisplay-st7735s-ds"
+     },
+     "abs_max": {
+      "value": 4.6,
+      "unit": "V",
+      "page": 28,
+      "evidence": "Supply Voltage (Logic) VDDI - 0.3 ~ +4.6 V",
+      "conditions": "absolute operation range",
+      "source_id": "mod-ndisplay-st7735s-ds"
+     }
+    }
+   },
+   "io": {
+    "domain": "VDDI",
+    "vih": {
+     "rel": 0.7,
+     "of": "VDDI",
+     "unit": "V",
+     "page": 29,
+     "evidence": "Logic-High Input Voltage VIH  0.7VDDI   VDDI V",
+     "conditions": "DC characteristics, Ta −30 to +85 °C",
+     "source_id": "mod-ndisplay-st7735s-ds"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VDDI",
+     "unit": "V",
+     "page": 29,
+     "evidence": "Logic-Low Input Voltage VIL  VSS  0.3VDDI  V",
+     "conditions": "DC characteristics, Ta −30 to +85 °C",
+     "source_id": "mod-ndisplay-st7735s-ds"
+    },
+    "voh": {
+     "rel": 0.8,
+     "of": "VDDI",
+     "unit": "V",
+     "page": 29,
+     "evidence": "Logic-High Output Voltage VOH IOH = -1.0mA 0.8VDDI",
+     "conditions": "IOH = −1.0 mA",
+     "source_id": "mod-ndisplay-st7735s-ds"
+    },
+    "vol": {
+     "rel": 0.2,
+     "of": "VDDI",
+     "unit": "V",
+     "page": 29,
+     "evidence": "Logic-Low Output Voltage VOL IOL = +1.0mA VSS  0.2VDDI",
+     "conditions": "IOL = +1.0 mA",
+     "source_id": "mod-ndisplay-st7735s-ds"
+    },
+    "v_in_max": {
+     "rel_offset": 0.3,
+     "of": "VDDI",
+     "unit": "V",
+     "page": 28,
+     "evidence": "Logic Input Voltage Range VIN -0.3 ~ VDDI + 0.3 V",
+     "conditions": "absolute operation range",
+     "source_id": "mod-ndisplay-st7735s-ds"
+    }
+   },
+   "pins": [
+    {
+     "name": "CSX",
+     "signal": "spi_cs",
+     "active_low": true
+    },
+    {
+     "name": "SCL",
+     "signal": "spi_sck",
+     "note": "serial clock; the pad is named D/CX (p. 24)"
+    },
+    {
+     "name": "D/CX",
+     "signal": "digital_in",
+     "note": "data/command select in 4-line SPI; the pad is named WRX (p. 24)"
+    },
+    {
+     "name": "SDA",
+     "signal": "spi_sdi",
+     "note": "serial data in/out on pad D0 (p. 24); the ST7735S has no separate SDO"
+    },
+    {
+     "name": "RESX",
+     "signal": "reset_in",
+     "active_low": true
+    },
+    {
+     "name": "VDD",
+     "signal": "supply"
+    },
+    {
+     "name": "VDDI",
+     "signal": "supply",
+     "tie": "VDD"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "spi",
+     "f_max_hz": {
+      "value": 15151515,
+      "unit": "Hz",
+      "page": 36,
+      "evidence": "TSCYCW  Serial Clock Cycle (Write) 66  ns",
+      "conditions": "1 / TSCYCW (write, minimum cycle 66 ns); reads: TSCYCR 150 ns (6.67 MHz); VDDI 1.65–3.7 V, VDD 2.5–4.8 V",
+      "source_id": "mod-ndisplay-st7735s-ds"
+     },
+     "note": "4-line serial interface: IM2 = 0 (serial), SPI4W = 1 (p. 23); breakouts hard-wire the mode pins"
+    }
+   ],
+   "current": {
+    "supply": "VDD",
+    "typ": {
+     "value": 0.0009,
+     "unit": "A",
+     "page": 30,
+     "evidence": [
+      "Note 1  0.01 0.9 0.02 2",
+      "Normal Mode"
+     ],
+     "conditions": "IDD typical, normal mode, all pixels black, 60 Hz frame rate, VDDI 1.8 V, VDD 2.75 V; backlight not included",
+     "source_id": "mod-ndisplay-st7735s-ds"
+    },
+    "max": {
+     "value": 0.002,
+     "unit": "A",
+     "page": 30,
+     "evidence": [
+      "Note 1  0.01 0.9 0.02 2",
+      "Normal Mode"
+     ],
+     "conditions": "IDD maximum, normal mode, VDDI 1.65–3.7 V, VDD 2.5–4.8 V; backlight not included",
+     "source_id": "mod-ndisplay-st7735s-ds"
+    },
+    "sleep": {
+     "value": 3e-05,
+     "unit": "A",
+     "page": 30,
+     "evidence": "Sleep-In Mode N/A 0.005 0.015 0.01 0.03",
+     "conditions": "IDD maximum in sleep-in mode",
+     "source_id": "mod-ndisplay-st7735s-ds"
+    },
+    "note": "Controller only. The backlight LEDs of a display module draw far more; their current is board-specific."
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "RESX low pulse at least 10 µs.",
+     "page": 93,
+     "evidence": "tRESW Reset Pulse Duration 10 - us",
+     "verified": true,
+     "source_id": "mod-ndisplay-st7735s-ds"
+    },
+    {
+     "text": "Wait 5 ms after releasing RESX before sending commands; Sleep Out not within 120 ms.",
+     "page": 93,
+     "evidence": [
+      "It is necessary to wait 5msec",
+      "cannot be sent for 120msec."
+     ],
+     "verified": true,
+     "source_id": "mod-ndisplay-st7735s-ds"
+    },
+    {
+     "text": "3.3 V logic only: VDDI max 3.7 V (abs. 4.6 V) and inputs max VDDI + 0.3 V. 1.44\"/1.8\" breakouts usually add a regulator on VCC (VDD = VDDI = 3.3 V) and a backlight pin (LED/BL), but do not level-shift CS, A0/DC, SDA, SCK and RESET.",
+     "verified": false
+    },
+    {
+     "text": "Breakout pin names: CS = CSX, A0 or DC = D/CX, SDA = SDA, SCK/SCL = SCL, RESET/RST = RESX.",
+     "verified": false
+    },
+    {
+     "text": "Boards sold as 'ST7735' may carry an ST7735R or ST7735B with other supply ranges; these values are for the ST7735S.",
+     "verified": false
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,29 @@
+# source_id: mod-wired-max485-ds
+# document: Maxim Integrated (Analog Devices) MAX481/MAX483/MAX485/MAX487-MAX491/MAX1487 Low-Power, Slew-Rate-Limited RS-485/RS-422 Transceivers, data sheet 19-0122 Rev 10 (9/14)
+# url: https://web.archive.org/web/20261005193054id_/https://www.analog.com/media/en/technical-documentation/data-sheets/MAX1487-MAX491.pdf
+# corpus: mod/wired/MAX1487-MAX491.pdf sha256 b7888c0d45b0dc581a11cbc10cc53e2e2563271d5a01baed74dbae2845065d05
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+guarantees a logic-high output if the input is open circuit.
+@@ page 2
+Supply Voltage (VCC).............................................................12V
+Driver Input Voltage (DI).............................-0.5V to (VCC + 0.5V)
+Receiver Output Voltage (RO)....................-0.5V to (VCC + 0.5V)
+(VCC = 5V ±5%, TA = TMIN to TMAX, unless otherwise noted.) (Notes 1, 2)
+IO = 4mA, VID = -200mV
+IO = -4mA, VID = 200mV
+DE, DI, RE
+0.4VOLReceiver Output Low Voltage
+3.5VOHReceiver Output High Voltage
+V0.8VILInput Low Voltage
+V2.0VIHInput High Voltage
+@@ page 3
+MAX481/MAX485,
+RE = 0V or VCC
+500 900
+@@ page 7
+8 1 14 VCC Positive Supply: 4.75V ≤ VCC ≤ 5.25V
+@@ page 13
+To minimize reflections, the line should be terminated at
+both ends in its characteristic impedance, and stub

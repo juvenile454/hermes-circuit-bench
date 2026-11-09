@@ -1,0 +1,32 @@
+# source_id: mod-switch-srd-ds
+# document: Songle SRD Series 7A/10A/15A Subminiature High Power Relay (songlerelay.com upload 2016-11-04, archived 2024-02-10)
+# url: https://web.archive.org/web/20240210050919id_/http://www.songlerelay.com/Public/Uploads/20161104/581c81ac16e36.pdf
+# corpus: mod/switch/songle-srd-581c81ac16e36.pdf sha256 900ec995acaf29fea0b8e9496c3e76423a32515e93155101fbad47170f0f2743
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+SUBMINATURE HIGH POWER RELAY
+Max switching voltage
+1 A ( s p s t n o ) / 1 B ( S p s t n c ) / 1 C(Spdt)
+7A/250VAC 10A/250VAC 15A/250VAC
+250VAC
+Coil Voltage
+Characteristics Coil Data （ 20℃）at 
+Operate time(Under nominal voltage)
+Release time(Under nominal voltage)
+≤10ms
+≤10ms
+L0.36W / D0.45W
+5V / 6V / 9V / 
+0.36W
+75%Max
+75%Max
+10%Min
+10%Min
+130%
+130%
+Voltage  Current  Resistance
+W VDC mA ±10%Ω
+71.4
+70
+Pick-up Drop-out

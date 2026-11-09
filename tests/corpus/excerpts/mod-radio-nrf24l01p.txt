@@ -1,0 +1,50 @@
+# source_id: mod-radio-nrf24l01p-ps
+# document: Nordic Semiconductor nRF24L01+ Single Chip 2.4GHz Transceiver, Product Specification v1.0
+# url: https://cdn.sparkfun.com/assets/3/d/8/5/1/nRF24L01P_Product_Specification_1_0.pdf
+# corpus: mod/radio/nRF24L01P_Product_Specification_1_0.pdf sha256 4dc3ed775dc49cd365ec95c677d1d010a43c8539614eb4b312211096ca0ddf7e
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Product Specification v1.0
+• 5V tolerant inputs
+@@ page 11
+1 CE Digital Input Chip Enable Activates RX or TX mode
+2 CSN Digital Input SPI Chip Select 
+3 SCK Digital Input SPI Clock
+4 MOSI Digital Input SPI Slave Data Input
+5 MISO Digital Output SPI Slave Data Output, with tri-state option
+6 IRQ Digital Output Maskable in terrupt pin. Active low
+7 VDD Power Power Supply (+1.9V - +3.6V DC)
+8 VSS Power Ground (0V)
+@@ page 12
+3       Absolute maximum ratings
+ Table 2. Absolute maximum ratings
+VDD -0.3 3.6 V
+Input voltage
+VI -0.3 5.25 V
+@@ page 13
+VDD Supply voltage 1.9 3.0 3.6 V
+VDD Supply voltage if input signals >3.6V 2.7 3.0 3.3 V
+@@ page 14
+IVDD_PD Supply current in power down 900 nA
+IVDD_TX0 Supply current @ 0dBm output power b
+11.3 mA
+IVDD_2M Supply current 2Mbps 13.5 mA
+IVDD_1M Supply current 1Mbps 13.1 mA
+@@ page 20
+VIH HIGH level input voltage 0.7 VDD 5.25a
+a. If the input signal >3.6V, the VDD of the nRF24L01+ must be between 2.7V and 3.3V (3.0V±10%)
+VIL LOW level input voltage VSS 0.3VDD V
+VOH HIGH level output voltage (IOH=-0.25mA) VDD -0.3 VDD V
+VOL LOW level output voltage (IOL=0.25mA) 0.3 V
+@@ page 50
+The SPI is a standard SPI with a maximum data rate of 10Mbps.
+<Command word: MSBit to LSBit (one byte)>
+<Data bytes: LSByte to MSByte, MSBit in each byte first>
+@@ page 53
+ Table 22. SPI timing parameters (Cload = 5pF)
+Fsck SCK Frequency 0 10 MHz
+Fsck SCK Frequency 0 8 MHz
+@@ page 65
+The nRF24L01+ DC supply voltage should be decoupled as close as possible to the VDD pins with high 
+example, 4.7µF ceramic) in parallel with the smaller value capacitors is recommended. The nRF24L01+ 

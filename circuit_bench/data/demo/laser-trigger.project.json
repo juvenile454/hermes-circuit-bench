@@ -1,0 +1,60 @@
+{
+ "_about": "Recipe of the demo bench project laser-trigger (sim.demo). Values are inputs only: sim.demo computes every part value, verdict, schematic and solder step with bench_core (calc, pins via project.update, schematic, solder) and stores the results through project.create/project.update.",
+ "schema": 1,
+ "id": "laser-trigger",
+ "title": "Laser trigger",
+ "chip": "esp32s3",
+ "variant": "n16r8",
+ "devkit": "esp32-s3-devkitc-1",
+ "wifi": true,
+ "simulated": true,
+ "port": "sim://esp32s3-n16r8",
+ "example": "laser-trigger",
+ "env": "s3",
+ "assignments": [
+  {"role": "LASER", "mode": "out", "pin": 14, "net": "LASER_EN"},
+  {"role": "BUTTON", "mode": "in_pullup", "pin": 2, "net": "BTN"},
+  {"role": "SDA", "mode": "i2c_sda", "pin": 8, "net": "I2C_SDA"},
+  {"role": "SCL", "mode": "i2c_scl", "pin": 9, "net": "I2C_SCL"},
+  {"role": "VBAT", "mode": "adc", "pin": 1, "net": "VBAT_DIV"}
+ ],
+ "calcs": [
+  {
+   "id": "npn-1",
+   "type": "npn",
+   "args": {"v_drive": 3.3, "r_base": 1000, "i_load": 0.013, "r_pulldown": 10000, "part": "2N2222A", "load": "laser"},
+   "parts": [
+    {"ref": "R1", "kind": "resistor", "ohms": "r_base"},
+    {"ref": "R2", "kind": "resistor", "ohms": "r_pulldown"},
+    {"ref": "Q1", "kind": "transistor", "value": "2N2222A", "package": "TO-18"}
+   ]
+  },
+  {
+   "id": "div-1",
+   "type": "divider",
+   "args": {"v_in_max": 4.2, "r1": 100000, "r2": 100000},
+   "parts": [
+    {"ref": "R3", "kind": "resistor", "ohms": "r1"},
+    {"ref": "R4", "kind": "resistor", "ohms": "r2"}
+   ]
+  }
+ ],
+ "parts": [
+  {"ref": "C1", "kind": "electrolytic", "value": "10 µF 16 V"},
+  {"ref": "SW1", "kind": "switch", "value": "push button"},
+  {"ref": "J2", "kind": "connector", "value": "laser module"}
+ ],
+ "circuits": [
+  {
+   "id": "laser",
+   "block": "npn_low_side",
+   "gpio": 14,
+   "params": {"r_base": 1000, "r_pulldown": 10000, "transistor": "2N2222A", "load": "laser module", "supply": "5V", "net": "LASER_EN"}
+  }
+ ],
+ "notes": [
+  "Demo project (simulated board sim://esp32s3-n16r8). The load current of 13 mA is an example value: measure your laser module or LED and calculate again.",
+  "Laser safety: use only a small, labelled low-power laser module, never look into the beam and never point it at people, animals, mirrors or windows. Try the circuit with an LED first.",
+  "C1 (10 µF) buffers the 5 V load supply at J2 (rule of thumb, not calculated). VBAT: a single Li-ion cell, at most 4.2 V; R3/R4 halve it for GPIO1."
+ ]
+}

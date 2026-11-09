@@ -1,0 +1,16 @@
+[
+ {
+  "id": "schemdraw-0.23-svg-backend",
+  "title": "Schemdraw 0.23 documentation, Backends: SVG backend (canvas='svg', svgconfig.text)",
+  "url": "https://schemdraw.readthedocs.io/en/stable/usage/backends.html",
+  "retrieved": "2026-11-06",
+  "note": "Drawing(canvas='svg') draws without Matplotlib. circuit-bench writes the labels itself as <text> (monospace, currentColor) instead of svgconfig.text='text', so label boxes do not depend on schemdraw's proportional-font width estimate."
+ },
+ {
+  "id": "schemdraw-pypi",
+  "title": "schemdraw on PyPI (license MIT; 0.21 uploaded 2025-07-27, 0.23 uploaded 2026-05-29)",
+  "url": "https://pypi.org/pypi/schemdraw/json",
+  "retrieved": "2026-11-06",
+  "note": "Plugin dependency schemdraw>=0.21,<0.24. Rendered output checked byte-identical for 0.21 and 0.23."
+ }
+]

@@ -1,0 +1,42 @@
+# source_id: mod-motor-drv8833-ds
+# document: Texas Instruments DRV8833 Dual H-Bridge Motor Driver data sheet, SLVSAR1E (revised July 2015)
+# url: https://www.ti.com/lit/ds/symlink/drv8833.pdf
+# corpus: mod/motor/drv8833.pdf sha256 3e400e333f08f1b93ec99a2d52a6af2a864e88462cc892282208548d9e9f0de4
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+• Output Current (at VM = 5 V, 25°C) The output driver block of each H-bridge consists of– 1.5-A RMS, 2-A Peak per H-Bridge in PWP N-channel power MOSFETs configured as an H-and RTY Package Options bridge to drive the motor windings. Each H-bridge
+@@ page 3
+Bypass to GND with 2.2-μF, 6.3-VVINT 12 14 — Internal supply bypass capacitor.
+Connect to motor supply. A 10-µF
+VM 10 12 — Device power supply (minimum) ceramic bypass capacitor to
+GND is recommended.
+Connect a 0.01-μF, 16-V (minimum) X7RVCP 9 11 IO High-side gate drive voltage ceramic capacitor to VM.
+@@ page 4
+Logic low when in fault conditionnFAULT 6 8 OD Fault output (overtemperature, overcurrent)
+Connect to current sense resistor for bridgeAISEN 1 3 IO Bridge A ground / ISENSE A, or GND if current control not needed
+@@ page 5
+VM Power supply voltage –0.3 11.8 V
+Digital input pin voltage –0.5 7 V
+xISEN pin voltage –0.3 0.5 V
+VM Motor power supply voltage range (1) 2.7 10.8 V
+VDIGIN Digital input pin voltage range –0.3 5.75 V
+IOUT RTY package continuous RMS or DC output current per bridge (2) 1.5 A
+(1) RDS(ON) increases and maximum output current is reduced at VM supply voltages below 5 V.
+(2) VM = 5 V, power dissipation and thermal limits must be observed.
+@@ page 6
+IVM VM operating supply current VM = 5 V, xIN1 = 0 V, xIN2 = 0 V 1.7 3 mA
+IVMQ VM sleep mode supply current VM = 5 V 1.6 2.5 μA
+VUVLO VM undervoltage lockout voltage VM falling 2.6 V
+nSLEEP 0.5
+VIL Input low voltage VAll other pins 0.7
+nSLEEP 2.5
+VIH Input high voltage VAll other pins 2
+VOL Output low voltage IO = 5 mA 0.5 V
+IOCP Overcurrent protection trip level 2 3.3 A
+@@ page 10
+connected to the xISEN pins with a reference voltage. The reference voltage is fixed at 200 mV.
+Example: If a 1-Ω sense resistor is used, the chopping current will be 200 mV/1 Ω = 200 mA.
+If current control is not needed, the xISEN pins should be connected directly to ground.
+@@ page 14
+Having an appropriate local bulk capacitance is an important factor in motor drive system design. It is generally

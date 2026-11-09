@@ -1,0 +1,21 @@
+# source_id: mod-prox-tsop382-ds
+# document: TSOP382.., TSOP384.. IR Receiver Modules for Remote Control Systems, Rev. 2.1, Document Number 82491
+# url: https://www.vishay.com/docs/82491/tsop382.pdf
+# corpus: mod/prox/tsop382.pdf sha256 5f81c36aa02e9901e51c749d03aee75a23a29b8195b30bf1cba95f536c865074
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+30 kΩ
+@@ page 2
+R1 and C1 recommended in case there are strong ripple or
+spikes on the supply line.
+38 kHz TSOP38238 TSOP38438 (4)(5)(6)
+Pinning 1 = OUT, 2 = GND, 3 = VS
+Supply voltage V S -0.3 to +6 V
+Output voltage V O -0.3 to (VS + 0.3) V
+Output current I O 5m A
+@@ page 3
+Supply current Ev = 0, VS = 3.3 V I SD 0.25 0.35 0.45 mAEv = 40 klx, sunlight I SH -0 . 4 5- m A
+Supply voltage V S 2.0 - 5.5 V
+Output voltage low IOSL = 0.5 mA, Ee = 0.7 mW/m2, test signal see Fig. 1 VOSL - - 100 mV
+(1) tpi ≥ 10/f0 is recommended for optimal function

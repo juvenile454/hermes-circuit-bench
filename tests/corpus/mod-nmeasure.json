@@ -1,0 +1,39 @@
+{
+ "files": [
+  {
+   "url": "https://ww1.microchip.com/downloads/en/DeviceDoc/21298e.pdf",
+   "path": "mod/nmeasure/21298e.pdf",
+   "source_id": "mod-nmeasure-mcp3208-ds",
+   "excerpt": "excerpts/mod-nmeasure-mcp3208.txt",
+   "sha256": "89bc1e17c35e2bb1c7b8fbf0b775b3729ce9fe4d27f7e9c052a774757afc0c20"
+  },
+  {
+   "url": "https://ww1.microchip.com/downloads/en/DeviceDoc/22187E.pdf",
+   "path": "mod/nmeasure/22187E.pdf",
+   "source_id": "mod-nmeasure-mcp4728-ds",
+   "excerpt": "excerpts/mod-nmeasure-mcp4728.txt",
+   "sha256": "7e6515c45a02ffe4ad7506f3347cce7714cdd56659ff2fb22b858fc0472f381e"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/ina228.pdf",
+   "path": "mod/nmeasure/ina228.pdf",
+   "source_id": "mod-nmeasure-ina228-ds",
+   "excerpt": "excerpts/mod-nmeasure-ina228.txt",
+   "sha256": "a138d39eeee04f8388426fed204c2f4012e75d36e95b60b0751ef003cd277447"
+  },
+  {
+   "url": "https://web.archive.org/web/20251010155415id_/https://www.analog.com/media/en/technical-documentation/data-sheets/max31856.pdf",
+   "path": "mod/nmeasure/max31856.pdf",
+   "source_id": "mod-nmeasure-max31856-ds",
+   "excerpt": "excerpts/mod-nmeasure-max31856.txt",
+   "sha256": "385702a94433d75e89ad4f04ab197fd73ab166a21fbd453fcedd9a9821acc662"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/ads1220.pdf",
+   "path": "mod/nmeasure/ads1220.pdf",
+   "source_id": "mod-nmeasure-ads1220-ds",
+   "excerpt": "excerpts/mod-nmeasure-ads1220.txt",
+   "sha256": "218e25810febc1d740287cebe0678d844817a5db9191cba59cb471647ace3ac4"
+  }
+ ]
+}

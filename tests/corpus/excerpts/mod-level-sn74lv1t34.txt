@@ -1,0 +1,33 @@
+# source_id: mod-level-sn74lv1t34-ds
+# document: TI SN74LV1T34 Single Power Supply Single Buffer GATE CMOS Logic Level Shifter, data sheet SCLS743E
+# url: https://www.ti.com/lit/ds/symlink/sn74lv1t34.pdf
+# corpus: mod/level/sn74lv1t34.pdf sha256 07c6cf783df4d2762f18760217310ef48174adc9984f791fde64bcd21f13d360
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 4
+NC 1 — Not internally connected
+A 2 I Input A
+Y 4 O Output Y
+@@ page 5
+VCC Supply voltage range –0.5 7.0 V
+VI Input voltage range(2) –0.5 7.0 V
+VCC Supply voltage 1.6 5.5 V
+VI Input voltage 0 5.5 V
+@@ page 6
+VIH High-level input voltage
+VCC = 3 V to 3.3 V 1.37 1.39
+VCC = 4.5 V to 5.0 V 2.02 2.03
+VCC = 5.5 V 2.1 2.11
+VIL Low-level input voltage
+VCC = 1.65 V to 2.0 V 0.57 0.55
+VCC = 3 V to 3.6 V 0.8 0.65
+IOH = –20 µA 1.65 V to 5.5 V VCC – 0.1 VCC – 0.1
+ICC Static supply current VI = 0 V or VCC,IO = 0; open on loading
+5.0 V 1 10
+@@ page 7
+One input at 0.3 V or 3.4 V,
+5.5 V 1.35 1.5 mA
+@@ page 10
+5 V tolerant input pins enable down translation (that is, 3.3 V to 2.5 V output at V CC = 2.5 V). The wide V CC 
+@@ page 13
+disturbance. A 0.1-μF capacitor is recommended for this device. It is acceptable to parallel multiple bypass caps 

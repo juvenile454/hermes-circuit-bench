@@ -1,0 +1,42 @@
+# source_id: mod-power-mcp1700-ds
+# document: Microchip MCP1700 Low Quiescent Current LDO, DS20001826F (2005-2020)
+# url: https://ww1.microchip.com/downloads/en/DeviceDoc/MCP1700-Data-Sheet-20001826F.pdf
+# corpus: mod/power/MCP1700-Data-Sheet-20001826F.pdf sha256 44919ee695b5d6ef69aeb81f6b1b50a2d3d7197accd5db08a8a0d83f15d10918
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+ 2005-2020  Microchip Technology Inc. DS20001826F-page 1
+• 1.6 µA Typical Quiescent Current
+• Input Operating Voltage Range: 2.3V to 6.0V
+• 250 mA Output Current for Output
+• Stable with 1.0 µF Ceramic Output Capacitor
+• Short Circuit Protection
+@@ page 3
+VDD............................................................................................+ 6.5V
+Maximum Junction Temperature ................................... 150°C
+Operating Junction Temperature...................-40°C to +125°C
+COUT = 1 µF (X7R), CIN = 1 µF (X7R), TA = +25°C.
+VIN 2.3 — 6.0 V Note 1
+Iq —1 . 6 4 µA I L =0m A ,  VIN =V R +1 V
+Maximum Output 
+IOUT_mA 250
+IOUT_SC —4 0 8—m A V IN =V R +1 V ,  VOUT =G N D
+Dropout Voltage
+VIN -V OUT —1 7 8 350 mV I L = 250 mA, (Note 1, Note 5)
+Dropout Voltage
+2: VR is the nominal regulator output voltage. For example: VR = 1.2V, 1.5V, 1.8V, 2.5V, 2.8V, 2.9V, 3.0V, 3.3V, 4.0V, 5.0V. 
+@@ page 4
+TSD —1 4 0—° C V IN =V R +1 V ,  IL =  100 µA
+Thermal Resistance, SOT-23 JA — 212 — °C/W EIA/JEDEC JESD51-7
+@@ page 11
+applications, 1 µF of capacitance will ensure stable
+SOT-23
+1 1 1 3 GND Ground Terminal
+233 6 V OUT Regulated Voltage Output
+322 1 V IN Unregulated Supply Voltage
+@@ page 13
+A minimum output capacitance of 1.0 µF is required for
+ESR range on the output capacitor can range from 0
+to 2.0.
+@@ page 29
+g) MCP1700T-3302E/TT:           3.3V V OUT

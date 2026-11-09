@@ -1,0 +1,28 @@
+# source_id: mod-nenv-shtc3-ds
+# document: Sensirion Datasheet SHTC3, Version 4 (December 2022)
+# url: https://sensirion.com/media/documents/643F9C8E/63A5A436/Datasheet_SHTC3.pdf
+# corpus: mod/nenv/Datasheet_SHTC3.pdf sha256 dbe979c975fe520663606b5c278d2b9130f4e402e6d9d943ca06c4e4f38e63d9
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 3
+Supply voltage VDD  1.62 3.3 3.6 V - 
+Supply current IDD 
+Idle state - 45 70 µA 
+Sleep Mode - 0.3 0.6 µA 
+Measurement Normal Mode - 430 900 µA Average current consumption while the sensor is measuring Low Power M. - 270 570 µA 
+Low level input voltage VIL - - - 0.42 VDD V - 
+High level input voltage VIH - 0.7 VDD - - V - 
+Low level output voltage VOL 3 mA sink current - - 0.2 VDD V - 
+@@ page 4
+Supply voltage, VDD -0.3 to +4 V 
+@@ page 5
+SCL clock frequency fSCL - 0 100 0 400 0 1000 kHz 
+@@ page 6
+1 VDD Supply voltage 
+2 SCL Serial clock, bidirectional 
+3 SDA Serial data, bidirectional 
+4 VSS Ground 
+must be decoupled with a 10 0 nF capacitor that shall be 
+drive SDA and SCL low. External pull -up resistors (e.g. 
+10 kΩ) are required to pull the signal high. For 
+I2C address 0x70 111’0000 

@@ -1,0 +1,32 @@
+# Development tool configuration only. The plugin package is circuit_bench/ (its own pyproject.toml).
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q -p no:cacheprovider -m 'not hermes and not toolchain'"
+xfail_strict = true
+# an unclosed file or pipe fails the run; when it is found in __del__/GC, pytest reports it as an unraisable exception
+filterwarnings = [
+  "error::ResourceWarning",
+  "error:(?s).*ResourceWarning:pytest.PytestUnraisableExceptionWarning",
+]
+norecursedirs = [".worktrees", ".venvs", ".venv", "tests/.corpus", "node_modules"]
+markers = [
+  "hermes: needs a Hermes Agent checkout on sys.path (PYTHONPATH=.:<hermes-agent checkout> pytest -m hermes)",
+  "toolchain: needs real pio/addr2line, offline only (CB_TOOLCHAIN_TESTS=1)",
+  "corpus: needs pinned source files in tests/.corpus (scripts/fetch_corpus.py)",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 130
+extend-exclude = [".worktrees", ".venvs", "tests/.corpus", "circuit_bench/data", "node_modules"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B", "BLE", "UP", "S", "RUF100",
+          "PLE", "PGH", "T10", "ASYNC", "PIE", "RSE", "ISC", "G", "LOG", "EXE", "RUF059", "PLW1510"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "S603", "S607", "S108"]
+"scripts/**" = ["S310", "S603", "S607"]

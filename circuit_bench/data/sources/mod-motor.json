@@ -1,0 +1,74 @@
+[
+  {
+    "id": "mod-motor-uln2003a-ds",
+    "title": "Texas Instruments ULN2002A, ULN2003A, ULN2003AI, ULQ2003A, ULN2004A, ULQ2004A High-Voltage, High-Current Darlington Transistor Arrays, data sheet",
+    "url": "https://www.ti.com/lit/ds/symlink/uln2003a.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Document SLRS027T (December 1976, revised March 2025); pages 3, 4, 5, 6, 14, 15, 19; sha256 ba83a908675b45c41e84fb06ea390efb10f4b7a358edfee656f87a968dd1d62f"
+  },
+  {
+    "id": "mod-motor-uln2803a-ds",
+    "title": "Texas Instruments ULN2803A Darlington Transistor Array, data sheet, copy hosted by SparkFun",
+    "url": "https://cdn.sparkfun.com/assets/f/0/6/6/5/uln2803a.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A2",
+    "note": "Document SLRS049C (February 1997, revised August 2004); TI no longer serves this revision (ti.com symlink returns 404, the TI successor is the ULN2803C); pages 1, 3; sha256 95f7684f3c9710adf9c998e279f4f5d3bd7a8c1012272136d704c905dd2f4c4e"
+  },
+  {
+    "id": "mod-motor-uln2803c-ds",
+    "title": "Texas Instruments ULN2803C Eight-Channel Darlington Transistor Array, data sheet",
+    "url": "https://www.ti.com/lit/ds/symlink/uln2803c.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Document SLRS076B (August 2022, revised September 2024); pages 3, 4, 5, 9; sha256 12d7302794e2a590d744efe718bb47781720e8ce1999c038772f9af961181f00"
+  },
+  {
+    "id": "mod-motor-drv8833-ds",
+    "title": "Texas Instruments DRV8833 Dual H-Bridge Motor Driver, data sheet",
+    "url": "https://www.ti.com/lit/ds/symlink/drv8833.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Document SLVSAR1E (January 2011, revised July 2015); pages 1, 3, 4, 5, 6, 10, 14; sha256 3e400e333f08f1b93ec99a2d52a6af2a864e88462cc892282208548d9e9f0de4"
+  },
+  {
+    "id": "mod-motor-drv8825-ds",
+    "title": "Texas Instruments DRV8825 Stepper Motor Controller IC, data sheet",
+    "url": "https://web.archive.org/web/20261028181412id_/https://www.ti.com/lit/ds/symlink/drv8825.pdf",
+    "retrieved": "2026-11-09",
+    "class": "A1",
+    "note": "Document SLVSA73F (April 2010, revised July 2014); web.archive.org snapshot 2026-10-28 of the official ti.com file (ti.com re-stamps the PDF daily); pages 1, 3, 4, 6, 7, 12, 21; sha256 5b4dccc2497334e10574ffa5a55518c8d59b0ed35758f5e8f099b84bbfbb407b"
+  },
+  {
+    "id": "mod-motor-a4988-ds",
+    "title": "Allegro MicroSystems A4988 DMOS Microstepping Driver with Translator and Overcurrent Protection, data sheet",
+    "url": "https://www.allegromicro.com/-/media/files/datasheets/a4988-datasheet.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Document 4988-DS, Rev. 8; pages 1, 2, 4, 6, 7, 9, 10, 12, 18; sha256 d1dfba3bb7be2cbf2b689f39424569fc78b1f4fd1f427648bbd8f291ebb933ea"
+  },
+  {
+    "id": "mod-motor-tmc2209-ds",
+    "title": "Analog Devices (Trinamic) TMC2209 Datasheet Rev. 1.09",
+    "url": "https://web.archive.org/web/20261004082311id_/https://www.analog.com/media/en/technical-documentation/data-sheets/tmc2209_datasheet_rev1.09.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A1",
+    "note": "TMC2209 DATASHEET Rev. 1.09 / 2023-FEB-16; Wayback copy of the analog.com file (analog.com refuses scripted downloads, HTTP/2 INTERNAL_ERROR); pages 1, 9, 10, 53, 54, 75, 76, 78, 79; sha256 1d9e8eed9ad2edc17b112c1d54e3c468c34102a629bc3dbf729828919a7b0893"
+  },
+  {
+    "id": "mod-motor-tb6612fng-ds",
+    "title": "Toshiba TB6612FNG Driver IC for Dual DC motor, data sheet",
+    "url": "https://web.archive.org/web/20251012013050id_/https://toshiba.semicon-storage.com/info/TB6612FNG_datasheet_en_20141001.pdf?did=10660&prodName=TB6612FNG",
+    "retrieved": "2026-11-08",
+    "class": "A1",
+    "note": "Data sheet dated 2014-10-01; Wayback copy of the toshiba.semicon-storage.com file (direct download returns HTTP 403 to scripts); pages 1, 2, 3, 5, 10; sha256 a2f153a1bb4c1780a2fd82764be13d47805aabcf1396329d43ccca7c6ade2312"
+  },
+  {
+    "id": "mod-motor-l298n-ds",
+    "title": "STMicroelectronics L298 Dual full-bridge driver, datasheet",
+    "url": "https://web.archive.org/web/20260710114354id_/https://www.st.com/resource/en/datasheet/l298.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A1",
+    "note": "Document DS0218 Rev 5 (October 2023); Wayback copy of the st.com file (st.com refuses scripted downloads, HTTP/2 INTERNAL_ERROR); pages 1, 3, 4, 5, 9; sha256 d0fab11686343b5db91f84bd4b1dcb7b0c99d940672bc8ddd6fff4e340843551"
+  }
+]

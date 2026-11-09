@@ -1,0 +1,945 @@
+{
+  "schema": 1,
+  "wp": "pixel",
+  "note": "Values only from manufacturer documents; 'evidence' quotes lines of tests/corpus/excerpts/mod-pixel-*.txt (pypdf). Class B sources (GC9A01 preliminary, APA102C image-only) carry notes only.",
+  "modules": [
+    {
+      "id": "st7789v",
+      "aliases": [
+        "st7789"
+      ],
+      "title": "ST7789V 240x320 TFT LCD controller (4-line SPI)",
+      "category": "display.tft",
+      "manufacturer": "Sitronix",
+      "kind": "ic",
+      "source_ids": [
+        "mod-pixel-st7789v-ds"
+      ],
+      "supplies": {
+        "VDD": {
+          "min": {
+            "value": 2.4,
+            "unit": "V",
+            "page": 38,
+            "evidence": [
+              "System Voltage VDD",
+              "2.4 2.75 3.3 V"
+            ],
+            "conditions": "operating voltage"
+          },
+          "typ": {
+            "value": 2.75,
+            "unit": "V",
+            "page": 38,
+            "evidence": [
+              "System Voltage VDD",
+              "2.4 2.75 3.3 V"
+            ],
+            "conditions": "operating voltage"
+          },
+          "max": {
+            "value": 3.3,
+            "unit": "V",
+            "page": 38,
+            "evidence": [
+              "System Voltage VDD",
+              "2.4 2.75 3.3 V"
+            ],
+            "conditions": "operating voltage"
+          },
+          "abs_max": {
+            "value": 4.6,
+            "unit": "V",
+            "page": 37,
+            "evidence": "Supply Voltage VDD - 0.3 ~ +4.6 V",
+            "conditions": "absolute operation range"
+          }
+        },
+        "VDDI": {
+          "min": {
+            "value": 1.65,
+            "unit": "V",
+            "page": 38,
+            "evidence": [
+              "Interface Operation Voltage VDDI",
+              "1.65 1.8 3.3 V"
+            ],
+            "conditions": "I/O supply voltage"
+          },
+          "typ": {
+            "value": 1.8,
+            "unit": "V",
+            "page": 38,
+            "evidence": [
+              "Interface Operation Voltage VDDI",
+              "1.65 1.8 3.3 V"
+            ],
+            "conditions": "I/O supply voltage"
+          },
+          "max": {
+            "value": 3.3,
+            "unit": "V",
+            "page": 38,
+            "evidence": [
+              "Interface Operation Voltage VDDI",
+              "1.65 1.8 3.3 V"
+            ],
+            "conditions": "I/O supply voltage"
+          },
+          "abs_max": {
+            "value": 4.6,
+            "unit": "V",
+            "page": 37,
+            "evidence": "Supply Voltage (Logic) VDDI - 0.3 ~ +4.6 V",
+            "conditions": "absolute operation range"
+          }
+        }
+      },
+      "io": {
+        "domain": "VDDI",
+        "vih": {
+          "rel": 0.7,
+          "of": "VDDI",
+          "unit": "V",
+          "page": 38,
+          "evidence": "Logic-High Input Voltage VIH  0.7VDDI   VDDI V",
+          "conditions": "DC characteristics"
+        },
+        "vil": {
+          "rel": 0.3,
+          "of": "VDDI",
+          "unit": "V",
+          "page": 38,
+          "evidence": "Logic-Low Input Voltage VIL  VSS  0.3VDDI  V",
+          "conditions": "DC characteristics"
+        },
+        "voh": {
+          "rel": 0.8,
+          "of": "VDDI",
+          "unit": "V",
+          "page": 38,
+          "evidence": "Logic-High Output Voltage VOH IOH = -1.0mA 0.8VDDI",
+          "conditions": "IOH = -1.0 mA"
+        },
+        "v_in_max": {
+          "rel_offset": 0.5,
+          "of": "VDDI",
+          "unit": "V",
+          "page": 37,
+          "evidence": "Logic Input Voltage Range VIN -0.3 ~ VDDI + 0.5 V",
+          "conditions": "absolute operation range"
+        }
+      },
+      "pins": [
+        {
+          "name": "CSX",
+          "signal": "spi_cs",
+          "active_low": true
+        },
+        {
+          "name": "SCL",
+          "signal": "spi_sck",
+          "note": "serial clock; the pad is named DCX in the pin list (p. 33)"
+        },
+        {
+          "name": "D/CX",
+          "signal": "digital_in",
+          "note": "data/command select in 4-line serial; the pad is named WRX (p. 34)"
+        },
+        {
+          "name": "SDA",
+          "signal": "spi_sdi",
+          "note": "serial data in (in/out with IM3 low, p. 34)"
+        },
+        {
+          "name": "SDO",
+          "signal": "spi_sdo",
+          "note": "read-back only; leave open if not used (p. 34)"
+        },
+        {
+          "name": "RESX",
+          "signal": "reset_in",
+          "active_low": true
+        },
+        {
+          "name": "VDD",
+          "signal": "supply"
+        },
+        {
+          "name": "VDDI",
+          "signal": "supply",
+          "tie": "VDD"
+        },
+        {
+          "name": "GND",
+          "signal": "gnd"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "spi",
+          "f_max_hz": {
+            "value": 15151515,
+            "unit": "Hz",
+            "page": 44,
+            "evidence": "TSCYCW  Serial clock cycle (Write) 66  ns",
+            "conditions": "1 / TSCYCW (write, minimum cycle 66 ns); reads: TSCYCR 150 ns (6.67 MHz); VDDI 1.65–3.3 V, VDD 2.4–3.3 V"
+          },
+          "note": "4-line 8-bit serial interface, IM[3:0] = 0110 (p. 50); breakouts hard-wire IM[3:0]"
+        }
+      ],
+      "current": {
+        "supply": "VDD",
+        "typ": {
+          "value": 0.006,
+          "unit": "A",
+          "page": 40,
+          "evidence": "Normal Mode Black 0.005 6.0 0.01 7.5",
+          "conditions": "IDD typical, normal mode, black image, 60 Hz frame rate, VDD 2.75 V; backlight not included"
+        },
+        "max": {
+          "value": 0.0075,
+          "unit": "A",
+          "page": 40,
+          "evidence": "Normal Mode Black 0.005 6.0 0.01 7.5",
+          "conditions": "IDD maximum, normal mode, black image, VDD 2.4–3.3 V; backlight not included"
+        },
+        "sleep": {
+          "value": 3e-05,
+          "unit": "A",
+          "page": 40,
+          "evidence": "Sleep-in Mode N/A 0.005 0.015 0.01 0.03",
+          "conditions": "IDD maximum in sleep-in mode"
+        },
+        "note": "Controller only. The backlight LEDs of a display module draw far more; their current is board-specific."
+      },
+      "requires": [],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "RESX low pulse at least 10 µs.",
+          "page": 48,
+          "evidence": "TRW Reset pulse duration 10 - us",
+          "verified": true
+        },
+        {
+          "text": "Wait 5 ms after releasing RESX before sending commands.",
+          "page": 49,
+          "evidence": "It is necessary to wait 5msec after releasing RESX before sending commands",
+          "verified": true
+        },
+        {
+          "text": "3.3 V logic only: VDDI max 3.3 V and inputs max VDDI + 0.5 V. Breakouts (1.3\"/1.54\" 240x240, 1.9\"/2.0\" 240x320) often add a regulator on VCC and a backlight transistor on BLK, but do not level-shift the logic pins.",
+          "verified": false
+        },
+        {
+          "text": "Some 240x240 breakouts have no CS pin; libraries then use SPI mode 3.",
+          "verified": false
+        },
+        {
+          "text": "Display libraries often clock ST7789 boards faster than the datasheet write cycle (66 ns, about 15 MHz); that is outside the specification and works by margin only.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "ili9341",
+      "title": "ILI9341 240x320 TFT LCD driver (4-line SPI)",
+      "category": "display.tft",
+      "manufacturer": "ILI Technology (Ilitek)",
+      "kind": "ic",
+      "source_ids": [
+        "mod-pixel-ili9341-ds"
+      ],
+      "supplies": {
+        "VCI": {
+          "min": {
+            "value": 2.5,
+            "unit": "V",
+            "page": 236,
+            "evidence": "Voltage VCI V Operating voltage 2.5 2.8 3.3 Note2",
+            "conditions": "operating voltage"
+          },
+          "typ": {
+            "value": 2.8,
+            "unit": "V",
+            "page": 236,
+            "evidence": "Voltage VCI V Operating voltage 2.5 2.8 3.3 Note2",
+            "conditions": "operating voltage"
+          },
+          "max": {
+            "value": 3.3,
+            "unit": "V",
+            "page": 236,
+            "evidence": "Voltage VCI V Operating voltage 2.5 2.8 3.3 Note2",
+            "conditions": "operating voltage"
+          },
+          "abs_max": {
+            "value": 4.6,
+            "unit": "V",
+            "page": 235,
+            "evidence": "Supply voltage VCI V -0.3 ~ +4.6",
+            "conditions": "absolute maximum rating"
+          }
+        },
+        "VDDI": {
+          "min": {
+            "value": 1.65,
+            "unit": "V",
+            "page": 236,
+            "evidence": "Voltage VDDI V I/O supply voltage 1.65 2.8 3.3 Note2",
+            "conditions": "I/O supply voltage"
+          },
+          "typ": {
+            "value": 2.8,
+            "unit": "V",
+            "page": 236,
+            "evidence": "Voltage VDDI V I/O supply voltage 1.65 2.8 3.3 Note2",
+            "conditions": "I/O supply voltage"
+          },
+          "max": {
+            "value": 3.3,
+            "unit": "V",
+            "page": 236,
+            "evidence": "Voltage VDDI V I/O supply voltage 1.65 2.8 3.3 Note2",
+            "conditions": "I/O supply voltage"
+          },
+          "abs_max": {
+            "value": 4.6,
+            "unit": "V",
+            "page": 235,
+            "evidence": "Supply voltage (Logic) VDDI V -0.3 ~ +4.6",
+            "conditions": "absolute maximum rating"
+          }
+        }
+      },
+      "io": {
+        "domain": "VDDI",
+        "vih": {
+          "rel": 0.7,
+          "of": "VDDI",
+          "unit": "V",
+          "page": 236,
+          "evidence": "Voltage VIH V - 0.7*VDDI  - VDDI",
+          "conditions": "general DC characteristics"
+        },
+        "vil": {
+          "rel": 0.3,
+          "of": "VDDI",
+          "unit": "V",
+          "page": 236,
+          "evidence": "Voltage VIL V - VSS - 0.3*VDDI",
+          "conditions": "general DC characteristics"
+        },
+        "voh": {
+          "rel": 0.8,
+          "of": "VDDI",
+          "unit": "V",
+          "page": 236,
+          "evidence": "Output Voltage VOH V IOL=-1.0mA 0.8*VDDI",
+          "conditions": "I = -1.0 mA"
+        },
+        "v_in_max": {
+          "rel_offset": 0.3,
+          "of": "VDDI",
+          "unit": "V",
+          "page": 235,
+          "evidence": "Logic input voltage range VIN V -0.3 ~ VDDI + 0.3",
+          "conditions": "absolute maximum rating"
+        }
+      },
+      "pins": [
+        {
+          "name": "CSX",
+          "signal": "spi_cs",
+          "active_low": true
+        },
+        {
+          "name": "SCL",
+          "signal": "spi_sck",
+          "note": "serial clock; the pad is named D/CX (SCL) in the pin list (p. 11)"
+        },
+        {
+          "name": "D/CX",
+          "signal": "digital_in",
+          "note": "data/command select in the 4-line system; the pad is named WRX (D/CX) (p. 11)"
+        },
+        {
+          "name": "SDA",
+          "signal": "spi_sdi",
+          "note": "SDI/SDA: serial data in (in/out with IM[3] low, p. 11)"
+        },
+        {
+          "name": "SDO",
+          "signal": "spi_sdo",
+          "note": "serial data out; leave open if not used (p. 11)"
+        },
+        {
+          "name": "RESX",
+          "signal": "reset_in",
+          "active_low": true
+        },
+        {
+          "name": "VCI",
+          "signal": "supply"
+        },
+        {
+          "name": "VDDI",
+          "signal": "supply",
+          "tie": "VCI"
+        },
+        {
+          "name": "GND",
+          "signal": "gnd"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "spi",
+          "f_max_hz": {
+            "value": 10000000,
+            "unit": "Hz",
+            "page": 243,
+            "evidence": "twc Serial clock cycle (Write) 100 - ns",
+            "conditions": "1 / twc (4-line SPI write, minimum cycle 100 ns); reads: trc 150 ns (6.67 MHz); Ta 25 °C, VDDI 1.65–3.3 V, VCI 2.5–3.3 V"
+          },
+          "note": "4-line SPI; IM[3:0] selects the interface and is hard-wired on breakouts"
+        }
+      ],
+      "current": {
+        "supply": "VCI",
+        "sleep": {
+          "value": 0.0001,
+          "unit": "A",
+          "page": 236,
+          "evidence": "during standby mode IST  µA  VCI=2.8V , Ta=25  ° C  - - 100  -",
+          "conditions": "standby current max, VCI 2.8 V, 25 °C"
+        },
+        "note": "The datasheet gives no operating current; the backlight of a display module dominates and is board-specific."
+      },
+      "requires": [],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "RESX low pulse at least 10 µs.",
+          "page": 230,
+          "evidence": "RESX tRW Reset pulse duration 10  uS",
+          "verified": true
+        },
+        {
+          "text": "3.3 V logic only: VDDI max 3.3 V and inputs max VDDI + 0.3 V.",
+          "page": 235,
+          "evidence": "Logic input voltage range VIN V -0.3 ~ VDDI + 0.3",
+          "verified": true
+        },
+        {
+          "text": "Red 2.4\"/2.8\"/3.2\" SPI modules usually carry a regulator on VCC (jumper J1 bridges it for 3.3 V), an XPT2046 touch controller and an SD slot on the same SPI bus (each needs its own CS); their logic pins are not level-shifted.",
+          "verified": false
+        },
+        {
+          "text": "The backlight pin (LED) of modules has a series resistor or a transistor; its current is not in the controller datasheet.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "gc9a01",
+      "aliases": [
+        "gc9a01a"
+      ],
+      "title": "GC9A01 240x240 round TFT LCD controller (4-wire SPI)",
+      "category": "display.tft",
+      "manufacturer": "GalaxyCore",
+      "kind": "ic",
+      "source_ids": [
+        "mod-pixel-gc9a01-ds"
+      ],
+      "pins": [
+        {
+          "name": "CSX",
+          "signal": "spi_cs",
+          "active_low": true
+        },
+        {
+          "name": "SCL",
+          "signal": "spi_sck",
+          "note": "serial clock; the pad is named D/CX (SCL) in the pin list (pp. 10-11)"
+        },
+        {
+          "name": "D/CX",
+          "signal": "digital_in",
+          "note": "data/command select in the 4-line system; the pad is named WRX (D/CX) (p. 11)"
+        },
+        {
+          "name": "SDA",
+          "signal": "spi_sdi",
+          "note": "serial data (in/out in 4-wire 8-bit interface I, p. 10)"
+        },
+        {
+          "name": "RESX",
+          "signal": "reset_in",
+          "active_low": true
+        },
+        {
+          "name": "VCI",
+          "signal": "supply"
+        },
+        {
+          "name": "IOVCC",
+          "signal": "supply",
+          "tie": "VCI"
+        },
+        {
+          "name": "GND",
+          "signal": "gnd"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "spi",
+          "note": "4-wire 8-bit data serial interface I, IM[3:0] = 1111 (p. 10); no SPI clock limit is taken from the preliminary document"
+        }
+      ],
+      "requires": [],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "Preliminary datasheet (Rev. 1.0 Preliminary, module vendor copy): values below are hints, not checked limits.",
+          "page": 1,
+          "evidence": "Rev.1.0 Preliminary",
+          "verified": false
+        },
+        {
+          "text": "Operating voltage VCI 2.5–3.3 V (typ 2.8 V).",
+          "page": 183,
+          "evidence": "Voltage VCI V Operating voltage 2.5 2.8 3.3 Note2",
+          "verified": false
+        },
+        {
+          "text": "I/O supply IOVCC 1.65–3.3 V (typ 2.8 V): 3.3 V logic only.",
+          "page": 183,
+          "evidence": "Voltage IOVCC V I/O supply voltage 1.65 2.8 3.3 Note2",
+          "verified": false
+        },
+        {
+          "text": "Absolute maximum VCI and IOVCC 4.6 V; logic inputs max IOVCC + 0.3 V.",
+          "page": 182,
+          "evidence": [
+            "Supply voltage VCI V -0.3~+4.6",
+            "Supply voltage(Logic) IOVCC V -0.3~+4.6",
+            "Logic input voltage range VIN V -0.3~IOVCC+0.3"
+          ],
+          "verified": false
+        },
+        {
+          "text": "VIH 0.7·IOVCC, VIL 0.3·IOVCC.",
+          "page": 183,
+          "evidence": [
+            "Input Voltage VIH V - 0.7*IOVCC",
+            "Input Voltage VIL V - VSSC - 0.3*IOVCC"
+          ],
+          "verified": false
+        },
+        {
+          "text": "The serial write cycle reads 10 ns in this preliminary copy (100 MHz), which is implausible; it is not used as an SPI clock limit. Read cycle 150 ns.",
+          "page": 189,
+          "evidence": [
+            "tscycw Serial Clock Cycle (Write) 10 - ns",
+            "tscycr Serial Clock Cycle (Read) 150 - ns"
+          ],
+          "verified": false
+        },
+        {
+          "text": "Round 1.28\" 240x240 modules (e.g. Waveshare) add a regulator on VCC and a backlight circuit; the logic stays 3.3 V.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "ws2812b",
+      "aliases": [
+        "ws2812b-v5",
+        "neopixel"
+      ],
+      "title": "WS2812B addressable RGB LED (single-wire, 5050)",
+      "category": "led.addressable",
+      "manufacturer": "Worldsemi",
+      "kind": "ic",
+      "source_ids": [
+        "mod-pixel-ws2812b-ds"
+      ],
+      "supplies": {
+        "VDD": {
+          "min": {
+            "value": 3.7,
+            "unit": "V",
+            "page": 2,
+            "evidence": "Powersupplyvoltage VDD +3.7~+5.3 V",
+            "conditions": "the Absolute Maximum Ratings table lists the supply as a range +3.7 to +5.3 V"
+          },
+          "typ": {
+            "value": 5.0,
+            "unit": "V",
+            "page": 3,
+            "evidence": "ElectricalCharacteristics（TA=25℃,VDD=5V,VSS=0V",
+            "conditions": "condition of the characteristics tables"
+          },
+          "abs_max": {
+            "value": 5.3,
+            "unit": "V",
+            "page": 2,
+            "evidence": "Powersupplyvoltage VDD +3.7~+5.3 V",
+            "conditions": "absolute maximum rating"
+          }
+        }
+      },
+      "io": {
+        "domain": "VDD",
+        "vih": {
+          "rel": 0.63,
+          "of": "VDD",
+          "unit": "V",
+          "page": 3,
+          "evidence": "HighVoltageInput VIH 0.63VDD",
+          "conditions": "DIN; TA 25 °C, VDD 5 V (table condition); datasheet revision V6.1 (older revisions: 0.7·VDD)"
+        },
+        "vil": {
+          "value": 0.7,
+          "unit": "V",
+          "page": 3,
+          "evidence": "LowVoltageInput VIL -0.3V —— 0.7V",
+          "conditions": "DIN; TA 25 °C, VDD 5 V"
+        },
+        "v_in_max": {
+          "rel_offset": 0.7,
+          "of": "VDD",
+          "unit": "V",
+          "page": 2,
+          "evidence": "LogicalInputVoltage VI -0.3V～VDD+0.7 V",
+          "conditions": "absolute maximum rating"
+        }
+      },
+      "pins": [
+        {
+          "name": "VDD",
+          "signal": "supply"
+        },
+        {
+          "name": "DOUT",
+          "signal": "led_data_out",
+          "note": "to DIN of the next LED"
+        },
+        {
+          "name": "VSS",
+          "signal": "gnd"
+        },
+        {
+          "name": "DIN",
+          "signal": "led_data_in"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "led_serial",
+          "note": "single-wire NZR, 800 kbit/s, 24 bit per LED in GRB order (pp. 1, 3, 4)"
+        }
+      ],
+      "current": {
+        "supply": "VDD",
+        "sleep": {
+          "value": 0.0006,
+          "unit": "A",
+          "page": 3,
+          "evidence": "QuiescentCurrent(centervalue):0.6mA",
+          "conditions": "quiescent current per LED (center value), LEDs dark"
+        },
+        "note": "LED current: 12 mA per colour is the test condition of the brightness table (p. 3), not a maximum. Strip totals: calc led_strip."
+      },
+      "requires": [],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "Data rate 800 kbit/s.",
+          "page": 1,
+          "evidence": "Senddataatspeedsof800Kbps.",
+          "verified": true
+        },
+        {
+          "text": "Bit timing: T0H 220–380 ns, T1H 580 ns–1 µs, T0L/T1L 580 ns–1 µs; reset (frame) low time above 280 µs.",
+          "page": 3,
+          "evidence": [
+            "T0H 0code,highvoltagetime 220ns~380ns",
+            "T1H 1code,highvoltagetime 580ns~1µs",
+            "RES Frameunit,lowvoltagetime >280µs"
+          ],
+          "verified": true
+        },
+        {
+          "text": "Data order GRB, high bit first.",
+          "page": 4,
+          "evidence": "Note:DatatransmitinorderofGRB,highbitdataatfirst.",
+          "verified": true
+        },
+        {
+          "text": "This revision (V5 chip) needs no external parts, not even capacitors.",
+          "page": 1,
+          "evidence": "Theperipherydoesnotneedanyelectroniccomponentsincludingcapacitors.",
+          "verified": true
+        },
+        {
+          "text": "VIH is 0.63·VDD (3.15 V at 5 V): a 3.3 V GPIO is above it only in typical conditions, not by the ESP32's guaranteed VOH. Use a 5 V-supplied level shifter (e.g. 74AHCT125) for a 5 V strip.",
+          "page": 3,
+          "evidence": "HighVoltageInput VIH 0.63VDD",
+          "verified": true
+        },
+        {
+          "text": "Older WS2812B revisions specify VIH 0.7·VDD, a reset time above 50 µs and a 100 nF capacitor per LED; this entry follows revision V6.1.",
+          "verified": false
+        },
+        {
+          "text": "Strip vendors recommend a 300–500 Ω series resistor in the data line and a large capacitor across 5 V at the strip input (Adafruit guidance, not in the Worldsemi datasheet).",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "sk6812",
+      "aliases": [
+        "sk6812rgb"
+      ],
+      "title": "SK6812 addressable RGB LED (single-wire, 5050)",
+      "category": "led.addressable",
+      "manufacturer": "Opsco (Dongguan Opsco Optoelectronics)",
+      "kind": "ic",
+      "source_ids": [
+        "mod-pixel-sk6812-ds"
+      ],
+      "supplies": {
+        "VDD": {
+          "min": {
+            "value": 4.5,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VDD=4.5 ~ 5.5V",
+            "conditions": "supply range of the electrical parameter table"
+          },
+          "typ": {
+            "value": 5.2,
+            "unit": "V",
+            "page": 4,
+            "evidence": "supply voltage VDD --- 5.2 --- V ---",
+            "conditions": "chip supply voltage, typical"
+          },
+          "max": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VDD=4.5 ~ 5.5V",
+            "conditions": "supply range of the electrical parameter table"
+          },
+          "abs_max": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 4,
+            "evidence": "Power supply voltage VDD +3.5～+5.5 V",
+            "conditions": "absolute maximum rating (range +3.5 to +5.5 V)"
+          }
+        }
+      },
+      "io": {
+        "domain": "VDD",
+        "vih": {
+          "value": 3.4,
+          "unit": "V",
+          "page": 4,
+          "evidence": [
+            "VIH 3.4 --- --- V",
+            "VDD=5.0V"
+          ],
+          "conditions": "signal input flip threshold, VDD = 5.0 V only"
+        },
+        "vil": {
+          "value": 1.6,
+          "unit": "V",
+          "page": 4,
+          "evidence": [
+            "VDD=5.0V",
+            "VIL --- --- 1.6 V"
+          ],
+          "conditions": "VDD = 5.0 V"
+        },
+        "v_in_max": {
+          "rel_offset": 0.5,
+          "of": "VDD",
+          "unit": "V",
+          "page": 4,
+          "evidence": "Logic input voltage V IN -0.5～VDD+0.5 V",
+          "conditions": "absolute maximum rating"
+        }
+      },
+      "pins": [
+        {
+          "name": "VDD",
+          "signal": "supply"
+        },
+        {
+          "name": "DOUT",
+          "signal": "led_data_out",
+          "note": "to DIN of the next LED"
+        },
+        {
+          "name": "VSS",
+          "signal": "gnd"
+        },
+        {
+          "name": "DIN",
+          "signal": "led_data_in"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "led_serial",
+          "note": "single-wire NRZ, 800 kHz, 24 bit per LED in GRB order (pp. 4-6)"
+        }
+      ],
+      "current": {
+        "supply": "VDD",
+        "sleep": {
+          "value": 0.001,
+          "unit": "A",
+          "page": 4,
+          "evidence": [
+            "Static power",
+            "consumption IDD --- 1 --- mA ---"
+          ],
+          "conditions": "static current per LED, typical"
+        },
+        "note": "No LED current per colour in the table; IOUT = 13 mA is the test condition of the output rise/fall time (p. 4). Strip totals: calc led_strip."
+      },
+      "requires": [],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "Rated 0.2 W per LED.",
+          "page": 1,
+          "evidence": "0.2Watt Power",
+          "verified": true
+        },
+        {
+          "text": "Data rate 800 kHz; reset low time 80 µs; T0H 0.3 µs ±0.15 µs, T1H 0.6 µs ±0.15 µs.",
+          "page": 5,
+          "evidence": [
+            "T0H 0 code, high level time 0.3µs ±0.15µs",
+            "T1H 1 code, high level time 0.6µs ±0.15µs",
+            "Trst Reset code，low level time 80µs"
+          ],
+          "verified": true
+        },
+        {
+          "text": "VIH 3.4 V at VDD 5.0 V is above the 3.3 V of an ESP32 GPIO: a 5 V-supplied level shifter (e.g. 74AHCT125) is needed.",
+          "page": 4,
+          "evidence": [
+            "VIH 3.4 --- --- V",
+            "VDD=5.0V"
+          ],
+          "verified": true
+        },
+        {
+          "text": "The typical application circuit (p. 6, image without text layer) shows a 100 nF capacitor ('104') at each LED.",
+          "verified": false
+        },
+        {
+          "text": "The RGBW variant SK6812RGBW has 32 bit per LED and its own datasheet; it is not covered by this entry.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "apa102c",
+      "aliases": [
+        "apa102",
+        "dotstar"
+      ],
+      "title": "APA102C addressable RGB LED (clocked two-wire, 5050)",
+      "category": "led.addressable",
+      "manufacturer": "Shiji Lighting (iPixel LED)",
+      "kind": "ic",
+      "source_ids": [
+        "mod-pixel-apa102c-ds"
+      ],
+      "pins": [
+        {
+          "name": "DI",
+          "signal": "spi_sdi",
+          "note": "data input (SDI of the control IC)"
+        },
+        {
+          "name": "CI",
+          "signal": "spi_sck",
+          "note": "clock input (CKI of the control IC)"
+        },
+        {
+          "name": "GND",
+          "signal": "gnd"
+        },
+        {
+          "name": "VCC",
+          "signal": "supply",
+          "note": "+5 V"
+        },
+        {
+          "name": "CO",
+          "signal": "led_data_out",
+          "note": "clock output to CI of the next LED"
+        },
+        {
+          "name": "DO",
+          "signal": "led_data_out",
+          "note": "data output to DI of the next LED"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "spi",
+          "note": "clocked two-wire serial (DI/CI in, DO/CO out), no chip select; drive it from SPI MOSI/SCK"
+        }
+      ],
+      "requires": [],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "The only datasheet found is an image-only distributor copy without revision (class B); every value below was read from the page images and is unverified.",
+          "verified": false
+        },
+        {
+          "text": "LED pins as printed on p. 1: 1 DI, 2 CI, 3 GND, 4 VCC (+5V), 5 CO, 6 DO.",
+          "verified": false
+        },
+        {
+          "text": "Supply VDD typ 5.0 V, max 5.5 V; absolute maximum supply -0.3 to 6.0 V, inputs VSS-0.3 to VDD+0.3 (p. 3).",
+          "verified": false
+        },
+        {
+          "text": "VIH min 0.7·VDD (3.5 V at 5 V), VIL max 0.3·VDD (p. 3): at 5 V a 3.3 V GPIO needs a level shifter on DI and CI.",
+          "verified": false
+        },
+        {
+          "text": "Built-in 20 mA constant-current outputs (p. 1); sink current per channel 22.5/24.5/26.5 mA min/typ/max at VDD 5 V, VOL > 1 V (p. 3); power consumption 0.2 W (max 1 W) per LED (p. 1).",
+          "verified": false
+        },
+        {
+          "text": "Frame: start frame 32 zero bits, per LED 32 bits (111 + 5-bit global brightness + blue, green, red, MSB first), end frame of 32 one bits (p. 3); the global value scales the current in 31 steps (p. 4).",
+          "verified": false
+        },
+        {
+          "text": "No maximum clock frequency is given; the example on p. 4 uses 512 kHz.",
+          "verified": false
+        },
+        {
+          "text": "DotStar strips use APA102 or the SK9822 clone, whose global-brightness handling differs.",
+          "verified": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+# source_id: mod-level-txs0108e-ds
+# document: TI TXS0108E 8-Bit Bi-Directional, Level-Shifting, Voltage Translator for Open-Drain and Push-Pull Applications, data sheet SCES642L
+# url: https://www.ti.com/lit/ds/symlink/txs0108e.pdf
+# corpus: mod/level/txs0108e.pdf sha256 a6ddbe03088d291d1a1f8012189086b4b9962d1c878a462a8393c59fe225c883
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+– 110Mbps (push pull)
+– 1.2Mbps (open drain)
+@@ page 4
+A1 1 B1 I/O Input/output 1. Referenced to VCCA
+B1 20 C 1 I/O Input/output 1. Referenced to VCCB
+OE 10 B5 I Tri-state output-mode enable. Pull OE low to place all outputs in 3-state mode. Referenced to VCCA.
+VCCA 2 A1 P A-port supply voltage. 1.4V ≤ VCCA ≤ 3.6V, VCCA ≤ VCCB.
+@@ page 5
+Supply voltage, VCCA –0.5 4.6 V
+Supply voltage, VCCB –0.5 6.5 V
+Input voltage, VI (2) A port –0.5 4.6 VB port –0.5 6.5
+Voltage applied to any output in the high or low state, VO (2) (3) A port –0.5 VCCA + 0.5 VB port –0.5 VCCB + 0.5 V
+@@ page 6
+VCCA Supply voltage(3) 1.4 3.6 V
+VCCB Supply voltage(3) 1.65 5.5 V
+VIH High-level input voltage
+A-Port I/Os
+VCCA (V) = 1.95 to 3.6 VCCB (V) = 1.65 to 5.5 VCCI – 0.4 VCCI
+B-Port I/Os VCCA (V) = 1.4 to 3.6 VCCB (V) = 1.65 to 5.5 VCCI – 0.4 VCCI V
+VIL Low-level input voltage
+A-Port I/Os
+VCCA (V) = 1.95 to 3.6 VCCB (V) = 1.65 to 5.5 0 0.15
+A-Port I/Os
+(3) VCCA must be less than or equal to VCCB, and VCCA must not exceed 3.6V.
+@@ page 16
+Each A-port I/O has a pull-up resistor (R PUA) to VCCA and each B-port I/O has a pull-up resistor (R PUB) to VCCB. 
+RPUA and RPUB have a value of 40k Ω when the output is driving low. R PUA and RPUB have a value of 4k Ω when 
+the output is driving high. RPUA and RPUB are disabled when OE = Low.
+@@ page 20
+• An external pull-down resistor decreases the output VOH and VOL. Use Equation 1 to calculate the VOH as 
+VOH = VCCx × RPD / (RPD + 4kΩ) (1)
+During operation, ensure that V CCA ≤ VCCB at all times. The sequencing of each power supply will not damage 
+tie the OE input pin to GND through a pull-down resistor, and do not enable the OE input until V CCA and V CCB 
+• Bypass capacitors should be used on power supplies. Place the capacitors as close as possible to the VCCA, 
+@@ page 21
+0.1 µF0.1 µF
+0.1 µF0.1 µF

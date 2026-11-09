@@ -1,0 +1,37 @@
+# source_id: mod-motion-apds9960-ds
+# document: APDS-9960 Digital Proximity, Ambient Light, RGB and Gesture Sensor, Data Sheet AV02-4191EN
+# url: https://docs.broadcom.com/doc/AV02-4191EN
+# corpus: mod/motion/AV02-4191EN.pdf sha256 70810e8a0d9d5a91b4741d12785c0e44178b80039f150c5bb6a36acef2ccb8ee
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 3
+4 LEDK LED Cathode, connect to LDR pin when using internal LED driver circuit
+5 LEDA LED Anode, connect to VLEDA on PCB
+Power supply voltage [1] VDD 3.8 V
+Input voltage range VIN -0.5 3.8 V
+Power supply voltage VDD 2.4 3.0 3.6 V
+LED supply voltage VLEDA 3.0 4.5 V
+IDD supply current [1] IDD 200 250 µA Active ALS state
+790 Proximity, LDR pulse ON,
+790 Gesture, LDR pulse ON,
+38 Wait state
+1.0 10.0 Sleep state [2]
+VOL INT, SDA output low voltage VOL 0 0.4 V 3 mA sink current
+SCL, SDA input high voltage, VIH VIH 1.26 VDD V
+SCL, SDA input low voltage, VIL VIL 0.54 V
+@@ page 4
+LED drive current [3] 100 mA LDRIVE = 0
+@@ page 6
+Clock frequency (I2C-bus only) fSCL 0 400 kHz
+@@ page 8
+The device supports a single slave address of 0 ×39 Hex
+@@ page 25
+0xAB = APDS-9960
+@@ page 34
+If operating from a single supply, use a 22 Ω resistor in
+-bus signals and the Interrupt are open-drain outputs and
+require pull−up resistors. The pull-up resistor (RP) value is
+the capacitive load. A 10-k Ω pull-up resistor (R PI) can be
+meet. Place a 1 µF low-ESR decoupling capacitor as close
+as possible to the VDD pin and another at the LEDA pin,
+along with a bulk storage capacitor (≥ 10 µF) at the output

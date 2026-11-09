@@ -1,0 +1,42 @@
+# source_id: mod-power-me6211-ds
+# document: Microne ME6211 Series High Speed LDO Regulators, V24 (copy hosted by LCSC, product C2835782)
+# url: https://datasheet.lcsc.com/datasheet/pdf/cdb3fac1732bda71cb1a255fca4027d3.pdf?productCode=C2835782
+# corpus: mod/power/ME6211_lcsc_C2835782.pdf sha256 684fb25570730ed7960b2a89e1f168aa7e9f5703b6ad4dbd7b72582382da2a9b
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+V24                               www.microne.com.cn                            Page 1 of 25 
+also fully compatible with low ESR ceramic capacitors, 
+ Maximum Output Current: 500mA 
+（VIN＝4.3V,VOUT＝3.3V） 
+ Dropout Voltage: 100mV@ IOUT =100mA 
+ Operating Voltage Range: 1.2V～6.0V 
+ Low Power Consumption: 30uA（TYP.） 
+@@ page 3
+ME6211C33M5G-N Enable can be set  3.3V SOT23-5 
+@@ page 4
+ME6211CXXG/ ME6211HXXG 
+Pin Number Pin Name Functions SOT23-5/SOT353 DFN2*2-6 SOT343R FBP1*1-4 
+1 3 4 4 VIN Power Input 
+2 2 2 2 VSS Ground 
+3 1 1 3 CE ON / OFF Control 
+4 5,6 - - NC No Connect 
+5 4 3 1 VOUT Output 
+@@ page 5
+Input Voltage VIN 6.5 V 
+Output Current IOUT 600 mA 
+CE Pin Voltage VCE Vss-0.3 ~ VIN +0.3 V 
+SOT23-5 0.60 
+Thermal resistance 
+SOT23-5 210 
+Junction temperature TJ -40 ~ +150 ℃ 
+@@ page 10
+ME6211C33  (VIN= VOUT+1V，VCE = VIN，CIN=CL=1uF，Ta=25OC, unless otherwise noted) 
+Current IOUTMAX VIN= VOUT+1V  500  mA 
+VDIF1 IOUT =100mA  120  mV 
+VDIF2 IOUT =200mA  260  mV 
+Supply Current ISS VIN= VOUT+1V  30 60 μA 
+Stand-byCurrent ICEL VCE＝0V  0.1 1.0 μA 
+CE  “High” Voltage  VCEH Start up 1.0   V 
+CE  “Low” Voltage  VCEL Shut down   0.5 V 
+Short-circuit Current ISHORT VIN= VOUT+1V, VCE＝VIN, VOUT＝0V  70  mA 

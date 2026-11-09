@@ -1,0 +1,10 @@
+{
+ "addresses": {
+  "0x40081656": "panic_abort at /esp/esp-idf/components/esp_system/panic.c:452",
+  "0x40085729": "esp_system_abort at /esp/esp-idf/components/esp_system/port/esp_system_chip.c:90",
+  "0x4008a7ce": "abort at /esp/esp-idf/components/newlib/abort.c:38",
+  "0x400d51d7": "app_main at {project}/main/hello_world_main.c:49",
+  "0x400e31bc": "main_task at /esp/esp-idf/components/freertos/app_startup.c:208 (discriminator 13)",
+  "0x40087bc5": "vPortTaskWrapper at /esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:162"
+ }
+}

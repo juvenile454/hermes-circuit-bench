@@ -1,0 +1,37 @@
+# source_id: mod-rtc-at24c256-ds
+# document: AT24C256C I2C-Compatible (2-Wire) Serial EEPROM 256-Kbit, Atmel-8568F (01/2015)
+# url: https://ww1.microchip.com/downloads/en/devicedoc/atmel-8568-seeprom-at24c256c-datasheet.pdf
+# corpus: mod/rtc/atmel-8568-seeprom-at24c256c-datasheet.pdf sha256 60d5cadc56737978e0f90127a95fb32bd347ed2415ef101cb23526126daf986e
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Atmel-8568F-SEEPROM-AT24C256C-Datasheet_012015
+@@ page 2
+A0 Address Input
+A1 Address Input
+A2 Address Input
+SDA Serial Data
+SCL Serial Clock Input
+WP Write Protect
+VCC Device Power Supply
+Voltage on any pin
+with respect to ground . . . . . . . . . . . . . . .-1.0 V +7.0V
+Maximum Operating Voltage . . . . . . . . . . . . . . . 6.25V
+@@ page 3
+Serial Data (SDA): The SDA pin is bidirectional for serial data transfer. This pin is open drain driven and may be 
+If these pins are left floating, the A2, A1, and A0 pins will be internally pulled down to GND. However, due to 
+address pins to a known state. When using a pull-up resistor, Atmel recommends using 10k or less.
+is connected directly to VCC, all write operations to the memory are inhibited. If the pin is left floating, the WP pin 
+@@ page 4
+VCC1 Supply Voltage 1.7 5.5 V
+ICC2 Supply Current VCC = 5.0V Write at 400kHz 2.0 3.0 mA
+VCC = 5.0V 6.0 A
+VIL Input Low Level(1) -0.6 VCC x 0.3 V
+VIH Input High Level((1) VCC x 0.7 VCC + 0.5 V
+VOL2 Output Low Level VCC = 3.0V IOL = 2.1mA 0.4 V
+@@ page 5
+1.7V 2.5V, 5.0V
+fSCL Clock Frequency, SCL 400 1000 kHz
+@@ page 9
+read or write operation. The device address word consists of a mandatory one, zero sequence for the first four 
+The next three bits are the A2, A1, and A0 device address bits to allow as many as eight devices on the same 

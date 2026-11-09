@@ -1,0 +1,61 @@
+# source_id: mod-power-mcp73831-ds
+# document: Microchip MCP73831/2 Miniature Single-Cell, Fully Integrated Li-Ion, Li-Polymer Charge Management Controllers, DS20001984H (2005-2020)
+# url: https://ww1.microchip.com/downloads/en/DeviceDoc/MCP73831-Family-Data-Sheet-DS20001984H.pdf
+# corpus: mod/power/MCP73831-Family-Data-Sheet-DS20001984H.pdf sha256 75297f2a5235599368381adfb63df2652cc22d757f171f388147b2ab3d32776f
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+ 2005-2020 Microchip Technology Inc. DS20001984H-page 1
+- 4.20V, 4.35V, 4.40V, 4.50V
+• Programmable Charge Current: 15 mA to 500 mA
+• Lithium-Ion/Lithium-Polymer Battery Chargers
+500 mA Li-Ion Battery Charger
+@@ page 3
+VDD...................................................................................7.0V
+Supply Voltage V DD 3.75 — 6 V
+Supply Current I SS — 510 1500 µA Charging
+— 25 50 µA PROG Floating
+Regulated Output Voltage V REG 4.168 4.20 4.232 V MCP7383X-2
+4.317 4.35 4.383 V MCP7383X-3
+IREG 90 100 110 mA PROG = 10 k 
+450 505 550 mA PROG = 2.0 k Note 1
+12.5 14.5 16.5 mA PROG = 67 k 
+@@ page 4
+VPTH / VREG 64 66.5 69 % V BAT Low-to-High
+Sink Current I SINK ——2 5 m A
+Low Output Voltage V OL —0 . 4 1 V I SINK = 4 mA
+Source Current I SOURCE ——3 5 m A
+High Output Voltage V OH —V DD-0.4 V DD - 1 V I SOURCE = 4 mA (MCP73831)
+Charge Impedance 
+RPROG 2— 6 7 k 
+Minimum Shutdown 
+RPROG 70 — 200 k 
+@@ page 5
+5-Lead, SOT-23 JA — 230 — °C/W 4-Layer JC51-7 Standard 
+@@ page 11
+A supply voltage of [V REG (typical) + 0.3V] to 6V is
+recommended. Bypass to V SS with a minimum of
+4.7 µF.
+of internal P-channel MOSFET pass transistor. Bypass
+to VSS with a minimum of 4.7 µF to ensure loop stability
+STAT is a tri-state logic output on the MCP73831 and
+DFN SOT-23-5
+14 V DD Battery Management Input Supply
+33 V BAT Battery Charge Control Output
+5 1 STAT Charge Status Output
+62 V SS Battery Management 0V Reference
+8 5 PROG Current Regulation Set and Charge Control Enable
+@@ page 14
+4.9 Thermal Regulation
+The MCP73831/2 limit the charge current based on the
+@@ page 15
+Placing a programming resistor from the PROG input to
+float or by applying a logic-high input signal, disables
+IREG 1000VRPROG-----------------=
+RPROG =k O h m s
+IREG = milliampere
+@@ page 18
+The worst-case power dissipation in the battery
+PowerDissipation V DDMAX VPTHMIN– IREGMAX=
+VPTHMIN = the minimum transition threshold 
+PowerDissipation 5.5V 2.7V – 550mA 1.54W==

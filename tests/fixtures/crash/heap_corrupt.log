@@ -1,0 +1,8 @@
+CORRUPT HEAP: Bad tail at 0x3ffe270a. Expected 0xbaad5678 got 0xbaac5678
+assertion "head != NULL" failed: file "/Users/user/esp/esp-idf/components/heap/multi_heap_poisoning.c", line 201, function: multi_heap_free
+abort() was called at PC 0x400dca43 on core 0
+
+
+Backtrace: 0x40081656:0x3ffb4ac0 0x40085729:0x3ffb4ae0 0x400dca43:0x3ffb4b00 0x400d51d7:0x3ffb4c20
+
+Rebooting...

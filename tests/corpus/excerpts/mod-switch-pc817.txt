@@ -1,0 +1,27 @@
+# source_id: mod-switch-pc817-ds
+# document: Sharp PC817XxNSZ1B Series DIP 4pin Photocoupler, Sheet No. OP18002EN (Jan. 15, 2018)
+# url: https://global.sharp/products/device/lineup/data/pdf/datasheet/PC817XxNSZ1B_e.pdf
+# corpus: mod/switch/PC817XxNSZ1B_e.pdf sha256 04c5dfe12e1140687ec47236af43378758d2b84e2195cdf498cba06646b672f2
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Collector-emitter voltage is 80V.
+CTR is 50% to 400% (at IF=5mA,VCE=5V,Ta=25℃)
+@@ page 2
+1 Anode
+2 Cathode
+3 Emitter
+4 Collector2
+@@ page 4
+Forward current IF 50 mA
+Reverse voltage VR 6 V
+Collector-emitter voltage VCEO 80 V
+Emitter-collector voltage VECO 6 V
+Collector current IC 50 mA
+*2 Isolation voltage Viso(rms) 5 kV
+Forward voltage VF IF20mA  1.2 1.4 V
+Collector current IC IF5mA, VCE5V 2.5  30 mA
+Collector-emitter saturation voltage VCE(sat) IF20mA, IC1mA  0.1 0.2 V
+Responsetime Risetime tr VCE2V, IC2mA, RL100 Ω  4 18 sFall time tf  3 18 s
+@@ page 9
+While operating at IF<1mA, CTR variation may increase.  

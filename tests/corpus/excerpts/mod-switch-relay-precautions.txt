@@ -1,0 +1,23 @@
+# source_id: mod-switch-relay-precautions
+# document: Omron Safety Precautions for All Relays (omronfs.omron.com precautions_pcb.pdf)
+# url: https://omronfs.omron.com/en_US/ecb/products/pdf/precautions_pcb.pdf
+# corpus: mod/switch/omron-precautions_pcb.pdf sha256 abd9df6258105f9445a2ab556b199d03a8e3e42995bbdc9e39fb1799bc9c3ab9
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Safety Precautions for All Relays
+@@ page 8
+The energy stored in a coil (inductive 
+load) reaches the coil as current via the 
+diode connected in parallel with the coil, 
+Use a diode having a reverse breakdown voltage of more than 
+10 times the circuit voltage, and a forward current rating 
+greater than the load current. A diode having a reverse 
+@@ page 9
+B-B-5 Preventing Surges When the Coil Is Turned OFF
+Counter electromotive force generated from a coil when the coil is 
+turned OFF causes damage to semiconductor elements and faulty 
+As a countermeasure, install surge absorbing circuits at both ends of 
+the coil or select a model with a built-in surge absorbing circuit (e.g., 
+sufficient capacity used. Also, ensure that the diode has an average 
+rectified current that is greater than the coil current.

@@ -1,0 +1,43 @@
+# source_id: mod-motion-mpu6050-ds
+# document: MPU-6000 and MPU-6050 Product Specification, Revision 3.4 (PS-MPU-6000A-00)
+# url: https://web.archive.org/web/20230118033738id_/https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf
+# corpus: mod/motion/MPU-6000-Datasheet1.pdf sha256 a4fdf69590b8cbab1cf0a5bcd359327b0ac022061fb233855aff2e191e7e3584
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 14
+Operating Voltages  2.375  3.46 V
+Normal Operating Current Gyroscope + Accelerometer + DMP  3.9  mA
+Full-Chip Idle Mode Supply Current   5  µA
+Voltage Range VLOGIC must be ≤VDD at all times 1.71  VDD V
+@@ page 15
+I2C Operating Frequency All registers, Fast-mode   400 kHz
+I2C ADDRESS AD0 = 0  1101000
+ AD0 = 1  1101001
+VIH, High Level Input Voltage MPU-6000 0.7*VDD   V
+ MPU-6050 0.7*VLOGIC   V
+VIL, Low Level Input Voltage MPU-6000   0.3*VDD V
+ MPU-6050   0.3*VLOGIC V
+VOH, High Level Output Voltage RLOAD=1MΩ; MPU-6000 0.9*VDD   V
+ RLOAD=1MΩ; MPU-6050 0.9*VLOGIC   V
+VOL1, LOW-Level Output Voltage RLOAD=1MΩ; MPU-6000   0.1*VDD V
+ RLOAD=1MΩ; MPU-6050   0.1*VLOGIC V
+@@ page 20
+Supply Voltage, VDD -0.5V to +6V
+VLOGIC Input Voltage Level (MPU-6050) -0.5V to VDD + 0.5V
+Input Voltage Level (CLKIN, AUX_DA,  AD0, FSYNC, INT,
+SCL, SDA) -0.5V to VDD + 0.5V
+@@ page 21
+8  Y VLOGIC Digital I/O supply voltage
+9  Y AD0 I2C Slave Address LSB (AD0)
+10 Y Y REGOUT Regulator filter capacitor connection
+20 Y Y CPOUT Charge pump capacitor connection
+@@ page 22
+Regulator Filter Capacitor (Pin 10) C1 Ceramic, X7R, 0.1µF ±10%, 2V 1
+VDD Bypass Capacitor (Pin 13) C2 Ceramic, X7R, 0.1µF ±10%, 4V 1
+Charge Pump Capacitor (Pin 20) C3 Ceramic, X7R, 2.2nF ±10%, 50V 1
+VLOGIC Bypass Capacitor (Pin 8) C4* Ceramic, X7R, 10nF ±10%, 4V 1
+@@ page 25
+ MPU-6050: The logic level for communications with the master is set by the voltage on VLOGIC
+@@ page 33
+acts as the master.  SDA and SCL lines typically need pull -up resistors to VDD.  The maximum bus speed is
+determined by the logic level on pin AD0. This allows two MPU-60X0s to be connected to the same I 2C bus.

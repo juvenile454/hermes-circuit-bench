@@ -1,0 +1,39 @@
+# source_id: mod-powermon-ina219-ds
+# document: Texas Instruments INA219 Zerø-Drift, Bidirectional Current/Power Monitor With I2C Interface, SBOS448G (August 2008, revised December 2015)
+# url: https://www.ti.com/lit/ds/symlink/ina219.pdf
+# corpus: mod/powermon/ina219.pdf sha256 58004eda854d07478e6fc6f4398c114f60a3bcf18d4877471c7c1a306d1fa1cb
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 4
+VS Supply voltage 6 V
+IN+, IN– Common-mode(VIN+ + VIN–) / 2 -0.3 26 V
+SCL GND – 0.3 VS + 0.3 V
+@@ page 5
+PGA = /1 0 ±40 0 ±40 mV
+PGA = /2 0 ±80 0 ±80 mVFull-scale current sense (input) voltageVSHUNT range PGA = /4 0 ±160 0 ±160 mV
+PGA = /8 0 ±320 0 ±320 mV
+Shunt voltage, 1 LSB step size 10 10 μV
+VIH input logic level 0.7 (VS) 6 0.7 (VS) 6 V
+VIL input logic level –0.3 0.3 (VS) –0.3 0.3 (VS) V
+(2) This parameter only expresses the full-scale range of the ADC scaling. In no event should more than 26 V be applied to this device.
+@@ page 6
+Operating supply range 3 5.5 3 5.5 V
+Quiescent current 0.7 1 0.7 1 mA
+Quiescent current, power-down mode 6 15 6 15 μA
+@@ page 12
+Power_LSB = 20 Current_LSB
+Maximum Expected Current
+15Current_LSB =
+• 0.04096 is an internal fixed value used to ensure scaling is maintained properly (1)
+@@ page 14
+Table 1. INA219 Address Pins and Slave Addresses
+GND GND 1000000
+SCL SCL 1001111
+transmission protocol for fast (1- to 400-kHz) and high-speed (1-kHz to 2.56-MHz) modes. All data bytes are
+@@ page 24
+(1) FS0 is a void bit and will always be 0. It is not possible to write a 1 to FS0. CALIBRATION is the value stored in FS15:FS1.
+@@ page 25
+Figure 28 shows a typical application circuit for the INA219. Use a 0.1-μF ceramic capacitor for power-supply
+The pull-up resistors shown on the SDA and SCL lines are not needed if there are pullup resistors on these
+@@ page 26
+Equation 1 results in a calibration value of 20480 (5000h). This value is then programmed into the Calibration

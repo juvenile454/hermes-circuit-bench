@@ -1,0 +1,42 @@
+[
+{
+"id": "mod-ndrive-tpl7407l-ds",
+"title": "Texas Instruments TPL7407L 40-V 7-Channel Low Side Driver, data sheet",
+"url": "https://www.ti.com/lit/ds/symlink/tpl7407l.pdf",
+"retrieved": "2026-11-08",
+"class": "A",
+"note": "Document SLRS066D (January 2014, revised March 2016); pages 1, 3, 4, 7, 8, 9, 12, 13; sha256 8d610edc083388a90d99b0cc07ab5c7be18ea51e49502d6fdf9f119df03bd1ec"
+},
+{
+"id": "mod-ndrive-drv8871-ds",
+"title": "Texas Instruments DRV8871 3.6-A Brushed DC Motor Driver With Internal Current Sense (PWM Control), data sheet",
+"url": "https://www.ti.com/lit/ds/symlink/drv8871.pdf",
+"retrieved": "2026-11-08",
+"class": "A",
+"note": "Document SLVSCY9B (August 2015, revised July 2016); pages 1, 3, 4, 5, 8, 9, 10, 12, 14; sha256 09de551aa0c6d090fd14b000634cfd894d782a050eed13110fe2eb10f1b548bf"
+},
+{
+"id": "mod-ndrive-tmc2208-ds",
+"title": "Analog Devices (Trinamic) TMC2202, TMC2208, TMC2224 Datasheet Rev. 1.14",
+"url": "https://web.archive.org/web/20261021182227id_/https://www.analog.com/media/en/technical-documentation/data-sheets/TMC2202_TMC2208_TMC2224_datasheet_rev1.14.pdf",
+"retrieved": "2026-11-08",
+"class": "A1",
+"note": "TMC220X, TMC2224 DATASHEET Rev. 1.14 / 2023-FEB-16; Wayback copy of the analog.com file (analog.com refuses scripted downloads); pages 1, 9, 10, 52, 68, 69, 71, 72; sha256 7b775bfd248de8b76991956c664c211d7e0c20ce098b2ebd1dd5e6a75f2ee1fd"
+},
+{
+"id": "mod-ndrive-ss14-ds",
+"title": "Vishay General Semiconductor SS12, SS13, SS14, SS15, SS16 Surface-Mount Schottky Barrier Rectifier, data sheet",
+"url": "https://www.vishay.com/docs/88746/ss12.pdf",
+"retrieved": "2026-11-08",
+"class": "A",
+"note": "Document number 88746, revision 23-Apr-2020; pages 1, 2 (the text layer drops the column layout of shared cells: VF 0.50 V spans SS12–SS14, 0.75 V spans SS15–SS16); sha256 b32a2d93d2d2cf9f48d6cf678ab03713956b7501029c0424c6a554425df562da"
+},
+{
+"id": "mod-ndrive-bat54-ds",
+"title": "Nexperia BAT54 series Schottky barrier diodes, product data sheet",
+"url": "https://web.archive.org/web/20210614191404id_/https://assets.nexperia.com/documents/data-sheet/BAT54_SER.pdf",
+"retrieved": "2026-11-08",
+"class": "A1",
+"note": "BAT54_SER Rev. 5 (5 October 2012); Wayback copy of the nexperia.com file (assets.nexperia.com returns HTTP 403 to scripts); pages 1, 2, 3, 4 (the text layer drops the micro sign: 'IR ... 2 A' reads 2 µA in the PDF); sha256 63bb4caf94eb911a91b82d889e7d3840d5fd8a3172fecf2748152178fe08a731"
+}
+]

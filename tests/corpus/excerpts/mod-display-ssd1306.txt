@@ -1,0 +1,39 @@
+# source_id: mod-display-ssd1306-ds
+# document: Solomon Systech SSD1306 Advance Information, 128 x 64 Dot Matrix OLED/PLED Segment/Common Driver with Controller, Rev 1.1 (Apr 2008), with App Note Rev 0.4 (charge pump); copy hosted by Adafruit
+# url: https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf
+# corpus: mod/display/ssd1306-adafruit.pdf sha256 d55f875357de96d8c0e92153a389acc57e8bab4db7a0687f2e0bd3362f0036f6
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+SSD1306 Rev 1.1 P 1/59 Apr 2008  Copyright © 2008 Solomon Systech Limited 
+@@ page 6
+diode dot-matrix graphic display system. It consis ts of 128 segments and 64commons. This IC is 
+@@ page 19
+output and SDAIN/D1 for input) and I2C-bus clock signal SCL (D0). Both the data and clock signals must be 
+connected to pull-up resistors. RES# is used for the initialization of device. 
+“SA0” bit provides an extension bit for the slave address. Either “0111100” or “0111101”, can be 
+selected as the slave address of SSD1306. D/C# pin acts as SA0 for slave address selection. 
+@@ page 47
+VDD  -0.3 to +4 V 
+Vin Input voltage V SS-0.3 to VDD+0.3 V 
+@@ page 48
+Solomon Systech  Apr 2008 P 48/59 Rev 1.1 SSD1306  
+VDD = 1.65 to 3.3V  
+VCC Operating Voltage - 7 - 15 V 
+VDD Logic Supply Voltage - 1.65 - 3.3 V  
+VOH High Logic Output Level I OUT = 100uA, 3.3MHz 0.9 x V DD  - - V 
+VOL Low Logic Output Level I OUT = 100uA, 3.3MHz - - 0.1 x V DD V 
+VIH High Logic Input Level - 0.8 x V DD - - V 
+VIL Low Logic Input Level - - - 0.2 x V DD V 
+@@ page 52
+Table 13-4 : 4-wire Serial Interface Timing Characteristics 
+(VDD - VSS = 1.65V to 3.3V, TA = 25°C) 
+tcycle Clock Cycle Time 100 - - ns 
+@@ page 54
+VDD - VSS = VDD - VSS = 1.65V to 3.3V 
+ Table 13-6 :I2C Interface Timing Characteristics 
+tcycle Clock Cycle Time 2.5 - - us 
+@@ page 62
+SSD1306 App Note Rev 0.4 P 3/6 Jan 2009  Solomon Systech
+o V DD = 1.65V to 3.3V,<VBAT for IC logic 
+o V BAT = 3.3V to 4.2V   for charge pump regulator circuit 

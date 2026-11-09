@@ -1,0 +1,85 @@
+{
+ "note": "Board corpus: Espressif user guides of the ESP32-DevKitC V4 and the ESP32-C3-DevKitM-1 from espressif/esp-dev-kits at commit 5c06bf1835329d6525f316475f7218aab6acfe79 (same commit as the S3-DevKitC-1 v1.1 guide in pins.json), plus the ordering tables they include. Read by tests/test_plus_boards_*.py (marker corpus). 'source_id' maps a file to data/sources/boards-plus.json.",
+ "files": [
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-devkitc/user_guide.rst",
+   "path": "esp-dev-kits/5c06bf183532/docs/en/esp32-devkitc/user_guide.rst",
+   "source_id": "devkitc-esp32-v4",
+   "sha256": "a6e89080a3a5f9b99f33e63e7a0d9788fa858ad11cd25feffbb9e4df15229f1b"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-devkitc/ordering-info.inc",
+   "path": "esp-dev-kits/5c06bf183532/docs/en/esp32-devkitc/ordering-info.inc",
+   "source_id": "devkitc-esp32-v4-ordering",
+   "sha256": "673ce22fc37b60afe6286a28d3bd1bb617b0fb2812609e086ba3577f72987e8b"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-c3-devkitm-1/user_guide.rst",
+   "path": "esp-dev-kits/5c06bf183532/docs/en/esp32-c3-devkitm-1/user_guide.rst",
+   "source_id": "devkitm1-c3-v1",
+   "sha256": "6859d66ec8f3793845bc993e5993db4bbb0310c434f30a41c019a0c507f4ae2c"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-c3-devkitm-1/ordering-info.inc",
+   "path": "esp-dev-kits/5c06bf183532/docs/en/esp32-c3-devkitm-1/ordering-info.inc",
+   "source_id": "devkitm1-c3-ordering",
+   "sha256": "d6ce9d95d89ddb9afe66aada226073c419617f0b4f5e34c4452ded22f40a464b"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/_static/esp32-devkitc/esp32_devkitC_v4_pinlayout.png",
+   "path": "esp-dev-kits/5c06bf183532/docs/_static/esp32-devkitc/esp32_devkitC_v4_pinlayout.png",
+   "source_id": "devkitc-esp32-v4",
+   "figure": "Pin Layout figure of the user guide (antenna up, USB down): left column 3V3, EN, VP ... 5V = J2; right column GND, IO23 ... CLK = J3. Read visually; the side field of the board file rests on it.",
+   "sha256": "e3217229b995ec7e1b5c525ffd93eced3b3a17827806907dd25a1609667283e2"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/_static/esp32-c3-devkitm-1/esp32-c3-devkitm-1-v1-pinout.png",
+   "path": "esp-dev-kits/5c06bf183532/docs/_static/esp32-c3-devkitm-1/esp32-c3-devkitm-1-v1-pinout.png",
+   "source_id": "devkitm1-c3-v1",
+   "figure": "Pin Layout figure of the user guide (antenna up, USB down): left column GND, 3V3, 3V3, IO2 ... GND = J1; right column GND, TX, RX ... GND = J3. Read visually; the side field of the board file rests on it.",
+   "sha256": "fc7af279350219e235de68524038271ce9dc4cfa28c908b7315eee2676c997c7"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-s2-devkitc-1/user_guide.rst",
+   "path": "esp-dev-kits/5c06bf183532/docs/en/esp32-s2-devkitc-1/user_guide.rst",
+   "source_id": "devkitc1-s2",
+   "sha256": "76ba36747ba03db2fa96c4d9072640ae332c321d18257f5aaca189841a84f2e0"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-s2-devkitc-1/ordering-info.inc",
+   "path": "esp-dev-kits/5c06bf183532/docs/en/esp32-s2-devkitc-1/ordering-info.inc",
+   "source_id": "devkitc1-s2-ordering",
+   "sha256": "c88c206d47c27195a08869334a31385e2fcd0030ade5dafc807e6691121a3427"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-c6-devkitc-1/user_guide.rst",
+   "path": "esp-dev-kits/5c06bf183532/docs/en/esp32-c6-devkitc-1/user_guide.rst",
+   "source_id": "devkitc1-c6-v1.2",
+   "sha256": "0c5d5b143e380f9e34844f1782a38a23558eba04a36574d0a7679e184c8d607d"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-c6-devkitc-1/ordering-info.inc",
+   "path": "esp-dev-kits/5c06bf183532/docs/en/esp32-c6-devkitc-1/ordering-info.inc",
+   "source_id": "devkitc1-c6-ordering",
+   "sha256": "1398d681249fe78a113d69cc05802c597dc031a6721b8c0b8b8a393d36d91907"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-c6-devkitm-1/user_guide.rst",
+   "path": "esp-dev-kits/5c06bf183532/docs/en/esp32-c6-devkitm-1/user_guide.rst",
+   "source_id": "devkitm1-c6",
+   "sha256": "71e3ae7c4a88ec8f792d00e0b4c41f64c06a1d2b3c103309c2fb8c74af6b79b5"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-c6-devkitm-1/ordering-info.inc",
+   "path": "esp-dev-kits/5c06bf183532/docs/en/esp32-c6-devkitm-1/ordering-info.inc",
+   "source_id": "devkitm1-c6-ordering",
+   "sha256": "80cf7f6a339ce313824780006bdcb6187bb4211a8486cd2626042e623153d426"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/eol/eol-boards.rst",
+   "path": "esp-dev-kits/5c06bf183532/docs/en/eol/eol-boards.rst",
+   "source_id": "devkits-eol",
+   "sha256": "2372219758071d1af332ac279b527755d2ced9428fdd0db62c44adc319b14bed"
+  }
+ ]
+}

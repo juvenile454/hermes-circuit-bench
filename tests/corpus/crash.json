@@ -1,0 +1,79 @@
+{
+ "files": [
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-guides/fatal-errors.rst",
+   "path": "esp-idf/v6.1/docs/en/api-guides/fatal-errors.rst",
+   "sha256": "5037357f37e6237ee87b4856b5e101f0d26cf23064228e11d4fb2b983e7045e3"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/system/wdts.rst",
+   "path": "esp-idf/v6.1/docs/en/api-reference/system/wdts.rst",
+   "sha256": "d00cabf8ac5810114483e47321c02d5cc78e61a92c9b528b5601b683d8df2e29"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-guides/error-handling.rst",
+   "path": "esp-idf/v6.1/docs/en/api-guides/error-handling.rst",
+   "sha256": "214abc5bb465f4c49d2039ade2b4cab69438d4f8638a0ef03dce5f4f17b55223"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-guides/tools/idf-monitor.rst",
+   "path": "esp-idf/v6.1/docs/en/api-guides/tools/idf-monitor.rst",
+   "sha256": "d2aa26b6171a7cf6a3afef069f6a98f05c79472e9dbaac79f9175991e16b3443"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/system/app_image_format.rst",
+   "path": "esp-idf/v6.1/docs/en/api-reference/system/app_image_format.rst",
+   "sha256": "63fb7aaeaf343847f0aaccdde9222016ac6ee0f5957e40b0060bf1bd498ec458"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/esp_system/panic.c",
+   "path": "esp-idf/v6.1/components/esp_system/panic.c",
+   "sha256": "07b34af350812e92a065652c858c8296c0afd4e343df01daeab2e54dad773719"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/esp_app_format/esp_app_desc.c",
+   "path": "esp-idf/v6.1/components/esp_app_format/esp_app_desc.c",
+   "sha256": "d799ba1f9725154631610065465bcb21f8c7b191c4598721531a7273fa20f899"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/esp_system/port/arch/xtensa/debug_helpers.c",
+   "path": "esp-idf/v6.1/components/esp_system/port/arch/xtensa/debug_helpers.c",
+   "sha256": "88f7dd70ed75f7c9e388863d389211c21443ad585eb8d7ac0f61804c0f40f183"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/esp_system/port/arch/xtensa/panic_arch.c",
+   "path": "esp-idf/v6.1/components/esp_system/port/arch/xtensa/panic_arch.c",
+   "sha256": "e1a1bdeecea450008597b37bdb1052e7eabb052681994f6a78088480fe934faf"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/esp_system/port/arch/riscv/panic_arch.c",
+   "path": "esp-idf/v6.1/components/esp_system/port/arch/riscv/panic_arch.c",
+   "sha256": "e76a0ee07e076523b2278072fb617ffe9080f7db0e4c27e5c523a6f7fec33c5f"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/esp_libc/src/assert.c",
+   "path": "esp-idf/v6.1/components/esp_libc/src/assert.c",
+   "sha256": "778e82900ace28708233fdf09496c3663a5522aaaa1decb399be9e10d46a675f"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c",
+   "path": "esp-idf/v6.1/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c",
+   "sha256": "b6c91812b25d2f33ed2a54652e9293202f756cadcbfac986d132d74e463b7570"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/esp_system/task_wdt/task_wdt.c",
+   "path": "esp-idf/v6.1/components/esp_system/task_wdt/task_wdt.c",
+   "sha256": "5a3756da705c4ebf003610d25de243a5fd0160e88d3ed28411869d7c19982405"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c",
+   "path": "esp-idf/v6.1/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c",
+   "sha256": "e7da2294a2b418fb0445513e39d361aaed0713c23f7de44f10a2aebaf4deb0f2"
+  },
+  {
+   "url": "https://docs.riscv.org/reference/isa/v20260120/unpriv/rv32.html",
+   "path": "riscv/isa-v20260120/unpriv/rv32.html",
+   "sha256": "0705ae047f800a0a416e2de1d45c8ab83aea814c5225a1e568940ee7fd69d948"
+  }
+ ]
+}

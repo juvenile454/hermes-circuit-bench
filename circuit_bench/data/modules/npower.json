@@ -1,0 +1,818 @@
+{
+ "schema": 1,
+ "wp": "npower",
+ "note": "Values only from manufacturer documents (Texas Instruments); 'evidence' quotes lines of tests/corpus/excerpts/mod-npower-*.txt (pypdf). Regulator numbers for calc.ldo and the rule mod.npower.dropout: data/parts/power_npower.json.",
+ "modules": [
+  {
+   "id": "tlv75533p",
+   "aliases": [
+    "tlv75533pdbvr",
+    "tlv75533pdydr",
+    "tlv75533pdqnr",
+    "tlv75533pdrvr"
+   ],
+   "title": "TLV75533P 3.3 V 500 mA low-IQ LDO regulator with enable and output discharge",
+   "category": "power.ldo",
+   "manufacturer": "Texas Instruments",
+   "kind": "ic",
+   "source_ids": [
+    "mod-npower-tlv755p-ds"
+   ],
+   "supplies": {
+    "IN": {
+     "min": {
+      "value": 1.45,
+      "unit": "V",
+      "page": 4,
+      "evidence": "VIN Input voltage 1.45 5.5 V",
+      "conditions": "recommended operating conditions; a 3.3 V output needs V_IN ≥ 3.3 V + dropout"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 4,
+      "evidence": "VIN Input voltage 1.45 5.5 V",
+      "conditions": "recommended operating conditions"
+     },
+     "abs_max": {
+      "value": 6.0,
+      "unit": "V",
+      "page": 4,
+      "evidence": "Supply voltage, VIN −0.3 6.0 V",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "IN",
+    "vih": {
+     "value": 1.0,
+     "unit": "V",
+     "page": 6,
+     "evidence": "VHI EN pin high voltage (enabled) 1 V",
+     "conditions": "EN high threshold (min column)"
+    },
+    "vil": {
+     "value": 0.3,
+     "unit": "V",
+     "page": 6,
+     "evidence": "VLO EN pin low voltage (enabled) 0.3 V",
+     "conditions": "EN low threshold (max column)"
+    },
+    "v_in_max": {
+     "value": 6.0,
+     "unit": "V",
+     "page": 4,
+     "evidence": "Enable voltage, VEN −0.3 6.0 V",
+     "conditions": "absolute maximum rating, EN (recommended up to 5.5 V, p. 4)"
+    }
+   },
+   "pins": [
+    {
+     "name": "IN",
+     "signal": "supply",
+     "note": "SOT-23-5 (DBV/DYD) pin 1, X2SON (DQN) pin 4, WSON (DRV) pin 6"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd",
+     "note": "DBV/DYD/DQN pin 2, DRV pin 3; DYD/DQN/DRV thermal pad = GND"
+    },
+    {
+     "name": "EN",
+     "signal": "enable_in",
+     "must_connect": true,
+     "note": "DBV/DYD/DQN pin 3, DRV pin 4; high (> 1 V) = on, low (< 0.3 V) = shutdown; no internal pull (I_EN 10 nA typ.): drive it or tie it to IN"
+    },
+    {
+     "name": "NC",
+     "signal": "nc",
+     "note": "DBV/DYD pin 4, DRV pins 2 and 5; not on DQN"
+    },
+    {
+     "name": "OUT",
+     "signal": "power_out",
+     "note": "DBV/DYD pin 5, DQN/DRV pin 1; 3.3 V"
+    }
+   ],
+   "current": {
+    "supply": "IN",
+    "typ": {
+     "value": 2.5e-05,
+     "unit": "A",
+     "page": 5,
+     "evidence": [
+      "IGND Ground current",
+      "TJ = 25°C, IOUT = 0mA 14 25 31"
+     ],
+     "conditions": "ground current, I_OUT = 0, T_J = 25 °C (max 31 µA at 25 °C)"
+    },
+    "max": {
+     "value": 4e-05,
+     "unit": "A",
+     "page": 5,
+     "evidence": [
+      "IGND Ground current",
+      "−40°C ≤ TJ ≤ +125°C, IOUT = 0mA 40"
+     ],
+     "conditions": "ground current max, I_OUT = 0, T_J −40…125 °C; the load current flows from IN to OUT on top"
+    },
+    "sleep": {
+     "value": 1e-06,
+     "unit": "A",
+     "page": 5,
+     "evidence": "ISHDN Shutdown current VEN ≤ 0.4V, 1.4V ≤ VIN ≤ 5.5V, −40°C ≤ TJ ≤ +125°C 0.1 1 µA",
+     "conditions": "EN ≤ 0.4 V, max"
+    },
+    "note": "Ground current of the regulator only; add the load on OUT for the IN budget."
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "1µF",
+     "pins": [
+      "OUT"
+     ],
+     "to": "GND",
+     "note": "output capacitor ≥ 1 µF nominal required (operating range 1–200 µF, p. 4); effective capacitance after DC-bias derating must stay > 0.47 µF; X5R/X7R; no ESR range given",
+     "page": 3,
+     "evidence": "Regulated output voltage pin. A capacitor with a value of 1µF or"
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "1µF",
+     "pins": [
+      "IN"
+     ],
+     "to": "GND",
+     "note": "input capacitor ≥ 1 µF to GND",
+     "page": 3,
+     "evidence": "Input pin. A capacitor with a value of 1µF or larger is required from"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Fixed 3.3 V version: '33' in the order code is the nominal output voltage (TLV75533PDBVR = SOT-23-5).",
+     "verified": true,
+     "page": 23,
+     "evidence": [
+      "xx(x) is the nominal output voltage",
+      "28 = 2.8V"
+     ]
+    },
+    {
+     "text": "Output accuracy ±1 % (T_J −40…85 °C, DBV and DRV), ±1.5 % over −40…125 °C.",
+     "verified": true,
+     "page": 5,
+     "evidence": [
+      "−40°C ≤ TJ ≤ +85°C, DBV and DRV package −1 1 %",
+      "VOUT ≥ 1V −1.5 1.5 %"
+     ]
+    },
+    {
+     "text": "Dropout of the 3.3 V version at 500 mA: max 215 mV (T_J −40…85 °C), 238 mV (−40…125 °C); DYD package 238 / 258 mV. From a Li-Ion cell the output stays in regulation down to about V_IN = 3.54 V.",
+     "verified": true,
+     "page": 6,
+     "evidence": [
+      "VDO Dropout voltage",
+      "3.3V ≤ VOUT < 5.0V 150 215",
+      "3.3V ≤ VOUT < 5.0V 238"
+     ]
+    },
+    {
+     "text": "Current limit 560 mA min (720 typ.); foldback: 355 mA typ. into a short (V_OUT = 0 V).",
+     "verified": true,
+     "page": 5,
+     "evidence": [
+      "VOUT = 0.9 x VOUT, 1.5V < VOUT ≤ 4.5V 560 720 865",
+      "ISC Short-circuit current limit VOUT = 0V 355 mA"
+     ]
+    },
+    {
+     "text": "Thermal: R_θJA 231.1 °C/W (DBV, JEDEC board), 92.5 °C/W (DYD with thermal pad, JEDEC), 60.3 °C/W (DYD on the TI EVM); thermal shutdown at 165 °C typ. At 1.7 V × 0.5 A (5 V in) the DBV package heats by about 196 K: use calc ldo with part TLV75533PDBVR.",
+     "verified": true,
+     "page": 5,
+     "evidence": "RθJA Junction-to-ambient thermal resistance 92.5 168.4 231.1 100.2"
+    },
+    {
+     "text": "Active output discharge: OUT is pulled to GND through 120 Ω typ. while EN is low ('P' suffix).",
+     "verified": true,
+     "page": 6,
+     "evidence": "RPULLDOWN Pulldown resistance VIN = 5.5V 120 Ω"
+    },
+    {
+     "text": "The SOT-23-5 (DBV) pin order IN 1, GND 2, EN 3, NC 4, OUT 5 is the same as on the AP2112K/ME6211 SOT-23-5 LDOs in this catalog; check the datasheet of the board's actual regulator before swapping.",
+     "verified": true,
+     "page": 3,
+     "evidence": [
+      "EN 3 3 3 4 I",
+      "GND 2 2 2 3",
+      "IN 4 1 1 6 I",
+      "NC — 4 4",
+      "OUT 1 5 5 1 O"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tps563201",
+   "aliases": [
+    "tps563201ddcr",
+    "tps563201ddct"
+   ],
+   "title": "TPS563201 4.5–17 V input 3 A synchronous buck converter, Eco-mode (SOT-23-6)",
+   "category": "power.buck",
+   "manufacturer": "Texas Instruments",
+   "kind": "ic",
+   "source_ids": [
+    "mod-npower-tps563201-ds"
+   ],
+   "supplies": {
+    "VIN": {
+     "min": {
+      "value": 4.5,
+      "unit": "V",
+      "page": 4,
+      "evidence": "VIN Supply input voltage range 4.5 17 V",
+      "conditions": "recommended operating conditions"
+     },
+     "max": {
+      "value": 17.0,
+      "unit": "V",
+      "page": 4,
+      "evidence": "VIN Supply input voltage range 4.5 17 V",
+      "conditions": "recommended operating conditions"
+     },
+     "abs_max": {
+      "value": 19.0,
+      "unit": "V",
+      "page": 4,
+      "evidence": "VIN, EN –0.3 19 V",
+      "conditions": "absolute maximum rating (VIN, EN)"
+     }
+    }
+   },
+   "io": {
+    "domain": "VIN",
+    "vih": {
+     "value": 1.6,
+     "unit": "V",
+     "page": 6,
+     "evidence": "VENH EN high-level input voltage 1.6 V",
+     "conditions": "EN high threshold, T_J −40…125 °C, V_IN = 12 V"
+    },
+    "vil": {
+     "value": 0.8,
+     "unit": "V",
+     "page": 6,
+     "evidence": "VENL EN low-level input voltage 0.8 V",
+     "conditions": "EN low threshold, T_J −40…125 °C, V_IN = 12 V"
+    },
+    "v_in_max": {
+     "value": 19.0,
+     "unit": "V",
+     "page": 4,
+     "evidence": [
+      "Input voltage",
+      "VIN, EN –0.3 19 V"
+     ],
+     "conditions": "absolute maximum rating, EN (recommended up to 17 V, p. 4)"
+    }
+   },
+   "pins": [
+    {
+     "name": "GND",
+     "signal": "gnd",
+     "note": "pin 1: power and controller ground; return VFB's divider here"
+    },
+    {
+     "name": "SW",
+     "signal": "power_out",
+     "note": "pin 2: switch node to the inductor (2.2 µH for 3.3 V)"
+    },
+    {
+     "name": "VIN",
+     "signal": "supply",
+     "note": "pin 3: input 4.5–17 V, ceramic capacitor > 10 µF close by"
+    },
+    {
+     "name": "VFB",
+     "signal": "analog_in",
+     "note": "pin 4: divider from VOUT, V_FB 0.768 V typ."
+    },
+    {
+     "name": "EN",
+     "signal": "enable_in",
+     "internal_pull": "down",
+     "must_connect": true,
+     "note": "pin 5: active high; internal 1.5 MΩ typ. to GND, so open = off: pull it up to run"
+    },
+    {
+     "name": "VBST",
+     "signal": "analog_in",
+     "note": "pin 6: bootstrap, 0.1 µF capacitor to SW"
+    }
+   ],
+   "current": {
+    "supply": "VIN",
+    "typ": {
+     "value": 0.00012,
+     "unit": "A",
+     "page": 6,
+     "evidence": [
+      "supply current VIN current, EN = 5 V, VFB = 0.9 V",
+      "TPS563201 120 200"
+     ],
+     "conditions": "non-switching supply current, EN = 5 V, V_FB = 0.9 V, V_IN = 12 V"
+    },
+    "max": {
+     "value": 0.0002,
+     "unit": "A",
+     "page": 6,
+     "evidence": [
+      "supply current VIN current, EN = 5 V, VFB = 0.9 V",
+      "TPS563201 120 200"
+     ],
+     "conditions": "non-switching supply current, EN = 5 V, V_FB = 0.9 V, V_IN = 12 V"
+    },
+    "sleep": {
+     "value": 2e-05,
+     "unit": "A",
+     "page": 6,
+     "evidence": "IVINSDN Shutdown supply current VIN current, EN = 0 V 8 20 µA",
+     "conditions": "EN = 0 V, max"
+    },
+    "note": "Converter's own current; the input current for the load is ≈ V_OUT · I_OUT / (η · V_IN)."
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "10µF",
+     "pins": [
+      "VIN"
+     ],
+     "to": "GND",
+     "note": "input decoupling: ceramic over 10 µF, voltage rating above the maximum input voltage; optional extra 0.1 µF; bulk capacitance depending on the application",
+     "page": 15,
+     "evidence": "TI recommends a ceramic capacitor over 10 µF for the decoupling capacitor."
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VBST"
+     ],
+     "to": "SW",
+     "note": "bootstrap capacitor 0.1 µF between VBST and SW (not to GND)",
+     "page": 3,
+     "evidence": "Connect 0.1 µF capacitor between VBST and SW pins."
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Feedback voltage V_FB 0.768 V typ. (0.749–0.787 V, continuous mode, T_J −40…125 °C); 0.774 V typ. in Eco-mode at light load (not production tested). Use 0.768 V for the divider.",
+     "verified": true,
+     "page": 6,
+     "evidence": [
+      "VFB threshold voltage (1) VO = 1.05 V, IO = 10 mA, Eco-mode operation 774 mV",
+      "VFB threshold voltage VO = 1.05 V, continuous mode operation 749 768 787 mV"
+     ]
+    },
+    {
+     "text": "V_OUT = 0.768 V × (1 + R1/R2), R1 from VOUT to VFB, R2 from VFB to GND (Equation 2; the formula's text layer is garbled, the table confirms it). 1 % resistors recommended.",
+     "verified": true,
+     "page": 14,
+     "evidence": [
+      "The output voltage is set with a resistor divider from the output node to the VFB pin",
+      "tolerance or better divider resistors. Start by using Equation 2 to calculate VOUT."
+     ]
+    },
+    {
+     "text": "Recommended values for 3.3 V: R1 33.2 kΩ, R2 10.0 kΩ, L1 2.2 µH (2.2–4.7 µH), C_OUT 20–68 µF ceramic; for 5 V: 54.9 kΩ / 10.0 kΩ, 3.3 µH. 0.768 V × (1 + 33.2/10) = 3.318 V.",
+     "verified": true,
+     "page": 15,
+     "evidence": [
+      "(V) R1 (kΩ) R2 (kΩ)",
+      "3.3 33.2 10.0 2.2 2.2 4.7 20 to 68",
+      "5 54.9 10.0 3.3 3.3 4.7 20 to 68"
+     ]
+    },
+    {
+     "text": "Output capacitor: ceramic or other low-ESR type, 20–68 µF recommended (D-CAP2, no external compensation).",
+     "verified": true,
+     "page": 15,
+     "evidence": "are intended for use with ceramic or other low ESR capacitors. Recommended values range from 20 µF to 68"
+    },
+    {
+     "text": "Current limit 3.3 A min (4.2 A typ., DC, V_OUT = 1.05 V, L1 = 1.5 µH); switching frequency 580 kHz typ.; Eco-mode pulse skipping at light load (TPS563208 = forced continuous).",
+     "verified": true,
+     "page": 6,
+     "evidence": [
+      "Iocl Current limit DC current, VOUT = 1.05 V, L1 = 1.5 µH 3.3 4.2 5.1 A",
+      "Fsw Switching frequency VIN = 12 V, VO = 3.3 V, IO = 1 A 580 kHz"
+     ]
+    },
+    {
+     "text": "Thermal: R_θJA 92.6 °C/W (DDC); thermal shutdown 172 °C typ. (not production tested).",
+     "verified": true,
+     "page": 5,
+     "evidence": "RθJA Junction-to-ambient thermal resistance 92.6 °C/W"
+    },
+    {
+     "text": "Output range 0.76–7 V; VFB absolute maximum 6 V: never tie VFB straight to a higher output.",
+     "verified": true,
+     "page": 1,
+     "evidence": "• Output voltage range: 0.76V to 7V"
+    }
+   ]
+  },
+  {
+   "id": "bq24074",
+   "aliases": [
+    "bq24074rgtr",
+    "bq24074rgtt"
+   ],
+   "title": "BQ24074 1-cell Li-Ion linear charger 1.5 A with power path, 10.5 V OVP (VQFN-16)",
+   "category": "power.charger",
+   "manufacturer": "Texas Instruments",
+   "kind": "ic",
+   "source_ids": [
+    "mod-npower-bq24074-ds"
+   ],
+   "supplies": {
+    "IN": {
+     "min": {
+      "value": 4.35,
+      "unit": "V",
+      "page": 10,
+      "evidence": "‘74 4.35 10.2",
+      "conditions": "recommended IN operating range of the BQ24074"
+     },
+     "max": {
+      "value": 10.2,
+      "unit": "V",
+      "page": 10,
+      "evidence": "‘74 4.35 10.2",
+      "conditions": "recommended IN operating range of the BQ24074 (the pin table says 10.5 V; OVP trips at 10.2–10.8 V)"
+     },
+     "abs_max": {
+      "value": 28.0,
+      "unit": "V",
+      "page": 10,
+      "evidence": "IN (with respect to VSS) –0.3 28 V",
+      "conditions": "absolute maximum rating; above the OVP threshold charging and OUT are suspended"
+     }
+    }
+   },
+   "io": {
+    "domain": "IN",
+    "outputs": "open_drain",
+    "vih": {
+     "value": 1.4,
+     "unit": "V",
+     "page": 14,
+     "evidence": [
+      "LOGIC LEVELS ON EN1, EN2, CE, SYSOFF, TD",
+      "VIH Logic HIGH input voltage 1.4 6 V"
+     ],
+     "conditions": "EN1, EN2, CE (logic inputs), T_J 0…125 °C, min"
+    },
+    "vil": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 14,
+     "evidence": [
+      "LOGIC LEVELS ON EN1, EN2, CE, SYSOFF, TD",
+      "VIL Logic LOW input voltage 0 0.4 V"
+     ],
+     "conditions": "EN1, EN2, CE (logic inputs), T_J 0…125 °C, max"
+    },
+    "v_in_max": {
+     "value": 7.0,
+     "unit": "V",
+     "page": 10,
+     "evidence": [
+      "OUT, EN1, EN2, CE, TS, ISET, PGOOD, CHG, ILIM,",
+      "TMR, ITERM, SYSOFF, TD (with respect to VSS) –0.3 7 V"
+     ],
+     "conditions": "absolute maximum rating, EN1, EN2, CE and the other logic pins (VIH range ends at 6 V, p. 14)"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 14,
+     "evidence": [
+      "LOGIC LEVELS ON PGOOD, CHG",
+      "VOL Output LOW voltage ISINK = 5 mA 0.4 V"
+     ],
+     "conditions": "PGOOD, CHG low, I_SINK = 5 mA, max"
+    }
+   },
+   "pins": [
+    {
+     "name": "TS",
+     "signal": "analog_in",
+     "must_connect": true,
+     "note": "pin 1: 10 kΩ NTC of the pack, or a fixed 10 kΩ to VSS without NTC (charging only at 0–50 °C)"
+    },
+    {
+     "name": "BAT",
+     "signal": "power_out",
+     "note": "pins 2 and 3: battery + terminal; charger output and battery sense, charged to 4.2 V"
+    },
+    {
+     "name": "CE",
+     "signal": "enable_in",
+     "active_low": true,
+     "internal_pull": "down",
+     "must_connect": true,
+     "note": "pin 4: low = charging enabled, high = charging off (OUT stays on); ≈ 285 kΩ pull-down, do not leave open"
+    },
+    {
+     "name": "EN2",
+     "signal": "mode_select",
+     "internal_pull": "down",
+     "must_connect": true,
+     "note": "pin 5: input current limit with EN1 (00 = 100 mA, 01 = 500 mA, 10 = R_ILIM, 11 = standby)"
+    },
+    {
+     "name": "EN1",
+     "signal": "mode_select",
+     "internal_pull": "down",
+     "must_connect": true,
+     "note": "pin 6: see EN2; ≈ 285 kΩ pull-down, do not leave open"
+    },
+    {
+     "name": "PGOOD",
+     "signal": "open_drain_out",
+     "active_low": true,
+     "output": "open_drain",
+     "note": "pin 7: low = valid input power; pull-up 1–100 kΩ to the logic rail (3V3 for an ESP32) or LED"
+    },
+    {
+     "name": "VSS",
+     "signal": "gnd",
+     "note": "pin 8 and thermal pad"
+    },
+    {
+     "name": "CHG",
+     "signal": "open_drain_out",
+     "active_low": true,
+     "output": "open_drain",
+     "note": "pin 9: low = charging, high-Z = done or disabled; pull-up 1–100 kΩ or LED"
+    },
+    {
+     "name": "OUT",
+     "signal": "power_out",
+     "note": "pins 10 and 11: system output, 4.4 V regulated from IN or the battery voltage without input; feed the ESP32 through a 3.3 V regulator"
+    },
+    {
+     "name": "ILIM",
+     "signal": "analog_in",
+     "must_connect": true,
+     "note": "pin 12: 1.1–8 kΩ to VSS sets the input current limit for EN2 = 1, EN1 = 0; open disables charging"
+    },
+    {
+     "name": "IN",
+     "signal": "supply",
+     "note": "pin 13: USB / adapter input 4.35–10.2 V, 28 V tolerant"
+    },
+    {
+     "name": "TMR",
+     "signal": "analog_in",
+     "note": "pin 14: open = default safety timers, VSS = timers off, 18–72 kΩ = programmed"
+    },
+    {
+     "name": "ITERM",
+     "signal": "analog_in",
+     "note": "pin 15: 0–15 kΩ to VSS sets the termination current; open = 10 % of I_CHG"
+    },
+    {
+     "name": "ISET",
+     "signal": "analog_in",
+     "must_connect": true,
+     "note": "pin 16: 590 Ω–8.9 kΩ to VSS sets the charge current; its voltage tracks the charge current (optional ADC monitor); open disables charging"
+    }
+   ],
+   "current": {
+    "supply": "IN",
+    "typ": {
+     "value": 0.0011,
+     "unit": "A",
+     "page": 12,
+     "evidence": "ICC Active supply current, IN pin CE = LO, VIN = 6 V, no load on OUT pin,VBAT > VBAT(REG), (EN1, EN2) ≠ (HI, HI) 1.1 1.5 mA",
+     "conditions": "active supply current, CE low, V_IN = 6 V, no load on OUT, battery full"
+    },
+    "max": {
+     "value": 0.0015,
+     "unit": "A",
+     "page": 12,
+     "evidence": "ICC Active supply current, IN pin CE = LO, VIN = 6 V, no load on OUT pin,VBAT > VBAT(REG), (EN1, EN2) ≠ (HI, HI) 1.1 1.5 mA",
+     "conditions": "active supply current, CE low, V_IN = 6 V, no load on OUT, battery full"
+    },
+    "sleep": {
+     "value": 5e-05,
+     "unit": "A",
+     "page": 12,
+     "evidence": [
+      "IIN Standby current into IN pin",
+      "EN1= HI, EN2=HI, VIN = 6 V, TJ= 85°C 41.3 50 μA"
+     ],
+     "conditions": "standby (EN1 = EN2 = high), V_IN = 6 V, T_J = 85 °C, max"
+    },
+    "note": "IC current only; the input also carries the OUT load and the charge current (input limit by EN1/EN2: 100 mA, 500 mA or K_ILIM/R_ILIM up to 1.5 A)."
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "1µF",
+     "pins": [
+      "IN"
+     ],
+     "to": "VSS",
+     "note": "IN bypass capacitor 1–10 µF to VSS",
+     "page": 8,
+     "evidence": "1 μF to 10 μF to VSS."
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "4.7µF",
+     "pins": [
+      "OUT"
+     ],
+     "to": "VSS",
+     "note": "OUT bypass 4.7–47 µF ceramic to VSS",
+     "page": 8,
+     "evidence": [
+      "Bypass OUT to VSS",
+      "with a 4.7-μF to 47-μF ceramic capacitor."
+     ]
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "4.7µF",
+     "pins": [
+      "BAT"
+     ],
+     "to": "VSS",
+     "note": "BAT bypass 4.7–47 µF ceramic to VSS",
+     "page": 8,
+     "evidence": "Bypass BAT to VSS with a 4.7-μF to 47-μF ceramic capacitor."
+    },
+    {
+     "code": "pulldown",
+     "kind": "resistor",
+     "value": "1.78k",
+     "pins": [
+      "ISET"
+     ],
+     "to": "VSS",
+     "note": "charge-current resistor R_ISET 590 Ω–8.9 kΩ to VSS: I_CHG = 890 AΩ / R_ISET (1.78 kΩ ≈ 500 mA); pick it for the cell, 1 % tolerance",
+     "page": 8,
+     "evidence": [
+      "Fast Charge Current Programming Input. Connect a 590-Ω to 8.9-kΩ resistor from ISET to VSS",
+      "Charging is disabled if ISET is left unconnected."
+     ]
+    },
+    {
+     "code": "pulldown",
+     "kind": "resistor",
+     "pins": [
+      "ILIM"
+     ],
+     "to": "VSS",
+     "note": "input-current resistor R_ILIM 1.1–8 kΩ to VSS (I_IN max = 1610 AΩ / R_ILIM)",
+     "page": 8,
+     "evidence": [
+      "Connect a 1100-Ω to 8-kΩ resistor from ILIM to VSS",
+      "Leaving ILIM unconnected disables all charging."
+     ]
+    },
+    {
+     "code": "pulldown",
+     "kind": "resistor",
+     "value": "10k",
+     "pins": [
+      "TS"
+     ],
+     "to": "VSS",
+     "note": "10 kΩ NTC in the pack (preferred for Li-Ion) or a fixed 10 kΩ resistor from TS to VSS",
+     "page": 9,
+     "evidence": [
+      "10kΩ NTC thermistor. For applications that do not use the TS function, connect a 10-kΩ fixed resistor from TS",
+      "to VSS to maintain a valid voltage level on TS."
+     ]
+    },
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "value": "10k",
+     "pins": [
+      "CHG"
+     ],
+     "note": "CHG open drain: pull-up 1–100 kΩ to the logic rail (or an LED)",
+     "page": 8,
+     "evidence": "voltage rail using a 1kΩ-100kΩ resistor"
+    },
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "value": "10k",
+     "pins": [
+      "PGOOD"
+     ],
+     "note": "PGOOD open drain: pull-up 1–100 kΩ to the logic rail (or an LED)",
+     "page": 8,
+     "evidence": "the desired logic voltage rail using a 1-kΩ to 100-kΩ resistor"
+    }
+   ],
+   "hazards": [
+    {
+     "code": "li_ion",
+     "text": "Charges a single lithium-ion / lithium-polymer cell with up to 1.5 A: overcharge, a wrong R_ISET, a short circuit or a damaged cell can cause fire. Use a protected cell with a 10 kΩ NTC on TS, set R_ISET for the cell's rated charge current, never charge unattended or near flammable material.",
+     "page": 1,
+     "evidence": "Li-Ion linear chargers and system power path"
+    },
+    {
+     "code": "heat",
+     "text": "Linear charger up to 1.5 A: the voltage drop from IN to BAT times the charge current turns into heat in the IC; thermal regulation then lowers the charge current. Solder the thermal pad to a ground plane and keep heat-sensitive parts away.",
+     "page": 42,
+     "evidence": [
+      "The device power dissipation, P, is a function of the charge rate and the voltage drop across the internal"
+     ]
+    }
+   ],
+   "notes": [
+    {
+     "text": "Charge voltage V_BAT(REG) 4.20 V (4.16–4.23 V); input OVP 10.5 V typ. (10.2–10.8 V); OUT 4.4 V (BQ24074).",
+     "verified": true,
+     "page": 13,
+     "evidence": "('72, '73, '74, '75) 4.16 4.20 4.23"
+    },
+    {
+     "text": "Fast-charge current I_CHG = K_ISET / R_ISET with K_ISET 890 AΩ typ. (797–975 AΩ); range 100–1500 mA. Example: 1.78 kΩ → 0.50 A (0.45–0.55 A).",
+     "verified": true,
+     "page": 13,
+     "evidence": [
+      "Battery fast charge current range VBAT(REG) > VBAT > VLOWV, VIN = 5 V CE = LO,EN1 = LO, EN2 = HI 100 1500 mA",
+      "KISET Fast charge current factor 797 890 975 AΩ"
+     ]
+    },
+    {
+     "text": "Input current limit: EN2/EN1 = 00 → 100 mA, 01 → 500 mA, 10 → K_ILIM/R_ILIM (1610 AΩ typ., up to 1.5 A), 11 → standby. EN1/EN2 work as configuration pins, not as an ESP-driven bus.",
+     "verified": true,
+     "page": 9,
+     "evidence": [
+      "0 0 100 mA. USB100 mode",
+      "0 1 500 mA. USB500 mode",
+      "1 0 Set by an external resistor from ILIM to VSS",
+      "1 1 Standby (USB suspend mode)"
+     ]
+    },
+    {
+     "text": "Power path: OUT is regulated to 4.3–4.5 V from IN and falls back to the battery (V_BAT − 100 mV max at 1 A) without input; OUT is never a 3.3 V rail.",
+     "verified": true,
+     "page": 12,
+     "evidence": [
+      "VDO(BAT-OUT) VBAT – VOUT IOUT = 1 A, VIN = 0 V, VBAT > 3 V 50 100 mV",
+      "OUT pin voltage regulation (BQ24073, BQ24074) VIN > VOUT + VDO(IN-OUT) 4.3 4.4 4.5"
+     ]
+    },
+    {
+     "text": "TS window: charging stops outside 0–50 °C with a 10 kΩ NTC (Vishay curve 2).",
+     "verified": true,
+     "page": 14,
+     "evidence": "(1) These numbers set trip points of 0°C and 50°C while charging"
+    },
+    {
+     "text": "Thermal: linear charger, P ≈ (V_OUT − V_BAT) · I_CHG; thermal regulation cuts the charge current at T_J 125 °C, shutdown at 155 °C; R_θJA 44.5 °C/W (RGT, needs the thermal pad soldered).",
+     "verified": true,
+     "page": 13,
+     "evidence": [
+      "TJ(REG) Temperature regulation limit 125 °C",
+      "TJ(OFF) Thermal shutdown temperature TJ Rising 155 °C"
+     ]
+    },
+    {
+     "text": "Battery drain without input: 6.5 µA max into BAT (T_J = 85 °C, no load on OUT).",
+     "verified": true,
+     "page": 12,
+     "evidence": "IBAT(PDWN) Sleep current into BAT pin"
+    },
+    {
+     "text": "Breakout boards with the BQ24074 (e.g. Adafruit's USB/DC/solar Li-Ion charger) set R_ISET and R_ILIM on the board; check the charge current against the cell before use.",
+     "verified": false
+    }
+   ]
+  }
+ ]
+}

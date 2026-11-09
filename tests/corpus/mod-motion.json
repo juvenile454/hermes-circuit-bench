@@ -1,0 +1,53 @@
+{
+ "files": [
+  {
+   "url": "https://web.archive.org/web/20230118033738id_/https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf",
+   "path": "mod/motion/MPU-6000-Datasheet1.pdf",
+   "source_id": "mod-motion-mpu6050-ds",
+   "excerpt": "excerpts/mod-motion-mpu6050.txt",
+   "sha256": "a4fdf69590b8cbab1cf0a5bcd359327b0ac022061fb233855aff2e191e7e3584"
+  },
+  {
+   "url": "https://web.archive.org/web/20261012195641id_/https://www.analog.com/media/en/technical-documentation/data-sheets/ADXL345.pdf",
+   "path": "mod/motion/ADXL345.pdf",
+   "source_id": "mod-motion-adxl345-ds",
+   "excerpt": "excerpts/mod-motion-adxl345.txt",
+   "sha256": "87ae2212498c35a6759d8732adee0ec9b9d8d60fa95688bc5904f1f07ceb8ff6"
+  },
+  {
+   "url": "https://web.archive.org/web/20260113124036id_/https://www.st.com/resource/en/datasheet/lis3dh.pdf",
+   "path": "mod/motion/lis3dh.pdf",
+   "source_id": "mod-motion-lis3dh-ds",
+   "excerpt": "excerpts/mod-motion-lis3dh.txt",
+   "sha256": "852bfcf1a993f04cc147f26a26612a22fdc307c234f3e53d2c24c850ad421533"
+  },
+  {
+   "url": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bno055-ds000.pdf",
+   "path": "mod/motion/bst-bno055-ds000.pdf",
+   "source_id": "mod-motion-bno055-ds",
+   "excerpt": "excerpts/mod-motion-bno055.txt",
+   "sha256": "5bab02a74fb63c261d6e25a05a44c34855f33fdebfd7a775d68705e41d7552f2"
+  },
+  {
+   "url": "https://www.qstcorp.com/upload/pdf/202512/13-52-04%20QMC5883L%20Datasheet%20Rev.%20B.pdf",
+   "path": "mod/motion/QMC5883L-Datasheet-Rev-B.pdf",
+   "source_id": "mod-motion-qmc5883l-ds",
+   "excerpt": "excerpts/mod-motion-qmc5883l.txt",
+   "sha256": "b68aa5e3920f92d15177d6e9cb85283732de849b68bf81308929d7c9a4dc7f81"
+  },
+  {
+   "url": "https://web.archive.org/web/20251218104804id_/https://www.analog.com/media/en/technical-documentation/data-sheets/max30102.pdf",
+   "path": "mod/motion/max30102.pdf",
+   "source_id": "mod-motion-max30102-ds",
+   "excerpt": "excerpts/mod-motion-max30102.txt",
+   "sha256": "252e039335aea4bf1dae577eada92fe2630bce123fde691a11b3d890bfd0b53c"
+  },
+  {
+   "url": "https://docs.broadcom.com/doc/AV02-4191EN",
+   "path": "mod/motion/AV02-4191EN.pdf",
+   "source_id": "mod-motion-apds9960-ds",
+   "excerpt": "excerpts/mod-motion-apds9960.txt",
+   "sha256": "70810e8a0d9d5a91b4741d12785c0e44178b80039f150c5bb6a36acef2ccb8ee"
+  }
+ ]
+}

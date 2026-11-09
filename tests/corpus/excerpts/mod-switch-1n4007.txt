@@ -1,0 +1,15 @@
+# source_id: mod-switch-1n4007-ds
+# document: Vishay 1N4001 thru 1N4007 General Purpose Plastic Rectifier, Document Number 88503, Revision 29-Apr-2020
+# url: https://www.vishay.com/docs/88503/1n4001.pdf
+# corpus: mod/switch/vishay-1n4001.pdf sha256 56a77c6615c90c11993d37d94e67f335cf3a2d1fe00f25d2a1a4833834356d07
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Polarity: color band denotes cathode end
+PARAMETER SYMBOL 1N4001 1N4002 1N4003 1N4004 1N4005 1N4006 1N4007 UNIT
+Maximum repetitive peak reverse voltage V RRM 50 100 200 400 600 800 1000 V
+0.375" (9.5 mm) lead length at TA = 75 °C IF(AV) 1.0 A
+sine-wave superimposed on rated load IFSM 30 A
+@@ page 2
+PARAMETER TEST CONDITIONS SYMBOL 1N 4001 1N4002 1N4003 1N4004 1N4005 1N4006 1N4007 UNIT
+forward voltage 1.0 A V F 1.1 V

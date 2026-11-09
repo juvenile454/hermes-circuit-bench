@@ -1,0 +1,31 @@
+# source_id: mod-ncomm-tja1051-ds
+# document: NXP TJA1051 High-speed CAN transceiver, product data sheet Rev. 9 (28 November 2017)
+# url: https://cache.nxp.com/docs/en/data-sheet/TJA1051.pdf
+# corpus: mod/ncomm/TJA1051.pdf sha256 6637cd500dda3c1c951ce29bed7fe909f11f9a3bef64b096dbb486827add9f11
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 4
+n.c. 5 not connected; in TJA1051T version
+@@ page 5
+A HIGH level on pin S selects Silent mode. In Silent mode the transmitter is disabled, 
+@@ page 6
+Pin TXD has an internal pull-up to VIO and pins S and EN (TJA1051T/E) have internal 
+pull-downs to GND. This ensures a safe, defined state in case one or more of these pins 
+Pin VIO on the TJA1051T/3 and TJA1051TK/3 should be connected to the microcontroller 
+supply voltage (see Figure 6). This will adjust the signal levels of pins TXD, RXD and S to 
+@@ page 7
+on any other pin 0.3 +7 V
+@@ page 8
+Supply; pin VCC
+VCC supply voltage 4.5 - 5.5 V
+recessive; VTXD =VIO[3] -5 1 0 m A
+dominant; VTXD = 0 V - 50 70 mA
+I/O level adapter supply; pin VIO[1]
+VIO supply voltage on pin VIO 2.8 - 5.5 V
+CAN transmit data input; pin TXD
+VIH HIGH-level input voltage [5] 0.7VIO[3] -V IO +0 . 3[3] V
+VIL LOW-level input voltage 0.3 - +0.3V IO[3] V
+IOH HIGH-level output current V RXD =V IO  0.4 V[3] 8 3 1m A
+IOL LOW-level output current V RXD = 0.4 V; bus dominant 2 5 12 mA
+@@ page 10
+[5] Maximum value assumes V CC <V IO; if VCC >V IO, the maximum value will be VCC + 0.3 V.

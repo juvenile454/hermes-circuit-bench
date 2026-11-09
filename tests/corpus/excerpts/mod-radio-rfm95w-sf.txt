@@ -1,0 +1,16 @@
+# source_id: mod-radio-rfm95w-sf
+# document: HopeRF RFM95W/96W/98W Low Power Long Range Transceiver Module, datasheet Version 2.0 (2019 edition, +20 dBm), copy hosted by SparkFun
+# url: https://cdn.sparkfun.com/assets/a/9/6/1/0/RFM95W-V2.0.pdf
+# corpus: mod/radio/RFM95W-V2.0.pdf sha256 ae2a0cccdc4fbb9a3539b8a761d0a774a30b22982ba80f9572709035cd8ba803
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+with the integrated+20 dBm power amplifier yields industry
+@@ page 13
+IDDT SupplycurrentinTransmitmodewithimpedancematching
+RFOP=+20dBm,onPA_BOOST
+120
+@@ page 80
+DC_20dBm DutyCycleoftransmissionat+20dBmoutput - 1 %
+VDDop_20dBm Supplyvoltage,+20dBmoutput 2.4 3.7 V
+The duty cycle of transmission at +20 dBm is limited to 1%, with a maximum VSWR of 3:1 at antenna port, over the

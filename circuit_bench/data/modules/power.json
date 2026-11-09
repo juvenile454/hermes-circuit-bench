@@ -1,0 +1,1560 @@
+{
+  "schema": 1,
+  "wp": "power",
+  "note": "Values only from manufacturer documents; 'evidence' quotes lines of tests/corpus/excerpts/mod-power-*.txt (pypdf). Regulator numbers for calc.ldo and the dropout rule: data/parts/power2.json.",
+  "modules": [
+    {
+      "id": "ap2112k_33",
+      "aliases": [
+        "ap2112k-3.3",
+        "ap2112k-3.3trg1",
+        "ap2112-3.3"
+      ],
+      "title": "AP2112K-3.3 600 mA CMOS LDO regulator with enable (SOT25)",
+      "category": "power.ldo",
+      "manufacturer": "Diodes Incorporated",
+      "kind": "ic",
+      "source_ids": [
+        "mod-power-ap2112-ds"
+      ],
+      "supplies": {
+        "VIN": {
+          "min": {
+            "value": 2.5,
+            "unit": "V",
+            "page": 3,
+            "evidence": "VIN Supply Voltage 2.5 6.0 V",
+            "conditions": "recommended operating conditions"
+          },
+          "max": {
+            "value": 6.0,
+            "unit": "V",
+            "page": 3,
+            "evidence": "VIN Supply Voltage 2.5 6.0 V",
+            "conditions": "recommended operating conditions"
+          },
+          "abs_max": {
+            "value": 6.5,
+            "unit": "V",
+            "page": 3,
+            "evidence": "VCC Power Supply Voltage 6.5 V",
+            "conditions": "absolute maximum rating"
+          }
+        }
+      },
+      "io": {
+        "domain": "VIN",
+        "vih": {
+          "value": 1.5,
+          "unit": "V",
+          "page": 8,
+          "evidence": "VIH VEN High Voltage Enable logic high, regulator on 1.5 — 6.0",
+          "conditions": "EN, AP2112-3.3 at VIN = 4.3 V"
+        },
+        "vil": {
+          "value": 0.4,
+          "unit": "V",
+          "page": 8,
+          "evidence": "VIL VEN Low Voltage Enable logic low, regulator off 0 — 0.4",
+          "conditions": "EN, AP2112-3.3 at VIN = 4.3 V"
+        },
+        "v_in_max": {
+          "value": 6.0,
+          "unit": "V",
+          "page": 8,
+          "evidence": "VIH VEN High Voltage Enable logic high, regulator on 1.5 — 6.0",
+          "conditions": "EN high range up to 6.0 V"
+        }
+      },
+      "pins": [
+        {
+          "name": "VIN",
+          "signal": "supply",
+          "note": "SOT25 pin 1"
+        },
+        {
+          "name": "GND",
+          "signal": "gnd",
+          "note": "SOT25 pin 2"
+        },
+        {
+          "name": "EN",
+          "signal": "enable_in",
+          "internal_pull": "down",
+          "note": "SOT25 pin 3; high = on, low = shutdown; 3.0 MΩ internal pull-down (typ.)"
+        },
+        {
+          "name": "NC",
+          "signal": "nc",
+          "note": "SOT25 pin 4"
+        },
+        {
+          "name": "VOUT",
+          "signal": "power_out",
+          "note": "SOT25 pin 5, 3.3 V"
+        }
+      ],
+      "current": {
+        "supply": "VIN",
+        "typ": {
+          "value": 5.5e-05,
+          "unit": "A",
+          "page": 8,
+          "evidence": "IQ Quiescent Current VIN = 4.3V, IOUT = 0mA — 55 80 µA",
+          "conditions": "quiescent, I_OUT = 0; the load current flows from VIN to VOUT on top"
+        },
+        "max": {
+          "value": 8e-05,
+          "unit": "A",
+          "page": 8,
+          "evidence": "IQ Quiescent Current VIN = 4.3V, IOUT = 0mA — 55 80 µA",
+          "conditions": "quiescent, I_OUT = 0; the load current flows from VIN to VOUT on top"
+        },
+        "sleep": {
+          "value": 1e-06,
+          "unit": "A",
+          "page": 8,
+          "evidence": "ISTD Standby Current VIN = 4.3V, VEN in OFF mode — 0.01 1.0 µA",
+          "conditions": "EN low, max"
+        },
+        "note": "Quiescent current of the regulator only; add the load on VOUT for the VIN budget."
+      },
+      "requires": [
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "1µF",
+          "pins": [
+            "VOUT"
+          ],
+          "to": "GND",
+          "note": "output capacitor: the datasheet tables use C_OUT = 1.0 µF ceramic; X7R or X5R recommended (Note 4); no ESR range given",
+          "page": 8,
+          "evidence": "COUT = 1.0µ F (Ceramic)"
+        },
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "1µF",
+          "pins": [
+            "VIN"
+          ],
+          "to": "GND",
+          "note": "input capacitor: C_IN = 1.0 µF ceramic in the datasheet tables; X7R or X5R recommended (Note 4)",
+          "page": 8,
+          "evidence": "CIN = 1.0µ F (Ceramic)"
+        }
+      ],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "Output 3.3 V ±1.5 % at 1 mA ≤ I_OUT ≤ 30 mA, V_IN = 4.3 V.",
+          "verified": true,
+          "page": 8,
+          "evidence": "*98.5% 3.3 VOUT  *101.5% V"
+        },
+        {
+          "text": "Dropout of the 3.3 V version: max 400 mV at 600 mA, 200 mV at 300 mA, 8 mV at 10 mA.",
+          "verified": true,
+          "page": 8,
+          "evidence": [
+            "VDROP Dropout Voltage",
+            "mV IOUT = 300mA — 125 200",
+            "IOUT = 600mA — 250 400"
+          ]
+        },
+        {
+          "text": "Foldback short-circuit current 50 mA (typ.) at VOUT = 0 V: a heavy start-up load can hold the output low.",
+          "verified": true,
+          "page": 8,
+          "evidence": "ISHORT Short Current Limit VOUT = 0V — 50 — mA"
+        },
+        {
+          "text": "Many ESP32 boards (e.g. SparkFun Thing Plus) use the AP2112K-3.3; the 600 mA output covers Wi-Fi peaks only with the board's bulk capacitance.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "ht7333",
+      "aliases": [
+        "ht7333-a",
+        "ht73xx-3.3"
+      ],
+      "title": "HT7333 3.3 V low quiescent current LDO (SOT89, up to 12 V input)",
+      "category": "power.ldo",
+      "manufacturer": "Holtek Semiconductor",
+      "kind": "ic",
+      "source_ids": [
+        "mod-power-ht7333-ds"
+      ],
+      "supplies": {
+        "VIN": {
+          "max": {
+            "value": 12.0,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VIN Input Voltage — — — — 12 V",
+            "conditions": "HT7333 electrical characteristics, Ta = 25 °C"
+          },
+          "abs_max": {
+            "value": 14.0,
+            "unit": "V",
+            "page": 2,
+            "evidence": "VSS−0.3V to VSS+14V",
+            "conditions": "absolute maximum rating (supply voltage)"
+          }
+        }
+      },
+      "pins": [
+        {
+          "name": "GND",
+          "signal": "gnd",
+          "note": "SOT89 pin 1"
+        },
+        {
+          "name": "VIN",
+          "signal": "supply",
+          "note": "SOT89 pin 2"
+        },
+        {
+          "name": "VOUT",
+          "signal": "power_out",
+          "note": "SOT89 pin 3, 3.3 V"
+        }
+      ],
+      "current": {
+        "supply": "VIN",
+        "typ": {
+          "value": 3.5e-06,
+          "unit": "A",
+          "page": 4,
+          "evidence": "ISS Quiescent Current 4.3V No load — 3.5 7.0 µA",
+          "conditions": "no load, V_IN = 4.3 V"
+        },
+        "max": {
+          "value": 7e-06,
+          "unit": "A",
+          "page": 4,
+          "evidence": "ISS Quiescent Current 4.3V No load — 3.5 7.0 µA",
+          "conditions": "no load, V_IN = 4.3 V"
+        },
+        "note": "Quiescent current only; the load current flows from VIN to VOUT on top."
+      },
+      "requires": [],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "Output 3.201–3.399 V at V_IN = 4.3 V, I_OUT = 40 mA; at least 250 mA output.",
+          "verified": true,
+          "page": 4,
+          "evidence": [
+            "VOUT Output Voltage 4.3V IOUT=40mA 3.201 3.300 3.399 V",
+            "IOUT(MAX) Maximum Output Current 4.3V VOUT ≥ 2.97V 250"
+          ]
+        },
+        {
+          "text": "Dropout 90 mV typical at 40 mA; the datasheet gives no maximum and no value at higher currents.",
+          "verified": true,
+          "page": 4,
+          "evidence": "VDROP** Dropout Voltage — IOUT=40mA — 90 — mV"
+        },
+        {
+          "text": "No θJA and no input/output capacitor values in the text of the datasheet (Rev. 1.80): the application circuit shows C1/C2 on VIN/VOUT; read the values from the drawing (p. 5).",
+          "verified": false
+        },
+        {
+          "text": "No minimum input voltage is specified; V_IN must stay above V_OUT plus the dropout.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "mcp1700",
+      "aliases": [
+        "mcp1700-3302",
+        "mcp1700t-3302e",
+        "mcp1700-3.3"
+      ],
+      "title": "MCP1700-3302 3.3 V low quiescent current LDO, 250 mA (SOT-23)",
+      "category": "power.ldo",
+      "manufacturer": "Microchip Technology",
+      "kind": "ic",
+      "source_ids": [
+        "mod-power-mcp1700-ds"
+      ],
+      "supplies": {
+        "VIN": {
+          "min": {
+            "value": 2.3,
+            "unit": "V",
+            "page": 3,
+            "evidence": "VIN 2.3 — 6.0 V Note 1",
+            "conditions": "input operating voltage; also V_IN ≥ V_R + 3 % + V_DROPOUT (Note 1)"
+          },
+          "max": {
+            "value": 6.0,
+            "unit": "V",
+            "page": 3,
+            "evidence": "VIN 2.3 — 6.0 V Note 1",
+            "conditions": "input operating voltage"
+          },
+          "abs_max": {
+            "value": 6.5,
+            "unit": "V",
+            "page": 3,
+            "evidence": [
+              "VDD....",
+              "+ 6.5V"
+            ],
+            "conditions": "absolute maximum rating"
+          }
+        }
+      },
+      "pins": [
+        {
+          "name": "GND",
+          "signal": "gnd",
+          "note": "SOT-23 pin 1"
+        },
+        {
+          "name": "VOUT",
+          "signal": "power_out",
+          "note": "SOT-23 pin 2, 3.3 V (MCP1700T-3302E/TT)"
+        },
+        {
+          "name": "VIN",
+          "signal": "supply",
+          "note": "SOT-23 pin 3"
+        }
+      ],
+      "current": {
+        "supply": "VIN",
+        "typ": {
+          "value": 1.6e-06,
+          "unit": "A",
+          "page": 3,
+          "evidence": "Iq —1 . 6 4 µA I L =0m A",
+          "conditions": "I_L = 0 mA, V_IN = V_R + 1 V"
+        },
+        "max": {
+          "value": 4e-06,
+          "unit": "A",
+          "page": 3,
+          "evidence": "Iq —1 . 6 4 µA I L =0m A",
+          "conditions": "I_L = 0 mA, V_IN = V_R + 1 V"
+        },
+        "note": "Quiescent current only; the load current flows from VIN to VOUT on top."
+      },
+      "requires": [
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "1µF",
+          "pins": [
+            "VOUT"
+          ],
+          "to": "GND",
+          "note": "output capacitor at least 1.0 µF, ESR 0 to 2.0 Ω; ceramic, tantalum or aluminum electrolytic",
+          "page": 13,
+          "evidence": [
+            "A minimum output capacitance of 1.0 µF is required for",
+            "ESR range on the output capacitor can range from 0",
+            "to 2.0"
+          ]
+        },
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "1µF",
+          "pins": [
+            "VIN"
+          ],
+          "to": "GND",
+          "note": "input capacitor: 1 µF for most applications (low source impedance)",
+          "page": 11,
+          "evidence": "1 µF of capacitance will ensure stable"
+        }
+      ],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "Dropout max 350 mV at 250 mA (V_R ≥ 2.5 V).",
+          "verified": true,
+          "page": 3,
+          "evidence": [
+            "Dropout Voltage",
+            "VIN -V OUT —1 7 8 350 mV I L = 250 mA"
+          ]
+        },
+        {
+          "text": "Maximum output current 250 mA for V_R ≥ 2.5 V; short-circuit current 408 mA typ.",
+          "verified": true,
+          "page": 3,
+          "evidence": [
+            "IOUT_mA 250",
+            "IOUT_SC —4 0 8—m A"
+          ]
+        },
+        {
+          "text": "SOT-23 pinout (GND 1, VOUT 2, VIN 3) differs from SOT-89 and TO-92; check the package.",
+          "verified": true,
+          "page": 11,
+          "evidence": [
+            "SOT-23",
+            "1 1 1 3 GND Ground Terminal",
+            "233 6 V OUT Regulated Voltage Output",
+            "322 1 V IN Unregulated Supply Voltage"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "xc6206",
+      "aliases": [
+        "xc6206p332mr",
+        "xc6206p332",
+        "xc6206-3.3",
+        "662k"
+      ],
+      "title": "XC6206P332 3.3 V positive voltage regulator, 200 mA class (SOT-23)",
+      "category": "power.ldo",
+      "manufacturer": "Torex Semiconductor",
+      "kind": "ic",
+      "source_ids": [
+        "mod-power-xc6206-ds"
+      ],
+      "supplies": {
+        "VIN": {
+          "min": {
+            "value": 1.8,
+            "unit": "V",
+            "page": 4,
+            "evidence": "Input Voltage VIN  1.8 - 6.0 V",
+            "conditions": "operating input voltage"
+          },
+          "max": {
+            "value": 6.0,
+            "unit": "V",
+            "page": 4,
+            "evidence": "Input Voltage VIN  1.8 - 6.0 V",
+            "conditions": "operating input voltage"
+          },
+          "abs_max": {
+            "value": 7.0,
+            "unit": "V",
+            "page": 3,
+            "evidence": "Input Voltage VIN -0.3 ~ 7.0 V",
+            "conditions": "absolute maximum rating"
+          }
+        }
+      },
+      "pins": [
+        {
+          "name": "VSS",
+          "signal": "gnd",
+          "note": "SOT-23 pin 1"
+        },
+        {
+          "name": "VOUT",
+          "signal": "power_out",
+          "note": "SOT-23 pin 2"
+        },
+        {
+          "name": "VIN",
+          "signal": "supply",
+          "note": "SOT-23 pin 3"
+        }
+      ],
+      "current": {
+        "supply": "VIN",
+        "typ": {
+          "value": 1e-06,
+          "unit": "A",
+          "page": 4,
+          "evidence": "Supply Current IDD  - 1.0 3.0 μA",
+          "conditions": "V_IN = V_OUT(T) + 1.0 V"
+        },
+        "max": {
+          "value": 3e-06,
+          "unit": "A",
+          "page": 4,
+          "evidence": "Supply Current IDD  - 1.0 3.0 μA",
+          "conditions": "V_IN = V_OUT(T) + 1.0 V"
+        },
+        "note": "Supply current of the regulator only; the load current flows from VIN to VOUT on top."
+      },
+      "requires": [
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "1µF",
+          "pins": [
+            "VOUT"
+          ],
+          "to": "VSS",
+          "note": "C_L: low-ESR capacitors of more than 1.0 µF (Note 7); no numeric ESR range given",
+          "page": 4,
+          "evidence": "*7: The low ESR capacitors use that is more than 1.0μF as CL is possible."
+        }
+      ],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "Dropout for the 3.0–3.9 V types (merged table cell): Vdif2 max 680 mV at 100 mA, Vdif1 max 350 mV at 30 mA; maximum output current min 200 mA.",
+          "verified": true,
+          "page": 5,
+          "evidence": [
+            "Vdif1 (mV) Vdif2 (mV) IOUTMAX",
+            "3.0",
+            "75 350 250 680 200"
+          ]
+        },
+        {
+          "text": "Output current is limited by the package: I_OUT ≤ Pd / (V_IN − V_OUT); SOT-23 Pd 250 mW (IC only). No θJA, no T_J max and no thermal shutdown in the datasheet.",
+          "verified": true,
+          "page": 3,
+          "evidence": [
+            "Power Dissipation",
+            "250 (IC only)",
+            "(*1) IOUT≦Pd / (VIN-VOUT)"
+          ]
+        },
+        {
+          "text": "Clones marked 662K are common on cheap boards; they are not necessarily Torex parts.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "me6211",
+      "aliases": [
+        "me6211c33",
+        "me6211c33m5g",
+        "me6211c33m5g-n"
+      ],
+      "title": "ME6211C33 3.3 V high-speed LDO with CE, 500 mA (SOT23-5)",
+      "category": "power.ldo",
+      "manufacturer": "Microne (Nanjing Micro One Electronics)",
+      "kind": "ic",
+      "source_ids": [
+        "mod-power-me6211-ds"
+      ],
+      "supplies": {
+        "VIN": {
+          "min": {
+            "value": 1.2,
+            "unit": "V",
+            "page": 1,
+            "evidence": "Operating Voltage Range: 1.2V～6.0V",
+            "conditions": "operating voltage range (all versions)"
+          },
+          "max": {
+            "value": 6.0,
+            "unit": "V",
+            "page": 1,
+            "evidence": "Operating Voltage Range: 1.2V～6.0V",
+            "conditions": "operating voltage range (all versions)"
+          },
+          "abs_max": {
+            "value": 6.5,
+            "unit": "V",
+            "page": 5,
+            "evidence": "Input Voltage VIN 6.5 V",
+            "conditions": "absolute maximum rating"
+          }
+        }
+      },
+      "io": {
+        "domain": "VIN",
+        "vih": {
+          "value": 1.0,
+          "unit": "V",
+          "page": 10,
+          "evidence": "CE  “High” Voltage  VCEH Start up 1.0",
+          "conditions": "CE, ME6211C33, V_IN = V_OUT + 1 V"
+        },
+        "vil": {
+          "value": 0.5,
+          "unit": "V",
+          "page": 10,
+          "evidence": "CE  “Low” Voltage  VCEL Shut down   0.5 V",
+          "conditions": "CE, ME6211C33, V_IN = V_OUT + 1 V"
+        },
+        "v_in_max": {
+          "unit": "V",
+          "page": 5,
+          "evidence": "CE Pin Voltage VCE Vss-0.3 ~ VIN +0.3 V",
+          "rel_offset": 0.3,
+          "of": "VIN",
+          "conditions": "absolute maximum: CE ≤ V_IN + 0.3 V"
+        }
+      },
+      "pins": [
+        {
+          "name": "VIN",
+          "signal": "supply",
+          "note": "SOT23-5 pin 1"
+        },
+        {
+          "name": "VSS",
+          "signal": "gnd",
+          "note": "SOT23-5 pin 2"
+        },
+        {
+          "name": "CE",
+          "signal": "enable_in",
+          "note": "SOT23-5 pin 3; high = on (C version: enable can be set)"
+        },
+        {
+          "name": "NC",
+          "signal": "nc",
+          "note": "SOT23-5 pin 4"
+        },
+        {
+          "name": "VOUT",
+          "signal": "power_out",
+          "note": "SOT23-5 pin 5, 3.3 V"
+        }
+      ],
+      "current": {
+        "supply": "VIN",
+        "typ": {
+          "value": 3e-05,
+          "unit": "A",
+          "page": 10,
+          "evidence": "Supply Current ISS VIN= VOUT+1V  30 60 μA",
+          "conditions": "V_IN = V_OUT + 1 V"
+        },
+        "max": {
+          "value": 6e-05,
+          "unit": "A",
+          "page": 10,
+          "evidence": "Supply Current ISS VIN= VOUT+1V  30 60 μA",
+          "conditions": "V_IN = V_OUT + 1 V"
+        },
+        "sleep": {
+          "value": 1e-06,
+          "unit": "A",
+          "page": 10,
+          "evidence": "Stand-byCurrent ICEL VCE＝0V  0.1 1.0 μA",
+          "conditions": "CE = 0 V, max"
+        },
+        "note": "Supply current of the regulator only; the load current flows from VIN to VOUT on top."
+      },
+      "requires": [
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "1µF",
+          "pins": [
+            "VOUT"
+          ],
+          "to": "VSS",
+          "note": "C_L = 1 µF in the test conditions; low-ESR ceramic compatible; no ESR range given",
+          "page": 10,
+          "evidence": "CIN=CL=1uF"
+        },
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "1µF",
+          "pins": [
+            "VIN"
+          ],
+          "to": "VSS",
+          "note": "C_IN = 1 µF in the test conditions",
+          "page": 10,
+          "evidence": "CIN=CL=1uF"
+        }
+      ],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "Dropout of the C33 version: 120 mV typ. at 100 mA, 260 mV typ. at 200 mA; no maximum given. Maximum output current 500 mA typical (no minimum) in SOT23-5.",
+          "verified": true,
+          "page": 10,
+          "evidence": [
+            "Current IOUTMAX VIN= VOUT+1V  500",
+            "VDIF1 IOUT =100mA  120",
+            "VDIF2 IOUT =200mA  260"
+          ]
+        },
+        {
+          "text": "θJA SOT23-5 210 °C/W (junction to air).",
+          "verified": true,
+          "page": 5,
+          "evidence": [
+            "Thermal resistance",
+            "SOT23-5 210"
+          ]
+        },
+        {
+          "text": "The datasheet is a Microne document hosted by LCSC (class A2).",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "lm2596",
+      "aliases": [
+        "lm2596-adj",
+        "lm2596s-adj",
+        "lm2596t-adj",
+        "lm2596s"
+      ],
+      "title": "LM2596 3 A step-down (buck) regulator, 150 kHz (adjustable)",
+      "category": "power.buck",
+      "manufacturer": "Texas Instruments",
+      "kind": "ic",
+      "source_ids": [
+        "mod-power-lm2596-ds"
+      ],
+      "supplies": {
+        "VIN": {
+          "min": {
+            "value": 4.5,
+            "unit": "V",
+            "page": 5,
+            "evidence": "Supply voltage 4.5 40 V",
+            "conditions": "operating conditions"
+          },
+          "max": {
+            "value": 40.0,
+            "unit": "V",
+            "page": 5,
+            "evidence": "Supply voltage 4.5 40 V",
+            "conditions": "operating conditions"
+          },
+          "abs_max": {
+            "value": 45.0,
+            "unit": "V",
+            "page": 5,
+            "evidence": "Maximum supply voltage (VIN) 45 V",
+            "conditions": "absolute maximum rating"
+          }
+        }
+      },
+      "io": {
+        "domain": "VIN",
+        "vih": {
+          "value": 2.0,
+          "unit": "V",
+          "page": 7,
+          "evidence": [
+            "VIL High (regulator OFF)",
+            "–40°C ≤ TJ ≤ 125°C 2"
+          ],
+          "conditions": "ON/OFF: above this the regulator is off (full T_J range; 1.3 V typ at 25 °C)"
+        },
+        "vil": {
+          "value": 0.6,
+          "unit": "V",
+          "page": 7,
+          "evidence": [
+            "Low (regulator ON)",
+            "–40°C ≤ TJ ≤ 125°C 0.6"
+          ],
+          "conditions": "ON/OFF: below this the regulator is on (full T_J range)"
+        },
+        "v_in_max": {
+          "value": 25.0,
+          "unit": "V",
+          "page": 4,
+          "evidence": "to a maximum of 25 V) shuts the regulator down",
+          "conditions": "ON/OFF pin, pin description"
+        }
+      },
+      "pins": [
+        {
+          "name": "VIN",
+          "signal": "supply",
+          "note": "pin 1; input bypass capacitor required"
+        },
+        {
+          "name": "OUTPUT",
+          "signal": "power_out",
+          "note": "pin 2: switch node (to the inductor and the catch diode), not the regulated output"
+        },
+        {
+          "name": "GND",
+          "signal": "gnd",
+          "note": "pin 3"
+        },
+        {
+          "name": "FEEDBACK",
+          "signal": "analog_in",
+          "note": "pin 4: divider from VOUT (VOUT = 1.23 V · (1 + R2/R1), bench_calc buck)"
+        },
+        {
+          "name": "ON_OFF",
+          "signal": "enable_in",
+          "active_low": true,
+          "note": "pin 5: low (or GND/open) = on, high = off"
+        }
+      ],
+      "current": {
+        "supply": "VIN",
+        "typ": {
+          "value": 0.005,
+          "unit": "A",
+          "page": 7,
+          "evidence": "IQ Operating quiescent current(6) See (6) 5 10 mA",
+          "conditions": "switch forced off (Note 6); the load current comes on top"
+        },
+        "max": {
+          "value": 0.01,
+          "unit": "A",
+          "page": 7,
+          "evidence": "IQ Operating quiescent current(6) See (6) 5 10 mA",
+          "conditions": "switch forced off (Note 6); the load current comes on top"
+        },
+        "sleep": {
+          "value": 0.0002,
+          "unit": "A",
+          "page": 7,
+          "evidence": "quiescent ON/OFF pin = 5 V (OFF)(7) TJ = 25°C 80 200 μA",
+          "conditions": "standby, ON/OFF = 5 V, T_J = 25 °C, max (250 µA over temperature)"
+        },
+        "note": "Input current of a buck converter ≈ V_OUT · I_OUT / (η · V_IN); this entry lists the converter's own current only."
+      },
+      "requires": [
+        {
+          "code": "decoupling",
+          "kind": "electrolytic",
+          "pins": [
+            "VIN"
+          ],
+          "to": "GND",
+          "note": "input bypass capacitor at VIN; the adjustable example uses C_IN 470 µF/50 V aluminum electrolytic",
+          "page": 4,
+          "evidence": "positive input supply for the IC switching regulator. A suitable input bypass"
+        },
+        {
+          "code": "flyback",
+          "kind": "schottky",
+          "pins": [
+            "OUTPUT"
+          ],
+          "to": "GND",
+          "note": "catch diode from OUTPUT to GND, e.g. 1N5825 (5 A, 40 V Schottky) in the adjustable example",
+          "page": 27,
+          "evidence": "40-V Schottky Rectifier, 1N5825 L1"
+        }
+      ],
+      "hazards": [
+        {
+          "code": "heat",
+          "text": "At 3 A the LM2596 and the catch diode get hot: TO-263 θJA 50 °C/W on 0.5 in² copper; give it copper area or a heat sink.",
+          "page": 5,
+          "evidence": "See(5) 50 —"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Adjustable output range 1.2 V to 37 V; 3 A load current.",
+          "verified": true,
+          "page": 1,
+          "evidence": [
+            "Adjustable version output voltage range: 1.2-V to",
+            "37-V ±4% maximum",
+            "3-A output load current"
+          ]
+        },
+        {
+          "text": "Feedback voltage 1.23 V typ (1.193–1.267 V at 25 °C, 1.18–1.28 V over T_J).",
+          "verified": true,
+          "page": 6,
+          "evidence": [
+            "4.5 V ≤ VIN ≤ 40 V, 0.2 A ≤ ILOAD ≤ 3 A 1.23",
+            "TJ = 25°C 1.193 1.267",
+            "–40°C ≤ TJ ≤ 125°C 1.18 1.28"
+          ]
+        },
+        {
+          "text": "Blue 'LM2596 DC-DC' modules carry the adjustable version with a trimmer as R2, an inductor, diode and capacitors; set and measure VOUT before connecting the ESP32.",
+          "verified": false
+        },
+        {
+          "text": "Many cheap modules use counterfeit or relabelled LM2596 chips with lower current capability.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "mp1584",
+      "aliases": [
+        "mp1584en",
+        "mp1584en-lf-z"
+      ],
+      "title": "MP1584 3 A, 1.5 MHz, 28 V step-down converter (SOIC8E)",
+      "category": "power.buck",
+      "manufacturer": "Monolithic Power Systems",
+      "kind": "ic",
+      "source_ids": [
+        "mod-power-mp1584-ds"
+      ],
+      "supplies": {
+        "VIN": {
+          "min": {
+            "value": 4.5,
+            "unit": "V",
+            "page": 2,
+            "evidence": "Supply Voltage VIN ........................... 4.5V to 28V",
+            "conditions": "recommended operating conditions"
+          },
+          "max": {
+            "value": 28.0,
+            "unit": "V",
+            "page": 2,
+            "evidence": "Supply Voltage VIN ........................... 4.5V to 28V",
+            "conditions": "recommended operating conditions"
+          },
+          "abs_max": {
+            "value": 30.0,
+            "unit": "V",
+            "page": 2,
+            "evidence": "Supply Voltage (VIN) ..................... –0.3V to +30V",
+            "conditions": "absolute maximum rating"
+          }
+        }
+      },
+      "io": {
+        "domain": "VIN",
+        "vih": {
+          "value": 1.65,
+          "unit": "V",
+          "page": 3,
+          "evidence": "EN Up Threshold   1.35 1.5 1.65 V",
+          "conditions": "EN rising threshold, max"
+        },
+        "v_in_max": {
+          "value": 6.0,
+          "unit": "V",
+          "page": 2,
+          "evidence": "All Other Pins ................................. –0.3V to +6V",
+          "conditions": "absolute maximum rating, EN and the other low-voltage pins"
+        }
+      },
+      "pins": [
+        {
+          "name": "SW",
+          "signal": "power_out",
+          "note": "pin 1: switch node; Schottky diode to GND required"
+        },
+        {
+          "name": "EN",
+          "signal": "enable_in",
+          "internal_pull": "up",
+          "note": "pin 2: floating = enabled (pulled to about 3.0 V by 1 µA)"
+        },
+        {
+          "name": "COMP",
+          "signal": "analog_in",
+          "note": "pin 3: compensation network"
+        },
+        {
+          "name": "FB",
+          "signal": "analog_in",
+          "note": "pin 4: divider from VOUT, VFB 0.8 V (bench_calc buck)"
+        },
+        {
+          "name": "GND",
+          "signal": "gnd",
+          "note": "pin 5 and exposed pad"
+        },
+        {
+          "name": "FREQ",
+          "signal": "analog_in",
+          "note": "pin 6: resistor to GND sets the switching frequency"
+        },
+        {
+          "name": "VIN",
+          "signal": "supply",
+          "note": "pin 7: decoupling capacitor close to the pin"
+        },
+        {
+          "name": "BST",
+          "signal": "analog_in",
+          "note": "pin 8: bootstrap capacitor to SW"
+        }
+      ],
+      "current": {
+        "supply": "VIN",
+        "typ": {
+          "value": 0.0001,
+          "unit": "A",
+          "page": 3,
+          "evidence": "Quiescent Supply Current  No load, V FB = 0.9V  100 125 µA",
+          "conditions": "no load, not switching (V_FB = 0.9 V)"
+        },
+        "max": {
+          "value": 0.000125,
+          "unit": "A",
+          "page": 3,
+          "evidence": "Quiescent Supply Current  No load, V FB = 0.9V  100 125 µA",
+          "conditions": "no load, not switching (V_FB = 0.9 V)"
+        },
+        "sleep": {
+          "value": 2e-05,
+          "unit": "A",
+          "page": 3,
+          "evidence": "Shutdown Supply Current  V EN = 0V  12 20 µA",
+          "conditions": "EN = 0 V, max"
+        },
+        "note": "Converter's own current; the input current for the load is ≈ V_OUT · I_OUT / (η · V_IN)."
+      },
+      "requires": [
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "pins": [
+            "VIN"
+          ],
+          "to": "GND",
+          "note": "decoupling capacitor close to VIN (typical application: 10 µF)",
+          "page": 4,
+          "evidence": "high-side switch. A decoupling capacitor to ground must be placed close to this pin to minimize"
+        },
+        {
+          "code": "flyback",
+          "kind": "schottky",
+          "pins": [
+            "SW"
+          ],
+          "to": "GND",
+          "note": "low forward drop Schottky diode from SW to GND, close to the pin",
+          "page": 4,
+          "evidence": "A low forward drop Schottky diode to ground is required."
+        }
+      ],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "MPS marks the MP1584 'not recommended for new designs' and refers to the MP2338.",
+          "verified": true,
+          "page": 1,
+          "evidence": [
+            "NOT RECOMMENDED FOR",
+            "REFER TO MP2338"
+          ]
+        },
+        {
+          "text": "Output 0.8 V to 25 V; VFB 0.776–0.824 V; current limit 4.0 A (min, typ 4.7 A).",
+          "verified": true,
+          "page": 2,
+          "evidence": "Output Voltage VOUT ......................... 0.8V to 25V"
+        },
+        {
+          "text": "θJA 50 °C/W (SOIC8E, JESD51-7 4-layer PCB).",
+          "verified": true,
+          "page": 2,
+          "evidence": [
+            "Thermal Resistance (4) θJA θJC",
+            "SOIC8E .................................. 50"
+          ]
+        },
+        {
+          "text": "Mini 'MP1584EN' modules set VOUT with a trimmer or fixed resistors and often omit EN; the 3 A rating needs copper they do not have.",
+          "verified": false
+        },
+        {
+          "text": "EN falling threshold about 1.2 V (rising 1.5 V) from the description, without min/max: no guaranteed low level, so the catalog has no VIL; drive EN low with 0 V (GND).",
+          "verified": true,
+          "page": 8,
+          "evidence": [
+            "positive logic. Its falling threshold is a precision",
+            "1.2V, and its rising threshold is 1.5V"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mcp73831",
+      "aliases": [
+        "mcp73831-2",
+        "mcp73831t-2aci",
+        "mcp73831t-2acj",
+        "mcp73831-2-ot"
+      ],
+      "title": "MCP73831 single-cell Li-Ion/Li-Polymer charge controller, 15–500 mA (SOT-23-5)",
+      "category": "power.charger",
+      "manufacturer": "Microchip Technology",
+      "kind": "ic",
+      "source_ids": [
+        "mod-power-mcp73831-ds"
+      ],
+      "supplies": {
+        "VDD": {
+          "min": {
+            "value": 3.75,
+            "unit": "V",
+            "page": 3,
+            "evidence": "Supply Voltage V DD 3.75 — 6 V",
+            "conditions": "DC characteristics"
+          },
+          "max": {
+            "value": 6.0,
+            "unit": "V",
+            "page": 3,
+            "evidence": "Supply Voltage V DD 3.75 — 6 V",
+            "conditions": "DC characteristics"
+          },
+          "abs_max": {
+            "value": 7.0,
+            "unit": "V",
+            "page": 3,
+            "evidence": [
+              "VDD....",
+              "7.0V"
+            ],
+            "conditions": "absolute maximum rating"
+          }
+        }
+      },
+      "io": {
+        "domain": "VDD",
+        "outputs": "tristate",
+        "voh": {
+          "unit": "V",
+          "page": 4,
+          "evidence": "High Output Voltage V OH —V DD-0.4 V DD - 1 V I SOURCE = 4 mA (MCP73831)",
+          "rel_offset": -1.0,
+          "of": "VDD",
+          "conditions": "STAT high, min, I_SOURCE = 4 mA: STAT swings to about VDD"
+        },
+        "vol": {
+          "value": 1.0,
+          "unit": "V",
+          "page": 4,
+          "evidence": "Low Output Voltage V OL —0 . 4 1 V I SINK = 4 mA",
+          "conditions": "STAT low, max, I_SINK = 4 mA"
+        }
+      },
+      "pins": [
+        {
+          "name": "STAT",
+          "signal": "digital_out",
+          "output": "tristate",
+          "note": "SOT-23-5 pin 1: low = charging, high = complete (MCP73831), high-Z = shutdown/no battery; drives to VDD (5 V)"
+        },
+        {
+          "name": "VSS",
+          "signal": "gnd",
+          "note": "SOT-23-5 pin 2"
+        },
+        {
+          "name": "VBAT",
+          "signal": "power_out",
+          "note": "SOT-23-5 pin 3: to the battery + terminal"
+        },
+        {
+          "name": "VDD",
+          "signal": "supply",
+          "note": "SOT-23-5 pin 4: charger input (USB 5 V)"
+        },
+        {
+          "name": "PROG",
+          "signal": "analog_in",
+          "note": "SOT-23-5 pin 5: R_PROG to VSS sets the charge current (bench_calc charger); floating = disabled"
+        }
+      ],
+      "current": {
+        "supply": "VDD",
+        "typ": {
+          "value": 0.00051,
+          "unit": "A",
+          "page": 3,
+          "evidence": "Supply Current I SS — 510 1500 µA Charging",
+          "conditions": "charging; the charge current I_REG comes on top"
+        },
+        "max": {
+          "value": 0.0015,
+          "unit": "A",
+          "page": 3,
+          "evidence": "Supply Current I SS — 510 1500 µA Charging",
+          "conditions": "charging; the charge current I_REG comes on top"
+        },
+        "sleep": {
+          "value": 5e-05,
+          "unit": "A",
+          "page": 3,
+          "evidence": "— 25 50 µA PROG Floating",
+          "conditions": "PROG floating (disabled), max"
+        },
+        "note": "Add the programmed charge current (up to 500 mA) to the VDD budget."
+      },
+      "requires": [
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "4.7µF",
+          "pins": [
+            "VDD"
+          ],
+          "to": "VSS",
+          "note": "bypass VDD with at least 4.7 µF",
+          "page": 11,
+          "evidence": [
+            "recommended. Bypass to V SS with a minimum of",
+            "4.7 µF."
+          ]
+        },
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "4.7µF",
+          "pins": [
+            "VBAT"
+          ],
+          "to": "VSS",
+          "note": "bypass VBAT with at least 4.7 µF for loop stability when the battery is disconnected",
+          "page": 11,
+          "evidence": "to VSS with a minimum of 4.7 µF to ensure loop stability"
+        }
+      ],
+      "hazards": [
+        {
+          "code": "li_ion",
+          "text": "Charges single-cell lithium-ion / lithium-polymer batteries: overcharge, short circuit or a damaged cell can cause fire. Use a protected cell (protection circuit), set the charge current for the cell's rating, never charge unattended or near flammable material.",
+          "page": 1,
+          "evidence": "Lithium-Ion/Lithium-Polymer Battery Chargers"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Charge voltage by order code: -2 = 4.20 V (4.168–4.232 V), -3 = 4.35 V, -4 = 4.40 V, -5 = 4.50 V; only the 4.20 V version suits a standard Li-Ion cell.",
+          "verified": true,
+          "page": 3,
+          "evidence": [
+            "Regulated Output Voltage V REG 4.168 4.20 4.232 V MCP7383X-2",
+            "4.317 4.35 4.383 V MCP7383X-3"
+          ]
+        },
+        {
+          "text": "STAT is a push-pull (tri-state) output that swings to VDD: at a 5 V VDD it needs a divider or level shifter before an ESP32 GPIO.",
+          "verified": true,
+          "page": 11,
+          "evidence": "STAT is a tri-state logic output on the MCP73831 and"
+        },
+        {
+          "text": "Adafruit/SparkFun LiPo charger boards set R_PROG on the board (often 2 kΩ = 500 mA); check the resistor before charging a small cell.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "tp4056",
+      "aliases": [
+        "tp4056-42-esop8",
+        "tp4056-42-emsop8"
+      ],
+      "title": "TP4056 1 A standalone linear Li-Ion battery charger (ESOP8)",
+      "category": "power.charger",
+      "manufacturer": "NanJing Top Power ASIC Corp.",
+      "kind": "ic",
+      "source_ids": [
+        "mod-power-tp4056-ds"
+      ],
+      "supplies": {
+        "VCC": {
+          "min": {
+            "value": 4.0,
+            "unit": "V",
+            "page": 5,
+            "evidence": "VCC Input Supply V oltage  ● 4.0 5 8.0 V",
+            "conditions": "electrical characteristics, full temperature range"
+          },
+          "typ": {
+            "value": 5.0,
+            "unit": "V",
+            "page": 5,
+            "evidence": "VCC Input Supply V oltage  ● 4.0 5 8.0 V",
+            "conditions": "electrical characteristics"
+          },
+          "max": {
+            "value": 8.0,
+            "unit": "V",
+            "page": 5,
+            "evidence": "VCC Input Supply V oltage  ● 4.0 5 8.0 V",
+            "conditions": "electrical characteristics, full temperature range"
+          },
+          "abs_max": {
+            "value": 8.0,
+            "unit": "V",
+            "page": 2,
+            "evidence": "·Input Supply V oltage(VCC)：-0.3V～8V",
+            "conditions": "absolute maximum rating"
+          }
+        }
+      },
+      "io": {
+        "domain": "VCC",
+        "outputs": "open_drain",
+        "vih": {
+          "value": 0.95,
+          "unit": "V",
+          "page": 5,
+          "evidence": "VCE_ON CE turn-on voltage Vcc=5V，CE from low to high  0.65 0.8 0.95 V",
+          "conditions": "CE turn-on threshold max, VCC = 5 V"
+        },
+        "vil": {
+          "value": 0.6,
+          "unit": "V",
+          "page": 5,
+          "evidence": "VCE_OFF CE turn-off voltage Vcc=5V，CE from high to low  0.6 0.75 0.9 V",
+          "conditions": "CE turn-off threshold min, VCC = 5 V"
+        },
+        "v_in_max": {
+          "value": 10.0,
+          "unit": "V",
+          "page": 2,
+          "evidence": "·CE：-0.3V～10V",
+          "conditions": "absolute maximum rating, CE"
+        },
+        "vol": {
+          "value": 0.6,
+          "unit": "V",
+          "page": 5,
+          "evidence": "𝑉𝐶𝐻𝑅𝐺 Pin output low voltage 𝐼𝐶𝐻𝑅𝐺=5mA   0.3 0.6 V",
+          "conditions": "CHRG (STDBY alike) low at 5 mA, max"
+        }
+      },
+      "pins": [
+        {
+          "name": "TEMP",
+          "signal": "analog_in",
+          "note": "pin 1: battery NTC; GND disables the temperature sense"
+        },
+        {
+          "name": "PROG",
+          "signal": "analog_out",
+          "note": "pin 2: R_PROG to GND sets the charge current; V_PROG (1 V in CC mode) measures it: I_BAT = V_PROG/R_PROG · 1200"
+        },
+        {
+          "name": "GND",
+          "signal": "gnd",
+          "note": "pin 3"
+        },
+        {
+          "name": "VCC",
+          "signal": "supply",
+          "note": "pin 4: charger input (USB 5 V)"
+        },
+        {
+          "name": "BAT",
+          "signal": "power_out",
+          "note": "pin 5: to the battery + terminal"
+        },
+        {
+          "name": "STDBY",
+          "signal": "open_drain_out",
+          "active_low": true,
+          "output": "open_drain",
+          "note": "pin 6: low = charge complete"
+        },
+        {
+          "name": "CHRG",
+          "signal": "open_drain_out",
+          "active_low": true,
+          "output": "open_drain",
+          "note": "pin 7: low = charging"
+        },
+        {
+          "name": "CE",
+          "signal": "enable_in",
+          "note": "pin 8: high = normal operation, low = shutdown"
+        }
+      ],
+      "requires": [],
+      "hazards": [
+        {
+          "code": "li_ion",
+          "text": "Charges single-cell lithium-ion / lithium-polymer batteries: overcharge, short circuit or a damaged cell can cause fire. Use a protected cell (protection circuit), set the charge current for the cell's rating, never charge unattended or near flammable material.",
+          "page": 2,
+          "evidence": [
+            "linear charger for single cell",
+            "lithium-ion batteries."
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "text": "Charge voltage fixed at 4.2 V (4.158–4.242 V): single Li-Ion cells only.",
+          "verified": true,
+          "page": 5,
+          "evidence": "VFLOAT Regulated Output (Float) V oltage 0℃≤TA≤85℃，IBA T=40mA  4.158 4.2 4.242 V"
+        },
+        {
+          "text": "Charge current up to 1000 mA; at R_PROG = 1.2 kΩ the charge current is 850–1000–1150 mA (min/typ/max). The table on p. 9 lists 900 mA at 1.2 kΩ and 1000 mA at 1.1 kΩ.",
+          "verified": true,
+          "page": 5,
+          "evidence": [
+            "RPROG=1.2k, Current Mode",
+            "850",
+            "1000",
+            "1150"
+          ]
+        },
+        {
+          "text": "The absolute maximum for BAT is printed as −0.3 V to 0.7 V (REV_2.3); BAT regulates to 4.2 V, so this line is not used as a limit.",
+          "verified": true,
+          "page": 2,
+          "evidence": "·BAT：-0.3V～0.7V"
+        },
+        {
+          "text": "Unused status pins go to GND.",
+          "verified": true,
+          "page": 10,
+          "evidence": [
+            "If not using a status indicator, the pins",
+            "should be connected to GND."
+          ]
+        },
+        {
+          "text": "The supply current of the charger itself is not used here; budget VCC with the programmed charge current (up to 1 A).",
+          "verified": false
+        },
+        {
+          "text": "Common blue/purple 'TP4056 module' boards set R_PROG = 1.2 kΩ (about 1 A) and the variant with 'OUT+/OUT−' adds a DW01A + FS8205 protection circuit; the plain variant has no cell protection.",
+          "verified": false
+        },
+        {
+          "text": "The TP4056 regulates its die to about 145 °C by reducing the charge current; a hot board is normal, not a fault.",
+          "verified": true,
+          "page": 5,
+          "evidence": "TLIM Junction Temperature in Constant Temperature Mode    145  ℃"
+        }
+      ],
+      "variants": [
+        {
+          "id": "module-dw01",
+          "title": "TP4056 charger module with DW01A + FS8205 cell protection (IN+/IN-, B+/B-, OUT+/OUT-)",
+          "overrides": {
+            "kind": "module",
+            "supplies": {
+              "IN+": {
+                "min": {
+                  "value": 4.0,
+                  "unit": "V",
+                  "page": 5,
+                  "evidence": "VCC Input Supply V oltage  ● 4.0 5 8.0 V",
+                  "conditions": "electrical characteristics, full temperature range"
+                },
+                "typ": {
+                  "value": 5.0,
+                  "unit": "V",
+                  "page": 5,
+                  "evidence": "VCC Input Supply V oltage  ● 4.0 5 8.0 V",
+                  "conditions": "electrical characteristics"
+                },
+                "max": {
+                  "value": 8.0,
+                  "unit": "V",
+                  "page": 5,
+                  "evidence": "VCC Input Supply V oltage  ● 4.0 5 8.0 V",
+                  "conditions": "electrical characteristics, full temperature range"
+                },
+                "abs_max": {
+                  "value": 8.0,
+                  "unit": "V",
+                  "page": 2,
+                  "evidence": "·Input Supply V oltage(VCC)：-0.3V～8V",
+                  "conditions": "absolute maximum rating"
+                }
+              }
+            },
+            "io": {
+              "domain": "IN+"
+            },
+            "pins": [
+              {
+                "name": "IN+",
+                "signal": "supply",
+                "note": "charger input (USB 5 V, also on the USB socket)"
+              },
+              {
+                "name": "IN-",
+                "signal": "gnd",
+                "note": "input ground"
+              },
+              {
+                "name": "B+",
+                "signal": "power_out",
+                "note": "to the cell's + terminal (TP4056 BAT)"
+              },
+              {
+                "name": "B-",
+                "signal": "power_out",
+                "note": "to the cell's − terminal; behind the protection MOSFETs, not the system ground"
+              },
+              {
+                "name": "OUT+",
+                "signal": "power_out",
+                "note": "protected battery output + (same node as B+)"
+              },
+              {
+                "name": "OUT-",
+                "signal": "power_out",
+                "note": "protected battery output −, switched by the FS8205 MOSFETs"
+              }
+            ],
+            "requires": [],
+            "notes": [
+              {
+                "text": "Charge voltage fixed at 4.2 V (4.158–4.242 V): single Li-Ion cells only.",
+                "verified": true,
+                "page": 5,
+                "evidence": "VFLOAT Regulated Output (Float) V oltage 0℃≤TA≤85℃，IBA T=40mA  4.158 4.2 4.242 V"
+              },
+              {
+                "text": "Charge current up to 1000 mA; at R_PROG = 1.2 kΩ the charge current is 850–1000–1150 mA (min/typ/max). The table on p. 9 lists 900 mA at 1.2 kΩ and 1000 mA at 1.1 kΩ.",
+                "verified": true,
+                "page": 5,
+                "evidence": [
+                  "RPROG=1.2k, Current Mode",
+                  "850",
+                  "1000",
+                  "1150"
+                ]
+              },
+              {
+                "text": "The absolute maximum for BAT is printed as −0.3 V to 0.7 V (REV_2.3); BAT regulates to 4.2 V, so this line is not used as a limit.",
+                "verified": true,
+                "page": 2,
+                "evidence": "·BAT：-0.3V～0.7V"
+              },
+              {
+                "text": "Unused status pins go to GND.",
+                "verified": true,
+                "page": 10,
+                "evidence": [
+                  "If not using a status indicator, the pins",
+                  "should be connected to GND."
+                ]
+              },
+              {
+                "text": "The TP4056 regulates its die to about 145 °C by reducing the charge current; a hot board is normal, not a fault.",
+                "verified": true,
+                "page": 5,
+                "evidence": "TLIM Junction Temperature in Constant Temperature Mode    145  ℃"
+              },
+              {
+                "text": "Module boards carry R_PROG (often 1.2 kΩ, about 1 A), the input/battery capacitors, the CHRG/STDBY LEDs and TEMP tied to GND; TEMP, PROG, CE and the status pins are not on the header. Check your board.",
+                "verified": false
+              },
+              {
+                "text": "The DW01A + FS8205 pair disconnects the cell on over-discharge, overcharge or short circuit between OUT+ and OUT-; load the cell only through OUT+/OUT-, never from B-.",
+                "verified": false
+              },
+              {
+                "text": "Set R_PROG for the cell: a 1 A module on a small LiPo charges it too fast.",
+                "verified": false
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

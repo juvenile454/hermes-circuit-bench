@@ -1,0 +1,33 @@
+{
+ "ok": true,
+ "action": "board.ports",
+ "summary": "2 ports: /dev/ttyACM0 (ESP32-S3 USB-Serial/JTAG), sim://esp32s3-n16r8 (simulated).",
+ "result": {
+  "ports": [
+   {
+    "device": "/dev/ttyACM0",
+    "vid": "303a",
+    "pid": "1001",
+    "description": "USB JTAG/serial debug unit",
+    "kind": "usb_serial_jtag",
+    "likely_esp": true,
+    "simulated": false
+   },
+   {
+    "device": "sim://esp32s3-n16r8",
+    "vid": null,
+    "pid": null,
+    "description": "Simulated ESP32-S3 N16R8",
+    "kind": "sim",
+    "likely_esp": true,
+    "simulated": true
+   }
+  ]
+ },
+ "checks": [],
+ "warnings": [],
+ "assumptions": [],
+ "sources": [],
+ "simulated": false,
+ "error": null
+}

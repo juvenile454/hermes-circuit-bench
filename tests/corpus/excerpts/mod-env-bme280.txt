@@ -1,0 +1,46 @@
+# source_id: mod-env-bme280-ds
+# document: BME280 Combined humidity and pressure sensor, Data sheet BST-BME280-DS001
+# url: https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme280-ds002.pdf
+# corpus: mod/env/bst-bme280-ds002.pdf sha256 a2ccdb449fec94380742fe8eec851a11d9bd4142252d332b34682b4deecd7d89
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 8
+Supply Voltage 
+Internal Domains 
+VDD ripple max. 50 mVpp 1.71 1.8 3.6 V 
+Supply Voltage 
+I/O Domain 
+VDDIO  1.2 1.8 3.6 V 
+Sleep current IDDSL  
+ 0.1 0.3 µA 
+IDDH Max value at 85 °C  340  µA 
+IDDP Max value at -40 °C  714  µA 
+IDDT Max value at 85 °C  350  µA 
+@@ page 13
+Voltage at any supply pin VDD and VDDIO pin -0.3 4.25 V 
+Voltage at any interface pin  -0.3 VDDIO + 0.3 V 
+@@ page 26
+0xD0 “id” 7:0 chip_id Read value is 
+@@ page 27
+The “id” register contains the chip identification number chip_id[7:0], which is 0x60. This number can 
+@@ page 32
+value and can be changed during operation. Connecting SDO to GND results in slave address 
+1110110 (0x76); connection it to VDDIO results in slave address 1110111 (0x77), which is the same as 
+@@ page 33
+BMP280’s I²C address. The SDO pin cannot be left floating; if left floating, the I²C address will be 
+CSB must be connected to VDDIO to select I²C interface. SDI is bi-directional with open drain to GND: it 
+@@ page 35
+Input low level Vil_si VDDIO=1.2 V to 3. 6V   20 %VDDI
+Input high level Vih_si VDDIO=1.2 V to 3.6 V 80   %VDDI
+I2C bus load capacitor Cb On SDI and SCK   400 pF 
+@@ page 38
+1 GND Supply Ground GND 
+2 CSB In Chip select CSB CSB VDDIO 
+3 SDI In/Out Serial data input SDI SDI/SDO SDA 
+4 SCK In Serial clock input SCK SCK SCL 
+5 SDO In/Out Serial data output SDO DNC GND for 
+6 VDDIO Supply Digital / Interface 
+7 GND Supply Ground GND 
+8 VDD Supply Analog supply VDD 
+@@ page 39
+• The recommended value for C1, C2 is 100 nF 

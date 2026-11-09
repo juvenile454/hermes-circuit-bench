@@ -1,0 +1,74 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x420243b2
+SPIWP:0xee
+mode:DIO, clock div:2
+load:0x3fcd0108,len:0xf24
+load:0x403b6000,len:0xc2c
+load:0x403ba000,len:0x2d60
+SHA-256 comparison failed:
+Calculated: cbd95a816bf0b42be96621cc70ea54ca844ad51f007c6baddbfea1444d8f0913
+Expected: 48304bcd6dd6bd250bc1ad011a0549e9b13e819f8aa98e34f1df27c016a39ae9
+Attempting to boot anyway...
+entry 0x403b61f4
+E (114) esp_core_dump_flash: No core dump partition found!
+E (114) esp_core_dump_flash: No core dump partition found!
+[laser-trigger] boot, laser off
+Guru Meditation Error: Core  1 panic'ed (StoreProhibited). Exception was unhandled.
+
+Core  1 register dump:
+PC      : 0x420019e4  PS      : 0x00060830  A0      : 0x82001a04  A1      : 0x3fcebc50  
+A2      : 0x00000000  A3      : 0x00000019  A4      : 0x00000001  A5      : 0x00000003  
+A6      : 0x00000124  A7      : 0x00000000  A8      : 0xcccccccd  A9      : 0x3fcebbe0  
+A10     : 0x000000fc  A11     : 0x3c03985c  A12     : 0x00000003  A13     : 0x000003fd  
+A14     : 0x3fcebc2c  A15     : 0x000f4240  SAR     : 0x00000012  EXCCAUSE: 0x0000001d  
+EXCVADDR: 0x0000000c  LBEG    : 0x400570e8  LEND    : 0x400570f3  LCOUNT  : 0x00000000  
+
+
+Backtrace: 0x420019e1:0x3fcebc50 0x42001a01:0x3fcebc70 0x42001a45:0x3fcebc90 0x42003dc6:0x3fcebcb0
+
+
+
+
+ELF file SHA256: cb8f614b016a44c5
+
+E (571) esp_core_dump_flash: Core dump flash config is corrupted! CRC=0x7bd5c66f instead of 0x0
+Rebooting...
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x420243b2
+SPIWP:0xee
+mode:DIO, clock div:2
+load:0x3fcd0108,len:0xf24
+load:0x403b6000,len:0xc2c
+load:0x403ba000,len:0x2d60
+SHA-256 comparison failed:
+Calculated: cbd95a816bf0b42be96621cc70ea54ca844ad51f007c6baddbfea1444d8f0913
+Expected: 48304bcd6dd6bd250bc1ad011a0549e9b13e819f8aa98e34f1df27c016a39ae9
+Attempting to boot anyway...
+entry 0x403b61f4
+E (114) esp_core_dump_flash: No core dump partition found!
+E (114) esp_core_dump_flash: No core dump partition found!
+[laser-trigger] boot, laser off
+Guru Meditation Error: Core  1 panic'ed (StoreProhibited). Exception was unhandled.
+
+Core  1 register dump:
+PC      : 0x420019e4  PS      : 0x00060830  A0      : 0x82001a04  A1      : 0x3fcebc50  
+A2      : 0x00000000  A3      : 0x00000018  A4      : 0x00000001  A5      : 0x00000003  
+A6      : 0x00000120  A7      : 0x00000000  A8      : 0xcccccccd  A9      : 0x3fcebbe0  
+A10     : 0x000000f7  A11     : 0x3c03985c  A12     : 0x00000003  A13     : 0x000003fd  
+A14     : 0x3fcebc2c  A15     : 0x000f4240  SAR     : 0x00000016  EXCCAUSE: 0x0000001d  
+EXCVADDR: 0x0000000c  LBEG    : 0x400570e8  LEND    : 0x400570f3  LCOUNT  : 0x00000000  
+
+
+Backtrace: 0x420019e1:0x3fcebc50 0x42001a01:0x3fcebc70 0x42001a45:0x3fcebc90 0x42003dc6:0x3fcebcb0
+
+
+
+
+ELF file SHA256: cb8f614b016a44c5
+
+E (596) esp_core_dump_flash: Core dump flash config is corrupted! CRC=0x7bd5c66f instead of 0x0
+Rebooting...

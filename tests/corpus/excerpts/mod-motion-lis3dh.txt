@@ -1,0 +1,39 @@
+# source_id: mod-motion-lis3dh-ds
+# document: LIS3DH MEMS digital output motion sensor, Datasheet DocID17530 Rev 2
+# url: https://web.archive.org/web/20260113124036id_/https://www.st.com/resource/en/datasheet/lis3dh.pdf
+# corpus: mod/motion/lis3dh.pdf sha256 852bfcf1a993f04cc147f26a26612a22fdc307c234f3e53d2c24c850ad421533
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 9
+1. SDO/SA0 pin is internally pulled up. Refer to Table 3 for the internal pull-up values (typ.).
+1: SPI idle mode / I2C communication enabled
+0: SPI communication mode / I2C disabled
+10 RES Connect to GND
+1.7 V 54.4
+3.6 V 20.4
+@@ page 12
+Vdd Supply voltage 1.71 2.5 3.6 V
+Vdd_IO I/O pins supply voltage (2) 1.71 Vdd+0.1 V
+Idd Current consumption in normal mode 50 Hz ODR 11 μA
+IddPdn Current consumption in power-down mode 0.5 μA
+VIH Digital high-level input voltage 0.8*Vdd_IO V
+VIL Digital low-level input voltage 0.2*Vdd_IO V
+VOH High-level output voltage 0.9*Vdd_IO V
+VOL Low-level output voltage 0.1*Vdd_IO V
+@@ page 15
+Vdd Supply voltage -0.3 to 4.8 V
+Vdd_IO I/O pins Supply voltage -0.3 to 4.8 V
+Vin Input voltage on any control pin (CS, SCL/SPC, SDA/SDI/SDO, SDO/SA0)  -0.3 to Vdd_IO +0.3 V
+@@ page 20
+Vdd_IO line. Power supply decoupling capacitors (100 nF ceramic, 10 μF aluminum) should
+@@ page 21
+1. In order to disable the internal pull-up on the SDO/SA0 pin, write 90h in CTRL_REG0 (1Eh).
+@@ page 24
+CS line must be tied high (i.e. connected to Vdd_IO).
+to/from the interface. Both the lines must be connected to Vdd_IO through external pull-up
+The I2C interface is compliant with fast mode (400 kHz) I2C standards as well as with
+@@ page 25
+The Slave ADdress (SAD) associated to the LIS3DH is 001100xb. The SDO/SA0 pad can
+be used to modify the less significant bit of the device address. If the SA0 pad is connected
+to the voltage supply, LSb is ‘1’ (address 0011001b) else if SA0 pad is connected to ground,
+the LSb value is ‘0’ (address 0011000b). This solution permits to connect and address two

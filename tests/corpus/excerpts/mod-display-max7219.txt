@@ -1,0 +1,35 @@
+# source_id: mod-display-max7219-ds
+# document: Maxim Integrated (Analog Devices) MAX7219/MAX7221 Serially Interfaced, 8-Digit LED Display Drivers, 19-4452; Rev 6; 8/21 (archived copy of analog.com)
+# url: https://web.archive.org/web/20260107024235id_/https://www.analog.com/media/en/technical-documentation/data-sheets/max7219-max7221.pdf
+# corpus: mod/display/max7219-max7221.pdf sha256 7585bd4469c4355ea7e7d7193710605f2ab96afa14491c377420d057f9c8d5eb
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+For applications requiring 3V operation or segment blinking, 
+refer to the MAX6951 data sheet.
+19-4452; Rev 6; 8/21
+@@ page 2
+ V+ ..........................................................................-0.3V to 6V
+ DIN, CLK, LOAD, CS ............................................-0.3V to 6V
+(V+ = 5V ±10%, RSET = 9.53kΩ ±1%, TA = TMIN to TMAX, unless otherwise noted.)
+Operating Supply Voltage V+ 4.0 5.5 V
+Shutdown Supply Current I+ All digital inputs at V+ or GND, T A = +25°C 150 µA
+Operating Supply Current I+
+RSET = open circuit 8
+ISEG_ = -40mA 330
+@@ page 3
+(V+ = 5V ±10%, RSET = 9.53kΩ ±1%, TA = TMIN to TMAX, unless otherwise noted.)
+Logic High Input Voltage VIH 3.5 V
+Logic Low Input Voltage VIL 0.8 V
+Output High Voltage VOH DOUT, ISOURCE = -1mA V+ - 1 V
+Output Low Voltage VOL DOUT, ISINK = 1.6mA 0.4 V
+CLK Clock Period tCP 100 ns
+@@ page 5
+1 DIN Serial-Data Input. Data is loaded into the internal 16-bit shift register on CLK’s rising edge.
+Serial-Clock Input. 10MHz maximum rate. On CLK’s rising edge, data is shifted into the internal 
+18 ISET Connect to VDD through a resistor (RSET) to set the peak segment current (Refer to SelectingRSET Resistor and Using External Drivers  section).
+24 DOUT Serial-Data Output. The data into DIN is valid at DOUT 16.5 clock cycles later. This pin is used  to daisy-chain several MAX7219/MAX7221’s and is never high-impedance.
+@@ page 10
+driver currents, connect a 10μF electrolytic and a 0.1μF 
+ceramic capacitor between V+ and GND as close to the 
+Also, both GND pins must be connected to ground.

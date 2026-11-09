@@ -1,0 +1,1070 @@
+{
+  "schema": 1,
+  "wp": "display",
+  "note": "Values only from manufacturer documents; 'evidence' quotes lines of tests/corpus/excerpts/mod-display-*.txt (pypdf).",
+  "modules": [
+    {
+      "id": "ssd1306",
+      "aliases": ["ssd-1306", "ssd1306-oled"],
+      "title": "SSD1306 128x64 OLED controller (I²C; SPI variant)",
+      "category": "display.oled",
+      "manufacturer": "Solomon Systech",
+      "kind": "ic",
+      "source_ids": ["mod-display-ssd1306-ds"],
+      "supplies": {
+        "VDD": {
+          "min": {"value": 1.65, "unit": "V", "page": 48, "evidence": "VDD Logic Supply Voltage - 1.65 - 3.3 V"},
+          "max": {"value": 3.3, "unit": "V", "page": 48, "evidence": "VDD Logic Supply Voltage - 1.65 - 3.3 V"},
+          "abs_max": {"value": 4, "unit": "V", "page": 47, "evidence": "VDD  -0.3 to +4 V"}
+        }
+      },
+      "io": {
+        "domain": "VDD",
+        "vih": {
+          "rel": 0.8,
+          "of": "VDD",
+          "unit": "V",
+          "page": 48,
+          "evidence": "VIH High Logic Input Level - 0.8 x V DD",
+          "conditions": "VDD 1.65–3.3 V, TA 25 °C"
+        },
+        "vil": {
+          "rel": 0.2,
+          "of": "VDD",
+          "unit": "V",
+          "page": 48,
+          "evidence": "VIL Low Logic Input Level - - - 0.2 x V DD V",
+          "conditions": "VDD 1.65–3.3 V, TA 25 °C"
+        },
+        "voh": {
+          "rel": 0.9,
+          "of": "VDD",
+          "unit": "V",
+          "page": 48,
+          "evidence": "VOH High Logic Output Level I OUT = 100uA, 3.3MHz 0.9 x V DD",
+          "conditions": "VDD 1.65–3.3 V, TA 25 °C, IOUT 100 µA"
+        },
+        "vol": {
+          "rel": 0.1,
+          "of": "VDD",
+          "unit": "V",
+          "page": 48,
+          "evidence": "VOL Low Logic Output Level I OUT = 100uA, 3.3MHz - - 0.1 x V DD V",
+          "conditions": "VDD 1.65–3.3 V, TA 25 °C, IOUT 100 µA"
+        },
+        "v_in_max": {
+          "rel_offset": 0.3,
+          "of": "VDD",
+          "unit": "V",
+          "page": 47,
+          "evidence": "Vin Input voltage V SS-0.3 to VDD+0.3 V",
+          "conditions": "absolute maximum rating"
+        },
+        "outputs": "open_drain"
+      },
+      "pins": [
+        {"name": "VDD", "signal": "supply"},
+        {"name": "GND", "signal": "gnd", "note": "VSS"},
+        {"name": "SCL", "signal": "i2c_scl", "note": "D0 in I²C mode"},
+        {"name": "SDA", "signal": "i2c_sda", "note": "D1 (SDAIN) and D2 (SDAOUT) tied together in I²C mode"},
+        {"name": "SA0", "signal": "addr_select", "must_connect": true, "note": "the D/C# pin acts as SA0 in I²C mode"},
+        {
+          "name": "RES",
+          "signal": "reset_in",
+          "active_low": true,
+          "note": "RES#; 4-pin modules drive it from an on-board RC network"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {
+            "value": ["0x3c", "0x3d"],
+            "page": 19,
+            "evidence": [
+              "Either “0111100” or “0111101”, can be",
+              "selected as the slave address of SSD1306. D/C# pin acts as SA0"
+            ]
+          },
+          "default": "0x3c",
+          "select": {"pin": "SA0", "map": {"GND": "0x3c", "VDD": "0x3d"}},
+          "f_max_hz": {
+            "value": 400000,
+            "unit": "Hz",
+            "page": 54,
+            "evidence": "tcycle Clock Cycle Time 2.5 - - us",
+            "conditions": "1 / tcycle min 2.5 µs (I²C timing table, VDD 1.65–3.3 V)"
+          },
+          "note": "SA0 = 0 selects 0x3C, SA0 = 1 selects 0x3D (p. 19); the bus mode is strapped by BS[2:0] on the board"
+        }
+      ],
+      "requires": [
+        {
+          "code": "pullup",
+          "kind": "resistor",
+          "pins": ["SDA", "SCL"],
+          "to": "VDD",
+          "page": 19,
+          "evidence": ["Both the data and clock signals must be", "connected to pull-up resistors."],
+          "note": "value from the I²C pull-up calculator"
+        }
+      ],
+      "hazards": [],
+      "variants": [
+        {
+          "id": "spi4",
+          "title": "4-wire SPI (D0 SCLK, D1 SDIN, CS#, D/C#)",
+          "overrides": {
+            "pins": [
+              {"name": "VDD", "signal": "supply"},
+              {"name": "GND", "signal": "gnd", "note": "VSS"},
+              {"name": "SCLK", "signal": "spi_sck", "note": "D0 in SPI mode"},
+              {"name": "SDIN", "signal": "spi_sdi", "note": "D1 in SPI mode"},
+              {"name": "CS", "signal": "spi_cs", "active_low": true, "note": "CS#"},
+              {"name": "DC", "signal": "digital_in", "note": "D/C#: command or data"},
+              {"name": "RES", "signal": "reset_in", "active_low": true, "note": "RES#"}
+            ],
+            "io": {
+              "domain": "VDD",
+              "vih": {
+                "rel": 0.8,
+                "of": "VDD",
+                "unit": "V",
+                "page": 48,
+                "evidence": "VIH High Logic Input Level - 0.8 x V DD",
+                "conditions": "VDD 1.65–3.3 V, TA 25 °C"
+              },
+              "vil": {
+                "rel": 0.2,
+                "of": "VDD",
+                "unit": "V",
+                "page": 48,
+                "evidence": "VIL Low Logic Input Level - - - 0.2 x V DD V",
+                "conditions": "VDD 1.65–3.3 V, TA 25 °C"
+              },
+              "voh": {
+                "rel": 0.9,
+                "of": "VDD",
+                "unit": "V",
+                "page": 48,
+                "evidence": "VOH High Logic Output Level I OUT = 100uA, 3.3MHz 0.9 x V DD",
+                "conditions": "VDD 1.65–3.3 V, TA 25 °C, IOUT 100 µA"
+              },
+              "vol": {
+                "rel": 0.1,
+                "of": "VDD",
+                "unit": "V",
+                "page": 48,
+                "evidence": "VOL Low Logic Output Level I OUT = 100uA, 3.3MHz - - 0.1 x V DD V",
+                "conditions": "VDD 1.65–3.3 V, TA 25 °C, IOUT 100 µA"
+              },
+              "v_in_max": {
+                "rel_offset": 0.3,
+                "of": "VDD",
+                "unit": "V",
+                "page": 47,
+                "evidence": "Vin Input voltage V SS-0.3 to VDD+0.3 V",
+                "conditions": "absolute maximum rating"
+              }
+            },
+            "interfaces": [
+              {
+                "type": "spi",
+                "f_max_hz": {
+                  "value": 10000000,
+                  "unit": "Hz",
+                  "page": 52,
+                  "evidence": "tcycle Clock Cycle Time 100 - - ns",
+                  "conditions": "1 / tcycle min 100 ns (4-wire SPI table, VDD 1.65–3.3 V)"
+                },
+                "note": "write-only serial interface: the SSD1306 does not drive a MISO line"
+              }
+            ],
+            "requires": []
+          }
+        }
+      ],
+      "notes": [
+        {
+          "text": "128 segments × 64 commons (128×64 pixels).",
+          "page": 6,
+          "evidence": "consis ts of 128 segments and 64commons",
+          "verified": true
+        },
+        {
+          "text": "Panel supply VCC 7–15 V; the internal charge pump makes it from VBAT 3.3–4.2 V (App Note in the same file, p. 62).",
+          "page": 62,
+          "evidence": "V BAT = 3.3V to 4.2V   for charge pump regulator circuit",
+          "verified": true
+        },
+        {
+          "text": "Panel supply VCC operating range 7–15 V.",
+          "page": 48,
+          "evidence": "VCC Operating Voltage - 7 - 15 V",
+          "verified": true
+        },
+        {
+          "text": "4-pin 0.96\" modules (VCC, GND, SCL, SDA) carry an LDO, the charge pump capacitors, pull-ups and an address jumper; the silk 0x78/0x7A is the 8-bit form of 0x3C/0x3D. Check the board before applying 5 V.",
+          "verified": false
+        },
+        {
+          "text": "Module current depends on the panel content and is not in the controller datasheet; measure it or use the module vendor's figure.",
+          "verified": false
+        },
+        {
+          "text": "1.3\" 128×64 modules often carry an SH1106 instead of an SSD1306 (see mod.display.sh1106_vs_ssd1306).",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "sh1106",
+      "aliases": ["sh-1106", "sh1106-oled"],
+      "title": "SH1106 132x64 OLED controller (I²C; SPI variant)",
+      "category": "display.oled",
+      "manufacturer": "Sino Wealth",
+      "kind": "ic",
+      "source_ids": ["mod-display-sh1106-ds"],
+      "supplies": {
+        "VDD1": {
+          "min": {"value": 1.65, "unit": "V", "page": 35, "evidence": "VDD1 Operating voltage 1.65 - 3.5 V"},
+          "max": {"value": 3.5, "unit": "V", "page": 35, "evidence": "VDD1 Operating voltage 1.65 - 3.5 V"},
+          "abs_max": {"value": 3.6, "unit": "V", "page": 35, "evidence": ["DC Supply Voltage (VDD1)", "-0.3V to +3.6V"]}
+        }
+      },
+      "io": {
+        "domain": "VDD1",
+        "vih": {
+          "rel": 0.8,
+          "of": "VDD1",
+          "unit": "V",
+          "page": 36,
+          "evidence": "VIHC High-level input voltage 0.8 X VDD1 - VDD1 V",
+          "conditions": "VDD1 1.65–3.5 V, TA 25 °C"
+        },
+        "vil": {
+          "rel": 0.2,
+          "of": "VDD1",
+          "unit": "V",
+          "page": 36,
+          "evidence": "VILC Low-level input voltage VSS - 0.2 X VDD1 V",
+          "conditions": "VDD1 1.65–3.5 V, TA 25 °C"
+        },
+        "v_in_max": {
+          "rel_offset": 0.3,
+          "of": "VDD1",
+          "unit": "V",
+          "page": 35,
+          "evidence": ["Input Voltage", "-0.3V to VDD1 + 0.3V"],
+          "conditions": "absolute maximum rating"
+        },
+        "outputs": "open_drain"
+      },
+      "pins": [
+        {"name": "VDD1", "signal": "supply"},
+        {"name": "GND", "signal": "gnd", "note": "VSS"},
+        {"name": "SCL", "signal": "i2c_scl", "note": "D0 in I²C mode"},
+        {"name": "SDA", "signal": "i2c_sda", "note": "D1 (SDAIN) and D2 (SDAOUT) tied together in I²C mode"},
+        {"name": "SA0", "signal": "addr_select", "must_connect": true, "note": "the D/C# pin acts as SA0 in I²C mode"},
+        {
+          "name": "RES",
+          "signal": "reset_in",
+          "active_low": true,
+          "note": "RES#; 4-pin modules drive it from an on-board RC network"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {
+            "value": ["0x3c", "0x3d"],
+            "page": 13,
+            "evidence": "Two 7-bit slave addresses (0111100 and 0111101) are reserved"
+          },
+          "default": "0x3c",
+          "select": {"pin": "SA0", "map": {"GND": "0x3c", "VDD1": "0x3d"}},
+          "f_max_hz": {"value": 400000, "unit": "Hz", "page": 43, "evidence": "fSCL SCL clock frequency DC - 400 kHz"},
+          "note": "the least significant address bit is SA0 (p. 13)"
+        }
+      ],
+      "requires": [
+        {
+          "code": "pullup",
+          "kind": "resistor",
+          "pins": ["SDA", "SCL"],
+          "to": "VDD1",
+          "page": 11,
+          "evidence": [
+            "Both lines must be connected to a positive supply via a pull-up resistor.",
+            "Note: The positive supply of pull-up resistor must equal to the value of VDD1."
+          ],
+          "note": "pull-ups to VDD1, value from the I²C pull-up calculator"
+        }
+      ],
+      "hazards": [],
+      "variants": [
+        {
+          "id": "spi4",
+          "title": "4-wire SPI (D0 SCLK, D1 SDIN, CS#, A0)",
+          "overrides": {
+            "pins": [
+              {"name": "VDD1", "signal": "supply"},
+              {"name": "GND", "signal": "gnd", "note": "VSS"},
+              {"name": "SCLK", "signal": "spi_sck", "note": "D0 in SPI mode"},
+              {"name": "SDIN", "signal": "spi_sdi", "note": "D1 in SPI mode"},
+              {"name": "CS", "signal": "spi_cs", "active_low": true, "note": "CS#"},
+              {"name": "DC", "signal": "digital_in", "note": "D/C#: command or data"},
+              {"name": "RES", "signal": "reset_in", "active_low": true, "note": "RES#"}
+            ],
+            "io": {
+              "domain": "VDD1",
+              "vih": {
+                "rel": 0.8,
+                "of": "VDD1",
+                "unit": "V",
+                "page": 36,
+                "evidence": "VIHC High-level input voltage 0.8 X VDD1 - VDD1 V",
+                "conditions": "VDD1 1.65–3.5 V, TA 25 °C"
+              },
+              "vil": {
+                "rel": 0.2,
+                "of": "VDD1",
+                "unit": "V",
+                "page": 36,
+                "evidence": "VILC Low-level input voltage VSS - 0.2 X VDD1 V",
+                "conditions": "VDD1 1.65–3.5 V, TA 25 °C"
+              },
+              "v_in_max": {
+                "rel_offset": 0.3,
+                "of": "VDD1",
+                "unit": "V",
+                "page": 35,
+                "evidence": ["Input Voltage", "-0.3V to VDD1 + 0.3V"],
+                "conditions": "absolute maximum rating"
+              }
+            },
+            "interfaces": [
+              {
+                "type": "spi",
+                "f_max_hz": {
+                  "value": 4000000,
+                  "unit": "Hz",
+                  "page": 41,
+                  "evidence": ["(VDD1 = 2.4 - 3.5V, TA = +25°C)", "tSCYC Serial clock cycle 250 - - ns"],
+                  "conditions": "1 / tSCYC min 250 ns at VDD1 2.4–3.5 V; 500 ns (2 MHz) at 1.65–3.5 V"
+                },
+                "note": "write characteristics for 4-wire SPI (p. 41)"
+              }
+            ],
+            "requires": []
+          }
+        }
+      ],
+      "notes": [
+        {
+          "text": "132 segments × 64 commons: the display RAM is 132 columns wide (SSD1306: 128).",
+          "page": 1,
+          "evidence": "SH1106 consists of 132 segments, 64 commons",
+          "verified": true
+        },
+        {
+          "text": "Logic supply VDD1 1.65–3.5 V; VDD2 (3.0–4.2 V) feeds the internal charge pump, VPP is the panel supply.",
+          "page": 1,
+          "evidence": "Logic voltage supply: VDD1 = 1.65V - 3.5V",
+          "verified": true
+        },
+        {
+          "text": "1.3\" 128×64 modules usually carry an SH1106. SSD1306 drivers show a shifted or garbled image on it: use an SH1106 driver.",
+          "verified": false
+        },
+        {
+          "text": "Currents are not taken from this copy: its text layer renders µA as mA (pp. 1, 35).",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "ssd1309",
+      "aliases": ["ssd-1309", "ssd1309-oled"],
+      "title": "SSD1309 128x64 OLED controller (I²C; SPI variant)",
+      "category": "display.oled",
+      "manufacturer": "Solomon Systech",
+      "kind": "ic",
+      "source_ids": ["mod-display-ssd1309-ds"],
+      "supplies": {
+        "VDD": {
+          "min": {"value": 1.65, "unit": "V", "page": 52, "evidence": "VDD  Logic Supply Voltage  - 1.65 - 3.3 V"},
+          "max": {"value": 3.3, "unit": "V", "page": 52, "evidence": "VDD  Logic Supply Voltage  - 1.65 - 3.3 V"},
+          "abs_max": {"value": 4, "unit": "V", "page": 51, "evidence": "VDD  -0.3 to +4 V"}
+        }
+      },
+      "io": {
+        "domain": "VDD",
+        "vih": {
+          "rel": 0.8,
+          "of": "VDD",
+          "unit": "V",
+          "page": 52,
+          "evidence": "VIH  High Logic Input Level  - 0.8 x V DD",
+          "conditions": "VDD 1.65–3.3 V, TA 25 °C"
+        },
+        "vil": {
+          "rel": 0.2,
+          "of": "VDD",
+          "unit": "V",
+          "page": 52,
+          "evidence": "VIL  Low Logic Input Level  - - - 0.2 x V DD  V",
+          "conditions": "VDD 1.65–3.3 V, TA 25 °C"
+        },
+        "voh": {
+          "rel": 0.9,
+          "of": "VDD",
+          "unit": "V",
+          "page": 52,
+          "evidence": "VOH  High Logic Output Level  I OUT = 100uA, 3.3MHz  0.9 x V DD",
+          "conditions": "VDD 1.65–3.3 V, TA 25 °C, IOUT 100 µA"
+        },
+        "vol": {
+          "rel": 0.1,
+          "of": "VDD",
+          "unit": "V",
+          "page": 52,
+          "evidence": "VOL  Low Logic Output Level  I OUT = 100uA, 3.3MHz  - - 0.1 x V DD V",
+          "conditions": "VDD 1.65–3.3 V, TA 25 °C, IOUT 100 µA"
+        },
+        "v_in_max": {
+          "rel_offset": 0.3,
+          "of": "VDD",
+          "unit": "V",
+          "page": 51,
+          "evidence": "Vin Input voltage V SS-0.3 to VDD+0.3 V",
+          "conditions": "absolute maximum rating"
+        },
+        "outputs": "open_drain"
+      },
+      "pins": [
+        {"name": "VDD", "signal": "supply"},
+        {"name": "GND", "signal": "gnd", "note": "VSS"},
+        {"name": "SCL", "signal": "i2c_scl", "note": "D0 in I²C mode"},
+        {"name": "SDA", "signal": "i2c_sda", "note": "D1 (SDAIN) and D2 (SDAOUT) tied together in I²C mode"},
+        {"name": "SA0", "signal": "addr_select", "must_connect": true, "note": "the D/C# pin acts as SA0 in I²C mode"},
+        {
+          "name": "RES",
+          "signal": "reset_in",
+          "active_low": true,
+          "note": "RES#; 4-pin modules drive it from an on-board RC network"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {
+            "value": ["0x3c", "0x3d"],
+            "page": 19,
+            "evidence": [
+              "Either “0111100” or “0111101”, can be",
+              "selected as the slave address of SSD1309. D/C# pin acts as SA0"
+            ]
+          },
+          "default": "0x3c",
+          "select": {"pin": "SA0", "map": {"GND": "0x3c", "VDD": "0x3d"}},
+          "f_max_hz": {
+            "value": 400000,
+            "unit": "Hz",
+            "page": 58,
+            "evidence": "tcycle Clock Cycle Time 2.5 - - us",
+            "conditions": "1 / tcycle min 2.5 µs (I²C timing table, VDD 1.65–3.3 V)"
+          },
+          "note": "SA0 = 0 selects 0x3C, SA0 = 1 selects 0x3D (pp. 19–20)"
+        }
+      ],
+      "requires": [
+        {
+          "code": "pullup",
+          "kind": "resistor",
+          "pins": ["SDA", "SCL"],
+          "to": "VDD",
+          "page": 19,
+          "evidence": ["Both the data and clock signals must be", "connected to pull-up resistors."],
+          "note": "value from the I²C pull-up calculator"
+        }
+      ],
+      "hazards": [],
+      "variants": [
+        {
+          "id": "spi4",
+          "title": "4-wire SPI (D0 SCLK, D1 SDIN, CS#, D/C#)",
+          "overrides": {
+            "pins": [
+              {"name": "VDD", "signal": "supply"},
+              {"name": "GND", "signal": "gnd", "note": "VSS"},
+              {"name": "SCLK", "signal": "spi_sck", "note": "D0 in SPI mode"},
+              {"name": "SDIN", "signal": "spi_sdi", "note": "D1 in SPI mode"},
+              {"name": "CS", "signal": "spi_cs", "active_low": true, "note": "CS#"},
+              {"name": "DC", "signal": "digital_in", "note": "D/C#: command or data"},
+              {"name": "RES", "signal": "reset_in", "active_low": true, "note": "RES#"}
+            ],
+            "io": {
+              "domain": "VDD",
+              "vih": {
+                "rel": 0.8,
+                "of": "VDD",
+                "unit": "V",
+                "page": 52,
+                "evidence": "VIH  High Logic Input Level  - 0.8 x V DD",
+                "conditions": "VDD 1.65–3.3 V, TA 25 °C"
+              },
+              "vil": {
+                "rel": 0.2,
+                "of": "VDD",
+                "unit": "V",
+                "page": 52,
+                "evidence": "VIL  Low Logic Input Level  - - - 0.2 x V DD  V",
+                "conditions": "VDD 1.65–3.3 V, TA 25 °C"
+              },
+              "voh": {
+                "rel": 0.9,
+                "of": "VDD",
+                "unit": "V",
+                "page": 52,
+                "evidence": "VOH  High Logic Output Level  I OUT = 100uA, 3.3MHz  0.9 x V DD",
+                "conditions": "VDD 1.65–3.3 V, TA 25 °C, IOUT 100 µA"
+              },
+              "vol": {
+                "rel": 0.1,
+                "of": "VDD",
+                "unit": "V",
+                "page": 52,
+                "evidence": "VOL  Low Logic Output Level  I OUT = 100uA, 3.3MHz  - - 0.1 x V DD V",
+                "conditions": "VDD 1.65–3.3 V, TA 25 °C, IOUT 100 µA"
+              },
+              "v_in_max": {
+                "rel_offset": 0.3,
+                "of": "VDD",
+                "unit": "V",
+                "page": 51,
+                "evidence": "Vin Input voltage V SS-0.3 to VDD+0.3 V",
+                "conditions": "absolute maximum rating"
+              }
+            },
+            "interfaces": [
+              {
+                "type": "spi",
+                "f_max_hz": {
+                  "value": 10000000,
+                  "unit": "Hz",
+                  "page": 56,
+                  "evidence": "tcycle Clock Cycle Time 100 - - ns",
+                  "conditions": "1 / tcycle min 100 ns (4-wire SPI table, VDD 1.65–3.3 V)"
+                },
+                "note": "write-only serial interface"
+              }
+            ],
+            "requires": []
+          }
+        }
+      ],
+      "notes": [
+        {
+          "text": "128 segments × 64 commons (128×64 pixels).",
+          "page": 7,
+          "evidence": "consists  of 128 segments and 64 commons",
+          "verified": true
+        },
+        {
+          "text": "The panel needs VCC 7.0–16.0 V besides the logic supply.",
+          "page": 7,
+          "evidence": "VCC = 7.0V ~ 16.0V   for Panel driving",
+          "verified": true
+        },
+        {
+          "text": "Modules (e.g. 2.42\" 128×64) generate VCC with an on-board boost converter and add a regulator; check the board before applying 5 V.",
+          "verified": false
+        },
+        {
+          "text": "Copy hosted by Crystalfontz (download stamp on each page); the hpinfotech.ro copy of the research is the same Rev 1.1 file without the stamp.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "hd44780",
+      "aliases": ["hd44780u", "lcd1602", "lcd2004"],
+      "title": "HD44780U character LCD controller (4/8-bit parallel)",
+      "category": "display.lcd",
+      "manufacturer": "Hitachi",
+      "kind": "ic",
+      "source_ids": ["mod-display-hd44780-ds"],
+      "supplies": {
+        "VCC": {
+          "min": {
+            "value": 4.5,
+            "unit": "V",
+            "page": 51,
+            "evidence": "DC Characteristics (VCC = 4.5 to 5.5 V, Ta = –30 to +75°C*3)",
+            "conditions": "lower end of the 5 V characteristics table; the chip runs from 2.7 V (p. 8): use variant 3v3 below 4.5 V"
+          },
+          "max": {"value": 5.5, "unit": "V", "page": 8, "evidence": "Power supply V CC: 2.7V to 5.5V"},
+          "abs_max": {"value": 7.0, "unit": "V", "page": 47, "evidence": "Power supply voltage (1) V CC–GND –0.3 to +7.0 V"}
+        }
+      },
+      "io": {
+        "domain": "VCC",
+        "vih": {
+          "value": 2.2,
+          "unit": "V",
+          "page": 51,
+          "evidence": "VIH1 2.2 — V CC V6",
+          "conditions": "VCC 4.5–5.5 V, Ta −30…+75 °C, inputs and I/O pins except OSC1 (note 6)"
+        },
+        "vil": {
+          "value": 0.6,
+          "unit": "V",
+          "page": 51,
+          "evidence": "VIL1 –0.3 — 0.6 V 6",
+          "conditions": "VCC 4.5–5.5 V, Ta −30…+75 °C, inputs and I/O pins except OSC1 (note 6)"
+        },
+        "voh": {
+          "value": 2.4,
+          "unit": "V",
+          "page": 51,
+          "evidence": "VOH1 2.4 — — V –I OH = 0.205 mA 7",
+          "conditions": "VCC 4.5–5.5 V, Ta −30…+75 °C, I/O pins DB0–DB7 (note 7), min"
+        },
+        "vol": {
+          "value": 0.4,
+          "unit": "V",
+          "page": 51,
+          "evidence": "VOL1 — — 0.4 V I OL = 1.2 mA 7",
+          "conditions": "VCC 4.5–5.5 V, Ta −30…+75 °C, I/O pins DB0–DB7 (note 7), max"
+        },
+        "v_in_max": {
+          "rel_offset": 0.3,
+          "of": "VCC",
+          "unit": "V",
+          "page": 47,
+          "evidence": "Input voltage Vt –0.3 to V CC +0.3 V",
+          "conditions": "absolute maximum rating"
+        },
+        "outputs": "tristate"
+      },
+      "pins": [
+        {"name": "VCC", "signal": "supply"},
+        {"name": "GND", "signal": "gnd"},
+        {"name": "RS", "signal": "digital_in", "internal_pull": "up", "note": "register select"},
+        {
+          "name": "RW",
+          "signal": "digital_in",
+          "internal_pull": "up",
+          "note": "R/W: high = read (the controller drives DB0–DB7); tie to GND for write-only use"
+        },
+        {"name": "E", "signal": "digital_in", "note": "enable, starts a read/write; no internal pull-up"},
+        {"name": "DB0", "signal": "digital_in", "note": "bidirectional tristate; unused in 4-bit mode"},
+        {"name": "DB1", "signal": "digital_in", "note": "bidirectional tristate; unused in 4-bit mode"},
+        {"name": "DB2", "signal": "digital_in", "note": "bidirectional tristate; unused in 4-bit mode"},
+        {"name": "DB3", "signal": "digital_in", "note": "bidirectional tristate; unused in 4-bit mode"},
+        {"name": "DB4", "signal": "digital_in", "note": "bidirectional tristate; the 4-bit bus"},
+        {"name": "DB5", "signal": "digital_in", "note": "bidirectional tristate; the 4-bit bus"},
+        {"name": "DB6", "signal": "digital_in", "note": "bidirectional tristate; the 4-bit bus"},
+        {"name": "DB7", "signal": "digital_in", "note": "bidirectional tristate; the 4-bit bus"}
+      ],
+      "interfaces": [{"type": "parallel", "note": "4-bit (DB4–DB7) or 8-bit MPU bus with RS, R/W and E (pp. 1, 8)"}],
+      "requires": [],
+      "hazards": [],
+      "variants": [
+        {
+          "id": "3v3",
+          "title": "HD44780U at VCC 2.7–4.5 V (3.3 V logic)",
+          "overrides": {
+            "supplies": {
+              "VCC": {
+                "min": {"value": 2.7, "unit": "V", "page": 8, "evidence": "Power supply V CC: 2.7V to 5.5V"},
+                "max": {
+                  "value": 4.5,
+                  "unit": "V",
+                  "page": 48,
+                  "evidence": "DC Characteristics (VCC = 2.7 to 4.5 V, Ta = –30 to +75°C*3)",
+                  "conditions": "upper end of the 2.7–4.5 V characteristics table"
+                },
+                "abs_max": {
+                  "value": 7.0,
+                  "unit": "V",
+                  "page": 47,
+                  "evidence": "Power supply voltage (1) V CC–GND –0.3 to +7.0 V"
+                }
+              }
+            },
+            "io": {
+              "domain": "VCC",
+              "vih": {
+                "rel": 0.7,
+                "of": "VCC",
+                "unit": "V",
+                "page": 48,
+                "evidence": "VIH1 0.7V CC —V CC V6",
+                "conditions": "VCC 2.7–4.5 V, Ta −30…+75 °C, inputs and I/O pins except OSC1 (note 6)"
+              },
+              "vil": {
+                "value": 0.55,
+                "unit": "V",
+                "page": 48,
+                "evidence": "VIL1 –0.3 — 0.55 V 6",
+                "conditions": "VCC 2.7–4.5 V, Ta −30…+75 °C, inputs and I/O pins except OSC1 (note 6)"
+              },
+              "voh": {
+                "rel": 0.75,
+                "of": "VCC",
+                "unit": "V",
+                "page": 48,
+                "evidence": "VOH1 0.75V CC ——V – I OH = 0.1 mA 7",
+                "conditions": "VCC 2.7–4.5 V, Ta −30…+75 °C, I/O pins, min"
+              },
+              "vol": {
+                "rel": 0.2,
+                "of": "VCC",
+                "unit": "V",
+                "page": 48,
+                "evidence": "VOL1 — — 0.2V CC VI OL = 0.1 mA 7",
+                "conditions": "VCC 2.7–4.5 V, Ta −30…+75 °C, I/O pins, max"
+              },
+              "v_in_max": {
+                "rel_offset": 0.3,
+                "of": "VCC",
+                "unit": "V",
+                "page": 47,
+                "evidence": "Input voltage Vt –0.3 to V CC +0.3 V",
+                "conditions": "absolute maximum rating"
+              },
+              "outputs": "tristate"
+            }
+          }
+        }
+      ],
+      "notes": [
+        {
+          "text": "RS and R/W have internal pull-up MOS, E has none: an open R/W selects read.",
+          "page": 54,
+          "evidence": "Pin:  E (MOS without pull-up) Pins:  RS, R/W (MOS with pull-up)",
+          "verified": true
+        },
+        {
+          "text": "DB0–DB3 are not used in 4-bit operation.",
+          "page": 8,
+          "evidence": "These pins are not used during 4-bit operation.",
+          "verified": true
+        },
+        {
+          "text": "After power-on the controller is busy for 10 ms once VCC reaches 4.5 V.",
+          "page": 23,
+          "evidence": "The busy state lasts for 10 ms after VCC rises to 4.5 V.",
+          "verified": true
+        },
+        {
+          "text": "1602/2004 LCD modules: glass and backlight are usually made for 5 V; contrast (V0) needs a potentiometer; an I²C backpack (PCF8574, 0x27 or 0x3F) is a separate part.",
+          "verified": false
+        },
+        {
+          "text": "Supply and pull-up currents are not taken from this copy: its text layer renders µA as mA (pp. 48, 51).",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "max7219",
+      "aliases": ["max-7219", "max7219-matrix"],
+      "title": "MAX7219 8-digit LED display driver (SPI-like serial)",
+      "category": "display.led",
+      "manufacturer": "Analog Devices (Maxim Integrated)",
+      "kind": "ic",
+      "source_ids": ["mod-display-max7219-ds"],
+      "supplies": {
+        "V+": {
+          "min": {"value": 4.0, "unit": "V", "page": 2, "evidence": "Operating Supply Voltage V+ 4.0 5.5 V"},
+          "max": {"value": 5.5, "unit": "V", "page": 2, "evidence": "Operating Supply Voltage V+ 4.0 5.5 V"},
+          "abs_max": {"value": 6, "unit": "V", "page": 2, "evidence": ["V+", "-0.3V to 6V"]}
+        }
+      },
+      "io": {
+        "domain": "V+",
+        "vih": {
+          "value": 3.5,
+          "unit": "V",
+          "page": 3,
+          "evidence": "Logic High Input Voltage VIH 3.5 V",
+          "conditions": "V+ = 5 V ±10 % (4.5–5.5 V), TA = TMIN to TMAX; DIN, CLK, LOAD"
+        },
+        "vil": {
+          "value": 0.8,
+          "unit": "V",
+          "page": 3,
+          "evidence": "Logic Low Input Voltage VIL 0.8 V",
+          "conditions": "V+ = 5 V ±10 % (4.5–5.5 V), TA = TMIN to TMAX; DIN, CLK, LOAD"
+        },
+        "voh": {
+          "rel_offset": -1,
+          "of": "V+",
+          "unit": "V",
+          "page": 3,
+          "evidence": "Output High Voltage VOH DOUT, ISOURCE = -1mA V+ - 1 V",
+          "conditions": "V+ = 5 V ±10 % (4.5–5.5 V), TA = TMIN to TMAX; DOUT, min"
+        },
+        "vol": {
+          "value": 0.4,
+          "unit": "V",
+          "page": 3,
+          "evidence": "Output Low Voltage VOL DOUT, ISINK = 1.6mA 0.4 V",
+          "conditions": "V+ = 5 V ±10 % (4.5–5.5 V), TA = TMIN to TMAX; DOUT, max"
+        },
+        "v_in_max": {
+          "value": 6,
+          "unit": "V",
+          "page": 2,
+          "evidence": ["DIN, CLK, LOAD, CS", "-0.3V to 6V"],
+          "conditions": "absolute maximum rating of DIN, CLK, LOAD, independent of V+"
+        },
+        "outputs": "push_pull"
+      },
+      "pins": [
+        {"name": "V+", "signal": "supply"},
+        {"name": "GND", "signal": "gnd", "note": "both GND pins"},
+        {"name": "DIN", "signal": "spi_sdi"},
+        {"name": "CLK", "signal": "spi_sck"},
+        {"name": "LOAD", "signal": "spi_cs", "note": "latches the last 16 bits on its rising edge"},
+        {
+          "name": "DOUT",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "daisy-chain output to the next MAX7219's DIN; never high-impedance"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "spi",
+          "f_max_hz": {"value": 10000000, "unit": "Hz", "page": 5, "evidence": "Serial-Clock Input. 10MHz maximum rate."},
+          "note": "16-bit frames shifted in on CLK's rising edge, latched on LOAD's rising edge (p. 5)"
+        }
+      ],
+      "current": {
+        "supply": "V+",
+        "max": {
+          "value": 0.33,
+          "unit": "A",
+          "page": 2,
+          "evidence": ["Operating Supply Current I+", "ISEG_ = -40mA 330"],
+          "conditions": "all segments and decimal point on, ISEG = −40 mA, RSET 9.53 kΩ; max"
+        },
+        "sleep": {
+          "value": 0.00015,
+          "unit": "A",
+          "page": 2,
+          "evidence": "Shutdown Supply Current I+ All digital inputs at V+ or GND, T A = +25°C 150 µA",
+          "conditions": "shutdown, all digital inputs at V+ or GND, 25 °C; max"
+        }
+      },
+      "requires": [
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "100nF",
+          "pins": ["V+"],
+          "to": "GND",
+          "page": 10,
+          "evidence": [
+            "driver currents, connect a 10μF electrolytic and a 0.1μF",
+            "ceramic capacitor between V+ and GND as close to the"
+          ]
+        },
+        {
+          "code": "bulk_cap",
+          "kind": "electrolytic",
+          "value": "10uF",
+          "pins": ["V+"],
+          "to": "GND",
+          "page": 10,
+          "evidence": [
+            "driver currents, connect a 10μF electrolytic and a 0.1μF",
+            "ceramic capacitor between V+ and GND as close to the"
+          ]
+        }
+      ],
+      "hazards": [
+        {
+          "code": "high_current",
+          "page": 2,
+          "evidence": ["Operating Supply Current I+", "ISEG_ = -40mA 330"],
+          "text": "With all segments on the MAX7219 draws up to 330 mA from V+ (ISEG 40 mA): feed V+ from a 5 V supply rated for it, never from a GPIO or the 3.3 V regulator."
+        }
+      ],
+      "notes": [
+        {
+          "text": "ISET connects to V+ through RSET, which sets the peak segment current.",
+          "page": 5,
+          "evidence": "18 ISET Connect to VDD through a resistor (RSET) to set the peak segment current",
+          "verified": true
+        },
+        {
+          "text": "The datasheet refers 3 V designs to the MAX6951; at V+ 5 V the input threshold VIH is 3.5 V (see mod.display.max7219_vih).",
+          "page": 1,
+          "evidence": "For applications requiring 3V operation or segment blinking,",
+          "verified": true
+        },
+        {
+          "text": "Both GND pins must be connected to ground.",
+          "page": 10,
+          "evidence": "Also, both GND pins must be connected to ground.",
+          "verified": true
+        },
+        {
+          "text": "8×8 matrix and 8-digit modules carry RSET and the capacitors; the module pin VCC is V+.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "tm1637",
+      "aliases": ["tm-1637", "tm1637-4digit"],
+      "title": "TM1637 LED driver with key scan (2-wire CLK/DIO, not I²C)",
+      "category": "display.led",
+      "manufacturer": "Titan Micro Electronics",
+      "kind": "ic",
+      "source_ids": ["mod-display-tm1637-ds", "mod-display-tm1637-en"],
+      "supplies": {
+        "VDD": {
+          "min": {
+            "value": 4.5,
+            "unit": "V",
+            "page": 9,
+            "evidence": "3、电气特性（Ta = -40～+85℃，VDD = 4.5 ～ 5.5 V， Vss = 0 V）",
+            "conditions": "the electrical characteristics are specified at VDD 4.5–5.5 V; the operating-range table gives 5 V typ only",
+            "source_id": "mod-display-tm1637-ds"
+          },
+          "typ": {
+            "value": 5,
+            "unit": "V",
+            "page": 9,
+            "evidence": "逻辑电源电压 VDD  5  V -",
+            "conditions": "normal operating range (typ only)",
+            "source_id": "mod-display-tm1637-ds"
+          },
+          "max": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 9,
+            "evidence": "3、电气特性（Ta = -40～+85℃，VDD = 4.5 ～ 5.5 V， Vss = 0 V）",
+            "conditions": "see min",
+            "source_id": "mod-display-tm1637-ds"
+          },
+          "abs_max": {
+            "value": 7.0,
+            "unit": "V",
+            "page": 9,
+            "evidence": "逻辑电源电压 VDD -0.5 ～+7.0 V",
+            "source_id": "mod-display-tm1637-ds"
+          }
+        }
+      },
+      "io": {
+        "domain": "VDD",
+        "vih": {
+          "rel": 0.7,
+          "of": "VDD",
+          "unit": "V",
+          "page": 10,
+          "evidence": "高电平输入电压 VIH 0.7 VDD",
+          "conditions": "VDD 4.5–5.5 V, Ta −40…+85 °C; CLK, DIO",
+          "source_id": "mod-display-tm1637-ds"
+        },
+        "vil": {
+          "rel": 0.3,
+          "of": "VDD",
+          "unit": "V",
+          "page": 10,
+          "evidence": "低电平输入电压 VIL - - 0.3 VDD V CLK，DIN",
+          "conditions": "VDD 4.5–5.5 V, Ta −40…+85 °C; CLK, DIO",
+          "source_id": "mod-display-tm1637-ds"
+        },
+        "v_in_max": {
+          "rel_offset": 0.5,
+          "of": "VDD",
+          "unit": "V",
+          "page": 9,
+          "evidence": "逻辑输入电压 VI1 -0.5 ～ VDD + 0.5 V",
+          "conditions": "absolute maximum rating",
+          "source_id": "mod-display-tm1637-ds"
+        }
+      },
+      "pins": [
+        {"name": "VDD", "signal": "supply"},
+        {"name": "GND", "signal": "gnd"},
+        {"name": "CLK", "signal": "digital_in", "note": "clock input"},
+        {
+          "name": "DIO",
+          "signal": "digital_in",
+          "note": "bidirectional: the TM1637 pulls DIO low for the ACK after each byte and sends key data"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "digital",
+          "f_max_hz": {
+            "value": 500000,
+            "unit": "Hz",
+            "page": 10,
+            "evidence": "最大时钟频率 Fmax - - 500 KHz 占空比50%",
+            "conditions": "VDD 4.5–5.5 V, Ta −40…+85 °C, 50 % duty",
+            "source_id": "mod-display-tm1637-ds"
+          },
+          "note": "two-wire serial bus (CLK, DIO) with start/stop and ACK but without a slave address: not I²C (V2.4 p. 3)"
+        }
+      ],
+      "requires": [
+        {
+          "code": "pullup",
+          "kind": "resistor",
+          "value": "10k",
+          "pins": ["CLK", "DIO"],
+          "to": "VDD",
+          "page": 8,
+          "source_id": "mod-display-tm1637-en",
+          "evidence": ["MCU", "Interface", "DIO", "CLK", "R1", "10K", "R2", "10K", "VCC",
+                       "2. 100pF capacitor connected to the DIO, CLK communication port pull-up and pull-down"],
+          "note": "the reference circuit (p. 8 of V2.4) shows R1/R2 10K from DIO and CLK to VCC at the MCU interface, plus 100 pF"
+        },
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "pins": ["VDD"],
+          "to": "GND",
+          "page": 8,
+          "source_id": "mod-display-tm1637-en",
+          "evidence": "Note: 1. filtering capacitor between VDD and GND should be arranged on PCB plate as close to TM1637 chip as possible"
+        }
+      ],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "The two-wire bus is not I²C: it has no slave address. Keep CLK/DIO off the I²C bus (mod.display.tm1637_not_i2c).",
+          "page": 3,
+          "evidence": "communication method is not equal to 12C bus protocol totally because there is no slave address",
+          "verified": true,
+          "source_id": "mod-display-tm1637-en"
+        },
+        {
+          "text": "Dynamic supply current at most 5 mA without load and with the display off; the LED current comes on top.",
+          "page": 10,
+          "evidence": "动态电流损耗 IDDdyn - - 5 mA 无负载，显示关",
+          "verified": true,
+          "source_id": "mod-display-tm1637-ds"
+        },
+        {
+          "text": "4-digit modules are often run at 3.3 V, outside the specified 4.5–5.5 V; their pull-ups go to the module VCC, so at 5 V the ESP sees 5 V on CLK/DIO through the pull-ups.",
+          "verified": false
+        },
+        {
+          "text": "V2.6 (Chinese, archived titanmec.com download) is the primary source; the English V2.4 copy is used only for the I²C statement and the layout notes.",
+          "verified": false
+        }
+      ]
+    }
+  ]
+}

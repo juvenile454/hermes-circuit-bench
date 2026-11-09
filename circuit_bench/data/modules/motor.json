@@ -1,0 +1,2782 @@
+{
+ "schema": 1,
+ "wp": "motor",
+ "note": "Values only from manufacturer documents; 'evidence' quotes lines of tests/corpus/excerpts/mod-motor-*.txt (pypdf).",
+ "modules": [
+  {
+   "id": "uln2003a",
+   "aliases": [
+    "uln2003",
+    "uln2003an",
+    "uln2003ad",
+    "28byj-48-driver"
+   ],
+   "title": "ULN2003A 7-channel Darlington transistor array",
+   "category": "driver.array",
+   "manufacturer": "Texas Instruments",
+   "kind": "ic",
+   "source_ids": [
+    "mod-motor-uln2003a-ds"
+   ],
+   "supplies": {
+    "COM": {
+     "abs_max": {
+      "value": 50,
+      "unit": "V",
+      "page": 4,
+      "evidence": "Clamp diode reverse voltage(2) 50 V",
+      "conditions": "absolute maximum; with respect to E"
+     }
+    }
+   },
+   "io": {
+    "vih": {
+     "value": 2.4,
+     "unit": "V",
+     "page": 5,
+     "evidence": [
+      "5.6 Electrical Characteristics: ULN2003A and ULN2004A",
+      "VI(on) ON-state input voltage Figure 6-6 VCE = 2 V",
+      "IC = 200 mA 2.4 6"
+     ],
+     "conditions": "VI(on) max at IC = 200 mA with the output saturated to 2 V (VCE), TA = 25 °C (2.7 V at 250 mA, 3 V at 300 mA)"
+    },
+    "v_in_max": {
+     "value": 30,
+     "unit": "V",
+     "page": 4,
+     "evidence": "VI Input voltage(2) 30 V",
+     "conditions": "absolute maximum; with respect to E"
+    }
+   },
+   "pins": [
+    {
+     "name": "1B",
+     "signal": "digital_in",
+     "internal_pull": "down"
+    },
+    {
+     "name": "2B",
+     "signal": "digital_in",
+     "internal_pull": "down"
+    },
+    {
+     "name": "3B",
+     "signal": "digital_in",
+     "internal_pull": "down"
+    },
+    {
+     "name": "4B",
+     "signal": "digital_in",
+     "internal_pull": "down"
+    },
+    {
+     "name": "5B",
+     "signal": "digital_in",
+     "internal_pull": "down"
+    },
+    {
+     "name": "6B",
+     "signal": "digital_in",
+     "internal_pull": "down"
+    },
+    {
+     "name": "7B",
+     "signal": "digital_in",
+     "internal_pull": "down"
+    },
+    {
+     "name": "1C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "2C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "3C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "4C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "5C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "6C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "7C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "E",
+     "signal": "gnd"
+    },
+    {
+     "name": "COM",
+     "signal": "supply",
+     "note": "common cathode of the clamp diodes: tie to the load (coil) supply for inductive loads"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "digital",
+     "note": "one input per channel, active high; the output sinks current"
+    }
+   ],
+   "current": {
+    "note": "Input current per driven input: 0.93 mA typ, 1.35 mA max at VI = 3.85 V (p. 6). The load current flows from the load supply through the outputs into E."
+   },
+   "requires": [],
+   "hazards": [
+    {
+     "code": "motor_supply",
+     "text": "Motor supply: use a separate supply rated for the motor current; never power the motor from the ESP's 3.3 V rail or USB. Switch it off before you plug or unplug the motor. COM goes to that motor/coil supply, not to the ESP.",
+     "page": 3,
+     "evidence": "COM 9 — Common cathode node for flyback diodes (required for inductive loads)"
+    },
+    {
+     "code": "high_current",
+     "text": "500 mA peak per channel; all channels together at most 2.5 A through E.",
+     "page": 4,
+     "evidence": "Total emitter-terminal current –2.5 A"
+    },
+    {
+     "code": "heat",
+     "text": "Each output drops about 1 V at 200 mA (VCE(sat)); several channels on at once heat the package. Check the dissipation for your duty cycle.",
+     "page": 5,
+     "evidence": [
+      "5.6 Electrical Characteristics: ULN2003A and ULN2004A",
+      "IC = 200 mA 1 1.3"
+     ]
+    }
+   ],
+   "notes": [
+    {
+     "text": "Internal clamp diodes: tie COM to the coil supply for motors and relays (rule mod.motor.uln_com_flyback).",
+     "page": 15,
+     "evidence": [
+      "When the COM pin is tied to the coil supply voltage, ULN2003A device is able to drive inductive loads and",
+      "suppress the kick-back voltage through the internal free-wheeling diodes."
+     ],
+     "verified": true
+    },
+    {
+     "text": "Inputs work directly from 3.3 V or 5 V logic.",
+     "page": 14,
+     "evidence": "thus allowing operation directly with TTL or CMOS operating at supply voltages of 5 V or 3.3 V.",
+     "verified": true
+    },
+    {
+     "text": "Peak collector current 500 mA per channel (absolute maximum).",
+     "page": 4,
+     "evidence": "Peak collector current, See Figure 5-4 and Figure 5-5 500 mA",
+     "verified": true
+    },
+    {
+     "text": "The chip has no supply pin; COM is usually tied to the load supply.",
+     "page": 19,
+     "evidence": "This device does not need a power supply. However, the COM pin is typically tied to the system power supply.",
+     "verified": true
+    },
+    {
+     "text": "Resistive loads need a pull-up for a logic high; COM may then float.",
+     "page": 15,
+     "evidence": "there to be a logic high level. The COM pin can be left floating for these applications.",
+     "verified": true
+    },
+    {
+     "text": "Common 28BYJ-48 stepper boards carry a ULN2003A plus LEDs on the inputs and a 5–12 V motor supply header; board details are not from TI.",
+     "verified": false
+    },
+    {
+     "text": "Each input has 2.7 kΩ in series and 7.2 kΩ / 3 kΩ from base to emitter, which act as pull-downs: an open input keeps its output off.",
+     "verified": true,
+     "page": 15,
+     "evidence": [
+      "The 7.2-kΩ and 3-kΩ resistors connected between the base and emitter of",
+      "each respective NPN act as pulldowns"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "uln2803a",
+   "aliases": [
+    "uln2803",
+    "uln2803an",
+    "uln2803adw"
+   ],
+   "title": "ULN2803A 8-channel Darlington transistor array",
+   "category": "driver.array",
+   "manufacturer": "Texas Instruments",
+   "kind": "ic",
+   "source_ids": [
+    "mod-motor-uln2803a-ds"
+   ],
+   "io": {
+    "vih": {
+     "value": 2.4,
+     "unit": "V",
+     "page": 3,
+     "evidence": "IC = 200 mA 2.4",
+     "conditions": "VI(on) max for VCE = 2 V at IC = 200 mA (2.7 V at 250 mA, 3 V at 300 mA)"
+    },
+    "v_in_max": {
+     "value": 30,
+     "unit": "V",
+     "page": 3,
+     "evidence": "Input voltage (see Note 1) 30 V",
+     "conditions": "absolute maximum; with respect to GND"
+    }
+   },
+   "pins": [
+    {
+     "name": "1B",
+     "signal": "digital_in"
+    },
+    {
+     "name": "2B",
+     "signal": "digital_in"
+    },
+    {
+     "name": "3B",
+     "signal": "digital_in"
+    },
+    {
+     "name": "4B",
+     "signal": "digital_in"
+    },
+    {
+     "name": "5B",
+     "signal": "digital_in"
+    },
+    {
+     "name": "6B",
+     "signal": "digital_in"
+    },
+    {
+     "name": "7B",
+     "signal": "digital_in"
+    },
+    {
+     "name": "8B",
+     "signal": "digital_in"
+    },
+    {
+     "name": "1C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "2C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "3C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "4C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "5C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "6C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "7C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "8C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "COM",
+     "signal": "supply",
+     "note": "common cathode of the clamp diodes: tie to the load (coil) supply for inductive loads"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "digital",
+     "note": "one input per channel, active high; the output sinks current"
+    }
+   ],
+   "current": {
+    "note": "Input current 0.93 mA typ, 1.35 mA max at VI = 3.85 V (p. 3)."
+   },
+   "requires": [],
+   "hazards": [
+    {
+     "code": "motor_supply",
+     "text": "Motor supply: use a separate supply rated for the motor current; never power the motor from the ESP's 3.3 V rail or USB. Switch it off before you plug or unplug the motor. COM goes to that motor/coil supply, not to the ESP."
+    },
+    {
+     "code": "high_current",
+     "text": "500 mA per channel; all channels together at most 2.5 A through GND.",
+     "page": 3,
+     "evidence": "Total substrate-terminal current  −2.5 A"
+    },
+    {
+     "code": "heat",
+     "text": "Each output drops about 1 V at 200 mA (VCE(sat)); several channels on at once heat the package.",
+     "page": 3,
+     "evidence": "IC = 200 mA, 1 1.3 V"
+    }
+   ],
+   "notes": [
+    {
+     "text": "TI specifies the 2.7 kΩ base resistor for TTL or 5 V CMOS; 3.3 V drive is covered by VI(on) = 2.4 V max at 200 mA only (higher currents need up to 3 V).",
+     "page": 1,
+     "evidence": "directly with TTL or 5-V CMOS devices.",
+     "verified": true
+    },
+    {
+     "text": "Internal common-cathode clamp diodes on COM (rule mod.motor.uln_com_flyback).",
+     "page": 1,
+     "evidence": "diodes for switching inductive loads. The collector-current rating of",
+     "verified": true
+    },
+    {
+     "text": "Continuous collector current 500 mA per channel (absolute maximum).",
+     "page": 3,
+     "evidence": "Continuous collector current 500 mA",
+     "verified": true
+    },
+    {
+     "text": "TI no longer serves this data sheet revision; the ULN2803C is TI's current part with the same pinout.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "uln2803c",
+   "aliases": [
+    "uln2803cdwr"
+   ],
+   "title": "ULN2803C 8-channel Darlington transistor array",
+   "category": "driver.array",
+   "manufacturer": "Texas Instruments",
+   "kind": "ic",
+   "source_ids": [
+    "mod-motor-uln2803c-ds"
+   ],
+   "io": {
+    "vih": {
+     "value": 2.4,
+     "unit": "V",
+     "page": 5,
+     "evidence": "VCE = 2V, IC = 200mA 25°C 2.4 V",
+     "conditions": "VI(ON) max for VCE = 2 V at IC = 200 mA, 25 °C (3 V at 300 mA)"
+    },
+    "v_in_max": {
+     "value": 30,
+     "unit": "V",
+     "page": 4,
+     "evidence": "VI Input voltage 30 V",
+     "conditions": "absolute maximum"
+    }
+   },
+   "pins": [
+    {
+     "name": "1B",
+     "signal": "digital_in"
+    },
+    {
+     "name": "2B",
+     "signal": "digital_in"
+    },
+    {
+     "name": "3B",
+     "signal": "digital_in"
+    },
+    {
+     "name": "4B",
+     "signal": "digital_in"
+    },
+    {
+     "name": "5B",
+     "signal": "digital_in"
+    },
+    {
+     "name": "6B",
+     "signal": "digital_in"
+    },
+    {
+     "name": "7B",
+     "signal": "digital_in"
+    },
+    {
+     "name": "8B",
+     "signal": "digital_in"
+    },
+    {
+     "name": "1C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "2C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "3C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "4C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "5C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "6C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "7C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "8C",
+     "signal": "power_out",
+     "note": "open-collector sink output"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "COM",
+     "signal": "supply",
+     "note": "common cathode of the clamp diodes: tie to the load (coil) supply for inductive loads"
+    },
+    {
+     "name": "NC",
+     "signal": "nc",
+     "note": "pins 10 and 11"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "digital",
+     "note": "one input per channel, active high; the output sinks current"
+    }
+   ],
+   "current": {
+    "note": "Input current 0.93 mA typ, 1.35 mA max at VI = 3.85 V (p. 5)."
+   },
+   "requires": [],
+   "hazards": [
+    {
+     "code": "motor_supply",
+     "text": "Motor supply: use a separate supply rated for the motor current; never power the motor from the ESP's 3.3 V rail or USB. Switch it off before you plug or unplug the motor. COM goes to that motor/coil supply, not to the ESP.",
+     "page": 3,
+     "evidence": "COM 12 I/O Common cathode node for flyback diodes (required for inductive loads)."
+    },
+    {
+     "code": "high_current",
+     "text": "500 mA peak per channel; all channels together at most 2.5 A through GND.",
+     "page": 4,
+     "evidence": "IMAX Total substrate-terminal current -2.5 A"
+    },
+    {
+     "code": "heat",
+     "text": "Each output drops about 1 V at 200 mA (VCE(sat)); several channels on at once heat the package.",
+     "page": 5,
+     "evidence": "II = 350uA, IC = 200mA 25°C 1 1.3 V"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Internal clamp diodes: tie COM to the coil supply for motors and relays (rule mod.motor.uln_com_flyback).",
+     "page": 9,
+     "evidence": "When the COM pin is tied to the coil supply voltage, ULN2803C can drive inductive loads and suppress the",
+     "verified": true
+    },
+    {
+     "text": "Inputs work directly from 3.3 V or 5 V logic.",
+     "page": 9,
+     "evidence": "allowing operation directly with TTL or CMOS operating at supply voltages of 5 V or 3.3 V.",
+     "verified": true
+    },
+    {
+     "text": "Peak collector current 500 mA per channel (absolute maximum).",
+     "page": 4,
+     "evidence": "IC Peak collector current 500 mA",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "drv8833",
+   "aliases": [
+    "drv8833pwp",
+    "drv8833rty",
+    "drv8833pw"
+   ],
+   "title": "DRV8833 dual H-bridge motor driver",
+   "category": "driver.motor",
+   "manufacturer": "Texas Instruments",
+   "kind": "ic",
+   "source_ids": [
+    "mod-motor-drv8833-ds"
+   ],
+   "supplies": {
+    "VM": {
+     "min": {
+      "value": 2.7,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VM Motor power supply voltage range (1) 2.7 10.8 V"
+     },
+     "max": {
+      "value": 10.8,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VM Motor power supply voltage range (1) 2.7 10.8 V"
+     },
+     "abs_max": {
+      "value": 11.8,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VM Power supply voltage –0.3 11.8 V"
+     }
+    }
+   },
+   "io": {
+    "vih": {
+     "value": 2.5,
+     "unit": "V",
+     "page": 6,
+     "evidence": [
+      "nSLEEP 2.5",
+      "VIH Input high voltage VAll other pins 2"
+     ],
+     "conditions": "nSLEEP 2.5 V; all other inputs 2 V (min), TA = 25 °C"
+    },
+    "vil": {
+     "value": 0.5,
+     "unit": "V",
+     "page": 6,
+     "evidence": [
+      "nSLEEP 0.5",
+      "VIL Input low voltage VAll other pins 0.7"
+     ],
+     "conditions": "nSLEEP 0.5 V; all other inputs 0.7 V (max), TA = 25 °C"
+    },
+    "vol": {
+     "value": 0.5,
+     "unit": "V",
+     "page": 6,
+     "evidence": "VOL Output low voltage IO = 5 mA 0.5 V",
+     "conditions": "nFAULT, IO = 5 mA"
+    },
+    "v_in_max": {
+     "value": 7.0,
+     "unit": "V",
+     "page": 5,
+     "evidence": "Digital input pin voltage –0.5 7 V",
+     "conditions": "absolute maximum rating, digital inputs (recommended range up to 5.75 V, p. 5)"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "AIN1",
+     "signal": "pwm_in"
+    },
+    {
+     "name": "AIN2",
+     "signal": "pwm_in"
+    },
+    {
+     "name": "BIN1",
+     "signal": "pwm_in"
+    },
+    {
+     "name": "BIN2",
+     "signal": "pwm_in"
+    },
+    {
+     "name": "nSLEEP",
+     "signal": "enable_in",
+     "active_low": true,
+     "note": "high = run, low = sleep; internal pull-down"
+    },
+    {
+     "name": "nFAULT",
+     "signal": "open_drain_out",
+     "active_low": true,
+     "output": "open_drain",
+     "note": "needs a pull-up"
+    },
+    {
+     "name": "AOUT1",
+     "signal": "power_out"
+    },
+    {
+     "name": "AOUT2",
+     "signal": "power_out"
+    },
+    {
+     "name": "BOUT1",
+     "signal": "power_out"
+    },
+    {
+     "name": "BOUT2",
+     "signal": "power_out"
+    },
+    {
+     "name": "AISEN",
+     "signal": "power_out",
+     "note": "sense resistor to GND, or GND"
+    },
+    {
+     "name": "BISEN",
+     "signal": "power_out",
+     "note": "sense resistor to GND, or GND"
+    },
+    {
+     "name": "VINT",
+     "signal": "power_out",
+     "note": "internal supply: 2.2 µF to GND only"
+    },
+    {
+     "name": "VCP",
+     "signal": "power_out",
+     "note": "charge pump: 0.01 µF to VM"
+    },
+    {
+     "name": "VM",
+     "signal": "supply"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "pwm",
+     "note": "two inputs per bridge (xIN1/xIN2) select forward, reverse, coast and brake"
+    }
+   ],
+   "current": {
+    "supply": "VM",
+    "typ": {
+     "value": 0.0017,
+     "unit": "A",
+     "page": 6,
+     "evidence": "IVM VM operating supply current VM = 5 V, xIN1 = 0 V, xIN2 = 0 V 1.7 3 mA",
+     "conditions": "VM = 5 V, inputs low, no load"
+    },
+    "max": {
+     "value": 0.003,
+     "unit": "A",
+     "page": 6,
+     "evidence": "IVM VM operating supply current VM = 5 V, xIN1 = 0 V, xIN2 = 0 V 1.7 3 mA",
+     "conditions": "VM = 5 V, inputs low, no load"
+    },
+    "sleep": {
+     "value": 2.5e-06,
+     "unit": "A",
+     "page": 6,
+     "evidence": "IVMQ VM sleep mode supply current VM = 5 V 1.6 2.5 μA",
+     "conditions": "VM = 5 V, max"
+    },
+    "note": "Quiescent current only; the motor current comes on top (up to 1.5 A RMS per bridge)."
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "10uF",
+     "pins": [
+      "VM"
+     ],
+     "to": "GND",
+     "page": 3,
+     "evidence": [
+      "Connect to motor supply. A 10-µF",
+      "VM 10 12 — Device power supply (minimum) ceramic bypass capacitor to",
+      "GND is recommended."
+     ]
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "2.2uF",
+     "pins": [
+      "VINT"
+     ],
+     "to": "GND",
+     "page": 3,
+     "evidence": "Bypass to GND with 2.2-μF, 6.3-V"
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "10nF",
+     "pins": [
+      "VCP"
+     ],
+     "to": "VM",
+     "note": "charge pump capacitor, X7R, 16 V minimum",
+     "page": 3,
+     "evidence": "Connect a 0.01-μF, 16-V (minimum) X7RVCP 9 11 IO High-side gate drive voltage ceramic capacitor to VM."
+    },
+    {
+     "code": "bulk_cap",
+     "kind": "electrolytic",
+     "pins": [
+      "VM"
+     ],
+     "to": "GND",
+     "note": "size depends on the motor and the supply (p. 14)",
+     "page": 14,
+     "evidence": "Having an appropriate local bulk capacitance is an important factor in motor drive system design."
+    },
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "nFAULT"
+     ],
+     "note": "open-drain fault output; only if you read nFAULT",
+     "page": 4,
+     "evidence": "Logic low when in fault conditionnFAULT 6 8 OD Fault output (overtemperature, overcurrent)"
+    }
+   ],
+   "hazards": [
+    {
+     "code": "motor_supply",
+     "text": "Motor supply: use a separate supply rated for the motor current; never power the motor from the ESP's 3.3 V rail or USB. Switch it off before you plug or unplug the motor. Tie the motor supply ground and the ESP ground together at the driver.",
+     "page": 5,
+     "evidence": "VM Motor power supply voltage range (1) 2.7 10.8 V"
+    },
+    {
+     "code": "high_current",
+     "text": "Up to 1.5 A RMS and 2 A peak per H-bridge (PWP/RTY package); PW package 500 mA RMS.",
+     "page": 1,
+     "evidence": "– 1.5-A RMS, 2-A Peak per H-Bridge in PWP"
+    },
+    {
+     "code": "heat",
+     "text": "Power dissipation and thermal limits apply to the output current; solder the PowerPAD to a copper area.",
+     "page": 5,
+     "evidence": "(2) VM = 5 V, power dissipation and thermal limits must be observed."
+    }
+   ],
+   "notes": [
+    {
+     "text": "Current limit: I = 200 mV / R_ISEN (calculator current_limit).",
+     "page": 10,
+     "evidence": "connected to the xISEN pins with a reference voltage. The reference voltage is fixed at 200 mV.",
+     "verified": true
+    },
+    {
+     "text": "Without current control, tie AISEN/BISEN directly to GND.",
+     "page": 10,
+     "evidence": "If current control is not needed, the xISEN pins should be connected directly to ground.",
+     "verified": true
+    },
+    {
+     "text": "Below VM = 5 V the on-resistance rises and the output current is lower.",
+     "page": 5,
+     "evidence": "(1) RDS(ON) increases and maximum output current is reduced at VM supply voltages below 5 V.",
+     "verified": true
+    },
+    {
+     "text": "Overcurrent protection trips at 2 A minimum, 3.3 A typical.",
+     "page": 6,
+     "evidence": "IOCP Overcurrent protection trip level 2 3.3 A",
+     "verified": true
+    },
+    {
+     "text": "Breakout boards often fit no sense resistors (xISEN to GND) and pull nSLEEP up; check your board.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "drv8825",
+   "aliases": [
+    "drv8825pwp",
+    "drv8825-stepstick"
+   ],
+   "title": "DRV8825 stepper motor driver (STEP/DIR)",
+   "category": "driver.stepper",
+   "manufacturer": "Texas Instruments",
+   "kind": "ic",
+   "source_ids": [
+    "mod-motor-drv8825-ds"
+   ],
+   "supplies": {
+    "VMA": {
+     "min": {
+      "value": 8.2,
+      "unit": "V",
+      "page": 4,
+      "evidence": "V(VMx) Motor power supply voltage range (1) 8.2 45 V"
+     },
+     "max": {
+      "value": 45,
+      "unit": "V",
+      "page": 4,
+      "evidence": "V(VMx) Motor power supply voltage range (1) 8.2 45 V"
+     },
+     "abs_max": {
+      "value": 47,
+      "unit": "V",
+      "page": 4,
+      "evidence": "Power supply voltage –0.3 47 V"
+     }
+    },
+    "VMB": {
+     "min": {
+      "value": 8.2,
+      "unit": "V",
+      "page": 4,
+      "evidence": "V(VMx) Motor power supply voltage range (1) 8.2 45 V"
+     },
+     "max": {
+      "value": 45,
+      "unit": "V",
+      "page": 4,
+      "evidence": "V(VMx) Motor power supply voltage range (1) 8.2 45 V"
+     },
+     "abs_max": {
+      "value": 47,
+      "unit": "V",
+      "page": 4,
+      "evidence": "Power supply voltage –0.3 47 V"
+     }
+    }
+   },
+   "io": {
+    "vih": {
+     "value": 2.2,
+     "unit": "V",
+     "page": 6,
+     "evidence": "VIH Input high voltage 2.2 5.25 V",
+     "conditions": "logic inputs, min"
+    },
+    "vil": {
+     "value": 0.7,
+     "unit": "V",
+     "page": 6,
+     "evidence": "VIL Input low voltage 0 0.7 V",
+     "conditions": "logic inputs, max"
+    },
+    "v_in_max": {
+     "value": 7.0,
+     "unit": "V",
+     "page": 4,
+     "evidence": [
+      "7.1 Absolute Maximum Ratings",
+      "Digital pin voltage –0.5 7 V"
+     ],
+     "conditions": "absolute maximum rating, digital pins (VIH range ends at 5.25 V, p. 6)"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "STEP",
+     "signal": "digital_in",
+     "note": "rising edge = one step; internal pull-down"
+    },
+    {
+     "name": "DIR",
+     "signal": "digital_in"
+    },
+    {
+     "name": "nENBL",
+     "signal": "enable_in",
+     "active_low": true,
+     "note": "low = outputs on; internal pull-down"
+    },
+    {
+     "name": "nRESET",
+     "signal": "reset_in",
+     "active_low": true,
+     "note": "internal pull-down: drive or pull high to run"
+    },
+    {
+     "name": "nSLEEP",
+     "signal": "enable_in",
+     "active_low": true,
+     "note": "internal pull-down: drive or pull high to run"
+    },
+    {
+     "name": "MODE0",
+     "signal": "mode_select"
+    },
+    {
+     "name": "MODE1",
+     "signal": "mode_select"
+    },
+    {
+     "name": "MODE2",
+     "signal": "mode_select"
+    },
+    {
+     "name": "DECAY",
+     "signal": "mode_select",
+     "note": "low = slow, open = mixed, high = fast decay"
+    },
+    {
+     "name": "nFAULT",
+     "signal": "open_drain_out",
+     "active_low": true,
+     "output": "open_drain"
+    },
+    {
+     "name": "nHOME",
+     "signal": "open_drain_out",
+     "active_low": true,
+     "output": "open_drain"
+    },
+    {
+     "name": "AVREF",
+     "signal": "analog_in",
+     "note": "current set reference"
+    },
+    {
+     "name": "BVREF",
+     "signal": "analog_in",
+     "tie": "AVREF"
+    },
+    {
+     "name": "V3P3OUT",
+     "signal": "power_out",
+     "note": "3.3 V reference output, 1 mA max, 0.47 µF to GND"
+    },
+    {
+     "name": "AOUT1",
+     "signal": "power_out"
+    },
+    {
+     "name": "AOUT2",
+     "signal": "power_out"
+    },
+    {
+     "name": "BOUT1",
+     "signal": "power_out"
+    },
+    {
+     "name": "BOUT2",
+     "signal": "power_out"
+    },
+    {
+     "name": "ISENA",
+     "signal": "power_out",
+     "note": "sense resistor to GND"
+    },
+    {
+     "name": "ISENB",
+     "signal": "power_out",
+     "note": "sense resistor to GND"
+    },
+    {
+     "name": "CP1",
+     "signal": "power_out"
+    },
+    {
+     "name": "CP2",
+     "signal": "power_out"
+    },
+    {
+     "name": "VCP",
+     "signal": "power_out"
+    },
+    {
+     "name": "VMA",
+     "signal": "supply"
+    },
+    {
+     "name": "VMB",
+     "signal": "supply",
+     "tie": "VMA"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "digital",
+     "note": "STEP/DIR indexer; MODE0..2 select full to 1/32 step"
+    }
+   ],
+   "current": {
+    "supply": "VMA",
+    "typ": {
+     "value": 0.005,
+     "unit": "A",
+     "page": 6,
+     "evidence": "IVM VM operating supply current V(VMx) = 24 V 5 8 mA",
+     "conditions": "VM = 24 V, no motor load"
+    },
+    "max": {
+     "value": 0.008,
+     "unit": "A",
+     "page": 6,
+     "evidence": "IVM VM operating supply current V(VMx) = 24 V 5 8 mA",
+     "conditions": "VM = 24 V, no motor load"
+    },
+    "sleep": {
+     "value": 2e-05,
+     "unit": "A",
+     "page": 6,
+     "evidence": "IVMQ VM sleep mode supply current V(VMx) = 24 V 10 20 μA",
+     "conditions": "VM = 24 V, max"
+    },
+    "note": "Quiescent current only; the motor current comes on top."
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "10nF",
+     "pins": [
+      "CP1",
+      "CP2"
+     ],
+     "note": "charge pump flying capacitor, 50 V",
+     "page": 3,
+     "evidence": "Connect a 0.01-μF 50-V capacitor between CP1 and CP2."
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VCP"
+     ],
+     "to": "VMA",
+     "note": "plus 1 MΩ from VCP to VM",
+     "page": 3,
+     "evidence": "Connect a 0.1-μF 16-V ceramic capacitor and a 1-MΩ resistor to"
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VMA",
+      "VMB"
+     ],
+     "to": "GND",
+     "note": "one per pin, rated for VM",
+     "page": 3,
+     "evidence": [
+      "VMA 4 — Bridge A power supply Connect to motor supply (8.2 to 45 V).",
+      "connected to the same supply, bypassed with a 0.1-µF capacitor"
+     ]
+    },
+    {
+     "code": "bulk_cap",
+     "kind": "electrolytic",
+     "pins": [
+      "VMA"
+     ],
+     "to": "GND",
+     "page": 3,
+     "evidence": "VMB 11 — Bridge B power supply to GND, and connected to appropriate bulk capacitance."
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "470nF",
+     "pins": [
+      "V3P3OUT"
+     ],
+     "to": "GND",
+     "page": 3,
+     "evidence": "Bypass to GND with a 0.47-μF 6.3-V ceramic capacitor."
+    }
+   ],
+   "hazards": [
+    {
+     "code": "motor_supply",
+     "text": "Motor supply: use a separate supply rated for the motor current; never power the motor from the ESP's 3.3 V rail or USB. Switch it off before you plug or unplug the motor. Do not hot-plug VM: the supply ramp must stay below 1 V/µs. Tie the motor supply ground and the ESP ground together at the driver.",
+     "page": 4,
+     "evidence": "Power supply ramp rate 1 V/µs"
+    },
+    {
+     "code": "high_current",
+     "text": "Up to 2.5 A continuous per output; set the current limit with VREF before you connect the motor.",
+     "page": 4,
+     "evidence": "Continuous motor drive output current (4) 0 2.5 A"
+    },
+    {
+     "code": "heat",
+     "text": "The 2.5 A rating needs proper heat sinking; stepstick boards need a heatsink and airflow at higher currents.",
+     "page": 4,
+     "evidence": "(4) Power dissipation and thermal limits must be observed."
+    }
+   ],
+   "notes": [
+    {
+     "text": "Current limit: I_FS = V_REF / (5 · R_SENSE) (calculator current_limit).",
+     "page": 12,
+     "evidence": "connected to the xISEN pins, multiplied by a factor of 5, with a reference voltage.",
+     "verified": true
+    },
+    {
+     "text": "Both VM pins (VMA, VMB) must sit on the same supply (rule mod.motor.motor_supply).",
+     "page": 4,
+     "evidence": "(1) All VM pins must be connected to the same supply voltage.",
+     "verified": true
+    },
+    {
+     "text": "VREF recommended 1–3.5 V; below 1 V the current accuracy is degraded.",
+     "page": 4,
+     "evidence": "V(VREF) VREF input voltage (2) 1 3.5 V",
+     "verified": true
+    },
+    {
+     "text": "STEP pulses need at least 1.9 µs high and 1.9 µs low.",
+     "page": 7,
+     "evidence": "2 tWH(STEP) Pulse duration, STEP high 1.9 μs",
+     "verified": true
+    },
+    {
+     "text": "After nSLEEP goes high, wait 1.7 ms before the first STEP.",
+     "page": 7,
+     "evidence": "7 tWAKE Wakeup time, nSLEEP inactive high to STEP input accepted 1.7 ms",
+     "verified": true
+    },
+    {
+     "text": "VM undervoltage lockout up to 8.2 V: the driver does not run from 5 V.",
+     "page": 6,
+     "evidence": "VUVLO VM undervoltage lockout voltage V(VMx) rising 7.8 8.2 V",
+     "verified": true
+    },
+    {
+     "text": "Stepstick/Pololu-style carriers fit the sense resistors (often 0.1 Ω), pull nSLEEP/nRESET up and add a VREF trimmer; read R_SENSE on your board before you use the calculator.",
+     "verified": false
+    }
+   ],
+   "variants": [
+    {
+     "id": "carrier",
+     "title": "stepstick carrier board",
+     "overrides": {
+      "kind": "module",
+      "requires": [
+       {
+        "code": "bulk_cap",
+        "kind": "electrolytic",
+        "pins": [
+         "VMA"
+        ],
+        "to": "GND",
+        "page": 3,
+        "evidence": "VMB 11 — Bridge B power supply to GND, and connected to appropriate bulk capacitance."
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "a4988",
+   "aliases": [
+    "a4988settr",
+    "a4988-stepstick",
+    "pololu-a4988"
+   ],
+   "title": "A4988 microstepping stepper driver (STEP/DIR)",
+   "category": "driver.stepper",
+   "manufacturer": "Allegro MicroSystems",
+   "kind": "ic",
+   "source_ids": [
+    "mod-motor-a4988-ds"
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 3,
+      "unit": "V",
+      "page": 4,
+      "evidence": "Logic Supply Voltage Range VDD Operating 3 – 5.5 V"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 4,
+      "evidence": "Logic Supply Voltage Range VDD Operating 3 – 5.5 V"
+     },
+     "abs_max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Logic Supply Voltage VDD –0.3 to 5.5 V"
+     }
+    },
+    "VBB1": {
+     "min": {
+      "value": 8,
+      "unit": "V",
+      "page": 4,
+      "evidence": [
+       "Load Supply Voltage Range VBB",
+       "Operating 8 – 35 V"
+      ]
+     },
+     "max": {
+      "value": 35,
+      "unit": "V",
+      "page": 4,
+      "evidence": [
+       "Load Supply Voltage Range VBB",
+       "Operating 8 – 35 V"
+      ]
+     },
+     "abs_max": {
+      "value": 35,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Load Supply Voltage VBB 35 V"
+     }
+    },
+    "VBB2": {
+     "min": {
+      "value": 8,
+      "unit": "V",
+      "page": 4,
+      "evidence": [
+       "Load Supply Voltage Range VBB",
+       "Operating 8 – 35 V"
+      ]
+     },
+     "max": {
+      "value": 35,
+      "unit": "V",
+      "page": 4,
+      "evidence": [
+       "Load Supply Voltage Range VBB",
+       "Operating 8 – 35 V"
+      ]
+     },
+     "abs_max": {
+      "value": 35,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Load Supply Voltage VBB 35 V"
+     }
+    }
+   },
+   "io": {
+    "domain": "VDD",
+    "vih": {
+     "rel": 0.7,
+     "of": "VDD",
+     "unit": "V",
+     "page": 4,
+     "evidence": "VIN(1) VDD × 0.7 – – V",
+     "conditions": "min, TA = 25 °C"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VDD",
+     "unit": "V",
+     "page": 4,
+     "evidence": "VIN(0) – – VDD × 0.3 V",
+     "conditions": "max, TA = 25 °C"
+    },
+    "v_in_max": {
+     "value": 5.5,
+     "unit": "V",
+     "page": 2,
+     "evidence": "Logic Input Voltage VIN –0.3 to 5.5 V",
+     "conditions": "absolute maximum"
+    }
+   },
+   "pins": [
+    {
+     "name": "ENABLE",
+     "signal": "enable_in",
+     "active_low": true,
+     "note": "low = outputs on"
+    },
+    {
+     "name": "MS1",
+     "signal": "mode_select",
+     "internal_pull": {
+      "down": {
+       "value": 100000.0,
+       "unit": "Ω",
+       "page": 4,
+       "evidence": "RMS1 MS1 pin – 100 – kΩ",
+       "conditions": "typ"
+      }
+     },
+     "note": "internal pull-down: open = low (full step with all three open)"
+    },
+    {
+     "name": "MS2",
+     "signal": "mode_select",
+     "internal_pull": {
+      "down": {
+       "value": 50000.0,
+       "unit": "Ω",
+       "page": 4,
+       "evidence": "RMS2 MS2 pin – 50 – kΩ",
+       "conditions": "typ"
+      }
+     },
+     "note": "internal pull-down: open = low (full step with all three open)"
+    },
+    {
+     "name": "MS3",
+     "signal": "mode_select",
+     "internal_pull": {
+      "down": {
+       "value": 100000.0,
+       "unit": "Ω",
+       "page": 4,
+       "evidence": "RMS3 MS3 pin – 100 – kΩ",
+       "conditions": "typ"
+      }
+     },
+     "note": "internal pull-down: open = low (full step with all three open)"
+    },
+    {
+     "name": "RESET",
+     "signal": "reset_in",
+     "active_low": true
+    },
+    {
+     "name": "SLEEP",
+     "signal": "enable_in",
+     "active_low": true
+    },
+    {
+     "name": "STEP",
+     "signal": "digital_in"
+    },
+    {
+     "name": "DIR",
+     "signal": "digital_in"
+    },
+    {
+     "name": "ROSC",
+     "signal": "mode_select",
+     "note": "off-time / decay setting"
+    },
+    {
+     "name": "REF",
+     "signal": "analog_in",
+     "note": "current set reference (VREF)"
+    },
+    {
+     "name": "OUT1A",
+     "signal": "power_out"
+    },
+    {
+     "name": "OUT1B",
+     "signal": "power_out"
+    },
+    {
+     "name": "OUT2A",
+     "signal": "power_out"
+    },
+    {
+     "name": "OUT2B",
+     "signal": "power_out"
+    },
+    {
+     "name": "SENSE1",
+     "signal": "power_out",
+     "note": "sense resistor to GND"
+    },
+    {
+     "name": "SENSE2",
+     "signal": "power_out",
+     "note": "sense resistor to GND"
+    },
+    {
+     "name": "CP1",
+     "signal": "power_out"
+    },
+    {
+     "name": "CP2",
+     "signal": "power_out"
+    },
+    {
+     "name": "VCP",
+     "signal": "power_out"
+    },
+    {
+     "name": "VREG",
+     "signal": "power_out"
+    },
+    {
+     "name": "VDD",
+     "signal": "supply"
+    },
+    {
+     "name": "VBB1",
+     "signal": "supply"
+    },
+    {
+     "name": "VBB2",
+     "signal": "supply",
+     "tie": "VBB1"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "digital",
+     "note": "STEP/DIR translator; MS1..MS3 select full to 1/16 step"
+    }
+   ],
+   "current": {
+    "supply": "VDD",
+    "max": {
+     "value": 0.008,
+     "unit": "A",
+     "page": 4,
+     "evidence": [
+      "Logic Supply Current IDD",
+      "fPWM < 50 kHz – – 8 mA"
+     ],
+     "conditions": "fPWM < 50 kHz"
+    },
+    "sleep": {
+     "value": 1e-05,
+     "unit": "A",
+     "page": 4,
+     "evidence": [
+      "Logic Supply Current IDD",
+      "Sleep Mode – – 10"
+     ],
+     "conditions": "sleep mode, max"
+    },
+    "note": "Logic supply only. VBB draws 4 mA max without load (p. 4) plus the motor current."
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "CP1",
+      "CP2"
+     ],
+     "note": "charge pump capacitor",
+     "page": 9,
+     "evidence": [
+      "A\t0.1\tµF\tceramic\tcapacitor\tshould\tbe",
+      "connected\tbetween\tCP1\tand\tCP2."
+     ]
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VCP"
+     ],
+     "to": "VBB1",
+     "page": 9,
+     "evidence": "capacitor\tis\trequired\tbetween\tVCP\tand\tVBB,\tto\tact\tas\ta\treservoir"
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "220nF",
+     "pins": [
+      "VREG"
+     ],
+     "to": "GND",
+     "page": 10,
+     "evidence": "The\tVREG\tpin\tmust\tbe\tdecoupled\twith\ta\t0.22\tµF"
+    },
+    {
+     "code": "bulk_cap",
+     "kind": "electrolytic",
+     "value": "100uF",
+     "pins": [
+      "VBB1"
+     ],
+     "to": "GND",
+     "page": 1,
+     "evidence": [
+      "VBB1CP1 VCPVREG",
+      "100 µF"
+     ],
+     "note": "bulk capacitor on VBB (VMOT) next to the 0.1 µF ceramic one (typical application diagram p. 1; layout p. 12)"
+    }
+   ],
+   "hazards": [
+    {
+     "code": "motor_supply",
+     "text": "Motor supply: use a separate supply rated for the motor current; never power the motor from the ESP's 3.3 V rail or USB. Switch it off before you plug or unplug the motor. Tie the motor supply ground and the ESP ground together at the driver.",
+     "page": 4,
+     "evidence": "Operating 8 – 35 V"
+    },
+    {
+     "code": "high_current",
+     "text": "Output current up to ±2 A; set the current limit with VREF before you connect the motor.",
+     "page": 2,
+     "evidence": "Output Current IOUT ±2 A"
+    },
+    {
+     "code": "heat",
+     "text": "The chip needs its exposed pad on a ground plane; stepstick boards need a heatsink at higher currents.",
+     "page": 18,
+     "evidence": "PAD – Exposed pad for enhanced thermal dissipation*"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Logic supply 3.3 V or 5 V; inputs switch at 0.7 · VDD, so VDD = 3.3 V matches 3.3 V GPIOs.",
+     "page": 1,
+     "evidence": "3.3\tand\t5\t V\tcompatible\tlogic\tsupply",
+     "verified": true
+    },
+    {
+     "text": "Current limit: I_TripMAX = V_REF / (8 · R_S) (calculator current_limit).",
+     "page": 9,
+     "evidence": "ITripMAX = VREF / ( 8 × RS)",
+     "verified": true
+    },
+    {
+     "text": "VREF range 0–4 V.",
+     "page": 4,
+     "evidence": "Reference Input Voltage Range VREF 0 – 4 V",
+     "verified": true
+    },
+    {
+     "text": "Do not exceed 0.5 V on SENSE1/SENSE2.",
+     "page": 9,
+     "evidence": [
+      "It\tis\tcritical\tthat\tthe\tmaximum\trating\t(0.5\tV)\ton\tthe\tSENSE1\tand",
+      "SENSE2\tpins\tis\tnot\texceeded."
+     ],
+     "verified": true
+    },
+    {
+     "text": "STEP needs at least 1 µs high and 1 µs low.",
+     "page": 6,
+     "evidence": "STEP minimum, HIGH pulse width tA 1",
+     "verified": true
+    },
+    {
+     "text": "Pololu-style carriers fit the sense resistors (0.05–0.2 Ω depending on the board), tie SLEEP to RESET on some versions and add a VREF trimmer; read R_S on your board before you use the calculator.",
+     "verified": false
+    },
+    {
+     "text": "Microstep table (MS1 MS2 MS3): L L L full step, H L L half step, L H L quarter step, H H L eighth step, H H H sixteenth step.",
+     "verified": true,
+     "page": 6,
+     "evidence": [
+      "Table 1: Microstepping Resolution Truth Table",
+      "L L L Full Step 2 Phase",
+      "H L L Half Step 1-2 Phase",
+      "L H L Quarter Step W1-2 Phase",
+      "H H L Eighth Step 2W1-2 Phase",
+      "H H H Sixteenth Step 4W1-2 Phase"
+     ]
+    },
+    {
+     "text": "MS1 and MS3 have 100 kΩ pull-downs, MS2 50 kΩ: open MSx pins read low.",
+     "verified": true,
+     "page": 7,
+     "evidence": [
+      "MS3\tpins\thave\ta\t100\tkΩ\tpull-down\tresistance,\tand\tthe\tMS2\tpin",
+      "has\ta\t50\tkΩ\tpull-down\tresistance."
+     ]
+    },
+    {
+     "text": "Place the ceramic capacitor closer to the supply pins than the bulk capacitor.",
+     "verified": true,
+     "page": 12,
+     "evidence": [
+      "The\ttwo\tinput\tcapacitors\tshould\tbe\tplaced\tin\tparallel",
+      "than\tthe\tbulk\tcapacitor"
+     ]
+    }
+   ],
+   "variants": [
+    {
+     "id": "carrier",
+     "title": "stepstick carrier board",
+     "overrides": {
+      "kind": "module",
+      "requires": [
+       {
+        "code": "bulk_cap",
+        "kind": "electrolytic",
+        "value": "100uF",
+        "pins": [
+         "VBB1"
+        ],
+        "to": "GND",
+        "page": 1,
+        "evidence": [
+         "VBB1CP1 VCPVREG",
+         "100 µF"
+        ],
+        "note": "bulk capacitor on VBB (VMOT) next to the 0.1 µF ceramic one (typical application diagram p. 1; layout p. 12)"
+       }
+      ],
+      "pins": [
+       {
+        "name": "ENABLE",
+        "signal": "enable_in",
+        "active_low": true,
+        "note": "low = outputs on"
+       },
+       {
+        "name": "MS1",
+        "signal": "mode_select",
+        "internal_pull": {
+         "down": {
+          "value": 100000.0,
+          "unit": "Ω",
+          "page": 4,
+          "evidence": "RMS1 MS1 pin – 100 – kΩ",
+          "conditions": "typ"
+         }
+        },
+        "note": "internal pull-down: open = low (full step with all three open)"
+       },
+       {
+        "name": "MS2",
+        "signal": "mode_select",
+        "internal_pull": {
+         "down": {
+          "value": 50000.0,
+          "unit": "Ω",
+          "page": 4,
+          "evidence": "RMS2 MS2 pin – 50 – kΩ",
+          "conditions": "typ"
+         }
+        },
+        "note": "internal pull-down: open = low (full step with all three open)"
+       },
+       {
+        "name": "MS3",
+        "signal": "mode_select",
+        "internal_pull": {
+         "down": {
+          "value": 100000.0,
+          "unit": "Ω",
+          "page": 4,
+          "evidence": "RMS3 MS3 pin – 100 – kΩ",
+          "conditions": "typ"
+         }
+        },
+        "note": "internal pull-down: open = low (full step with all three open)"
+       },
+       {
+        "name": "RESET",
+        "signal": "reset_in",
+        "active_low": true
+       },
+       {
+        "name": "SLEEP",
+        "signal": "enable_in",
+        "active_low": true
+       },
+       {
+        "name": "STEP",
+        "signal": "digital_in"
+       },
+       {
+        "name": "DIR",
+        "signal": "digital_in"
+       },
+       {
+        "name": "ROSC",
+        "signal": "nc",
+        "note": "wired on the carrier board (not on the header)"
+       },
+       {
+        "name": "REF",
+        "signal": "analog_in",
+        "note": "current set reference (VREF)"
+       },
+       {
+        "name": "OUT1A",
+        "signal": "power_out"
+       },
+       {
+        "name": "OUT1B",
+        "signal": "power_out"
+       },
+       {
+        "name": "OUT2A",
+        "signal": "power_out"
+       },
+       {
+        "name": "OUT2B",
+        "signal": "power_out"
+       },
+       {
+        "name": "SENSE1",
+        "signal": "nc",
+        "note": "sense resistor on the carrier board"
+       },
+       {
+        "name": "SENSE2",
+        "signal": "nc",
+        "note": "sense resistor on the carrier board"
+       },
+       {
+        "name": "CP1",
+        "signal": "nc",
+        "note": "charge pump / regulator capacitor on the carrier board"
+       },
+       {
+        "name": "CP2",
+        "signal": "nc",
+        "note": "charge pump / regulator capacitor on the carrier board"
+       },
+       {
+        "name": "VCP",
+        "signal": "nc",
+        "note": "charge pump / regulator capacitor on the carrier board"
+       },
+       {
+        "name": "VREG",
+        "signal": "nc",
+        "note": "charge pump / regulator capacitor on the carrier board"
+       },
+       {
+        "name": "VDD",
+        "signal": "supply"
+       },
+       {
+        "name": "VBB1",
+        "signal": "supply"
+       },
+       {
+        "name": "VBB2",
+        "signal": "supply",
+        "tie": "VBB1"
+       },
+       {
+        "name": "GND",
+        "signal": "gnd"
+       }
+      ],
+      "notes": [
+       {
+        "text": "Logic supply 3.3 V or 5 V; inputs switch at 0.7 · VDD, so VDD = 3.3 V matches 3.3 V GPIOs.",
+        "page": 1,
+        "evidence": "3.3\tand\t5\t V\tcompatible\tlogic\tsupply",
+        "verified": true
+       },
+       {
+        "text": "Current limit: I_TripMAX = V_REF / (8 · R_S) (calculator current_limit).",
+        "page": 9,
+        "evidence": "ITripMAX = VREF / ( 8 × RS)",
+        "verified": true
+       },
+       {
+        "text": "VREF range 0–4 V.",
+        "page": 4,
+        "evidence": "Reference Input Voltage Range VREF 0 – 4 V",
+        "verified": true
+       },
+       {
+        "text": "Do not exceed 0.5 V on SENSE1/SENSE2.",
+        "page": 9,
+        "evidence": [
+         "It\tis\tcritical\tthat\tthe\tmaximum\trating\t(0.5\tV)\ton\tthe\tSENSE1\tand",
+         "SENSE2\tpins\tis\tnot\texceeded."
+        ],
+        "verified": true
+       },
+       {
+        "text": "STEP needs at least 1 µs high and 1 µs low.",
+        "page": 6,
+        "evidence": "STEP minimum, HIGH pulse width tA 1",
+        "verified": true
+       },
+       {
+        "text": "Pololu-style carriers fit the sense resistors (0.05–0.2 Ω depending on the board), tie SLEEP to RESET on some versions and add a VREF trimmer; read R_S on your board before you use the calculator.",
+        "verified": false
+       },
+       {
+        "text": "Microstep table (MS1 MS2 MS3): L L L full step, H L L half step, L H L quarter step, H H L eighth step, H H H sixteenth step.",
+        "verified": true,
+        "page": 6,
+        "evidence": [
+         "Table 1: Microstepping Resolution Truth Table",
+         "L L L Full Step 2 Phase",
+         "H L L Half Step 1-2 Phase",
+         "L H L Quarter Step W1-2 Phase",
+         "H H L Eighth Step 2W1-2 Phase",
+         "H H H Sixteenth Step 4W1-2 Phase"
+        ]
+       },
+       {
+        "text": "MS1 and MS3 have 100 kΩ pull-downs, MS2 50 kΩ: open MSx pins read low.",
+        "verified": true,
+        "page": 7,
+        "evidence": [
+         "MS3\tpins\thave\ta\t100\tkΩ\tpull-down\tresistance,\tand\tthe\tMS2\tpin",
+         "has\ta\t50\tkΩ\tpull-down\tresistance."
+        ]
+       },
+       {
+        "text": "Place the ceramic capacitor closer to the supply pins than the bulk capacitor.",
+        "verified": true,
+        "page": 12,
+        "evidence": [
+         "The\ttwo\tinput\tcapacitors\tshould\tbe\tplaced\tin\tparallel",
+         "than\tthe\tbulk\tcapacitor"
+        ]
+       },
+       {
+        "text": "Stepstick carriers (Pololu-style) fit ROSC, the CP1/CP2, VCP and VREG capacitors and the SENSEx resistors on the board; those pins are not on the header (marked nc here). Check your board's schematic.",
+        "verified": false
+       },
+       {
+        "text": "RESET has no pull-up on common carriers: bridge it to SLEEP (with its pull-up) or drive it, or the driver stays in reset.",
+        "verified": false
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "tmc2209",
+   "aliases": [
+    "tmc2209-la",
+    "tmc2209-stepstick",
+    "bigtreetech-tmc2209"
+   ],
+   "title": "TMC2209 stepper driver (STEP/DIR, UART)",
+   "category": "driver.stepper",
+   "manufacturer": "Trinamic (Analog Devices)",
+   "kind": "ic",
+   "source_ids": [
+    "mod-motor-tmc2209-ds"
+   ],
+   "supplies": {
+    "VS": {
+     "min": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 75,
+      "evidence": "Supply voltage (using internal +5V regulator) VVS 5.5 29 V",
+      "conditions": "using the internal 5 V regulator (4.7–5.4 V only with 5VOUT bridged to VS)"
+     },
+     "max": {
+      "value": 29,
+      "unit": "V",
+      "page": 75,
+      "evidence": "Supply voltage (using internal +5V regulator) VVS 5.5 29 V"
+     },
+     "abs_max": {
+      "value": 32,
+      "unit": "V",
+      "page": 75,
+      "evidence": "Supply voltage operating with inductive load  VVS -0.5 32 V",
+      "conditions": "absolute maximum with inductive load"
+     }
+    },
+    "VCC_IO": {
+     "min": {
+      "value": 3.0,
+      "unit": "V",
+      "page": 75,
+      "evidence": "I/O supply voltage VVIO 3.00 5.25 V"
+     },
+     "max": {
+      "value": 5.25,
+      "unit": "V",
+      "page": 75,
+      "evidence": "I/O supply voltage VVIO 3.00 5.25 V"
+     },
+     "abs_max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 75,
+      "evidence": "I/O supply voltage VVIO -0.5 5.5 V"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC_IO",
+    "vih": {
+     "rel": 0.7,
+     "of": "VCC_IO",
+     "unit": "V",
+     "page": 79,
+     "evidence": "Input voltage high level VINHI  0.7 VVIO  VVIO+0.3 V",
+     "conditions": "min"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VCC_IO",
+     "unit": "V",
+     "page": 79,
+     "evidence": "Input voltage low level VINLO  -0.3  0.3 VVIO V",
+     "conditions": "max"
+    },
+    "voh": {
+     "rel_offset": -0.2,
+     "of": "VCC_IO",
+     "unit": "V",
+     "page": 79,
+     "evidence": "Output voltage high level VOUTHI IOUTHI = -2mA VVIO-0.2   V",
+     "conditions": "IOUT = -2 mA"
+    },
+    "vol": {
+     "value": 0.2,
+     "unit": "V",
+     "page": 79,
+     "evidence": "Output voltage low level VOUTLO IOUTLO = 2mA   0.2 V",
+     "conditions": "IOUT = 2 mA"
+    },
+    "v_in_max": {
+     "rel_offset": 0.5,
+     "of": "VCC_IO",
+     "unit": "V",
+     "page": 75,
+     "evidence": "Logic input voltage VI -0.5 VVIO+0.5 V",
+     "conditions": "absolute maximum rating, logic inputs: VCC_IO + 0.5 V"
+    }
+   },
+   "pins": [
+    {
+     "name": "STEP",
+     "signal": "digital_in"
+    },
+    {
+     "name": "DIR",
+     "signal": "digital_in"
+    },
+    {
+     "name": "ENN",
+     "signal": "enable_in",
+     "active_low": true,
+     "note": "high = power stage off"
+    },
+    {
+     "name": "MS1_AD0",
+     "signal": "mode_select",
+     "note": "microstep setting, or UART address bit 0"
+    },
+    {
+     "name": "MS2_AD1",
+     "signal": "mode_select",
+     "note": "microstep setting, or UART address bit 1"
+    },
+    {
+     "name": "SPREAD",
+     "signal": "mode_select",
+     "note": "low = StealthChop, high = SpreadCycle"
+    },
+    {
+     "name": "PDN_UART",
+     "signal": "uart_rx",
+     "note": "single-wire UART (bidirectional) or power-down input"
+    },
+    {
+     "name": "DIAG",
+     "signal": "digital_out"
+    },
+    {
+     "name": "INDEX",
+     "signal": "digital_out"
+    },
+    {
+     "name": "CLK",
+     "signal": "mode_select",
+     "tie": "GND",
+     "note": "tie to GND for the internal clock"
+    },
+    {
+     "name": "STDBY",
+     "signal": "mode_select",
+     "note": "high = standby; 100 kΩ pull-down"
+    },
+    {
+     "name": "VREF",
+     "signal": "analog_in",
+     "note": "analog current scaling"
+    },
+    {
+     "name": "OA1",
+     "signal": "power_out"
+    },
+    {
+     "name": "OA2",
+     "signal": "power_out"
+    },
+    {
+     "name": "OB1",
+     "signal": "power_out"
+    },
+    {
+     "name": "OB2",
+     "signal": "power_out"
+    },
+    {
+     "name": "BRA",
+     "signal": "power_out",
+     "note": "sense resistor to GND"
+    },
+    {
+     "name": "BRB",
+     "signal": "power_out",
+     "note": "sense resistor to GND"
+    },
+    {
+     "name": "CPI",
+     "signal": "power_out"
+    },
+    {
+     "name": "CPO",
+     "signal": "power_out"
+    },
+    {
+     "name": "VCP",
+     "signal": "power_out"
+    },
+    {
+     "name": "5VOUT",
+     "signal": "power_out"
+    },
+    {
+     "name": "VCC_IO",
+     "signal": "supply"
+    },
+    {
+     "name": "VS",
+     "signal": "supply"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "digital",
+     "note": "STEP/DIR; MS1/MS2 select 1/8, 1/16, 1/32 or 1/64 step"
+    },
+    {
+     "type": "uart",
+     "note": "single-wire UART on PDN_UART; address 0–3 from MS1_AD0/MS2_AD1 (p. 9)"
+    }
+   ],
+   "current": {
+    "supply": "VS",
+    "typ": {
+     "value": 0.0075,
+     "unit": "A",
+     "page": 76,
+     "evidence": [
+      "Total supply current, operating,",
+      "IS fCLK=12MHz, 35kHz",
+      "7.5  mA"
+     ],
+     "conditions": "VS = 24 V, fCLK = 12 MHz, 35 kHz chopper, no load"
+    },
+    "sleep": {
+     "value": 0.0003,
+     "unit": "A",
+     "page": 76,
+     "evidence": "Total supply current, standby IS ENN=0V, VREF=0V  160 300 µA",
+     "conditions": "standby, max, VS = 24 V"
+    },
+    "note": "Quiescent current only; the motor current comes on top."
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "22nF",
+     "pins": [
+      "CPI",
+      "CPO"
+     ],
+     "note": "50 V",
+     "page": 9,
+     "evidence": "CPI 5  Charge pump capacitor input. Tie to CPO using 22nF 50V capacitor."
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VCP"
+     ],
+     "to": "VS",
+     "page": 9,
+     "evidence": "VCP 6  Charge pump voltage. Tie to VS using 100nF capacitor."
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "2.2uF",
+     "pins": [
+      "5VOUT"
+     ],
+     "to": "GND",
+     "note": "2.2–4.7 µF",
+     "page": 9,
+     "evidence": "Output of internal 5V regulator. Attach 2.2µF to 4.7µF ceramic"
+    },
+    {
+     "code": "bulk_cap",
+     "kind": "electrolytic",
+     "pins": [
+      "VS"
+     ],
+     "to": "GND",
+     "page": 10,
+     "evidence": "VS 22, 28  Motor supply voltage. Provide filtering capacity near pin with shortest possible loop to GND pad."
+    }
+   ],
+   "hazards": [
+    {
+     "code": "motor_supply",
+     "text": "Motor supply: use a separate supply rated for the motor current; never power the motor from the ESP's 3.3 V rail or USB. Switch it off before you plug or unplug the motor. Supply ringing from the fast output slopes can exceed the rating near 29 V.",
+     "page": 75,
+     "evidence": "*) Stray inductivity of GND and VS connections will lead to ringing of the supply voltage when driving"
+    },
+    {
+     "code": "high_current",
+     "text": "Up to 2.8 A peak per coil (1.4 A RMS design guideline, 2 A RMS with a duty cycle limit).",
+     "page": 75,
+     "evidence": [
+      "Peak output current per motor coil output (sine wave peak)",
+      "IOx  2.8 A"
+     ]
+    },
+    {
+     "code": "heat",
+     "text": "The exposed pad carries the heat into the ground plane; stepstick boards need a heatsink.",
+     "page": 10,
+     "evidence": "possible vias for heat transfer to GND plane."
+    }
+   ],
+   "notes": [
+    {
+     "text": "RMS current in standalone mode: I_RMS = 325 mV / (R_SENSE + 20 mΩ) · 1/√2 · V_VREF / 2.5 V (calculator current_limit).",
+     "page": 53,
+     "evidence": "STANDALONE MODE RMS RUN CURRENT CALCULATION:",
+     "verified": true
+    },
+    {
+     "text": "VREF above 2.5 V gives 100 %; below 0.5 V is not recommended.",
+     "page": 53,
+     "evidence": ">2.5V: 100%",
+     "verified": true
+    },
+    {
+     "text": "RMS coil current design guideline 1.4 A.",
+     "page": 75,
+     "evidence": "RMS motor coil current per coil (value for design guideline) IRMS  1.4 A",
+     "verified": true
+    },
+    {
+     "text": "Single-wire UART: TX through 1 kΩ to PDN_UART, RX direct (figure p. 20); check your board.",
+     "verified": false
+    },
+    {
+     "text": "Stepstick carriers (BIGTREETECH, FYSETC …) fit sense resistors (often 0.11 Ω), a VREF trimmer and set the UART pins differently; read R_SENSE on your board before you use the calculator.",
+     "verified": false
+    }
+   ],
+   "variants": [
+    {
+     "id": "carrier",
+     "title": "stepstick carrier board",
+     "overrides": {
+      "kind": "module",
+      "requires": [
+       {
+        "code": "bulk_cap",
+        "kind": "electrolytic",
+        "pins": [
+         "VS"
+        ],
+        "to": "GND",
+        "page": 10,
+        "evidence": "VS 22, 28  Motor supply voltage. Provide filtering capacity near pin with shortest possible loop to GND pad."
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "tb6612fng",
+   "aliases": [
+    "tb6612",
+    "tb6612-breakout"
+   ],
+   "title": "TB6612FNG dual DC motor driver",
+   "category": "driver.motor",
+   "manufacturer": "Toshiba",
+   "kind": "ic",
+   "source_ids": [
+    "mod-motor-tb6612fng-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 2.7,
+      "unit": "V",
+      "page": 3,
+      "evidence": "Supply voltage VCC 2.7 3 5.5 V"
+     },
+     "typ": {
+      "value": 3,
+      "unit": "V",
+      "page": 3,
+      "evidence": "Supply voltage VCC 2.7 3 5.5 V"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 3,
+      "evidence": "Supply voltage VCC 2.7 3 5.5 V"
+     },
+     "abs_max": {
+      "value": 6,
+      "unit": "V",
+      "page": 3,
+      "evidence": "VCC 6",
+      "conditions": "absolute maximum, Ta = 25 °C"
+     }
+    },
+    "VM1": {
+     "min": {
+      "value": 2.5,
+      "unit": "V",
+      "page": 3,
+      "evidence": "VM 2.5 5 13.5 V",
+      "conditions": "operating range"
+     },
+     "max": {
+      "value": 13.5,
+      "unit": "V",
+      "page": 3,
+      "evidence": "VM 2.5 5 13.5 V",
+      "conditions": "operating range"
+     },
+     "abs_max": {
+      "value": 15,
+      "unit": "V",
+      "page": 3,
+      "evidence": "VM 15",
+      "conditions": "absolute maximum, Ta = 25 °C"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "rel": 0.7,
+     "of": "VCC",
+     "unit": "V",
+     "page": 5,
+     "evidence": "VIH ― Vcc×0.7 ― Vcc+0.2 V",
+     "conditions": "control and standby inputs, min"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VCC",
+     "unit": "V",
+     "page": 5,
+     "evidence": "VIL -0.2 ― Vcc×0.3",
+     "conditions": "max"
+    },
+    "v_in_max": {
+     "value": 6.0,
+     "unit": "V",
+     "page": 3,
+     "evidence": "Input voltage VIN -0.2 to 6 V IN1,IN2,STBY,PWM pins",
+     "conditions": "absolute maximum rating, IN1, IN2, STBY, PWM (VIH range ends at VCC + 0.2 V, p. 5)"
+    }
+   },
+   "pins": [
+    {
+     "name": "AIN1",
+     "signal": "digital_in"
+    },
+    {
+     "name": "AIN2",
+     "signal": "digital_in"
+    },
+    {
+     "name": "PWMA",
+     "signal": "pwm_in"
+    },
+    {
+     "name": "BIN1",
+     "signal": "digital_in"
+    },
+    {
+     "name": "BIN2",
+     "signal": "digital_in"
+    },
+    {
+     "name": "PWMB",
+     "signal": "pwm_in"
+    },
+    {
+     "name": "STBY",
+     "signal": "enable_in",
+     "active_low": true,
+     "note": "low = standby; 200 kΩ pull-down"
+    },
+    {
+     "name": "AO1",
+     "signal": "power_out"
+    },
+    {
+     "name": "AO2",
+     "signal": "power_out"
+    },
+    {
+     "name": "BO1",
+     "signal": "power_out"
+    },
+    {
+     "name": "BO2",
+     "signal": "power_out"
+    },
+    {
+     "name": "PGND1",
+     "signal": "gnd"
+    },
+    {
+     "name": "PGND2",
+     "signal": "gnd"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply"
+    },
+    {
+     "name": "VM1",
+     "signal": "supply"
+    },
+    {
+     "name": "VM2",
+     "signal": "supply",
+     "tie": "VM1"
+    },
+    {
+     "name": "VM3",
+     "signal": "supply",
+     "tie": "VM1"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "pwm",
+     "note": "IN1/IN2 select CW, CCW, short brake or stop; PWM up to 100 kHz"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "typ": {
+     "value": 0.0011,
+     "unit": "A",
+     "page": 5,
+     "evidence": "ICC(3 V) STBY = Vcc = 3 V,  VM = 5 V ― 1.1 1.8 mA",
+     "conditions": "Vcc = 3 V, VM = 5 V"
+    },
+    "max": {
+     "value": 0.0018,
+     "unit": "A",
+     "page": 5,
+     "evidence": "ICC(3 V) STBY = Vcc = 3 V,  VM = 5 V ― 1.1 1.8 mA",
+     "conditions": "Vcc = 3 V, VM = 5 V"
+    },
+    "sleep": {
+     "value": 1e-06,
+     "unit": "A",
+     "page": 5,
+     "evidence": "ICC(STB) STBY = 0 V ― ― 1",
+     "conditions": "standby, max"
+    },
+    "note": "Logic supply only; the motor current flows from VM."
+   },
+   "requires": [],
+   "hazards": [
+    {
+     "code": "motor_supply",
+     "text": "Motor supply: use a separate supply rated for the motor current; never power the motor from the ESP's 3.3 V rail or USB. Switch it off before you plug or unplug the motor. Tie the motor supply ground and the ESP ground together at the driver.",
+     "page": 1,
+     "evidence": "• Power supply voltage: VM = 15 V(Max)"
+    },
+    {
+     "code": "high_current",
+     "text": "Output current 1.2 A average and 3.2 A peak (10 ms single pulse) per channel; 1.0 A recommended.",
+     "page": 1,
+     "evidence": "• Output current: IOUT = 1.2 A(ave)/3.2 A (peak)"
+    },
+    {
+     "code": "heat",
+     "text": "The IC heats up in normal use; check the power dissipation.",
+     "page": 10,
+     "evidence": "These ICs generate heat even during normal use."
+    }
+   ],
+   "notes": [
+    {
+     "text": "Recommended output current 1.0 A per channel at VM ≥ 4.5 V.",
+     "page": 3,
+     "evidence": [
+      "― ― 1.0",
+      "VM ≥ 4.5 V"
+     ],
+     "verified": true
+    },
+    {
+     "text": "PWM frequency up to 100 kHz.",
+     "page": 3,
+     "evidence": "Switching frequency fPWM ― ― 100 kHz",
+     "verified": true
+    },
+    {
+     "text": "The Toshiba data sheet names no supply capacitors; breakouts (SparkFun, Adafruit, Pololu) add bypass capacitors on VM and VCC.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "l298n",
+   "aliases": [
+    "l298",
+    "l298n-module",
+    "l298p"
+   ],
+   "title": "L298 dual full-bridge driver (L298N)",
+   "category": "driver.motor",
+   "manufacturer": "STMicroelectronics",
+   "kind": "ic",
+   "source_ids": [
+    "mod-motor-l298n-ds"
+   ],
+   "supplies": {
+    "VS": {
+     "max": {
+      "value": 46,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VS Supply voltage (pin 4) Operative condition VIH +2.5 46 V",
+      "conditions": "operative condition; min is VIH + 2.5 V"
+     },
+     "abs_max": {
+      "value": 50,
+      "unit": "V",
+      "page": 3,
+      "evidence": "VS Power supply 50 V"
+     }
+    },
+    "VSS": {
+     "min": {
+      "value": 4.5,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VSS Logic supply voltage (pin 9) 4.5 5 7 V"
+     },
+     "typ": {
+      "value": 5,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VSS Logic supply voltage (pin 9) 4.5 5 7 V"
+     },
+     "max": {
+      "value": 7,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VSS Logic supply voltage (pin 9) 4.5 5 7 V"
+     },
+     "abs_max": {
+      "value": 7,
+      "unit": "V",
+      "page": 3,
+      "evidence": "VSS Logic supply voltage 7 V"
+     }
+    }
+   },
+   "io": {
+    "domain": "VSS",
+    "vih": {
+     "value": 2.3,
+     "unit": "V",
+     "page": 5,
+     "evidence": "ViH Input high voltage (pins 5, 7, 10, 12) 2.3 VSS V",
+     "conditions": "inputs and enables, min; VS = 42 V, VSS = 5 V"
+    },
+    "vil": {
+     "value": 1.5,
+     "unit": "V",
+     "page": 5,
+     "evidence": "ViL Input low voltage (pins 5, 7, 10, 12) –0.3 1.5 V",
+     "conditions": "max"
+    },
+    "v_in_max": {
+     "value": 7,
+     "unit": "V",
+     "page": 3,
+     "evidence": "VI, Ven Input and enable voltage –0.3 to 7 V",
+     "conditions": "absolute maximum"
+    }
+   },
+   "pins": [
+    {
+     "name": "IN1",
+     "signal": "digital_in"
+    },
+    {
+     "name": "IN2",
+     "signal": "digital_in"
+    },
+    {
+     "name": "IN3",
+     "signal": "digital_in"
+    },
+    {
+     "name": "IN4",
+     "signal": "digital_in"
+    },
+    {
+     "name": "ENA",
+     "signal": "pwm_in",
+     "note": "enable A, often driven with PWM"
+    },
+    {
+     "name": "ENB",
+     "signal": "pwm_in",
+     "note": "enable B"
+    },
+    {
+     "name": "OUT1",
+     "signal": "power_out"
+    },
+    {
+     "name": "OUT2",
+     "signal": "power_out"
+    },
+    {
+     "name": "OUT3",
+     "signal": "power_out"
+    },
+    {
+     "name": "OUT4",
+     "signal": "power_out"
+    },
+    {
+     "name": "SENSE_A",
+     "signal": "power_out",
+     "note": "sense resistor to GND, or GND"
+    },
+    {
+     "name": "SENSE_B",
+     "signal": "power_out",
+     "note": "sense resistor to GND, or GND"
+    },
+    {
+     "name": "VS",
+     "signal": "supply"
+    },
+    {
+     "name": "VSS",
+     "signal": "supply"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "digital",
+     "note": "IN1..IN4 set the bridge state while EN is high; TTL inputs"
+    }
+   ],
+   "current": {
+    "supply": "VSS",
+    "typ": {
+     "value": 0.024,
+     "unit": "A",
+     "page": 5,
+     "evidence": [
+      "ISS Quiescent current from VSS (pin 9)",
+      "Ven = H; Vi = L; IL= 0 24 36 mA"
+     ],
+     "conditions": "Ven = H, Vi = L, no load"
+    },
+    "max": {
+     "value": 0.036,
+     "unit": "A",
+     "page": 5,
+     "evidence": [
+      "ISS Quiescent current from VSS (pin 9)",
+      "Ven = H; Vi = L; IL= 0 24 36 mA"
+     ],
+     "conditions": "Ven = H, Vi = L, no load"
+    },
+    "note": "Logic supply only. VS draws up to 70 mA quiescent (p. 5) plus the motor current."
+   },
+   "requires": [
+    {
+     "code": "flyback",
+     "kind": "diode",
+     "value": "fast recovery (trr ≤ 200 ns) or Schottky",
+     "pins": [
+      "OUT1",
+      "OUT2",
+      "OUT3",
+      "OUT4"
+     ],
+     "note": "two per output: to VS and to GND",
+     "page": 9,
+     "evidence": [
+      "An external bridge of diodes are required when inductive loads are driven and when the inputs of the IC are",
+      "chopped; Schottky diodes would be preferred."
+     ]
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VS"
+     ],
+     "to": "GND",
+     "page": 4,
+     "evidence": "Anon-inductive 100nF capacitor must be connected between this pin and ground."
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VSS"
+     ],
+     "to": "GND",
+     "page": 4,
+     "evidence": "9 12 VSS Supply voltage for the logic blocks. A 100nF capacitor must be connected between this pin and ground."
+    }
+   ],
+   "hazards": [
+    {
+     "code": "motor_supply",
+     "text": "Motor supply: use a separate supply rated for the motor current; never power the motor from the ESP's 3.3 V rail or USB. Switch it off before you plug or unplug the motor. Drive the enable inputs low before you switch VS on or off.",
+     "page": 9,
+     "evidence": "Before to Turn-ON the supply voltage and before to Turn it OFF, the enable inputs must be driven to the low state."
+    },
+    {
+     "code": "high_current",
+     "text": "2 A DC per channel (absolute maximum), 3 A non-repetitive peak; also during braking.",
+     "page": 3,
+     "evidence": "• DC operation 2 A"
+    },
+    {
+     "code": "heat",
+     "text": "Bipolar outputs drop up to 4.9 V at 2 A: 4.9 V × 2 A is about 10 W per bridge, so it needs a heatsink.",
+     "page": 5,
+     "evidence": [
+      "VCEsat Total drop",
+      "IL = 2A (1) 4.9"
+     ]
+    }
+   ],
+   "notes": [
+    {
+     "text": "Total saturation drop up to 4.9 V at 2 A: the motor sees VS minus this drop.",
+     "page": 5,
+     "evidence": [
+      "VCEsat Total drop",
+      "IL = 2A (1) 4.9"
+     ],
+     "verified": true
+    },
+    {
+     "text": "Inputs need 2.3 V min for high: 3.3 V GPIOs drive them directly.",
+     "page": 5,
+     "evidence": "ViH Input high voltage (pins 5, 7, 10, 12) 2.3 VSS V",
+     "verified": true
+    },
+    {
+     "text": "Braking must not exceed the 2 A absolute maximum.",
+     "page": 9,
+     "evidence": "The brake function (Fast motor stop) requires that the Absolute Maximum Rating of 2 A must never be exceeded.",
+     "verified": true
+    },
+    {
+     "text": "Red L298N boards carry a 78M05 regulator with a 5V-EN jumper (VSS from VS up to about 12 V), eight flyback diodes and a heatsink; board details are not from ST.",
+     "verified": false
+    }
+   ],
+   "variants": [
+    {
+     "id": "board",
+     "title": "L298N motor driver board",
+     "overrides": {
+      "kind": "module"
+     }
+    }
+   ]
+  }
+ ]
+}

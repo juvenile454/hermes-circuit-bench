@@ -1,0 +1,42 @@
+# source_id: mod-display-ssd1309-ds
+# document: Solomon Systech SSD1309 Advance Information, 128 x 64 Dot Matrix OLED/PLED Segment/Common Driver with Controller, Rev 1.1 (Jul 2011); copy hosted by Crystalfontz
+# url: https://www.crystalfontz.com/controllers/uploaded/Solomon_SSD1309_v1.1.pdf
+# corpus: mod/display/ssd1309-crystalfontz.pdf sha256 37909523e9b24e2ad434854b065968e8a5deb546721835d1e201a28b62b9cf22
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+SSD1309 Rev 1.1 P 1/62 Jul 2011  Copyright © 2011 Solomon Systech Limited 
+@@ page 7
+diode dot-matrix graphic display system. It consists  of 128 segments and 64 commons. This IC is 
+o VDD  = 1.65V ~ 3.3V   for IC logic 
+o VCC = 7.0V ~ 16.0V   for Panel driving 
+@@ page 19
+output and SDAIN/D1 for input) and I2C-bus clock signal SCL (D0). Both the data and clock signals must be 
+connected to pull-up resistors. RES# is used for the initialization of device. 
+“SA0” bit provides an extension bit for the slave address. Either “0111100” or “0111101”, can be 
+selected as the slave address of SSD1309. D/C# pin acts as SA0 for slave address selection. 
+@@ page 51
+SSD1309 Rev 1.1 P 51/62 Jul 2011  Solomon Systech
+VDD  -0.3 to +4 V 
+VCC Supply Voltage 0 to 17 V 
+Vin Input voltage V SS-0.3 to VDD+0.3 V 
+@@ page 52
+Voltage referenced to VSS, VDD =1.65 V to 3.3V, TA = 25°C  
+VCC  Operating Voltage  - 7 - 16 V 
+VDD  Logic Supply Voltage  - 1.65 - 3.3 V 
+VOH  High Logic Output Level  I OUT = 100uA, 3.3MHz  0.9 x V DD - - V 
+VOL  Low Logic Output Level  I OUT = 100uA, 3.3MHz  - - 0.1 x V DD V 
+VIH  High Logic Input Level  - 0.8 x V DD  - - V 
+VIL  Low Logic Input Level  - - - 0.2 x V DD  V 
+IDD,SLEEP    Sleep mode Current  VDD = 1.65V~3.3V, VCC = 7V~16V Display OFF, No panel attached  - - 10 uA 
+IDD  
+VDD Supply Current  
+90 110 
+@@ page 56
+Table 13-4 : Serial Interface Timing Characteristics (4-wire SPI) 
+(VDD - VSS = 1.65V~3.3V, TA = 25°C) 
+tcycle Clock Cycle Time 100 - - ns 
+@@ page 58
+VDD - VSS = 1.65V ~ 3.3V 
+ Table 13-6 : I2C Interface Timing Characteristics 
+tcycle Clock Cycle Time 2.5 - - us 

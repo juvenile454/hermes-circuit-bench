@@ -1,0 +1,31 @@
+# source_id: mod-nnet-pn5180-ds
+# document: NXP PN5180A0xx/C3,C4 product data sheet Rev. 4.3 (30 October 2025)
+# url: https://cache.nxp.com/docs/en/data-sheet/PN5180A0XX_C3_C4.pdf
+# corpus: mod/nnet/PN5180A0XX_C3_C4.pdf sha256 5640d42eabd8c6497493d534e0bc83a264a945d6bd6f4a9784e8abcf92051f20
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 10
+VBAT 12 supply Supply Connection, all VBAT mandatory to be connected
+@@ page 16
+The maximum SPI speed is 7 Mbit/s and fixed to CPOL = 0 and CPHA = 0. Only a half-duplex data transfer
+The BUSY signal is used to indicate that the PN5180 is not able to send or receive data over the SPI interface.
+available (PVDD). Only a voltage of 1.8 V or 3.3 V is supported, but no voltage in the range of 1.95 V to 2.7 V.
+@@ page 116
+VDD(PVDD) supply voltage on pin PVDD - -0.3 3.6 V
+VDD(TVDD) supply voltage on pin TVDD - -0.3 5.5 V
+@@ page 117
+VDD(VBAT) supply voltage on pin VBAT - 2.7 3.3 5.5 V
+1.8 V supply 1.65 1.8 1.95 VVDD(PVDD) supply voltage on pin PVDD
+3.3 V supply 2.7 3.3 3.6 V
+VDD(TVDD) supply voltage on pin TVDD - 2.7 5.0 5.5 V
+IDD(TVDD) supply current on pin TVDD in still air with exposed pins
+- 180 250 mA
+@@ page 120
+VIH HIGH-level input voltage 0.65 x
+Table 135. Input pins SCLK, MOSI, NSS
+@@ page 121
+VIL LOW-level input voltage 0 - 0.35 x
+VOH HIGH-level output voltage IOH < 3 mA VDD(PVDD)
+-0.4
+VOL LOW-level output voltage IOL < 3 mA 0 - 0.4 V
+Table 136. Output pin MISO

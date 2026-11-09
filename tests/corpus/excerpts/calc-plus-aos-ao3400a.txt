@@ -1,0 +1,53 @@
+# Citation excerpt. '#' lines are metadata; '@@ page N' starts a segment of whole lines copied
+# from pypdf's text of that PDF page (runs of whitespace collapsed to one space). tests/test_plus_calc_sources.py
+# checks code and data against it and, with the corpus present, the segments against the pinned PDF.
+# source_id: aos-ao3400a
+# document: Alpha and Omega Semiconductor AO3400A, 30V N-Channel MOSFET, Rev 3.1: July 2023 (SOT-23)
+# url: https://www.aosmd.com/res/datasheets/AO3400A.pdf
+# corpus: calc/aos-ao3400a-rev3.1.pdf sha256 9c60d0b6c1ddc7609a4b788a91181468d8ffe6c3e9ba425c3d8ffc5ba88c5033
+# retrieved: 2026-11-06
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+# Symbol-font glyphs in the text layer: 'mW' = mΩ, 'Rq' = Rθ, 'mA' in 'ID=250mA' = µA, 'dI/dt=100A/ms' = A/µs.
+# Page 1 tables extract out of order; read against the rendered page 1:
+# abs_max: Drain-Source Voltage VDS 30 V; Gate-Source Voltage VGS ±12 V; Continuous Drain Current ID 5.7 A (TA=25 °C), 4.7 A (TA=70 °C); TJ, TSTG -55 to 150 °C
+# thermal: '° C/WRqJA 70100 90' = RθJA typ 70 / max 90 (t ≤ 10s) and typ 100 (Steady-State); '63' RθJL typ, '125' RθJA max (Steady-State, Notes A, D), '80' RθJL max
+# Page 2 values: '18 26.5' (VGS=10V, ID=5.7A), 'TJ=125° C 28 38', '19 32 mW' (VGS=4.5V, ID=5A), '24 48 mW' (VGS=2.5V, ID=3A), typ then max; read against the rendered page 2.
+@@ page 1
+AO3400A
+30V N-Channel MOSFET
+ID (at VGS=10V) 5.7A
+RDS(ON) (at VGS=10V) < 26.5mW
+RDS(ON) (at VGS = 4.5V) < 32mW
+RDS(ON) (at VGS = 2.5V) < 48mW
+Junction and Storage Temperature Range -55 to 150 °C
+° C/WRqJA 70100 90
+V±12Gate-Source Voltage
+Drain-Source Voltage 30
+Absolute Maximum Ratings TA=25° C unless otherwise noted
+5.7
+TA=25° C
+Continuous Drain
+Current
+° C/WMaximum Junction-to-Ambient A D
+63
+125
+80
+Rev 3.1: July 2023 www.aosmd.com Page 1 of 5
+@@ page 2
+AO3400A
+VGS(th) Gate Threshold Voltage 0.65 1.05 1.45 V
+18 26.5
+TJ=125° C 28 38
+19 32 mW
+24 48 mW
+RDS(ON) Static Drain-Source On-Resistance
+VDS=VGS ID=250mA
+VGS=10V, ID=5.7A
+VGS=2.5V, ID=3A
+VGS=4.5V, ID=5A
+Electrical Characteristics (TJ=25° C unless otherwise noted)
+A. The value of RqJA is measured with the device mounted on 1in2 FR-4 board with 2oz. Copper, in a still air environment with TA =25°C. The
+value in any given application depends on the user's specific board design.
+@@ page 3
+Figure 4: On-Resistance vs. Junction Temperature
+Figure 5: On-Resistance vs. Gate-Source Voltage

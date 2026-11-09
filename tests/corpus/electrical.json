@@ -1,0 +1,45 @@
+{
+ "note": "Chip electrical corpus: Espressif chip datasheets, chapter Electrical Characteristics (absolute maximum ratings, recommended operating conditions, DC characteristics). Excerpts tests/corpus/excerpts/esp-<chip>-dc.txt.",
+ "files": [
+  {
+   "url": "https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf",
+   "path": "electrical/esp32_datasheet_en.pdf",
+   "source_id": "elec-ds-esp32",
+   "excerpt": "excerpts/esp-esp32-dc.txt",
+   "note": "source elec-ds-esp32; ESP32 Series Datasheet v5.3; espressif.com redirects to https://documentation.espressif.com/esp32_datasheet_en.pdf (same bytes)",
+   "sha256": "a7917e6b47528c9dcab06837a49d452e582751335797db879f1cf2d17cd29adf"
+  },
+  {
+   "url": "https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_en.pdf",
+   "path": "electrical/esp32-s2_datasheet_en.pdf",
+   "source_id": "elec-ds-esp32s2",
+   "excerpt": "excerpts/esp-esp32s2-dc.txt",
+   "note": "source elec-ds-esp32s2; ESP32-S2 Series Datasheet v1.9; espressif.com redirects to https://documentation.espressif.com/esp32-s2_datasheet_en.pdf (same bytes)",
+   "sha256": "7c0c54f11e79cc77b09ae070221f056e2c21a3746a8f3a23a0371c4efcf8e02d"
+  },
+  {
+   "url": "https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_en.pdf",
+   "path": "electrical/esp32-s3_datasheet_en.pdf",
+   "source_id": "elec-ds-esp32s3",
+   "excerpt": "excerpts/esp-esp32s3-dc.txt",
+   "note": "source elec-ds-esp32s3; ESP32-S3 Series Datasheet v2.2; espressif.com redirects to https://documentation.espressif.com/esp32-s3_datasheet_en.pdf (same bytes)",
+   "sha256": "2d5a7cb7fd559d8d972bd88db32669c0196d23f22d7afaafb0f63d099b589a3f"
+  },
+  {
+   "url": "https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf",
+   "path": "electrical/esp32-c3_datasheet_en.pdf",
+   "source_id": "elec-ds-esp32c3",
+   "excerpt": "excerpts/esp-esp32c3-dc.txt",
+   "note": "source elec-ds-esp32c3; ESP32-C3 Series Datasheet v2.4; espressif.com redirects to https://documentation.espressif.com/esp32-c3_datasheet_en.pdf (same bytes)",
+   "sha256": "833fc000b4b3c3d39c496fcbd597fed5806956503ce7390b19cc8ae82f19f968"
+  },
+  {
+   "url": "https://www.espressif.com/sites/default/files/documentation/esp32-c6_datasheet_en.pdf",
+   "path": "electrical/esp32-c6_datasheet_en.pdf",
+   "source_id": "elec-ds-esp32c6",
+   "excerpt": "excerpts/esp-esp32c6-dc.txt",
+   "note": "source elec-ds-esp32c6; ESP32-C6 Series Datasheet v1.5; espressif.com redirects to https://documentation.espressif.com/esp32-c6_datasheet_en.pdf (same bytes)",
+   "sha256": "372a5b42b2900c83ef4309149c8835e9ae2d1be19244995bf2fb83af4dc5edf1"
+  }
+ ]
+}

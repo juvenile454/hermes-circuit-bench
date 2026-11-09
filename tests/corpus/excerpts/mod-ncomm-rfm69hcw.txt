@@ -1,0 +1,27 @@
+# source_id: mod-ncomm-rfm69hcw-ds
+# document: HopeRF RFM69HCW ISM Transceiver Module v1.1 data sheet
+# url: https://www.hoperf.com/uploads/RFM69HCW-V1.1datasheet_1695352208.pdf
+# corpus: mod/ncomm/RFM69HCW-V1.1.pdf sha256 ff8efc4e1fe4135400760b9da1cfcabd52fe929e1be5ecee8bc03d1512f3c45c
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 11
+VDDmr Supply Voltage -0.5 3.9 V 
+DC_20dBm Duty Cycle of transmission at +20dBm output - 1 % 
+VDDop Supply voltage(1.8V-2.4V 17dBm, 2.4V- 3.6V  20dBm) 1.8 3.6 V 
+@@ page 12
+VBAT2=VDD=3.3 V, temperature = 25 °C, FRF = 915 MHz, Pout = +20dBm, 2-level F SK modulation without pre-filtering, 
+IDDSL Supply current in Sleep mode  - 0.1 1 uA 
+IDDR Supply current in Receive mode  - 16 - mA 
+IDDT Supply current in Transmit mode 
+RFOP = +20 dBm, on PA_BOOST 
+130 
+@@ page 15
+VIH Digital input level high  0.8 - - VDD 
+VIL Digital input level low  - - 0.2 VDD 
+VOH Digital output level high Imax = 1 mA 0.9 - - VDD 
+VOL Digital output level low Imax = -1 mA - - 0.1 VDD 
+FSCK SCK frequency  - - 10 MHz 
+@@ page 75
+6 (Reset) should be left floating during the POR sequence. 
+@@ page 76
+Pin RESET should be pulled high for a hundred microseconds, and then released. The user should then wait for 5 ms 

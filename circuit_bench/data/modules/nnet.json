@@ -1,0 +1,2271 @@
+{
+ "schema": 1,
+ "wp": "nnet",
+ "note": "Values only from manufacturer documents; 'evidence' quotes lines of tests/corpus/excerpts/mod-nnet-*.txt (pypdf).",
+ "modules": [
+  {
+   "id": "lan8720a",
+   "aliases": [
+    "lan8720ai",
+    "lan8720a-cp",
+    "lan8720"
+   ],
+   "title": "LAN8720A 10/100 Ethernet PHY (RMII)",
+   "category": "comm.ethernet",
+   "manufacturer": "Microchip Technology",
+   "kind": "ic",
+   "source_ids": [
+    "mod-nnet-lan8720a-ds"
+   ],
+   "supplies": {
+    "VDDIO": {
+     "min": {
+      "value": 1.62,
+      "unit": "V",
+      "page": 52,
+      "evidence": [
+       "Supply Voltage (VDDIO)",
+       "+1.62V to +3.6V"
+      ],
+      "conditions": "variable I/O supply"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 52,
+      "evidence": [
+       "Supply Voltage (VDDIO)",
+       "+1.62V to +3.6V"
+      ],
+      "conditions": "variable I/O supply"
+     },
+     "abs_max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 52,
+      "evidence": [
+       "Supply Voltage (VDDIO, VDD1A, VDD2A)",
+       "-0.5V to +3.6V"
+      ],
+      "conditions": "absolute maximum rating"
+     }
+    },
+    "VDD1A": {
+     "min": {
+      "value": 3.0,
+      "unit": "V",
+      "page": 52,
+      "evidence": [
+       "Analog Port Supply Voltage (VDD1A, VDD2A)",
+       "+3.0V to +3.6V"
+      ]
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 52,
+      "evidence": [
+       "Analog Port Supply Voltage (VDD1A, VDD2A)",
+       "+3.0V to +3.6V"
+      ]
+     },
+     "abs_max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 52,
+      "evidence": [
+       "Supply Voltage (VDDIO, VDD1A, VDD2A)",
+       "-0.5V to +3.6V"
+      ],
+      "conditions": "absolute maximum rating"
+     }
+    },
+    "VDD2A": {
+     "min": {
+      "value": 3.0,
+      "unit": "V",
+      "page": 52,
+      "evidence": [
+       "Analog Port Supply Voltage (VDD1A, VDD2A)",
+       "+3.0V to +3.6V"
+      ],
+      "conditions": "also feeds the internal 1.2 V regulator"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 52,
+      "evidence": [
+       "Analog Port Supply Voltage (VDD1A, VDD2A)",
+       "+3.0V to +3.6V"
+      ]
+     },
+     "abs_max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 52,
+      "evidence": [
+       "Supply Voltage (VDDIO, VDD1A, VDD2A)",
+       "-0.5V to +3.6V"
+      ],
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "VDDIO",
+    "vih": {
+     "value": 1.9,
+     "unit": "V",
+     "page": 56,
+     "evidence": [
+      "TABLE 5-5: VARIABLE I/O BUFFER CHARACTERISTICS",
+      "VIHT",
+      "0.81",
+      "1.65",
+      "1.90"
+     ],
+     "conditions": "VIS inputs, positive-going Schmitt threshold VIHT max over all VDDIO levels; the PDF text lists Table 5-5 column by column (min, typ 1.8/2.5/3.3 V, max)"
+    },
+    "vil": {
+     "value": 0.64,
+     "unit": "V",
+     "page": 56,
+     "evidence": [
+      "TABLE 5-5: VARIABLE I/O BUFFER CHARACTERISTICS",
+      "VILT",
+      "-0.3",
+      "0.64"
+     ],
+     "conditions": "VIS inputs, negative-going Schmitt threshold VILT min over all VDDIO levels; the PDF text lists Table 5-5 column by column (min, typ 1.8/2.5/3.3 V, max)"
+    },
+    "v_in_max": {
+     "value": 3.6,
+     "unit": "V",
+     "page": 56,
+     "evidence": [
+      "TABLE 5-5: VARIABLE I/O BUFFER CHARACTERISTICS",
+      "VIHI",
+      "3.6"
+     ],
+     "conditions": "VIS inputs, high input level VIHI max (Table 5-5); the +6 V absolute rating on signal pins (p. 52) is not used: the pins are not 5 V tolerant (p. 13)"
+    },
+    "voh": {
+     "rel_offset": -0.4,
+     "of": "VDDIO",
+     "unit": "V",
+     "page": 56,
+     "evidence": [
+      "VO8 Type Buffers",
+      "VOH VDDIO -"
+     ],
+     "conditions": "VO8 outputs (RXD0/1, CRS_DV, RXER, REFCLKO), IOH = -8 mA"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 56,
+     "evidence": "Low Output Level V OL 0.4 V I OL = 8mA",
+     "conditions": "VOD8 outputs (MDIO, nINT), IOL = 8 mA"
+    },
+    "outputs": "push_pull",
+    "five_v_tolerant": false
+   },
+   "pins": [
+    {
+     "name": "TXD0",
+     "signal": "digital_in",
+     "note": "RMII transmit data 0 (from the MAC)"
+    },
+    {
+     "name": "TXD1",
+     "signal": "digital_in",
+     "note": "RMII transmit data 1 (from the MAC)"
+    },
+    {
+     "name": "TXEN",
+     "signal": "digital_in",
+     "internal_pull": "down",
+     "note": "RMII transmit enable (internal pull-down, PD in the pin table p. 7)"
+    },
+    {
+     "name": "RXD0",
+     "signal": "digital_out",
+     "note": "RMII receive data 0; MODE0 strap at reset"
+    },
+    {
+     "name": "RXD1",
+     "signal": "digital_out",
+     "note": "RMII receive data 1; MODE1 strap at reset"
+    },
+    {
+     "name": "CRS_DV",
+     "signal": "digital_out",
+     "note": "RMII carrier sense / receive data valid; MODE2 strap at reset"
+    },
+    {
+     "name": "RXER",
+     "signal": "digital_out",
+     "note": "receive error; PHYAD0 strap at reset (internal pull-down: PHY address 0)"
+    },
+    {
+     "name": "MDC",
+     "signal": "digital_in",
+     "note": "SMI management clock (from the MAC)"
+    },
+    {
+     "name": "MDIO",
+     "signal": "open_drain_out",
+     "output": "open_drain",
+     "note": "SMI management data, bidirectional (VIS input / VOD8 open-drain output)"
+    },
+    {
+     "name": "nRST",
+     "signal": "reset_in",
+     "active_low": true,
+     "internal_pull": "up",
+     "note": "system reset, active low (internal pull-up, PU in the pin table p. 10)"
+    },
+    {
+     "name": "nINT",
+     "signal": "digital_out",
+     "note": "nINT/REFCLKO: interrupt output, or the 50 MHz REFCLKO in REF_CLK Out mode"
+    },
+    {
+     "name": "XTAL1",
+     "signal": "analog_in",
+     "note": "XTAL1/CLKIN: 25 MHz crystal, or the 50 MHz REF_CLK input in REF_CLK In mode (driven by an oscillator or an ESP REF_CLK output)"
+    },
+    {
+     "name": "XTAL2",
+     "signal": "analog_in",
+     "note": "crystal output; leave open with a single-ended clock"
+    },
+    {
+     "name": "RBIAS",
+     "signal": "analog_in",
+     "note": "12.1 kΩ 1 % to GND"
+    },
+    {
+     "name": "TXP",
+     "signal": "analog_in",
+     "note": "Ethernet TX/RX positive channel 1 (to the magnetics)"
+    },
+    {
+     "name": "TXN",
+     "signal": "analog_in",
+     "note": "Ethernet TX/RX negative channel 1 (to the magnetics)"
+    },
+    {
+     "name": "RXP",
+     "signal": "analog_in",
+     "note": "Ethernet TX/RX positive channel 2 (to the magnetics)"
+    },
+    {
+     "name": "RXN",
+     "signal": "analog_in",
+     "note": "Ethernet TX/RX negative channel 2 (to the magnetics)"
+    },
+    {
+     "name": "LED1",
+     "signal": "digital_out",
+     "note": "link/activity LED; REGOFF strap at reset"
+    },
+    {
+     "name": "LED2",
+     "signal": "digital_out",
+     "note": "speed LED; nINTSEL strap at reset"
+    },
+    {
+     "name": "VDDCR",
+     "signal": "power_out",
+     "note": "1.2 V core supply from the internal regulator; 1 µF + 470 pF to GND"
+    },
+    {
+     "name": "VDDIO",
+     "signal": "supply",
+     "note": "variable I/O supply"
+    },
+    {
+     "name": "VDD1A",
+     "signal": "supply",
+     "note": "3.3 V analog supply, channel 1"
+    },
+    {
+     "name": "VDD2A",
+     "signal": "supply",
+     "note": "3.3 V analog supply, channel 2 and the internal regulator"
+    },
+    {
+     "name": "VSS",
+     "signal": "gnd",
+     "note": "exposed pad"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "digital",
+     "note": "RMII (TXD0/1, TXEN, RXD0/1, CRS_DV, 50 MHz REF_CLK) and SMI (MDC/MDIO) to an Ethernet MAC"
+    }
+   ],
+   "current": {
+    "supply": "VDD2A",
+    "typ": {
+     "value": 0.045,
+     "unit": "A",
+     "page": 53,
+     "evidence": [
+      "100BASE-TX /w traffic",
+      "Typical 26 19 0.5 45 148"
+     ],
+     "conditions": "device total (VDDA3.3 + VDDCR + VDDIO), 100BASE-TX with traffic, REF_CLK In mode, 3.3 V"
+    },
+    "max": {
+     "value": 0.049,
+     "unit": "A",
+     "page": 53,
+     "evidence": [
+      "100BASE-TX /w traffic",
+      "Max 28 21 0.6 49 159"
+     ],
+     "conditions": "device total, 100BASE-TX with traffic, REF_CLK In mode, 3.3 V"
+    },
+    "sleep": {
+     "value": 0.0023,
+     "unit": "A",
+     "page": 53,
+     "evidence": [
+      "General Power Down",
+      "Typical 0.3 1.8 0.2 2.3 7.6"
+     ],
+     "conditions": "device total, general power-down, typical"
+    },
+    "note": "device total of all supply pins; on breakout boards everything runs from the 3.3 V pin"
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "1uF+470pF",
+     "pins": [
+      "VDDCR"
+     ],
+     "to": "GND",
+     "note": "1 µF and 470 pF in parallel on the internal regulator output",
+     "page": 11,
+     "evidence": [
+      "Note: 1 uF and 470 pF decoupling capacitors in",
+      "parallel to ground should be used on this"
+     ]
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "The digital signals are not 5 V tolerant (the absolute maximum table lists +6 V on signal pins, but the pin description excludes 5 V): keep every RMII/SMI line at 3.3 V.",
+     "verified": true,
+     "page": 13,
+     "evidence": "he digital signals are not 5V tolerant."
+    },
+    {
+     "text": "RMII needs a 50 MHz reference clock. REF_CLK In mode (nINTSEL floating or high, default): a 50 MHz clock drives XTAL1/CLKIN. REF_CLK Out mode (nINTSEL low): a 25 MHz crystal on XTAL1/XTAL2 and the chip outputs 50 MHz on nINT/REFCLKO.",
+     "verified": true,
+     "page": 28,
+     "evidence": [
+      "In REF_CLK In Mode, the 50MHz REF_CLK is driven on the XTAL1/CLKIN pin.",
+      "nINTSEL = 0 REF_CLK Out Mode nINT/REFCLKO is the source of REF_CLK."
+     ]
+    },
+    {
+     "text": "REFCLKO is an optional 50 MHz output derived from the 25 MHz crystal.",
+     "verified": true,
+     "page": 10,
+     "evidence": [
+      "REFCLKO VO8 This optional 50MHz clock output is derived from",
+      "the 25MHz crystal oscillator."
+     ]
+    },
+    {
+     "text": "The PHYAD0 strap (on RXER) sets the SMI address; it is latched at reset, default 0: the MAC driver's PHY address must match the board's strap.",
+     "verified": true,
+     "page": 26,
+     "evidence": [
+      "The PHYAD0 bit is driven high or low to give each PHY a unique address.",
+      "at the end of a hardware reset (default = 0b)."
+     ]
+    },
+    {
+     "text": "Input levels from Table 5-5 (VIS buffers): VIH = VIHT max 1.90 V, VIL = VILT min 0.64 V, VIHI max 3.6 V. The PDF text splits the table into columns (min, typical at 1.8/2.5/3.3 V, max); the values are the min/max columns, valid for every VDDIO level.",
+     "verified": true,
+     "page": 56,
+     "evidence": [
+      "TABLE 5-5: VARIABLE I/O BUFFER CHARACTERISTICS",
+      "VIHT",
+      "0.64",
+      "3.6",
+      "1.90"
+     ]
+    },
+    {
+     "text": "A hardware reset (nRST low) is required after power-up.",
+     "verified": true,
+     "page": 58,
+     "evidence": "reset (nRST assertion) is required following power-up."
+    },
+    {
+     "text": "RBIAS needs a 12.1 kΩ 1 % resistor to ground.",
+     "verified": true,
+     "page": 11,
+     "evidence": "RBIAS AI This pin requires connection of a 12.1k ohm (1%)"
+    },
+    {
+     "text": "Common LAN8720 breakout boards carry the PHY, the magnetics/RJ45 and a 50 MHz oscillator (REF_CLK In mode) and are fed from a 3.3 V pin; the oscillator output or its enable pin is often brought to the header. Check the board schematic.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "enc28j60",
+   "aliases": [
+    "enc28j60-i-sp",
+    "enc28j60-i-so",
+    "enc28j60-i-ss",
+    "enc28j60-i-ml"
+   ],
+   "title": "ENC28J60 10BASE-T Ethernet controller (SPI)",
+   "category": "comm.ethernet",
+   "manufacturer": "Microchip Technology",
+   "kind": "ic",
+   "source_ids": [
+    "mod-nnet-enc28j60-ds"
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 3.1,
+      "unit": "V",
+      "page": 80,
+      "evidence": "D001 V DD Supply Voltage 3.10 3.30 3.60 V"
+     },
+     "typ": {
+      "value": 3.3,
+      "unit": "V",
+      "page": 80,
+      "evidence": "D001 V DD Supply Voltage 3.10 3.30 3.60 V"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 80,
+      "evidence": "D001 V DD Supply Voltage 3.10 3.30 3.60 V"
+     },
+     "abs_max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 79,
+      "evidence": [
+       "Voltage on VDD, VDDOSC, VDDPLL, VDDRX and VDDTX, with respect to VSS",
+       "-0.3V to 3.6V"
+      ],
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "VDD",
+    "vih": {
+     "value": 2.25,
+     "unit": "V",
+     "page": 80,
+     "evidence": [
+      "VIH Input High Voltage",
+      "D004 SCK, CS , SI, RESET 2.25 — 5.5 V"
+     ],
+     "conditions": "SCK, CS, SI, RESET (Schmitt trigger); OSC1: 0.7 VDD"
+    },
+    "vil": {
+     "value": 1.0,
+     "unit": "V",
+     "page": 80,
+     "evidence": [
+      "VIL Input Low Voltage",
+      "D006 SCK, CS , SI, RESET VSS —1 . 0 V"
+     ],
+     "conditions": "SCK, CS, SI, RESET; pypdf renders 1.0 V as '1 . 0'"
+    },
+    "voh": {
+     "rel_offset": -0.7,
+     "of": "VDD",
+     "unit": "V",
+     "page": 80,
+     "evidence": [
+      "VOH Output High Voltage",
+      "INT, SO",
+      "VDD – 0.7"
+     ],
+     "conditions": "INT, SO at IOH = -4 mA"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 80,
+     "evidence": [
+      "VOL Output Low Voltage",
+      "INT, SO",
+      "0.4"
+     ],
+     "conditions": "INT, SO at IOL = 4 mA"
+    },
+    "v_in_max": {
+     "value": 6.0,
+     "unit": "V",
+     "page": 79,
+     "evidence": [
+      "Voltage on RESET, CS, SCK and SI, with respect to VSS",
+      "-0.3V to 6.0V"
+     ],
+     "conditions": "absolute maximum rating of RESET, CS, SCK and SI (5 V tolerant inputs)"
+    },
+    "outputs": "push_pull",
+    "five_v_tolerant": true
+   },
+   "pins": [
+    {
+     "name": "VCAP",
+     "signal": "power_out",
+     "note": "2.5 V internal regulator output; 10 µF low-ESR capacitor to GND, no load"
+    },
+    {
+     "name": "VSS",
+     "signal": "gnd",
+     "note": "VSS, VSSRX, VSSTX, VSSPLL, VSSOSC to one ground"
+    },
+    {
+     "name": "CLKOUT",
+     "signal": "digital_out",
+     "note": "programmable clock output"
+    },
+    {
+     "name": "INT",
+     "signal": "digital_out",
+     "active_low": true,
+     "note": "interrupt output"
+    },
+    {
+     "name": "NC",
+     "signal": "nc",
+     "note": "reserved; always leave unconnected"
+    },
+    {
+     "name": "SO",
+     "signal": "spi_sdo",
+     "output": "tristate",
+     "note": "SPI data out (high impedance while CS is high)"
+    },
+    {
+     "name": "SI",
+     "signal": "spi_sdi",
+     "note": "SPI data in, 5 V tolerant"
+    },
+    {
+     "name": "SCK",
+     "signal": "spi_sck",
+     "note": "SPI clock in, 5 V tolerant"
+    },
+    {
+     "name": "CS",
+     "signal": "spi_cs",
+     "active_low": true,
+     "internal_pull": "up",
+     "note": "chip select, 5 V tolerant, weak internal pull-up (74–173 kΩ, p. 80)"
+    },
+    {
+     "name": "RESET",
+     "signal": "reset_in",
+     "active_low": true,
+     "internal_pull": "up",
+     "note": "device reset, 5 V tolerant, weak internal pull-up (74–173 kΩ, p. 80)"
+    },
+    {
+     "name": "TPIN-",
+     "signal": "analog_in",
+     "note": "differential receive input (to the magnetics)"
+    },
+    {
+     "name": "TPIN+",
+     "signal": "analog_in",
+     "note": "differential receive input (to the magnetics)"
+    },
+    {
+     "name": "RBIAS",
+     "signal": "analog_in",
+     "note": "2.32 kΩ 1 % to GND"
+    },
+    {
+     "name": "TPOUT-",
+     "signal": "analog_in",
+     "note": "differential transmit output (to the magnetics)"
+    },
+    {
+     "name": "TPOUT+",
+     "signal": "analog_in",
+     "note": "differential transmit output (to the magnetics)"
+    },
+    {
+     "name": "OSC1",
+     "signal": "analog_in",
+     "note": "25 MHz crystal / clock input"
+    },
+    {
+     "name": "OSC2",
+     "signal": "analog_in",
+     "note": "crystal output"
+    },
+    {
+     "name": "LEDB",
+     "signal": "digital_out",
+     "note": "LED driver, 12 mA"
+    },
+    {
+     "name": "LEDA",
+     "signal": "digital_out",
+     "note": "LED driver, 12 mA"
+    },
+    {
+     "name": "VDD",
+     "signal": "supply",
+     "note": "VDD, VDDOSC, VDDPLL, VDDRX, VDDTX: all from the same 3.3 V supply"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "spi",
+     "mode": 0,
+     "f_max_hz": {
+      "value": 20000000.0,
+      "unit": "Hz",
+      "page": 82,
+      "evidence": "FSCK Clock Frequency DC 20 MHz",
+      "conditions": "SPI clock"
+     },
+     "note": "SPI mode 0,0 only (data sheet p. 25)"
+    }
+   ],
+   "current": {
+    "supply": "VDD",
+    "typ": {
+     "value": 0.16,
+     "unit": "A",
+     "page": 80,
+     "evidence": [
+      "Transmitting Ethernet",
+      "—1 6 0 1 8 0 m A V DD = 3.30V, FSCK = 10 MHz,"
+     ],
+     "conditions": "transmitting, VDD 3.3 V, SCK 10 MHz, LEDs open; pypdf renders '— 160 180 mA' as '—1 6 0 1 8 0 m A'"
+    },
+    "max": {
+     "value": 0.18,
+     "unit": "A",
+     "page": 80,
+     "evidence": [
+      "Transmitting Ethernet",
+      "—1 6 0 1 8 0 m A V DD = 3.30V, FSCK = 10 MHz,"
+     ],
+     "conditions": "transmitting, VDD 3.3 V, SCK 10 MHz, LEDs open"
+    },
+    "sleep": {
+     "value": 0.0012,
+     "unit": "A",
+     "page": 80,
+     "evidence": [
+      "IDDS Standby Current",
+      "— 1.2 2.0 mA"
+     ],
+     "conditions": "sleep (ECON2.PWRSV = 1), VDD 3.3 V, 25 °C, typical"
+    },
+    "note": "about 120 mA when active but not transmitting (p. 80); LED current comes on top"
+   },
+   "requires": [
+    {
+     "code": "bulk_cap",
+     "kind": "ceramic",
+     "value": "10uF",
+     "pins": [
+      "VCAP"
+     ],
+     "to": "GND",
+     "note": "low-ESR capacitor, typically 10 µF, at least 1 µF",
+     "page": 4,
+     "evidence": [
+      "capacitor, with a typical value of 10 µF and a minimum value of 1 µF to ground,",
+      "must be placed on this pin."
+     ]
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VDD"
+     ],
+     "to": "GND",
+     "note": "0.1 µF at each VDD/VSS pin pair",
+     "page": 7,
+     "evidence": [
+      "Each VDD and VSS pin pair should have",
+      "ceramic bypass capacitor"
+     ]
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "SI, SCK, CS and RESET are 5 V tolerant; the outputs (SO, INT, CLKOUT, LEDs) swing to VDD (3.3 V).",
+     "verified": true,
+     "page": 4,
+     "evidence": "3: Pins are 5V tolerant."
+    },
+    {
+     "text": "RBIAS needs a 2.32 kΩ 1 % resistor to ground; the twisted-pair pins need 1:1 center-tapped pulse transformers (MagJack) and the termination network of Figure 2-4.",
+     "verified": true,
+     "page": 7,
+     "evidence": [
+      "that an external 2.32 k",
+      "1:1 center taped pulse transformers, rated for Ethernet"
+     ]
+    },
+    {
+     "text": "The chip needs a 25 MHz clock (crystal or oscillator on OSC1).",
+     "verified": true,
+     "page": 81,
+     "evidence": "FOSC Clock In Frequency 25 25 MHz"
+    },
+    {
+     "text": "Typical ENC28J60 breakout boards (with MagJack and 25 MHz crystal) have a 3.3 V supply pin; some carry an LDO for 5 V. Check the board before feeding 5 V.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "max_m10s",
+   "aliases": [
+    "max-m10s",
+    "maxm10s",
+    "max-m10s-00b"
+   ],
+   "title": "MAX-M10S GNSS receiver module (UART, I²C)",
+   "category": "comm.gnss",
+   "manufacturer": "u-blox",
+   "kind": "ic",
+   "source_ids": [
+    "mod-nnet-maxm10s-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 1.76,
+      "unit": "V",
+      "page": 11,
+      "evidence": "VCC Main supply voltage 1.76 1.8, 3.3 3.6 V"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 11,
+      "evidence": "VCC Main supply voltage 1.76 1.8, 3.3 3.6 V"
+     },
+     "abs_max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 11,
+      "evidence": "VCC Main supply voltage –0.3 3.6 V",
+      "conditions": "absolute maximum rating"
+     }
+    },
+    "V_IO": {
+     "min": {
+      "value": 2.7,
+      "unit": "V",
+      "page": 12,
+      "evidence": "IO supply voltage, VIO_SEL = open 2.7 3.3 VCC (max",
+      "conditions": "VIO_SEL open (3.3 V I/O); 1.76–1.98 V with VIO_SEL = GND"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 12,
+      "evidence": [
+       "IO supply voltage, VIO_SEL = open 2.7 3.3 VCC (max",
+       "3.6)"
+      ],
+      "conditions": "VIO_SEL open; at most VCC"
+     },
+     "abs_max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 11,
+      "evidence": [
+       "IO supply voltage, VIO_SEL = open –0.3 VCC + 0.3",
+       "(max 3.6)"
+      ],
+      "conditions": "absolute maximum rating, VIO_SEL open: VCC + 0.3 V, at most 3.6 V"
+     }
+    },
+    "V_BCKP": {
+     "min": {
+      "value": 1.65,
+      "unit": "V",
+      "page": 12,
+      "evidence": "V_BCKP Supply voltage, backup domain 1.65 3.6 V"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 12,
+      "evidence": "V_BCKP Supply voltage, backup domain 1.65 3.6 V"
+     },
+     "abs_max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 11,
+      "evidence": "V_BCKP Backup supply voltage –0.3 3.6 V",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "V_IO",
+    "vih": {
+     "rel": 0.68,
+     "of": "V_IO",
+     "unit": "V",
+     "page": 12,
+     "evidence": "Vih High-level input voltage 0.68 x V_IO V",
+     "conditions": "digital I/O"
+    },
+    "vil": {
+     "value": 0.63,
+     "unit": "V",
+     "page": 12,
+     "evidence": "Vil Low-level input voltage 0.63 V",
+     "conditions": "digital I/O"
+    },
+    "voh": {
+     "rel_offset": -0.4,
+     "of": "V_IO",
+     "unit": "V",
+     "page": 12,
+     "evidence": "Voh High-level output voltage, Iout = 2 mA",
+     "conditions": "Iout = 2 mA"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 12,
+     "evidence": "Vol Low-level output voltage, Iout = -2 mA",
+     "conditions": "Iout = -2 mA"
+    },
+    "v_in_max": {
+     "rel_offset": 0.3,
+     "of": "V_IO",
+     "unit": "V",
+     "page": 11,
+     "evidence": [
+      "Input voltage on RESET_N and digital pins",
+      "VIO_SEL = open",
+      "–0.3 V_IO + 0.3",
+      "(max 3.6)"
+     ],
+     "conditions": "absolute maximum rating, VIO_SEL open: V_IO + 0.3 V, at most 3.6 V"
+    },
+    "outputs": "push_pull",
+    "five_v_tolerant": false
+   },
+   "pins": [
+    {
+     "name": "GND",
+     "signal": "gnd",
+     "note": "pins 1, 10, 12"
+    },
+    {
+     "name": "TXD",
+     "signal": "uart_tx",
+     "note": "UART TX, to the ESP's RX"
+    },
+    {
+     "name": "RXD",
+     "signal": "uart_rx",
+     "note": "UART RX, from the ESP's TX"
+    },
+    {
+     "name": "TIMEPULSE",
+     "signal": "digital_out",
+     "note": "time pulse (shared with SAFEBOOT_N through 1 kΩ)"
+    },
+    {
+     "name": "EXTINT",
+     "signal": "digital_in",
+     "internal_pull": {
+      "up": {
+       "value": 18000.0,
+       "unit": "Ω",
+       "page": 12,
+       "evidence": "Rpu, IO Pull-up resistance, Digital IO 23 . VIO_SEL = open 8 18 40 kΩ",
+       "conditions": "typical, VIO_SEL open, 8–40 kΩ"
+      }
+     },
+     "note": "external interrupt; leave open if unused"
+    },
+    {
+     "name": "V_BCKP",
+     "signal": "supply",
+     "note": "backup supply (RTC and backup RAM)"
+    },
+    {
+     "name": "V_IO",
+     "signal": "supply",
+     "note": "I/O supply"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply",
+     "note": "main supply"
+    },
+    {
+     "name": "RESET_N",
+     "signal": "reset_in",
+     "active_low": true,
+     "internal_pull": {
+      "up": {
+       "value": 10000.0,
+       "unit": "Ω",
+       "page": 12,
+       "evidence": "Rpu, RESET_N Pull-up resistance, RESET_N 7 10 13 kΩ",
+       "conditions": "typical, 7–13 kΩ"
+      }
+     },
+     "note": "system reset, low for at least 1 ms"
+    },
+    {
+     "name": "RF_IN",
+     "signal": "analog_in",
+     "note": "GNSS antenna input, 50 Ω, DC-blocked"
+    },
+    {
+     "name": "LNA_EN",
+     "signal": "digital_out",
+     "note": "on/off for an external LNA or active antenna"
+    },
+    {
+     "name": "VCC_RF",
+     "signal": "power_out",
+     "note": "VCC - 0.1 V for an active antenna, at most 50 mA"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda",
+     "note": "I²C data; leave open if unused"
+    },
+    {
+     "name": "SCL",
+     "signal": "i2c_scl",
+     "note": "I²C clock; leave open if unused"
+    },
+    {
+     "name": "SAFEBOOT_N",
+     "signal": "digital_in",
+     "active_low": true,
+     "internal_pull": {
+      "up": {
+       "value": 17000.0,
+       "unit": "Ω",
+       "page": 12,
+       "evidence": "Rpu, SAFEBOOT_N Pull-up resistance, SAFEBOOT_N  24 6 17 72 kΩ",
+       "conditions": "typical, 6–72 kΩ"
+      }
+     },
+     "note": "low at start-up = safeboot; leave open (internal pull-up plus 1 kΩ series resistor)"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "uart",
+     "baud_default": 9600,
+     "note": "default 9600 baud 8N1, NMEA output (p. 16); 9600–921600 bit/s; no hardware flow control"
+    },
+    {
+     "type": "i2c",
+     "addresses": {
+      "value": [
+       "0x42"
+      ],
+      "page": 16,
+      "evidence": "• 7-bit I2C address (0x42)."
+     },
+     "default": "0x42",
+     "f_max_hz": {
+      "value": 400000,
+      "unit": "Hz",
+      "page": 15,
+      "evidence": "fSCL SCL clock frequency 0 400 kHz",
+      "conditions": "I²C Fast-mode"
+     },
+     "note": "fixed address; Fast-mode only, Standard-mode not supported (p. 14)"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "typ": {
+     "value": 0.0095,
+     "unit": "A",
+     "page": 13,
+     "evidence": [
+      "Tracking",
+      "(Continuous mode) 7.5 8 9 9.5 8.5 10 mAIVCC"
+     ],
+     "conditions": "VCC 3.0 V, continuous tracking, GPS+GAL+BDS B1I (default), 1 Hz, typical"
+    },
+    "peak": {
+     "value": 0.1,
+     "unit": "A",
+     "page": 13,
+     "evidence": "The inrush current can go up to 100 mA at startup.",
+     "conditions": "inrush at start-up"
+    },
+    "sleep": {
+     "value": 1.2e-07,
+     "unit": "A",
+     "page": 13,
+     "evidence": "IVCC VCC current in software standby mode VCC = 3.3 V 120 nA",
+     "conditions": "software standby, VCC 3.3 V (V_IO draws 46 µA)"
+    },
+    "note": "V_IO draws about 2.3 mA on top (p. 13); acquisition about 11.5 mA at VCC (default systems)"
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "V_IO must not ramp faster than 25 µs/V (nor slower than 35000 µs/V): a faster ramp can permanently damage the module.",
+     "verified": true,
+     "page": 11,
+     "evidence": [
+      "Voltage ramp on V_IO",
+      "25 35000 µs/V",
+      "Exceeding the voltage ramp speed may permanently damage the device."
+     ]
+    },
+    {
+     "text": "No protection against overvoltage or reversed supply voltages.",
+     "verified": true,
+     "page": 11,
+     "evidence": "This product is not protected against overvoltage or reversed voltages."
+    },
+    {
+     "text": "The I²C interface supports Fast-mode only; Standard-mode operation is not supported.",
+     "verified": true,
+     "page": 14,
+     "evidence": "Backwards compatibility with the Standard-mode I2C bus operation is not supported."
+    },
+    {
+     "text": "VIO_SEL open selects the 3.3 V I/O range (V_IO 2.7–3.6 V), GND the 1.8 V range; the entry models VIO_SEL open, so the pin is not listed: leave it open for an ESP.",
+     "verified": true,
+     "page": 9,
+     "evidence": [
+      "15 VIO_SEL - I Voltage selector for V_IO supply. Connect to GND for 1.8 V supply, or leave",
+      "open for 3.3 V supply."
+     ]
+    },
+    {
+     "text": "SAFEBOOT_N low at start-up puts the receiver into safeboot mode.",
+     "verified": true,
+     "page": 9,
+     "evidence": "The receiver enters safeboot mode if this pin is low at start up."
+    },
+    {
+     "text": "MAX-M10S breakout boards usually tie VCC and V_IO to a 3.3 V pin (some add an LDO for 5 V) and feed V_BCKP from a backup capacitor or cell; check the board.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "ft232rl",
+   "aliases": [
+    "ft232r",
+    "ft232rq"
+   ],
+   "title": "FT232RL USB-to-UART bridge",
+   "category": "comm.usb_uart",
+   "manufacturer": "FTDI",
+   "kind": "ic",
+   "source_ids": [
+    "mod-nnet-ft232rl-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 4.0,
+      "unit": "V",
+      "page": 15,
+      "evidence": "VCC1 VCC Operating Supply Voltage 4.0 --- 5.25 V Using Internal Oscillator",
+      "conditions": "internal oscillator (3.3 V minimum only with an external 12 MHz crystal)"
+     },
+     "max": {
+      "value": 5.25,
+      "unit": "V",
+      "page": 15,
+      "evidence": "VCC1 VCC Operating Supply Voltage 4.0 --- 5.25 V Using Internal Oscillator"
+     },
+     "abs_max": {
+      "value": 6.0,
+      "unit": "V",
+      "page": 15,
+      "evidence": "VCC Supply Voltage -0.5 to +6.00 V",
+      "conditions": "absolute maximum rating"
+     }
+    },
+    "VCCIO": {
+     "min": {
+      "value": 1.8,
+      "unit": "V",
+      "page": 15,
+      "evidence": "VCC2 VCCIO Operating Supply Voltage 1.8 --- 5.25 V"
+     },
+     "max": {
+      "value": 5.25,
+      "unit": "V",
+      "page": 15,
+      "evidence": "VCC2 VCCIO Operating Supply Voltage 1.8 --- 5.25 V"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCCIO",
+    "vih": {
+     "value": 1.5,
+     "unit": "V",
+     "page": 16,
+     "evidence": [
+      "Vin Input Switching Threshold 1.0 1.2 1.5 V",
+      "VCCIO = +3.3V, Standard Drive Level"
+     ],
+     "conditions": "VCCIO = 3.3 V; the data sheet gives one input switching threshold (min/typ/max) instead of VIH/VIL: its maximum is used as VIH"
+    },
+    "vil": {
+     "value": 1.0,
+     "unit": "V",
+     "page": 16,
+     "evidence": [
+      "Vin Input Switching Threshold 1.0 1.2 1.5 V",
+      "VCCIO = +3.3V, Standard Drive Level"
+     ],
+     "conditions": "VCCIO = 3.3 V; the switching threshold minimum is used as VIL"
+    },
+    "voh": {
+     "value": 2.2,
+     "unit": "V",
+     "page": 16,
+     "evidence": [
+      "Voh Output Voltage High 2.2 2.7 3.2 V I source = 1mA",
+      "VCCIO = +3.3V, Standard Drive Level"
+     ],
+     "conditions": "VCCIO = 3.3 V, standard drive, 1 mA"
+    },
+    "vol": {
+     "value": 0.5,
+     "unit": "V",
+     "page": 16,
+     "evidence": [
+      "Vol Output Voltage Low 0.3 0.4 0.5 V I sink = 2mA",
+      "VCCIO = +3.3V, Standard Drive Level"
+     ],
+     "conditions": "VCCIO = 3.3 V, standard drive, 2 mA"
+    },
+    "v_in_max": {
+     "rel_offset": 0.5,
+     "of": "VCC",
+     "unit": "V",
+     "page": 15,
+     "evidence": "DC Input Voltage – All Other Inputs -0.5 to + (VCC +0.5) V",
+     "conditions": "absolute maximum rating, relative to VCC (not VCCIO)"
+    },
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "TXD",
+     "signal": "uart_tx",
+     "note": "UART transmit, to the ESP's RX"
+    },
+    {
+     "name": "DTR#",
+     "signal": "digital_out",
+     "active_low": true,
+     "note": "modem output; on ESP boards it drives EN/IO0 via the auto-reset transistors"
+    },
+    {
+     "name": "RTS#",
+     "signal": "digital_out",
+     "active_low": true,
+     "note": "modem output; on ESP boards it drives EN/IO0 via the auto-reset transistors"
+    },
+    {
+     "name": "VCCIO",
+     "signal": "supply",
+     "note": "UART/CBUS I/O supply: 3V3OUT for 3.3 V levels, VCC for 5 V levels"
+    },
+    {
+     "name": "RXD",
+     "signal": "uart_rx",
+     "internal_pull": {
+      "up": {
+       "value": 200000.0,
+       "unit": "Ω",
+       "page": 17,
+       "evidence": "** Only input pins have an internal 200KΩ pull-up resistor to VCCIO",
+       "conditions": "to VCCIO"
+      }
+     },
+     "note": "UART receive, from the ESP's TX"
+    },
+    {
+     "name": "CTS#",
+     "signal": "digital_in",
+     "active_low": true,
+     "internal_pull": {
+      "up": {
+       "value": 200000.0,
+       "unit": "Ω",
+       "page": 17,
+       "evidence": "** Only input pins have an internal 200KΩ pull-up resistor to VCCIO",
+       "conditions": "to VCCIO"
+      }
+     },
+     "note": "modem input"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd",
+     "note": "pins 7, 18, 21"
+    },
+    {
+     "name": "USBDP",
+     "signal": "analog_in",
+     "note": "USB D+ (internal series resistor and 1.5 kΩ pull-up)"
+    },
+    {
+     "name": "USBDM",
+     "signal": "analog_in",
+     "note": "USB D-"
+    },
+    {
+     "name": "3V3OUT",
+     "signal": "power_out",
+     "note": "3.3 V LDO output, up to 50 mA; 100 nF to GND"
+    },
+    {
+     "name": "RESET#",
+     "signal": "reset_in",
+     "active_low": true,
+     "internal_pull": "up",
+     "note": "active-low reset; the data sheet allows it to stay unconnected (p. 8), so it is modelled as pulled up internally (pull value not given)"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply",
+     "note": "core supply, usually USB VBUS 5 V"
+    },
+    {
+     "name": "AGND",
+     "signal": "gnd"
+    },
+    {
+     "name": "TEST",
+     "signal": "mode_select",
+     "tie": "GND",
+     "note": "must be tied to GND"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "uart",
+     "note": "183 baud to 3 Mbaud (data sheet p. 14)"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "typ": {
+     "value": 0.015,
+     "unit": "A",
+     "page": 15,
+     "evidence": "Icc1 Operating Supply Current --- 15 --- mA Normal Operation",
+     "conditions": "normal operation"
+    },
+    "sleep": {
+     "value": 7e-05,
+     "unit": "A",
+     "page": 15,
+     "evidence": "Icc2 Operating Supply Current 50 70 100 μA USB Suspend",
+     "conditions": "USB suspend, typical"
+    }
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "3V3OUT"
+     ],
+     "to": "GND",
+     "note": "100 nF on the LDO output",
+     "page": 7,
+     "evidence": [
+      "17 3V3OUT Output",
+      "decoupled to ground using a 100nF capacitor."
+     ]
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "With VCCIO on VCC (5 V) the UART outputs drive 5 V CMOS levels; for a 3.3 V ESP connect VCCIO to 3V3OUT.",
+     "verified": true,
+     "page": 7,
+     "evidence": "to 3V3OUT pin to drive out at +3.3V levels, or connect to VCC to drive"
+    },
+    {
+     "text": "VCC must be at least 4.0 V with the internal oscillator (bus-powered from VBUS 5 V).",
+     "verified": true,
+     "page": 8,
+     "evidence": "1. The minimum operating voltage VCC must be +4.0V (could use VBUS=+5V) when using the"
+    },
+    {
+     "text": "TEST must be tied to GND, otherwise the device appears to fail.",
+     "verified": true,
+     "page": 8,
+     "evidence": "Must be tied to GND for normal operation, otherwise the device will appear to fail."
+    },
+    {
+     "text": "3V3OUT can supply up to 50 mA to external logic.",
+     "verified": true,
+     "page": 7,
+     "evidence": "Up to 50mA can be drawn from"
+    },
+    {
+     "text": "FT232RL breakouts usually have a jumper that sets VCCIO to 3.3 V or 5 V: set it to 3.3 V for an ESP. Counterfeit FT232RL chips are common.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "cp2104",
+   "aliases": [
+    "cp2104-gm",
+    "cp2104-gmr"
+   ],
+   "title": "CP2104 USB-to-UART bridge",
+   "category": "comm.usb_uart",
+   "manufacturer": "Silicon Labs",
+   "kind": "ic",
+   "source_ids": [
+    "mod-nnet-cp2104-ds"
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 3.0,
+      "unit": "V",
+      "page": 5,
+      "evidence": "Digital Supply Voltage (VDD) 3.0 — 3.6 V"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 5,
+      "evidence": "Digital Supply Voltage (VDD) 3.0 — 3.6 V"
+     },
+     "abs_max": {
+      "value": 4.2,
+      "unit": "V",
+      "page": 5,
+      "evidence": "Voltage on VDD or VIO with respect to GND –0.3 — 4.2 V",
+      "conditions": "absolute maximum rating"
+     }
+    },
+    "VIO": {
+     "min": {
+      "value": 1.8,
+      "unit": "V",
+      "page": 5,
+      "evidence": "Digital Port I/O Supply Voltage (VIO)1 .8 — VDD V",
+      "conditions": "max is VDD; pypdf renders 1.8 as '1 .8'"
+     },
+     "abs_max": {
+      "value": 4.2,
+      "unit": "V",
+      "page": 5,
+      "evidence": "Voltage on VDD or VIO with respect to GND –0.3 — 4.2 V",
+      "conditions": "absolute maximum rating"
+     }
+    },
+    "REGIN": {
+     "min": {
+      "value": 3.0,
+      "unit": "V",
+      "page": 6,
+      "evidence": "Input Voltage Range 3.0 — 5.25 V",
+      "conditions": "regulator input"
+     },
+     "max": {
+      "value": 5.25,
+      "unit": "V",
+      "page": 6,
+      "evidence": "Input Voltage Range 3.0 — 5.25 V",
+      "conditions": "regulator input"
+     }
+    }
+   },
+   "io": {
+    "domain": "VIO",
+    "vih": {
+     "rel": 0.7,
+     "of": "VIO",
+     "unit": "V",
+     "page": 6,
+     "evidence": "Input High Voltage (VIH) 0.7 x VIO —— V",
+     "conditions": "UART and suspend I/O"
+    },
+    "vil": {
+     "value": 0.6,
+     "unit": "V",
+     "page": 6,
+     "evidence": "Input Low Voltage (VIL)— — 0.6 V",
+     "conditions": "UART and suspend I/O"
+    },
+    "voh": {
+     "rel_offset": -0.2,
+     "of": "VIO",
+     "unit": "V",
+     "page": 6,
+     "evidence": [
+      "Output High Voltage (VOH)I OH =– 1 0µ A",
+      "VIO –0 . 2"
+     ],
+     "conditions": "IOH = -3 mA, minimum; pypdf renders VIO – 0.2 as 'VIO –0 . 2'"
+    },
+    "v_in_max": {
+     "value": 5.8,
+     "unit": "V",
+     "page": 5,
+     "evidence": [
+      "Voltage on RST, GPIO or UART Pin with respect to",
+      "VIO > 2.2 V",
+      "5.8"
+     ],
+     "conditions": "absolute maximum rating with VIO > 2.2 V (VIO + 3.6 V below)"
+    },
+    "outputs": "push_pull",
+    "five_v_tolerant": true
+   },
+   "pins": [
+    {
+     "name": "VDD",
+     "signal": "supply",
+     "note": "3.0–3.6 V supply, or the 3.45 V regulator output when REGIN is powered"
+    },
+    {
+     "name": "VIO",
+     "signal": "supply",
+     "tie": "VDD",
+     "note": "I/O supply; tied to VDD on most boards"
+    },
+    {
+     "name": "REGIN",
+     "signal": "supply",
+     "note": "5 V regulator input (USB VBUS); tie to VDD to bypass the regulator"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "VBUS",
+     "signal": "analog_in",
+     "note": "USB VBUS sense"
+    },
+    {
+     "name": "D+",
+     "signal": "analog_in",
+     "note": "USB data line, to the USB connector"
+    },
+    {
+     "name": "D-",
+     "signal": "analog_in",
+     "note": "USB data line, to the USB connector"
+    },
+    {
+     "name": "RST",
+     "signal": "reset_in",
+     "active_low": true,
+     "internal_pull": "up",
+     "note": "device reset, active low (open-drain POR output); external pull-up not required (p. 17)"
+    },
+    {
+     "name": "TXD",
+     "signal": "uart_tx",
+     "note": "UART transmit, to the ESP's RX"
+    },
+    {
+     "name": "RXD",
+     "signal": "uart_rx",
+     "note": "UART receive, from the ESP's TX"
+    },
+    {
+     "name": "RTS",
+     "signal": "digital_out",
+     "active_low": true,
+     "note": "modem output; on ESP boards it drives EN/IO0 via the auto-reset transistors"
+    },
+    {
+     "name": "DTR",
+     "signal": "digital_out",
+     "active_low": true,
+     "note": "modem output; on ESP boards it drives EN/IO0 via the auto-reset transistors"
+    },
+    {
+     "name": "VPP",
+     "signal": "nc",
+     "note": "4.7 µF to GND only for in-system ROM programming"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "uart",
+     "note": "300 bps to 2.0 Mbps (data sheet p. 12)"
+    }
+   ],
+   "current": {
+    "supply": "REGIN",
+    "typ": {
+     "value": 0.017,
+     "unit": "A",
+     "page": 5,
+     "evidence": [
+      "Supply Current1 Normal Operation;",
+      "VREG Enabled",
+      "— 17.0 18.5 mA"
+     ],
+     "conditions": "normal operation, regulator enabled"
+    },
+    "max": {
+     "value": 0.0185,
+     "unit": "A",
+     "page": 5,
+     "evidence": [
+      "Supply Current1 Normal Operation;",
+      "VREG Enabled",
+      "— 17.0 18.5 mA"
+     ],
+     "conditions": "normal operation, regulator enabled"
+    },
+    "sleep": {
+     "value": 0.0001,
+     "unit": "A",
+     "page": 5,
+     "evidence": [
+      "Supply Current1 Suspended;",
+      "—1 0 0 2 0 0µ A"
+     ],
+     "conditions": "USB suspend, regulator enabled, typical; pypdf renders '— 100 200 µA' as '—1 0 0 2 0 0µ A'"
+    },
+    "note": "plus about 200 µA USB pull-up current while connected (p. 5)"
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "The on-chip regulator (REGIN 3.0–5.25 V) delivers 3.3–3.6 V on VDD and at most 100 mA including the CP2104's own supply current.",
+     "verified": true,
+     "page": 6,
+     "evidence": [
+      "Output Voltage Output Current = 1 to 100 mA* 3.3 3.45 3.6 V",
+      "The maximum regulator supply current is 100 mA. This includes the supply current of the CP2104."
+     ]
+    },
+    {
+     "text": "Open-drain GPIO/UART outputs may be pulled up to external logic of at most 5 V.",
+     "verified": true,
+     "page": 13,
+     "evidence": "higher, external voltage through an external pull-up resistor. The maximum external pull-up voltage is 5 V."
+    },
+    {
+     "text": "For in-system programming of the configuration ROM, a 4.7 µF capacitor goes from VPP to GND.",
+     "verified": true,
+     "page": 8,
+     "evidence": "VPP 16* Special Connect a 4.7 µF capacitor between this pin and ground to support"
+    },
+    {
+     "text": "Only the pins an ESP project wires are modelled (power, USB, RST, TXD, RXD, RTS, DTR); CTS and the other modem, GPIO and suspend pins may stay unconnected (p. 8) and are left out.",
+     "verified": false
+    },
+    {
+     "text": "On ESP32 boards the CP2104's DTR/RTS drive EN and IO0 through two transistors (auto-reset); opening the port can reset the board.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "ch9102f",
+   "aliases": [
+    "ch9102"
+   ],
+   "title": "CH9102F USB-to-UART bridge",
+   "category": "comm.usb_uart",
+   "manufacturer": "WCH (Nanjing Qinheng Microelectronics)",
+   "kind": "ic",
+   "source_ids": [
+    "mod-nnet-ch9102f-ds"
+   ],
+   "supplies": {
+    "VDD5": {
+     "min": {
+      "value": 4.0,
+      "unit": "V",
+      "page": 8,
+      "evidence": "connected to capacitor 4.0 5 5.5 VDD5 USB power supply",
+      "conditions": "5 V mode: V3 only with its capacitor (variant 3v3: V3 tied to VDD5, 3.0–3.6 V)"
+     },
+     "typ": {
+      "value": 5.0,
+      "unit": "V",
+      "page": 8,
+      "evidence": "connected to capacitor 4.0 5 5.5 VDD5 USB power supply",
+      "conditions": "5 V mode"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 8,
+      "evidence": "connected to capacitor 4.0 5 5.5 VDD5 USB power supply",
+      "conditions": "5 V mode"
+     },
+     "abs_max": {
+      "value": 6.0,
+      "unit": "V",
+      "page": 7,
+      "evidence": "VDD5 USB power supply voltage (VDD5 connects to power, GND connects to ground) -0.5 6.0 V",
+      "conditions": "absolute maximum rating"
+     }
+    },
+    "VIO": {
+     "min": {
+      "value": 1.7,
+      "unit": "V",
+      "page": 8,
+      "evidence": "VIO Serial port I/O power supply voltage 1.7 5 5.5 V"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 8,
+      "evidence": "VIO Serial port I/O power supply voltage 1.7 5 5.5 V"
+     },
+     "abs_max": {
+      "value": 6.0,
+      "unit": "V",
+      "page": 7,
+      "evidence": "VIO Serial port I/O power supply voltage (VIO connects to power, GND connects to ground) -0.5 6.0 V",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "VIO",
+    "vih": {
+     "value": 1.9,
+     "unit": "V",
+     "page": 8,
+     "evidence": "VIO=3.3V 1.9  VIO V",
+     "conditions": "VIO = 3.3 V"
+    },
+    "vil": {
+     "value": 0.9,
+     "unit": "V",
+     "page": 8,
+     "evidence": "VIO=3.3V 0  0.9 V",
+     "conditions": "VIO = 3.3 V"
+    },
+    "voh": {
+     "rel_offset": -0.4,
+     "of": "VIO",
+     "unit": "V",
+     "page": 8,
+     "evidence": "VIO=3.3V, 5mA output current VIO-0.4 VIO-0.3  V",
+     "conditions": "VIO = 3.3 V, 5 mA output"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 8,
+     "evidence": "VIO=3.3V, 8mA draw current  0.3 0.4 V",
+     "conditions": "VIO = 3.3 V, 8 mA sink"
+    },
+    "v_in_max": {
+     "rel_offset": 0.5,
+     "of": "VIO",
+     "unit": "V",
+     "page": 7,
+     "evidence": "VUART Voltage on UART and other pins -0.5 VIO+0.5 V",
+     "conditions": "absolute maximum rating, relative to VIO"
+    },
+    "outputs": "push_pull",
+    "five_v_tolerant": false
+   },
+   "pins": [
+    {
+     "name": "VDD5",
+     "signal": "supply",
+     "note": "USB supply input (VBUS 5 V), or 3.3 V with V3 tied to it"
+    },
+    {
+     "name": "VIO",
+     "signal": "supply",
+     "note": "UART I/O supply 1.8–5 V: sets the UART levels"
+    },
+    {
+     "name": "V3",
+     "signal": "power_out",
+     "note": "internal 3.3 V regulator output: 0.1 µF to GND, or tied to VDD5 at 3.3 V"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "RST",
+     "signal": "reset_in",
+     "active_low": true,
+     "internal_pull": "up",
+     "note": "external reset, active low, built-in pull-up"
+    },
+    {
+     "name": "UD+",
+     "signal": "analog_in",
+     "note": "USB D+, connect directly (no series resistor)"
+    },
+    {
+     "name": "UD-",
+     "signal": "analog_in",
+     "note": "USB D-, connect directly (no series resistor)"
+    },
+    {
+     "name": "VBUS",
+     "signal": "analog_in",
+     "note": "USB VBUS detection, built-in pull-down"
+    },
+    {
+     "name": "TXD",
+     "signal": "uart_tx",
+     "note": "UART transmit, to the ESP's RX"
+    },
+    {
+     "name": "RXD",
+     "signal": "uart_rx",
+     "internal_pull": "up",
+     "note": "UART receive, from the ESP's TX (integrated pull-up)"
+    },
+    {
+     "name": "DTR",
+     "signal": "digital_out",
+     "active_low": true,
+     "note": "modem output; on ESP boards it drives EN/IO0 via the auto-reset transistors"
+    },
+    {
+     "name": "RTS",
+     "signal": "digital_out",
+     "active_low": true,
+     "note": "modem output; on ESP boards it drives EN/IO0 via the auto-reset transistors"
+    },
+    {
+     "name": "TNOW",
+     "signal": "digital_out",
+     "note": "transmit in progress (RS-485 direction), active high; GPIO2"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "uart",
+     "note": "50 bps to 4 Mbps (data sheet p. 1)"
+    }
+   ],
+   "current": {
+    "supply": "VDD5",
+    "typ": {
+     "value": 0.003,
+     "unit": "A",
+     "page": 8,
+     "evidence": "IVDD Operating VDD5 or V3 power supply current  3 15 mA",
+     "conditions": "operating, typical"
+    },
+    "max": {
+     "value": 0.015,
+     "unit": "A",
+     "page": 8,
+     "evidence": "IVDD Operating VDD5 or V3 power supply current  3 15 mA",
+     "conditions": "operating"
+    },
+    "sleep": {
+     "value": 9e-05,
+     "unit": "A",
+     "page": 8,
+     "evidence": "VDD5 power supply =5V  0.09 0.16 mA",
+     "conditions": "USB suspend, VDD5 = 5 V, typical"
+    },
+    "note": "VIO draws up to 10 mA (p. 8)"
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "V3"
+     ],
+     "to": "GND",
+     "note": "0.1 µF on V3 when VDD5 is above 3.6 V",
+     "page": 2,
+     "evidence": "than 3.6V, connects to external 0.1uF decoupling"
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "pins": [
+      "VDD5",
+      "VIO"
+     ],
+     "to": "GND",
+     "note": "external decoupling capacitor on VDD5 and VIO",
+     "page": 2,
+     "evidence": [
+      "7 7 VDD5 POWER Power supply voltage input, requires an external decoupling capacitor",
+      "VIO POWER I/O power supply voltage input, requires an external decoupling capacitor"
+     ]
+    }
+   ],
+   "hazards": [],
+   "variants": [
+    {
+     "id": "3v3",
+     "title": "CH9102F at 3.3 V (V3 connected to VDD5)",
+     "overrides": {
+      "supplies": {
+       "VDD5": {
+        "min": {
+         "value": 3.0,
+         "unit": "V",
+         "page": 8,
+         "evidence": "voltage V3 connected to VDD5, VDD5=V3 3.0 3.3 3.6",
+         "conditions": "V3 connected to VDD5"
+        },
+        "typ": {
+         "value": 3.3,
+         "unit": "V",
+         "page": 8,
+         "evidence": "voltage V3 connected to VDD5, VDD5=V3 3.0 3.3 3.6",
+         "conditions": "V3 connected to VDD5"
+        },
+        "max": {
+         "value": 3.6,
+         "unit": "V",
+         "page": 8,
+         "evidence": "voltage V3 connected to VDD5, VDD5=V3 3.0 3.3 3.6",
+         "conditions": "V3 connected to VDD5"
+        },
+        "abs_max": {
+         "value": 6.0,
+         "unit": "V",
+         "page": 7,
+         "evidence": "VDD5 USB power supply voltage (VDD5 connects to power, GND connects to ground) -0.5 6.0 V",
+         "conditions": "absolute maximum rating"
+        }
+       },
+       "VIO": {
+        "min": {
+         "value": 1.7,
+         "unit": "V",
+         "page": 8,
+         "evidence": "VIO Serial port I/O power supply voltage 1.7 5 5.5 V"
+        },
+        "max": {
+         "value": 5.5,
+         "unit": "V",
+         "page": 8,
+         "evidence": "VIO Serial port I/O power supply voltage 1.7 5 5.5 V"
+        },
+        "abs_max": {
+         "value": 6.0,
+         "unit": "V",
+         "page": 7,
+         "evidence": "VIO Serial port I/O power supply voltage (VIO connects to power, GND connects to ground) -0.5 6.0 V",
+         "conditions": "absolute maximum rating"
+        }
+       }
+      },
+      "requires": [
+       {
+        "code": "decoupling",
+        "kind": "ceramic",
+        "pins": [
+         "VDD5",
+         "VIO"
+        ],
+        "to": "GND",
+        "note": "external decoupling capacitor on VDD5 and VIO",
+        "page": 2,
+        "evidence": [
+         "7 7 VDD5 POWER Power supply voltage input, requires an external decoupling capacitor",
+         "VIO POWER I/O power supply voltage input, requires an external decoupling capacitor"
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "notes": [
+    {
+     "text": "CH9102F has an independent UART I/O supply VIO (5 V, 3.3 V, 2.5 V or 1.8 V); the CH9102X (QFN28) supports only 3.3 V I/O.",
+     "verified": true,
+     "page": 1,
+     "evidence": [
+      "CH9102F UART interface I/O powered independently, support 5V, 3.3V, 2.5V, 1.8V power supply",
+      "CH9102X UART interface I/O only supports 3.3V power supply voltage."
+     ]
+    },
+    {
+     "text": "VDD5 below 3.6 V: connect V3 to VDD5; above 3.6 V: V3 only gets a 0.1 µF capacitor.",
+     "verified": true,
+     "page": 2,
+     "evidence": [
+      "Internal voltage regulator output and kernel and USB",
+      "power supply input. When VDD5 voltage is less than",
+      "3.6V, connects to VDD5. When VDD5 voltage is more"
+     ]
+    },
+    {
+     "text": "UART inputs must stay below VIO + 0.5 V: with VIO at 3.3 V the CH9102F is not 5 V tolerant.",
+     "verified": true,
+     "page": 7,
+     "evidence": "VUART Voltage on UART and other pins -0.5 VIO+0.5 V"
+    },
+    {
+     "text": "Input thresholds at other VIO values: VIH 2.5 V / VIL 1.5 V at VIO 5 V, VIH 1.3 V / VIL 0.5 V at VIO 1.8 V (p. 8); the catalog carries the 3.3 V values.",
+     "verified": false
+    },
+    {
+     "text": "Built-in clock and EEPROM: no crystal needed.",
+     "verified": true,
+     "page": 1,
+     "evidence": "Integrated power-on reset, integrated clock, no external crystal required."
+    },
+    {
+     "text": "On ESP32 dev kits the CH9102F's DTR/RTS drive EN and IO0 through two transistors (auto-reset); opening the port can reset the board.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "pn5180",
+   "aliases": [
+    "pn5180a0hn",
+    "pn5180a0et"
+   ],
+   "title": "PN5180 NFC frontend (SPI)",
+   "category": "comm.rfid",
+   "manufacturer": "NXP Semiconductors",
+   "kind": "ic",
+   "source_ids": [
+    "mod-nnet-pn5180-ds"
+   ],
+   "supplies": {
+    "VBAT": {
+     "min": {
+      "value": 2.7,
+      "unit": "V",
+      "page": 117,
+      "evidence": "VDD(VBAT) supply voltage on pin VBAT - 2.7 3.3 5.5 V"
+     },
+     "typ": {
+      "value": 3.3,
+      "unit": "V",
+      "page": 117,
+      "evidence": "VDD(VBAT) supply voltage on pin VBAT - 2.7 3.3 5.5 V"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 117,
+      "evidence": "VDD(VBAT) supply voltage on pin VBAT - 2.7 3.3 5.5 V"
+     }
+    },
+    "PVDD": {
+     "min": {
+      "value": 2.7,
+      "unit": "V",
+      "page": 117,
+      "evidence": [
+       "VVDD(PVDD) supply voltage on pin PVDD",
+       "3.3 V supply 2.7 3.3 3.6 V"
+      ],
+      "conditions": "3.3 V host interface (1.65–1.95 V for 1.8 V); nothing between 1.95 and 2.7 V"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 117,
+      "evidence": [
+       "VVDD(PVDD) supply voltage on pin PVDD",
+       "3.3 V supply 2.7 3.3 3.6 V"
+      ],
+      "conditions": "3.3 V host interface"
+     },
+     "abs_max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 116,
+      "evidence": "VDD(PVDD) supply voltage on pin PVDD - -0.3 3.6 V",
+      "conditions": "limiting value"
+     }
+    },
+    "TVDD": {
+     "min": {
+      "value": 2.7,
+      "unit": "V",
+      "page": 117,
+      "evidence": "VDD(TVDD) supply voltage on pin TVDD - 2.7 5.0 5.5 V",
+      "conditions": "transmitter supply"
+     },
+     "typ": {
+      "value": 5.0,
+      "unit": "V",
+      "page": 117,
+      "evidence": "VDD(TVDD) supply voltage on pin TVDD - 2.7 5.0 5.5 V",
+      "conditions": "transmitter supply"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 117,
+      "evidence": "VDD(TVDD) supply voltage on pin TVDD - 2.7 5.0 5.5 V",
+      "conditions": "transmitter supply"
+     },
+     "abs_max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 116,
+      "evidence": "VDD(TVDD) supply voltage on pin TVDD - -0.3 5.5 V",
+      "conditions": "limiting value"
+     }
+    }
+   },
+   "io": {
+    "domain": "PVDD",
+    "vih": {
+     "rel": 0.65,
+     "of": "PVDD",
+     "unit": "V",
+     "page": 120,
+     "evidence": [
+      "VIH HIGH-level input voltage 0.65 x",
+      "Input pins SCLK, MOSI, NSS"
+     ],
+     "conditions": "SCLK, MOSI, NSS"
+    },
+    "vil": {
+     "rel": 0.35,
+     "of": "PVDD",
+     "unit": "V",
+     "page": 121,
+     "evidence": "VIL LOW-level input voltage 0 - 0.35 x",
+     "conditions": "SCLK, MOSI, NSS"
+    },
+    "voh": {
+     "rel_offset": -0.4,
+     "of": "PVDD",
+     "unit": "V",
+     "page": 121,
+     "evidence": [
+      "VOH HIGH-level output voltage IOH < 3 mA VDD(PVDD)",
+      "-0.4",
+      "Output pin MISO"
+     ],
+     "conditions": "MISO, IOH < 3 mA"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 121,
+     "evidence": [
+      "VOL LOW-level output voltage IOL < 3 mA 0 - 0.4 V",
+      "Output pin MISO"
+     ],
+     "conditions": "MISO, IOL < 3 mA"
+    },
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "NSS",
+     "signal": "spi_cs",
+     "active_low": true,
+     "note": "SPI chip select"
+    },
+    {
+     "name": "MOSI",
+     "signal": "spi_sdi",
+     "note": "SPI data in"
+    },
+    {
+     "name": "MISO",
+     "signal": "spi_sdo",
+     "output": "tristate",
+     "note": "SPI data out, high-ohmic while NSS is high"
+    },
+    {
+     "name": "SCK",
+     "signal": "spi_sck",
+     "note": "SPI clock"
+    },
+    {
+     "name": "BUSY",
+     "signal": "digital_out",
+     "note": "high while the PN5180 cannot take SPI traffic"
+    },
+    {
+     "name": "RESET_N",
+     "signal": "reset_in",
+     "active_low": true,
+     "note": "reset, low active"
+    },
+    {
+     "name": "IRQ",
+     "signal": "digital_out",
+     "note": "interrupt request, polarity set in EEPROM (IRQ_PIN_CONFIG)"
+    },
+    {
+     "name": "AUX2",
+     "signal": "digital_out",
+     "note": "AUX2/DWL_REQ: download request input during boot, then test output"
+    },
+    {
+     "name": "GPO1",
+     "signal": "digital_out",
+     "note": "general purpose output"
+    },
+    {
+     "name": "PVDD",
+     "signal": "supply",
+     "note": "host interface pad supply (1.8 V or 3.3 V)"
+    },
+    {
+     "name": "VBAT",
+     "signal": "supply",
+     "note": "main supply; all VBAT pins must be connected"
+    },
+    {
+     "name": "TVDD",
+     "signal": "supply",
+     "note": "antenna driver supply"
+    },
+    {
+     "name": "VSS",
+     "signal": "gnd",
+     "note": "VSS, PVSS, TVSS and the heatsink pad"
+    },
+    {
+     "name": "TX1",
+     "signal": "analog_in",
+     "note": "antenna driver output 1 (matching network)"
+    },
+    {
+     "name": "TX2",
+     "signal": "analog_in",
+     "note": "antenna driver output 2 (matching network)"
+    },
+    {
+     "name": "RXP",
+     "signal": "analog_in",
+     "note": "receiver input"
+    },
+    {
+     "name": "RXN",
+     "signal": "analog_in",
+     "note": "receiver input"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "spi",
+     "mode": 0,
+     "f_max_hz": {
+      "value": 7000000.0,
+      "unit": "Hz",
+      "page": 16,
+      "evidence": "The maximum SPI speed is 7 Mbit/s and fixed to CPOL = 0 and CPHA = 0.",
+      "conditions": "SPI, half duplex"
+     },
+     "note": "CPOL = 0, CPHA = 0, half duplex, BUSY handshake (data sheet p. 16)"
+    }
+   ],
+   "current": {
+    "supply": "TVDD",
+    "typ": {
+     "value": 0.18,
+     "unit": "A",
+     "page": 117,
+     "evidence": [
+      "IDD(TVDD) supply current on pin TVDD in still air with exposed pins",
+      "- 180 250 mA"
+     ],
+     "conditions": "transmitter on, recommended operating conditions"
+    },
+    "max": {
+     "value": 0.25,
+     "unit": "A",
+     "page": 117,
+     "evidence": [
+      "IDD(TVDD) supply current on pin TVDD in still air with exposed pins",
+      "- 180 250 mA"
+     ],
+     "conditions": "transmitter on, recommended operating conditions"
+    },
+    "note": "PVDD about 20 mA and VBAT at most 20 mA on top (p. 119); limiting value 300 mA on TVDD (p. 116)"
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "PVDD sets the host interface level: only 1.8 V or 3.3 V, nothing between 1.95 V and 2.7 V.",
+     "verified": true,
+     "page": 16,
+     "evidence": "Only a voltage of 1.8 V or 3.3 V is supported, but no voltage in the range of 1.95 V to 2.7 V."
+    },
+    {
+     "text": "The host must watch BUSY: it signals that the PN5180 cannot send or receive SPI data.",
+     "verified": true,
+     "page": 16,
+     "evidence": "The BUSY signal is used to indicate that the PN5180 is not able to send or receive data over the SPI interface."
+    },
+    {
+     "text": "All VBAT pins must be connected.",
+     "verified": true,
+     "page": 10,
+     "evidence": "VBAT 12 supply Supply Connection, all VBAT mandatory to be connected"
+    },
+    {
+     "text": "Common PN5180 breakout boards have a 5 V pin (TVDD, full RF power) and a 3.3 V pin (PVDD/VBAT); the SPI levels follow the 3.3 V pin. Check the board.",
+     "verified": false
+    }
+   ]
+  }
+ ]
+}

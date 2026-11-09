@@ -1,0 +1,27 @@
+# source_id: mod-wired-max3485-ds
+# document: Analog Devices (Maxim) MAX3483/MAX3485/MAX3486/MAX3488/MAX3490/MAX3491 3.3V-Powered, 10Mbps and Slew-Rate-Limited True RS-485/RS-422 Transceivers, data sheet 19-0333 Rev 2 (5/24)
+# url: https://web.archive.org/web/20260916071442id_/https://www.analog.com/media/en/technical-documentation/data-sheets/max3483-max3491.pdf
+# corpus: mod/wired/max3483-max3491.pdf sha256 e648fd27831d1ba1f5b587708a97b34742783f1b464e410dc895e4393b8054b0
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+● Interoperable with +5V Logic
+● Allows up to 32 Transceivers on the Bus
+@@ page 2
+Supply Voltage (VCC) .............................................................7V
+Driver Input Voltage (DI) ............................................-0.3V to 7V
+@@ page 3
+(VCC = 3.3V ±0.3V, TA = TMIN to TMAX, unless otherwise noted. Typical values are at TA = +25°C)
+Input High Voltage VIH DE, DI, RE 2.0 V
+Input Low Voltage VIL DE, DI, RE 0.8 V
+Receiver Output High Voltage VOH IOUT = -1.5mA, VID = 200mV, Figure 6 VCC - 0.4 V
+Receiver Output Low Voltage VOL IOUT = 2.5mA, VID = 200mV, Figure 6 0.4 V
+Supply Current ICC No load,DI = 0V or VCC
+DE = VCC,
+RE = 0V or VCC 1.1 2.2 mA
+Mode ISHDN DE = 0V, RE = VCC, DI = VCC or 0V 0.002 1 µA
+@@ page 7
+8 1 13, 14 VCC Positive Supply: 3.0V ≤ VCC ≤ 3.6V
+@@ page 14
+To minimize reflections, the line should be terminated 
+at both ends in its characteristic impedance, and stub 

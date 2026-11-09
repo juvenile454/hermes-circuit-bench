@@ -1,0 +1,50 @@
+# source_id: mod-nlevel-pca9306-ds
+# document: TI PCA9306 Dual Bidirectional I2C Bus and SMBus Voltage-Level Translator, data sheet SCPS113O
+# url: https://www.ti.com/lit/ds/symlink/pca9306.pdf
+# corpus: mod/nlevel/pca9306.pdf sha256 1cd97c734729f2bfca26ccaa93521c04c373568e4ebe6d892267dba2571e21e6
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+• 5-V Tolerant I2C I/O ports to support mixed-mode 
+input, and is operational from 1.2-V to 3.3-V V REF1 
+and 1.8-V to 5.5-V VREF2.
+@@ page 4
+EN 8 A2 I Switch enable input
+GND 1 A1 — Ground, 0 V
+SCL1 3 C1 I/O Serial clock, low-voltage side
+SCL2 6 C2 I/O Serial clock, high-voltage side
+SDA1 4 D1 I/O Serial data, low-voltage side
+SDA2 5 D2 I/O Serial data, high-voltage side
+VREF1 2 B1 I Low-voltage-side reference supply voltage for SCL1 and SDA1
+VREF2 7 B2 I High-voltage-side reference supply voltage for SCL2 and SDA2
+@@ page 5
+VREF1 DC reference voltage range –0.5 7 V
+VREF2 DC reference bias voltage range –0.5 7 V
+VI/O Input/output voltage range(2) –0.5 7 V
+Continuous channel current 128 mA
+VI/O Input/output voltage SCL1, SDA1, SCL2, SDA2 0 5.5 V
+VREF1 (1) Reference voltage 0 5.5 V
+VREF2 (1) Reference voltage 0 5.5 V
+EN Enable input voltage 0 5.5 V
+(1) To support translation, VREF1 supports 1.2 V to VREF2 - 0.6 V. VREF2 must be between VREF1 + 0.6 V to 5.5 V. See Section 9.2 for more 
+@@ page 12
+PCA9306 has the capability of being used with its VREF1 voltage equal to VREF2. This essentially turns the device 
+from a translator to a device which can be used as a switch, and in some situations this can be useful. The 
+@@ page 15
+Ibias = (VCC2 - Ven)/RCC : Ven = VREF1 + Vth (5)
+• Vth is approximately 0.6V
+RCC(min) ≥ (VCC2 - Ven)/0.128 : Ven = VREF1 + Vth (6)
+• Vth is approximately 0.6V
+@@ page 16
+an I2C bus referenced to V DPU, to which V REF2 is connected through a 200-k Ω pullup resistor. Translation on a 
+standard, open-drain I 2C bus is achieved by simply connecting pullup resistors from SCL1 and SDA1 to V REF1 
+and connecting pullup resistors from SCL2 and SDA2 to V DPU. Information on sizing the pullup resistors can be 
+H Logic Lows are propagated from one side to the other, Logic Highs blocked (independent pull up resistors passively drive the line high)
+L Disconnect
+@@ page 17
+As with the standard I 2C system, pullup resistors are required to provide the logic-high levels on the translator 
+bus. The size of these pullup resistors depends on the system, but each side of the repeater must have a pullup 
+@@ page 18
+the EN input must be connected to V REF2 and both pins pulled to high-side V DPU through a pullup resistor 
+(typically 200 k Ω). This allows V REF2 to regulate the EN input. A 100-pF filter capacitor connected to V REF2 is 
+recommended. The I 2C bus controller output can be push-pull or open-drain (pullup resistors may be required) 

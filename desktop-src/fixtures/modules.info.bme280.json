@@ -1,0 +1,258 @@
+{
+ "ok": true,
+ "action": "modules.info",
+ "summary": "BME280 humidity, pressure and temperature sensor (bme280): 7 pins, interfaces i2c; source class A.",
+ "result": {
+  "module": {
+   "id": "bme280",
+   "title": "BME280 humidity, pressure and temperature sensor",
+   "category": "sensor.environment",
+   "manufacturer": "Bosch Sensortec",
+   "kind": "ic",
+   "aliases": [
+    "gy-bme280",
+    "bme-280"
+   ],
+   "pins": [
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "CSB",
+     "signal": "mode_select",
+     "tie": "VDDIO",
+     "note": "tie to VDDIO for I²C (datasheet p. 33)"
+    },
+    {
+     "name": "SDI",
+     "signal": "i2c_sda",
+     "note": "SDA in I²C mode"
+    },
+    {
+     "name": "SCK",
+     "signal": "i2c_scl",
+     "note": "SCL in I²C mode"
+    },
+    {
+     "name": "SDO",
+     "signal": "addr_select",
+     "must_connect": true
+    },
+    {
+     "name": "VDDIO",
+     "signal": "supply",
+     "tie": "VDD"
+    },
+    {
+     "name": "VDD",
+     "signal": "supply"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "value": [
+       "0x76",
+       "0x77"
+      ],
+      "page": 32,
+      "evidence": [
+       "Connecting SDO to GND results in slave address",
+       "1110110 (0x76); connection it to VDDIO results in slave address 1110111 (0x77)"
+      ]
+     },
+     "default": "0x76",
+     "select": {
+      "pin": "SDO",
+      "map": {
+       "GND": "0x76",
+       "VDDIO": "0x77"
+      }
+     },
+     "note": "CSB must be connected to VDDIO to select I²C (p. 33)"
+    }
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 1.71,
+      "unit": "V",
+      "page": 8,
+      "evidence": [
+       "Internal Domains",
+       "VDD ripple max. 50 mVpp 1.71 1.8 3.6 V"
+      ]
+     },
+     "typ": {
+      "value": 1.8,
+      "unit": "V",
+      "page": 8,
+      "evidence": [
+       "Internal Domains",
+       "VDD ripple max. 50 mVpp 1.71 1.8 3.6 V"
+      ]
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 8,
+      "evidence": [
+       "Internal Domains",
+       "VDD ripple max. 50 mVpp 1.71 1.8 3.6 V"
+      ]
+     },
+     "abs_max": {
+      "value": 4.25,
+      "unit": "V",
+      "page": 13,
+      "evidence": "Voltage at any supply pin VDD and VDDIO pin -0.3 4.25 V"
+     }
+    },
+    "VDDIO": {
+     "min": {
+      "value": 1.2,
+      "unit": "V",
+      "page": 8,
+      "evidence": [
+       "I/O Domain",
+       "VDDIO  1.2 1.8 3.6 V"
+      ]
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 8,
+      "evidence": [
+       "I/O Domain",
+       "VDDIO  1.2 1.8 3.6 V"
+      ]
+     },
+     "abs_max": {
+      "value": 4.25,
+      "unit": "V",
+      "page": 13,
+      "evidence": "Voltage at any supply pin VDD and VDDIO pin -0.3 4.25 V"
+     }
+    }
+   },
+   "io": {
+    "domain": "VDDIO",
+    "vih": {
+     "rel": 0.8,
+     "of": "VDDIO",
+     "unit": "V",
+     "page": 35,
+     "evidence": "Input high level Vih_si VDDIO=1.2 V to 3.6 V 80   %VDDI",
+     "conditions": "VDDIO 1.2–3.6 V"
+    },
+    "vil": {
+     "rel": 0.2,
+     "of": "VDDIO",
+     "unit": "V",
+     "page": 35,
+     "evidence": "Input low level Vil_si VDDIO=1.2 V to 3. 6V   20 %VDDI",
+     "conditions": "VDDIO 1.2–3.6 V"
+    },
+    "v_in_max": {
+     "rel_offset": 0.3,
+     "of": "VDDIO",
+     "unit": "V",
+     "page": 13,
+     "evidence": "Voltage at any interface pin  -0.3 VDDIO + 0.3 V",
+     "conditions": "absolute maximum rating"
+    },
+    "outputs": "open_drain"
+   },
+   "current": {
+    "supply": "VDD",
+    "max": {
+     "value": 0.000714,
+     "unit": "A",
+     "page": 8,
+     "evidence": "IDDP Max value at -40 °C  714  µA",
+     "conditions": "during pressure measurement, max at -40 °C"
+    },
+    "sleep": {
+     "value": 3e-07,
+     "unit": "A",
+     "page": 8,
+     "evidence": [
+      "Sleep current IDDSL",
+      " 0.1 0.3 µA"
+     ],
+     "conditions": "max"
+    }
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VDD",
+      "VDDIO"
+     ],
+     "to": "GND",
+     "page": 39,
+     "evidence": "The recommended value for C1, C2 is 100 nF"
+    },
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "SDI",
+      "SCK"
+     ],
+     "to": "VDDIO",
+     "page": 33,
+     "evidence": "SDI is bi-directional with open drain to GND",
+     "note": "value from the I²C pull-up calculator (bus load ≤ 400 pF, p. 35)"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Breakout boards (e.g. GY-BME280) often add a 3.3 V regulator, level shifting and pull-ups; Bosch documents the bare chip only.",
+     "verified": false
+    },
+    {
+     "text": "Boards sold as BME280 sometimes carry a BMP280 (no humidity).",
+     "verified": false
+    },
+    {
+     "text": "chip_id register 0xD0 reads 0x60 on a BME280 (a BMP280 reads 0x58).",
+     "page": 27,
+     "evidence": "The “id” register contains the chip identification number chip_id[7:0], which is 0x60",
+     "verified": true
+    },
+    {
+     "text": "SDO must not float: an open SDO leaves the I²C address undefined.",
+     "page": 33,
+     "evidence": "The SDO pin cannot be left floating; if left floating, the I²C address will be",
+     "verified": true
+    }
+   ],
+   "class": "A",
+   "family": "env",
+   "variant": null,
+   "variants": []
+  }
+ },
+ "checks": [],
+ "warnings": [],
+ "assumptions": [],
+ "sources": [
+  {
+   "id": "mod-env-bme280-ds",
+   "title": "Bosch Sensortec BME280 Combined humidity and pressure sensor, Data sheet",
+   "url": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme280-ds002.pdf",
+   "retrieved": "2026-11-08",
+   "class": "A",
+   "note": "Document BST-BME280-DS001 (revision 1.23/1.24 in the page footers); pages 8, 13, 26, 27, 32, 33, 35, 38, 39; sha256 a2ccdb449fec94380742fe8eec851a11d9bd4142252d332b34682b4deecd7d89"
+  }
+ ],
+ "simulated": false,
+ "error": null
+}

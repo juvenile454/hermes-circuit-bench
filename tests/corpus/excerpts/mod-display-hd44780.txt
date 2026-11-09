@@ -1,0 +1,43 @@
+# source_id: mod-display-hd44780-ds
+# document: Hitachi HD44780U (LCD-II) Dot Matrix Liquid Crystal Display Controller/Driver, ADE-207-272(Z) Rev. 0.0 ('99.9); copy hosted by SparkFun
+# url: https://cdn.sparkfun.com/assets/9/5/f/7/b/HD44780.pdf
+# corpus: mod/display/hd44780u-sparkfun.pdf sha256 4324d67ec14fc8e7ba8cf7db7256749c9b80b94b3f8bedfa614a0d2839c7dea9
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+ADE-207-272(Z)
+Rev. 0.0
+• 4-bit or 8-bit MPU interface enabled
+@@ page 8
+RS 1 I MPU Selects registers.
+R/W 1 I MPU Selects read or write.
+E 1 I MPU Starts data read/write.
+DB4 to DB7 4 I/O MPU Four high order bidirectional tristate data bus
+DB0 to DB3 4 I/O MPU Four low order bidirectional tristate data bus pins.
+These pins are not used during 4-bit operation.
+VCC, GND 2 — Power supply V CC: 2.7V to 5.5V, GND: 0V
+@@ page 13
+4. Send the EPROM to Hitachi.
+@@ page 23
+until the initialization ends (BF = 1). The busy state lasts for 10 ms after VCC rises to 4.5 V.
+@@ page 47
+Power supply voltage (1) V CC–GND –0.3 to +7.0 V 1
+Input voltage Vt –0.3 to V CC +0.3 V 1
+@@ page 48
+DC Characteristics (VCC = 2.7 to 4.5 V, Ta = –30 to +75°C*3)
+VIH1 0.7V CC —V CC V6
+VIL1 –0.3 — 0.55 V 6
+VOH1 0.75V CC ——V – I OH = 0.1 mA 7
+VOL1 — — 0.2V CC VI OL = 0.1 mA 7
+@@ page 51
+DC Characteristics (VCC = 4.5 to 5.5 V, Ta = –30 to +75°C*3)
+VIH1 2.2 — V CC V6
+VIL1 –0.3 — 0.6 V 6
+VOH1 2.4 — — V –I OH = 0.205 mA 7
+VOL1 — — 0.4 V I OL = 1.2 mA 7
+@@ page 54
+Pins:  DB0 –DB7
+Pin:  E (MOS without pull-up) Pins:  RS, R/W (MOS with pull-up)
+@@ page 55
+6. Applies to input pins and I/O pins, excluding the OSC1 pin.
+7. Applies to I/O pins.

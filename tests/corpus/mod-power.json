@@ -1,0 +1,67 @@
+{
+ "files": [
+  {
+   "url": "https://www.diodes.com/assets/Datasheets/AP2112.pdf",
+   "path": "mod/power/AP2112.pdf",
+   "source_id": "mod-power-ap2112-ds",
+   "excerpt": "excerpts/mod-power-ap2112.txt",
+   "sha256": "ef8d376f2ec356e29172eb9e053819a0ebdcc576dba7fc9ab0505c568427920f"
+  },
+  {
+   "url": "https://www.holtek.com/webapi/116711/HT73xxv180.pdf",
+   "path": "mod/power/HT73xxv180.pdf",
+   "source_id": "mod-power-ht7333-ds",
+   "excerpt": "excerpts/mod-power-ht7333.txt",
+   "sha256": "3d91ea7b79745fa74cb6e30e52fa3529b8a67553eb5e417243ba8f6ab9202aed"
+  },
+  {
+   "url": "https://ww1.microchip.com/downloads/en/DeviceDoc/MCP1700-Data-Sheet-20001826F.pdf",
+   "path": "mod/power/MCP1700-Data-Sheet-20001826F.pdf",
+   "source_id": "mod-power-mcp1700-ds",
+   "excerpt": "excerpts/mod-power-mcp1700.txt",
+   "sha256": "44919ee695b5d6ef69aeb81f6b1b50a2d3d7197accd5db08a8a0d83f15d10918"
+  },
+  {
+   "url": "https://web.archive.org/web/20261016093418id_/https://product.torexsemi.com/system/files/series/xc6206.pdf",
+   "path": "mod/power/xc6206.pdf",
+   "source_id": "mod-power-xc6206-ds",
+   "excerpt": "excerpts/mod-power-xc6206.txt",
+   "sha256": "4c419be08c950e3e70f17083ca4a5b5bc59d38a438bcab38f84bd6b219fb472b"
+  },
+  {
+   "url": "https://datasheet.lcsc.com/datasheet/pdf/cdb3fac1732bda71cb1a255fca4027d3.pdf?productCode=C2835782",
+   "path": "mod/power/ME6211_lcsc_C2835782.pdf",
+   "source_id": "mod-power-me6211-ds",
+   "excerpt": "excerpts/mod-power-me6211.txt",
+   "sha256": "684fb25570730ed7960b2a89e1f168aa7e9f5703b6ad4dbd7b72582382da2a9b"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/lm2596.pdf",
+   "path": "mod/power/lm2596.pdf",
+   "source_id": "mod-power-lm2596-ds",
+   "excerpt": "excerpts/mod-power-lm2596.txt",
+   "sha256": "2eec90879908cf711b84d4f0c5d534c3cd12c576d25254b7019247435af4ab0f"
+  },
+  {
+   "url": "https://web.archive.org/web/20251211034929id_/https://www.monolithicpower.com/en/documentview/productdocument/index/version/2/document_type/Datasheet/lang/en/sku/MP1584EN-LF-Z/document_id/204/",
+   "path": "mod/power/MP1584.pdf",
+   "source_id": "mod-power-mp1584-ds",
+   "excerpt": "excerpts/mod-power-mp1584.txt",
+   "sha256": "cb05a76bddd95198c976a41c01e72a2460538049987bc9fcc3247cd53d677383"
+  },
+  {
+   "url": "https://ww1.microchip.com/downloads/en/DeviceDoc/MCP73831-Family-Data-Sheet-DS20001984H.pdf",
+   "path": "mod/power/MCP73831-Family-Data-Sheet-DS20001984H.pdf",
+   "source_id": "mod-power-mcp73831-ds",
+   "excerpt": "excerpts/mod-power-mcp73831.txt",
+   "sha256": "75297f2a5235599368381adfb63df2652cc22d757f171f388147b2ab3d32776f"
+  },
+  {
+   "url": "https://www.toppwr.com/uploadfile/file/20240130/65b892bb04a3c.pdf",
+   "path": "mod/power/TP4056_toppwr_65b892bb04a3c.pdf",
+   "source_id": "mod-power-tp4056-ds",
+   "excerpt": "excerpts/mod-power-tp4056.txt",
+   "sha256": "de2a2f802eb7e0e5070273c79dfd33f67ac028c49cb74971d566b70e753a4858"
+  }
+ ]
+}

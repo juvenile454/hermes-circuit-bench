@@ -1,0 +1,352 @@
+{
+  "schema": 1,
+  "wp": "ambient",
+  "note": "Values only from manufacturer documents; 'evidence' quotes lines of tests/corpus/excerpts/mod-ambient-*.txt (pypdf).",
+  "modules": [
+    {
+      "id": "ds18b20",
+      "aliases": ["ds18b20z", "ds18b20u"],
+      "title": "DS18B20 1-Wire digital thermometer",
+      "category": "sensor.temperature",
+      "manufacturer": "Analog Devices (Maxim Integrated)",
+      "kind": "ic",
+      "source_ids": ["mod-ambient-ds18b20-ds"],
+      "supplies": {
+        "VDD": {
+          "max": {"value": 5.5, "unit": "V", "page": 2, "evidence": "Supply Voltage VDD Local power (Note 1) +3.0 +5.5 V", "conditions": "local power; the minimum 3.0 V is checked by mod.ambient.ds18b20_parasite because VDD on GND (parasite power) is a valid mode"},
+          "abs_max": {"value": 6.0, "unit": "V", "page": 2, "evidence": "Voltage Range on Any Pin Relative to Ground ....-0.5V to +6.0V"}
+        }
+      },
+      "io": {
+        "vih": {"value": 2.2, "unit": "V", "page": 2, "evidence": ["Input Logic-High VIH", "Local power", "+2.2 The lower"], "conditions": "local power; parasite power needs 3.0 V (same table)"},
+        "vil": {"value": 0.8, "unit": "V", "page": 2, "evidence": "Input Logic-Low VIL (Notes 1, 4, 5) -0.3 +0.8 V", "conditions": "VDD 3.0–5.5 V"},
+        "v_in_max": {"value": 6.0, "unit": "V", "page": 2, "evidence": "Voltage Range on Any Pin Relative to Ground ....-0.5V to +6.0V", "conditions": "absolute maximum rating, any pin"},
+        "outputs": "open_drain"
+      },
+      "pins": [
+        {"name": "GND", "signal": "gnd"},
+        {"name": "DQ", "signal": "onewire", "output": "open_drain", "note": "open-drain 1-Wire data line; needs a pull-up (about 4.7 kΩ, p. 7/10)"},
+        {"name": "VDD", "signal": "supply", "must_connect": true, "note": "3.0–5.5 V (local power) or GND (parasite power, p. 4)"}
+      ],
+      "interfaces": [
+        {"type": "onewire", "note": "one data line; every device has a unique 64-bit ROM code, so many DS18B20 share one bus"}
+      ],
+      "current": {
+        "supply": "VDD",
+        "typ": {"value": 0.001, "unit": "A", "page": 2, "evidence": "Active Current IDD VDD = 5V (Note 9) 1 1.5 mA", "conditions": "VDD 5 V, during conversion or EEPROM write"},
+        "max": {"value": 0.0015, "unit": "A", "page": 2, "evidence": "Active Current IDD VDD = 5V (Note 9) 1 1.5 mA", "conditions": "VDD 5 V, during conversion or EEPROM write"},
+        "sleep": {"value": 1e-06, "unit": "A", "page": 2, "evidence": "Standby Current IDDS (Notes 7, 8) 750 1000 nA", "conditions": "max, up to +70 °C"}
+      },
+      "requires": [
+        {"code": "pullup", "kind": "resistor", "value": "4k7", "pins": ["DQ"], "page": 7, "evidence": ["Figure 6. Supplying the Parasite-Powered DS18B20 During", "4.7k\u2126"], "note": "to VPU (3.0–5.5 V; with local power VPU ≤ VDD); p. 10 says 'approximately 5 kΩ'; one pull-up per bus"}
+      ],
+      "hazards": [],
+      "notes": [
+        {"text": "1-Wire bus pull-up: 'requires an external pullup resistor of approximately 5 kΩ'.", "page": 10, "evidence": ["The 1-Wire bus requires an external pullup resistor of", "approximately 5k\u2126; thus, the idle state for the 1-Wire"], "verified": true},
+        {"text": "Parasite power: VDD must be connected to GND.", "page": 7, "evidence": ["When the DS18B20 is used in parasite power mode, the", "VDD pin must be connected to ground."], "verified": true},
+        {"text": "Parasite power: during temperature conversion and EEPROM copy (up to 1.5 mA) the bus needs a strong pull-up, e.g. a MOSFET to the rail, switched on within 10 µs.", "page": 7, "evidence": ["current can be as high as 1.5mA. This current can cause", "current, it is necessary to provide a strong pullup on the", "EEPROM. This can be accomplished by using a MOSFET", "1-Wire bus must be switched to the strong pullup within", "10µs (max) after a Convert T [44h] or Copy Scratchpad"], "verified": true},
+        {"text": "Parasite power is not recommended above +100 °C.", "page": 7, "evidence": ["The use of parasite power is not recommended for tem-", "peratures above +100°C since the DS18B20 may not be"], "verified": true},
+        {"text": "Parasite power: the pull-up supply VPU must be 3.0–5.5 V and VIH is 3.0 V.", "page": 2, "evidence": ["Pullup Supply Voltage VPU", "Parasite power", "+3.0 +5.5", "Parasite power +3.0"], "verified": true},
+        {"text": "12-bit conversion takes up to 750 ms.", "page": 3, "evidence": ["Temperature Conversion Time tCONV", "12-bit resolution 750"], "verified": true},
+        {"text": "A reading of +85 °C right after power-up is the power-on reset value (no conversion done yet).", "page": 6, "evidence": "*The power-on reset value of the temperature register is +85°C.", "verified": true},
+        {"text": "Waterproof probes and 3-pin 'DS18B20 module' boards often carry a 4.7 kΩ pull-up (and an LED); clones and counterfeits are common. ADI documents the chip only.", "verified": false}
+      ]
+    },
+    {
+      "id": "bh1750fvi",
+      "aliases": ["bh1750", "gy-302"],
+      "title": "BH1750FVI ambient light sensor",
+      "category": "sensor.light",
+      "manufacturer": "ROHM Semiconductor",
+      "kind": "ic",
+      "source_ids": ["mod-ambient-bh1750fvi-ds"],
+      "supplies": {
+        "VCC": {
+          "min": {"value": 2.4, "unit": "V", "page": 1, "evidence": "VCC Voltage Vcc 2.4 3.0 3.6 V"},
+          "typ": {"value": 3.0, "unit": "V", "page": 1, "evidence": "VCC Voltage Vcc 2.4 3.0 3.6 V"},
+          "max": {"value": 3.6, "unit": "V", "page": 1, "evidence": "VCC Voltage Vcc 2.4 3.0 3.6 V"},
+          "abs_max": {"value": 4.5, "unit": "V", "page": 1, "evidence": "Supply Voltage Vmax  4.5 V"}
+        },
+        "DVI": {
+          "min": {"value": 1.65, "unit": "V", "page": 1, "evidence": "I2C Reference Voltage V DVI 1.65 - V CC V", "conditions": "maximum is VCC (relative maxima are not allowed in supplies; not checked)"}
+        }
+      },
+      "io": {
+        "domain": "DVI",
+        "vih": {"rel": 0.7, "of": "DVI", "unit": "V", "page": 2, "evidence": "SCL, SDA Input ‘H’ Voltage 1 V IH1 0.7 * DVI", "conditions": "DVI ≥ 1.8 V"},
+        "vil": {"rel": 0.3, "of": "DVI", "unit": "V", "page": 2, "evidence": "SCL, SDA Input ‘L’ Voltage 1 V IL1", "conditions": "DVI ≥ 1.8 V; 0.3 × DVI on the same line"},
+        "vol": {"value": 0.4, "unit": "V", "page": 2, "evidence": "I2C SDA Output ‘L’ Voltage V OL 0", "conditions": "IOL = 3 mA, max"},
+        "outputs": "open_drain"
+      },
+      "pins": [
+        {"name": "VCC", "signal": "supply"},
+        {"name": "ADDR", "signal": "addr_select", "must_connect": true, "note": "3-state test pin: connect via about 100 kΩ, not directly, unless DVI gets its reset pulse (p. 6)"},
+        {"name": "GND", "signal": "gnd"},
+        {"name": "SDA", "signal": "i2c_sda"},
+        {"name": "DVI", "signal": "supply", "tie": "VCC", "note": "I²C reference voltage and asynchronous reset: hold low ≥ 1 µs after VCC is up (p. 13)"},
+        {"name": "SCL", "signal": "i2c_scl"}
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {"value": ["0x23", "0x5c"], "page": 10, "evidence": ["Slave Address is 2 types, it is determined by ADDR Terminal", "ADDR = ‘H’  ( ADDR ≧ 0.7VCC ) → “1011100“", "ADDR = 'L'  ( ADDR ≦ 0.3VCC ) → “0100011“"]},
+          "default": "0x23",
+          "select": {"pin": "ADDR", "map": {"GND": "0x23", "VCC": "0x5c"}},
+          "f_max_hz": {"value": 400000, "unit": "Hz", "page": 2, "evidence": "I2C SCL Clock Frequency f SCL"}
+        }
+      ],
+      "current": {
+        "supply": "VCC",
+        "typ": {"value": 0.00012, "unit": "A", "page": 2, "evidence": "Supply Current Icc1 － 120 190 µA Ev = 100 lx", "conditions": "VCC 3.0 V, Ev = 100 lx"},
+        "max": {"value": 0.00019, "unit": "A", "page": 2, "evidence": "Supply Current Icc1 － 120 190 µA Ev = 100 lx", "conditions": "VCC 3.0 V, Ev = 100 lx"},
+        "sleep": {"value": 1e-06, "unit": "A", "page": 2, "evidence": "Powerdown Current Icc2 － 0.01 1.0 µA", "conditions": "max"}
+      },
+      "requires": [
+        {"code": "pullup", "kind": "resistor", "pins": ["SDA", "SCL"], "to": "DVI", "page": 8, "evidence": "The description concerning SDA and the terminal SCL is omi tted in this application circuit example. Please design the", "note": "standard I²C pull-ups; value from the I²C pull-up calculator"}
+      ],
+      "hazards": [],
+      "notes": [
+        {"text": "DVI is also an asynchronous reset: it must be low for at least 1 µs (≤ 0.4 V) after VCC comes up, else ADDR, SDA and SCL are not stable.", "page": 13, "evidence": ["to 'L'  ( at least 1µs, DVI <= 0.4V ) after V CC", "is supplied. BH1750FVI is pulled down by"], "verified": true},
+        {"text": "Without that reset pulse connect ADDR through about 100 kΩ, not directly to VCC or GND (3-state test buffer).", "page": 6, "evidence": ["ADDR, SDA, SCL is not stable if DVI 'L' term ( 1us ) is not given by systems.", "In this case, please connect the resisters ( approximately 100kOhm ) to ADDR without directly", "connecting to VCC or GND,"], "verified": true},
+        {"text": "The application circuits for the DVI terminal show 0.1 µF capacitors.", "page": 8, "evidence": ["●Application circuit example of DVI terminal", "0.1µF"], "verified": true},
+        {"text": "ADDR levels: high ≥ 0.7 × VCC, low ≤ 0.3 × VCC.", "page": 2, "evidence": ["ADDR Input ‘H’ Voltage V AH 0.7 * VCC", "ADDR Input ‘L’ Voltage V AL"], "verified": true},
+        {"text": "GY-302 boards usually add a 3.3 V regulator, I²C pull-ups, a resistor on ADDR (0x23) and an RC on DVI; ROHM documents the chip only and no longer lists the part online.", "verified": false}
+      ]
+    },
+    {
+      "id": "veml7700",
+      "title": "VEML7700 ambient light sensor",
+      "category": "sensor.light",
+      "manufacturer": "Vishay Semiconductors",
+      "kind": "ic",
+      "source_ids": ["mod-ambient-veml7700-ds"],
+      "supplies": {
+        "VDD": {
+          "min": {"value": 2.5, "unit": "V", "page": 2, "evidence": "Supply voltage  VDD 2.5 3.3 3.6 V"},
+          "typ": {"value": 3.3, "unit": "V", "page": 2, "evidence": "Supply voltage  VDD 2.5 3.3 3.6 V"},
+          "max": {"value": 3.6, "unit": "V", "page": 2, "evidence": "Supply voltage  VDD 2.5 3.3 3.6 V"},
+          "abs_max": {"value": 4.0, "unit": "V", "page": 2, "evidence": "Supply voltage VDD 04V", "conditions": "absolute maximum rating; pypdf joins MIN 0 and MAX 4"}
+        }
+      },
+      "io": {
+        "domain": "VDD",
+        "vih": {"value": 1.3, "unit": "V", "page": 2, "evidence": "I2C bus input H-level range V DD is 3.3 V V ih 1.3 - 3.6 V", "conditions": "VDD 3.3 V"},
+        "vil": {"value": 0.4, "unit": "V", "page": 2, "evidence": "I2C bus input L-level range V DD is 3.3 V V il -0.3 - 0.4 V", "conditions": "VDD 3.3 V"},
+        "v_in_max": {"value": 3.6, "unit": "V", "page": 2, "evidence": "I2C bus input H-level range V DD is 3.3 V V ih 1.3 - 3.6 V", "conditions": "operating max, no absolute rating: top of the I²C bus H-level range, VDD 3.3 V (the absolute maximum table lists only the supply)"},
+        "outputs": "open_drain"
+      },
+      "pins": [
+        {"name": "SCL", "signal": "i2c_scl"},
+        {"name": "VDD", "signal": "supply"},
+        {"name": "GND", "signal": "gnd"},
+        {"name": "SDA", "signal": "i2c_sda"}
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {"value": ["0x10"], "page": 6, "evidence": ["The VEML7700 has a fix slave address for the host", "The slave address (7 bit) is set to 0010000 = 0x10."]},
+          "default": "0x10",
+          "f_max_hz": {"value": 400000, "unit": "Hz", "page": 2, "evidence": "I2C clock rate range f SCL 10 - 400 kHz"}
+        }
+      ],
+      "current": {
+        "supply": "VDD",
+        "typ": {"value": 4.5e-05, "unit": "A", "page": 2, "evidence": "VDD is 3.3 V, PSM_EN = 0, refresh time 100 ms I DD 45 - μA", "conditions": "VDD 3.3 V, power saving off, 100 ms refresh; no maximum given"},
+        "sleep": {"value": 5e-07, "unit": "A", "page": 2, "evidence": "Shut down current (2) VDD is 3.3 V I sd -0 . 5-μ A", "conditions": "typ, VDD 3.3 V"}
+      },
+      "requires": [
+        {"code": "pullup", "kind": "resistor", "value": "2k2-4k7", "pins": ["SDA", "SCL"], "to": "VDD", "page": 6, "evidence": ["Proposed values for the pull-up resistor R1 and R2 should be > 1 k", ", e.g. 2.2 k", "to 4.7 k"], "note": "R > 1 kΩ, e.g. 2.2 kΩ to 4.7 kΩ"},
+        {"code": "decoupling", "kind": "ceramic", "value": "100nF", "pins": ["VDD"], "to": "GND", "page": 6, "evidence": "100 nF10 μF", "note": "application diagram Fig. 8: 100 nF and 10 µF at VDD"},
+        {"code": "bulk_cap", "kind": "capacitor", "value": "10uF", "pins": ["VDD"], "to": "GND", "page": 6, "evidence": "100 nF10 μF", "note": "application diagram Fig. 8"}
+      ],
+      "hazards": [],
+      "notes": [
+        {"text": "Fixed address 0x10: one VEML7700 per bus segment (use an I²C mux for more).", "page": 6, "evidence": "The slave address (7 bit) is set to 0010000 = 0x10.", "verified": true},
+        {"text": "The I²C bus voltage range is 1.7–3.6 V; 5 V pull-ups are outside it.", "page": 1, "evidence": "VEML7700 2.5 to 3.6 1.7 to 3.6", "verified": true},
+        {"text": "No maximum operating current is given; the typical 45 µA (100 ms refresh, PSM off) is used for budgets.", "verified": false},
+        {"text": "Breakouts (e.g. Adafruit) add a 3.3 V regulator, level shifting and 10 kΩ pull-ups; Vishay documents the chip only.", "verified": false}
+      ]
+    },
+    {
+      "id": "tsl2591",
+      "aliases": ["tsl25911", "tsl25911fn"],
+      "title": "TSL2591 light-to-digital converter",
+      "category": "sensor.light",
+      "manufacturer": "ams OSRAM",
+      "kind": "ic",
+      "source_ids": ["mod-ambient-tsl2591-ds"],
+      "supplies": {
+        "VDD": {
+          "min": {"value": 2.7, "unit": "V", "page": 7, "evidence": "VDD Supply voltage 2.7 3 3.6 V"},
+          "typ": {"value": 3.0, "unit": "V", "page": 7, "evidence": "VDD Supply voltage 2.7 3 3.6 V"},
+          "max": {"value": 3.6, "unit": "V", "page": 7, "evidence": "VDD Supply voltage 2.7 3 3.6 V"},
+          "abs_max": {"value": 3.8, "unit": "V", "page": 6, "evidence": "Supply voltage, VDD 3.8 V All voltages are with respect to GND"}
+        }
+      },
+      "io": {
+        "domain": "VDD",
+        "vih": {"rel": 0.7, "of": "VDD", "unit": "V", "page": 7, "evidence": "VIH SCL, SDA input high voltage TSL25911 (Vbus = VDD)0 . 7  V DD", "conditions": "TSL25911 (bus voltage = VDD)"},
+        "vil": {"rel": 0.3, "of": "VDD", "unit": "V", "page": 7, "evidence": "VIL SCL, SDA input low voltage TSL25911 (Vbus = VDD)0 . 3  V DD", "conditions": "TSL25911 (bus voltage = VDD)"},
+        "v_in_max": {"value": 3.8, "unit": "V", "page": 6, "evidence": "Input terminal voltage -0.5 3.8 V", "conditions": "absolute maximum rating"},
+        "vol": {"value": 0.4, "unit": "V", "page": 7, "evidence": "VOL INT, SDA output low voltage 3mA sink current", "conditions": "3 mA sink, max (pypdf merges the 3 mA and 6 mA rows: 0.4 V / 0.6 V)"},
+        "outputs": "open_drain"
+      },
+      "pins": [
+        {"name": "SCL", "signal": "i2c_scl"},
+        {"name": "INT", "signal": "open_drain_out", "output": "open_drain", "active_low": true, "note": "optional; needs a pull-up (10 kΩ, p. 23) when used"},
+        {"name": "GND", "signal": "gnd"},
+        {"name": "NC", "signal": "nc", "note": "do not connect (p. 5)"},
+        {"name": "VDD", "signal": "supply"},
+        {"name": "SDA", "signal": "i2c_sda"}
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {"value": ["0x29"], "page": 29, "evidence": "TSL25911FN 0x29 I²C Vbus = VDD Interface ODFN-6"},
+          "default": "0x29",
+          "reserved": ["0x28"],
+          "f_max_hz": {"value": 400000, "unit": "Hz", "page": 10, "evidence": "f(SCL)     Clock frequency (I²C only) 0 400 kHz"},
+          "note": "also answers on 0x28 (secondary address for read-only registers, p. 14): no other device on 0x28"
+        }
+      ],
+      "current": {
+        "supply": "VDD",
+        "typ": {"value": 0.000275, "unit": "A", "page": 7, "evidence": "IDD Supply Current ActiveSleep state - no I²C activity 2752.3 3254 μA", "conditions": "active; pypdf merges the rows: active 275/325 µA, sleep 2.3/4 µA"},
+        "max": {"value": 0.000325, "unit": "A", "page": 7, "evidence": "IDD Supply Current ActiveSleep state - no I²C activity 2752.3 3254 μA", "conditions": "active; pypdf merges the rows: active 275/325 µA, sleep 2.3/4 µA"},
+        "sleep": {"value": 4e-06, "unit": "A", "page": 7, "evidence": "IDD Supply Current ActiveSleep state - no I²C activity 2752.3 3254 μA", "conditions": "sleep, no I²C activity, max"}
+      },
+      "requires": [
+        {"code": "decoupling", "kind": "ceramic", "value": "1uF", "pins": ["VDD"], "to": "GND", "page": 23, "evidence": ["A 1-μF", "low-ESR decoupling capacitor should be placed as close as"], "note": "low ESR, close to VDD"},
+        {"code": "pullup", "kind": "resistor", "pins": ["SDA", "SCL"], "to": "VDD", "page": 23, "evidence": ["The I²C signals and the Interrupt are open-drain outputs and", "require pull-up resistors."], "note": "value depends on speed, bus voltage and load; the ams EVM uses 1.5 kΩ at 400 kbit/s"}
+      ],
+      "hazards": [],
+      "notes": [
+        {"text": "Devices with the primary address 0x29 also have the secondary address 0x28 (read-only registers): 0x28 is taken too.", "page": 14, "evidence": "Devices with a primary I 2C address of 0x29 also have a secondary I 2C address of 0x28", "verified": true},
+        {"text": "INT is open drain; a 10 kΩ pull-up can be used on the interrupt line.", "page": 23, "evidence": ["A 10-k\u03a9 pull-up resistor (RPI) can be used for", "the interrupt line."], "verified": true},
+        {"text": "Breakouts (e.g. Adafruit) add a 3.3 V regulator, level shifting and 10 kΩ pull-ups; ams documents the chip only.", "verified": false}
+      ]
+    },
+    {
+      "id": "scd4x",
+      "aliases": ["scd40", "scd41"],
+      "title": "SCD40/SCD41 CO2, humidity and temperature sensor",
+      "category": "sensor.gas",
+      "manufacturer": "Sensirion",
+      "kind": "ic",
+      "source_ids": ["mod-ambient-scd4x-ds"],
+      "supplies": {
+        "VDD": {
+          "min": {"value": 2.4, "unit": "V", "page": 4, "evidence": "Supply voltage DC6 VDD  2.4 3.3 or 5.0 5.5 V"},
+          "typ": {"value": 3.3, "unit": "V", "page": 4, "evidence": "Supply voltage DC6 VDD  2.4 3.3 or 5.0 5.5 V", "conditions": "3.3 V or 5.0 V"},
+          "max": {"value": 5.5, "unit": "V", "page": 4, "evidence": "Supply voltage DC6 VDD  2.4 3.3 or 5.0 5.5 V"},
+          "abs_max": {"value": 6.0, "unit": "V", "page": 4, "evidence": "DC supply voltage  - 0.3 V – 6.0 V"}
+        }
+      },
+      "io": {
+        "domain": "VDD",
+        "vih": {"rel": 0.65, "of": "VDD", "unit": "V", "page": 4, "evidence": "Input high level voltage VIH  0.65 x VDD"},
+        "vil": {"rel": 0.3, "of": "VDD", "unit": "V", "page": 4, "evidence": "Input low level voltage VIL    0.3 x VDD"},
+        "v_in_max": {"rel_offset": 0.3, "of": "VDD", "unit": "V", "page": 4, "evidence": "Max voltage on pins SDA, SCL, GND  – 0.3 V to VDD+0.3 V", "conditions": "absolute maximum rating"},
+        "vol": {"value": 0.66, "unit": "V", "page": 4, "evidence": "Output low level voltage VOL 3 mA sink current   0.66  V", "conditions": "3 mA sink, max"},
+        "outputs": "open_drain"
+      },
+      "pins": [
+        {"name": "VDD", "signal": "supply"},
+        {"name": "VDDH", "signal": "supply", "tie": "VDD", "note": "IR source supply; connect to VDD close to the sensor (p. 5)"},
+        {"name": "GND", "signal": "gnd"},
+        {"name": "SDA", "signal": "i2c_sda"},
+        {"name": "SCL", "signal": "i2c_scl"},
+        {"name": "DNC", "signal": "nc", "note": "do not connect; solder to floating pads (p. 5)"}
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {"value": ["0x62"], "page": 7, "evidence": "I2C address 0x62"},
+          "default": "0x62",
+          "f_max_hz": {"value": 100000, "unit": "Hz", "page": 6, "evidence": "SCL clock frequency - 0 100 kHz", "conditions": "I²C standard mode only"}
+        }
+      ],
+      "current": {
+        "supply": "VDD",
+        "typ": {"value": 0.015, "unit": "A", "page": 4, "evidence": "measurement IDD VDD = 3.3 V  15 18 mA", "conditions": "average, periodic measurement, VDD 3.3 V"},
+        "max": {"value": 0.018, "unit": "A", "page": 4, "evidence": "measurement IDD VDD = 3.3 V  15 18 mA", "conditions": "average, periodic measurement, VDD 3.3 V"},
+        "peak": {"value": 0.205, "unit": "A", "page": 4, "evidence": "Peak supply current7 Ipeak VDD = 3.3 V  175 205 mA", "conditions": "max at VDD 3.3 V (137 mA at 5 V)"},
+        "note": "the supply must be designed for the peak current (p. 4 note 7)"
+      },
+      "requires": [
+        {"code": "pullup", "kind": "resistor", "value": "10k", "pins": ["SDA", "SCL"], "to": "VDD", "page": 5, "evidence": "Both SCL and SDA lines should be connected to external pull -up resistors (e.g. Rp = 10 k\u03a9, see Figure 1)", "note": "e.g. 10 kΩ; the MCU must only drive the lines low"}
+      ],
+      "hazards": [],
+      "notes": [
+        {"text": "Peak supply current: 205 mA max at VDD 3.3 V, 137 mA max at 5 V; design the supply for the peak current.", "page": 4, "evidence": ["Peak supply current7 Ipeak VDD = 3.3 V  175 205 mA VDD = 5 V  115 137 mA", "7 Power supply should be designed with respect to peak current."], "verified": true},
+        {"text": "Supply ripple at most 30 mV peak to peak; Sensirion prefers a low-noise LDO sized for the peak currents.", "page": 5, "evidence": ["taken to choose a low noise power supply (preferably a low-dropout regulator, LDO, with output ripple of less than 30 mV p-p),", "which is adequately dimensioned for the relatively large peak currents."], "verified": true},
+        {"text": "VDD and VDDH must always be at the same voltage.", "page": 5, "evidence": "VDD and VDDH are used to supply the sensor and must always be kept at the same voltage", "verified": true},
+        {"text": "At VDD 5 V the bus levels follow VDD (VIH 0.65 × VDD, max VDD + 0.3 V): a 3.3 V ESP32 bus needs 3.3 V supply or a level shifter.", "page": 4, "evidence": ["Input high level voltage VIH  0.65 x VDD", "Max voltage on pins SDA, SCL, GND  – 0.3 V to VDD+0.3 V"], "verified": true},
+        {"text": "Power-up takes up to 1000 ms before the sensor accepts commands.", "page": 6, "evidence": "Power-up time  After hard reset, VDD  ≥ 2.25 V - 1000 ms", "verified": true},
+        {"text": "Single-shot measurement mode exists on the SCD41 only.", "page": 17, "evidence": "In addition to periodic measurement modes, the SCD41 features a single shot measurement mode", "verified": true},
+        {"text": "The datasheet gives no decoupling or bulk capacitor value in its text.", "verified": false},
+        {"text": "Breakouts (Adafruit, Seeed, M5Stack) add a regulator, level shifting, 10 kΩ pull-ups and bulk capacitors; whether that regulator covers the 205 mA peaks is not documented by Sensirion.", "verified": false}
+      ]
+    },
+    {
+      "id": "sgp40",
+      "title": "SGP40 VOC sensor",
+      "category": "sensor.gas",
+      "manufacturer": "Sensirion",
+      "kind": "ic",
+      "source_ids": ["mod-ambient-sgp40-ds"],
+      "supplies": {
+        "VDD": {
+          "min": {"value": 1.7, "unit": "V", "page": 5, "evidence": ["Supply voltage, hotplate supply", "1.7 3.3 3.6 V"]},
+          "typ": {"value": 3.3, "unit": "V", "page": 5, "evidence": ["Supply voltage, hotplate supply", "1.7 3.3 3.6 V"]},
+          "max": {"value": 3.6, "unit": "V", "page": 5, "evidence": ["Supply voltage, hotplate supply", "1.7 3.3 3.6 V"]},
+          "abs_max": {"value": 3.6, "unit": "V", "page": 7, "evidence": "Supply voltage VDD −0.3 to +3.6 V"}
+        },
+        "VDDH": {
+          "min": {"value": 1.7, "unit": "V", "page": 5, "evidence": ["Supply voltage, hotplate supply", "1.7 3.3 3.6 V"]},
+          "max": {"value": 3.6, "unit": "V", "page": 5, "evidence": ["Supply voltage, hotplate supply", "1.7 3.3 3.6 V"]},
+          "abs_max": {"value": 3.6, "unit": "V", "page": 7, "evidence": "Supply voltage VDDH −0.3 to +3.6 V"}
+        }
+      },
+      "io": {
+        "domain": "VDD",
+        "outputs": "open_drain"
+      },
+      "pins": [
+        {"name": "VDD", "signal": "supply"},
+        {"name": "VSS", "signal": "gnd"},
+        {"name": "SDA", "signal": "i2c_sda"},
+        {"name": "NA", "signal": "nc", "tie": "GND", "note": "pin 4: connect to ground, no electrical function (p. 7)"},
+        {"name": "VDDH", "signal": "supply", "tie": "VDD", "note": "hotplate supply; same supply as VDD (p. 7)"},
+        {"name": "SCL", "signal": "i2c_scl"}
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {"value": ["0x59"], "page": 11, "evidence": "The sensor’s I2C address is 89 (decimal; hex.: 0x59)."},
+          "default": "0x59",
+          "f_max_hz": {"value": 400000, "unit": "Hz", "page": 5, "evidence": "SCL clock frequency fSCL – – – 400 kHz"}
+        }
+      ],
+      "current": {
+        "supply": "VDD",
+        "typ": {"value": 0.0026, "unit": "A", "page": 5, "evidence": ["– 2.6 3.0 mA Average current consumption while the sensor", "is continuously operated at VDD, VDDH = 3.3 V."], "conditions": "average, continuous operation, VDD 3.3 V (VDD + VDDH)"},
+        "max": {"value": 0.003, "unit": "A", "page": 5, "evidence": ["– 2.6 3.0 mA Average current consumption while the sensor", "is continuously operated at VDD, VDDH = 3.3 V."], "conditions": "average, continuous operation, VDD 3.3 V (1.8 V: 4.0 mA)"},
+        "sleep": {"value": 0.000105, "unit": "A", "page": 5, "evidence": ["Idle current IDD – 34 105", "A The idle mode is activated after power"], "conditions": "idle, max; pypdf renders µ as a private-use glyph"},
+        "note": "20 % more current for 5 ms on VDDH after entering measurement mode (p. 5 note 9)"
+      },
+      "requires": [
+        {"code": "pullup", "kind": "resistor", "value": "10k", "pins": ["SDA", "SCL"], "to": "VDD", "page": 7, "evidence": "are required to pull the SDA and SCL signal lines high.", "note": "e.g. 10 kΩ (pypdf renders Ω as a private-use glyph)"},
+        {"code": "decoupling", "kind": "ceramic", "value": "1uF", "pins": ["VDDH"], "to": "GND", "page": 7, "evidence": ["sensor, a capacitor of 1", "F is recommended."], "note": "1 µF recommended on VDDH (pypdf renders µ as a private-use glyph); VDD needs an RC element (values only in Figure 5)"}
+      ],
+      "hazards": [],
+      "notes": [
+        {"text": "The VDD pin must be decoupled with an RC element; the values are in a figure only.", "page": 7, "evidence": "decoupled with an RC element.", "verified": true},
+        {"text": "I²C levels follow NXP UM10204 section 6.1; the interface works with 1.7–3.6 V bus levels depending on VDD. The datasheet gives no own VIH/VIL numbers.", "page": 11, "evidence": "is compatible with 1.7–3.6 V I2C bus voltage levels depending on the supply voltage level.", "verified": true},
+        {"text": "Measurement mode draws 20 % more current on VDDH for 5 ms.", "page": 5, "evidence": "A 20  % higher current is drawn during 5  ms on V DDH after entering the", "verified": true},
+        {"text": "The VOC index needs Sensirion's Gas Index Algorithm in the firmware.", "verified": false},
+        {"text": "Breakouts (e.g. Adafruit) add a 3.3 V regulator, level shifting and pull-ups; Sensirion documents the chip only.", "verified": false}
+      ]
+    }
+  ]
+}

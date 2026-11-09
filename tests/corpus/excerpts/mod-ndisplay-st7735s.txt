@@ -1,0 +1,54 @@
+# source_id: mod-ndisplay-st7735s-ds
+# document: Sitronix ST7735S 132RGB x 162dot 262K Color with Frame Memory Single-Chip TFT Controller/Driver, Version 1.1, 2011/11 (copy hosted by Waveshare)
+# url: https://www.waveshare.com/w/upload/e/e2/ST7735S_V1.1_20111121.pdf
+# corpus: mod/ndisplay/st7735s-v1.1-waveshare.pdf sha256 37b93f0ef6d5ac0bafe76868e048b67dce682d92fb9bf5a7ca8d8070a45fcc94
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Sitronix Technology Corp. reserves the right to change the contents in this 
+Version 1.1 
+2011/11 
+@@ page 11
+I/O Voltage (VDDI to DGND): 1.65V~3.7V (VDDI ≤ VDD) 
+Analog Voltage (VDD to AGND): 2.5V~4.8V 
+@@ page 23
+VDD I Power Supply for Analog, Digital System and B ooster Circuit. VDD 
+VDDI I Power Supply for I/O system. VDDI 
+IM2=’0’, Serial Interface 
+- SPI4W=’1’, 4-line SPI Enable. 
+RESX I 
+-Signal is active low. 
+CSX I 
+-Low Enable. 
+@@ page 24
+-In Serial Interface, this is used as SCL. 
+-In 4-line SPI, this pin is used as D/CX (data/ command selection). 
+-D0 is the serial input/output signal in serial interface mode. 
+@@ page 28
+Supply Voltage VDD - 0.3 ~ +4.8 V 
+Supply Voltage (Logic) VDDI - 0.3 ~ +4.6 V 
+Logic Input Voltage Range VIN -0.3 ~ VDDI + 0.3 V 
+@@ page 29
+System Voltage VDD Operating Voltage  2.5 2.75 4.8 V  
+Interface Operation Voltage  VDDI 
+I/O Supply 
+1.65 1.8 3.7 V  
+Logic-High Input Voltage VIH  0.7VDDI   VDDI V Note 1 
+Logic-Low Input Voltage VIL  VSS  0.3VDDI  V Note 1 
+Logic-High Output Voltage VOH IOH = -1.0mA 0.8VDDI   VDDI V Note 1 
+Logic-Low Output Voltage VOL IOL = +1.0mA VSS  0.2VDDI  V Note 1 
+1. TA= -30 to 85 ℃. 
+@@ page 30
+Ta=25 ℃, Frame rate = 60Hz, Bare die, the registers setting are IC default setting. 
+Note 1  0.01 0.9 0.02 2 
+Normal Mode 
+Sleep-In Mode N/A 0.005 0.015 0.01 0.03 
+4. Typical: VDDI=1.8V, VDD=2.75V; Maximum: VDDI=1.65 to 3.7V, VDD=2.5 to 4.8V
+@@ page 36
+Ta=25 ℃, VDDI=1.65~3.7V, VDD=2.5~4.8V 
+TSCYCW  Serial Clock Cycle (Write) 66  ns 
+TSCYCR  Serial Clock Cycle (Read) 150  ns 
+@@ page 93
+tRESW Reset Pulse Duration 10 - us 
+7. It is necessary to wait 5msec after releasing RESX before sending commands. Also Sleep Out command 
+cannot be sent for 120msec. 

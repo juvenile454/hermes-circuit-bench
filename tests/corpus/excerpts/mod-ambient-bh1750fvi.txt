@@ -1,0 +1,46 @@
+# source_id: mod-ambient-bh1750fvi-ds
+# document: ROHM BH1750FVI Digital 16bit Serial Output Type Ambient Light Sensor IC, Technical Note No.11046EDT01, 2011.11 - Rev.D
+# url: https://web.archive.org/web/20160804053938id_/http://rohmfs.rohm.com/en/products/databook/datasheet/ic/sensor/light/bh1750fvi-e.pdf
+# corpus: mod/ambient/bh1750fvi-e.pdf sha256 a24bbf9d71afa6f66d88cbb6da6ce418d7d8762d17c3caca1137d9161936e8db
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Supply Voltage Vmax  4.5 V 
+SDA Sink Current Imax 7 mA 
+VCC Voltage Vcc 2.4 3.0 3.6 V 
+I2C Reference Voltage V DVI 1.65 - V CC V 
+@@ page 2
+Supply Current Icc1 － 120 190 µA Ev = 100 lx ※1 
+Powerdown Current Icc2 － 0.01 1.0 µA No input Light 
+ADDR Input ‘H’ Voltage V AH 0.7 * VCC － － V  
+ADDR Input ‘L’ Voltage V AL － － 0.3 * VCC V  
+DVI Input ‘L’ Voltage V DVL － － 0.4 V  
+SCL, SDA Input ‘H’ Voltage 1 V IH1 0.7 * DVI － － V DVI ≧ 1.8V 
+SCL, SDA Input ‘L’ Voltage 1 V IL1 － － 0.3 * DVI V DVI ≧ 1.8V 
+I2C SCL Clock Frequency f SCL － － 400 kHz  
+I2C SDA Output ‘L’ Voltage V OL 0 － 0.4 V I OL = 3 mA 
+@@ page 6
+DVI is I2C bus reference voltage terminal. And it is also asynchronous reset terminal. It is necessary to set to 'L'  after V CC is 
+ADDR, SDA, SCL is not stable if DVI 'L' term ( 1us ) is not given by systems. 
+In this case, please connect the resisters ( approximately 100kOhm ) to ADDR without directly 
+connecting to VCC or GND, 
+@@ page 8
+●Application circuit example of DVI terminal 
+The description concerning SDA and the terminal SCL is omi tted in this application circuit example. Please design the 
+0.1µF 
+0.1µF 
+0.1µF 
+0.1µF 
+@@ page 10
+Slave Address is 2 types, it is determined by ADDR Terminal 
+ADDR = ‘H’  ( ADDR ≧ 0.7VCC ) → “1011100“ 
+ADDR = 'L'  ( ADDR ≦ 0.3VCC ) → “0100011“ 
+@@ page 13
+1 VCC  Power Supply Terminal 
+2 ADDR 
+3 GND   GND Terminal 
+4 SDA 
+5 DVI 
+to 'L'  ( at least 1µs, DVI <= 0.4V ) after V CC 
+is supplied. BH1750FVI is pulled down by 
+6 SCL 

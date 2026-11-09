@@ -1,0 +1,31 @@
+# source_id: mod-power-ht7333-ds
+# document: Holtek HT73xx Series Low Power Consumption LDO, Rev. 1.80 (March 19, 2019)
+# url: https://www.holtek.com/webapi/116711/HT73xxv180.pdf
+# corpus: mod/power/HT73xxv180.pdf sha256 3d91ea7b79745fa74cb6e30e52fa3529b8a67553eb5e417243ba8f6ab9202aed
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Rev. 1.80 1 March 19, 2019 Rev. 1.00 PB March 19, 2019
+• Ultra low quiescent current: 3.5µA (typ.)
+• High input voltage (up to 12V)
+• Maximum output current: 250mA
+HT7333 3.3V
+@@ page 2
+Supply V oltage  ......................... VSS−0.3V to VSS+14V
+Operating Temperature  ........................−40°C to 85°C
+Power Consumption  ........................................500mW
+Maximum Junction Temperature .......................150°C
+1 GND Ground pin
+2 VIN Input pin
+3 VOUT Output pin
+@@ page 4
+HT7333, +3.3V Output Type
+VOUT Output Voltage 4.3V IOUT=40mA 3.201 3.300 3.399 V
+IOUT(MAX) Maximum Output Current 4.3V VOUT ≥ 2.97V 250 — — mA
+VDROP** Dropout Voltage — IOUT=40mA — 90 — mV
+ISS Quiescent Current 4.3V No load — 3.5 7.0 µA
+Line Regulation — IOUT=40mA 4.3V ≤ VIN ≤ 12V — 0.2 0.3 %/V
+VIN Input Voltage — — — — 12 V
+@@ page 5
+  ″**″ Dropout is measured at constant junction temperature, using pulsed ON time, and the criterion is VOUT 
+inside target value ±2%.

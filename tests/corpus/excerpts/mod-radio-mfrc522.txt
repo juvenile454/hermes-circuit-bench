@@ -1,0 +1,72 @@
+# source_id: mod-radio-mfrc522-ds
+# document: NXP MFRC522 Standard performance MIFARE and NTAG frontend, Product data sheet Rev. 3.9
+# url: https://cache.nxp.com/docs/en/data-sheet/MFRC522.pdf
+# corpus: mod/radio/MFRC522.pdf sha256 5e2fdff12348a21b0203fed3fc49a252d589c39511324ad29396e1975fe01451
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Rev. 3.9 — 27 April 2016
+@@ page 2
+ SPI up to 10 Mbit/s
+VDDA analog supply voltage V DD(PVDD)  VDDA = VDDD = VDD(TVDD); 
+[1][2] 2.5 3.3 3.6 V
+VDDD digital supply voltage 2.5 3.3 3.6 V
+VDD(TVDD) TVDD supply voltage 2.5 3.3 3.6 V
+VDD(PVDD) PVDD supply voltage [3] 1.6 1.8 3.6 V
+@@ page 3
+[2] V DDA, VDDD and VDD(TVDD) must always be the same voltage.
+[3] V DD(PVDD) must always be the same or lower voltage than VDDD.
+[7] During typical circuit operation, the overall current is below 100 mA.
+hard power-down; pin NRSTPD set LOW [4] --5 A
+IDDD digital supply current pin DVDD; V DDD =3V - 6 . 5 9 m A
+IDD(PVDD) PVDD supply current pin PVDD [5] --4 0 m A
+IDD(TVDD) TVDD supply current pin TVDD; continuous wave [6][7][8] -6 0 1 0 0 m A
+@@ page 6
+2 PVDD P pin power supply
+3 DVDD P digital power supply
+4 DVSS G digital ground [3]
+6 NRSTPD I reset and power-down input:
+12 TVDD P transmitter power supply: supplies the output stage of transmitters 1 and 2
+15 AVDD P analog power supply
+@@ page 7
+23 IRQ O interrupt request output: indicates an interrupt event
+24 SDA I/O I 2C-bus serial data line input/output[2]
+NSS I SPI signal input [2]
+SCK I SPI serial clock input [2]
+MOSI I/O SPI master out, slave in [2]
+MISO I/O SPI master in, slave out [2]
+32 EA I external address input for coding I 2C-bus address[2]
+@@ page 9
+Table 5. Connection protocol for detecting different interface types
+UART (input) SPI (output) I2C-bus (I/O)
+SDA RX NSS SDA
+I 2 C 001
+E A 01E A
+D7 TX MISO SCL
+D6 MX MOSI ADR_0
+D5 DTRQ SCK ADR_1
+@@ page 10
+communication to the host. The interface can handle data speeds up to 10 Mbit/s. When 
+Data bytes on both MOSI and MISO lines are sent with the MSB first. Data on both MOSI 
+and MISO lines must be stable on the rising edge of the clock and can be changed on the 
+falling edge. Data is provided by the MFRC522 on the falling clock edge and is stable 
+@@ page 74
+Table 150. Limiting values
+VDDA analog supply voltage 0.5 +4.0 V
+VDDD digital supply voltage 0.5 +4.0 V
+VDD(PVDD) PVDD supply voltage 0.5 +4.0 V
+VDD(TVDD) TVDD supply voltage 0.5 +4.0 V
+VI input voltage all input pins except pins MFIN and 
+VSS(PVSS)  0.5 V DD(PVDD) + 0.5 V
+@@ page 75
+Pins EA, I2C and NRSTPD
+VIH HIGH-level input voltage 0.7VDD(PVDD) -- V
+VIL LOW-level input voltage - - 0.3V DD(PVDD) V
+Pin SDA
+VIH HIGH-level input voltage 0.7VDD(PVDD) -- V
+VIL LOW-level input voltage - - 0.3V DD(PVDD) V
+@@ page 76
+pins D1, D2, D3, D4, D5, D6 and D7
+VIH HIGH-level input voltage 0.7VDD(PVDD) -- V
+VIL LOW-level input voltage - - 0.3V DD(PVDD) V
+Pin IRQ

@@ -1,0 +1,113 @@
+# source_id: mod-npower-bq24074-ds
+# document: Texas Instruments BQ2407x Standalone 1-Cell 1.5-A Linear Battery Chargers with Power Path, Data sheet SLUS810N (revised October 2021)
+# url: https://www.ti.com/lit/ds/symlink/bq24074.pdf
+# corpus: mod/npower/bq24074.pdf sha256 4fe4e4f9855501f83b400c6932e3098439e51c50539e40dc45b44a8d509e8db1
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+BQ2407x Standalone 1-Cell 1.5-A Linear Battery Chargers with Power Path
+Li-Ion linear chargers and system power path 
+@@ page 6
+PART NUMBER (1) (2) VOVP VBAT(REG) VOUT(REG) VDPPM TS METHOD OPTIONAL FUNCTION PACKAGE
+BQ24074 10.5 V 4.2 V 4.4 V VO(REG) – 100 mV ITERM
+@@ page 7
+15 ITERM6EN1
+@@ page 8
+BAT 2, 3 2, 3 2, 3 I/O Charger Power Stage Output and Battery Voltage Sense Input. Connect BAT to the positive terminal of the battery. Bypass BAT to VSS with a 4.7-μF to 47-μF ceramic capacitor.
+CE 4 4 4 I
+Charge Enable Active-Low Input. Connect CE to a high logic level to disable battery charging. OUT is active 
+CE is internally pulled down with approximately 285 kΩ. Do not leave CE unconnected to ensure proper 
+CHG 9 9 9 O
+Open-Drain Charging Status Indication Output. CHG pulls to VSS when the battery is charging. CHG is high 
+voltage rail using a 1kΩ-100kΩ resistor, or use with an LED for visual indication.
+EN1 6 6 6 I Input Current Limit Configuration Inputs. Use EN1 and EN2 control the maximum input current and enable 
+down with ≉285 kΩ. Do not leave EN1 or EN2 unconnected to ensure proper operation.EN2 5 5 5 I
+ILIM 12 12 12 I
+Adjustable Current Limit Programming Input. Connect a 1100-Ω to 8-kΩ resistor from ILIM to VSS to program 
+charge current. Leaving ILIM unconnected disables all charging.
+IN 13 13 13 I
+range is 4.35 V to 6.6 V (BQ24072, BQ24073, BQ24075, and BQ24079) or 4.35 V to 10.5 V (bq24074). The 
+input can accept voltages up to 26 V without damage but operation is suspended. Connect bypass capacitor 
+1 μF to 10 μF to VSS.
+ISET 16 16 16 I/O
+Fast Charge Current Programming Input. Connect a 590-Ω to 8.9-kΩ resistor from ISET to VSS to program 
+the fast charge current level. Charging is disabled if ISET is left unconnected. While charging, the voltage at 
+ITERM – 15 – I
+OUT 10, 11 10, 11 10, 11 O
+when SYSOFF is high (BQ24075 and BQ24079 only). Connect OUT to the system load. Bypass OUT to VSS 
+with a 4.7-μF to 47-μF ceramic capacitor.
+PGOOD 7 7 7 O
+Open-drain Power Good Status Indication Output. PGOOD pulls to VSS when a valid input source is 
+the desired logic voltage rail using a 1-kΩ to 100-kΩ resistor, or use with an LED for visual indication.
+@@ page 9
+TMR 14 14 14 I
+TS 1 1 1 I
+External NTC Thermistor Input. Connect the TS input to the NTC thermistor in the battery pack. TS monitors a 
+10kΩ NTC thermistor. For applications that do not use the TS function, connect a 10-kΩ fixed resistor from TS 
+to VSS to maintain a valid voltage level on TS.
+VSS 8 8 8 – Ground. Connect to the thermal pad and to the ground rail of the circuit.
+0 0 100 mA. USB100 mode
+0 1 500 mA. USB500 mode
+1 0 Set by an external resistor from ILIM to VSS
+1 1 Standby (USB suspend mode)
+@@ page 10
+IN (with respect to VSS) –0.3 28 V
+BAT (with respect to VSS) –0.3 5 V
+OUT, EN1, EN2, CE, TS, ISET, PGOOD, CHG, ILIM, 
+TMR, ITERM, SYSOFF, TD (with respect to VSS) –0.3 7 V
+II Input Current IN 1.6 A
+BAT (Charging mode) 1.5(2) A
+TJ Junction temperature –40 150 °C
+IN voltage range 4.35 26 V
+IN operating voltage range
+‘74 4.35 10.2
+IIN Input current, IN pin 1.5 A
+IOUT Current, OUT pin 4.5 A
+ICHG Current, BAT pin (Charging) 1.5(2) A
+RILIM Maximum input current programming resistor 1100 8000 Ω
+RISET Fast-charge current programming resistor (1) 590 8900 Ω
+@@ page 10
+8.1 Absolute Maximum Ratings(1)
+OUT, EN1, EN2, CE, TS, ISET, PGOOD, CHG, ILIM,
+TMR, ITERM, SYSOFF, TD (with respect to VSS) –0.3 7 V
+@@ page 10
+(2) The IC operational charging life is reduced to 20,000 hours, when charging at 1.5A and 125°C. The thermal regulation feature reduces
+charge current if the IC’s junction temperature reaches 125°C; thus without a good thermal design the maximum programmed charge
+@@ page 11
+RθJA Junction-to-ambient thermal resistance 44.5
+@@ page 12
+VOVP Input overvoltage protection threshold
+VIN: 5 V → 11 V (’74) 10.2 10.5 10.8
+IBAT(PDWN) Sleep current into BAT pin CE = LO or HI, input power not detected,No load on OUT pin, TJ = 85°C 4.3 6.5 μA
+IIN Standby current into IN pin
+EN1= HI, EN2=HI, VIN = 6 V, TJ= 85°C 41.3 50 μA
+ICC Active supply current, IN pin CE = LO, VIN = 6 V, no load on OUT pin,VBAT > VBAT(REG), (EN1, EN2) ≠ (HI, HI) 1.1 1.5 mA
+VDO(IN-OUT) VIN – VOUT VIN = 4.3 V, IIN = 1 A, VBAT = 4.2 V 300 475 mV
+VDO(BAT-OUT) VBAT – VOUT IOUT = 1 A, VIN = 0 V, VBAT > 3 V 50 100 mV
+OUT pin voltage regulation (BQ24073, BQ24074) VIN > VOUT + VDO(IN-OUT) 4.3 4.4 4.5
+EN1 = LO, EN2 = LO 90 95 100
+EN1 = HI, EN2 = LO 450 475 500
+KILIM Maximum input current factor
+ILIM = 500 mA to 1.5 A 1500 1610 1720 AΩ
+@@ page 13
+VBAT(REG) Battery charge voltage
+('72, '73, '74, '75) 4.16 4.20 4.23
+Battery fast charge current range VBAT(REG) > VBAT > VLOWV, VIN = 5 V CE = LO,EN1 = LO, EN2 = HI 100 1500 mA
+KISET Fast charge current factor 797 890 975 AΩ
+VHOT High temperature trip point Battery charging, VTS Falling 270 300 330 mV
+VCOLD Low temperature trip point Battery charging, VTS Rising 2000 2100 2200 mV
+TJ(REG) Temperature regulation limit 125 °C
+TJ(OFF) Thermal shutdown temperature TJ Rising 155 °C
+@@ page 14
+LOGIC LEVELS ON EN1, EN2, CE, SYSOFF, TD
+VIL Logic LOW input voltage 0 0.4 V
+VIH Logic HIGH input voltage 1.4 6 V
+LOGIC LEVELS ON PGOOD, CHG
+VOL Output LOW voltage ISINK = 5 mA 0.4 V
+(1) These numbers set trip points of 0°C and 50°C while charging, with 3°C hysteresis on the trip points, with a Vishay Type 2 curve NTC 
+@@ page 25
+ICHG = KISET/RISET (2)
+@@ page 42
+The device power dissipation, P, is a function of the charge rate and the voltage drop across the internal
+@@ page 44
+BQ24074RGTR Active Production VQFN (RGT) | 16 3000 | LARGE T&R Yes NIPDAU Level-2-260C-1 YEAR -40 to 85 (BZF, NXK)

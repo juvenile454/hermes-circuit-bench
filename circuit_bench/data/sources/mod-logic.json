@@ -1,0 +1,58 @@
+[
+  {
+    "id": "mod-logic-sn74hc595-ds",
+    "title": "Texas Instruments SNx4HC595 8-Bit Shift Registers With 3-State Output Registers, data sheet",
+    "url": "https://www.ti.com/lit/ds/symlink/sn74hc595.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "SCLS041J (December 1982, revised October 2021); pages 1, 3, 4, 5, 6, 15; sha256 5a6a5aeecc79a2d4bf4e15aae681e0f99cb13b54d6524be253a6844c898eeb0d"
+  },
+  {
+    "id": "mod-logic-sn74hc165-ds",
+    "title": "Texas Instruments SNx4HC165 8-Bit Parallel-Load Shift Registers, data sheet",
+    "url": "https://www.ti.com/lit/ds/symlink/sn74hc165.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "SCLS116H (December 1982, revised December 2015); direct ti.com download works by script (the research listed it as A1); pages 1, 3, 4, 5, 6, 15; sha256 7ebf4358fa42dc1e0f50848e513a05fe0829a5d83eb4851c310532d2f0f3424e"
+  },
+  {
+    "id": "mod-logic-cd74hc4067-ds",
+    "title": "Texas Instruments CD74HCx4067 High-Speed CMOS Logic 16-Channel Analog Multiplexer and Demultiplexer, data sheet",
+    "url": "https://www.ti.com/lit/ds/symlink/cd74hc4067.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "SCHS209D (November 1998, revised December 2024); pages 1, 4, 5, 6, 7, 8; sha256 be0091cbec79831f5ced7d5d42016eadb88b8fad431a1d460a94b9f4f98a421d"
+  },
+  {
+    "id": "mod-logic-cd74hc4051-ds",
+    "title": "Texas Instruments CDx4HC405x, CDx4HCT405x High-Speed CMOS Logic Analog Multiplexer and Demultiplexer, data sheet",
+    "url": "https://www.ti.com/lit/ds/symlink/cd74hc4051.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "SCHS122O (November 1997, revised January 2026), covers CD74HC4051/4052/4053; pages 1, 3, 6, 7, 8, 10, 27; sha256 88356c377dcb0afa0bbde9259a3fc68193ea6ce6745fcd38e284bbb23425bb7a"
+  },
+  {
+    "id": "mod-logic-max98357a-ds",
+    "title": "Analog Devices (Maxim Integrated) MAX98357A/MAX98357B Tiny, Low-Cost, PCM Class D Amplifier with Class AB Performance, data sheet",
+    "url": "https://web.archive.org/web/20261004230504id_/https://www.analog.com/media/en/technical-documentation/data-sheets/max98357a-max98357b.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A1",
+    "note": "Document 19-6779 Rev 16 (2/26); web.archive.org copy of the official analog.com URL https://www.analog.com/media/en/technical-documentation/data-sheets/max98357a-max98357b.pdf (analog.com refuses scripted downloads); pages 1, 4, 5, 6, 7, 15, 17, 28, 33; sha256 dea228ad619901d34c2f5f106243bdb9b9e95e38989d4d66fd6c6c489bfa6f1c"
+  },
+  {
+    "id": "mod-logic-pcm5102a-ds",
+    "title": "Texas Instruments PCM510xA 2.1 VRMS, 112/106/100 dB Audio Stereo DAC with PLL and 32-bit, 384 kHz PCM Interface, data sheet",
+    "url": "https://www.ti.com/lit/ds/symlink/pcm5102a.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "SLAS859C (May 2012, revised May 2015), covers PCM5100A/5101A/5102A; pages 1, 5, 6, 7, 9, 10, 16, 25, 28; sha256 a522083606b8e994875883215046fbdb92fd362996ca97719d259fbe9df07a85"
+  },
+  {
+    "id": "mod-logic-inmp441-ds",
+    "title": "InvenSense (TDK) INMP441 Omnidirectional Microphone with Bottom Port and I2S Digital Output, data sheet",
+    "url": "https://web.archive.org/web/20260318055936id_/https://invensense.tdk.com/wp-content/uploads/2015/02/INMP441.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A1",
+    "note": "Document DS-INMP441-00 Revision 1.1; web.archive.org copy of the official TDK InvenSense URL https://invensense.tdk.com/wp-content/uploads/2015/02/INMP441.pdf (the research found no scriptable live copy); pages 4, 5, 6, 8, 11; sha256 ddcc8ac55f9ff15e93760b5d01814bccbef0cebbb3857e0fb3954b2b4973d150"
+  }
+]

@@ -1,0 +1,202 @@
+{
+ "ok": true,
+ "action": "schematic.render",
+ "summary": "Module with its required parts: U1 BME280 (i2c) on IO8, IO9: 3 parts, 11 wires.",
+ "result": {
+  "block": "module",
+  "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='-166 -48 495 328' preserveAspectRatio='xMidYMid meet' role='img' aria-label='Module with its required parts: U1 BME280 (i2c) on IO8, IO9: 3 parts, 11 wires.' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' font-family='monospace'><rect data-kind='body' data-ref='U1' x='-3.6' y='-25.2' width='97.2' height='302.4' fill='none' stroke='none' pointer-events='all'/><rect data-kind='body' data-ref='C102' x='113.4' y='14.4' width='25.2' height='79.2' fill='none' stroke='none' pointer-events='all'/><rect data-kind='body' data-ref='C101' x='113.4' y='140.4' width='25.2' height='79.2' fill='none' stroke='none' pointer-events='all'/><path d='M0,0 L-72,0' data-kind='wire' data-net='SDA0'/><path d='M0,36 L-72,36' data-kind='wire' data-net='SCL0'/><path d='M0,72 L-72,72 M90,0 L243,0 M126,0 L126,50.76 M90,126 L243,126 M126,126 L126,176.76' data-kind='wire' data-net='3V3'/><path d='M0,108 L-72,108 M126,57.24 L126,90 M126,183.24 L126,216 M90,252 L243,252' data-kind='wire' data-net='GND'/><path d='M-72,78.75 L-72,65.25 M243,6.75 L243,-6.75 M243,132.75 L243,119.25' data-kind='port' data-net='3V3'/><path d='M-72,108 L-72,122.4 L-81,122.4 L-63,122.4 M-78.3,126.72 L-65.7,126.72 M-73.8,131.04 L-70.2,131.04 M126,90 L126,104.4 L117,104.4 L135,104.4 M119.7,108.72 L132.3,108.72 M124.2,113.04 L127.8,113.04 M126,216 L126,230.4 L117,230.4 L135,230.4 M119.7,234.72 L132.3,234.72 M124.2,239.04 L127.8,239.04 M243,252 L243,266.4 L234,266.4 L252,266.4 M236.7,270.72 L249.3,270.72 M241.2,275.04 L244.8,275.04' data-kind='port' data-net='GND'/><circle cx='-72' cy='0' r='2.7' data-kind='port' data-net='SDA0'/><circle cx='-72' cy='36' r='2.7' data-kind='port' data-net='SCL0'/><path d='M0,273.6 L0,-21.6 L90,-21.6 L90,273.6 L0,273.6' data-kind='body' data-ref='U1'/><path d='M135,50.76 L117,50.76 M135,57.24 L117,57.24' data-kind='body' data-ref='C102'/><path d='M135,176.76 L117,176.76 M135,183.24 L117,183.24' data-kind='body' data-ref='C101'/><circle cx='126' cy='0' r='2.7' fill='currentColor' data-kind='junction' data-net='3V3'/><circle cx='126' cy='126' r='2.7' fill='currentColor' data-kind='junction' data-net='3V3'/><text x='45' y='-36.55' dominant-baseline='central' text-anchor='middle' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-ref='U1'>U1 BME280</text><text x='7.75' y='0' dominant-baseline='central' font-family='monospace' font-size='10' fill='currentColor' stroke='none' data-kind='pin' data-pin='U1.SDI'>SDI</text><text x='-82.45' y='0' dominant-baseline='central' text-anchor='end' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-node='J1-12' data-net='SDA0'>J1-12 · IO8</text><text x='-82.45' y='-15.4' dominant-baseline='central' text-anchor='end' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-net='SDA0'>SDA0</text><text x='7.75' y='36' dominant-baseline='central' font-family='monospace' font-size='10' fill='currentColor' stroke='none' data-kind='pin' data-pin='U1.SCK'>SCK</text><text x='-82.45' y='36' dominant-baseline='central' text-anchor='end' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-node='J1-15' data-net='SCL0'>J1-15 · IO9</text><text x='-82.45' y='20.6' dominant-baseline='central' text-anchor='end' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-net='SCL0'>SCL0</text><text x='7.75' y='72' dominant-baseline='central' font-family='monospace' font-size='10' fill='currentColor' stroke='none' data-kind='pin' data-pin='U1.CSB'>CSB</text><text x='-79.75' y='72' dominant-baseline='central' text-anchor='end' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-node='J1-2' data-net='3V3'>J1-2 · 3V3</text><text x='-79.75' y='56.6' dominant-baseline='central' text-anchor='end' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-net='3V3'>+3.3 V</text><text x='7.75' y='108' dominant-baseline='central' font-family='monospace' font-size='10' fill='currentColor' stroke='none' data-kind='pin' data-pin='U1.SDO'>SDO</text><text x='-88.75' y='122.4' dominant-baseline='central' text-anchor='end' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-node='J1-22' data-net='GND'>J1-22 · G</text><text x='82.25' y='0' dominant-baseline='central' text-anchor='end' font-family='monospace' font-size='10' fill='currentColor' stroke='none' data-kind='pin' data-pin='U1.VDDIO'>VDDIO</text><text x='250.75' y='0' dominant-baseline='central' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-node='J1-2' data-net='3V3'>J1-2 · 3V3</text><text x='250.75' y='-15.4' dominant-baseline='central' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-net='3V3'>+3.3 V</text><text x='142.75' y='54' dominant-baseline='central' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-ref='C102'>C102 100 nF</text><text x='142.75' y='104.4' dominant-baseline='central' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-node='J1-22' data-net='GND'>J1-22 · G</text><text x='82.25' y='126' dominant-baseline='central' text-anchor='end' font-family='monospace' font-size='10' fill='currentColor' stroke='none' data-kind='pin' data-pin='U1.VDD'>VDD</text><text x='250.75' y='126' dominant-baseline='central' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-node='J1-2' data-net='3V3'>J1-2 · 3V3</text><text x='250.75' y='110.6' dominant-baseline='central' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-net='3V3'>+3.3 V</text><text x='142.75' y='180' dominant-baseline='central' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-ref='C101'>C101 100 nF</text><text x='142.75' y='230.4' dominant-baseline='central' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-node='J1-22' data-net='GND'>J1-22 · G</text><text x='82.25' y='252' dominant-baseline='central' text-anchor='end' font-family='monospace' font-size='10' fill='currentColor' stroke='none' data-kind='pin' data-pin='U1.GND'>GND</text><text x='259.75' y='266.4' dominant-baseline='central' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-node='J1-22' data-net='GND'>J1-22 · G</text></svg>",
+  "nets": [
+   {
+    "name": "3V3",
+    "nodes": [
+     "J1-2",
+     "U1.CSB",
+     "U1.VDDIO",
+     "C102.1",
+     "U1.VDD",
+     "C101.1"
+    ]
+   },
+   {
+    "name": "SDA0",
+    "nodes": [
+     "J1-12",
+     "U1.SDI"
+    ]
+   },
+   {
+    "name": "SCL0",
+    "nodes": [
+     "J1-15",
+     "U1.SCK"
+    ]
+   },
+   {
+    "name": "GND",
+    "nodes": [
+     "J1-22",
+     "U1.SDO",
+     "C102.2",
+     "C101.2",
+     "U1.GND"
+    ]
+   }
+  ],
+  "parts": [
+   {
+    "ref": "U1",
+    "kind": "ic",
+    "value": "BME280"
+   },
+   {
+    "ref": "C101",
+    "kind": "ceramic",
+    "value": "100 nF"
+   },
+   {
+    "ref": "C102",
+    "kind": "ceramic",
+    "value": "100 nF"
+   }
+  ],
+  "wiring": [
+   {
+    "from": "J1-2 · 3V3",
+    "to": "U1.CSB",
+    "net": "3V3"
+   },
+   {
+    "from": "J1-2 · 3V3",
+    "to": "U1.VDDIO",
+    "net": "3V3"
+   },
+   {
+    "from": "U1.VDDIO",
+    "to": "C102.1",
+    "net": "3V3"
+   },
+   {
+    "from": "J1-2 · 3V3",
+    "to": "U1.VDD",
+    "net": "3V3"
+   },
+   {
+    "from": "U1.VDD",
+    "to": "C101.1",
+    "net": "3V3"
+   },
+   {
+    "from": "J1-12 · IO8",
+    "to": "U1.SDI",
+    "net": "SDA0"
+   },
+   {
+    "from": "J1-15 · IO9",
+    "to": "U1.SCK",
+    "net": "SCL0"
+   },
+   {
+    "from": "J1-22 · G",
+    "to": "U1.SDO",
+    "net": "GND"
+   },
+   {
+    "from": "J1-22 · G",
+    "to": "C102.2",
+    "net": "GND"
+   },
+   {
+    "from": "J1-22 · G",
+    "to": "C101.2",
+    "net": "GND"
+   },
+   {
+    "from": "J1-22 · G",
+    "to": "U1.GND",
+    "net": "GND"
+   }
+  ],
+  "labels": [
+   "U1 BME280",
+   "J1-12 · IO8",
+   "SDA0",
+   "J1-15 · IO9",
+   "SCL0",
+   "J1-2 · 3V3",
+   "+3.3 V",
+   "J1-22 · G",
+   "J1-2 · 3V3",
+   "+3.3 V",
+   "C102 100 nF",
+   "J1-22 · G",
+   "J1-2 · 3V3",
+   "+3.3 V",
+   "C101 100 nF",
+   "J1-22 · G",
+   "J1-22 · G"
+  ]
+ },
+ "checks": [
+  {
+   "id": "schematic.netlist",
+   "status": "passed",
+   "detail": "every part pin is on one net; wires connect each net"
+  },
+  {
+   "id": "schematic.header_pin",
+   "status": "passed",
+   "detail": "GPIO8 is J1-12 on esp32-s3-devkitc-1; GPIO9 is J1-15 on esp32-s3-devkitc-1"
+  },
+  {
+   "id": "schematic.labels_overlap",
+   "status": "passed",
+   "detail": "no overlapping labels"
+  },
+  {
+   "id": "schematic.labels_clear",
+   "status": "passed",
+   "detail": "every label keeps at least 6 px from the lines"
+  }
+ ],
+ "warnings": [],
+ "assumptions": [
+  {
+   "key": "pin_check",
+   "value": "not checked",
+   "reason": "the schematic does not judge the GPIOs; run pins.check"
+  },
+  {
+   "key": "refs",
+   "value": "C101, C102",
+   "reason": "proposed refs of the drawn parts, numbered for sheet 1 (U1 = module part 1) so they do not collide with the project parts or the other module schematics; not yet project parts (add them with bench_project to keep them)"
+  },
+  {
+   "key": "pullup.SDA0",
+   "value": "present",
+   "reason": "project part R1 (4k7) pulls SDA0 up to 3V3; one set per bus, not drawn again"
+  },
+  {
+   "key": "pullup.SCL0",
+   "value": "present",
+   "reason": "project part R2 (4k7) pulls SCL0 up to 3V3; one set per bus, not drawn again"
+  }
+ ],
+ "sources": [
+  {
+   "id": "mod-env-bme280-ds",
+   "title": "Bosch Sensortec BME280 Combined humidity and pressure sensor, Data sheet",
+   "url": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme280-ds002.pdf",
+   "retrieved": "2026-11-08",
+   "class": "A",
+   "note": "Document BST-BME280-DS001 (revision 1.23/1.24 in the page footers); pages 8, 13, 26, 27, 32, 33, 35, 38, 39; sha256 a2ccdb449fec94380742fe8eec851a11d9bd4142252d332b34682b4deecd7d89"
+  },
+  {
+   "id": "devkitc1-s3-v1.1",
+   "title": "ESP32-S3-DevKitC-1 v1.1 User Guide, Header Block (J1, J3)",
+   "url": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html",
+   "retrieved": "2026-11-05"
+  }
+ ],
+ "simulated": false,
+ "error": null
+}

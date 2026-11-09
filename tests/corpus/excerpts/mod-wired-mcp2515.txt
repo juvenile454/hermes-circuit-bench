@@ -1,0 +1,23 @@
+# source_id: mod-wired-mcp2515-ds
+# document: Microchip MCP2515 Stand-Alone CAN Controller with SPI Interface, data sheet DS20001801J (2003-2019)
+# url: https://ww1.microchip.com/downloads/en/DeviceDoc/MCP2515-Stand-Alone-CAN-Controller-with-SPI-20001801J.pdf
+# corpus: mod/wired/MCP2515-20001801J.pdf sha256 f2cf92a2d1ed42b285bf1e2395b859c91114f6a6774d90cf3e4ccda36b840aca
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 4
+100 kinternal pull-up to VDD
+OSC1 8 9 7 I Oscillator input External clock input
+RESET 17 19 17 I Active-low device Reset input —
+@@ page 73
+VDD.............................................................................................................................................................................7.0V
+All Inputs and Outputs w.r.t. VSS ....................................................................................................... -0.6V to VDD + 1.0V
+@@ page 74
+VDD Supply Voltage 2.7 5.5 V
+SCK, CS, SI, TXnRTS Pins 0.7 V DD VDD + 1 V
+SCK, CS, SI Pins -0.3 0.4 * V DD V
+SO, CLKOUT Pins — 0.6 V I OL = +2.1 mA, VDD = 4.5V
+SO, CLKOUT Pins V DD – 0.5 — V I OH = -400 μA, VDD = 4.5V
+IDD Operating Current — 10 mA V DD = 5.5V, FOSC = 25 MHz,
+—5 μA CS, TXnRTS = VDD, inputs tied 
+@@ page 77
+FCLK Clock Frequency — 10 MHz

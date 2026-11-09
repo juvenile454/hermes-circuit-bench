@@ -1,0 +1,98 @@
+{
+ "ok": true,
+ "action": "pins.suggest",
+ "summary": "Free pins for BUTTON (in_pullup) instead of GPIO35: GPIO2, GPIO4, GPIO5.",
+ "result": {
+  "chip": "esp32s3",
+  "title": "ESP32-S3",
+  "variant": "n16r8",
+  "wifi": true,
+  "devkit": "esp32-s3-devkitc-1",
+  "taken": [
+   1,
+   8,
+   9,
+   14
+  ],
+  "requests": [
+   {
+    "role": "BUTTON",
+    "mode": "in_pullup",
+    "requested": 35,
+    "suggestions": [
+     {
+      "gpio": 2,
+      "header": "J3-5"
+     },
+     {
+      "gpio": 4,
+      "header": "J1-4"
+     },
+     {
+      "gpio": 5,
+      "header": "J1-5"
+     }
+    ],
+    "excluded": [
+     {
+      "gpio": 0,
+      "why": "strapping pin (caution)"
+     },
+     {
+      "gpio": 1,
+      "why": "taken"
+     },
+     {
+      "gpio": 3,
+      "why": "strapping pin (caution)"
+     }
+    ],
+    "free": 16,
+    "more": 13
+   }
+  ]
+ },
+ "checks": [
+  {
+   "id": "suggest.ok_only",
+   "status": "passed",
+   "detail": "only pins without findings"
+  },
+  {
+   "id": "suggest.order",
+   "status": "passed",
+   "detail": "ascending GPIO number, no other tie-break; up to 3 per request (limit), more = free pins not shown"
+  },
+  {
+   "id": "suggest.broken_out",
+   "status": "passed",
+   "detail": "only pins on the ESP32-S3-DevKitC-1 headers"
+  }
+ ],
+ "warnings": [],
+ "assumptions": [],
+ "sources": [
+  {
+   "id": "idf-v6.1-gpio-esp32s3",
+   "title": "ESP-IDF v6.1, GPIO & RTC GPIO (ESP32-S3)",
+   "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/gpio/esp32s3.inc",
+   "retrieved": "2026-11-05",
+   "note": "Tag v6.1 = commit fff9895c (tag object 4dc1c655). Rendered: https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-reference/peripherals/gpio.html (stable = v6.1 at retrieval)"
+  },
+  {
+   "id": "devkitc1-s3-v1.1",
+   "title": "ESP32-S3-DevKitC-1 v1.1 User Guide, Header Block (J1, J3)",
+   "url": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html",
+   "retrieved": "2026-11-05"
+  },
+  {
+   "id": "idf-v6.1-adc-oneshot",
+   "title": "ESP-IDF v6.1, ADC Oneshot Mode Driver, Hardware Limitations",
+   "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/adc/adc_oneshot.rst",
+   "retrieved": "2026-11-06",
+   "note": "ESP-IDF tag v6.1 (tag object 4dc1c65503e98e9a6b4c3c5646237280ba79829b, commit fff9895c82d744c7237be8847347bdd1b07c6643). Rendered: https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-reference/peripherals/adc/adc_oneshot.html"
+  }
+ ],
+ "simulated": false,
+ "error": null
+}

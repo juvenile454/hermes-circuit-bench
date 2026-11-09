@@ -1,0 +1,1110 @@
+{
+ "schema": 1,
+ "wp": "level",
+ "note": "Values only from manufacturer documents; 'evidence' quotes lines of tests/corpus/excerpts/mod-level-*.txt (pypdf). Translators have two supply domains; io describes the A side (VCCA, the ESP side), B-side facts live in notes and in the family rules (modrules/level.py).",
+ "modules": [
+  {
+   "id": "sn74ahct125",
+   "aliases": [
+    "74ahct125",
+    "ahct125",
+    "sn74ahct125n",
+    "sn74ahct125d"
+   ],
+   "title": "SN74AHCT125 quad bus buffer with 3-state outputs (TTL inputs, 5 V)",
+   "category": "logic.level_shifter",
+   "manufacturer": "Texas Instruments",
+   "kind": "ic",
+   "source_ids": [
+    "mod-level-sn74ahct125-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 4.5,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VCC Supply voltage 4.5 5.5 4.5 5.5 V"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VCC Supply voltage 4.5 5.5 4.5 5.5 V"
+     },
+     "abs_max": {
+      "value": 7,
+      "unit": "V",
+      "page": 5,
+      "evidence": [
+       "VCC Supply voltage range",
+       "7 V"
+      ]
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "value": 2,
+     "unit": "V",
+     "page": 5,
+     "evidence": "VIH High-level input voltage 2 2 V",
+     "conditions": "VCC 4.5–5.5 V (TTL thresholds)"
+    },
+    "vil": {
+     "value": 0.8,
+     "unit": "V",
+     "page": 5,
+     "evidence": "VIL Low-level input voltage 0.8 0.8 V",
+     "conditions": "VCC 4.5–5.5 V"
+    },
+    "voh": {
+     "value": 4.4,
+     "unit": "V",
+     "page": 6,
+     "evidence": [
+      "VOH",
+      "4.5 V 4.4 4.5 4.4 4.4 V"
+     ],
+     "conditions": "IOH −50 µA, VCC 4.5 V, SN74 column"
+    },
+    "v_in_max": {
+     "value": 5.5,
+     "unit": "V",
+     "page": 5,
+     "evidence": "VI Input voltage 0 5.5 0 5.5 V",
+     "conditions": "recommended input range (absolute maximum 7 V)"
+    },
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "1OE",
+     "signal": "enable_in",
+     "active_low": true,
+     "must_connect": true,
+     "note": "low = buffer on; high = output high-impedance; unused inputs to VCC or GND"
+    },
+    {
+     "name": "1A",
+     "signal": "digital_in",
+     "must_connect": true,
+     "note": "TTL-level input (VIH 2 V at VCC 4.5–5.5 V)"
+    },
+    {
+     "name": "1Y",
+     "signal": "digital_out",
+     "note": "3-state push-pull output at VCC"
+    },
+    {
+     "name": "2OE",
+     "signal": "enable_in",
+     "active_low": true,
+     "must_connect": true,
+     "note": "low = buffer on; high = output high-impedance; unused inputs to VCC or GND"
+    },
+    {
+     "name": "2A",
+     "signal": "digital_in",
+     "must_connect": true,
+     "note": "TTL-level input (VIH 2 V at VCC 4.5–5.5 V)"
+    },
+    {
+     "name": "2Y",
+     "signal": "digital_out",
+     "note": "3-state push-pull output at VCC"
+    },
+    {
+     "name": "3OE",
+     "signal": "enable_in",
+     "active_low": true,
+     "must_connect": true,
+     "note": "low = buffer on; high = output high-impedance; unused inputs to VCC or GND"
+    },
+    {
+     "name": "3A",
+     "signal": "digital_in",
+     "must_connect": true,
+     "note": "TTL-level input (VIH 2 V at VCC 4.5–5.5 V)"
+    },
+    {
+     "name": "3Y",
+     "signal": "digital_out",
+     "note": "3-state push-pull output at VCC"
+    },
+    {
+     "name": "4OE",
+     "signal": "enable_in",
+     "active_low": true,
+     "must_connect": true,
+     "note": "low = buffer on; high = output high-impedance; unused inputs to VCC or GND"
+    },
+    {
+     "name": "4A",
+     "signal": "digital_in",
+     "must_connect": true,
+     "note": "TTL-level input (VIH 2 V at VCC 4.5–5.5 V)"
+    },
+    {
+     "name": "4Y",
+     "signal": "digital_out",
+     "note": "3-state push-pull output at VCC"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "max": {
+     "value": 2e-05,
+     "unit": "A",
+     "page": 6,
+     "evidence": "ICC VI = VCC or GND, IO = 0 5.5 V 2 20 20 µA",
+     "conditions": "static, all inputs at VCC or GND, VCC 5.5 V"
+    },
+    "note": "each input held at 3.4 V instead of VCC adds up to 1.5 mA (ΔICC, p. 6)"
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VCC"
+     ],
+     "to": "GND",
+     "page": 11,
+     "evidence": "A 0.1- μF capacitor is recommended for this device."
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Input thresholds are TTL (VIH 2 V) only with VCC 4.5–5.5 V: power the chip from 5 V to lift 3.3 V logic to 5 V.",
+     "page": 5,
+     "evidence": "VCC Supply voltage 4.5 5.5 4.5 5.5 V",
+     "verified": true
+    },
+    {
+     "text": "An input at 3.4 V (3.3 V logic high) draws extra supply current, up to 1.5 mA per input (ΔICC at VCC 5.5 V).",
+     "page": 6,
+     "evidence": "ΔICC (2) One input at 3.4 V,Other inputs at VCC or GND 5.5 V 1.35 1.5 1.5 mA",
+     "verified": true
+    },
+    {
+     "text": "All unused inputs (A and OE of unused channels) must be held at VCC or GND.",
+     "page": 5,
+     "evidence": "(1) All unused inputs of the device must be held at VCC or GND",
+     "verified": true
+    },
+    {
+     "text": "For a defined high-impedance state during power up or power down, tie OE to VCC through a pull-up resistor.",
+     "page": 1,
+     "evidence": "power down, OE should be tied to V CC through a",
+     "verified": true
+    },
+    {
+     "text": "Common use: 3.3 V GPIO to 5 V logic such as addressable LED data, with VCC = 5 V and OE tied to GND.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "sn74lv1t34",
+   "aliases": [
+    "74lv1t34",
+    "lv1t34",
+    "sn74lv1t34dbvr",
+    "sn74lv1t34dckr"
+   ],
+   "title": "SN74LV1T34 single buffer, single-supply level shifter (5 V tolerant input)",
+   "category": "logic.level_shifter",
+   "manufacturer": "Texas Instruments",
+   "kind": "ic",
+   "source_ids": [
+    "mod-level-sn74lv1t34-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 1.6,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VCC Supply voltage 1.6 5.5 V"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VCC Supply voltage 1.6 5.5 V"
+     },
+     "abs_max": {
+      "value": 7.0,
+      "unit": "V",
+      "page": 5,
+      "evidence": [
+       "VCC Supply voltage range",
+       "7.0 V"
+      ]
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "value": 2.11,
+     "unit": "V",
+     "page": 6,
+     "evidence": [
+      "VIH High-level input voltage",
+      "VCC = 5.5 V 2.1 2.11"
+     ],
+     "conditions": "worst case of the table: VCC 5.5 V, TA −40 to 125 °C (1.39 V at VCC 3–3.3 V, 2.03 V at 4.5–5.0 V)"
+    },
+    "vil": {
+     "value": 0.55,
+     "unit": "V",
+     "page": 6,
+     "evidence": [
+      "VIL Low-level input voltage",
+      "VCC = 1.65 V to 2.0 V 0.57 0.55"
+     ],
+     "conditions": "worst case of the table: VCC 1.65–2.0 V, TA −40 to 125 °C (0.65 V at VCC 3–3.6 V)"
+    },
+    "voh": {
+     "rel_offset": -0.1,
+     "of": "VCC",
+     "unit": "V",
+     "page": 6,
+     "evidence": "1.65 V to 5.5 V VCC – 0.1 VCC – 0.1",
+     "conditions": "IOH −20 µA, VCC 1.65–5.5 V"
+    },
+    "v_in_max": {
+     "value": 5.5,
+     "unit": "V",
+     "page": 5,
+     "evidence": "VI Input voltage 0 5.5 V",
+     "conditions": "recommended input range at any VCC (absolute maximum 7.0 V)"
+    },
+    "five_v_tolerant": true,
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "NC",
+     "signal": "nc"
+    },
+    {
+     "name": "A",
+     "signal": "digital_in",
+     "must_connect": true,
+     "note": "input; accepts up to 5.5 V at any VCC"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "Y",
+     "signal": "digital_out",
+     "note": "push-pull output at VCC"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply",
+     "note": "sets the output level (1.6–5.5 V)"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "max": {
+     "value": 1e-05,
+     "unit": "A",
+     "page": 6,
+     "evidence": [
+      "ICC Static supply current",
+      "5.0 V 1 10"
+     ],
+     "conditions": "static, input at 0 V or VCC, VCC 5.0 V, TA −40 to 125 °C"
+    },
+    "note": "an input at 3.4 V adds up to 1.5 mA at VCC 5.5 V (ΔICC, p. 7)"
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VCC"
+     ],
+     "to": "GND",
+     "page": 13,
+     "evidence": "A 0.1-μF capacitor is recommended for this device."
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "VIH depends on VCC: 1.39 V at VCC 3–3.3 V, 2.03 V at VCC 4.5–5.0 V (TA −40 to 125 °C); the catalogue io.vih is the worst case 2.11 V at 5.5 V.",
+     "page": 6,
+     "evidence": [
+      "VCC = 3 V to 3.3 V 1.37 1.39",
+      "VCC = 4.5 V to 5.0 V 2.02 2.03"
+     ],
+     "verified": true
+    },
+    {
+     "text": "5 V tolerant input: also shifts down (e.g. 5 V or 3.3 V in, VCC-level out).",
+     "page": 10,
+     "evidence": "5 V tolerant input pins enable down translation",
+     "verified": true
+    },
+    {
+     "text": "An input at 3.4 V draws up to 1.5 mA extra supply current at VCC 5.5 V (ΔICC).",
+     "page": 7,
+     "evidence": [
+      "One input at 0.3 V or 3.4 V,",
+      "5.5 V 1.35 1.5 mA"
+     ],
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "txs0108e",
+   "aliases": [
+    "txs0108",
+    "txs0108epwr"
+   ],
+   "title": "TXS0108E 8-bit bidirectional level translator for open-drain and push-pull",
+   "category": "logic.level_shifter",
+   "manufacturer": "Texas Instruments",
+   "kind": "ic",
+   "source_ids": [
+    "mod-level-txs0108e-ds"
+   ],
+   "supplies": {
+    "VCCA": {
+     "min": {
+      "value": 1.4,
+      "unit": "V",
+      "page": 6,
+      "evidence": "VCCA Supply voltage(3) 1.4 3.6 V"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 6,
+      "evidence": "VCCA Supply voltage(3) 1.4 3.6 V"
+     },
+     "abs_max": {
+      "value": 4.6,
+      "unit": "V",
+      "page": 5,
+      "evidence": [
+       "Supply voltage, VCCA",
+       "4.6 V"
+      ]
+     }
+    },
+    "VCCB": {
+     "min": {
+      "value": 1.65,
+      "unit": "V",
+      "page": 6,
+      "evidence": "VCCB Supply voltage(3) 1.65 5.5 V"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 6,
+      "evidence": "VCCB Supply voltage(3) 1.65 5.5 V"
+     },
+     "abs_max": {
+      "value": 6.5,
+      "unit": "V",
+      "page": 5,
+      "evidence": [
+       "Supply voltage, VCCB",
+       "6.5 V"
+      ]
+     }
+    }
+   },
+   "io": {
+    "domain": "VCCA",
+    "vih": {
+     "rel_offset": -0.4,
+     "of": "VCCA",
+     "unit": "V",
+     "page": 6,
+     "evidence": [
+      "VIH High-level input voltage",
+      "A-Port I/Os",
+      "VCCA (V) = 1.95 to 3.6 VCCB (V) = 1.65 to 5.5 VCCI – 0.4 VCCI"
+     ],
+     "conditions": "A port, VCCA 1.95–3.6 V (VCCI − 0.2 V at VCCA 1.4–1.95 V); B port VCCB − 0.4 V"
+    },
+    "vil": {
+     "value": 0.15,
+     "unit": "V",
+     "page": 6,
+     "evidence": [
+      "VIL Low-level input voltage",
+      "A-Port I/Os",
+      "VCCA (V) = 1.95 to 3.6 VCCB (V) = 1.65 to 5.5 0 0.15"
+     ],
+     "conditions": "A port, VCCA 1.95–3.6 V; same for the B port"
+    },
+    "v_in_max": {
+     "rel_offset": 0.5,
+     "of": "VCCA",
+     "unit": "V",
+     "page": 5,
+     "evidence": [
+      "Voltage applied to any output in the high or low state",
+      "A port",
+      "VCCA + 0.5"
+     ],
+     "conditions": "absolute maximum for a driven I/O, A port (B port VCCB + 0.5 V; 4.6 V when high-impedance or unpowered)"
+    },
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "VCCA",
+     "signal": "supply",
+     "note": "A-side supply 1.4–3.6 V, must not exceed VCCB"
+    },
+    {
+     "name": "A1",
+     "signal": "digital_in",
+     "internal_pull": {
+      "up": {
+       "value": 4000,
+       "unit": "Ω",
+       "page": 16,
+       "evidence": "R PUA and RPUB have a value of 4k Ω when",
+       "conditions": "while the output drives high; 40 kΩ while it drives low; disabled when OE is low"
+      }
+     },
+     "note": "A side (VCCA, ESP side); bidirectional, open-drain or push-pull"
+    },
+    {
+     "name": "A2",
+     "signal": "digital_in",
+     "internal_pull": {
+      "up": {
+       "value": 4000,
+       "unit": "Ω",
+       "page": 16,
+       "evidence": "R PUA and RPUB have a value of 4k Ω when",
+       "conditions": "while the output drives high; 40 kΩ while it drives low; disabled when OE is low"
+      }
+     },
+     "note": "A side (VCCA, ESP side); bidirectional, open-drain or push-pull"
+    },
+    {
+     "name": "A3",
+     "signal": "digital_in",
+     "internal_pull": {
+      "up": {
+       "value": 4000,
+       "unit": "Ω",
+       "page": 16,
+       "evidence": "R PUA and RPUB have a value of 4k Ω when",
+       "conditions": "while the output drives high; 40 kΩ while it drives low; disabled when OE is low"
+      }
+     },
+     "note": "A side (VCCA, ESP side); bidirectional, open-drain or push-pull"
+    },
+    {
+     "name": "A4",
+     "signal": "digital_in",
+     "internal_pull": {
+      "up": {
+       "value": 4000,
+       "unit": "Ω",
+       "page": 16,
+       "evidence": "R PUA and RPUB have a value of 4k Ω when",
+       "conditions": "while the output drives high; 40 kΩ while it drives low; disabled when OE is low"
+      }
+     },
+     "note": "A side (VCCA, ESP side); bidirectional, open-drain or push-pull"
+    },
+    {
+     "name": "A5",
+     "signal": "digital_in",
+     "internal_pull": {
+      "up": {
+       "value": 4000,
+       "unit": "Ω",
+       "page": 16,
+       "evidence": "R PUA and RPUB have a value of 4k Ω when",
+       "conditions": "while the output drives high; 40 kΩ while it drives low; disabled when OE is low"
+      }
+     },
+     "note": "A side (VCCA, ESP side); bidirectional, open-drain or push-pull"
+    },
+    {
+     "name": "A6",
+     "signal": "digital_in",
+     "internal_pull": {
+      "up": {
+       "value": 4000,
+       "unit": "Ω",
+       "page": 16,
+       "evidence": "R PUA and RPUB have a value of 4k Ω when",
+       "conditions": "while the output drives high; 40 kΩ while it drives low; disabled when OE is low"
+      }
+     },
+     "note": "A side (VCCA, ESP side); bidirectional, open-drain or push-pull"
+    },
+    {
+     "name": "A7",
+     "signal": "digital_in",
+     "internal_pull": {
+      "up": {
+       "value": 4000,
+       "unit": "Ω",
+       "page": 16,
+       "evidence": "R PUA and RPUB have a value of 4k Ω when",
+       "conditions": "while the output drives high; 40 kΩ while it drives low; disabled when OE is low"
+      }
+     },
+     "note": "A side (VCCA, ESP side); bidirectional, open-drain or push-pull"
+    },
+    {
+     "name": "A8",
+     "signal": "digital_in",
+     "internal_pull": {
+      "up": {
+       "value": 4000,
+       "unit": "Ω",
+       "page": 16,
+       "evidence": "R PUA and RPUB have a value of 4k Ω when",
+       "conditions": "while the output drives high; 40 kΩ while it drives low; disabled when OE is low"
+      }
+     },
+     "note": "A side (VCCA, ESP side); bidirectional, open-drain or push-pull"
+    },
+    {
+     "name": "OE",
+     "signal": "enable_in",
+     "must_connect": true,
+     "note": "referenced to VCCA; low = all I/Os high-impedance"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "B1",
+     "signal": "digital_out",
+     "internal_pull": {
+      "up": {
+       "value": 4000,
+       "unit": "Ω",
+       "page": 16,
+       "evidence": "R PUA and RPUB have a value of 4k Ω when",
+       "conditions": "while the output drives high; 40 kΩ while it drives low; disabled when OE is low"
+      }
+     },
+     "note": "B side (VCCB); bidirectional, open-drain or push-pull"
+    },
+    {
+     "name": "B2",
+     "signal": "digital_out",
+     "internal_pull": {
+      "up": {
+       "value": 4000,
+       "unit": "Ω",
+       "page": 16,
+       "evidence": "R PUA and RPUB have a value of 4k Ω when",
+       "conditions": "while the output drives high; 40 kΩ while it drives low; disabled when OE is low"
+      }
+     },
+     "note": "B side (VCCB); bidirectional, open-drain or push-pull"
+    },
+    {
+     "name": "B3",
+     "signal": "digital_out",
+     "internal_pull": {
+      "up": {
+       "value": 4000,
+       "unit": "Ω",
+       "page": 16,
+       "evidence": "R PUA and RPUB have a value of 4k Ω when",
+       "conditions": "while the output drives high; 40 kΩ while it drives low; disabled when OE is low"
+      }
+     },
+     "note": "B side (VCCB); bidirectional, open-drain or push-pull"
+    },
+    {
+     "name": "B4",
+     "signal": "digital_out",
+     "internal_pull": {
+      "up": {
+       "value": 4000,
+       "unit": "Ω",
+       "page": 16,
+       "evidence": "R PUA and RPUB have a value of 4k Ω when",
+       "conditions": "while the output drives high; 40 kΩ while it drives low; disabled when OE is low"
+      }
+     },
+     "note": "B side (VCCB); bidirectional, open-drain or push-pull"
+    },
+    {
+     "name": "B5",
+     "signal": "digital_out",
+     "internal_pull": {
+      "up": {
+       "value": 4000,
+       "unit": "Ω",
+       "page": 16,
+       "evidence": "R PUA and RPUB have a value of 4k Ω when",
+       "conditions": "while the output drives high; 40 kΩ while it drives low; disabled when OE is low"
+      }
+     },
+     "note": "B side (VCCB); bidirectional, open-drain or push-pull"
+    },
+    {
+     "name": "B6",
+     "signal": "digital_out",
+     "internal_pull": {
+      "up": {
+       "value": 4000,
+       "unit": "Ω",
+       "page": 16,
+       "evidence": "R PUA and RPUB have a value of 4k Ω when",
+       "conditions": "while the output drives high; 40 kΩ while it drives low; disabled when OE is low"
+      }
+     },
+     "note": "B side (VCCB); bidirectional, open-drain or push-pull"
+    },
+    {
+     "name": "B7",
+     "signal": "digital_out",
+     "internal_pull": {
+      "up": {
+       "value": 4000,
+       "unit": "Ω",
+       "page": 16,
+       "evidence": "R PUA and RPUB have a value of 4k Ω when",
+       "conditions": "while the output drives high; 40 kΩ while it drives low; disabled when OE is low"
+      }
+     },
+     "note": "B side (VCCB); bidirectional, open-drain or push-pull"
+    },
+    {
+     "name": "B8",
+     "signal": "digital_out",
+     "internal_pull": {
+      "up": {
+       "value": 4000,
+       "unit": "Ω",
+       "page": 16,
+       "evidence": "R PUA and RPUB have a value of 4k Ω when",
+       "conditions": "while the output drives high; 40 kΩ while it drives low; disabled when OE is low"
+      }
+     },
+     "note": "B side (VCCB); bidirectional, open-drain or push-pull"
+    },
+    {
+     "name": "VCCB",
+     "signal": "supply",
+     "note": "B-side supply 1.65–5.5 V"
+    }
+   ],
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VCCA",
+      "VCCB"
+     ],
+     "to": "GND",
+     "page": 21,
+     "evidence": "0.1 µF0.1 µF",
+     "note": "one bypass capacitor each at VCCA and VCCB (layout example; p. 20)"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "VCCA must be less than or equal to VCCB at all times; the A side is the lower voltage.",
+     "page": 6,
+     "evidence": "(3) VCCA must be less than or equal to VCCB",
+     "verified": true
+    },
+    {
+     "text": "Internal pull-ups on every I/O (4 kΩ while driving high, 40 kΩ while driving low) to VCCA (A) and VCCB (B); no external pull-ups needed for I²C.",
+     "page": 16,
+     "evidence": "Each A-port I/O has a pull-up resistor (R PUA) to VCCA and each B-port I/O has a pull-up resistor (R PUB) to VCCB.",
+     "verified": true
+    },
+    {
+     "text": "An external pull-down lowers the high level: VOH = VCCx × RPD / (RPD + 4 kΩ).",
+     "page": 20,
+     "evidence": "VOH = VCCx × RPD / (RPD + 4kΩ) (1)",
+     "verified": true
+    },
+    {
+     "text": "Data rate up to 110 Mbps push-pull, 1.2 Mbps open-drain.",
+     "page": 1,
+     "evidence": [
+      "– 110Mbps (push pull)",
+      "– 1.2Mbps (open drain)"
+     ],
+     "verified": true
+    },
+    {
+     "text": "To keep the I/Os high-impedance during power up or down, pull OE to GND and enable it only once both supplies are stable.",
+     "page": 20,
+     "evidence": "tie the OE input pin to GND through a pull-down resistor, and do not enable the OE input until V CCA and V CCB",
+     "verified": true
+    },
+    {
+     "text": "Many TXS0108E breakout boards tie OE high through a resistor (always on); check the board.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "txb0104",
+   "aliases": [
+    "txb0104pwr",
+    "txb0104d"
+   ],
+   "title": "TXB0104 4-bit bidirectional level translator, auto direction (push-pull only)",
+   "category": "logic.level_shifter",
+   "manufacturer": "Texas Instruments",
+   "kind": "ic",
+   "source_ids": [
+    "mod-level-txb0104-ds"
+   ],
+   "supplies": {
+    "VCCA": {
+     "min": {
+      "value": 1.2,
+      "unit": "V",
+      "page": 6,
+      "evidence": "VCCA Supply voltage 1.2 3.6 V"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 6,
+      "evidence": "VCCA Supply voltage 1.2 3.6 V"
+     },
+     "abs_max": {
+      "value": 4.6,
+      "unit": "V",
+      "page": 5,
+      "evidence": [
+       "Supply voltage, VCCA",
+       "4.6 V"
+      ]
+     }
+    },
+    "VCCB": {
+     "min": {
+      "value": 1.65,
+      "unit": "V",
+      "page": 6,
+      "evidence": "VCCB Supply voltage 1.65 5.5"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 6,
+      "evidence": "VCCB Supply voltage 1.65 5.5"
+     },
+     "abs_max": {
+      "value": 6.5,
+      "unit": "V",
+      "page": 5,
+      "evidence": [
+       "Supply voltage, VCCB",
+       "6.5"
+      ]
+     }
+    }
+   },
+   "io": {
+    "domain": "VCCA",
+    "vih": {
+     "rel": 0.65,
+     "of": "VCCA",
+     "unit": "V",
+     "page": 6,
+     "evidence": "VCCB = 1.65 V to 5.5 V VCCI × 0.65(3) VCCI",
+     "conditions": "data inputs; VCCI = supply of the input side (A side: VCCA)"
+    },
+    "vil": {
+     "rel": 0.35,
+     "of": "VCCA",
+     "unit": "V",
+     "page": 6,
+     "evidence": "VCCB = 1.65 V to 5.5 V 0 VCCI × 0.35(3)",
+     "conditions": "data inputs; VCCI = supply of the input side"
+    },
+    "voh": {
+     "rel_offset": -0.4,
+     "of": "VCCA",
+     "unit": "V",
+     "page": 8,
+     "evidence": [
+      "VOHA",
+      "1.4 V to 3.6 V VCCA – 0.4"
+     ],
+     "conditions": "IOH −20 µA, VCCA 1.4–3.6 V"
+    },
+    "v_in_max": {
+     "rel_offset": 0.5,
+     "of": "VCCA",
+     "unit": "V",
+     "page": 5,
+     "evidence": [
+      "Voltage applied to any output in the high or low state",
+      "A port",
+      "VCCA + 0.5"
+     ],
+     "conditions": "absolute maximum for a driven I/O, A port (B port VCCB + 0.5 V; 4.6 V when high-impedance or unpowered)"
+    },
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "VCCA",
+     "signal": "supply",
+     "note": "A-side supply 1.2–3.6 V, must not exceed VCCB"
+    },
+    {
+     "name": "A1",
+     "signal": "digital_in",
+     "note": "A side (VCCA, ESP side); bidirectional, push-pull only"
+    },
+    {
+     "name": "A2",
+     "signal": "digital_in",
+     "note": "A side (VCCA, ESP side); bidirectional, push-pull only"
+    },
+    {
+     "name": "A3",
+     "signal": "digital_in",
+     "note": "A side (VCCA, ESP side); bidirectional, push-pull only"
+    },
+    {
+     "name": "A4",
+     "signal": "digital_in",
+     "note": "A side (VCCA, ESP side); bidirectional, push-pull only"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "OE",
+     "signal": "enable_in",
+     "must_connect": true,
+     "note": "referenced to VCCA; low = all I/Os high-impedance"
+    },
+    {
+     "name": "B4",
+     "signal": "digital_out",
+     "note": "B side (VCCB); bidirectional, push-pull only"
+    },
+    {
+     "name": "B3",
+     "signal": "digital_out",
+     "note": "B side (VCCB); bidirectional, push-pull only"
+    },
+    {
+     "name": "B2",
+     "signal": "digital_out",
+     "note": "B side (VCCB); bidirectional, push-pull only"
+    },
+    {
+     "name": "B1",
+     "signal": "digital_out",
+     "note": "B side (VCCB); bidirectional, push-pull only"
+    },
+    {
+     "name": "VCCB",
+     "signal": "supply",
+     "note": "B-side supply 1.65–5.5 V"
+    }
+   ],
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "pins": [
+      "VCCA",
+      "VCCB"
+     ],
+     "to": "GND",
+     "page": 25,
+     "evidence": "• Bypass capacitors must be used on power supplies, and must be placed as close as possible to the VCCA,",
+     "note": "layout example shows 0.1 µF at each supply"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Not for I²C or 1-Wire (open-drain drivers on the I/O); use a TXS01xx-type translator or the BSS138 circuit (AN10441).",
+     "page": 22,
+     "evidence": "For the same reason, the TXB0104 device must not be used in applications such as I 2C or 1-Wire where an",
+     "verified": true
+    },
+    {
+     "text": "External pull-up or pull-down resistors on the data I/Os must be higher than 50 kΩ (weak output drivers).",
+     "page": 22,
+     "evidence": "be kept higher than 50 kΩ to ensure that they do not contend with the output drivers of the TXB0104 device.",
+     "verified": true
+    },
+    {
+     "text": "Drives capacitive loads up to 70 pF.",
+     "page": 22,
+     "evidence": "capacitive loads of up to 70 pF",
+     "verified": true
+    },
+    {
+     "text": "VCCA must be less than or equal to VCCB and must not exceed 3.6 V.",
+     "page": 6,
+     "evidence": "(2) VCCA must be less than or equal to VCCB",
+     "verified": true
+    },
+    {
+     "text": "Both sides of an unused data I/O pair must be held at the same level (both VCCI or both GND).",
+     "page": 6,
+     "evidence": "(1) The A and B sides of an unused data I/O pair",
+     "verified": true
+    },
+    {
+     "text": "The NC pins (6 and 9 on D/PW) are not modelled.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "bss138",
+   "aliases": [
+    "bss138lt1g",
+    "bss138-g"
+   ],
+   "title": "BSS138 N-channel logic-level MOSFET as I²C level shifter (NXP AN10441 circuit)",
+   "category": "logic.level_shifter",
+   "manufacturer": "onsemi",
+   "kind": "ic",
+   "source_ids": [
+    "mod-level-bss138-ds",
+    "mod-level-an10441"
+   ],
+   "pins": [
+    {
+     "name": "G",
+     "signal": "supply",
+     "must_connect": true,
+     "note": "gate: to the lowest supply VDD1 (the low-voltage side, e.g. 3V3)"
+    },
+    {
+     "name": "S",
+     "signal": "digital_in",
+     "must_connect": true,
+     "note": "source: bus line of the lower-voltage section (ESP side), with pull-up to VDD1"
+    },
+    {
+     "name": "D",
+     "signal": "digital_out",
+     "must_connect": true,
+     "note": "drain: bus line of the higher-voltage section, with pull-up to VDD2 ≥ VDD1"
+    }
+   ],
+   "requires": [
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "S"
+     ],
+     "to": "G",
+     "page": 2,
+     "source_id": "mod-level-an10441",
+     "evidence": "Fig. 1. The left ‘low-voltage’ section has pull-up resistors and devices connected to a 3.3 V supply",
+     "note": "low-voltage section pulled up to VDD1 (the gate supply)"
+    },
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "D"
+     ],
+     "page": 2,
+     "source_id": "mod-level-an10441",
+     "evidence": "voltage; the right ‘high-voltage’ section has pull-up resistors and devices connected to a 5 V supply",
+     "note": "high-voltage section pulled up to VDD2"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Wiring per AN10441: gate to the lowest supply VDD1, source to the lower-voltage bus line, drain to the higher-voltage bus line; one MOSFET per line (SDA, SCL).",
+     "page": 2,
+     "evidence": [
+      "(g) have to be connected to the lowest supply voltage VDD1, the sources (s) to the bus lines of",
+      "the ‘lower-voltage’ section, and the drains (d) to the bus lines of the ‘higher-voltage’ section."
+     ],
+     "source_id": "mod-level-an10441",
+     "verified": true
+    },
+    {
+     "text": "For Standard-mode (100 kbit/s) and Fast-mode (400 kbit/s) I²C, not for Hs-mode.",
+     "page": 2,
+     "evidence": "Fast-mode (up to 400 kbit/s) I2C-bus systems. It is not intended for Hs-mode systems, which may",
+     "source_id": "mod-level-an10441",
+     "verified": true
+    },
+    {
+     "text": "VDD2 (high side) must be equal to or higher than VDD1 in normal operation.",
+     "page": 3,
+     "evidence": "In normal operation VDD2 must be equal to or higher than VDD1",
+     "source_id": "mod-level-an10441",
+     "verified": true
+    },
+    {
+     "text": "Gate threshold VGS(th) 0.8–1.5 V (ID 1 mA): VDD1 must lie clearly above 1.5 V for the MOSFET to conduct.",
+     "page": 2,
+     "evidence": "VGS(th) Gate Threshold Voltage VDS = VGS, ID = 1 mA 0.8 1.3 1.5 V",
+     "source_id": "mod-level-bss138-ds",
+     "verified": true
+    },
+    {
+     "text": "RDS(on) max 6 Ω at VGS 4.5 V; VDSS 50 V; ID 0.22 A continuous.",
+     "page": 2,
+     "evidence": [
+      "VDSS Drain−Source Voltage 50 V",
+      "ID Drain Current – Continuous (Note 1) 0.22 A",
+      "VGS = 4.5 V, ID = 0.22 A − 1.0 6.0"
+     ],
+     "source_id": "mod-level-bss138-ds",
+     "verified": true
+    },
+    {
+     "text": "Ready-made 4-channel BSS138 converter boards usually carry 10 kΩ pull-ups on both sides (LV/HV pins); check the board.",
+     "verified": false
+    }
+   ]
+  }
+ ]
+}

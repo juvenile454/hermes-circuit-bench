@@ -1,0 +1,10 @@
+{
+ "addresses": {
+  "0x4008b383": "panic_abort at /path/to/esp-idf/components/esp_system/panic.c:367",
+  "0x4008c791": "esp_system_abort at /path/to/esp-idf/components/esp_system/system_api.c:106",
+  "0x4008c587": "__ubsan_default_handler at /path/to/esp-idf/components/esp_system/ubsan.c:152",
+  "0x4008c6be": "__ubsan_handle_out_of_bounds at /path/to/esp-idf/components/esp_system/ubsan.c:223",
+  "0x400db74f": "test_ub at main.c:128",
+  "0x400db99c": "app_main at main.c:56 (discriminator 1)"
+ }
+}

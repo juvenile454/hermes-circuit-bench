@@ -1,0 +1,17 @@
+# source_id: mod-switch-1n4148-ds
+# document: Vishay 1N4148 Small Signal Fast Switching Diode, Document Number 81857, Rev. 1.6, 07-Nov-2024
+# url: https://www.vishay.com/docs/81857/1n4148.pdf
+# corpus: mod/switch/vishay-1n4148.pdf sha256 aefe85400a427ed886a4e1c88205ceabb9f9b38044b29c6acee4bb00146a44b7
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Cathode band color: black
+Repetitive peak reverse voltage V RRM 100 V
+Reverse voltage V R 75 V
+Peak forward surge current t p = 1 μs I FSM 2A
+Forward continuous current I F 300 mA
+Average forward current V R = 0 I F(AV) 150 mA
+@@ page 2
+Forward voltage I F = 10 mA V F 1V
+IF = 10 mA, VR = 6 V, 
+iR = 0.1 x IR, RL = 100 Ω trr 4n s

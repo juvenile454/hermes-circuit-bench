@@ -1,0 +1,50 @@
+[
+  {
+    "id": "mod-pixel-st7789v-ds",
+    "title": "Sitronix ST7789V TFT controller/driver datasheet, copy hosted by Newhaven Display",
+    "url": "https://newhavendisplay.com/content/datasheets/ST7789V.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A2",
+    "note": "Version 1.3, 2014/03 ('Sitronix Confidential'; no public datasheet on sitronix.com.tw); pages 33, 34, 37, 38, 40, 44, 48, 49, 50; sha256 8ecf0e438aa25554efc473a4cfe6e436f3fb33e68cd876b25041557235d04ca1"
+  },
+  {
+    "id": "mod-pixel-ili9341-ds",
+    "title": "ILI Technology ILI9341 a-Si TFT LCD single chip driver datasheet, copy hosted by Adafruit",
+    "url": "https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A2",
+    "note": "Document ILI9341_DS_V1.11 (title page V1.11; no public datasheet on ilitek.com); pages 11, 230, 235, 236, 243; no operating current in the document; sha256 a9bbfdf6d078f54a6aca7a56cba91246905358d3a4ed738817bfd3f582b5741c"
+  },
+  {
+    "id": "mod-pixel-gc9a01-ds",
+    "title": "GalaxyCore GC9A01 datasheet V1.0 Preliminary (module vendor copy, Waveshare wiki)",
+    "url": "https://www.waveshare.com/w/upload/5/5e/GC9A01A.pdf",
+    "retrieved": "2026-11-08",
+    "class": "B",
+    "note": "LCD-DST-3014, Rev.1.0 Preliminary; no GalaxyCore download found; preliminary, therefore hints only; pages 10, 11, 182, 183, 189; sha256 af8f6f0a03f4a340510fc06321eb78a2d9bb49670ff1f59164bd6ccf71a2bd47"
+  },
+  {
+    "id": "mod-pixel-ws2812b-ds",
+    "title": "Worldsemi WS2812B-V5/W Intelligent control LED integrated light source, datasheet V6.1",
+    "url": "https://www.world-semi.com/web/userfiles/productfile/WS2812B_V5WDatasheet_V6.1_EN.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Revision V6.1 (2022/9/8, modify record p. 8); VIH 0.63·VDD in this revision (older revisions: 0.7·VDD); pages 1, 2, 3, 4, 8; sha256 652e7bc44abd2d4ba24991a403f48bbc64593ea3af7fc92e153b215c50a511af"
+  },
+  {
+    "id": "mod-pixel-sk6812-ds",
+    "title": "Opsco SK6812 specification SPC/SK6812, copy hosted by Pololu",
+    "url": "https://www.pololu.com/file/0J1233/sk6812_datasheet.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A2",
+    "note": "Document SPC/SK6812, Rev. No. 02, 2015-07-08 (opscoled.com: download form only); pages 1, 2, 3, 4, 5; application circuit (p. 6) is an image; sha256 612d5b7704f0498bf10db1ddd07b7d68254de85e7bbeca01c6f47e629d07b1f0"
+  },
+  {
+    "id": "mod-pixel-apa102c-ds",
+    "title": "APA102C RGB full colour LED control IC (Shiji Lighting / iPixel LED), distributor copy (SparkFun)",
+    "url": "https://cdn.sparkfun.com/datasheets/Components/LED/APA102C.pdf",
+    "retrieved": "2026-11-08",
+    "class": "B",
+    "note": "No revision or date; no manufacturer download found; image-only PDF without a text layer, so no excerpt and no evidence (values only as unverified notes); sha256 3ce93e9ab1cd8c382f16ef2b1fdf97fb7ce84781dbe241d11ee2af55d36d5671"
+  }
+]

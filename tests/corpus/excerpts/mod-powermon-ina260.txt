@@ -1,0 +1,34 @@
+# source_id: mod-powermon-ina260-ds
+# document: Texas Instruments INA260 Precision Digital Current and Power Monitor With Low-Drift, Precision Integrated Shunt, SBOS656C (July 2016, revised December 2016)
+# url: https://www.ti.com/lit/ds/symlink/ina260.pdf
+# corpus: mod/powermon/ina260.pdf sha256 5160ed4af198b093e541beb3fe5f1048f00233fa23cd4f4822391acad9f94dcf
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 5
+Analog input current Continuous Conduction ±15 A
+Supply, VS 6
+VBUS pin –0.3 40
+SDA, SCL, ALERT –0.3 6
+VS Operating supply voltage 2.7 5.5 V
+@@ page 6
+Bus voltage input range (1) 0 36 V
+Current 1.25 mA
+Power 10 mW
+Package resistance IN+ to IN– 4.5 mΩ
+Maximum continuous current –40°C ≤ TA ≤ 85°C ±15 A
+@@ page 7
+VIH High-level input voltage 0.7 × VS 6 V
+VIL Low-level input voltage 0 0.3 × VS V
+VOL Low-level output voltage, SDA,ALERT IOL = 3 mA 0 0.4 V
+IQ Quiescent current 310 420 µA
+Quiescent current, power-down
+(shutdown) mode 0.5 2 µA
+@@ page 17
+bus. Both SCL and SDA connect to the bus and require external pullup resistors.
+@@ page 18
+Table 2. Address Pins and Slave Addresses
+GND GND 1000000
+SCL SCL 1001111
+The INA260 supports the transmission protocol for fast mode (1 kHz to 400 kHz) and high-speed mode (1 kHz to
+@@ page 29
+the device. A typical value for this supply bypass capacitor is 0.1 μF. Applications with noisy or high-impedance

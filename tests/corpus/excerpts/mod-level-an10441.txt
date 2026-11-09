@@ -1,0 +1,29 @@
+# source_id: mod-level-an10441
+# document: AN10441 Level shifting techniques in I2C-bus design, application note Rev. 2 (NXP 2007, Nexperia 2020)
+# url: https://web.archive.org/web/20231201131917id_/https://assets.nexperia.com/documents/application-note/AN10441.pdf
+# corpus: mod/level/AN10441.pdf sha256 67a04c7ece897c95123a1f9ea76068dad6b076927ea53859abd50ccdd55bf295
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+AN10441
+Level shifting techniques in I²C-bus design
+Rev. 2 — 10 February 2020 Application note
+@@ page 2
+The bidirectional level shifter can be used for both Standard-mode (up to100 kbit/s) or in
+Fast-mode (up to 400 kbit/s) I2C-bus systems. It is not intended for Hs-mode systems, which may
+Fig. 1. The left ‘low-voltage’ section has pull-up resistors and devices connected to a 3.3 V supply
+voltage; the right ‘high-voltage’ section has pull-up resistors and devices connected to a 5 V supply
+The level shifter for each bus line is identical and consists of one discrete N-channel enhancement
+MOSFET; TR1 for the serial data line SDA and TR2 for the serial clock line SCL. The gates
+(g) have to be connected to the lowest supply voltage VDD1, the sources (s) to the bus lines of
+the ‘lower-voltage’ section, and the drains (d) to the bus lines of the ‘higher-voltage’ section.
+@@ page 3
+1. No device is pulling down the bus line. The bus line of the ‘lower-voltage’ section is pulled up by
+its pull-up resistors Rp to 3.3 V. The gate and the source of the MOSFET are both at 3.3 V, so
+its VGS is below the threshold voltage and the MOSFET is not conducting. This allows the bus
+2. A 3.3 V device pulls down the bus line to a LOW level. The source of the MOSFET also
+becomes LOW, while the gate stays at 3.3 V. VGS rises above the threshold and the MOSFET
+3. A 5 V device pulls down the bus line to a LOW level. The drain-substrate diode of the MOSFET
+The three states show that the logic levels are transferred in both directions of the bus system,
+and 10 V for VDD2 is feasible. In normal operation VDD2 must be equal to or higher than VDD1
+(VDD2 is allowed to fall below VDD1 during switching power on/off).

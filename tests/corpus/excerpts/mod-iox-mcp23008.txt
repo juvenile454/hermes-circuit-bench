@@ -1,0 +1,39 @@
+# source_id: mod-iox-mcp23008-ds
+# document: MCP23008 and MCP23S08 Data Sheet, DS20001919I
+# url: https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/MCP23008-and-MCP23008-Data-Sheet-DS20001919.pdf
+# corpus: mod/iox/mcp23008-ds20001919.pdf sha256 88eb728767e9e895bfbd8012d5bb0d97aff44f7e97184632f2282466efa65b34
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+output only for MCP23008)
+@@ page 4
+A2 must be biased externally.
+A1 4 2 4 I Hardware address input. Must be biased externally.
+A0 5 3 5 I Hardware address input. Must be biased externally.
+GP7 17 16 19 I/O Bidirectional I/O pin. Can be enabled for interrupt-on-change and/or 
+Output Only (MCP23008).
+@@ page 7
+FIGURE 1-4: I2C Addressing Registers.
+S 0100 A2 A1 A0 R/W ACK
+@@ page 14
+bit 3 HAEN: Hardware Address Enable (MCP23S08 only)
+0 =  Active driver output (INTPOL bit sets the polarity)
+@@ page 21
+Voltage on VDD with respect to VSS .........................................................................................................  -0.3V to +5.5V
+Voltage on all other pins with respect to VSS (except VDD)............................................................. -0.6V to (VDD + 0.6V)
+Maximum current out of VSS pin ...........................................................................................................................150 mA
+Maximum current into VDD pin ..............................................................................................................................125 mA
+Maximum output current sunk by any output pin ....................................................................................................25 mA
+D001 Supply Voltage V DD 1.8 — 5.5 V
+D004 Supply Current I DD — — 1 mA SCL/SCK = 1 MHz
+D005 Standby current I DDS —— 1 µ A
+D031 CS , GPIO, SCL/SCK, 
+VSS —0 . 2 V DD V
+@@ page 22
+D041 CS , GPIO, SCL/SCK, 
+0.8 VDD —V DD V For entire V DD range.
+D080 GPIO V OL —— 0 . 6 V I OL = 8.5 mA, VDD = 4.5V 
+D090 GPIO, INT, SO V OH VDD – 0.7 — — V I OH = -3.0 mA, VDD = 4.5V
+@@ page 24
+400 kHz mode 0.6 — — µs 2.7V – 5.5V (I-Temp)
+1.7 MHz mode 0.12 — — µs 4.5V – 5.5V (E-Temp)

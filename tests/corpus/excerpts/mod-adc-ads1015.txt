@@ -1,0 +1,59 @@
+# source_id: mod-adc-ads1015-ds
+# document: ADS101x 12-Bit ADCs datasheet, SBAS473F (Rev. F, January 2025)
+# url: https://www.ti.com/lit/ds/symlink/ads1015.pdf
+# corpus: mod/adc/ads1015.pdf sha256 4617aa3843b16d23264f5eff63b90b1afffefff7af97ae29f0eb8c5a153156d4
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 3
+ADDR 1 1 1 Digital input I2C target address select
+AIN0 4 4 4 Analog input Analog input 0
+AIN1 5 5 5 Analog input Analog input 1
+AIN2 — — 6 Analog input Analog input 2 (ADS1015 only)
+AIN3 — — 7 Analog input Analog input 3 (ADS1015 only)
+ALERT/RDY — 2 2 Digital output Comparator output or conversion ready (ADS1014 and ADS1015 only)Open-drain output. Connect to VDD using a pullup resistor.
+GND 3 3 3 Analog Ground
+SCL 10 10 10 Digital input Serial clock input. Connect to VDD using a pullup resistor.
+SDA 9 9 9 Digital I/O Serial data input and output. Connect to VDD using a pullup resistor.
+VDD 8 8 8 Analog Power supply. Connect a 0.1μF, power-supply decoupling capacitor to GND.
+@@ page 4
+Power-supply voltage VDD to GND –0.3 7 V
+Analog input voltage AIN0, AIN1, AIN2, AIN3 GND – 0.3 VDD + 0.3 V
+Digital input voltage SDA, SCL, ADDR, ALERT/RDY GND – 0.3 5.5 V
+Power supply (VDD to GND) 2 5.5 V
+V(AINx) Absolute input voltage GND VDD V
+VDIG Digital input voltage GND 5.5 V
+(2) This parameter expresses the full-scale range of the ADC scaling. No more than VDD + 0.3V must be applied to the analog inputs of 
+@@ page 5
+Resolution (no missing codes) 12 Bits
+DR Data rate 128, 250, 490, 920, 1600, 2400, 3300 SPS
+VIH High-level input voltage 0.7 VDD 5.5 V
+VIL Low-level input voltage GND 0.3 VDD V
+VOL Low-level output voltage IOL = 3mA GND 0.15 0.4 V
+@@ page 6
+IVDD Supply current
+Power-down
+TA = 25°C 0.5 2
+5
+Operating
+TA = 25°C 150 200
+300
+fSCL SCL clock frequency 0.01 0.4 0.01 3.4 MHz
+@@ page 11
+LSB = FSR / 212 (2)
+±6.144V(1) 3mV
+±4.096V(1) 2mV
+±2.048V 1mV
+±1.024V 0.5mV
+±0.512V 0.25mV
+±0.256V 0.125mV
+The ADS101x have an integrated voltage reference. An external reference cannot be used with these devices.
+@@ page 16
+shown in Table 7-2. The state of address pin ADDR is sampled continuously. Use the GND, VDD, and SCL 
+ADDR PIN CONNECTION TARGET ADDRESS
+GND 1001000b
+VDD 1001001b
+SDA 1001010b
+SCL 1001011b
+frequency of up to 3.4MHz. The ADS101x are fully compatible with all three modes.
+@@ page 25
+• Either float unused analog inputs, or tie unused analog inputs to GND

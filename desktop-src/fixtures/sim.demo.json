@@ -1,0 +1,179 @@
+{
+  "ok": true,
+  "action": "sim.demo",
+  "summary": "Demo project 'laser-trigger' created (simulated ESP32-S3 N16R8 on sim://esp32s3-n16r8): 5 of 5 pins ok, 8 parts, 5 solder steps, example firmware copied to firmware/. Next: detect, build and flash on sim://esp32s3-n16r8.",
+  "result": {
+    "id": "laser-trigger",
+    "title": "Laser trigger",
+    "rev": 2,
+    "created": true,
+    "port": "sim://esp32s3-n16r8",
+    "simulated": true,
+    "board": {
+      "chip": "esp32s3",
+      "module": "wroom-1",
+      "variant": "n16r8",
+      "devkit": "esp32-s3-devkitc-1"
+    },
+    "assignments": [
+      {
+        "role": "LASER",
+        "mode": "out",
+        "pin": 14,
+        "verdict": "ok"
+      },
+      {
+        "role": "BUTTON",
+        "mode": "in_pullup",
+        "pin": 2,
+        "verdict": "ok"
+      },
+      {
+        "role": "SDA",
+        "mode": "i2c_sda",
+        "pin": 8,
+        "verdict": "ok"
+      },
+      {
+        "role": "SCL",
+        "mode": "i2c_scl",
+        "pin": 9,
+        "verdict": "ok"
+      },
+      {
+        "role": "VBAT",
+        "mode": "adc",
+        "pin": 1,
+        "verdict": "ok"
+      }
+    ],
+    "parts": [
+      "R1 1 kΩ",
+      "R2 10 kΩ",
+      "Q1 2N2222A",
+      "R3 100 kΩ",
+      "R4 100 kΩ",
+      "C1 10 µF 16 V",
+      "SW1 push button",
+      "J2 laser module"
+    ],
+    "calcs": [
+      "npn-1",
+      "div-1"
+    ],
+    "circuits": [
+      {
+        "id": "laser",
+        "block": "npn_low_side",
+        "svg": "artifacts/laser.svg"
+      }
+    ],
+    "solder_steps": 5,
+    "firmware_dir": "/home/user/.hermes/plugin-data/circuit-bench/projects/laser-trigger/firmware",
+    "env": "s3"
+  },
+  "checks": [
+    {
+      "id": "sim.demo.pins",
+      "status": "passed",
+      "detail": "5 of 5 assignments ok (pins.check)"
+    }
+  ],
+  "warnings": [
+    {
+      "code": "gpio_current",
+      "severity": "info",
+      "message": "The driving pin sources 2.60 mA. GPIO current limits are not checked here (unverified); see the chip datasheet.",
+      "source_ids": []
+    },
+    {
+      "code": "laser_safety",
+      "severity": "danger",
+      "message": "Laser modules can damage eyes. Never look into the beam; keep the output off during boot (pull-down).",
+      "source_ids": []
+    },
+    {
+      "code": "polarity",
+      "severity": "danger",
+      "message": "C1: Polarised: reverse voltage can open the pressure relief vent (Nichicon). The stripe on the sleeve marks the negative lead (Rubycon). Confirm the polarity before soldering.",
+      "source_ids": [
+        "solder-nichicon-al-guidelines",
+        "solder-nichicon-al-technical-notes",
+        "solder-rubycon-zlj-spec"
+      ]
+    },
+    {
+      "code": "transistor_pinout",
+      "severity": "info",
+      "message": "Q1 B/C/E follow the symbol only. Take the pinout from the transistor datasheet, do not guess.",
+      "source_ids": []
+    }
+  ],
+  "assumptions": [
+    {
+      "key": "board",
+      "value": "sim://esp32s3-n16r8",
+      "reason": "simulated board: no hardware is used"
+    }
+  ],
+  "sources": [
+    {
+      "id": "rule-of-thumb",
+      "title": "Practice rule, not a standard",
+      "url": null,
+      "retrieved": "2026-11-05",
+      "note": "Shown for engineering judgement only; check the datasheet of your parts."
+    },
+    {
+      "id": "onsemi-2n2222a",
+      "title": "onsemi 2N2222A/D, Small Signal Switching Transistor NPN Silicon, Rev. 2 (November 2013)",
+      "url": "https://www.onsemi.com/download/data-sheet/pdf/2n2222a-d.pdf",
+      "retrieved": "2026-11-06",
+      "note": "Electrical Characteristics, ON CHARACTERISTICS: DC Current Gain hFE at V_CE = 10 V; Maximum Ratings: I_C continuous. TO-18 (JAN) part; TO-92 parts such as P2N2222A or PN2222A have other values. PDF SHA-256 b3181715862c6d3c145868d170f52fa7ff8ea99d89707699c01a53d108e587c7."
+    },
+    {
+      "id": "solder-onsemi-pn2222",
+      "title": "onsemi, PN2222 NPN Epitaxial Silicon Transistor, data sheet PN2222T/D Rev. 4 (June 2024)",
+      "url": "https://www.onsemi.com/pdf/datasheet/pn2222t-d.pdf",
+      "retrieved": "2026-11-06"
+    },
+    {
+      "id": "solder-onsemi-p2n2222a",
+      "title": "onsemi, P2N2222A Amplifier Transistors NPN Silicon, data sheet P2N2222A/D Rev. 7 (January 2013)",
+      "url": "https://www.onsemi.com/pdf/datasheet/p2n2222a-d.pdf",
+      "retrieved": "2026-11-06"
+    },
+    {
+      "id": "solder-nichicon-al-guidelines",
+      "title": "Nichicon, Application Guidelines for Aluminum Electrolytic Capacitors (CAT.8100Z-2)",
+      "url": "https://www.nichicon.co.jp/english/products/pdf/e-al_gui.pdf",
+      "retrieved": "2026-11-06"
+    },
+    {
+      "id": "solder-nichicon-al-technical-notes",
+      "title": "Nichicon, General Descriptions of Aluminum Electrolytic Capacitors, Technical Notes (CAT.8101H)",
+      "url": "https://www.nichicon.co.jp/english/products/pdf/aluminum.pdf",
+      "retrieved": "2026-11-06"
+    },
+    {
+      "id": "solder-rubycon-zlj-spec",
+      "title": "Rubycon, Specification Sheet 50 ZLJ 560 M 12.5X20 (Drawing No. RER-215026, 08 May 2023), 4. Marking",
+      "url": "https://media.digikey.com/pdf/Data%20Sheets/Rubycon%20PDFs/50ZLJ560M12.5X20.pdf",
+      "retrieved": "2026-11-06"
+    },
+    {
+      "id": "solder-fda-laser-faq",
+      "title": "U.S. FDA, Frequently Asked Questions About Lasers",
+      "url": "https://www.fda.gov/radiation-emitting-products/laser-products-and-instruments/frequently-asked-questions-about-lasers",
+      "retrieved": "2026-11-06"
+    },
+    {
+      "id": "devkitc1-s3-v1.1",
+      "title": "ESP32-S3-DevKitC-1 v1.1 User Guide, Header Block (J1, J3)",
+      "url": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html",
+      "retrieved": "2026-11-05"
+    }
+  ],
+  "simulated": true,
+  "error": null
+}

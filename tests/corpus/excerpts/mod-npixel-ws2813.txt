@@ -1,0 +1,39 @@
+# source_id: mod-npixel-ws2813-ds
+# document: Worldsemi WS2813B-V5/W Intelligent control LED integrated light source, datasheet V6.0 (2021/12/02)
+# url: https://www.world-semi.com/web/userfiles/productfile/WS2813B-V5WDatasheet_V6.0_EN.pdf
+# corpus: mod/npixel/WS2813B-V5WDatasheet_V6.0_EN.pdf sha256 7cfac6bcd3a602fdc1b7cc4475b4fa99576ff1ad22581bc3afd001955fa8b7a4
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+ IntelligentReverse-connectionprotection.Thecomponentswillnotbedamagedwhenthe5Vpowersupplyis
+reversed.
+ Dual-signalwiresversion,signalbreak-pointcontinuoustransmission.
+ Datatransmittingatspeedsofupto800Kbps.
+ NOextracomponentsneeded,eventhecapacitor.
+RESET time>280μs, it won’t cause wrong reset while interruption, it supports the lower frequency and inexpensive
+@@ page 2
+1 BO BO BackupControldatasignaloutput
+2 VCC VCC LEDPOWERSUPPLY
+3 DO DO Controldatasignaloutput
+4 DIN DIN Controldatasignalinput
+5 GND GND Data&PowerGrounding
+6 BIN BIN BackupControldatasignalinput
+Powersupplyvoltage VCC +3.7~+5.3 V
+LogicalInputVoltage VI -0.3V～VDD+0.7V V
+@@ page 3
+Electrical Characteristics (TA=25℃,Vcc=5V,VSS=0V)
+Parameter Symbol Color QuiescentCurrent:<0.6mA Test DC=5VMin Tpy Max Unit Workingcurrent
+mcd 16mAGreen 800 1050 1500
+T0H 0-code,High-leveltime 220ns~380ns
+T1H 1-code,High-leveltime 580ns~1µs
+T0L 0-code,Low-leveltime 580ns~1µs
+T1L 1-code,Low-leveltime 580ns~1µs
+RES Frameunit,Low-leveltime >280µs
+T0H+T0L、T1H+T1L≥1.25µs
+High-levelInput VIH 0.7VDD —— VDD+0.7V V DIN
+Low-levelInput VIL -0.3V —— 0.7V V DIN
+@@ page 4
+Note:DatatransmitinorderofGRB,highbitdataisfirst.
+@@ page 8
+V3.0 M LogicalInputVoltage；Brightnessadjustment；Precautions 20180719 ShenJinGuo YinHuaPing
+V6.0 M

@@ -1,0 +1,38 @@
+# source_id: mod-nenv-sen55-ds
+# document: Sensirion Datasheet SEN5x Environmental Sensor Node, Version 2 – D1 (March 2022)
+# url: https://sensirion.com/media/documents/6791EFA0/62A1F68F/Sensirion_Datasheet_Environmental_Node_SEN5x.pdf
+# corpus: mod/nenv/Sensirion_Datasheet_Environmental_Node_SEN5x.pdf sha256 274338ac3d69f3b1cd1d58d995ad05e1f5ab6cd824df39b80d89c66218b322fc
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 11
+Supply voltage - 4.5 5.0 5.5 V 
+Average supply current 
+Idle Mode (after first 10 seconds) SEN55 - 2.6 3 
+RHT/Gas-only Measurement Mode SEN55 - 6.8 8 
+Measurement-Mode (first 60 seconds) SEN55 - 70 100 
+SEN55 - 63 80 
+Peak supply current Measurement mode (pulse width of 16µs) - 100  110 mA 
+Input high level voltage (VIH) - 2.31 - 5.5 
+V Input low level voltage (VIL) - 0 - 0.99 
+Output low level voltage (VOL) Sink current <6mA 0 0 0.4 
+Supply voltage VDD -0.3 5.5 
+V Interface Select SEL -0.3 5.5 
+I/O pins (RX/SDA, TX/SCL) -0.3 5.5 
+Max. current on any I/O pin -16 16 mA 
+@@ page 13
+1 VDD Supply voltage 5V ± 10% 
+2 GND Ground  
+3 SDA Serial data input / output LVTTL 3.3V 
+compatible 
+4 SCL Serial clock input LVTTL 3.3V 
+compatible 
+5 SEL Interface select Connect to GND 
+6 NC Do not connect  
+Note, that there is an internal electrical connection between GND pin (2) and metal shielding. Keep this metal shielding 
+@@ page 17
+ I2C address: 0x69 
+ Max. speed: standard mode, 100 kbit/s 
+Both SCL and SDA lines are open drain I/Os. They should 
+be connected to external pull-up resistors (e.g. Rp = 10 
+interface, the interface select (SEL) pin must be pulled to 
+GND before or at the same time the sensor is powered up.

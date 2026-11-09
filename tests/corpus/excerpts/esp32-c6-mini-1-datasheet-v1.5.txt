@@ -1,0 +1,59 @@
+# Citation excerpt (chip and board data). '#' lines are metadata; '@@ page N'
+# starts a segment of whole lines copied from pypdf's text of that PDF page, '@@ html' a segment of lines of
+# the page's visible text (script/style dropped). tests/test_c0_corpus.py checks every segment line, in order
+# and whitespace-insensitive, against the pinned file.
+# source_id: ds-esp32-c6-mini-1
+# document: Espressif ESP32-C6-MINI-1 & MINI-1U Datasheet v1.5 (pages 4 and 11). Copyright Espressif Systems; quoted for citation only.
+# url: https://www.espressif.com/sites/default/files/documentation/esp32-c6-mini-1_mini-1u_datasheet_en.pdf
+# corpus: espressif/esp32-c6-mini-1_mini-1u_datasheet_en.pdf sha256 26691033f31cbebf623842c16624e61151b152533c13a850c091c8e858c510a2
+# retrieved: 2026-11-06
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+# Page 11 is Table 3-1 Pin Definitions: the module leads out IO14 and has no IO10/IO11 pins.
+# Chip: ESP32-C6FH4/ESP32-C6FH8 = chip variants with in-package flash (footnote 3: 'The flash is integrated in the chip's package').
+@@ page 4
+T able 1-1. ESP32-C6-MINI-1 (ANT) Series Comparison1
+Ambient T emp.4 Size5Part Number Flash2,3 (°C) (mm)
+ESP32-C6-MINI-1-N4 4 MB (Quad SPI) –40 ~85 13.2 × 16.6 × 2.4ESP32-C6-MINI-1-H4 –40 ~ 105ESP32-C6-MINI-1-H8 8 MB (Quad SPI)
+3The flash is integrated in the chip’s package. For specifications, refer to Section
+6.5 Memory Specifications.
+At the core of the modules is ESP32-C6FH4/ESP32-C6FH8, a 32-bit RISC-V single-core processor. For more
+information on ESP32-C6FH4/ESP32-C6FH8, please refer toESP32-C6 Series Datasheet.
+@@ page 11
+3 Pin Definitions
+T able 3-1 – cont’d from previous page
+Name No. T ype1 Function
+NC 4 — NC
+IO2 5 I/O/T GPIO2, LP_GPIO2, LP_UART_RTSN, ADC1_CH2, FSPIQ
+IO3 6 I/O/T GPIO3, LP_GPIO3, LP_UART_CTSN, ADC1_CH3
+NC 7 — NC
+EN 8 I High: on, enables the chip.
+Low: off, the chip powers off.
+Note: Do not leave the EN pin floating.
+IO4 9 I/O/T MTMS, GPIO4, LP_GPIO4, LP_UART_RXD, ADC1_CH4, FSPIHD
+IO5 10 I/O/T MTDI, GPIO5, LP_GPIO5, LP_UART_TXD, ADC1_CH5, FSPIWP
+IO0 12 I/O/T GPIO0, XTAL_32K_P, LP_GPIO0, LP_UART_DTRN, ADC1_CH0
+IO1 13 I/O/T GPIO1, XTAL_32K_N, LP_GPIO1, LP_UART_DSRN, ADC1_CH1
+IO6 15 I/O/T MTCK, GPIO6, LP_GPIO6, LP_I2C_SDA, ADC1_CH6, FSPICLK
+IO7 16 I/O/T MTDO, GPIO7, LP_GPIO7, LP_I2C_SCL, FSPID
+IO12 17 I/O/T GPIO12, USB_D-
+IO13 18 I/O/T GPIO13, USB_D+
+IO14 19 I/O/T GPIO14
+IO15 20 I/O/T GPIO15
+NC 21 — NC
+IO8 22 I/O/T GPIO8
+IO9 23 I/O/T GPIO9
+IO18 24 I/O/T GPIO18, SDIO_CMD, FSPICS2
+IO19 25 I/O/T GPIO19, SDIO_CLK, FSPICS3
+IO20 26 I/O/T GPIO20, SDIO_DATA0, FSPICS4
+IO21 27 I/O/T GPIO21, SDIO_DATA1, FSPICS5
+IO22 28 I/O/T GPIO22, SDIO_DATA2
+IO23 29 I/O/T GPIO23, SDIO_DATA3
+RXD0 30 I/O/T U0RXD, GPIO17, FSPICS1
+TXD0 31 I/O/T U0TXD, GPIO16, FSPICS0
+NC 32 — NC
+NC 33 — NC
+NC 34 — NC
+NC 35 — NC
+1 P: power supply; I: input; O: output; T: high impedance.
+Espressif Systems 11
+Submit Documentation Feedback

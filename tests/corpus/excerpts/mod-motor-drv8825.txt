@@ -1,0 +1,51 @@
+# source_id: mod-motor-drv8825-ds
+# document: Texas Instruments DRV8825 Stepper Motor Controller IC data sheet, SLVSA73F (revised July 2014)
+# url: https://web.archive.org/web/20261028181412id_/https://www.ti.com/lit/ds/symlink/drv8825.pdf
+# corpus: mod/motor/drv8825.pdf sha256 5b4dccc2497334e10574ffa5a55518c8d59b0ed35758f5e8f099b84bbfbb407b
+# retrieved: 2026-11-09
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+2.5 A of current from each output (with proper heat– Fast Decay
+sinking, at 24 V and 25°C).• 8.2-V to 45-V Operating Supply Voltage Range
+@@ page 3
+Connect a 0.01-μF 50-V capacitor between CP1 and CP2.
+Connect a 0.1-μF 16-V ceramic capacitor and a 1-MΩ resistor toVCP 3 I/O High-side gate drive voltage VM.
+VMA 4 — Bridge A power supply Connect to motor supply (8.2 to 45 V). Both pins must be
+connected to the same supply, bypassed with a 0.1-µF capacitor
+VMB 11 — Bridge B power supply to GND, and connected to appropriate bulk capacitance.
+Bypass to GND with a 0.47-μF 6.3-V ceramic capacitor. Can beV3P3OUT 15 O 3.3-V regulator output used to supply VREF.
+nFAULT 18 OD Fault Logic low when in fault condition (overtemp, overcurrent)
+@@ page 4
+Power supply voltage –0.3 47 V
+Power supply ramp rate 1 V/µs
+Digital pin voltage –0.5 7 V
+V(xVREF) Input voltage –0.3 4 V
+ISENSEx pin voltage (3) –0.8 0.8 V
+Continuous motor drive output current (4) 0 2.5 A
+(4) Power dissipation and thermal limits must be observed.
+V(VMx) Motor power supply voltage range (1) 8.2 45 V
+V(VREF) VREF input voltage (2) 1 3.5 V
+IV3P3 V3P3OUT load current 0 1 mA
+(1) All VM pins must be connected to the same supply voltage.
+(2) Operational at VREF between 0 to 1 V, but accuracy is degraded.
+@@ page 4
+7.1 Absolute Maximum Ratings (1) (2)
+Digital pin voltage –0.5 7 V
+@@ page 6
+IVM VM operating supply current V(VMx) = 24 V 5 8 mA
+IVMQ VM sleep mode supply current V(VMx) = 24 V 10 20 μA
+VIL Input low voltage 0 0.7 V
+VIH Input high voltage 2.2 5.25 V
+VUVLO VM undervoltage lockout voltage V(VMx) rising 7.8 8.2 V
+VTRIP xISENSE trip voltage V(xVREF) = 3.3 V, 100% current setting 635 660 685 mV
+AISENSE Current sense amplifier gain Reference only 5 V/V
+@@ page 7
+2 tWH(STEP) Pulse duration, STEP high 1.9 μs
+7 tWAKE Wakeup time, nSLEEP inactive high to STEP input accepted 1.7 ms
+@@ page 12
+connected to the xISEN pins, multiplied by a factor of 5, with a reference voltage. The reference voltage is input
+If a 0.25-Ω sense resistor is used and the VREFx pin is 2.5 V, the full-scale (100%) chopping current will be
+2.5 V / (5 x 0.25 Ω) = 2 A.
+@@ page 21
+0.1-µF ceramic capacitors rated for VMx must be placed as close as possible to the VMA and VMB pins
+respectively (one on each pin). In addition to the local decoupling caps, additional bulk capacitance is required

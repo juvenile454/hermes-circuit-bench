@@ -1,0 +1,88 @@
+name: Bug report
+description: Something in Circuit Bench does not work as described.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Security problems do not belong here: please follow SECURITY.md (private reporting).
+        Please do not paste MAC addresses, USB serial numbers or other identifiers of your own devices; replace them
+        with `xx` if they appear in a log.
+  - type: input
+    id: version
+    attributes:
+      label: Circuit Bench version
+      description: Version or commit, e.g. from `hermes plugins list`.
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: hermes
+    attributes:
+      label: Hermes version
+      description: Output of `hermes --version`; for the Desktop half also the Hermes Desktop version.
+      placeholder: "Hermes Agent v0.23.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - Linux
+        - macOS
+        - Windows
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: os_detail
+    attributes:
+      label: OS details
+      placeholder: "Ubuntu 24.04"
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Where did it happen?
+      multiple: true
+      options:
+        - Bench in Hermes Desktop
+        - Agent tools (chat, CLI or messaging)
+        - /bench command
+        - Install or enable
+  - type: dropdown
+    id: board_mode
+    attributes:
+      label: Simulated or real board?
+      options:
+        - Simulated board (sim://)
+        - Real board
+        - No board involved
+    validations:
+      required: true
+  - type: input
+    id: board
+    attributes:
+      label: Board and chip
+      description: Board name, chip and module variant if known. Leave empty for the simulated board.
+      placeholder: "ESP32-S3-DevKitC-1, ESP32-S3 N16R8"
+  - type: textarea
+    id: doctor
+    attributes:
+      label: Output of /bench doctor
+      description: Run `/bench doctor` (or "Run bench doctor" in the Desktop command palette) and paste the result.
+      render: text
+  - type: textarea
+    id: steps
+    attributes:
+      label: What did you do?
+      description: Steps to reproduce, ideally with the demo project `laser-trigger`.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: What happened, and what did you expect?
+      description: Include the tool result or error text (`code` and `hint`) if there is one.
+    validations:
+      required: true

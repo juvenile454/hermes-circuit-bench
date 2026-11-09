@@ -1,0 +1,405 @@
+{
+ "ok": true,
+ "action": "pins.check",
+ "summary": "ESP32-S3 N16R8, Wi-Fi on: 4 ok, 0 caution, 0 blocked. Modules: 16 findings (1 danger, 13 caution).",
+ "result": {
+  "chip": "esp32s3",
+  "title": "ESP32-S3",
+  "variant": "n16r8",
+  "wifi": true,
+  "devkit": "esp32-s3-devkitc-1",
+  "counts": {
+   "ok": 4,
+   "caution": 0,
+   "blocked": 0
+  },
+  "pins": [
+   {
+    "role": "SDA",
+    "mode": "i2c_sda",
+    "pin": 8,
+    "name": "GPIO8",
+    "verdict": "ok",
+    "rule_ids": [],
+    "reasons": [],
+    "functions": [
+     "GPIO8",
+     "SUBSPICS1",
+     "RTC_GPIO8",
+     "ADC1_CH7",
+     "TOUCH8"
+    ],
+    "header": "J1-12",
+    "alternatives": []
+   },
+   {
+    "role": "SCL",
+    "mode": "i2c_scl",
+    "pin": 9,
+    "name": "GPIO9",
+    "verdict": "ok",
+    "rule_ids": [],
+    "reasons": [],
+    "functions": [
+     "GPIO9",
+     "SUBSPIHD",
+     "FSPIHD",
+     "RTC_GPIO9",
+     "ADC1_CH8",
+     "TOUCH9"
+    ],
+    "header": "J1-15",
+    "alternatives": []
+   },
+   {
+    "role": "SCK",
+    "mode": "spi_sck",
+    "pin": 12,
+    "name": "GPIO12",
+    "verdict": "ok",
+    "rule_ids": [],
+    "reasons": [],
+    "functions": [
+     "GPIO12",
+     "FSPIIO6",
+     "SUBSPICLK",
+     "FSPICLK",
+     "RTC_GPIO12",
+     "ADC2_CH1",
+     "TOUCH12"
+    ],
+    "header": "J1-18",
+    "alternatives": []
+   },
+   {
+    "role": "MOSI",
+    "mode": "spi_mosi",
+    "pin": 11,
+    "name": "GPIO11",
+    "verdict": "ok",
+    "rule_ids": [],
+    "reasons": [],
+    "functions": [
+     "GPIO11",
+     "FSPIIO5",
+     "SUBSPID",
+     "FSPID",
+     "RTC_GPIO11",
+     "ADC2_CH0",
+     "TOUCH11"
+    ],
+    "header": "J1-17",
+    "alternatives": []
+   }
+  ],
+  "modules": {
+   "buses": [
+    {
+     "id": "i2c:SDA0",
+     "type": "i2c",
+     "gpios": {
+      "SDA": 8,
+      "SCL": 9
+     },
+     "nets": {
+      "SDA": "SDA0",
+      "SCL": "SCL0"
+     },
+     "segments": [
+      {
+       "id": "main",
+       "devices": [],
+       "more": 1
+      },
+      {
+       "id": "U1.0",
+       "parent": "main",
+       "devices": [],
+       "more": 2
+      }
+     ],
+     "f_max_hz": 400000
+    }
+   ],
+   "rails": [
+    {
+     "net": "3V3",
+     "volts": 3.3,
+     "i_typ": 5e-05,
+     "i_max": 0.331508,
+     "i_peak": 0.331508,
+     "limit": 0.4,
+     "limit_source": "user"
+    }
+   ],
+   "counts": {
+    "modules": 4,
+    "findings": 16,
+    "shown": 6,
+    "danger": 1,
+    "caution": 13,
+    "info": 2,
+    "hidden": [
+     "mod_required_parts U2",
+     "mod_required_parts U3",
+     "mod_required_parts U3",
+     "mod_required_parts U4",
+     "mod_required_parts U4",
+     "mod_supply_range U4"
+    ]
+   },
+   "compact": 7
+  }
+ },
+ "checks": [
+  {
+   "id": "pins.exists",
+   "status": "passed",
+   "detail": "all 4 pins exist on ESP32-S3"
+  },
+  {
+   "id": "pins.modes",
+   "status": "passed",
+   "detail": "every pin supports its mode"
+  },
+  {
+   "id": "pins.duplicates",
+   "status": "passed",
+   "detail": "no pin used twice"
+  },
+  {
+   "id": "pins.broken_out",
+   "status": "passed",
+   "detail": "all on the ESP32-S3-DevKitC-1 v1.1 headers"
+  },
+  {
+   "id": "pins.board",
+   "status": "passed",
+   "detail": "no on-board part affected"
+  },
+  {
+   "id": "pins.strapping",
+   "status": "passed",
+   "detail": "no assigned pin affected"
+  },
+  {
+   "id": "pins.spi_flash",
+   "status": "passed",
+   "detail": "no assigned pin affected"
+  },
+  {
+   "id": "pins.octal_psram",
+   "status": "passed",
+   "detail": "no assigned pin affected"
+  },
+  {
+   "id": "pins.usb_jtag",
+   "status": "passed",
+   "detail": "no assigned pin affected"
+  },
+  {
+   "id": "pins.uart0",
+   "status": "passed",
+   "detail": "no assigned pin affected"
+  },
+  {
+   "id": "pins.pad_jtag",
+   "status": "passed",
+   "detail": "no assigned pin affected"
+  },
+  {
+   "id": "pins.adc2_wifi",
+   "status": "passed",
+   "detail": "no assigned pin affected"
+  },
+  {
+   "id": "modules.bus_speed",
+   "status": "not_checked",
+   "detail": "Bus i2c:SDA0: the devices allow at most 400 kHz, limited by U1 (tca9548a). No f…",
+   "refs": [
+    "U1"
+   ],
+   "source_ids": [
+    "mod-iox-tca9548a-ds"
+   ]
+  },
+  {
+   "id": "modules.display.max7219_vih",
+   "status": "not_checked",
+   "detail": "U4 (max7219): V+ 3.30 V: the datasheet gives VIH only for V+ = 5 V ±10 % (4.5–5…",
+   "refs": [
+    "U4"
+   ],
+   "source_ids": [
+    "mod-display-max7219-ds"
+   ]
+  },
+  {
+   "id": "modules.env.bmp_vs_bme",
+   "status": "not_checked",
+   "detail": "2 findings: U2 (bme280): boards sold as BME280 sometimes carry a BMP280 (no hum…",
+   "refs": [
+    "U2"
+   ],
+   "source_ids": [
+    "mod-env-bme280-ds"
+   ]
+  },
+  {
+   "id": "modules.level_in",
+   "status": "not_checked",
+   "detail": "U4 (max7219) DIN, CLK: input level not checked: VIH the value holds for V+ = 5 …",
+   "refs": [
+    "U4"
+   ],
+   "source_ids": [
+    "mod-display-max7219-ds"
+   ]
+  },
+  {
+   "id": "modules.spi_cs",
+   "status": "not_checked",
+   "detail": "U4 (max7219) LOAD is not connected; chip select not checked (see mod.unconnecte…",
+   "refs": [
+    "U4"
+   ],
+   "source_ids": []
+  },
+  {
+   "id": "modules.supply_range",
+   "status": "failed",
+   "detail": "U4 (max7219) V+ on 3V3 = 3.30 V is below the operating range 4.00 V–5.50 V.",
+   "refs": [
+    "U4"
+   ],
+   "source_ids": [
+    "mod-display-max7219-ds"
+   ]
+  },
+  {
+   "id": "modules.unconnected",
+   "status": "failed",
+   "detail": "2 findings: U1 (tca9548a) RESET (reset_in) must be connected according to the m…",
+   "refs": [
+    "U1"
+   ],
+   "source_ids": [
+    "mod-iox-tca9548a-ds",
+    "mod-display-max7219-ds"
+   ]
+  },
+  {
+   "id": "modules",
+   "status": "failed",
+   "detail": "failed: address_conflict, hazard, net_shared_signals, required_parts; passed: address_select, env.bme680_sdo_float, level_out, pin_role, power_budget"
+  }
+ ],
+ "warnings": [
+  {
+   "code": "mod_net_shared_signals",
+   "severity": "danger",
+   "message": "SCK and MOSI share net SPI0 (GPIO12, GPIO11): that shorts the lines; give each line its own net, e.g. SPI0_SCK / SPI0_M…",
+   "source_ids": [],
+   "refs": [
+    "GPIO12",
+    "GPIO11",
+    "U4"
+   ]
+  },
+  {
+   "code": "mod_address_conflict",
+   "severity": "caution",
+   "message": "U2, U3 (bme280) answer at the same address 0x76 on bus i2c:SDA0 segment U1.0. Fix: address pin (U2, U3: 0x77 (SDO to VD…",
+   "source_ids": [
+    "mod-env-bme280-ds"
+   ],
+   "refs": [
+    "U2",
+    "U3"
+   ]
+  },
+  {
+   "code": "mod_hazard",
+   "severity": "caution",
+   "message": "U4 (max7219): With all segments on the MAX7219 draws up to 330 mA from V+ (ISEG 40 mA): feed V+ from a 5 V supply rated…",
+   "source_ids": [
+    "mod-display-max7219-ds"
+   ],
+   "refs": [
+    "U4"
+   ]
+  },
+  {
+   "code": "mod_required_parts",
+   "severity": "caution",
+   "message": "U1 (tca9548a) decoupling (VCC): no capacitor between 3V3 and GND; add ceramic (decoupling, datasheet p. 24).",
+   "source_ids": [
+    "mod-iox-tca9548a-ds"
+   ],
+   "refs": [
+    "U1"
+   ]
+  },
+  {
+   "code": "mod_required_parts",
+   "severity": "caution",
+   "message": "U1 (tca9548a) pullup (SDA, SCL): no pull-up resistor from SDA (SDA0), SCL (SCL0) to the supply; add resistor (value: be…",
+   "source_ids": [
+    "mod-iox-tca9548a-ds"
+   ],
+   "refs": [
+    "U1"
+   ]
+  },
+  {
+   "code": "mod_required_parts",
+   "severity": "caution",
+   "message": "U2 (bme280) decoupling (VDD, VDDIO): no capacitor between 3V3 and GND; add 100nF ceramic (decoupling, datasheet p. 39).",
+   "source_ids": [
+    "mod-env-bme280-ds"
+   ],
+   "refs": [
+    "U2"
+   ]
+  }
+ ],
+ "assumptions": [],
+ "sources": [
+  {
+   "id": "idf-v6.1-gpio-esp32s3",
+   "title": "ESP-IDF v6.1, GPIO & RTC GPIO (ESP32-S3)",
+   "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/gpio/esp32s3.inc",
+   "retrieved": "2026-11-05",
+   "note": "Tag v6.1 = commit fff9895c (tag object 4dc1c655). Rendered: https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-reference/peripherals/gpio.html (stable = v6.1 at retrieval)"
+  },
+  {
+   "id": "devkitc1-s3-v1.1",
+   "title": "ESP32-S3-DevKitC-1 v1.1 User Guide, Header Block (J1, J3)",
+   "url": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html",
+   "retrieved": "2026-11-05"
+  },
+  {
+   "id": "mod-env-bme280-ds",
+   "title": "Bosch Sensortec BME280 Combined humidity and pressure sensor, Data sheet",
+   "url": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme280-ds002.pdf",
+   "retrieved": "2026-11-08",
+   "class": "A"
+  },
+  {
+   "id": "mod-display-max7219-ds",
+   "title": "Analog Devices (Maxim Integrated) MAX7219/MAX7221 Serially Interfaced, 8-Digit LED Display Drivers, data sheet (archived copy)",
+   "url": "https://web.archive.org/web/20260107024235id_/https://www.analog.com/media/en/technical-documentation/data-sheets/max7219-max7221.pdf",
+   "retrieved": "2026-11-08",
+   "class": "A1"
+  },
+  {
+   "id": "mod-iox-tca9548a-ds",
+   "title": "Texas Instruments TCA9548A Low-Voltage 8-Channel I2C Switch with Reset, Data Sheet",
+   "url": "https://www.ti.com/lit/ds/symlink/tca9548a.pdf",
+   "retrieved": "2026-11-08",
+   "class": "A"
+  }
+ ],
+ "simulated": false,
+ "error": null
+}

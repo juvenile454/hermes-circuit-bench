@@ -1,0 +1,53 @@
+# source_id: mod-nnet-lan8720a-ds
+# document: Microchip LAN8720A/LAN8720Ai data sheet DS00002165C (2024)
+# url: https://ww1.microchip.com/downloads/aemDocuments/documents/UNG/ProductDocuments/DataSheets/LAN8720A-LAN8720AI-Data-Sheet-DS00002165.pdf
+# corpus: mod/nnet/LAN8720A-DS00002165.pdf sha256 6222576e55573e3d1753faa2708931880b1457fe643c8578ed93782b6a17b3da
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 10
+REFCLKO VO8 This optional 50MHz clock output is derived from
+the 25MHz crystal oscillator. REFCLKO is select-
+@@ page 11
+RBIAS AI This pin requires connection of a 12.1k ohm (1%)
+Note: 1 uF and 470 pF decoupling capacitors in
+parallel to ground should be used on this
+@@ page 13
+Note 2-5 T he digital signals are not 5V tolerant. Refer to Section 5.1, "Absolute Maximum Ratings*," on
+@@ page 26
+The PHYAD0 bit is driven high or low to give each PHY a unique address. This address is latched into an internal register
+at the end of a hardware reset (default = 0b). In a multi-PHY application (such as a repeater), the controller is able to
+@@ page 28
+In REF_CLK In Mode, the 50MHz REF_CLK is driven on the XTAL1/CLKIN pin. This is the traditional system configu-
+nINTSEL = 0 REF_CLK Out Mode nINT/REFCLKO is the source of REF_CLK.
+@@ page 52
+Supply Voltage (VDDIO, VDD1A, VDD2A) (Note 5- 1) ............................................................................... -0.5V to +3.6V
+Supply Voltage (VDDIO) ......................................................................................................................... +1.62V to +3.6V
+Analog Port Supply Voltage (VDD1A, VDD2A)......................................................................................... +3.0V to +3.6V
+@@ page 53
+100BASE-TX /w traffic
+Max 28 21 0.6 49 159
+Typical 26 19 0.5 45 148
+General Power Down
+Typical 0.3 1.8 0.2 2.3 7.6
+@@ page 56
+VO8 Type Buffers
+VOH VDDIO -
+Low Output Level V OL 0.4 V I OL = 8mA
+@@ page 56
+TABLE 5-5: VARIABLE I/O BUFFER CHARACTERISTICS
+Parameter Symbol Min 1.8V Typ 2.5V Typ 3.3VTyp Max Units Notes
+VIS Type Input Buffer
+VILI
+VIHI
+VILT
+VIHT
+-0.3
+0.64
+0.81
+1.41
+1.65
+3.6
+1.76
+1.90
+@@ page 58
+reset (nRST assertion) is required following power-up. For proper operation, nRST must be asserted for no less than

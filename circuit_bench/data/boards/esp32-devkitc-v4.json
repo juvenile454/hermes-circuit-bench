@@ -1,0 +1,684 @@
+{
+ "schema": 1,
+ "id": "esp32-devkitc-v4",
+ "title": "ESP32-DevKitC",
+ "revision": "V4",
+ "chip": "esp32",
+ "source_id": "devkitc-esp32-v4",
+ "module": {
+  "name": "ESP32-WROOM-32E",
+  "part_numbers": [
+   "ESP32-DevKitC-32E"
+  ],
+  "variant": "wroom-32e",
+  "flash_mb": 4,
+  "psram_mb": 0,
+  "antenna": "pcb",
+  "source_id": "devkitc-esp32-v4-ordering"
+ },
+ "buttons": [
+  "EN",
+  "Boot"
+ ],
+ "headers": [
+  {
+   "id": "J2",
+   "side": "left",
+   "pins": [
+    {
+     "n": 1,
+     "label": "3V3",
+     "kind": "power"
+    },
+    {
+     "n": 2,
+     "label": "EN",
+     "kind": "reset"
+    },
+    {
+     "n": 3,
+     "label": "VP",
+     "kind": "gpio",
+     "gpio": 36
+    },
+    {
+     "n": 4,
+     "label": "VN",
+     "kind": "gpio",
+     "gpio": 39
+    },
+    {
+     "n": 5,
+     "label": "IO34",
+     "kind": "gpio",
+     "gpio": 34
+    },
+    {
+     "n": 6,
+     "label": "IO35",
+     "kind": "gpio",
+     "gpio": 35
+    },
+    {
+     "n": 7,
+     "label": "IO32",
+     "kind": "gpio",
+     "gpio": 32
+    },
+    {
+     "n": 8,
+     "label": "IO33",
+     "kind": "gpio",
+     "gpio": 33
+    },
+    {
+     "n": 9,
+     "label": "IO25",
+     "kind": "gpio",
+     "gpio": 25
+    },
+    {
+     "n": 10,
+     "label": "IO26",
+     "kind": "gpio",
+     "gpio": 26
+    },
+    {
+     "n": 11,
+     "label": "IO27",
+     "kind": "gpio",
+     "gpio": 27
+    },
+    {
+     "n": 12,
+     "label": "IO14",
+     "kind": "gpio",
+     "gpio": 14
+    },
+    {
+     "n": 13,
+     "label": "IO12",
+     "kind": "gpio",
+     "gpio": 12
+    },
+    {
+     "n": 14,
+     "label": "GND",
+     "kind": "ground"
+    },
+    {
+     "n": 15,
+     "label": "IO13",
+     "kind": "gpio",
+     "gpio": 13
+    },
+    {
+     "n": 16,
+     "label": "D2",
+     "kind": "gpio",
+     "gpio": 9
+    },
+    {
+     "n": 17,
+     "label": "D3",
+     "kind": "gpio",
+     "gpio": 10
+    },
+    {
+     "n": 18,
+     "label": "CMD",
+     "kind": "gpio",
+     "gpio": 11
+    },
+    {
+     "n": 19,
+     "label": "5V",
+     "kind": "power"
+    }
+   ]
+  },
+  {
+   "id": "J3",
+   "side": "right",
+   "pins": [
+    {
+     "n": 1,
+     "label": "GND",
+     "kind": "ground"
+    },
+    {
+     "n": 2,
+     "label": "IO23",
+     "kind": "gpio",
+     "gpio": 23
+    },
+    {
+     "n": 3,
+     "label": "IO22",
+     "kind": "gpio",
+     "gpio": 22
+    },
+    {
+     "n": 4,
+     "label": "TX",
+     "kind": "gpio",
+     "gpio": 1
+    },
+    {
+     "n": 5,
+     "label": "RX",
+     "kind": "gpio",
+     "gpio": 3
+    },
+    {
+     "n": 6,
+     "label": "IO21",
+     "kind": "gpio",
+     "gpio": 21
+    },
+    {
+     "n": 7,
+     "label": "GND",
+     "kind": "ground"
+    },
+    {
+     "n": 8,
+     "label": "IO19",
+     "kind": "gpio",
+     "gpio": 19
+    },
+    {
+     "n": 9,
+     "label": "IO18",
+     "kind": "gpio",
+     "gpio": 18
+    },
+    {
+     "n": 10,
+     "label": "IO5",
+     "kind": "gpio",
+     "gpio": 5
+    },
+    {
+     "n": 11,
+     "label": "IO17",
+     "kind": "gpio",
+     "gpio": 17
+    },
+    {
+     "n": 12,
+     "label": "IO16",
+     "kind": "gpio",
+     "gpio": 16
+    },
+    {
+     "n": 13,
+     "label": "IO4",
+     "kind": "gpio",
+     "gpio": 4
+    },
+    {
+     "n": 14,
+     "label": "IO0",
+     "kind": "gpio",
+     "gpio": 0
+    },
+    {
+     "n": 15,
+     "label": "IO2",
+     "kind": "gpio",
+     "gpio": 2
+    },
+    {
+     "n": 16,
+     "label": "IO15",
+     "kind": "gpio",
+     "gpio": 15
+    },
+    {
+     "n": 17,
+     "label": "D1",
+     "kind": "gpio",
+     "gpio": 8
+    },
+    {
+     "n": 18,
+     "label": "D0",
+     "kind": "gpio",
+     "gpio": 7
+    },
+    {
+     "n": 19,
+     "label": "CLK",
+     "kind": "gpio",
+     "gpio": 6
+    }
+   ]
+  }
+ ],
+ "onboard": [
+  {
+   "gpio": 0,
+   "what": "Boot button",
+   "severity": "caution",
+   "source_id": "devkitc-esp32-v4"
+  }
+ ],
+ "usb": [
+  {
+   "label": "UART",
+   "kind": "usb_uart_bridge",
+   "gpios": [
+    1,
+    3
+   ],
+   "source_id": "devkitc-esp32-v4"
+  }
+ ],
+ "notes": [
+  "GPIO6-11 (D2, D3, CMD on J2-16..18; D1, D0, CLK on J3-17..19) are wired to the module's SPI flash: they are on the headers, but do not use them.",
+  "GPIO16/17 are usable only on boards with ESP32-WROOM and ESP32-SOLO-1 modules; ESP32-WROVER boards reserve them. The pin rule esp32.psram_16_17 blocks them for the module variant WROVER-E (PSRAM), leaves them free for WROOM-32E and marks them caution while the variant is unknown.",
+  "VP (GPIO36), VN (GPIO39), IO34 and IO35 are input only; GPIO37/38 are not broken out.",
+  "Strapping pins on the headers: GPIO0 (Boot button), GPIO2, GPIO5, GPIO12 (MTDI), GPIO15 (MTDO).",
+  "With Wi-Fi on, the ADC2 pins (GPIO0, 2, 4, 12-15, 25-27) cannot be used for ADC; ADC1 is on VP, VN and IO32-IO35.",
+  "TX/RX (GPIO1/GPIO3) are U0TXD/U0RXD, used for flashing and the console over the USB-to-UART bridge.",
+  "Earlier V4 boards: C15 may make the board boot into Download mode or disturb a clock output on GPIO0; remove C15 if that happens.",
+  "Standard module: ESP32-WROOM-32E (ESP32-DevKitC-32E: 4 MB flash, no PSRAM; module variant WROOM-32E). The ordering table also lists ESP32-DevKitC-32UE (ESP32-WROOM-32UE) and ESP32-DevKitC-VE/-VIE (ESP32-WROVER-E/-IE with 8 MB PSRAM); set the module variant WROVER-E for the latter.",
+  "The user guide text does not name the USB-to-UART bridge chip; its pin layout figure shows a chip marked CP2102 (read from the figure, unverified)."
+ ],
+ "citations": [
+  {
+   "about": "revision",
+   "source_id": "devkitc-esp32-v4",
+   "quote": "This guide shows how to start using the ESP32-DevKitC V4 development board."
+  },
+  {
+   "about": "headers.J2",
+   "source_id": "devkitc-esp32-v4",
+   "table": "J2"
+  },
+  {
+   "about": "headers.J3",
+   "source_id": "devkitc-esp32-v4",
+   "table": "J3"
+  },
+  {
+   "about": "headers.side",
+   "source_id": "devkitc-esp32-v4",
+   "figure": "esp32_devkitC_v4_pinlayout.png",
+   "quote": "They are grouped on both sides near the USB connector."
+  },
+  {
+   "about": "module",
+   "source_id": "devkitc-esp32-v4-ordering",
+   "row": [
+    "ESP32-DevKitC-32E",
+    "ESP32-WROOM-32E",
+    "4 MB",
+    "---",
+    "PCB on-board antenna"
+   ]
+  },
+  {
+   "about": "module",
+   "source_id": "devkitc-esp32-v4",
+   "quote": "ESP32-DevKitC V4 with ESP32-WROOM-32E module soldered"
+  },
+  {
+   "about": "module",
+   "source_id": "devkitc-esp32-v4",
+   "row": [
+    "3",
+    "ESP32-WROOM-32E",
+    "A module with ESP32 at its core. For more information, see `ESP32-WROOM-32E Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.pdf>`_."
+   ]
+  },
+  {
+   "about": "buttons[1]",
+   "source_id": "devkitc-esp32-v4",
+   "row": [
+    "5",
+    "Boot Button",
+    "Download button. Holding down **Boot** and then pressing **EN** initiates Firmware Download mode for downloading firmware through the serial port."
+   ]
+  },
+  {
+   "about": "buttons[0]",
+   "source_id": "devkitc-esp32-v4",
+   "row": [
+    "7",
+    "EN Button",
+    "Reset button."
+   ]
+  },
+  {
+   "about": "onboard[0]",
+   "source_id": "devkitc-esp32-v4",
+   "row": [
+    "14",
+    "IO0",
+    "I/O",
+    "GPIO0, ADC2_CH1, TOUCH_CH1, Boot"
+   ]
+  },
+  {
+   "about": "usb[0]",
+   "source_id": "devkitc-esp32-v4",
+   "row": [
+    "4",
+    "USB-to-UART Bridge",
+    "Single USB-to-UART bridge chip, providing transfer rates up to 3 Mbps."
+   ]
+  },
+  {
+   "about": "usb[0]",
+   "source_id": "devkitc-esp32-v4",
+   "row": [
+    "6",
+    "USB-to-UART Port",
+    "A Micro-USB port used for power supply to the board, as well as for communication between a computer and the ESP32-WROOM-32E module."
+   ]
+  },
+  {
+   "about": "usb[0]",
+   "source_id": "devkitc-esp32-v4",
+   "row": [
+    "4",
+    "TX",
+    "I/O",
+    "GPIO1, U0TXD"
+   ]
+  },
+  {
+   "about": "usb[0]",
+   "source_id": "devkitc-esp32-v4",
+   "row": [
+    "5",
+    "RX",
+    "I/O",
+    "GPIO3, U0RXD"
+   ]
+  },
+  {
+   "about": "usb[0]",
+   "source_id": "idf-v6.1-gpio-esp32",
+   "quote": "TXD & RXD are usually used for flashing and debugging"
+  },
+  {
+   "about": "notes[0]",
+   "source_id": "devkitc-esp32-v4",
+   "quote": "The pins D0, D1, D2, D3, CMD and CLK are used internally for communication between ESP32 and SPI flash memory."
+  },
+  {
+   "about": "notes[0]",
+   "source_id": "devkitc-esp32-v4",
+   "quote": "Avoid using these pins, as it may disrupt access to the SPI flash memory/SPI RAM."
+  },
+  {
+   "about": "notes[1]",
+   "source_id": "devkitc-esp32-v4",
+   "quote": "The pins GPIO16 and GPIO17 are available for use only on the boards with the modules ESP32-WROOM and ESP32-SOLO-1. The boards with ESP32-WROVER modules have the pins reserved for internal use."
+  },
+  {
+   "about": "notes[1]",
+   "source_id": "idf-v6.1-gpio-esp32",
+   "quote": "GPIO6-11 and GPIO16-17 are usually connected to the SPI flash and PSRAM integrated on the module and therefore should not be used for other purposes"
+  },
+  {
+   "about": "notes[2]",
+   "source_id": "devkitc-esp32-v4",
+   "row": [
+    "3",
+    "VP",
+    "I",
+    "GPIO36, ADC1_CH0, S_VP"
+   ]
+  },
+  {
+   "about": "notes[2]",
+   "source_id": "devkitc-esp32-v4",
+   "row": [
+    "4",
+    "VN",
+    "I",
+    "GPIO39, ADC1_CH3, S_VN"
+   ]
+  },
+  {
+   "about": "notes[2]",
+   "source_id": "devkitc-esp32-v4",
+   "row": [
+    "5",
+    "IO34",
+    "I",
+    "GPIO34, ADC1_CH6, VDET_1"
+   ]
+  },
+  {
+   "about": "notes[2]",
+   "source_id": "devkitc-esp32-v4",
+   "row": [
+    "6",
+    "IO35",
+    "I",
+    "GPIO35, ADC1_CH7, VDET_2"
+   ]
+  },
+  {
+   "about": "notes[2]",
+   "source_id": "idf-v6.1-gpio-esp32",
+   "quote": "GPIO34-39 can only be set as input mode"
+  },
+  {
+   "about": "notes[3]",
+   "source_id": "idf-v6.1-gpio-esp32",
+   "quote": "GPIO0, GPIO2, GPIO5, GPIO12 (MTDI), and GPIO15 (MTDO) are strapping pins"
+  },
+  {
+   "about": "notes[4]",
+   "source_id": "idf-v6.1-gpio-esp32",
+   "quote": "ADC2 pins cannot be used when Wi-Fi is used"
+  },
+  {
+   "about": "notes[4]",
+   "source_id": "devkitc-esp32-v4",
+   "row": [
+    "3",
+    "VP",
+    "I",
+    "GPIO36, ADC1_CH0, S_VP"
+   ]
+  },
+  {
+   "about": "notes[4]",
+   "source_id": "devkitc-esp32-v4",
+   "row": [
+    "4",
+    "VN",
+    "I",
+    "GPIO39, ADC1_CH3, S_VN"
+   ]
+  },
+  {
+   "about": "notes[4]",
+   "source_id": "devkitc-esp32-v4",
+   "row": [
+    "5",
+    "IO34",
+    "I",
+    "GPIO34, ADC1_CH6, VDET_1"
+   ]
+  },
+  {
+   "about": "notes[4]",
+   "source_id": "devkitc-esp32-v4",
+   "row": [
+    "6",
+    "IO35",
+    "I",
+    "GPIO35, ADC1_CH7, VDET_2"
+   ]
+  },
+  {
+   "about": "notes[4]",
+   "source_id": "devkitc-esp32-v4",
+   "row": [
+    "7",
+    "IO32",
+    "I/O",
+    "GPIO32, ADC1_CH4, TOUCH_CH9, XTAL_32K_P"
+   ]
+  },
+  {
+   "about": "notes[4]",
+   "source_id": "devkitc-esp32-v4",
+   "row": [
+    "8",
+    "IO33",
+    "I/O",
+    "GPIO33, ADC1_CH5, TOUCH_CH8, XTAL_32K_N"
+   ]
+  },
+  {
+   "about": "notes[5]",
+   "source_id": "devkitc-esp32-v4",
+   "row": [
+    "4",
+    "TX",
+    "I/O",
+    "GPIO1, U0TXD"
+   ]
+  },
+  {
+   "about": "notes[5]",
+   "source_id": "idf-v6.1-gpio-esp32",
+   "quote": "TXD & RXD are usually used for flashing and debugging"
+  },
+  {
+   "about": "notes[6]",
+   "source_id": "devkitc-esp32-v4",
+   "quote": "The component C15 may cause the following issues on earlier ESP32-DevKitC V4 boards:"
+  },
+  {
+   "about": "notes[6]",
+   "source_id": "devkitc-esp32-v4",
+   "quote": "* The board may boot into Download mode"
+  },
+  {
+   "about": "notes[6]",
+   "source_id": "devkitc-esp32-v4",
+   "quote": "* If you output clock on GPIO0, C15 may impact the signal"
+  },
+  {
+   "about": "notes[6]",
+   "source_id": "devkitc-esp32-v4",
+   "quote": "In case these issues occur, please remove the component."
+  },
+  {
+   "about": "notes[7]",
+   "source_id": "devkitc-esp32-v4-ordering",
+   "row": [
+    "ESP32-DevKitC-32E",
+    "ESP32-WROOM-32E",
+    "4 MB",
+    "---",
+    "PCB on-board antenna"
+   ]
+  },
+  {
+   "about": "notes[7]",
+   "source_id": "devkitc-esp32-v4-ordering",
+   "row": [
+    "ESP32-DevKitC-32UE",
+    "ESP32-WROOM-32UE",
+    "4 MB",
+    "---",
+    "External antenna connector"
+   ]
+  },
+  {
+   "about": "notes[7]",
+   "source_id": "devkitc-esp32-v4-ordering",
+   "row": [
+    "ESP32-DevKitC-VE",
+    "ESP32-WROVER-E",
+    "8 MB",
+    "8 MB",
+    "PCB on-board antenna"
+   ]
+  },
+  {
+   "about": "notes[7]",
+   "source_id": "devkitc-esp32-v4-ordering",
+   "row": [
+    "ESP32-DevKitC-VIE",
+    "ESP32-WROVER-IE",
+    "8 MB",
+    "8 MB",
+    "External antenna connector"
+   ]
+  },
+  {
+   "about": "notes[8]",
+   "source_id": "devkitc-esp32-v4",
+   "quote": "Single USB-to-UART bridge chip, providing transfer rates up to 3 Mbps."
+  }
+ ],
+ "drawing": {
+  "schema": 1,
+  "orientation": "module_top",
+  "parts": [
+   {
+    "kind": "usb_port",
+    "ref": "UART",
+    "connector": "micro_usb",
+    "edge": "bottom",
+    "order": 1,
+    "source_id": "devkitc-esp32-v4",
+    "quote": "A Micro-USB port used for power supply to the board, as well as for communication between a computer and the ESP32-WROOM-32E module.",
+    "figure": "esp32-devkitc-v4-functional-overview.png",
+    "note": "position read from the functional overview figure of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "button",
+    "label": "Boot",
+    "zone": "lower",
+    "side": "right",
+    "source_id": "devkitc-esp32-v4",
+    "quote": "Holding down **Boot** and then pressing **EN** initiates Firmware Download mode for downloading firmware through the serial port.",
+    "figure": "esp32-devkitc-v4-functional-overview.png",
+    "note": "position read from the functional overview figure of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "button",
+    "label": "EN",
+    "zone": "lower",
+    "side": "left",
+    "source_id": "devkitc-esp32-v4",
+    "quote": "Reset button.",
+    "figure": "esp32-devkitc-v4-functional-overview.png",
+    "note": "position read from the functional overview figure of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "bridge_ic",
+    "label": "USB-UART",
+    "zone": "middle",
+    "side": "center",
+    "source_id": "devkitc-esp32-v4",
+    "quote": "Single USB-to-UART bridge chip, providing transfer rates up to 3 Mbps.",
+    "figure": "esp32-devkitc-v4-functional-overview.png",
+    "note": "position read from the functional overview figure of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "power_led",
+    "label": "PWR",
+    "zone": "middle",
+    "side": "left",
+    "source_id": "devkitc-esp32-v4",
+    "quote": "Turns on when the USB or an external 5V power supply is connected to the board.",
+    "figure": "esp32-devkitc-v4-functional-overview.png",
+    "note": "position read from the functional overview figure of the guide (module rotated to the top); not machine-checkable"
+   }
+  ]
+ }
+}

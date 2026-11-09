@@ -1,0 +1,56 @@
+# source_id: mod-logic-sn74hc595-ds
+# document: Texas Instruments SNx4HC595 8-Bit Shift Registers With 3-State Output Registers, SCLS041J (December 1982, revised October 2021)
+# url: https://www.ti.com/lit/ds/symlink/sn74hc595.pdf
+# corpus: mod/logic/sn74hc595.pdf sha256 5a6a5aeecc79a2d4bf4e15aae681e0f99cb13b54d6524be253a6844c898eeb0d
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+SNx4HC595 8-Bit Shift Registers With 3-State Output Registers
+• 8-bit serial-in, parallel-out shift
+• Wide operating voltage range of 2 V to 6 V
+SCLS041J – DECEMBER 1982 – REVISED OCTOBER 2021
+@@ page 3
+GND 8 10 — Ground Pin
+OE 13 17 I Output Enable
+QA 15 19 O QA Output
+QB 1 2 O QB Output
+QC 2 3 O QC Output
+QD 3 4 O QD Output
+QE 4 5 O QE Output
+QF 5 7 O QF Output
+QG 6 8 O QG Output
+QH 7 9 O QH Output
+QH' 9 12 O QH' Output
+RCLK 12 14 I RCLK Input
+SER 14 18 I SER Input
+SRCLK 11 14 I SRCLK Input
+SRCLR 10 13 I SRCLR Input
+VCC — 20 — Power Pin
+@@ page 4
+VCC Supply voltage –0.5 7 V
+IO Continuous output current VO = 0 to VCC ±35 mA
+Continuous current through VCC or GND ±70 mA
+VCC Supply voltage 2 5 6 2 5 6 V
+VIH High-level input voltage
+VCC = 2 V 1.5 1.5
+VVCC = 4.5 V 3.15 3.15
+VCC = 6 V 4.2 4.2
+VIL Low-level input voltage
+VVCC = 4.5 V 1.35 1.35
+VI Input voltage 0 VCC 0 VCC V
+VO Output voltage 0 VCC 0 VCC V
+(1) All unused inputs of the device must be held at VCC or GND to ensure proper device operation. See the TI application report, 
+@@ page 5
+VOH VI = VIH or VIL
+IOH = –20 μA
+4.5 V 4.4 4.499 4.4 4.4
+VOL VI = VIH or VIL
+IOL = 20 μA
+4.5 V 0.001 0.1 0.1 0.1
+ICC VI = VCC or 0, IO = 0 6 V 8 160 80 µA
+@@ page 6
+fclock Clock frequency
+MHz4.5 V 31 21 25
+@@ page 15
+Each V CC pin should have a good bypass capacitor to prevent power disturbance. For devices with a single 
+supply, 0.1 μf is recommended; if there are multiple V CC pins, then 0.01 μf or 0.022 μf is recommended for each 

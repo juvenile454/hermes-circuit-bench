@@ -1,0 +1,15 @@
+.venv/
+.venvs/
+.worktrees/
+.live_guard/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ruff_cache/
+.coverage*
+tests/.corpus
+node_modules/
+build/
+*.egg-info/
+.pio/

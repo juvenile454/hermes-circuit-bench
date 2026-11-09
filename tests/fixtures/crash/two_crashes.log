@@ -1,0 +1,38 @@
+Guru Meditation Error: Core  0 panic'ed (LoadProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x400e14ed  PS      : 0x00060030  A0      : 0x800d0805  A1      : 0x3ffb5030
+A2      : 0x00000000  A3      : 0x00000001  A4      : 0x00000001  A5      : 0x3ffb50dc
+A6      : 0x00000000  A7      : 0x00000001  A8      : 0x00000000  A9      : 0x3ffb5000
+A10     : 0x00000000  A11     : 0x3ffb2bac  A12     : 0x40082d1c  A13     : 0x06ff1ff8
+A14     : 0x3ffb7078  A15     : 0x00000000  SAR     : 0x00000014  EXCCAUSE: 0x0000001c
+EXCVADDR: 0x00000000  LBEG    : 0x4000c46c  LEND    : 0x4000c477  LCOUNT  : 0xffffffff
+
+
+Backtrace: 0x400e14ea:0x3ffb5030 0x400d0802:0x3ffb5050 |<-CORRUPTED
+
+Rebooting...
+ESP-ROM:esp32s3-20210327
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Guru Meditation Error: Core  1 panic'ed (StoreProhibited). Exception was unhandled.
+
+Core  1 register dump:
+PC      : 0x42001d6a  PS      : 0x00060a30  A0      : 0x82001d8d  A1      : 0x3fcebf40
+A2      : 0x00000000  A3      : 0x0000002a  A4      : 0x00000001  A5      : 0x3fc94a60
+A6      : 0x00000000  A7      : 0x00000001  A8      : 0x00000000  A9      : 0x3fcebf20
+A10     : 0x00000000  A11     : 0x0000002a  A12     : 0x00000000  A13     : 0x3fc94a5c
+A14     : 0x00000000  A15     : 0x00000000  SAR     : 0x00000000  EXCCAUSE: 0x0000001d
+EXCVADDR: 0x0000000c  LBEG    : 0x400570e8  LEND    : 0x400570f3  LCOUNT  : 0x00000000
+
+
+Backtrace: 0x42001d67:0x3fcebf40 0x42001d8a:0x3fcebf60 0x42003a5e:0x3fcebf80
+
+
+
+
+ELF file SHA256: 3f9a5c0d2
+
+Rebooting...
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)

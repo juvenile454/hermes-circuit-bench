@@ -1,0 +1,29 @@
+Circuit Bench (hermes-circuit-bench)
+Copyright 2026 Timo (juvenile454)
+
+Licensed under the MIT License (see LICENSE).
+
+Facts about ESP32 chips and development boards (pin functions, strapping pins, header layouts, panic
+formats) are taken from Espressif documentation (ESP-IDF, esp-dev-kits) and are cited per rule with URL
+and retrieval date in data/sources/. No Espressif text is reproduced beyond short quotations used as
+evidence.
+
+Runtime dependencies (installed by Hermes, not bundled):
+- schemdraw (MIT License)
+- pyserial (BSD 3-Clause License)
+
+External tools used through their command line only (installed by the user, not bundled, not imported):
+- PlatformIO Core (Apache License 2.0)
+- esptool (GPL-2.0-or-later)
+- addr2line from GNU Binutils, as shipped in the Espressif toolchains (GPL-3.0-or-later)
+
+Short quotations from third-party datasheets, application notes and safety guides are used as evidence
+for individual rules and are cited with URL and retrieval date in data/sources/ (among others: NXP UM10204
+I2C-bus specification, onsemi 2N2222A and 1N4001 datasheets, Nichicon and Rubycon capacitor documents,
+Kingbright LED datasheet, Panasonic and Digi-Key battery safety guides, U.S. FDA laser FAQ). All rights
+remain with their owners; no document is reproduced in full.
+
+The module catalog (data/modules/) quotes single lines from the chip makers' datasheets as evidence for each
+value, with page, URL, retrieval date and the SHA-256 of the cited file. The repository's tests/corpus/excerpts/
+holds the same kind of short excerpts for the citation tests (not part of the installed plugin); one of them is from
+Wikipedia and stays under CC BY-SA 4.0.

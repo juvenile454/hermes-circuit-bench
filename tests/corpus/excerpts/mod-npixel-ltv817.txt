@@ -1,0 +1,38 @@
+# source_id: mod-npixel-ltv817-ds
+# document: Lite-On Photocoupler Product Data Sheet LTV-817/827/847 (M, S, S-TA, S-TA1, S-TP) Series, Spec No. DS-70-96-0016, Revision Q (12/05/2018)
+# url: https://web.archive.org/web/20240619113556id_/https://optoelectronics.liteon.com/upload/download/DS-70-96-0016/LTV-8X7%20series%20RevQ.PDF
+# corpus: mod/npixel/LTV-8X7_series_RevQ.pdf sha256 89fff3d8b1ce1a66b79a5b6c33705ace957fd4a5a3676e8cb296797f51368c54
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Spec No. :DS-70-96-0016
+Effective Date: 12/05/2018
+Revision: Q
+@@ page 2
+/square6 Current transfer ratio ( CTR : MIN. 50% at I F = 5mA, V CE  = 5V ) 
+LTV-817 : 1-channel type 
+@@ page 9
+Forward Current I F 50 mA 
+Reverse Voltage V R 6 V 
+Collector - Emitter Voltage  V CEO  35 V 
+Collector Current I C 50 mA 
+1. Isolation Voltage Viso  5000 V rms  
+ Operating Temperature (LTV-817) Topr  -55 ~ +110 oC 
+@@ page 10
+ Forward Voltage V F — 1.2 1.4  V I F=20mA 
+ Collector Current I C 2.5 — 30 mA  
+IF=5mA, VCE =5V 
+1. Current Transfer Ratio  CTR 50 — 600  % 
+Saturation Voltage 
+VCE(sat)  — 0.1 0.2  V I F=20mA, IC=1mA 
+ Response Time (Rise)  tr — 4 18 μs 
+VCE =2V, IC=2mA 
+RL=100 Ω,   Response Time (Fall) tf — 3 18 μs 
+@@ page 11
+L 50 100 
+A 80 160 
+B 130 260 
+C 200 400 
+D 300 600 
+No bin  
+(L or A or B or C or D or no mark)  50 600 

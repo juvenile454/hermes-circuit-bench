@@ -1,0 +1,39 @@
+# source_id: mod-nmotion-vl6180x-ds
+# document: STMicroelectronics VL6180X Proximity and ambient light sensing (ALS) module, Datasheet DocID026171 Rev 7 (March 2016)
+# url: https://web.archive.org/web/20261011095228id_/https://www.st.com/resource/en/datasheet/vl6180x.pdf
+# corpus: mod/nmotion/vl6180x.pdf sha256 87e1b09668160d714276cdb093a41e7bf18120c81c25888a309e8fcfdc6a6724
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+March 2016 DocID026171 Rev 7 1/87
+@@ page 10
+3. Open drain. Pull up resistors typically fitted once per I 2C bus at host
+Power-up default is chip enable
+(CE). It should be pulled high with a
+@@ page 35
+Hardware standby < 1 μA Shutdown (GPIO0 = 0). No I 2C comms
+Ranging 1.7 mA Average consumption during ranging (1)
+@@ page 36
+1. Normally, both supplies will be driven from a common source giving a peak instantaneous current demand
+of 38 mA.
+AVDD 14 mA Average during active ranging
+AVDD_VCSEL 8 mA (2)
+2. Peak emitter current during ranging  is 24 mA. Peak power is 14mW.
+@@ page 42
+The VL6180X is controlled over an I2C interface. The default I2C address is 0x29 (7-bit).
+@@ page 45
+FI2C Operating frequency 0 - 400 (1)
+@@ page 46
+AVDD -0.5 - 3.6 V
+AVDD_VCSEL -0.5 - 3.6 V
+SCL, SDA, GPIO0 and GPIO1 -0.5 - 3.6 V
+Voltage (functional operating) 2.6 2.8 3.0 V
+@@ page 47
+VIL Low level input voltage -0.5 - 0.6 V
+VIH High level input voltage 1.12 - AVDD+0.5 V
+VOL Low level output voltage (8mA load) - - 0.4 V
+@@ page 76
+can be re-designated after power-up.
+@@ page 80
+designed to remain within Class 1 laser safety limits under all reasonably foreseeable
+The laser output power must not be increased by any means and no optics should be used

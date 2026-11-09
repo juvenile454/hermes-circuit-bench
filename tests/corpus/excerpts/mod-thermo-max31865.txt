@@ -1,0 +1,103 @@
+# source_id: mod-thermo-max31865-ds
+# document: Maxim Integrated (Analog Devices) MAX31865 RTD-to-Digital Converter, data sheet 19-6478 Rev 3 (7/15)
+# url: https://web.archive.org/web/20250124124921id_/https://www.analog.com/media/en/technical-documentation/data-sheets/MAX31865.pdf
+# corpus: mod/thermo/MAX31865.pdf sha256 88f540410eb8c2ac4c051594c92927fc8c5876446bec1c2448934fc2605395f7
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+• Handles 100Ω to 1kΩ (at 0°C) Platinum RTDs 
+• SPI-Compatible Interface
+• 15-Bit ADC Resolution; Nominal Temperature 
+Resolution 0.03125NC (Varies Due to RTD Nonlin-
+19-6478; Rev 3; 7/15
+@@ page 2
+Voltage Range on VDD Relative to GND1 ............-0.3V to +4.0V
+Voltage Range on FORCE+, FORCE2, 
+FORCE-, RTDIN+, RTDIN- Relative to GND1 ....-50V to +50V
+Voltage Range on DVDD Relative to DGND  ........-0.3V to +4.0V
+Voltage Range on All Digital Pins 
+Relative to DGND .............................-0.3V to (VDVDD + 0.3V)
+VDD VDD 3.0 3.3 3.6 V
+DVDD VDVDD 3.0 3.3 3.6 V
+Input Logic 0 VIL CS, SDI, SCLK -0.3 0.3 x VDVDD V
+Input Logic 1 VIH CS, SDI, SCLK 0.7 x VDVDD VDVDD + 0.3 V
+Reference Resistor RREF 350 10k I
+Cable Resistance RCABLE Per lead 0 50 I
+ADC Resolution No missing codes 15 Bits
+@@ page 3
+Bias Voltage VBIAS 1.95 2.00 2.06 V
+Bias Voltage Output Current IOUT 0.2 5.75 mA
+Shutdown Bias off, ADC off 1.5 3 mA
+IDD Bias on, active conversion 2 3.5 mA
+Output High Voltage VOH IOUT = -1.6mA VDVDD - 0.4 V
+Output Low Voltage VOL IOUT = 1.6mA 0.4 V
+@@ page 4
+SCLK Frequency tCLK (Note 9) DC 5.0 MHz
+CS to Output High-Z tCDZ (Notes 8, 9) 40 ns 
+@@ page 8
+1 4 BIAS Bias Voltage Output (VBIAS)
+2 5 REFIN+ Positive Reference Voltage Input. Connect to BIAS. Connect the reference resistor between REFIN+ and REFIN-.
+3 6 REFIN- Negative Reference Voltage Input. Connect the reference resistor between REFIN+ and REFIN-.
+4 7 ISENSOR Low Side of RREF. Connect to REFIN-.
+5 8 FORCE+ High-Side RTD Drive. Connect to FORCE2 when using the 3-wire connection configuration. Protected to ±45V.
+6 9 FORCE2
+Positive Input Used in 3-Wire Only. When in the 3-wire connection configuration, connect to 
+FORCE+. When in the 2-wire or 4-wire connection configuration, connect to ground. Protected to 
+7 10 RTDIN+ Positive RTD Input. Protected to ±45V.
+8 11 RTDIN- Negative RTD Input. Protected to ±45V.
+9 12 FORCE- Low-Side RTD Return. Protected to ±45V.
+10 13 GND2 Analog Ground. Connect to GND1.
+11 14 SDI Serial-Data Input
+12 15 SCLK Serial-Data Clock Input
+13 16 CS Active-Low Chip Select. Set CS low to enable the serial interface.
+14 17 SDO Serial-Data Output
+15 18 DGND Digital Ground
+16 19 GND1 Analog Ground. Connect to GND2.
+17 20 N.C. Do Not Connect
+18 1 DRDY
+Active-Low, Push-Pull, Data-Ready Output. DRDY goes low when a new conversion result is 
+19 2 DVDD Digital Supply Voltage Input. Connect to a 3.3V power supply. Bypass to DGND with a 0.1µF bypass capacitor.
+20 3 VDD Analog Supply Voltage Input. Connect to a 3.3V power supply. Bypass to GND1 with a 0.1µF bypass capacitor.
+@@ page 10
+R(T) = R0(1 + aT + bT2 + c(T - 100)T3)
+IEC 751 specifies α = 0.00385055 and the following 
+a = 3.90830 x 10-3
+b = -5.77500 x 10-7
+c = -4.18301 x 10 -12 for -200 NC P T P 0NC, 0 for 0 NC P T 
+P +850NC
+resistor equal to four times the RTD’s 0 NC resistance is 
+optimum for a platinum RTD. Therefore, a PT100 uses 
+a 400 I reference resistor, and a PT1000 uses a 4k I 
+close to the MAX31865. Note that, for a PT100, series 
+resistance of 0.4I causes an error of approximately 1 NC. 
+@@ page 11
+For a temperature range of -100 NC to +100 NC, a good 
+Temperature (NC) ≈ (ADC code/32) – 256
+This equation gives 0 NC error at 0 NC, -1.75 NC error 
+IEC751 RTD and R REF equal to four times the 0 NC 
+voltage. A negative input voltage produces an output code 
+of 0. An input voltage greater than the reference voltage 
+produces a full-scale output.
+@@ page 15
+the RTD resistance data. The data format is shown in 
+Table 4. The data format is simply the 15-bit ratio of RTD 
+resistance to reference resistance. D0 of the RTD LSBs 
+register is a Fault bit that indicates whether any RTD 
+@@ page 16
+The MAX31865 supports SPI modes 1 and 3. Four 
+@@ page 17
+Note: CPHA bit polarity must be set to 1.
+@@ page 19
+RRTD = (ADC Code x R REF)/215
+@@ page 20
+ADC Code = 15-bit ADC results from RTD Data registers 
+RREF = Resistance of the reference resistor
+-200 18.52 0BDAh 1517 -208.59
+-100 60.26 2690h 4936 -101.75
+0 100.00 4000h 8192 0.00
+100 138.51 58A4h 11346 98.56
+200 175.86 708Ch 14406 194.19
+@@ page 21
+decouple the VDD and DVDD power supplies with a 0.1µF 
+400 247.09 9E24h 20242 376.56
+550 297.49 BE64h 24370 505.56

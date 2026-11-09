@@ -1,0 +1,43 @@
+# source_id: mod-net-neo6m-ds
+# document: u-blox NEO-6 u-blox 6 GPS Modules Data Sheet GPS.G6-HW-09005-E
+# url: https://content.u-blox.com/sites/default/files/products/documents/NEO-6_DataSheet_(GPS.G6-HW-09005).pdf
+# corpus: mod/net/NEO-6_DataSheet_GPS.G6-HW-09005.pdf sha256 31b01f512296ff2a4a26dbdf496c1fe4554c757cb3bfc2b74b17981d6b8a3c34
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 2
+Document number GPS.G6-HW-09005-E 
+NEO-6M NEO-6M-0-001 ROM7.03 UBX-TN-11047-1 
+@@ page 11
+CFG_COM1 CFG_COM0 Protocol Messages UARTBaud rate USB power 
+1 1 NMEA GSV, RMC, GSA, GGA, GLL, VTG, TXT 9600 BUS Powered 
+@@ page 12
+14 All MOSI/CFG_COM0 O/I SPI MOSI / Configuration Pin.  Leave open if not used. 
+15 All MISO/CFG_COM1 I SPI MISO / Configuration Pin. Leave open if not used. 
+16 All CFG_GPS0/SCK  I Power Mode Configuration Pin / SPI Clock.  Leave open if not used.  
+20 All TxD1 O Serial Port 1 
+21 All RxD1 I Serial Port 1 
+@@ page 13
+22 All V_BCKP I Backup voltage supply 
+23 All VCC I Supply voltage 
+@@ page 14
+NEO-6Q, 6M, 6P, 6V, 6T -0.5 3.6 V  
+Backup battery voltage V_BCKP All -0.5 3.6 V  
+Input pin voltage  Vin All -0.5 3.6 V  
+These are stress ratings only. The product is not protected against overvoltage or reversed 
+@@ page 15
+NEO-6Q/M 
+2.7 3.0 3.6 V  
+Backup battery voltage V_BCKP All 1.4  3.6 V  
+Input pin voltage range Vin All 0  VCC V  
+Digital IO Pin Low level input voltage Vil All 0  0.2*VCC V  
+Digital IO Pin High level input voltage Vih All 0.7*VCC  VCC V   
+Digital IO Pin Low level output voltage Vol All   0.4 V Iol=4mA 
+Digital IO Pin High level output voltage Voh All VCC -0.4   V Ioh=4mA 
+ Iccp All   67 mA VCC = 3.6 V
+Icc Acquisition All  47
+NEO-6M/P/V  39
+NEO-6M  11
+@@ page 22
+Serial Port 1 Output 
+9600 Baud, 8 bits, no parity bit, 1 stop bit 
+Serial Port 1 Input 9600 Baud, 8 bits, no parity bit, 1 stop bit 

@@ -1,0 +1,18 @@
+# Version updates for the GitHub Actions in .github/workflows (pinned to commit SHAs). Python dependencies get
+# security updates only (repository setting); their upper bounds in circuit_bench/pyproject.toml are deliberate.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 1
+    groups:
+      actions:
+        patterns: ["*"]
+    ignore:
+      # major versions change inputs and runtimes; they are updated by hand with a CI run
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    commit-message:
+      prefix: ci

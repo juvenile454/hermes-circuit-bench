@@ -1,0 +1,766 @@
+{
+ "schema": 1,
+ "order": {
+  "key": [
+   "mechanical",
+   "height_class",
+   "sensitivity",
+   "rules_index"
+  ],
+  "text": "Mechanical parts last; before that, low parts before tall parts and robust parts before heat-sensitive parts.",
+  "height_classes": {
+   "0": "flat",
+   "1": "low",
+   "2": "medium",
+   "3": "tall",
+   "4": "unknown height"
+  },
+  "sensitivity": {
+   "0": "robust",
+   "1": "somewhat heat-sensitive",
+   "2": "heat-sensitive",
+   "9": "unknown"
+  },
+  "source_id": "rule-of-thumb"
+ },
+ "classify": {
+  "prefixes": {
+   "R": "resistor",
+   "C": "capacitor",
+   "D": "diode",
+   "LED": "led",
+   "Q": "transistor",
+   "T": "transistor",
+   "U": "ic",
+   "IC": "ic",
+   "J": "connector",
+   "P": "connector",
+   "X": "connector",
+   "CN": "connector",
+   "CON": "connector",
+   "SW": "switch",
+   "S": "switch",
+   "F": "fuse",
+   "L": "inductor",
+   "Y": "crystal",
+   "BZ": "buzzer",
+   "RV": "potentiometer",
+   "VR": "potentiometer",
+   "TP": "test_point",
+   "W": "wire_jumper",
+   "BT": "battery",
+   "K": "relay"
+  },
+  "capacitor_by_value": {
+   "ceramic_below_f": 1e-06,
+   "electrolytic_from_f": 1e-05,
+   "text": "Without a type or package in the BOM, a capacitor below the first limit counts as ceramic, from the second limit as electrolytic, in between as unclear.",
+   "source_id": "rule-of-thumb"
+  }
+ },
+ "kinds": [
+  {
+   "kind": "wire_jumper",
+   "label": [
+    "wire jumper",
+    "wire jumpers"
+   ],
+   "height_class": 0,
+   "sensitivity": 0,
+   "mechanical": false,
+   "source_id": "rule-of-thumb",
+   "action": "Solder the {what} flat on the board.",
+   "hints": [
+    {
+     "code": "low_profile_first",
+     "severity": "info",
+     "text": "Lowest parts first, so the board lies flat while you solder (rule of thumb).",
+     "source_ids": [
+      "rule-of-thumb"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "resistor",
+   "label": [
+    "resistor",
+    "resistors"
+   ],
+   "height_class": 1,
+   "sensitivity": 0,
+   "mechanical": false,
+   "source_id": "rule-of-thumb",
+   "action": "Solder the {what} flat on the board.",
+   "hints": [
+    {
+     "code": "low_profile_first",
+     "severity": "info",
+     "text": "Low parts early, so the board lies flat while you solder (rule of thumb).",
+     "source_ids": [
+      "rule-of-thumb"
+     ]
+    },
+    {
+     "code": "orientation",
+     "severity": "info",
+     "text": "Point the colour bands the same way; that makes checking the values easier (rule of thumb).",
+     "source_ids": [
+      "rule-of-thumb"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "diode",
+   "label": [
+    "diode",
+    "diodes"
+   ],
+   "height_class": 1,
+   "sensitivity": 1,
+   "mechanical": false,
+   "source_id": "rule-of-thumb",
+   "action": "Solder the {what}; the band marks the cathode.",
+   "polarised": true,
+   "hints": [
+    {
+     "code": "polarity",
+     "severity": "caution",
+     "text": "Polarised: the band marks the cathode (onsemi 1N4001). Match it to the cathode mark on the board.",
+     "source_ids": [
+      "solder-onsemi-1n4001"
+     ],
+     "evidence": [
+      "Polarity: Cathode Indicated by Polarity Band"
+     ]
+    },
+    {
+     "code": "heat_sensitive",
+     "severity": "caution",
+     "text": "Keep each joint short and let the part cool before the next joint (rule of thumb).",
+     "source_ids": [
+      "rule-of-thumb"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "ceramic",
+   "label": [
+    "ceramic capacitor",
+    "ceramic capacitors"
+   ],
+   "height_class": 2,
+   "sensitivity": 0,
+   "mechanical": false,
+   "source_id": "rule-of-thumb",
+   "action": "Solder the {what}.",
+   "hints": []
+  },
+  {
+   "kind": "inductor",
+   "label": [
+    "inductor",
+    "inductors"
+   ],
+   "height_class": 2,
+   "sensitivity": 0,
+   "mechanical": false,
+   "source_id": "rule-of-thumb",
+   "action": "Solder the {what}.",
+   "hints": []
+  },
+  {
+   "kind": "test_point",
+   "label": [
+    "test point",
+    "test points"
+   ],
+   "height_class": 2,
+   "sensitivity": 0,
+   "mechanical": false,
+   "source_id": "rule-of-thumb",
+   "action": "Solder the {what}.",
+   "hints": []
+  },
+  {
+   "kind": "crystal",
+   "label": [
+    "crystal",
+    "crystals"
+   ],
+   "height_class": 2,
+   "sensitivity": 1,
+   "mechanical": false,
+   "source_id": "rule-of-thumb",
+   "action": "Solder the {what}.",
+   "hints": [
+    {
+     "code": "heat_sensitive",
+     "severity": "caution",
+     "text": "Keep each joint short (rule of thumb); the soldering limits are in the datasheet of the part.",
+     "source_ids": [
+      "rule-of-thumb"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "transistor",
+   "label": [
+    "transistor",
+    "transistors"
+   ],
+   "height_class": 2,
+   "sensitivity": 1,
+   "mechanical": false,
+   "source_id": "rule-of-thumb",
+   "action": "Solder the {what}; match each pin to its pad.",
+   "polarised": true,
+   "hints": [
+    {
+     "code": "pinout",
+     "severity": "caution",
+     "text": "Pinout from the datasheet, do not guess: in the same TO-92 case the onsemi PN2222 is pin 1-2-3 = E-B-C, the onsemi P2N2222A is C-B-E.",
+     "source_ids": [
+      "solder-onsemi-pn2222",
+      "solder-onsemi-p2n2222a"
+     ],
+     "evidence": [
+      "1. Emitter 2. Base 3. Collector",
+      "COLLECTOR 1, BASE 2, EMITTER 3"
+     ]
+    },
+    {
+     "code": "heat_sensitive",
+     "severity": "caution",
+     "text": "Keep each joint short and let the part cool before the next joint (rule of thumb).",
+     "source_ids": [
+      "rule-of-thumb"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "ic",
+   "label": [
+    "IC",
+    "ICs"
+   ],
+   "height_class": 2,
+   "sensitivity": 2,
+   "mechanical": false,
+   "source_id": "rule-of-thumb",
+   "action": "Solder the {what} (or their sockets); pin 1 first.",
+   "polarised": true,
+   "hints": [
+    {
+     "code": "orientation",
+     "severity": "caution",
+     "text": "Match pin 1 (notch or dot on the package) to the pin 1 mark on the board; the package drawing in the datasheet shows it (rule of thumb).",
+     "source_ids": [
+      "rule-of-thumb"
+     ]
+    },
+    {
+     "code": "socket",
+     "severity": "info",
+     "text": "Prefer a socket: solder the socket now and insert the IC at the end (rule of thumb).",
+     "source_ids": [
+      "rule-of-thumb"
+     ]
+    },
+    {
+     "code": "heat_sensitive",
+     "severity": "caution",
+     "text": "Keep each joint short and do not solder neighbouring pins one after another (rule of thumb).",
+     "source_ids": [
+      "rule-of-thumb"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "led",
+   "label": [
+    "LED",
+    "LEDs"
+   ],
+   "height_class": 2,
+   "sensitivity": 2,
+   "mechanical": false,
+   "source_id": "rule-of-thumb",
+   "action": "Solder the {what}; the cathode goes to the cathode mark on the board.",
+   "polarised": true,
+   "hints": [
+    {
+     "code": "polarity",
+     "severity": "caution",
+     "text": "Polarised: find the cathode in the package drawing of the datasheet; on the Kingbright WP7113GD it is the shorter lead.",
+     "source_ids": [
+      "solder-kingbright-wp7113gd"
+     ],
+     "evidence": [
+      "the shorter lead is labelled 'Cathode'"
+     ]
+    },
+    {
+     "code": "heat_sensitive",
+     "severity": "caution",
+     "text": "The iron must not touch the epoxy lens (Kingbright). Keep each joint short and let the part cool before the next joint (rule of thumb).",
+     "source_ids": [
+      "solder-kingbright-wp7113gd",
+      "rule-of-thumb"
+     ],
+     "evidence": [
+      "The tip of the soldering iron should never touch the lens epoxy."
+     ]
+    },
+    {
+     "code": "mechanical",
+     "severity": "info",
+     "text": "Bend the leads before mounting, not after soldering (Kingbright).",
+     "source_ids": [
+      "solder-kingbright-wp7113gd"
+     ],
+     "evidence": [
+      "Do not perform lead forming once the component has been mounted onto the PCB."
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "film",
+   "label": [
+    "film capacitor",
+    "film capacitors"
+   ],
+   "height_class": 3,
+   "sensitivity": 0,
+   "mechanical": false,
+   "source_id": "rule-of-thumb",
+   "action": "Solder the {what}.",
+   "hints": []
+  },
+  {
+   "kind": "fuse",
+   "label": [
+    "fuse or fuse holder",
+    "fuses or fuse holders"
+   ],
+   "height_class": 3,
+   "sensitivity": 0,
+   "mechanical": false,
+   "source_id": "rule-of-thumb",
+   "action": "Solder the {what}.",
+   "hints": []
+  },
+  {
+   "kind": "potentiometer",
+   "label": [
+    "potentiometer",
+    "potentiometers"
+   ],
+   "height_class": 3,
+   "sensitivity": 1,
+   "mechanical": false,
+   "source_id": "rule-of-thumb",
+   "action": "Solder the {what}.",
+   "hints": [
+    {
+     "code": "pinout",
+     "severity": "info",
+     "text": "Check in the datasheet which pin is the wiper before soldering (rule of thumb).",
+     "source_ids": [
+      "rule-of-thumb"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "buzzer",
+   "label": [
+    "buzzer",
+    "buzzers"
+   ],
+   "height_class": 3,
+   "sensitivity": 1,
+   "mechanical": false,
+   "source_id": "rule-of-thumb",
+   "action": "Solder the {what}.",
+   "hints": [
+    {
+     "code": "polarity",
+     "severity": "caution",
+     "text": "Many buzzers are polarised (+ mark on the body); check the datasheet (rule of thumb).",
+     "source_ids": [
+      "rule-of-thumb"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "relay",
+   "label": [
+    "relay",
+    "relays"
+   ],
+   "height_class": 3,
+   "sensitivity": 1,
+   "mechanical": false,
+   "source_id": "rule-of-thumb",
+   "action": "Solder the {what}.",
+   "hints": [
+    {
+     "code": "low_voltage_only",
+     "severity": "caution",
+     "text": "Low voltage only: if this relay is meant to switch mains voltage, stop here. Circuit Bench does not cover mains wiring.",
+     "source_ids": []
+    }
+   ]
+  },
+  {
+   "kind": "capacitor",
+   "label": [
+    "capacitor of unclear type",
+    "capacitors of unclear type"
+   ],
+   "height_class": 3,
+   "sensitivity": 2,
+   "mechanical": false,
+   "source_id": "rule-of-thumb",
+   "action": "Check whether the {what} are polarised, then solder them.",
+   "polarised": true,
+   "hints": [
+    {
+     "code": "kind_uncertain",
+     "severity": "caution",
+     "text": "The BOM does not say whether this is a ceramic or an electrolytic capacitor. An aluminium electrolytic has a polarity mark for the negative lead on its sleeve (Rubycon); if you see one, it is polarised. Tell Hermes the type to get the right step.",
+     "source_ids": [
+      "solder-rubycon-zlj-spec"
+     ],
+     "evidence": [
+      "(4)Polarity (Negative Polarity)"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "electrolytic",
+   "label": [
+    "electrolytic capacitor",
+    "electrolytic capacitors"
+   ],
+   "height_class": 3,
+   "sensitivity": 2,
+   "mechanical": false,
+   "source_id": "rule-of-thumb",
+   "action": "Solder the {what}; the stripe on the sleeve marks minus.",
+   "polarised": true,
+   "hints": [
+    {
+     "code": "polarity",
+     "severity": "danger",
+     "text": "Polarised: reverse voltage can open the pressure relief vent (Nichicon). The stripe on the sleeve marks the negative lead (Rubycon). Confirm the polarity before soldering.",
+     "source_ids": [
+      "solder-nichicon-al-guidelines",
+      "solder-nichicon-al-technical-notes",
+      "solder-rubycon-zlj-spec"
+     ],
+     "evidence": [
+      "Aluminum electrolytic capacitors are polarized.",
+      "The pressure relief vent may operate due to generation of gas caused by reverse voltage",
+      "(4)Polarity (Negative Polarity)"
+     ]
+    },
+    {
+     "code": "heat_sensitive",
+     "severity": "caution",
+     "text": "The iron must not touch the capacitor body (Nichicon).",
+     "source_ids": [
+      "solder-nichicon-al-guidelines"
+     ],
+     "evidence": [
+      "solder iron does not touch any portion of capacitor body"
+     ]
+    },
+    {
+     "code": "mechanical",
+     "severity": "info",
+     "text": "Do not tilt, lay down or twist the body once it is soldered (Nichicon).",
+     "source_ids": [
+      "solder-nichicon-al-guidelines"
+     ],
+     "evidence": [
+      "Do not tilt lay down or twist the capacitor body"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "unknown",
+   "label": [
+    "part of unknown type",
+    "parts of unknown type"
+   ],
+   "height_class": 4,
+   "sensitivity": 9,
+   "mechanical": false,
+   "source_id": "rule-of-thumb",
+   "action": "Check manually: {what}.",
+   "hints": [
+    {
+     "code": "check_manually",
+     "severity": "caution",
+     "text": "Unknown part type: check height, polarity and pinout in its datasheet before soldering. If it is a connector or another mechanical part, solder it with the connectors.",
+     "source_ids": []
+    }
+   ]
+  },
+  {
+   "kind": "header",
+   "label": [
+    "pin header or socket",
+    "pin headers and sockets"
+   ],
+   "height_class": 1,
+   "sensitivity": 0,
+   "mechanical": true,
+   "source_id": "rule-of-thumb",
+   "action": "Solder the {what}.",
+   "hints": [
+    {
+     "code": "mechanical_last",
+     "severity": "info",
+     "text": "Mechanical parts last (rule of thumb).",
+     "source_ids": [
+      "rule-of-thumb"
+     ]
+    },
+    {
+     "code": "mechanical",
+     "severity": "info",
+     "text": "Solder one pin, check that the header sits straight and flat, then solder the rest (rule of thumb).",
+     "source_ids": [
+      "rule-of-thumb"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "switch",
+   "label": [
+    "switch",
+    "switches"
+   ],
+   "height_class": 1,
+   "sensitivity": 1,
+   "mechanical": true,
+   "source_id": "rule-of-thumb",
+   "action": "Solder the {what}.",
+   "hints": [
+    {
+     "code": "mechanical",
+     "severity": "info",
+     "text": "Press the switch flat onto the board while you solder the first pin (rule of thumb).",
+     "source_ids": [
+      "rule-of-thumb"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "connector",
+   "label": [
+    "connector",
+    "connectors"
+   ],
+   "height_class": 2,
+   "sensitivity": 0,
+   "mechanical": true,
+   "source_id": "rule-of-thumb",
+   "action": "Solder the {what}.",
+   "hints": [
+    {
+     "code": "mechanical",
+     "severity": "info",
+     "text": "Solder one pin, check the alignment, then solder the rest (rule of thumb).",
+     "source_ids": [
+      "rule-of-thumb"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "terminal",
+   "label": [
+    "screw terminal",
+    "screw terminals"
+   ],
+   "height_class": 2,
+   "sensitivity": 0,
+   "mechanical": true,
+   "source_id": "rule-of-thumb",
+   "action": "Solder the {what}.",
+   "hints": [
+    {
+     "code": "mechanical",
+     "severity": "info",
+     "text": "Point the wire openings towards the board edge before soldering (rule of thumb).",
+     "source_ids": [
+      "rule-of-thumb"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "module",
+   "label": [
+    "module",
+    "modules"
+   ],
+   "height_class": 3,
+   "sensitivity": 0,
+   "mechanical": true,
+   "source_id": "rule-of-thumb",
+   "action": "Fit the {what} last, preferably into female headers.",
+   "hints": [
+    {
+     "code": "mechanical",
+     "severity": "info",
+     "text": "Plug the module into female headers instead of soldering it in, so you can remove it later (rule of thumb).",
+     "source_ids": [
+      "rule-of-thumb"
+     ]
+    },
+    {
+     "code": "check_shorts",
+     "severity": "caution",
+     "text": "Before you plug it in: look for solder bridges and check with a multimeter that the supply rails are not shorted to GND (rule of thumb).",
+     "source_ids": [
+      "rule-of-thumb"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "battery",
+   "label": [
+    "battery",
+    "batteries"
+   ],
+   "height_class": 4,
+   "sensitivity": 0,
+   "mechanical": true,
+   "source_id": "rule-of-thumb",
+   "action": "Fit the {what} last, in a holder.",
+   "polarised": true,
+   "hints": [
+    {
+     "code": "battery_safety",
+     "severity": "danger",
+     "text": "Do not solder directly onto a battery: it can leak, short internally, catch fire or explode (Panasonic). Use a holder and insert the cell last.",
+     "source_ids": [
+      "solder-panasonic-battery-guideline",
+      "solder-panasonic-liion-precautions"
+     ],
+     "evidence": [
+      "Direct soldering onto batteries may damage the resin in crimping, separator and other parts, causing electrolyte leak, internal short circuit, fire and explosion.",
+      "Do not solder directly onto the battery."
+     ]
+    },
+    {
+     "code": "polarity",
+     "severity": "caution",
+     "text": "Insert the cell with the correct polarity (Panasonic).",
+     "source_ids": [
+      "solder-panasonic-battery-guideline"
+     ],
+     "evidence": [
+      "Insert the batteries in correct polarity position."
+     ]
+    }
+   ]
+  }
+ ],
+ "extra_hints": {
+  "kind_by_value": {
+   "code": "kind_by_value",
+   "severity": "caution",
+   "text": "{refs}: type guessed from the value only. If a part has a minus stripe on its sleeve, it is an electrolytic and polarised (Rubycon).",
+   "source_ids": [
+    "solder-rubycon-zlj-spec",
+    "rule-of-thumb"
+   ],
+   "evidence": [
+    "(4)Polarity (Negative Polarity)"
+   ]
+  },
+  "led_strip_data": {
+   "code": "data_direction",
+   "severity": "caution",
+   "text": "{refs}: solder the wires at the input end of the strip; the arrows on the strip point away from DIN, in the direction of the data (rule of thumb).",
+   "source_ids": [
+    "rule-of-thumb"
+   ]
+  },
+  "led_strip_supply": {
+   "code": "strip_supply",
+   "severity": "info",
+   "text": "{refs}: a long strip draws its current through the supply wires; size them for the current from bench_calc led_strip (rule of thumb).",
+   "source_ids": [
+    "rule-of-thumb"
+   ]
+  },
+  "module_mount_unknown": {
+   "code": "mount_unknown",
+   "severity": "info",
+   "text": "{refs}: the module catalog does not say whether it comes with pin headers or only solder pads; check the module's datasheet before you plan female headers (rule of thumb).",
+   "source_ids": [
+    "rule-of-thumb"
+   ]
+  }
+ },
+ "text_rules": [
+  {
+   "code": "laser_safety",
+   "severity": "danger",
+   "pattern": "\\blaser\\b",
+   "text": "{refs}: laser. Never look into the beam and never aim it at anyone (FDA). Keep the laser unplugged while you solder (rule of thumb).",
+   "source_ids": [
+    "solder-fda-laser-faq",
+    "rule-of-thumb"
+   ],
+   "evidence": [
+    "you should never look directly into any laser beam",
+    "Never aim or shine a laser pointer at anyone."
+   ]
+  },
+  {
+   "code": "battery_safety",
+   "severity": "danger",
+   "pattern": "\\b(li-?ion|li-?po|lipo|lithium|li-?polymer|lifepo4?|18650|14500|21700|26650|16340|10440|cr123a?|cr20[0-9]{2}|lir[0-9]{4})\\b",
+   "text": "{refs}: lithium cell. Do not solder directly onto the cell (Panasonic); use a holder or connector, check the polarity and connect the cell last.",
+   "source_ids": [
+    "solder-panasonic-battery-guideline",
+    "solder-panasonic-liion-precautions"
+   ],
+   "evidence": [
+    "Do not solder directly onto the battery.",
+    "Insert the batteries in correct polarity position."
+   ]
+  },
+  {
+   "code": "low_voltage_only",
+   "severity": "danger",
+   "pattern": "\\b(?:mains|netz(?:spannung)?)\\b|(?<![\\w.,])(?:[5-9][0-9]|[1-9][0-9]{2,})(?:[.,][0-9]+)?\\s*v\\s*(?:ac\\b|~)|\\bac\\s*(?:[5-9][0-9]|[1-9][0-9]{2,})(?:[.,][0-9]+)?\\s*v\\b|(?<![\\w.,])2[2-4][0-9]\\s*v\\b",
+   "text": "{refs}: mains voltage mentioned. Circuit Bench covers low-voltage circuits only; do not use this plan for mains wiring.",
+   "source_ids": []
+  }
+ ],
+ "actions": {
+  "led_strip": "Wire the {what} at its input end: {count} wires ({wires}).",
+  "module_neutral": "Fit the {what} last, mounted as the board is built (pin headers or solder pads)."
+ }
+}

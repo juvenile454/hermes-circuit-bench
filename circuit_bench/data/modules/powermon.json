@@ -1,0 +1,1288 @@
+{
+ "schema": 1,
+ "wp": "powermon",
+ "note": "Values only from manufacturer datasheets (TI, Allegro); 'evidence' quotes lines of tests/corpus/excerpts/mod-powermon-*.txt (pypdf).",
+ "modules": [
+  {
+   "id": "ina219",
+   "aliases": [
+    "ina219a",
+    "ina219b",
+    "gy-219",
+    "cjmcu-219"
+   ],
+   "title": "INA219 current/power monitor, I²C, 26 V, external shunt",
+   "category": "power.monitor",
+   "manufacturer": "Texas Instruments",
+   "kind": "ic",
+   "source_ids": [
+    "mod-powermon-ina219-ds"
+   ],
+   "supplies": {
+    "VS": {
+     "min": {
+      "value": 3.0,
+      "unit": "V",
+      "page": 6,
+      "evidence": "Operating supply range 3 5.5 3 5.5 V"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 6,
+      "evidence": "Operating supply range 3 5.5 3 5.5 V"
+     },
+     "abs_max": {
+      "value": 6.0,
+      "unit": "V",
+      "page": 4,
+      "evidence": "VS Supply voltage 6 V"
+     }
+    }
+   },
+   "io": {
+    "domain": "VS",
+    "vih": {
+     "rel": 0.7,
+     "of": "VS",
+     "unit": "V",
+     "page": 5,
+     "evidence": "VIH input logic level 0.7 (VS) 6 0.7 (VS) 6 V",
+     "conditions": "SDA, SCL, A0, A1"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VS",
+     "unit": "V",
+     "page": 5,
+     "evidence": "VIL input logic level –0.3 0.3 (VS) –0.3 0.3 (VS) V",
+     "conditions": "SDA, SCL, A0, A1"
+    },
+    "v_in_max": {
+     "rel_offset": 0.3,
+     "of": "VS",
+     "unit": "V",
+     "page": 4,
+     "evidence": "SCL GND – 0.3 VS + 0.3 V",
+     "conditions": "absolute maximum rating of SCL; SDA alone tolerates 6 V (p. 4)"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "IN+",
+     "signal": "analog_in",
+     "note": "supply side of the shunt resistor"
+    },
+    {
+     "name": "IN-",
+     "signal": "analog_in",
+     "note": "load side of the shunt; the bus voltage is measured here"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "VS",
+     "signal": "supply"
+    },
+    {
+     "name": "SCL",
+     "signal": "i2c_scl"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda"
+    },
+    {
+     "name": "A0",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "GND, VS, SDA or SCL (Table 1)"
+    },
+    {
+     "name": "A1",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "GND, VS, SDA or SCL (Table 1)"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "value": [
+       "0x40",
+       "0x41",
+       "0x42",
+       "0x43",
+       "0x44",
+       "0x45",
+       "0x46",
+       "0x47",
+       "0x48",
+       "0x49",
+       "0x4a",
+       "0x4b",
+       "0x4c",
+       "0x4d",
+       "0x4e",
+       "0x4f"
+      ],
+      "page": 14,
+      "evidence": [
+       "Table 1. INA219 Address Pins and Slave Addresses",
+       "GND GND 1000000",
+       "SCL SCL 1001111"
+      ]
+     },
+     "default": "0x40",
+     "select": {
+      "pins": [
+       "A1",
+       "A0"
+      ],
+      "map": {
+       "GND,GND": "0x40",
+       "GND,VS": "0x41",
+       "GND,SDA": "0x42",
+       "GND,SCL": "0x43",
+       "VS,GND": "0x44",
+       "VS,VS": "0x45",
+       "VS,SDA": "0x46",
+       "VS,SCL": "0x47",
+       "SDA,GND": "0x48",
+       "SDA,VS": "0x49",
+       "SDA,SDA": "0x4a",
+       "SDA,SCL": "0x4b",
+       "SCL,GND": "0x4c",
+       "SCL,VS": "0x4d",
+       "SCL,SDA": "0x4e",
+       "SCL,SCL": "0x4f"
+      }
+     },
+     "f_max_hz": {
+      "value": 400000,
+      "unit": "Hz",
+      "page": 14,
+      "evidence": "fast (1- to 400-kHz)",
+      "conditions": "fast mode; high-speed mode up to 2.56 MHz needs the HS master code"
+     },
+     "note": "A1/A0 each to GND, VS, SDA or SCL: 16 addresses 0x40–0x4F (Table 1, p. 14)"
+    }
+   ],
+   "current": {
+    "supply": "VS",
+    "typ": {
+     "value": 0.0007,
+     "unit": "A",
+     "page": 6,
+     "evidence": "Quiescent current 0.7 1 0.7 1 mA"
+    },
+    "max": {
+     "value": 0.001,
+     "unit": "A",
+     "page": 6,
+     "evidence": "Quiescent current 0.7 1 0.7 1 mA"
+    },
+    "sleep": {
+     "value": 1.5e-05,
+     "unit": "A",
+     "page": 6,
+     "evidence": "Quiescent current, power-down mode 6 15 6 15 μA",
+     "conditions": "max"
+    }
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VS"
+     ],
+     "to": "GND",
+     "page": 25,
+     "evidence": "Use a 0.1-μF ceramic capacitor for power-supply"
+    },
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "to": "VS",
+     "page": 25,
+     "evidence": "The pull-up resistors shown on the SDA and SCL lines are not needed if there are pullup",
+     "note": "value from the I²C pull-up calculator; one set per bus"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Common-mode voltage on IN+/IN- -0.3 V to 26 V (absolute maximum); never apply more than 26 V. The 32 V bus range (BRNG = 1) is only the ADC scaling.",
+     "page": 5,
+     "verified": true,
+     "evidence": "In no event should more than 26 V be applied to this device."
+    },
+    {
+     "text": "Calibration: Cal = trunc(0.04096 / (Current_LSB · R_shunt)), Power_LSB = 20 · Current_LSB; use bench_calc ina_shunt.",
+     "page": 12,
+     "verified": true,
+     "evidence": "0.04096 is an internal fixed value used to ensure scaling is maintained properly"
+    },
+    {
+     "text": "Breakout boards (GY-219, CJMCU-219) usually carry a 0.1 Ω shunt (R100), 10 kΩ pull-ups and address jumpers; TI documents the bare chip only. Read the shunt marking before calculating.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "ina226",
+   "aliases": [
+    "cjmcu-226",
+    "ina226aidgs"
+   ],
+   "title": "INA226 current/power monitor, I²C, 36 V, external shunt",
+   "category": "power.monitor",
+   "manufacturer": "Texas Instruments",
+   "kind": "ic",
+   "source_ids": [
+    "mod-powermon-ina226-ds"
+   ],
+   "supplies": {
+    "VS": {
+     "min": {
+      "value": 2.7,
+      "unit": "V",
+      "page": 6,
+      "evidence": "Operating supply range 2.7 5.5 V"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 6,
+      "evidence": "Operating supply range 2.7 5.5 V"
+     },
+     "abs_max": {
+      "value": 6.0,
+      "unit": "V",
+      "page": 4,
+      "evidence": "VVS Supply voltage 6 V"
+     }
+    }
+   },
+   "io": {
+    "domain": "VS",
+    "vih": {
+     "rel": 0.7,
+     "of": "VS",
+     "unit": "V",
+     "page": 5,
+     "evidence": "VIH High-level input voltage 0.7×VVS 6 V"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VS",
+     "unit": "V",
+     "page": 6,
+     "evidence": "VIL Low-level input voltage –0.5 0.3×VVS V"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 6,
+     "evidence": "VOL Low-level output voltage, SDA, Alert IOL = 3 mA 0 0.4 V",
+     "conditions": "IOL = 3 mA"
+    },
+    "v_in_max": {
+     "rel_offset": 0.3,
+     "of": "VS",
+     "unit": "V",
+     "page": 4,
+     "evidence": "VSCL GND – 0.3 VVS + 0.3 V",
+     "conditions": "absolute maximum rating of SCL; SDA alone tolerates 6 V (p. 4)"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "A1",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "GND, VS, SDA or SCL (Table 6-2)"
+    },
+    {
+     "name": "A0",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "GND, VS, SDA or SCL (Table 6-2)"
+    },
+    {
+     "name": "Alert",
+     "signal": "open_drain_out",
+     "output": "open_drain",
+     "note": "optional; pull up to VS when used (p. 30)"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda"
+    },
+    {
+     "name": "SCL",
+     "signal": "i2c_scl"
+    },
+    {
+     "name": "VS",
+     "signal": "supply"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "VBUS",
+     "signal": "analog_in",
+     "note": "bus voltage input, 0–36 V"
+    },
+    {
+     "name": "IN-",
+     "signal": "analog_in",
+     "note": "load side of the shunt resistor"
+    },
+    {
+     "name": "IN+",
+     "signal": "analog_in",
+     "note": "supply side of the shunt resistor"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "value": [
+       "0x40",
+       "0x41",
+       "0x42",
+       "0x43",
+       "0x44",
+       "0x45",
+       "0x46",
+       "0x47",
+       "0x48",
+       "0x49",
+       "0x4a",
+       "0x4b",
+       "0x4c",
+       "0x4d",
+       "0x4e",
+       "0x4f"
+      ],
+      "page": 18,
+      "evidence": [
+       "Table 6-2. Address Pins and Target Addresses",
+       "GND GND 1000000",
+       "SCL SCL 1001111"
+      ]
+     },
+     "default": "0x40",
+     "select": {
+      "pins": [
+       "A1",
+       "A0"
+      ],
+      "map": {
+       "GND,GND": "0x40",
+       "GND,VS": "0x41",
+       "GND,SDA": "0x42",
+       "GND,SCL": "0x43",
+       "VS,GND": "0x44",
+       "VS,VS": "0x45",
+       "VS,SDA": "0x46",
+       "VS,SCL": "0x47",
+       "SDA,GND": "0x48",
+       "SDA,VS": "0x49",
+       "SDA,SDA": "0x4a",
+       "SDA,SCL": "0x4b",
+       "SCL,GND": "0x4c",
+       "SCL,VS": "0x4d",
+       "SCL,SDA": "0x4e",
+       "SCL,SCL": "0x4f"
+      }
+     },
+     "f_max_hz": {
+      "value": 400000,
+      "unit": "Hz",
+      "page": 18,
+      "evidence": "fast mode (1kHz to 400kHz)",
+      "conditions": "fast mode; high-speed mode up to 2.94 MHz needs the HS master code"
+     },
+     "note": "A1/A0 each to GND, VS, SDA or SCL: 16 addresses 0x40–0x4F (Table 6-2, p. 18)"
+    }
+   ],
+   "current": {
+    "supply": "VS",
+    "typ": {
+     "value": 0.00033,
+     "unit": "A",
+     "page": 6,
+     "evidence": "IQ Quiescent current 330 420 μA"
+    },
+    "max": {
+     "value": 0.00042,
+     "unit": "A",
+     "page": 6,
+     "evidence": "IQ Quiescent current 330 420 μA"
+    },
+    "sleep": {
+     "value": 2e-06,
+     "unit": "A",
+     "page": 6,
+     "evidence": [
+      "Quiescent current, power-down",
+      "(shutdown) mode 0.5 2 μA"
+     ],
+     "conditions": "max"
+    }
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VS"
+     ],
+     "to": "GND",
+     "page": 31,
+     "evidence": "A typical value for this supply bypass capacitor is 0.1 μF."
+    },
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "to": "VS",
+     "page": 20,
+     "evidence": "When the bus is idle, both the SDA and SCL lines are pulled high by the pullup resistors.",
+     "note": "value from the I²C pull-up calculator; one set per bus"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Bus voltage input 0–36 V (VBUS, IN+/IN- common mode); absolute maximum 40 V. Do not apply more than 36 V: 40.96 V is only the ADC scaling.",
+     "page": 6,
+     "verified": true,
+     "evidence": "Do not apply more than 36 V."
+    },
+    {
+     "text": "Calibration: CAL = 0.00512 / (Current_LSB · R_shunt), Power_LSB = 25 · Current_LSB; use bench_calc ina_shunt.",
+     "page": 15,
+     "verified": true,
+     "evidence": "0.00512 is an internal fixed value used to verify scaling is maintained properly"
+    },
+    {
+     "text": "Breakout boards (e.g. CJMCU-226) carry a 0.1 Ω (R100) or 0.01 Ω (R010) shunt and pull-ups; TI documents the bare chip only. Read the shunt marking before calculating.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "ina260",
+   "aliases": [
+    "ina260aipw"
+   ],
+   "title": "INA260 current/power monitor, I²C, 36 V, integrated 2 mΩ shunt",
+   "category": "power.monitor",
+   "manufacturer": "Texas Instruments",
+   "kind": "ic",
+   "source_ids": [
+    "mod-powermon-ina260-ds"
+   ],
+   "supplies": {
+    "VS": {
+     "min": {
+      "value": 2.7,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VS Operating supply voltage 2.7 5.5 V"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VS Operating supply voltage 2.7 5.5 V"
+     },
+     "abs_max": {
+      "value": 6.0,
+      "unit": "V",
+      "page": 5,
+      "evidence": "Supply, VS 6"
+     }
+    }
+   },
+   "io": {
+    "domain": "VS",
+    "vih": {
+     "rel": 0.7,
+     "of": "VS",
+     "unit": "V",
+     "page": 7,
+     "evidence": "VIH High-level input voltage 0.7 × VS 6 V"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VS",
+     "unit": "V",
+     "page": 7,
+     "evidence": "VIL Low-level input voltage 0 0.3 × VS V"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 7,
+     "evidence": "VOL Low-level output voltage, SDA,ALERT IOL = 3 mA 0 0.4 V",
+     "conditions": "IOL = 3 mA"
+    },
+    "v_in_max": {
+     "value": 6.0,
+     "unit": "V",
+     "page": 5,
+     "evidence": "SDA, SCL, ALERT –0.3 6",
+     "conditions": "absolute maximum of SDA, SCL, ALERT; A0/A1 only VS + 0.3 V (p. 5)"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "IN+",
+     "signal": "power_out",
+     "note": "pins 1–3: current path into the integrated shunt"
+    },
+    {
+     "name": "A1",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "GND, VS, SDA or SCL (Table 2)"
+    },
+    {
+     "name": "A0",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "GND, VS, SDA or SCL (Table 2)"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "ALERT",
+     "signal": "open_drain_out",
+     "output": "open_drain",
+     "note": "optional; pull up to VS when used (p. 28)"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda"
+    },
+    {
+     "name": "SCL",
+     "signal": "i2c_scl"
+    },
+    {
+     "name": "VS",
+     "signal": "supply"
+    },
+    {
+     "name": "VBUS",
+     "signal": "analog_in",
+     "note": "bus voltage input, 0–36 V"
+    },
+    {
+     "name": "NC",
+     "signal": "nc"
+    },
+    {
+     "name": "IN-",
+     "signal": "power_out",
+     "note": "pins 14–16: current path out of the integrated shunt"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "value": [
+       "0x40",
+       "0x41",
+       "0x42",
+       "0x43",
+       "0x44",
+       "0x45",
+       "0x46",
+       "0x47",
+       "0x48",
+       "0x49",
+       "0x4a",
+       "0x4b",
+       "0x4c",
+       "0x4d",
+       "0x4e",
+       "0x4f"
+      ],
+      "page": 18,
+      "evidence": [
+       "Table 2. Address Pins and Slave Addresses",
+       "GND GND 1000000",
+       "SCL SCL 1001111"
+      ]
+     },
+     "default": "0x40",
+     "select": {
+      "pins": [
+       "A1",
+       "A0"
+      ],
+      "map": {
+       "GND,GND": "0x40",
+       "GND,VS": "0x41",
+       "GND,SDA": "0x42",
+       "GND,SCL": "0x43",
+       "VS,GND": "0x44",
+       "VS,VS": "0x45",
+       "VS,SDA": "0x46",
+       "VS,SCL": "0x47",
+       "SDA,GND": "0x48",
+       "SDA,VS": "0x49",
+       "SDA,SDA": "0x4a",
+       "SDA,SCL": "0x4b",
+       "SCL,GND": "0x4c",
+       "SCL,VS": "0x4d",
+       "SCL,SDA": "0x4e",
+       "SCL,SCL": "0x4f"
+      }
+     },
+     "f_max_hz": {
+      "value": 400000,
+      "unit": "Hz",
+      "page": 18,
+      "evidence": "fast mode (1 kHz to 400 kHz)",
+      "conditions": "fast mode; high-speed mode up to 2.94 MHz needs the HS master code"
+     },
+     "note": "A1/A0 each to GND, VS, SDA or SCL: 16 addresses 0x40–0x4F (Table 2, p. 18)"
+    }
+   ],
+   "current": {
+    "supply": "VS",
+    "typ": {
+     "value": 0.00031,
+     "unit": "A",
+     "page": 7,
+     "evidence": "IQ Quiescent current 310 420 µA"
+    },
+    "max": {
+     "value": 0.00042,
+     "unit": "A",
+     "page": 7,
+     "evidence": "IQ Quiescent current 310 420 µA"
+    },
+    "sleep": {
+     "value": 2e-06,
+     "unit": "A",
+     "page": 7,
+     "evidence": [
+      "Quiescent current, power-down",
+      "(shutdown) mode 0.5 2 µA"
+     ],
+     "conditions": "max"
+    }
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VS"
+     ],
+     "to": "GND",
+     "page": 29,
+     "evidence": "A typical value for this supply bypass capacitor is 0.1 μF."
+    },
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "to": "VS",
+     "page": 17,
+     "evidence": "Both SCL and SDA connect to the bus and require external pullup resistors.",
+     "note": "value from the I²C pull-up calculator; one set per bus"
+    }
+   ],
+   "hazards": [
+    {
+     "code": "high_current",
+     "page": 5,
+     "evidence": "Analog input current Continuous Conduction ±15 A",
+     "text": "The load current flows through the chip (IN+ to IN-): at most ±15 A continuous (absolute maximum). Size wires, connectors and the fuse for it; low voltage only (≤ 36 V)."
+    }
+   ],
+   "notes": [
+    {
+     "text": "Bus voltage input 0–36 V (VBUS, IN+/IN- common mode); absolute maximum 40 V.",
+     "page": 6,
+     "verified": true,
+     "evidence": "Bus voltage input range (1) 0 36 V"
+    },
+    {
+     "text": "Fixed scaling, no calibration register: current LSB 1.25 mA, power LSB 10 mW.",
+     "page": 6,
+     "verified": true,
+     "evidence": "Current 1.25 mA"
+    },
+    {
+     "text": "Breakout boards (e.g. with screw terminals) add pull-ups and address jumpers; TI documents the bare chip only.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "ina3221",
+   "aliases": [
+    "cjmcu-3221",
+    "ina3221aidr"
+   ],
+   "title": "INA3221 three-channel shunt and bus voltage monitor, I²C, 26 V",
+   "category": "power.monitor",
+   "manufacturer": "Texas Instruments",
+   "kind": "ic",
+   "source_ids": [
+    "mod-powermon-ina3221-ds"
+   ],
+   "supplies": {
+    "VS": {
+     "min": {
+      "value": 2.7,
+      "unit": "V",
+      "page": 4,
+      "evidence": "Operating supply voltage 2.7 5.5 V"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 4,
+      "evidence": "Operating supply voltage 2.7 5.5 V"
+     },
+     "abs_max": {
+      "value": 6.0,
+      "unit": "V",
+      "page": 4,
+      "evidence": "Voltage Supply, VS 6 V"
+     }
+    }
+   },
+   "io": {
+    "domain": "VS",
+    "vih": {
+     "rel": 0.7,
+     "of": "VS",
+     "unit": "V",
+     "page": 6,
+     "evidence": "VIH High-level input voltage 0.7 (VS) 6 V"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VS",
+     "unit": "V",
+     "page": 6,
+     "evidence": "VIL Low-level input voltage –0.5 0.3 (VS) V"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 6,
+     "evidence": "VOL Low-level output voltage SDA, critical, warning, PV VS > +2.7V, IOL = 3mA 0 0.4",
+     "conditions": "IOL = 3 mA"
+    },
+    "v_in_max": {
+     "value": 6.0,
+     "unit": "V",
+     "page": 4,
+     "evidence": [
+      "Data line, SDA (GND – 0.3) 6",
+      "Clock line, SCL (GND – 0.3) 6"
+     ],
+     "conditions": "absolute maximum of SDA and SCL"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "IN-3",
+     "signal": "analog_in",
+     "note": "load side of shunt 3; bus voltage of channel 3"
+    },
+    {
+     "name": "IN+3",
+     "signal": "analog_in",
+     "note": "supply side of shunt 3"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "VS",
+     "signal": "supply"
+    },
+    {
+     "name": "A0",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "GND, VS, SDA or SCL (Table 7-1)"
+    },
+    {
+     "name": "SCL",
+     "signal": "i2c_scl"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda"
+    },
+    {
+     "name": "Warning",
+     "signal": "open_drain_out",
+     "output": "open_drain",
+     "note": "optional alert"
+    },
+    {
+     "name": "Critical",
+     "signal": "open_drain_out",
+     "output": "open_drain",
+     "note": "optional alert"
+    },
+    {
+     "name": "PV",
+     "signal": "open_drain_out",
+     "output": "open_drain",
+     "note": "power-valid alert, pulled up to VPU"
+    },
+    {
+     "name": "IN-1",
+     "signal": "analog_in",
+     "note": "load side of shunt 1; bus voltage of channel 1"
+    },
+    {
+     "name": "IN+1",
+     "signal": "analog_in",
+     "note": "supply side of shunt 1"
+    },
+    {
+     "name": "TC",
+     "signal": "open_drain_out",
+     "output": "open_drain",
+     "note": "timing-control alert"
+    },
+    {
+     "name": "IN-2",
+     "signal": "analog_in",
+     "note": "load side of shunt 2; bus voltage of channel 2"
+    },
+    {
+     "name": "IN+2",
+     "signal": "analog_in",
+     "note": "supply side of shunt 2"
+    },
+    {
+     "name": "VPU",
+     "signal": "analog_in",
+     "note": "pull-up supply of the power-valid circuit, up to 26 V"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "value": [
+       "0x40",
+       "0x41",
+       "0x42",
+       "0x43"
+      ],
+      "page": 20,
+      "evidence": [
+       "Table 7-1. Address Pins and Target Addresses",
+       "GND 1000000",
+       "VS 1000001",
+       "SDA 1000010",
+       "SCL 1000011"
+      ]
+     },
+     "default": "0x40",
+     "select": {
+      "pin": "A0",
+      "map": {
+       "GND": "0x40",
+       "VS": "0x41",
+       "SDA": "0x42",
+       "SCL": "0x43"
+      }
+     },
+     "f_max_hz": {
+      "value": 400000,
+      "unit": "Hz",
+      "page": 20,
+      "evidence": "Fast (1kHz to 400kHz)",
+      "conditions": "fast mode; high-speed mode up to 2.44 MHz needs the HS master code"
+     },
+     "note": "one address pin A0: GND 0x40, VS 0x41, SDA 0x42, SCL 0x43 (Table 7-1, p. 20)"
+    }
+   ],
+   "current": {
+    "supply": "VS",
+    "typ": {
+     "value": 0.00035,
+     "unit": "A",
+     "page": 6,
+     "evidence": [
+      "Quiescent current",
+      "350 450"
+     ]
+    },
+    "max": {
+     "value": 0.00045,
+     "unit": "A",
+     "page": 6,
+     "evidence": [
+      "Quiescent current",
+      "350 450"
+     ]
+    },
+    "sleep": {
+     "value": 2e-06,
+     "unit": "A",
+     "page": 6,
+     "evidence": "Power-down mode 0.5 2",
+     "conditions": "max"
+    }
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VS"
+     ],
+     "to": "GND",
+     "page": 39,
+     "evidence": "this supply bypass capacitor is 0.1 μF."
+    },
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "to": "VS",
+     "page": 37,
+     "evidence": "The digital pins (SCL, SDA, Critical, Warning, TC) are connected to supply through pull-up",
+     "note": "value from the I²C pull-up calculator; the design example uses 10 kΩ (p. 38)"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Common-mode and bus voltage 0–26 V (IN+x/IN-x); absolute maximum 26 V. 32.76 V is only the ADC scaling.",
+     "page": 5,
+     "verified": true,
+     "evidence": "VBUS Bus voltage input 0 26 V"
+    },
+    {
+     "text": "No current register: I = shunt-voltage register (40 µV per LSB) / R_shunt; use bench_calc ina_shunt.",
+     "page": 28,
+     "verified": true,
+     "evidence": "Full-scale range = 163.8mV (decimal = 7FF8); LSB (SD0): 40μV."
+    },
+    {
+     "text": "Breakout boards (CJMCU-3221) carry three 0.1 Ω shunts (R100) and pull-ups; TI documents the bare chip only.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "acs712",
+   "aliases": [
+    "acs712elctr",
+    "acs712-module"
+   ],
+   "title": "ACS712 Hall-effect current sensor, analog output, 5 V",
+   "category": "sensor.current",
+   "manufacturer": "Allegro MicroSystems",
+   "kind": "ic",
+   "source_ids": [
+    "mod-powermon-acs712-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 4.5,
+      "unit": "V",
+      "page": 5,
+      "evidence": "Supply Voltage VCC 4.5 5.0 5.5 V"
+     },
+     "typ": {
+      "value": 5.0,
+      "unit": "V",
+      "page": 5,
+      "evidence": "Supply Voltage VCC 4.5 5.0 5.5 V"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 5,
+      "evidence": "Supply Voltage VCC 4.5 5.0 5.5 V"
+     },
+     "abs_max": {
+      "value": 8.0,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Supply Voltage VCC 8 V"
+     }
+    }
+   },
+   "pins": [
+    {
+     "name": "IP+",
+     "signal": "power_out",
+     "note": "pins 1 and 2: measured current in"
+    },
+    {
+     "name": "IP-",
+     "signal": "power_out",
+     "note": "pins 3 and 4: measured current out"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "FILTER",
+     "signal": "analog_in",
+     "note": "CF to GND sets the bandwidth"
+    },
+    {
+     "name": "VIOUT",
+     "signal": "analog_out",
+     "note": "VCC/2 + Sens · IP; needs a divider for a 3.3 V ADC"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "analog",
+     "note": "VIOUT = VCC/2 + Sens · IP (ratiometric); variants 05B, 20A, 30A"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "typ": {
+     "value": 0.01,
+     "unit": "A",
+     "page": 5,
+     "evidence": "Supply Current ICC VCC = 5.0 V, output open – 10 13 mA",
+     "conditions": "VCC = 5 V"
+    },
+    "max": {
+     "value": 0.013,
+     "unit": "A",
+     "page": 5,
+     "evidence": "Supply Current ICC VCC = 5.0 V, output open – 10 13 mA",
+     "conditions": "VCC = 5 V"
+    }
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VCC"
+     ],
+     "to": "GND",
+     "page": 1,
+     "evidence": [
+      "CBYP",
+      "0.1 µF"
+     ]
+    }
+   ],
+   "hazards": [
+    {
+     "code": "high_current",
+     "page": 2,
+     "evidence": "Overcurrent Transient Tolerance IP 1 pulse, 100 ms 100 A",
+     "text": "The measured current flows through IP+/IP- (up to ±30 A by variant): size wires, connectors and the fuse for it. Low voltage only: do not use the isolation for mains wiring with Circuit Bench."
+    }
+   ],
+   "variants": [
+    {
+     "id": "05b",
+     "title": "ACS712ELCTR-05B (±5 A, 185 mV/A)",
+     "overrides": {
+      "notes": [
+       {
+        "text": "Sensitivity 185 mV/A over ±5 A at VCC = 5 V, TA = 25 °C.",
+        "page": 6,
+        "verified": true,
+        "evidence": [
+         "x05B PERFORMANCE CHARACTERISTICS",
+         "Optimized Accuracy Range IP –5 – 5 A",
+         "Sensitivity Sens Over full range of IP, TA = 25°C 180 185 190 mV/A"
+        ]
+       },
+       {
+        "text": "Ratiometric: VIOUT(Q) is nominally VCC/2 and the sensitivity scales with VCC; at 5 V the output leaves the ESP32 input range (use bench_calc current_sense for the divider).",
+        "page": 10,
+        "verified": true,
+        "evidence": "VIOUT(Q), (nominally equal to VCC/2) and sensitivity, Sens, are"
+       },
+       {
+        "text": "Output load at VIOUT: at least 4.7 kΩ to GND and at most 10 nF.",
+        "page": 5,
+        "verified": true,
+        "evidence": "Output Resistive Load RLOAD VIOUT to GND 4.7 – – kΩ"
+       },
+       {
+        "text": "FILTER (pin 6) takes CF to GND for noise and bandwidth (1 nF in the typical application).",
+        "page": 1,
+        "verified": true,
+        "evidence": "is recommended for noise management, with values that"
+       },
+       {
+        "text": "Red/blue ACS712 breakout boards run at 5 V and route VIOUT straight to the header without a divider; Allegro documents the chip only. Read the variant (05B/20A/30A) on the chip marking.",
+        "verified": false
+       }
+      ]
+     }
+    },
+    {
+     "id": "20a",
+     "title": "ACS712ELCTR-20A (±20 A, 100 mV/A)",
+     "overrides": {
+      "notes": [
+       {
+        "text": "Sensitivity 100 mV/A over ±20 A at VCC = 5 V, TA = 25 °C.",
+        "page": 6,
+        "verified": true,
+        "evidence": [
+         "x20A PERFORMANCE CHARACTERISTICS",
+         "Optimized Accuracy Range IP –20 – 20 A",
+         "Sensitivity Sens Over full range of IP, TA = 25°C 96 100 104 mV/A"
+        ]
+       },
+       {
+        "text": "Ratiometric: VIOUT(Q) is nominally VCC/2 and the sensitivity scales with VCC; at 5 V the output leaves the ESP32 input range (use bench_calc current_sense for the divider).",
+        "page": 10,
+        "verified": true,
+        "evidence": "VIOUT(Q), (nominally equal to VCC/2) and sensitivity, Sens, are"
+       },
+       {
+        "text": "Output load at VIOUT: at least 4.7 kΩ to GND and at most 10 nF.",
+        "page": 5,
+        "verified": true,
+        "evidence": "Output Resistive Load RLOAD VIOUT to GND 4.7 – – kΩ"
+       },
+       {
+        "text": "FILTER (pin 6) takes CF to GND for noise and bandwidth (1 nF in the typical application).",
+        "page": 1,
+        "verified": true,
+        "evidence": "is recommended for noise management, with values that"
+       },
+       {
+        "text": "Red/blue ACS712 breakout boards run at 5 V and route VIOUT straight to the header without a divider; Allegro documents the chip only. Read the variant (05B/20A/30A) on the chip marking.",
+        "verified": false
+       }
+      ]
+     }
+    },
+    {
+     "id": "30a",
+     "title": "ACS712ELCTR-30A (±30 A, 66 mV/A)",
+     "overrides": {
+      "notes": [
+       {
+        "text": "Sensitivity 66 mV/A over ±30 A at VCC = 5 V, TA = 25 °C.",
+        "page": 6,
+        "verified": true,
+        "evidence": [
+         "x30A PERFORMANCE CHARACTERISTICS",
+         "Optimized Accuracy Range IP –30 – 30 A",
+         "Sensitivity Sens Over full range of IP , TA = 25°C 63 66 69 mV/A"
+        ]
+       },
+       {
+        "text": "Ratiometric: VIOUT(Q) is nominally VCC/2 and the sensitivity scales with VCC; at 5 V the output leaves the ESP32 input range (use bench_calc current_sense for the divider).",
+        "page": 10,
+        "verified": true,
+        "evidence": "VIOUT(Q), (nominally equal to VCC/2) and sensitivity, Sens, are"
+       },
+       {
+        "text": "Output load at VIOUT: at least 4.7 kΩ to GND and at most 10 nF.",
+        "page": 5,
+        "verified": true,
+        "evidence": "Output Resistive Load RLOAD VIOUT to GND 4.7 – – kΩ"
+       },
+       {
+        "text": "FILTER (pin 6) takes CF to GND for noise and bandwidth (1 nF in the typical application).",
+        "page": 1,
+        "verified": true,
+        "evidence": "is recommended for noise management, with values that"
+       },
+       {
+        "text": "Red/blue ACS712 breakout boards run at 5 V and route VIOUT straight to the header without a divider; Allegro documents the chip only. Read the variant (05B/20A/30A) on the chip marking.",
+        "verified": false
+       }
+      ]
+     }
+    }
+   ],
+   "notes": [
+    {
+     "text": "Ratiometric: VIOUT(Q) is nominally VCC/2 and the sensitivity scales with VCC; at 5 V the output leaves the ESP32 input range (use bench_calc current_sense for the divider).",
+     "page": 10,
+     "verified": true,
+     "evidence": "VIOUT(Q), (nominally equal to VCC/2) and sensitivity, Sens, are"
+    },
+    {
+     "text": "Output load at VIOUT: at least 4.7 kΩ to GND and at most 10 nF.",
+     "page": 5,
+     "verified": true,
+     "evidence": "Output Resistive Load RLOAD VIOUT to GND 4.7 – – kΩ"
+    },
+    {
+     "text": "FILTER (pin 6) takes CF to GND for noise and bandwidth (1 nF in the typical application).",
+     "page": 1,
+     "verified": true,
+     "evidence": "is recommended for noise management, with values that"
+    },
+    {
+     "text": "Red/blue ACS712 breakout boards run at 5 V and route VIOUT straight to the header without a divider; Allegro documents the chip only. Read the variant (05B/20A/30A) on the chip marking.",
+     "verified": false
+    }
+   ]
+  }
+ ]
+}

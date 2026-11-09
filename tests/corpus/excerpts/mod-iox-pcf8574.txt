@@ -1,0 +1,37 @@
+# source_id: mod-iox-pcf8574-ds
+# document: PCF8574 Remote 8-Bit I/O Expander for I2C Bus, SCPS068K
+# url: https://web.archive.org/web/20261011000902id_/https://www.ti.com/lit/ds/symlink/pcf8574.pdf
+# corpus: mod/iox/pcf8574-scps068.pdf sha256 96c892fa5caff59c58eb913c1eaf5baf2e3594fedc9c7db6b3955094ad5b0ad5
+# retrieved: 2026-11-09
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+only a current source to VCC is active.
+@@ page 3
+A [0..2] 2, 3, 4 6, 7, 9 6, 7, 9 1, 2, 3 I Address inputs 0 through 2. Connect directly to VCC or ground. Pullup resistors are not needed.
+INT 14 1 1 13 O Interrupt output. Connect to VCC through a pullup resistor.
+SCL 15 2 2 14 I Serial clock line. Connect to VCC through a pullup resistor
+SDA 16 4 4 15 I/O Serial data line. Connect to VCC through a pullup resistor.
+@@ page 4
+VCC Supply voltage range –0.5 6.5 V
+VI Input voltage range(2) –0.5 VCC + 0.5 V
+Continuous current through VCC or GND ±100 mA
+VCC Supply voltage 2.5 6 V
+VIH High-level input voltage 0.7 × VCC VCC + 0.5 V
+VIL Low-level input voltage –0.5 0.3 × VCC V
+IOL Low-level output current 25 mA
+@@ page 5
+IOH P port  VO = GND 2.5 V to 6 V -310 -30 μA
+IOL
+SDA  VO = 0.4 V 2.5 V to 6 V 3
+Operating mode VI = VCC or GND, IO = 0, fSCL = 100 kHz 6 V 40 100 μA
+Standby mode VI = VCC or GND, IO = 0 2.5 10
+fscl I2C clock frequency 100 kHz
+@@ page 12
+used as inputs.
+@@ page 14
+L L L 65 (decimal), 41 (hexadecimal) 64 (decimal), 40 (hexadecimal)
+H H H 79 (decimal), 4F (hexadecimal) 78 (decimal), 4E (hexadecimal)
+@@ page 16
+B. Device address is configured as 0100000 for this example.
+@@ page 20
+amounts of current that commonly pass through power and ground traces. By-pass and de-coupling capacitors 

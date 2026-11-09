@@ -1,0 +1,10 @@
+I (325) main_task: Calling app_main()
+
+assert failed: read_sensor main.c:42 (len <= sizeof(buf))
+
+
+Backtrace: 0x40375b4a:0x3fc98a20 0x4037a1d5:0x3fc98a40 0x40380e8d:0x3fc98a60 0x42008d3f:0x3fc98b80 0x42008d6e:0x3fc98ba0 0x420196b3:0x3fc98bc0
+
+ELF file SHA256: 9e1f6b2ac
+
+Rebooting...

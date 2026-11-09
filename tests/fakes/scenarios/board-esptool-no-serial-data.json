@@ -1,0 +1,7 @@
+{
+ "flash-id": {
+  "rc": 2,
+  "stdout": "esptool v5.6.0\nConnecting......................................\n\nA fatal error occurred: Failed to connect to Espressif device: No serial data received.\nFor troubleshooting steps visit: https://docs.espressif.com/projects/esptool/en/latest/troubleshooting.html\n",
+  "sleep": 0.2
+ }
+}

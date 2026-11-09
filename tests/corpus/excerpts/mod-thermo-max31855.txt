@@ -1,0 +1,56 @@
+# source_id: mod-thermo-max31855-ds
+# document: Maxim Integrated (Analog Devices) MAX31855 Cold-Junction Compensated Thermocouple-to-Digital Converter, data sheet 19-5793 Rev 5 (1/15)
+# url: https://web.archive.org/web/20250118052800id_/https://www.analog.com/media/en/technical-documentation/data-sheets/MAX31855.pdf
+# corpus: mod/thermo/MAX31855.pdf sha256 0da8c21e66d26950f16b5dee20d09e9aff3b017d5d34156808deccd0ad6567ec
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+E-type thermocouple. The data is output in a signed 
+14-bit, SPI-compatible, read-only format. This converter 
+resolves temperatures to 0.25°C, allows readings as 
+• Simple SPI-Compatible Interface (Read-Only)
+19-5793; Rev 5; 1/15
+@@ page 2
+Supply Voltage Range (VCC to GND)...................-0.3V to +4.0V
+All Other Pins............................................. -0.3V to (VCC + 0.3V)
+Operating Temperature Range......................... -40°C to +125°C
+Power-Supply Voltage VCC (Note 2) 3.0 3.3 3.6 V
+Input Logic 0 VIL -0.3 +0.8 V
+Input Logic 1 VIH 2.1 VCC + 0.3 V
+Power-Supply Current ICC 900 1500 µA
+Output High Voltage VOH IOUT = -1.6mA VCC - 0.4 V
+Output Low Voltage VOL IOUT = 1.6mA 0.4 V
+@@ page 4
+Thermocouple Temperature Data 
+Resolution 0.25 °C
+tCONV (Note 5) 70 100 ms
+Serial-Clock Frequency fSCL 5 MHz
+CS Rise to Output Disable tTR 40 ns
+SCK Fall to Output Data Valid tDO 40 ns
+@@ page 7
+1 GND Ground
+2 T- Thermocouple Input. See Table 1. Do not connect to GND.
+3 T+ Thermocouple Input. See Table 1.
+4 VCC Power-Supply Voltage
+5 SCK Serial-Clock Input
+6 CS Active-Low Chip Select. Set CS low to enable the serial interface.
+7 SO Serial-Data Output
+8 DNC Do Not Connect
+@@ page 9
+cold-junction temperature, the temperature conversion of 
+tion circuit is closed (switch S5). The internal T- reference 
+to ground is still maintained (switch S3 is closed) and 
+ground reference on T- is also opened (switch S3). The 
+for shorted connections to VCC or GND on the T+ and T- 
+VCC, bit D1 goes high to indicate a thermocouple short 
+to GND, and bit D0 goes high to indicate a thermocouple 
+are presented to the SO pin within t D0 of the falling edge 
+of SCK. Bit D16 is normally low and goes high when the 
+@@ page 11
+minimized by placing a 0.1µF ceramic bypass capacitor 
+close to the VCC pin of the device and to GND.
+noise sources. It is strongly recommended to add a 
+10nF ceramic surface-mount differential capacitor, placed 
+across the T+ and T- pins, in order to filter noise on the 
+@@ page 12
+MAX31855KASA+ K -200°C to +1350°C 8 SO

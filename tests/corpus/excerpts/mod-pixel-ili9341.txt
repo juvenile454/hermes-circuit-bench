@@ -1,0 +1,38 @@
+# source_id: mod-pixel-ili9341-ds
+# document: ILI Technology ILI9341 a-Si TFT LCD Single Chip Driver 240RGBx320 Resolution and 262K color, V1.11 (copy hosted by Adafruit)
+# url: https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf
+# corpus: mod/pixel/ILI9341.pdf sha256 a9bbfdf6d078f54a6aca7a56cba91246905358d3a4ed738817bfd3f582b5741c
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Version:  V1.11 
+Document No.: ILI9341_DS_V1.11.pdf  
+@@ page 11
+RESX I MCU (VDDI/VSS) 
+Signal is active low. 
+CSX I MCU (VDDI/VSS) Chip select input pin (“Low” enable). This pin can be permanently fixed “Low” in MPU interface mode only.  * note1,2  
+D/CX (SCL)  I MCU (VDDI/VSS) 
+This pin is used serial interface clock in 3-wire 9-bit / 4-wire 8-bit 
+- 4-line system (D/CX): Serves as command or parameter select. 
+SDI/SDA I/O MCU (VDDI/VSS) 
+SDO O MCU (VDDI/VSS) 
+If not used, open this pin 
+If not used, open this pin.  
+@@ page 230
+RESX tRW Reset pulse duration 10  uS 
+@@ page 235
+Supply voltage VCI V -0.3 ~ +4.6 
+Supply voltage (Logic) VDDI V -0.3 ~ +4.6 
+Logic input voltage range VIN V -0.3 ~ VDDI + 0.3 
+@@ page 236
+Voltage VCI V Operating voltage 2.5 2.8 3.3 Note2 
+Voltage VDDI V I/O supply voltage 1.65 2.8 3.3 Note2 
+during standby mode IST  µA  VCI=2.8V , Ta=25  ° C  - - 100  - 
+Voltage VIH V - 0.7*VDDI  - VDDI Note1,2,3  
+Voltage VIL V - VSS - 0.3*VDDI Note1,2,3  
+Output Voltage VOH V IOL=-1.0mA 0.8*VDDI  - VDDI Note1,2,3  
+@@ page 243
+18.3.4 Display Serial Interface Timing Characteristics (4-line SPI system) 
+twc Serial clock cycle (Write) 100 - ns  
+trc Serial clock cycle (Read) 150 - ns  
+Note: Ta = 25 ° C, VDDI=1.65V to 3.3V, VCI=2.5V to 3.3V, AGND=VSS=0V 

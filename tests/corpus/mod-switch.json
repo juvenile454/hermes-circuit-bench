@@ -1,0 +1,60 @@
+{
+ "files": [
+  {
+   "url": "https://global.sharp/products/device/lineup/data/pdf/datasheet/PC817XxNSZ1B_e.pdf",
+   "path": "mod/switch/PC817XxNSZ1B_e.pdf",
+   "source_id": "mod-switch-pc817-ds",
+   "excerpt": "excerpts/mod-switch-pc817.txt",
+   "sha256": "04c5dfe12e1140687ec47236af43378758d2b84e2195cdf498cba06646b672f2"
+  },
+  {
+   "url": "https://www.vishay.com/docs/84732/6n137.pdf",
+   "path": "mod/switch/vishay-6n137.pdf",
+   "source_id": "mod-switch-6n137-ds",
+   "excerpt": "excerpts/mod-switch-6n137.txt",
+   "sha256": "e838b59beab53ddad0fedf094df8bd32fc35297fda7d500fd24ddd188924f6d2"
+  },
+  {
+   "url": "https://web.archive.org/web/20240210050919id_/http://www.songlerelay.com/Public/Uploads/20161104/581c81ac16e36.pdf",
+   "path": "mod/switch/songle-srd-581c81ac16e36.pdf",
+   "source_id": "mod-switch-srd-ds",
+   "excerpt": "excerpts/mod-switch-srd.txt",
+   "sha256": "900ec995acaf29fea0b8e9496c3e76423a32515e93155101fbad47170f0f2743"
+  },
+  {
+   "url": "https://web.archive.org/web/20171013023109id_/https://omronfs.omron.com/en_US/ecb/products/pdf/en-g5le.pdf",
+   "path": "mod/switch/omron-en-g5le-2017.pdf",
+   "source_id": "mod-switch-g5le-ds",
+   "excerpt": "excerpts/mod-switch-g5le.txt",
+   "sha256": "8ba6b56408710348799925aab5d2975ef76c5c07b79d4cf47d237771566d0e4b"
+  },
+  {
+   "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/precautions_pcb.pdf",
+   "path": "mod/switch/omron-precautions_pcb.pdf",
+   "source_id": "mod-switch-relay-precautions",
+   "excerpt": "excerpts/mod-switch-relay-precautions.txt",
+   "sha256": "abd9df6258105f9445a2ab556b199d03a8e3e42995bbdc9e39fb1799bc9c3ab9"
+  },
+  {
+   "url": "https://www.vishay.com/docs/81857/1n4148.pdf",
+   "path": "mod/switch/vishay-1n4148.pdf",
+   "source_id": "mod-switch-1n4148-ds",
+   "excerpt": "excerpts/mod-switch-1n4148.txt",
+   "sha256": "aefe85400a427ed886a4e1c88205ceabb9f9b38044b29c6acee4bb00146a44b7"
+  },
+  {
+   "url": "https://www.vishay.com/docs/88503/1n4001.pdf",
+   "path": "mod/switch/vishay-1n4001.pdf",
+   "source_id": "mod-switch-1n4007-ds",
+   "excerpt": "excerpts/mod-switch-1n4007.txt",
+   "sha256": "56a77c6615c90c11993d37d94e67f335cf3a2d1fe00f25d2a1a4833834356d07"
+  },
+  {
+   "url": "https://www.vishay.com/docs/88525/1n5817.pdf",
+   "path": "mod/switch/vishay-1n5817.pdf",
+   "source_id": "mod-switch-1n5819-ds",
+   "excerpt": "excerpts/mod-switch-1n5819.txt",
+   "sha256": "4465c825da3be36cc8a180c252d5d80e7651d9dc237cd3d09822a759f39c970b"
+  }
+ ]
+}

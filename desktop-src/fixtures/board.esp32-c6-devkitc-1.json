@@ -1,0 +1,390 @@
+{
+ "ok": true,
+ "action": "board.layout",
+ "summary": "ESP32-C6-DevKitC-1 v1.2: 32 header pins, 1 onboard part, 2 USB ports.",
+ "result": {
+  "id": "esp32-c6-devkitc-1",
+  "title": "ESP32-C6-DevKitC-1",
+  "revision": "v1.2",
+  "chip": "esp32c6",
+  "source_id": "devkitc1-c6-v1.2",
+  "left": [
+   {
+    "header": "J1",
+    "n": 1,
+    "label": "3V3",
+    "kind": "power"
+   },
+   {
+    "header": "J1",
+    "n": 2,
+    "label": "RST",
+    "kind": "reset"
+   },
+   {
+    "header": "J1",
+    "n": 3,
+    "label": "4",
+    "kind": "gpio",
+    "gpio": 4
+   },
+   {
+    "header": "J1",
+    "n": 4,
+    "label": "5",
+    "kind": "gpio",
+    "gpio": 5
+   },
+   {
+    "header": "J1",
+    "n": 5,
+    "label": "6",
+    "kind": "gpio",
+    "gpio": 6
+   },
+   {
+    "header": "J1",
+    "n": 6,
+    "label": "7",
+    "kind": "gpio",
+    "gpio": 7
+   },
+   {
+    "header": "J1",
+    "n": 7,
+    "label": "0",
+    "kind": "gpio",
+    "gpio": 0
+   },
+   {
+    "header": "J1",
+    "n": 8,
+    "label": "1",
+    "kind": "gpio",
+    "gpio": 1
+   },
+   {
+    "header": "J1",
+    "n": 9,
+    "label": "8",
+    "kind": "gpio",
+    "gpio": 8
+   },
+   {
+    "header": "J1",
+    "n": 10,
+    "label": "10",
+    "kind": "gpio",
+    "gpio": 10
+   },
+   {
+    "header": "J1",
+    "n": 11,
+    "label": "11",
+    "kind": "gpio",
+    "gpio": 11
+   },
+   {
+    "header": "J1",
+    "n": 12,
+    "label": "2",
+    "kind": "gpio",
+    "gpio": 2
+   },
+   {
+    "header": "J1",
+    "n": 13,
+    "label": "3",
+    "kind": "gpio",
+    "gpio": 3
+   },
+   {
+    "header": "J1",
+    "n": 14,
+    "label": "5V",
+    "kind": "power"
+   },
+   {
+    "header": "J1",
+    "n": 15,
+    "label": "G",
+    "kind": "ground"
+   },
+   {
+    "header": "J1",
+    "n": 16,
+    "label": "NC",
+    "kind": "nc"
+   }
+  ],
+  "right": [
+   {
+    "header": "J3",
+    "n": 1,
+    "label": "G",
+    "kind": "ground"
+   },
+   {
+    "header": "J3",
+    "n": 2,
+    "label": "TX",
+    "kind": "gpio",
+    "gpio": 16
+   },
+   {
+    "header": "J3",
+    "n": 3,
+    "label": "RX",
+    "kind": "gpio",
+    "gpio": 17
+   },
+   {
+    "header": "J3",
+    "n": 4,
+    "label": "15",
+    "kind": "gpio",
+    "gpio": 15
+   },
+   {
+    "header": "J3",
+    "n": 5,
+    "label": "23",
+    "kind": "gpio",
+    "gpio": 23
+   },
+   {
+    "header": "J3",
+    "n": 6,
+    "label": "22",
+    "kind": "gpio",
+    "gpio": 22
+   },
+   {
+    "header": "J3",
+    "n": 7,
+    "label": "21",
+    "kind": "gpio",
+    "gpio": 21
+   },
+   {
+    "header": "J3",
+    "n": 8,
+    "label": "20",
+    "kind": "gpio",
+    "gpio": 20
+   },
+   {
+    "header": "J3",
+    "n": 9,
+    "label": "19",
+    "kind": "gpio",
+    "gpio": 19
+   },
+   {
+    "header": "J3",
+    "n": 10,
+    "label": "18",
+    "kind": "gpio",
+    "gpio": 18
+   },
+   {
+    "header": "J3",
+    "n": 11,
+    "label": "9",
+    "kind": "gpio",
+    "gpio": 9
+   },
+   {
+    "header": "J3",
+    "n": 12,
+    "label": "G",
+    "kind": "ground"
+   },
+   {
+    "header": "J3",
+    "n": 13,
+    "label": "13",
+    "kind": "gpio",
+    "gpio": 13
+   },
+   {
+    "header": "J3",
+    "n": 14,
+    "label": "12",
+    "kind": "gpio",
+    "gpio": 12
+   },
+   {
+    "header": "J3",
+    "n": 15,
+    "label": "G",
+    "kind": "ground"
+   },
+   {
+    "header": "J3",
+    "n": 16,
+    "label": "NC",
+    "kind": "nc"
+   }
+  ],
+  "onboard": [
+   {
+    "gpio": 8,
+    "what": "RGB LED",
+    "severity": "caution",
+    "source_id": "devkitc1-c6-v1.2"
+   }
+  ],
+  "usb": [
+   {
+    "label": "USB",
+    "kind": "usb_serial_jtag",
+    "gpios": [
+     12,
+     13
+    ],
+    "source_id": "devkitc1-c6-v1.2"
+   },
+   {
+    "label": "UART",
+    "kind": "usb_uart_bridge",
+    "gpios": [
+     16,
+     17
+    ],
+    "source_id": "devkitc1-c6-v1.2"
+   }
+  ],
+  "module": {
+   "name": "ESP32-C6-WROOM-1",
+   "part_numbers": [
+    "ESP32-C6-DevKitC-1-N8"
+   ],
+   "variant": "wroom-1",
+   "flash_mb": 8,
+   "psram_mb": 0,
+   "antenna": "pcb",
+   "source_id": "devkitc1-c6-ordering"
+  },
+  "buttons": [
+   "Boot",
+   "Reset"
+  ],
+  "drawing": {
+   "schema": 1,
+   "orientation": "module_top",
+   "parts": [
+    {
+     "kind": "usb_port",
+     "ref": "UART",
+     "connector": "usb_c",
+     "edge": "bottom",
+     "order": 1,
+     "source_id": "devkitc1-c6-v1.2",
+     "quote": "USB Type-C to UART Port",
+     "figure": "esp32-c6-devkitc-1-v1.2-annotated-photo.png",
+     "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+    },
+    {
+     "kind": "usb_port",
+     "ref": "USB",
+     "connector": "usb_c",
+     "edge": "bottom",
+     "order": 2,
+     "source_id": "devkitc1-c6-v1.2",
+     "quote": "The USB Type-C port on the ESP32-C6 chip compliant with USB 2.0 full speed.",
+     "figure": "esp32-c6-devkitc-1-v1.2-annotated-photo.png",
+     "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+    },
+    {
+     "kind": "button",
+     "label": "Boot",
+     "zone": "lower",
+     "side": "right",
+     "source_id": "devkitc1-c6-v1.2",
+     "quote": "Holding down **Boot** and then pressing **Reset** initiates Firmware Download mode for downloading firmware through the serial port.",
+     "figure": "esp32-c6-devkitc-1-v1.2-annotated-photo.png",
+     "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+    },
+    {
+     "kind": "button",
+     "label": "Reset",
+     "zone": "lower",
+     "side": "left",
+     "source_id": "devkitc1-c6-v1.2",
+     "quote": "Press this button to restart the system.",
+     "figure": "esp32-c6-devkitc-1-v1.2-annotated-photo.png",
+     "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+    },
+    {
+     "kind": "bridge_ic",
+     "label": "USB-UART",
+     "zone": "middle",
+     "side": "center",
+     "source_id": "devkitc1-c6-v1.2",
+     "quote": "Single USB-to-UART bridge chip provides transfer rates up to 3 Mbps.",
+     "figure": "esp32-c6-devkitc-1-v1.2-annotated-photo.png",
+     "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+    },
+    {
+     "kind": "led",
+     "label": "RGB",
+     "gpio": 8,
+     "zone": "middle",
+     "side": "left",
+     "source_id": "devkitc1-c6-v1.2",
+     "quote": "Addressable RGB LED, driven by GPIO8.",
+     "figure": "esp32-c6-devkitc-1-v1.2-annotated-photo.png",
+     "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+    },
+    {
+     "kind": "ldo",
+     "label": "LDO 3V3",
+     "zone": "below_module",
+     "side": "center",
+     "source_id": "devkitc1-c6-v1.2",
+     "quote": "Power regulator that converts a 5 V supply into a 3.3 V output.",
+     "figure": "esp32-c6-devkitc-1-v1.2-annotated-photo.png",
+     "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+    },
+    {
+     "kind": "power_led",
+     "label": "PWR",
+     "zone": "below_module",
+     "side": "right",
+     "source_id": "devkitc1-c6-v1.2",
+     "quote": "Turns on when the USB power is connected to the board.",
+     "figure": "esp32-c6-devkitc-1-v1.2-annotated-photo.png",
+     "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+    }
+   ],
+   "module_size_mm": {
+    "w": 18.0,
+    "h": 25.5,
+    "source_id": "ds-esp32-c6-wroom-1",
+    "quote": "18.0 × 25.5 × 3.1"
+   }
+  }
+ },
+ "checks": [],
+ "warnings": [],
+ "assumptions": [],
+ "sources": [
+  {
+   "id": "devkitc1-c6-v1.2",
+   "title": "ESP32-C6-DevKitC-1 v1.2 User Guide (esp-dev-kits)",
+   "url": "https://github.com/espressif/esp-dev-kits/blob/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-c6-devkitc-1/user_guide.rst",
+   "retrieved": "2026-11-06",
+   "note": "espressif/esp-dev-kits at commit 5c06bf1835329d6525f316475f7218aab6acfe79, sha256 0c5d5b143e380f9e34844f1782a38a23558eba04a36574d0a7679e184c8d607d"
+  },
+  {
+   "id": "devkitc1-c6-ordering",
+   "title": "ESP32-C6-DevKitC-1 ordering information (esp-dev-kits)",
+   "url": "https://github.com/espressif/esp-dev-kits/blob/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-c6-devkitc-1/ordering-info.inc",
+   "retrieved": "2026-11-06",
+   "note": "espressif/esp-dev-kits at commit 5c06bf1835329d6525f316475f7218aab6acfe79, sha256 1398d681249fe78a113d69cc05802c597dc031a6721b8c0b8b8a393d36d91907"
+  }
+ ],
+ "simulated": false,
+ "error": null
+}

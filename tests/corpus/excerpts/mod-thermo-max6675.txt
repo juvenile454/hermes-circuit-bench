@@ -1,0 +1,44 @@
+# source_id: mod-thermo-max6675-ds
+# document: Maxim Integrated MAX6675 Cold-Junction-Compensated K-Thermocouple-to-Digital Converter (0°C to +1024°C), data sheet 19-2235 Rev 1 (3/02), copy hosted by Adafruit
+# url: https://cdn-shop.adafruit.com/datasheets/MAX6675.pdf
+# corpus: mod/thermo/MAX6675.pdf sha256 f354adbf8b44b2b4d90840bf67c810386c717d80e943d828404f1add0c286bf9
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+The data is output in a 12-bit resolution, SPI™-compati-
+This converter resolves temperatures to 0.25°C, allows
+readings as high as +1024°C, and exhibits thermocou-
+19-2235; Rev 1; 3/02
+@@ page 2
+Supply Voltage (VCC to GND) ................................ -0.3V to +6V
+SO, SCK, CS, T-, T+ to GND .......................-0.3V to V CC + 0.3V
+Supply Voltage V CC 3.0 5.5 V
+Supply Current I CC 0.7 1.5 mA
+Conversion Time (Note 2) 0.17 0.22 s
+Input Low Voltage V IL 0.3 xVCC V
+Input High Voltage V IH 0.7 xVCC V
+@@ page 3
+Output High Voltage V OH ISOURCE = 1.6mA VCC -0.4 V
+Output Low Voltage V OL ISINK = 1.6mA 0.4 V
+Serial Clock Frequency f SCL 4.3 MHz
+CSB Rise to Output Disable t TR CL = 10pF 100 ns
+SCK Fall to Output Data
+@@ page 4
+1 GND Ground
+2T -
+Alumel Lead of Type-K Thermocouple.
+Should be connected to ground
+externally.
+3T + C  hr om el  Lead  of Typ e- K Ther m ocoup l e
+4 VCC Positive Supply. Bypass with a 0.1µFcapacitor to GND.
+5 SCK Serial Clock Input
+6 CS Chip Select. Set CS low to enable theserial interface.
+7 SO Serial Data Output
+8 N.C. No Connection
+@@ page 5
+any conversion process. Initiate a new conversion
+Read the 16 output bits on the falling edge of the clock.
+Bit D2 is normally low and goes high if the thermocou-
+ple input is open. In order to allow the operation of the
+open thermocouple detector, T- must be grounded.
+Make the ground connection as close to the GND pin

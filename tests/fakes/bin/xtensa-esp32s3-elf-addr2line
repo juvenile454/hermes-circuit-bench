@@ -1,0 +1,60 @@
+#!/usr/bin/env python3
+"""Fake <prefix>-addr2line for the crash decoder tests (riscv32-esp-elf-addr2line links here, see tests/fakes/README.md).
+
+Accepts only the call the decoder makes: ``-pfiaC -e ELF ADDR...`` (and ``--version``). Output per address follows
+GNU addr2line with ``-a -f -i -p -C``: ``0x%08x: FUNC at FILE:LINE``, inlined callers as
+`` (inlined by) FUNC at FILE:LINE``, unknown addresses as ``?? ??:0``.
+
+Scenario: the JSON file named in CB_FAKE_SCENARIO, else ``<ELF>.a2l.json`` next to the ELF (clitools.run passes only
+a minimal environment, so decoder tests use the side file):
+
+    {"addresses": {"0x42001d67": "f() at /p/src/main.cpp:5", "0x400f360d": ["inner at a.c:57", "outer at a.c:52"]},
+     "rc": 0, "stderr": "", "sleep": 0, "stdout": "<raw output instead of the mapping>", "argv_log": "<path>"}
+
+Every call appends its argv (tool name first) as one JSON line to CB_FAKE_ARGV_LOG or the scenario's ``argv_log``.
+"""
+import json
+import os
+import sys
+import time
+
+name = os.path.basename(sys.argv[0])
+argv = sys.argv[1:]
+elf = argv[2] if len(argv) >= 3 and argv[:2] == ["-pfiaC", "-e"] else None
+scenario = {}
+path = os.environ.get("CB_FAKE_SCENARIO") or (elf + ".a2l.json" if elf and os.path.isfile(elf + ".a2l.json") else "")
+if path:
+    with open(path, encoding="utf-8") as f:
+        scenario = json.load(f)
+log = os.environ.get("CB_FAKE_ARGV_LOG") or scenario.get("argv_log")
+if log:
+    with open(log, "a", encoding="utf-8") as f:
+        f.write(json.dumps([name, *argv]) + "\n")
+
+if argv[:1] == ["--version"]:
+    print(f"GNU addr2line (fake {name}) 2.35")
+    sys.exit(0)
+if elf is None:
+    sys.stderr.write(f"{name}: fake expects -pfiaC -e ELF ADDR..., got {argv}\n")
+    sys.exit(2)
+if not os.path.isfile(elf):
+    sys.stderr.write(f"{name}: '{elf}': No such file\n")
+    sys.exit(1)
+time.sleep(float(scenario.get("sleep", 0)))
+if scenario.get("stderr"):
+    sys.stderr.write(scenario["stderr"])
+    sys.stderr.flush()
+if int(scenario.get("rc", 0)) != 0 or "stdout" in scenario:
+    sys.stdout.write(scenario.get("stdout", ""))
+    sys.exit(int(scenario.get("rc", 0)))
+
+table = {}
+for key, answer in scenario.get("addresses", {}).items():
+    table[int(key, 16)] = answer if isinstance(answer, list) else [answer]
+for raw in argv[3:]:
+    addr = int(raw, 16)
+    chain = table.get(addr, ["?? ??:0"])
+    print(f"0x{addr:08x}: {chain[0]}")
+    for caller in chain[1:]:
+        print(f" (inlined by) {caller}")
+sys.exit(0)

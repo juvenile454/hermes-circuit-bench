@@ -1,0 +1,39 @@
+{
+ "files": [
+  {
+   "url": "https://docs.wiznet.io/img/products/w5500/W5500_ds_v110e.pdf",
+   "path": "mod/net/W5500_ds_v110e.pdf",
+   "source_id": "mod-net-w5500-ds",
+   "excerpt": "excerpts/mod-net-w5500.txt",
+   "sha256": "7b826b808084ccd986bcc22904c00a07a508ef42fb93d079fe7150a4c4f1a63d"
+  },
+  {
+   "url": "https://content.u-blox.com/sites/default/files/products/documents/NEO-6_DataSheet_(GPS.G6-HW-09005).pdf",
+   "path": "mod/net/NEO-6_DataSheet_GPS.G6-HW-09005.pdf",
+   "source_id": "mod-net-neo6m-ds",
+   "excerpt": "excerpts/mod-net-neo6m.txt",
+   "sha256": "31b01f512296ff2a4a26dbdf496c1fe4554c757cb3bfc2b74b17981d6b8a3c34"
+  },
+  {
+   "url": "https://content.u-blox.com/sites/default/files/NEO-M8-FW3_DataSheet_UBX-15031086.pdf",
+   "path": "mod/net/NEO-M8-FW3_DataSheet_UBX-15031086.pdf",
+   "source_id": "mod-net-neom8n-ds",
+   "excerpt": "excerpts/mod-net-neom8n.txt",
+   "sha256": "5dc7a6c044873a04e2dcc08a7f54e9e7374c5c69dcce694054ac4730c81a04a5"
+  },
+  {
+   "url": "https://academy.cba.mit.edu/classes/networking_communications/SD/SD.pdf",
+   "path": "mod/net/SD_Physical_Layer_Simplified_v6.00.pdf",
+   "source_id": "mod-net-sdcard-spec",
+   "excerpt": "excerpts/mod-net-sdcard.txt",
+   "sha256": "86502198b4db01f0f7f7aea459210db969724800733411b5014b5548bb916fd2"
+  },
+  {
+   "url": "https://simcom.ee/documents/SIM800L/SIM800L(MT6261)_Hardware%20Design_V1.01.pdf",
+   "path": "mod/net/SIM800L_MT6261_Hardware_Design_V1.01.pdf",
+   "source_id": "mod-net-sim800l-hd",
+   "excerpt": "excerpts/mod-net-sim800l.txt",
+   "sha256": "f6da4cb6194b4fe81a1a5d8785054fe3abc7cfc01a314d9f7fd46afd559a15f8"
+  }
+ ]
+}

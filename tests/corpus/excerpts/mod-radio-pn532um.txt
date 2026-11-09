@@ -1,0 +1,34 @@
+# source_id: mod-radio-pn532-um
+# document: NXP UM0701-02 PN532 User Manual, Rev. 02 (5 November 2007)
+# url: https://cache.nxp.com/docs/en/user-guide/141520.pdf
+# corpus: mod/radio/141520.pdf sha256 1826ce9f8e55ff43a8178fdd644a47c136160fc08cec16f38065796b0c27dd6f
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 2
+User Manual Rev. 02 - 5th November 2007  2 of 200
+@@ page 6
+The level of the P70_IRQ pin is low when an interrupt occurs. The bit IRQInv in the 
+@@ page 24
+Table 7. Host controller interface selection 
+(pin #16) 
+(pin #17) 
+HSU 0 0 
+I2C 1 0 
+SPI 0 1 
+@@ page 25
+NSS 27 
+MOSI 28 
+MISO 29 
+SCK 30 
+The mode used for the clock is Mode 0: 
+The data order used is LSB first. 
+@@ page 26
+Baud rate : 115 200 bauds, 
+HSU_RX (NSS) 27 
+HSU_TX (MOSI) 28 
+The PN532 is configured with I2C address 0x48 and is able to support a clock frequency 
+up to 400 kHz. 
+SCL (NSS) 27 
+SDA (MOSI) 28 
+@@ page 43
+SLV + W:  write operation at PN532 address (0x48), 

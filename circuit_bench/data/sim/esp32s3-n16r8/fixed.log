@@ -1,0 +1,6 @@
+[laser-trigger] boot, laser off
+[laser-trigger] vbat 3.98 V
+[laser-trigger] boot ok
+[laser-trigger] button pressed: laser on
+[laser-trigger] button released: laser off
+[laser-trigger] vbat 3.97 V, laser off

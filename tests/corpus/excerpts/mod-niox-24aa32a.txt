@@ -1,0 +1,26 @@
+# source_id: mod-niox-24aa32a-ds
+# document: 24AA32A/24LC32A 32K I2C Serial EEPROM, DS21713M
+# url: https://ww1.microchip.com/downloads/en/DeviceDoc/21713M.pdf
+# corpus: mod/niox/21713M.pdf sha256 06fbdcfef132269452b0a56b2c24a4ae871a4ea3e157e56cc915e6f0a5d8bde5
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+24AA32A 1.7-5.5 400 kHz (1) I
+24LC32A 2.5-5.5 400 kHz I, E
+Note 1: 100 kHz for VCC <2.5V.
+@@ page 2
+All inputs and outputs w.r.t. VSS ......................................................................................................... -0.3V to VCC +1.0V
+D2 V IH High-level input voltage 0.7 V CC ——V —
+D3 V IL Low-level input voltage — — 0.3 V CC
+D5 V OL Low-level output voltage — — 0.40 V I OL = 3.0 mA, VCC = 4.5V
+D9 I CC write Operating current —0 . 1 3m A V CC = 5.5V, SCL = 400 kHz
+D11 I CCS Standby current —
+@@ page 5
+inputs must be connected to either VCC or VSS.
+before normal device operation can proceed. Address
+pins are not available in the SOT-23 and chip scale
+terminal, therefore, the SDA bus requires a pull-up
+resistor to V CC (typical 10 k  for 100 kHz, 2 k  for
+@@ page 7
+the 24XX32A, this is set as ‘1010’ binary for read and
+1010 A2 A1 A0 R/W xxxx A11 A10 A9 A7 A0A8 ••••••

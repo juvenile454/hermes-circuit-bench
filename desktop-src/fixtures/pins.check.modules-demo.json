@@ -1,0 +1,442 @@
+{
+ "ok": true,
+ "action": "pins.check",
+ "summary": "ESP32-S3 N16R8, Wi-Fi on: 2 ok, 0 caution, 0 blocked. Modules: 3 findings (0 danger, 1 caution).",
+ "result": {
+  "chip": "esp32s3",
+  "title": "ESP32-S3",
+  "variant": "n16r8",
+  "wifi": true,
+  "devkit": "esp32-s3-devkitc-1",
+  "counts": {
+   "ok": 2,
+   "caution": 0,
+   "blocked": 0
+  },
+  "pins": [
+   {
+    "role": "SDA",
+    "mode": "i2c_sda",
+    "pin": 8,
+    "name": "GPIO8",
+    "verdict": "ok",
+    "rule_ids": [],
+    "reasons": [],
+    "functions": [
+     "GPIO8",
+     "SUBSPICS1",
+     "RTC_GPIO8",
+     "ADC1_CH7",
+     "TOUCH8"
+    ],
+    "header": "J1-12",
+    "alternatives": []
+   },
+   {
+    "role": "SCL",
+    "mode": "i2c_scl",
+    "pin": 9,
+    "name": "GPIO9",
+    "verdict": "ok",
+    "rule_ids": [],
+    "reasons": [],
+    "functions": [
+     "GPIO9",
+     "SUBSPIHD",
+     "FSPIHD",
+     "RTC_GPIO9",
+     "ADC1_CH8",
+     "TOUCH9"
+    ],
+    "header": "J1-15",
+    "alternatives": []
+   }
+  ],
+  "modules": {
+   "buses": [
+    {
+     "id": "i2c:SDA0",
+     "type": "i2c",
+     "gpios": {
+      "SDA": 8,
+      "SCL": 9
+     },
+     "nets": {
+      "SDA": "SDA0",
+      "SCL": "SCL0"
+     },
+     "segments": [
+      {
+       "id": "main",
+       "devices": [
+        {
+         "ref": "U1",
+         "module": "bme280",
+         "address": "0x76"
+        },
+        {
+         "ref": "U2",
+         "module": "ds3231",
+         "address": "0x68"
+        },
+        {
+         "ref": "U3",
+         "module": "mpu6050",
+         "address": "0x68"
+        }
+       ]
+      }
+     ],
+     "f_max_hz": 400000
+    }
+   ],
+   "rails": [
+    {
+     "net": "3V3",
+     "volts": 3.3,
+     "i_typ": 0.0039,
+     "i_max": 0.004914,
+     "i_peak": 0.005264,
+     "limit": 0.05,
+     "limit_source": "user",
+     "missing": [
+      "U3"
+     ]
+    }
+   ],
+   "counts": {
+    "modules": 3,
+    "findings": 3,
+    "shown": 3,
+    "danger": 0,
+    "caution": 1,
+    "info": 2
+   },
+   "compact": 1
+  }
+ },
+ "checks": [
+  {
+   "id": "pins.exists",
+   "status": "passed",
+   "detail": "all 2 pins exist on ESP32-S3"
+  },
+  {
+   "id": "pins.modes",
+   "status": "passed",
+   "detail": "every pin supports its mode"
+  },
+  {
+   "id": "pins.duplicates",
+   "status": "passed",
+   "detail": "no pin used twice"
+  },
+  {
+   "id": "pins.broken_out",
+   "status": "passed",
+   "detail": "all on the ESP32-S3-DevKitC-1 v1.1 headers"
+  },
+  {
+   "id": "pins.board",
+   "status": "passed",
+   "detail": "no on-board part affected"
+  },
+  {
+   "id": "pins.strapping",
+   "status": "passed",
+   "detail": "no assigned pin affected"
+  },
+  {
+   "id": "pins.spi_flash",
+   "status": "passed",
+   "detail": "no assigned pin affected"
+  },
+  {
+   "id": "pins.octal_psram",
+   "status": "passed",
+   "detail": "no assigned pin affected"
+  },
+  {
+   "id": "pins.usb_jtag",
+   "status": "passed",
+   "detail": "no assigned pin affected"
+  },
+  {
+   "id": "pins.uart0",
+   "status": "passed",
+   "detail": "no assigned pin affected"
+  },
+  {
+   "id": "pins.pad_jtag",
+   "status": "passed",
+   "detail": "no assigned pin affected"
+  },
+  {
+   "id": "pins.adc2_wifi",
+   "status": "passed",
+   "detail": "no assigned pin affected"
+  },
+  {
+   "id": "modules.address_conflict",
+   "status": "failed",
+   "detail": "see warning mod_address_conflict",
+   "refs": [
+    "U2",
+    "U3"
+   ]
+  },
+  {
+   "id": "modules.address_select",
+   "status": "passed",
+   "detail": "",
+   "refs": [
+    "U1",
+    "U3"
+   ],
+   "source_ids": [
+    "mod-env-bme280-ds",
+    "mod-motion-mpu6050-ds"
+   ]
+  },
+  {
+   "id": "modules.bus_speed",
+   "status": "not_checked",
+   "detail": "Bus i2c:SDA0: the devices allow at most 400 kHz, limited by U2 (ds3231), U3 (mpu6050). No f_max_hz data for U1.",
+   "refs": [
+    "U2",
+    "U3",
+    "U1"
+   ],
+   "source_ids": [
+    "mod-rtc-ds3231-ds",
+    "mod-motion-mpu6050-ds"
+   ]
+  },
+  {
+   "id": "modules.env.bme680_sdo_float",
+   "status": "passed",
+   "detail": "",
+   "refs": [
+    "U1"
+   ],
+   "source_ids": [
+    "mod-env-bme280-ds"
+   ]
+  },
+  {
+   "id": "modules.env.bmp_vs_bme",
+   "status": "not_checked",
+   "detail": "see warning mod_env_bmp_vs_bme",
+   "refs": [
+    "U1"
+   ]
+  },
+  {
+   "id": "modules.level_in",
+   "status": "passed",
+   "detail": "",
+   "refs": [
+    "U1",
+    "U2",
+    "U3"
+   ],
+   "source_ids": [
+    "mod-env-bme280-ds",
+    "mod-rtc-ds3231-ds"
+   ]
+  },
+  {
+   "id": "modules.level_out",
+   "status": "passed",
+   "detail": "",
+   "refs": [
+    "U1",
+    "U2",
+    "U3",
+    "R1",
+    "R2"
+   ],
+   "source_ids": []
+  },
+  {
+   "id": "modules.net_shared_signals",
+   "status": "passed",
+   "detail": "",
+   "refs": [
+    "U1",
+    "U2",
+    "U3"
+   ],
+   "source_ids": []
+  },
+  {
+   "id": "modules.pin_role",
+   "status": "passed",
+   "detail": "",
+   "refs": [
+    "U1",
+    "U2",
+    "U3"
+   ],
+   "source_ids": [
+    "mod-env-bme280-ds",
+    "mod-rtc-ds3231-ds",
+    "mod-motion-mpu6050-ds"
+   ]
+  },
+  {
+   "id": "modules.power_budget",
+   "status": "not_checked",
+   "detail": "see warning mod_power_budget",
+   "refs": [
+    "U1",
+    "U2",
+    "U3"
+   ]
+  },
+  {
+   "id": "modules.pullup_parallel",
+   "status": "passed",
+   "detail": "",
+   "refs": [
+    "R1",
+    "R2"
+   ],
+   "source_ids": []
+  },
+  {
+   "id": "modules.required_parts",
+   "status": "not_checked",
+   "detail": "2 findings: U3 (mpu6050) decoupling (REGOUT): REGOUT not connected, requirement not checked; U3 (mpu6050) decoupling (CPOUT): CPOUT not connected, requirement not checked",
+   "refs": [
+    "U3"
+   ],
+   "source_ids": [
+    "mod-motion-mpu6050-ds"
+   ]
+  },
+  {
+   "id": "modules.rtc.ds3231_vih",
+   "status": "passed",
+   "detail": "",
+   "refs": [
+    "U2"
+   ],
+   "source_ids": [
+    "mod-rtc-ds3231-ds"
+   ]
+  },
+  {
+   "id": "modules.supply_range",
+   "status": "passed",
+   "detail": "",
+   "refs": [
+    "U1",
+    "U2",
+    "U3"
+   ],
+   "source_ids": [
+    "mod-env-bme280-ds",
+    "mod-rtc-ds3231-ds",
+    "mod-motion-mpu6050-ds"
+   ]
+  },
+  {
+   "id": "modules.unconnected",
+   "status": "passed",
+   "detail": "",
+   "refs": [
+    "U1",
+    "U2",
+    "U3"
+   ],
+   "source_ids": [
+    "mod-env-bme280-ds",
+    "mod-rtc-ds3231-ds",
+    "mod-motion-mpu6050-ds"
+   ]
+  }
+ ],
+ "warnings": [
+  {
+   "code": "mod_address_conflict",
+   "severity": "caution",
+   "message": "U2 (ds3231), U3 (mpu6050) answer at the same address 0x68 on bus i2c:SDA0. Fix: address pin (U3: 0x69 (AD0 to VLOGIC)), a second I²C bus or behind an I²C mux.",
+   "source_ids": [
+    "mod-rtc-ds3231-ds",
+    "mod-motion-mpu6050-ds"
+   ],
+   "refs": [
+    "U2",
+    "U3"
+   ]
+  },
+  {
+   "code": "mod_env_bmp_vs_bme",
+   "severity": "info",
+   "message": "U1 (bme280): boards sold as BME280 sometimes carry a BMP280 (no humidity). Read register 0xD0 (chip_id): 0x60 = BME280, 0x58 = BMP280 (datasheet p. 27).",
+   "source_ids": [
+    "mod-env-bme280-ds"
+   ],
+   "refs": [
+    "U1"
+   ]
+  },
+  {
+   "code": "mod_power_budget",
+   "severity": "info",
+   "message": "3V3: typ 3.90 mA, max 4.91 mA, peak 5.26 mA known; U3 has only a typical current, so the budget against the rail limit 50.0 mA (user) is not checked; measure the current and set facts.i_max. The ESP's own current is not included.",
+   "source_ids": [],
+   "refs": [
+    "U1",
+    "U2",
+    "U3"
+   ]
+  }
+ ],
+ "assumptions": [
+  {
+   "key": "discrete_parts",
+   "value": "3",
+   "reason": "R1, R2, C1: discrete parts get no electrical check of their own; only pin rules and catalog-module rules ran. Size them with bench_calc."
+  }
+ ],
+ "sources": [
+  {
+   "id": "idf-v6.1-gpio-esp32s3",
+   "title": "ESP-IDF v6.1, GPIO & RTC GPIO (ESP32-S3)",
+   "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/gpio/esp32s3.inc",
+   "retrieved": "2026-11-05",
+   "note": "Tag v6.1 = commit fff9895c (tag object 4dc1c655). Rendered: https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-reference/peripherals/gpio.html (stable = v6.1 at retrieval)"
+  },
+  {
+   "id": "devkitc1-s3-v1.1",
+   "title": "ESP32-S3-DevKitC-1 v1.1 User Guide, Header Block (J1, J3)",
+   "url": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html",
+   "retrieved": "2026-11-05"
+  },
+  {
+   "id": "mod-rtc-ds3231-ds",
+   "title": "Analog Devices (Maxim Integrated) DS3231 Extremely Accurate I2C-Integrated RTC/TCXO/Crystal, data sheet",
+   "url": "https://web.archive.org/web/20261011070711id_/https://www.analog.com/media/en/technical-documentation/data-sheets/DS3231.pdf",
+   "retrieved": "2026-11-08",
+   "class": "A1"
+  },
+  {
+   "id": "mod-motion-mpu6050-ds",
+   "title": "TDK InvenSense MPU-6000 and MPU-6050 Product Specification, Revision 3.4",
+   "url": "https://web.archive.org/web/20230118033738id_/https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf",
+   "retrieved": "2026-11-08",
+   "class": "A1"
+  },
+  {
+   "id": "mod-env-bme280-ds",
+   "title": "Bosch Sensortec BME280 Combined humidity and pressure sensor, Data sheet",
+   "url": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme280-ds002.pdf",
+   "retrieved": "2026-11-08",
+   "class": "A"
+  }
+ ],
+ "simulated": false,
+ "error": null
+}

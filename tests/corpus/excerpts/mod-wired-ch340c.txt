@@ -1,0 +1,33 @@
+# source_id: mod-wired-ch340c-ds
+# document: WCH CH340 Datasheet (CH340G/C/N/K/E/X/B/T/R), USB to serial port chip, Version 3C
+# url: https://web.archive.org/web/20240520142238id_/https://www.wch-ic.com/downloads/file/79.html
+# corpus: mod/wired/CH340DS1.pdf sha256 1602f81b665c499e0913d77ac76fd5112c644b8f1272ae57be16d7e9251f1f2b
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+ CH340C/N/K/E/X/B has a built-in clock, requires no external crystal. CH340B also has a built-in EEPROM 
+@@ page 3
+19 16 7 5 VCC Power Positive power input terminal, requires an external 0.1uF power decoupling capacitor. 
+@@ page 5
+to an external power supply decoupling capacitor with a capacity of 0.1uF. When using a 3.3V working voltage, the 
+V3 pin of the CH340 chip should be connected to the VCC pin, and an external 3.3V power supply should be input 
+The IO of CH340X and CH340C/N starting with lot number 4 support 5V withstand voltage to prevent inward 
+@@ page 8
+VCC Power supply voltage (VCC is connected to the power supply, GND is connected to the ground) -0.5 6.0 V 
+VIO The voltage on the input or output pin -0.5 VCC+0.5 V 
+VCC Power voltage The V3 pin is only connected to an external capacitor and is not connected to VCC. 4.0 5 5.3 V 
+CH340G/C/N/K/E/X/T/R  7 20 mA 
+CH340C/N/E/X  0.05 0.15 mA 
+VIL low level input voltage 0  0.9 V 
+VIH High level input voltage 2.3  VCC V 
+VOL Low level output voltage (6mA sink current)   0.5 V 
+High-level output voltage (2mA output 
+VCC-0.6   V 
+@@ page 9
+VCC Power voltage V3 pin connected to VCC pin CH340G/T/R 2.9 3.3 3.6 V CH340C/N/K/E/X/B 3.1 3.3 3.6 
+CH340G/C/N/K/E/X/T/R  4 12 mA 
+VIL low level input voltage 0  0.8 V 
+VIH High level input voltage 1.9  VCC V 
+VOL Low level output voltage (4mA sink current)   0.5 V 
+High-level output voltage (2mA output 
+VCC-0.6   V 

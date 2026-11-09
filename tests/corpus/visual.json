@@ -1,0 +1,47 @@
+{
+ "note": "Board drawing corpus (retrieved 2026-11-07): annotated front photos / functional overview figures of the Espressif user guides at esp-dev-kits commit 5c06bf1835329d6525f316475f7218aab6acfe79. Read visually by hand for the rough placement (edge/order/zone) of the drawing parts in data/boards/*.json; not machine-checkable. Read by tests/test_v0_drawing.py (figure names) only.",
+ "files": [
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/_static/esp32-s2-devkitc-1/esp32-s2-devkitc-1-v1-annotated-photo.png",
+   "path": "esp-dev-kits/5c06bf183532/docs/_static/esp32-s2-devkitc-1/esp32-s2-devkitc-1-v1-annotated-photo.png",
+   "source_id": "devkitc1-s2",
+   "figure": "Annotated front photo of the S2-DevKitC-1 guide. Read visually for the rough placement of the drawing parts; not machine-checkable.",
+   "sha256": "bff418f32ee3c32087697d9cbd9139aee4119f292bd57b813c7fa393696016cc"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/_static/esp32-c6-devkitc-1/esp32-c6-devkitc-1-v1.2-annotated-photo.png",
+   "path": "esp-dev-kits/5c06bf183532/docs/_static/esp32-c6-devkitc-1/esp32-c6-devkitc-1-v1.2-annotated-photo.png",
+   "source_id": "devkitc1-c6-v1.2",
+   "figure": "Annotated front photo of the C6-DevKitC-1 v1.2 guide. Read visually for the rough placement of the drawing parts; not machine-checkable.",
+   "sha256": "448ca640ea3cc2c09ae36f7b4a188a0f7bded5faece80d362fcc1fa4bf9b8404"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/_static/esp32-c6-devkitm-1/esp32-c6-devkitm-1-v1-annotated-photo.png",
+   "path": "esp-dev-kits/5c06bf183532/docs/_static/esp32-c6-devkitm-1/esp32-c6-devkitm-1-v1-annotated-photo.png",
+   "source_id": "devkitm1-c6",
+   "figure": "Annotated front photo of the C6-DevKitM-1 guide. Read visually for the rough placement of the drawing parts; not machine-checkable.",
+   "sha256": "3cc08f82855e91dfd7c1afd8efacd2fdd22dd77bf1fff79b9d0da98cf32b912f"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/_static/esp32-devkitc/esp32-devkitc-v4-functional-overview.png",
+   "path": "esp-dev-kits/5c06bf183532/docs/_static/esp32-devkitc/esp32-devkitc-v4-functional-overview.png",
+   "source_id": "devkitc-esp32-v4",
+   "figure": "Functional overview figure of the ESP32-DevKitC V4 guide. Read visually for the rough placement of the drawing parts; not machine-checkable.",
+   "sha256": "e078f94904c5396ac7475c1e2349b368b31db7bb4d2716954bc3f72fdad7ab3c"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/_static/esp32-c3-devkitm-1/esp32-c3-devkitm-1-v1-annotated-photo.png",
+   "path": "esp-dev-kits/5c06bf183532/docs/_static/esp32-c3-devkitm-1/esp32-c3-devkitm-1-v1-annotated-photo.png",
+   "source_id": "devkitm1-c3-v1",
+   "figure": "Annotated front photo of the C3-DevKitM-1 guide. Read visually for the rough placement of the drawing parts; not machine-checkable.",
+   "sha256": "8e2a632dd2f8c3eed6051955c2c32caab10bb9402ae0b263ddaf03839f60599a"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/_static/esp32-s3-devkitc-1/ESP32-S3-DevKitC-1_v2-annotated-photo.png",
+   "path": "esp-dev-kits/5c06bf183532/docs/_static/esp32-s3-devkitc-1/ESP32-S3-DevKitC-1_v2-annotated-photo.png",
+   "source_id": "devkitc1-s3-v1.1",
+   "figure": "Annotated front photo of the S3-DevKitC-1 v1.1 guide (figure \"ESP32-S3-DevKitC-1 - front\"). Read visually by hand for the rough placement (edge/order/zone) of the drawing parts; not machine-checkable.",
+   "sha256": "37452262d8f6a924f8bd55552b94c668e7f88ea2e3b0df5992a29527b529ba0e"
+  }
+ ]
+}

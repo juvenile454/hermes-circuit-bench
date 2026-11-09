@@ -1,0 +1,25 @@
+{
+ "files": [
+  {
+   "url": "https://web.archive.org/web/20261025050805id_/https://www.ti.com/lit/ds/symlink/tlv755p.pdf",
+   "path": "mod/npower/tlv755p.pdf",
+   "source_id": "mod-npower-tlv755p-ds",
+   "excerpt": "excerpts/mod-npower-tlv75533p.txt",
+   "sha256": "96e2706d4b13656d2d550fdbb5be9861c56b058822109bb39a906d4ad1beb019"
+  },
+  {
+   "url": "https://web.archive.org/web/20261028161408id_/https://www.ti.com/lit/ds/symlink/tps563201.pdf",
+   "path": "mod/npower/tps563201.pdf",
+   "source_id": "mod-npower-tps563201-ds",
+   "excerpt": "excerpts/mod-npower-tps563201.txt",
+   "sha256": "192afd5a009073c1c62ba36c054af0911cacc86469ae6059a26fed9f230f1ec9"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/bq24074.pdf",
+   "path": "mod/npower/bq24074.pdf",
+   "source_id": "mod-npower-bq24074-ds",
+   "excerpt": "excerpts/mod-npower-bq24074.txt",
+   "sha256": "4fe4e4f9855501f83b400c6932e3098439e51c50539e40dc45b44a8d509e8db1"
+  }
+ ]
+}

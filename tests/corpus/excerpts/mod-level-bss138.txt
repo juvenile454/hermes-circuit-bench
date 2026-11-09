@@ -1,0 +1,16 @@
+# source_id: mod-level-bss138-ds
+# document: onsemi BSS138 N-Channel Logic Level Enhancement Mode Field Effect Transistor, data sheet BSS138/D Rev. 7
+# url: https://www.onsemi.cn/download/data-sheet/pdf/bss138-d.pdf
+# corpus: mod/level/bss138-d.pdf sha256 cd98f819a8d80b65f0e855309274a23d51c28d58a8a7d1dea704fe7505bd9883
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+N-Channel Logic Level
+• 0.22 A, 50 V
+@@ page 2
+VDSS Drain−Source Voltage 50 V
+VGSS Gate−Source Voltage ±20
+ID Drain Current – Continuous (Note 1) 0.22 A
+VGS(th) Gate Threshold Voltage VDS = VGS, ID = 1 mA 0.8 1.3 1.5 V
+RDS(on) Static Drain–Source On–Resistance VGS = 10 V, ID = 0.22 A − 0.7 3.5 /C0087
+VGS = 4.5 V, ID = 0.22 A − 1.0 6.0 /C0087

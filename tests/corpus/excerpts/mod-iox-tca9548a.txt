@@ -1,0 +1,46 @@
+# source_id: mod-iox-tca9548a-ds
+# document: TCA9548A Low-Voltage 8-Channel I2C Switch with Reset, SCPS207H
+# url: https://www.ti.com/lit/ds/symlink/tca9548a.pdf
+# corpus: mod/iox/tca9548a-scps207.pdf sha256 2137822fd7128945ea44e83f4e100a932b30964d763715eeffe217ee6080a2dc
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+channel. All I/O pins are 5V tolerant.
+@@ page 3
+RESET 3 24 I Active-low reset input. Connect to VCC or VDPUM (1) through a pull-up resistor, if not used
+SD0 4 1 I/O Serial data 0. Connect to VDPU0 (1) through a pull-up resistor
+SCL 22 19 I/O Serial clock bus. Connect to VDPUM (1) through a pull-up resistor
+SDA 23 20 I/O Serial data bus. Connect to VDPUM (1) through a pull-up resistor
+@@ page 4
+VCC Supply voltage –0.5 7 V
+VI Input voltage(2) –0.5 7 V
+-40 ℃ ≤ TA ≤ 85 ℃ 1.65 5.5 V
+VIH High-level input voltage
+SCL, SDA 0.7 × VCC 6 V
+VIL Low-level input voltage
+SCL, SDA –0.5 0.3 × VCC
+@@ page 6
+IOL SDA
+VOL = 0.4 V 1.65 V to 5.5 V 3 6 mA
+fSCL = 400 kHz VI = VCC or GND(3), IO = 0
+5.5 V 50 80
+Standby mode
+5.5 V 0.2 2
+@@ page 7
+fscl I2C clock frequency 0 400 kHz
+@@ page 12
+directed to eight channels of target devices, SC0/SD0-SC7/SD7. Any individual downstream channel can be 
+selected as well as any combination of the eight channels.
+@@ page 15
+A2 A1 A0
+L L L 112 (decimal), 70 (hexadecimal)
+H H H 119 (decimal), 77 (hexadecimal)
+@@ page 18
+0 0 0 0 0 0 0 0 No channel selected, power-up/reset default state
+@@ page 19
+The downstream channels are used to resolve I 2C target address conflicts. For example, if eight identical digital 
+@@ page 21
+If multiple target channels are activated simultaneously in the application, then the total I OL from SCL/SDA to 
+channels are activated simultaneously, each of the targets on all channels contribute to total bus capacitance.
+@@ page 24
+and multiple vias. By-pass and de-coupling capacitors are commonly used to control the voltage on the VCC pin, 

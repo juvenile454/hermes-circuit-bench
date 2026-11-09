@@ -1,0 +1,65 @@
+# source_id: mod-net-w5500-ds
+# document: WIZnet W5500 Datasheet Version 1.1.0
+# url: https://docs.wiznet.io/img/products/w5500/W5500_ds_v110e.pdf
+# corpus: mod/net/W5500_ds_v110e.pdf sha256 7b826b808084ccd986bcc22904c00a07a508ef42fb93d079fe7150a4c4f1a63d
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Version 1.1.0 
+@@ page 2
+MCU. The W5500’s SPI supports 80 MHz speed and new efficient SPI protocol for the 
+- 3.3V operation with 5V I/O signal tolerance 
+@@ page 8
+4 AVDD - PWR Analog 3.3V power 
+@@ page 9
+28 VDD - PWR Digital 3.3V Power 
+29 GND - GND Digital Ground 
+32 SCSn Pull-up I Chip Select for SPI bus  
+This pin can be asserted low to select W5500 in SPI 
+@@ page 10
+33 SCLK - I SPI clock input 
+34 MISO - O SPI master input slave(W5500) output 
+35 MOSI - I SPI master output slave(W5500) input 
+36 INTn - O Interrupt output 
+(Active low) 
+37 RSTn Pull-up I Reset 
+(Active low) 
+RESET should be held low at least 500 us for W5500 
+43 PMODE2 Pull-up I PHY Operation mode select pins 
+1 1 1 All capable, Auto-negotiation enabled 
+44 PMODE1 Pull-up I 
+45 PMODE0 Pull-up I 
+@@ page 12
+The W5500 supports SPI Mode 0 and Mode 3. Both MOSI and MISO signals use transfer 
+sequence from Most S ignificant Bit (MSB) to Least Significant Bit (LSB) when MOSI 
+@@ page 58
+VDD DC Supply voltage -0.5 to 4.6 V 
+VIN DC input voltage -0.5 to 6 V 
+VOUT DC output voltage -0.5 to 4.6 V 
+@@ page 59
+VDD Supply voltage Apply VDD, AVDD 2.97 3.3 3.63 V 
+VIH High level input 
+ 2.0  5.5 V 
+VIL Low level input 
+ - 0.3  0.8 V 
+RPU Pull-up Resistor SCSn, RSTn, PMODE[2:0] 50 77 112 Kohm 
+VOL Low level output 
+IOL = 8mA, 
+  0.4 V 
+VOH High level output 
+IOH = 8mA, 
+2.4   V 
+IDD1 Supply Current 
+ 132  mA 
+IDD2 Supply Current 
+ 13  mA 
+@@ page 60
+100M Link - 128 - mA 
+100M Transmitting - 132 - mA 
+Power Down mode - 13 - mA 
+TRC Reset Cycle Time 500 us - 
+@@ page 61
+Even though theoretical design speed is 80MHz, the signal in the high speed may be distorted because 
+of the circuit crosstalk and the length of the signal line. The minimum guaranteed speed of the SCLK 
+is 33.3 MHz which was tested and measured with the stable waveform. 
+FSCK SCK Clock Frequency  80/33.35 MHz 

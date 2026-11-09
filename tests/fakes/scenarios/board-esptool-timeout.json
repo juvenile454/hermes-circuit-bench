@@ -1,0 +1,9 @@
+{
+ "flash-id": {
+  "rc": 0,
+  "stdout": "esptool v5.6.0\nConnecting....",
+  "sleep": 60,
+  "spawn_child": true,
+  "child_pid_file": "<set by the test>"
+ }
+}

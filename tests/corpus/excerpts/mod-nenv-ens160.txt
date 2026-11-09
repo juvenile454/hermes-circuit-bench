@@ -1,0 +1,62 @@
+# source_id: mod-nenv-ens160-ds
+# document: ScioSense ENS160 Digital Metal-Oxide Multi-Gas Sensor, Datasheet Version 1.3, SC-001224-DS-9 (2023-03-29)
+# url: https://www.sciosense.com/wp-content/uploads/2023/12/ENS160-Datasheet.pdf
+# corpus: mod/nenv/ENS160-Datasheet.pdf sha256 dbe06607f42bef636900da5f732b249ff595e5495fd84fd16e7d36ea3a1ca410
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 5
+1 MOSI / SDA Input / Output SPI Master Output Slave Input / I²C Bus Bi-Directional Data  
+2 SCLK / SCL Input SPI Serial Clock / I²C Bus Serial Clock Input 
+3 MISO / ADDR Input / Output SPI Master Input Slave Output / I²C Address Select: I2C ADDR pin high -> 0x53 / ADDR pin low -> 0x52 
+4 VDD Supply Main Supply Voltage 
+5 VDDIO Supply Interface Supply Pins 
+6 INTn Output Interrupt to Host 
+7 CSn Input SPI Interface Select (CSn low -> SPI / CSn high -> I2C) 
+8, 9 VSS Supply Ground Supply Voltage 
+@@ page 6
+VDD Supply Voltage  -0.3 1.98 V  
+VDDIO I/O Interface Supply -0.3 3.6 V  
+VIO1 MOSI/SDA, SCLK/SCL -0.3 3.6 V
+VIO2 MISO/ADDR, INTn, CSn -0.3 VDDIO+0.3 V  
+@@ page 7
+VDD Positive supply  1.719 1.8 1.98 V 
+VDDIO IO Supply Voltage  1.71  3.6 V 
+IDD Average10 Supply Current11 DEEPSLEEP 
+(OP_MODE 0x00)12 
+ 0.01  mA 
+IDLE  
+ 2 2.5 mA 
+STANDARD 
+(OP_MODE 0x02) 
+ 29  mA 
+IDD_PK Peak Supply Current13 STANDARD 
+(OP_MODE 0x02) 
+ 79 
+(<5ms) 
+VIH High-level input voltage  0.7xVDDIO   V 
+VIL Low-level input voltage    0.3xVDDIO V 
+VOL Low-level output voltage MOSI/SDA, MISO [IOL=5mA]   0.2xVDDIO V 
+9 The minimum supply voltage VDD is 1.71V and must not drop below this value. Please refer to the 
+14 MOSI/SDA is open drain 
+@@ page 15
+Initial Start-up 1 hour 
+Warm-up 3 minutes 
+@@ page 16
+Table 10: ENS160 Status and Signal Rating (Validity Flag) 
+See “Validity Flag” in section “DEVICE_STATUS (Address 0x20)” for further information. 
+@@ page 17
+The ENS160 is an I 2C slave device with a fixed 7 -bit address 0x52 if the MISO/ADDR line is held low 
+at power-up or 0x53 if the MISO/ADDR line is held high. 
+@@ page 18
+SCLK clock frequency fSCLK 0 100 0 400 0 1000 kHz 
+@@ page 25
+0x00 PART_ID 2 Read Device Identity 0x60, 0x01 
+@@ page 36
+device operation. Decoupling capacitors must be placed close to the V DD (Pin 4) and V DDIO 
+2. CSn must be pulled high (directly to VDDIO) to ensure I2C interface is selected. 
+3. MISO/ADDR should be pulled low or high to specify the LSB of the address. 
+4. Pull-up resistors. 
+The above recommendation for pull-up resistance values applies to I 2C standard mode only. 
+4k7
+4k7
+100nF 10mF

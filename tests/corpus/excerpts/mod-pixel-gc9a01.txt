@@ -1,0 +1,28 @@
+# source_id: mod-pixel-gc9a01-ds
+# document: GalaxyCore GC9A01 Datasheet LCD-DST-3014, V1.0 Preliminary (file GC9A01A.pdf, hosted by Waveshare)
+# url: https://www.waveshare.com/w/upload/5/5e/GC9A01A.pdf
+# corpus: mod/pixel/GC9A01A.pdf sha256 af8f6f0a03f4a340510fc06321eb78a2d9bb49670ff1f59164bd6ccf71a2bd47
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Rev.1.0 Preliminary 
+@@ page 10
+1 1 1 1 4-wire 8-bit data serial interface I SDA: In/OUT 
+RESX I 
+CSX I 
+(SCL) I MCU  (IOVCC/ This pin is used to select "Data or Command" in the parallel interface  When DCX='1', data is selected. 
+@@ page 11
+This pin is used serial interface clock in 3-wire 9-bit / 4-wire 8-bit serial 
+4-line system (D/CX): Serves as command or parameter select. 
+@@ page 182
+Supply voltage VCI V -0.3~+4.6 
+Supply voltage(Logic) IOVCC V -0.3~+4.6 
+Logic input voltage range VIN V -0.3~IOVCC+0.3 
+@@ page 183
+Voltage VCI V Operating voltage 2.5 2.8 3.3 Note2 
+Voltage IOVCC V I/O supply voltage 1.65 2.8 3.3 Note2 
+Input Voltage VIH V - 0.7*IOVCC - IOVCC Note1,2,3 
+Input Voltage VIL V - VSSC - 0.3*IOVCC Note1,2,3 
+@@ page 189
+tscycw Serial Clock Cycle (Write) 10 - ns   
+tscycr Serial Clock Cycle (Read) 150 - ns   

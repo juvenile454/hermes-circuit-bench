@@ -1,0 +1,19 @@
+{
+ "ok": true,
+ "action": "board.flash_check",
+ "summary": "Flashing project laser-trigger would be refused: flashing real boards is off (setting allow_flash is false)",
+ "result": {
+  "ready": false,
+  "refusal": {
+   "code": "flash_disabled",
+   "message": "flashing real boards is off (setting allow_flash is false)",
+   "hint": "turn on 'Allow flashing real boards' in Settings → Plugins → Circuit Bench → Agent settings, then try again"
+  }
+ },
+ "checks": [],
+ "warnings": [],
+ "assumptions": [],
+ "sources": [],
+ "simulated": false,
+ "error": null
+}

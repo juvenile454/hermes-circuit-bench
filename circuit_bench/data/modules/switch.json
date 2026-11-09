@@ -1,0 +1,851 @@
+{
+ "schema": 1,
+ "wp": "switch",
+ "note": "Values only from manufacturer documents; 'evidence' quotes lines of tests/corpus/excerpts/mod-switch-*.txt (pypdf).",
+ "modules": [
+  {
+   "id": "pc817",
+   "aliases": [
+    "pc-817",
+    "pc817xnnsz1b"
+   ],
+   "title": "PC817 phototransistor optocoupler (DIP-4)",
+   "category": "isolation.opto",
+   "manufacturer": "Sharp",
+   "kind": "ic",
+   "source_ids": [
+    "mod-switch-pc817-ds"
+   ],
+   "pins": [
+    {
+     "name": "ANODE",
+     "signal": "analog_in",
+     "note": "pin 1, LED anode: drive it through a series resistor (calc opto), never straight from a GPIO"
+    },
+    {
+     "name": "CATHODE",
+     "signal": "gnd",
+     "note": "pin 2, LED cathode (input side ground or a sinking GPIO)"
+    },
+    {
+     "name": "EMITTER",
+     "signal": "gnd",
+     "note": "pin 3, output side ground (isolated from the LED side)"
+    },
+    {
+     "name": "COLLECTOR",
+     "signal": "open_drain_out",
+     "output": "open_drain",
+     "note": "pin 4, open collector: needs a pull-up resistor (calc opto)"
+    }
+   ],
+   "io": {
+    "outputs": "open_drain"
+   },
+   "hazards": [],
+   "notes": [
+    {
+     "text": "CTR 50 % to 400 % at IF = 5 mA, VCE = 5 V, Ta = 25 °C.",
+     "verified": true,
+     "page": 1,
+     "evidence": "CTR is 50% to 400% (at IF=5mA,VCE=5V,Ta=25"
+    },
+    {
+     "text": "Collector current IC 2.5 mA min, 30 mA max at IF = 5 mA, VCE = 5 V.",
+     "verified": true,
+     "page": 4,
+     "evidence": [
+      "Collector current IC IF",
+      "5mA, VCE",
+      "5V 2.5",
+      "30 mA"
+     ]
+    },
+    {
+     "text": "LED forward voltage VF 1.2 V typ, 1.4 V max at IF = 20 mA.",
+     "verified": true,
+     "page": 4,
+     "evidence": [
+      "Forward voltage VF IF",
+      "20mA",
+      "1.2 1.4 V"
+     ]
+    },
+    {
+     "text": "Absolute maximum: LED forward current IF 50 mA, LED reverse voltage VR 6 V, collector current IC 50 mA, VCEO 80 V.",
+     "verified": true,
+     "page": 4,
+     "evidence": [
+      "Forward current IF 50 mA",
+      "Reverse voltage VR 6 V",
+      "Collector-emitter voltage VCEO 80 V",
+      "Collector current IC 50 mA"
+     ]
+    },
+    {
+     "text": "VCE(sat) 0.1 V typ, 0.2 V max at IF = 20 mA, IC = 1 mA.",
+     "verified": true,
+     "page": 4,
+     "evidence": [
+      "Collector-emitter saturation voltage VCE(sat) IF",
+      "20mA, IC",
+      "1mA",
+      "0.1 0.2 V"
+     ]
+    },
+    {
+     "text": "Slow output: rise and fall time up to 18 µs at VCE = 2 V, IC = 2 mA, RL = 100 Ω; use it for slow signals only.",
+     "verified": true,
+     "page": 4,
+     "evidence": [
+      "Responsetime Risetime tr VCE",
+      "4 18",
+      "Fall time tf",
+      "3 18"
+     ]
+    },
+    {
+     "text": "Below IF = 1 mA the CTR spread may increase.",
+     "verified": true,
+     "page": 9,
+     "evidence": "While operating at IF<1mA, CTR variation may increase."
+    },
+    {
+     "text": "Isolation voltage 5 kV rms is a component rating; Circuit Bench only covers low-voltage circuits on both sides.",
+     "verified": false
+    },
+    {
+     "text": "PC817 boards (1/4/8 channel) carry series and pull-up resistors of undocumented value; many use clones (EL817, LTV-817).",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "6n137",
+   "aliases": [
+    "6n137-x007t",
+    "6n137-x009t"
+   ],
+   "title": "6N137 high-speed optocoupler, 10 MBd, open-drain output",
+   "category": "isolation.opto",
+   "manufacturer": "Vishay",
+   "kind": "ic",
+   "source_ids": [
+    "mod-switch-6n137-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 4.5,
+      "unit": "V",
+      "page": 3,
+      "evidence": "Supply voltage V CC 4.5 5.5 V",
+      "conditions": "recommended operating conditions"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 3,
+      "evidence": "Supply voltage V CC 4.5 5.5 V",
+      "conditions": "recommended operating conditions"
+     },
+     "abs_max": {
+      "value": 7.0,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Supply voltage 1 min maximum V CC 7V",
+      "conditions": "absolute maximum, 1 min maximum"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "value": 2.0,
+     "unit": "V",
+     "page": 3,
+     "evidence": "Logic high enable voltage V EH 2V CC V",
+     "conditions": "enable input VE: VEH 2 V to VCC"
+    },
+    "vil": {
+     "value": 0.8,
+     "unit": "V",
+     "page": 3,
+     "evidence": "Logic low enable voltage V EL 00 . 8V",
+     "conditions": "enable input VE: VEL 0 to 0.8 V (text layer '00 . 8V')"
+    },
+    "v_in_max": {
+     "rel_offset": 0.5,
+     "of": "VCC",
+     "unit": "V",
+     "page": 2,
+     "evidence": "Enable input voltage V E VCC + 0.5 V V",
+     "conditions": "enable input, absolute maximum"
+    },
+    "vol": {
+     "value": 0.6,
+     "unit": "V",
+     "page": 4,
+     "evidence": "Low level output voltage VE = 2 V, IF = 5 mA,IOL (sinking) = 13 mA VOL -0 . 2 0 . 6V",
+     "conditions": "max at IF = 5 mA, IOL = 13 mA (text layer '0 . 6V')"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "NC1",
+     "signal": "nc",
+     "note": "pin 1"
+    },
+    {
+     "name": "ANODE",
+     "signal": "analog_in",
+     "note": "pin 2, LED anode: drive it through a series resistor (calc opto)"
+    },
+    {
+     "name": "CATHODE",
+     "signal": "gnd",
+     "note": "pin 3, LED cathode (input side)"
+    },
+    {
+     "name": "NC4",
+     "signal": "nc",
+     "note": "pin 4"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd",
+     "note": "pin 5, output side ground"
+    },
+    {
+     "name": "VO",
+     "signal": "open_drain_out",
+     "output": "open_drain",
+     "note": "pin 6, open-drain output: pull-up RL to VCC (330 Ω–4 kΩ)"
+    },
+    {
+     "name": "VE",
+     "signal": "enable_in",
+     "note": "pin 7, enable: open or high = output active (truth table p. 2)"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply",
+     "note": "pin 8, output side supply 4.5–5.5 V"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "typ": {
+     "value": 0.0041,
+     "unit": "A",
+     "page": 4,
+     "evidence": "VE = 0.5 V, IF = 0 mA I CCH -4 . 17m A",
+     "conditions": "ICCH, VE = 0.5 V, IF = 0 mA, typ (text layer '4 . 17m A' = 4.1 typ, 7 max)"
+    },
+    "max": {
+     "value": 0.007,
+     "unit": "A",
+     "page": 4,
+     "evidence": "VE = 0.5 V, IF = 0 mA I CCH -4 . 17m A",
+     "conditions": "ICCH, VE = 0.5 V, IF = 0 mA, max (text layer '4 . 17m A' = 4.1 typ, 7 max)"
+    }
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VCC"
+     ],
+     "to": "GND",
+     "page": 1,
+     "evidence": [
+      "VO4661. The use of a 0.1",
+      "bypass capacitor connected",
+      "between pin 5 and 8 is recommended."
+     ]
+    },
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "VO"
+     ],
+     "to": "VCC",
+     "page": 3,
+     "evidence": "Output pull up resistor R L 330 4K",
+     "note": "RL 330 Ω to 4 kΩ (recommended operating conditions); value from calc opto"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Input current high level IFH 5 mA min, 15 mA max (recommended); the text layer reads 'I FH 51 5 m A'.",
+     "verified": true,
+     "page": 3,
+     "evidence": "Input current  high level I FH 51 5 m A"
+    },
+    {
+     "text": "Low input current capability of 5 mA.",
+     "verified": true,
+     "page": 1,
+     "evidence": "Low input current capability of 5 mA"
+    },
+    {
+     "text": "LED forward voltage VF 1.1 V min, 1.4 V typ, 1.7 V max at IF = 10 mA.",
+     "verified": true,
+     "page": 4,
+     "evidence": "Input forward voltage I F = 10 mA V F 1.1 1.4 1.7 V"
+    },
+    {
+     "text": "Absolute maximum: average LED forward current 20 mA, LED reverse voltage 5 V, output current 50 mA, output voltage 7 V.",
+     "verified": true,
+     "page": 2,
+     "evidence": [
+      "Average forward current (single channel) I F 20 mA",
+      "Reverse input voltage V R 5V",
+      "Output current I O 50 mA",
+      "Output voltage V O 7V"
+     ]
+    },
+    {
+     "text": "Enable left open (NC): the output follows the LED (LED on = output low).",
+     "verified": true,
+     "page": 2,
+     "evidence": [
+      "On NC L",
+      "Off NC H"
+     ]
+    },
+    {
+     "text": "Electrical characteristics hold for VCC = 5 V, IF = 7.5 mA unless stated otherwise.",
+     "verified": true,
+     "page": 4,
+     "evidence": "VCC = 5 V, IF = 7.5 mA unless otherwise specified"
+    },
+    {
+     "text": "Not specified at VCC = 3.3 V. A pull-up to 3.3 V instead of VCC is outside the data sheet (RL is given to VCC); at VCC = 5 V the output needs a level shift or an open-drain pull-up to 3.3 V checked by the user.",
+     "verified": false
+    },
+    {
+     "text": "6N137 boards (MIDI/DMX) usually run at 5 V; whether they pull the output up to 3.3 V depends on the board.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "srd_05vdc_sl_c",
+   "aliases": [
+    "srd-05vdc-sl-c",
+    "srd-05vdc",
+    "songle-srd-05vdc"
+   ],
+   "title": "Songle SRD-05VDC-SL-C relay, 5 V coil (0.36 W), SPDT",
+   "category": "switch.relay",
+   "manufacturer": "Ningbo Songle Relay",
+   "kind": "ic",
+   "source_ids": [
+    "mod-switch-srd-ds",
+    "mod-switch-relay-precautions"
+   ],
+   "pins": [
+    {
+     "name": "COIL1",
+     "signal": "supply",
+     "note": "coil, supply end (the coil has no polarity; put the flyback diode's cathode here)"
+    },
+    {
+     "name": "COIL2",
+     "signal": "power_out",
+     "note": "coil, switched end: to a driver transistor or ULN2003 output, never straight to a GPIO"
+    },
+    {
+     "name": "COM",
+     "signal": "power_out",
+     "note": "contact common (load side, isolated from the coil)"
+    },
+    {
+     "name": "NO",
+     "signal": "power_out",
+     "note": "normally open contact"
+    },
+    {
+     "name": "NC",
+     "signal": "power_out",
+     "note": "normally closed contact"
+    }
+   ],
+   "current": {
+    "supply": "COIL1",
+    "typ": {
+     "value": 0.0714,
+     "unit": "A",
+     "page": 1,
+     "evidence": [
+      "Voltage  Current  Resistance",
+      "W VDC mA",
+      "71.4"
+     ],
+     "source_id": "mod-switch-srd-ds",
+     "conditions": "rated coil current at 5 VDC, L type 0.36 W, 20 °C: first row (05) of the coil table, which the text layer splits into columns"
+    },
+    "note": "coil current at the rated 5 V; the coil resistance is 70 Ω ±10 % (same table)"
+   },
+   "requires": [
+    {
+     "code": "flyback",
+     "kind": "diode",
+     "pins": [
+      "COIL1",
+      "COIL2"
+     ],
+     "source_id": "mod-switch-relay-precautions",
+     "page": 9,
+     "evidence": [
+      "As a countermeasure, install surge absorbing circuits at both ends of",
+      "the coil or select a model"
+     ],
+     "note": "diode across the coil, cathode to the coil supply; its average rectified current must exceed the coil current (Omron relay precautions p. 9)"
+    }
+   ],
+   "hazards": [
+    {
+     "code": "mains",
+     "text": "Keep the contact side at 60 V DC or less (Circuit Bench is low voltage only); never switch mains.",
+     "source_id": "mod-switch-srd-ds",
+     "page": 1,
+     "evidence": "7A/250VAC 10A/250VAC 15A/250VAC"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Coil power 0.36 W (L) or 0.45 W (D); SL = sealed, 0.36 W.",
+     "verified": true,
+     "page": 1,
+     "evidence": [
+      "L0.36W / D0.45W"
+     ],
+     "source_id": "mod-switch-srd-ds"
+    },
+    {
+     "text": "Pick-up voltage 75 % max and drop-out voltage 10 % min of the rated coil voltage; max allowable 130 %.",
+     "verified": true,
+     "page": 1,
+     "evidence": [
+      "75%Max",
+      "10%Min",
+      "130%",
+      "Pick-up Drop-out"
+     ],
+     "source_id": "mod-switch-srd-ds"
+    },
+    {
+     "text": "Contact form 1C (SPDT): COM, NO, NC; max switching voltage 250 VAC.",
+     "verified": true,
+     "page": 1,
+     "evidence": [
+      "Max switching voltage",
+      "1 C(Spdt)",
+      "250VAC"
+     ],
+     "source_id": "mod-switch-srd-ds"
+    },
+    {
+     "text": "The Songle data sheet does not state a flyback diode; Omron's general relay precautions require surge absorption at the coil.",
+     "verified": true,
+     "page": 9,
+     "evidence": [
+      "Counter electromotive force generated from a coil when the coil is",
+      "turned OFF causes damage to semiconductor"
+     ],
+     "source_id": "mod-switch-relay-precautions"
+    },
+    {
+     "text": "The coil current is far above what a GPIO can source: drive the coil with an NPN/MOSFET low-side switch or a ULN2003 channel (calc npn / mosfet) and put a flyback diode across the coil.",
+     "verified": false
+    },
+    {
+     "text": "Relay modules (1/2/4 channel boards) add a transistor or PC817 driver, flyback diode, LED and often a JD-VCC jumper; their inputs are often active low and pulled up to 5 V, so a 3.3 V GPIO may not switch them off reliably. None of this is in the relay data sheet.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "g5le",
+   "aliases": [
+    "g5le-1",
+    "g5le-1-dc5",
+    "omron-g5le"
+   ],
+   "title": "Omron G5LE-1 PCB power relay, SPDT (5 VDC coil; 12/24 VDC variants)",
+   "category": "switch.relay",
+   "manufacturer": "Omron",
+   "kind": "ic",
+   "source_ids": [
+    "mod-switch-g5le-ds",
+    "mod-switch-relay-precautions"
+   ],
+   "pins": [
+    {
+     "name": "COIL1",
+     "signal": "supply",
+     "note": "coil, supply end (the coil has no polarity; put the flyback diode's cathode here)"
+    },
+    {
+     "name": "COIL2",
+     "signal": "power_out",
+     "note": "coil, switched end: to a driver transistor or ULN2003 output, never straight to a GPIO"
+    },
+    {
+     "name": "COM",
+     "signal": "power_out",
+     "note": "contact common (load side, isolated from the coil)"
+    },
+    {
+     "name": "NO",
+     "signal": "power_out",
+     "note": "normally open contact"
+    },
+    {
+     "name": "NC",
+     "signal": "power_out",
+     "note": "normally closed contact"
+    }
+   ],
+   "current": {
+    "supply": "COIL1",
+    "typ": {
+     "value": 0.0794,
+     "unit": "A",
+     "page": 1,
+     "evidence": "5 VDC 79.4 63",
+     "source_id": "mod-switch-g5le-ds",
+     "conditions": "rated current at 5 VDC, coil 23 °C (G5LE-1 coil table)"
+    },
+    "note": "rated coil current; coil resistance ±10 % (note 1 of the coil table)"
+   },
+   "requires": [
+    {
+     "code": "flyback",
+     "kind": "diode",
+     "pins": [
+      "COIL1",
+      "COIL2"
+     ],
+     "source_id": "mod-switch-relay-precautions",
+     "page": 9,
+     "evidence": [
+      "As a countermeasure, install surge absorbing circuits at both ends of",
+      "the coil or select a model"
+     ],
+     "note": "diode across the coil, cathode to the coil supply; its average rectified current must exceed the coil current (Omron relay precautions p. 9)"
+    }
+   ],
+   "hazards": [
+    {
+     "code": "mains",
+     "text": "Keep the contact side at 60 V DC or less (Circuit Bench is low voltage only); never switch mains.",
+     "source_id": "mod-switch-g5le-ds",
+     "page": 1,
+     "evidence": "Max. switching voltage 250 VAC, 125 VDC"
+    }
+   ],
+   "variants": [
+    {
+     "id": "dc12",
+     "title": "G5LE-1 DC12 (12 VDC coil)",
+     "overrides": {
+      "current": {
+       "supply": "COIL1",
+       "typ": {
+        "value": 0.0333,
+        "unit": "A",
+        "page": 1,
+        "evidence": "12 VDC 33.3 360",
+        "source_id": "mod-switch-g5le-ds",
+        "conditions": "rated current at 12 VDC, coil 23 °C (G5LE-1 coil table)"
+       },
+       "note": "rated coil current; coil resistance ±10 % (note 1 of the coil table)"
+      }
+     }
+    },
+    {
+     "id": "dc24",
+     "title": "G5LE-1 DC24 (24 VDC coil)",
+     "overrides": {
+      "current": {
+       "supply": "COIL1",
+       "typ": {
+        "value": 0.0167,
+        "unit": "A",
+        "page": 1,
+        "evidence": "24 VDC 16.7 1,440",
+        "source_id": "mod-switch-g5le-ds",
+        "conditions": "rated current at 24 VDC, coil 23 °C (G5LE-1 coil table)"
+       },
+       "note": "rated coil current; coil resistance ±10 % (note 1 of the coil table)"
+      }
+     }
+    }
+   ],
+   "notes": [
+    {
+     "text": "5 VDC coil: rated current 79.4 mA, coil resistance 63 Ω (±10 %, 23 °C).",
+     "verified": true,
+     "page": 1,
+     "evidence": "5 VDC 79.4 63",
+     "source_id": "mod-switch-g5le-ds"
+    },
+    {
+     "text": "Must operate voltage 75 % max, must release voltage 10 % min of the rated voltage; max. voltage 170 % (23 °C).",
+     "verified": true,
+     "page": 1,
+     "evidence": "75% max. 10% min. 170% at 23",
+     "source_id": "mod-switch-g5le-ds"
+    },
+    {
+     "text": "Rated load 10 A at 120 VAC, 8 A at 30 VDC (resistive); max. switching voltage 250 VAC, 125 VDC.",
+     "verified": true,
+     "page": 1,
+     "evidence": [
+      "Rated load 10 A at 120 VAC; 8 A at 30 VDC",
+      "Max. switching voltage 250 VAC, 125 VDC"
+     ],
+     "source_id": "mod-switch-g5le-ds"
+    },
+    {
+     "text": "Use a flyback diode whose forward current rating exceeds the coil current.",
+     "verified": true,
+     "page": 8,
+     "evidence": [
+      "Use a diode having a reverse breakdown voltage of more than",
+      "10 times the circuit voltage, and a forward current rating",
+      "greater than the load current"
+     ],
+     "source_id": "mod-switch-relay-precautions"
+    },
+    {
+     "text": "The coil current is far above what a GPIO can source: drive the coil with an NPN/MOSFET low-side switch or a ULN2003 channel (calc npn / mosfet) and put a flyback diode across the coil.",
+     "verified": false
+    },
+    {
+     "text": "Relay modules (1/2/4 channel boards) add a transistor or PC817 driver, flyback diode, LED and often a JD-VCC jumper; their inputs are often active low and pulled up to 5 V, so a 3.3 V GPIO may not switch them off reliably. None of this is in the relay data sheet.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "1n4148",
+   "aliases": [
+    "1n4148-tap",
+    "1n4148tr"
+   ],
+   "title": "1N4148 small-signal fast switching diode (DO-35)",
+   "category": "discrete.diode",
+   "manufacturer": "Vishay",
+   "kind": "ic",
+   "source_ids": [
+    "mod-switch-1n4148-ds"
+   ],
+   "pins": [
+    {
+     "name": "A",
+     "signal": "power_out",
+     "note": "anode"
+    },
+    {
+     "name": "K",
+     "signal": "power_out",
+     "note": "cathode (band); as a flyback diode: to the coil supply"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "VRRM 100 V, VR 75 V.",
+     "verified": true,
+     "page": 1,
+     "evidence": [
+      "Repetitive peak reverse voltage V RRM 100 V",
+      "Reverse voltage V R 75 V"
+     ]
+    },
+    {
+     "text": "Forward continuous current IF 300 mA; average forward current IF(AV) 150 mA (VR = 0).",
+     "verified": true,
+     "page": 1,
+     "evidence": [
+      "Forward continuous current I F 300 mA",
+      "Average forward current V R = 0 I F(AV) 150 mA"
+     ]
+    },
+    {
+     "text": "Peak forward surge current IFSM 2 A at tp = 1 µs.",
+     "verified": true,
+     "page": 1,
+     "evidence": [
+      "Peak forward surge current t p = 1",
+      "I FSM 2A"
+     ]
+    },
+    {
+     "text": "VF 1 V max at IF = 10 mA.",
+     "verified": true,
+     "page": 2,
+     "evidence": "Forward voltage I F = 10 mA V F 1V"
+    },
+    {
+     "text": "Reverse recovery time trr 4 ns (IF = 10 mA, VR = 6 V).",
+     "verified": true,
+     "page": 2,
+     "evidence": [
+      "IF = 10 mA, VR = 6 V,",
+      "trr 4n s"
+     ]
+    },
+    {
+     "text": "Cathode band: black.",
+     "verified": true,
+     "page": 1,
+     "evidence": "Cathode band color: black"
+    },
+    {
+     "text": "Fine as a flyback diode for small relay coils (coil current below IF(AV) 150 mA); 1N4007 for larger coils.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "1n4007",
+   "aliases": [
+    "1n4007-e3",
+    "1n4007g"
+   ],
+   "title": "1N4007 1 A general purpose rectifier, 1000 V (DO-41)",
+   "category": "discrete.diode",
+   "manufacturer": "Vishay",
+   "kind": "ic",
+   "source_ids": [
+    "mod-switch-1n4007-ds"
+   ],
+   "pins": [
+    {
+     "name": "A",
+     "signal": "power_out",
+     "note": "anode"
+    },
+    {
+     "name": "K",
+     "signal": "power_out",
+     "note": "cathode (band); as a flyback diode: to the coil supply"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "VRRM 1000 V (1N4007 column).",
+     "verified": true,
+     "page": 1,
+     "evidence": [
+      "PARAMETER SYMBOL 1N4001",
+      "1N4007 UNIT",
+      "Maximum repetitive peak reverse voltage V RRM 50 100 200 400 600 800 1000 V"
+     ]
+    },
+    {
+     "text": "Average forward rectified current IF(AV) 1.0 A (TA = 75 °C, 9.5 mm leads).",
+     "verified": true,
+     "page": 1,
+     "evidence": "lead length at TA = 75"
+    },
+    {
+     "text": "Peak forward surge current IFSM 30 A (8.3 ms half sine).",
+     "verified": true,
+     "page": 1,
+     "evidence": "sine-wave superimposed on rated load IFSM 30 A"
+    },
+    {
+     "text": "VF 1.1 V max at 1.0 A.",
+     "verified": true,
+     "page": 2,
+     "evidence": "forward voltage 1.0 A V F 1.1 V"
+    },
+    {
+     "text": "Standard recovery rectifier: no trr is given; fine for relay-coil clamping and reverse-polarity protection, not for fast switching.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "1n5819",
+   "aliases": [
+    "1n5819-e3",
+    "1n5819g"
+   ],
+   "title": "1N5819 1 A 40 V Schottky rectifier (DO-41)",
+   "category": "discrete.diode",
+   "manufacturer": "Vishay",
+   "kind": "ic",
+   "source_ids": [
+    "mod-switch-1n5819-ds"
+   ],
+   "pins": [
+    {
+     "name": "A",
+     "signal": "power_out",
+     "note": "anode"
+    },
+    {
+     "name": "K",
+     "signal": "power_out",
+     "note": "cathode (band); as a flyback diode: to the coil supply"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "VRRM 40 V (1N5819 column).",
+     "verified": true,
+     "page": 1,
+     "evidence": [
+      "PARAMETER SYMBOL 1N5817 1N5818 1N5819 UNIT",
+      "Maximum repetitive peak reverse voltage V RRM 20 30 40 V"
+     ]
+    },
+    {
+     "text": "Average forward rectified current IF(AV) 1.0 A (TL = 90 °C, 9.5 mm leads).",
+     "verified": true,
+     "page": 1,
+     "evidence": "lead length at TL = 90"
+    },
+    {
+     "text": "Peak forward surge current IFSM 25 A (8.3 ms half sine).",
+     "verified": true,
+     "page": 1,
+     "evidence": "sine-wave superimposed on rated load IFSM 25 A"
+    },
+    {
+     "text": "VF 0.600 V max at 1.0 A, 0.900 V max at 3.1 A.",
+     "verified": true,
+     "page": 1,
+     "evidence": [
+      "Maximum instantaneous forward voltage 1.0 V F (1) 0.450 0.550 0.600 V",
+      "Maximum instantaneous forward voltage 3.1 V F (1) 0.750 0.875 0.900 V"
+     ]
+    },
+    {
+     "text": "Reverse current up to 1.0 mA at the rated DC blocking voltage (25 °C): mind it in battery backup paths.",
+     "verified": true,
+     "page": 1,
+     "evidence": "IR (1) 1.0 mA"
+    },
+    {
+     "text": "Often used for USB/VIN OR-ing on dev boards (board detail, not from the data sheet).",
+     "verified": false
+    }
+   ]
+  }
+ ]
+}

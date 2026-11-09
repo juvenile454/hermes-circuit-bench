@@ -1,0 +1,981 @@
+{
+ "schema": 1,
+ "chip": "esp32s2",
+ "title": "ESP32-S2",
+ "generated_from": {
+  "repo": "espressif/esp-idf",
+  "tag": "v6.1",
+  "tag_object": "4dc1c65503e98e9a6b4c3c5646237280ba79829b",
+  "commit": "fff9895c82d744c7237be8847347bdd1b07c6643",
+  "generator": "scripts/gen_pins.py",
+  "files": [
+   {
+    "path": "docs/en/api-reference/peripherals/gpio/esp32s2.inc",
+    "sha256": "604ab54585c66ba197d9bbb66c784ce42ec783c5a950cc9f89399531f987195d",
+    "source_id": "idf-v6.1-gpio-esp32s2"
+   },
+   {
+    "path": "components/soc/esp32s2/include/soc/soc_caps.h",
+    "sha256": "6130ea6732556274a1164ab4f72e3126fdda63c417ab122cec0e4305fae27cf9",
+    "source_id": "idf-v6.1-soccaps-esp32s2"
+   },
+   {
+    "path": "components/soc/esp32s2/include/soc/adc_channel.h",
+    "sha256": "f10562ae5525311a3e5178ca1b8a4aa19e022a3baaa8be0470e1d67c1dc77096",
+    "source_id": "idf-v6.1-adc-channel-esp32s2"
+   },
+   {
+    "path": "components/soc/esp32s2/register/soc/io_mux_reg.h",
+    "sha256": "25c2cf960a0f2378bb2d54fa55facc8b46558f6b1478bbbdeddf527d1bc4384d",
+    "source_id": "idf-v6.1-iomux-esp32s2"
+   },
+   {
+    "path": "docs/en/api-reference/peripherals/cap_touch_sens/esp32s2.inc",
+    "sha256": "931a53a018f0b8ff9c34cb9b2f3389753020237e2de7d9e2999fab352283e945",
+    "source_id": "idf-v6.1-touch-esp32s2"
+   },
+   {
+    "repo": "espressif/esp-dev-kits",
+    "commit": "5c06bf1835329d6525f316475f7218aab6acfe79",
+    "path": "docs/en/esp32-s2-devkitc-1/user_guide.rst",
+    "sha256": "76ba36747ba03db2fa96c4d9072640ae332c321d18257f5aaca189841a84f2e0",
+    "source_id": "devkitc1-s2"
+   },
+   {
+    "path": "docs/en/api-reference/peripherals/adc/adc_oneshot.rst",
+    "sha256": "907c2d5d0aaee607e2ec0f3657481c82ff9396692d01b8af013db0731e4ee838",
+    "source_id": "idf-v6.1-adc-oneshot"
+   }
+  ]
+ },
+ "gpio_count": 43,
+ "capabilities": {
+  "gpio": {
+   "source_id": "idf-v6.1-gpio-esp32s2"
+  },
+  "output": {
+   "source_id": "idf-v6.1-soccaps-esp32s2"
+  },
+  "adc": {
+   "source_id": "idf-v6.1-adc-channel-esp32s2"
+  },
+  "functions": {
+   "source_id": "idf-v6.1-iomux-esp32s2"
+  },
+  "touch": {
+   "supported": true,
+   "source_id": "idf-v6.1-touch-esp32s2"
+  }
+ },
+ "gpios": [
+  {
+   "num": 0,
+   "name": "GPIO0",
+   "rtc": true,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO0",
+    "RTC_GPIO0"
+   ],
+   "tags": [
+    "Strapping pin"
+   ]
+  },
+  {
+   "num": 1,
+   "name": "GPIO1",
+   "rtc": true,
+   "adc": {
+    "unit": 1,
+    "channel": 0
+   },
+   "touch": 1,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO1",
+    "RTC_GPIO1",
+    "ADC1_CH0",
+    "TOUCH1"
+   ],
+   "tags": []
+  },
+  {
+   "num": 2,
+   "name": "GPIO2",
+   "rtc": true,
+   "adc": {
+    "unit": 1,
+    "channel": 1
+   },
+   "touch": 2,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO2",
+    "RTC_GPIO2",
+    "ADC1_CH1",
+    "TOUCH2"
+   ],
+   "tags": []
+  },
+  {
+   "num": 3,
+   "name": "GPIO3",
+   "rtc": true,
+   "adc": {
+    "unit": 1,
+    "channel": 2
+   },
+   "touch": 3,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO3",
+    "RTC_GPIO3",
+    "ADC1_CH2",
+    "TOUCH3"
+   ],
+   "tags": []
+  },
+  {
+   "num": 4,
+   "name": "GPIO4",
+   "rtc": true,
+   "adc": {
+    "unit": 1,
+    "channel": 3
+   },
+   "touch": 4,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO4",
+    "RTC_GPIO4",
+    "ADC1_CH3",
+    "TOUCH4"
+   ],
+   "tags": []
+  },
+  {
+   "num": 5,
+   "name": "GPIO5",
+   "rtc": true,
+   "adc": {
+    "unit": 1,
+    "channel": 4
+   },
+   "touch": 5,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO5",
+    "RTC_GPIO5",
+    "ADC1_CH4",
+    "TOUCH5"
+   ],
+   "tags": []
+  },
+  {
+   "num": 6,
+   "name": "GPIO6",
+   "rtc": true,
+   "adc": {
+    "unit": 1,
+    "channel": 5
+   },
+   "touch": 6,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO6",
+    "RTC_GPIO6",
+    "ADC1_CH5",
+    "TOUCH6"
+   ],
+   "tags": []
+  },
+  {
+   "num": 7,
+   "name": "GPIO7",
+   "rtc": true,
+   "adc": {
+    "unit": 1,
+    "channel": 6
+   },
+   "touch": 7,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO7",
+    "RTC_GPIO7",
+    "ADC1_CH6",
+    "TOUCH7"
+   ],
+   "tags": []
+  },
+  {
+   "num": 8,
+   "name": "GPIO8",
+   "rtc": true,
+   "adc": {
+    "unit": 1,
+    "channel": 7
+   },
+   "touch": 8,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO8",
+    "SUBSPICS1",
+    "RTC_GPIO8",
+    "ADC1_CH7",
+    "TOUCH8"
+   ],
+   "tags": []
+  },
+  {
+   "num": 9,
+   "name": "GPIO9",
+   "rtc": true,
+   "adc": {
+    "unit": 1,
+    "channel": 8
+   },
+   "touch": 9,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO9",
+    "SUBSPIHD",
+    "FSPIHD",
+    "RTC_GPIO9",
+    "ADC1_CH8",
+    "TOUCH9"
+   ],
+   "tags": []
+  },
+  {
+   "num": 10,
+   "name": "GPIO10",
+   "rtc": true,
+   "adc": {
+    "unit": 1,
+    "channel": 9
+   },
+   "touch": 10,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO10",
+    "FSPIIO4",
+    "SUBSPICS0",
+    "FSPICS0",
+    "RTC_GPIO10",
+    "ADC1_CH9",
+    "TOUCH10"
+   ],
+   "tags": []
+  },
+  {
+   "num": 11,
+   "name": "GPIO11",
+   "rtc": true,
+   "adc": {
+    "unit": 2,
+    "channel": 0
+   },
+   "touch": 11,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO11",
+    "FSPIIO5",
+    "SUBSPID",
+    "FSPID",
+    "RTC_GPIO11",
+    "ADC2_CH0",
+    "TOUCH11"
+   ],
+   "tags": []
+  },
+  {
+   "num": 12,
+   "name": "GPIO12",
+   "rtc": true,
+   "adc": {
+    "unit": 2,
+    "channel": 1
+   },
+   "touch": 12,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO12",
+    "FSPIIO6",
+    "SUBSPICLK",
+    "FSPICLK",
+    "RTC_GPIO12",
+    "ADC2_CH1",
+    "TOUCH12"
+   ],
+   "tags": []
+  },
+  {
+   "num": 13,
+   "name": "GPIO13",
+   "rtc": true,
+   "adc": {
+    "unit": 2,
+    "channel": 2
+   },
+   "touch": 13,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO13",
+    "FSPIIO7",
+    "SUBSPIQ",
+    "FSPIQ",
+    "RTC_GPIO13",
+    "ADC2_CH2",
+    "TOUCH13"
+   ],
+   "tags": []
+  },
+  {
+   "num": 14,
+   "name": "GPIO14",
+   "rtc": true,
+   "adc": {
+    "unit": 2,
+    "channel": 3
+   },
+   "touch": 14,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO14",
+    "FSPIDQS",
+    "SUBSPIWP",
+    "FSPIWP",
+    "RTC_GPIO14",
+    "ADC2_CH3",
+    "TOUCH14"
+   ],
+   "tags": []
+  },
+  {
+   "num": 15,
+   "name": "GPIO15",
+   "rtc": true,
+   "adc": {
+    "unit": 2,
+    "channel": 4
+   },
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO15",
+    "U0RTS",
+    "RTC_GPIO15",
+    "ADC2_CH4"
+   ],
+   "tags": []
+  },
+  {
+   "num": 16,
+   "name": "GPIO16",
+   "rtc": true,
+   "adc": {
+    "unit": 2,
+    "channel": 5
+   },
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO16",
+    "U0CTS",
+    "RTC_GPIO16",
+    "ADC2_CH5"
+   ],
+   "tags": []
+  },
+  {
+   "num": 17,
+   "name": "GPIO17",
+   "rtc": true,
+   "adc": {
+    "unit": 2,
+    "channel": 6
+   },
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO17",
+    "U1TXD",
+    "RTC_GPIO17",
+    "ADC2_CH6"
+   ],
+   "tags": []
+  },
+  {
+   "num": 18,
+   "name": "GPIO18",
+   "rtc": true,
+   "adc": {
+    "unit": 2,
+    "channel": 7
+   },
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO18",
+    "U1RXD",
+    "CLK_OUT3",
+    "RTC_GPIO18",
+    "ADC2_CH7"
+   ],
+   "tags": []
+  },
+  {
+   "num": 19,
+   "name": "GPIO19",
+   "rtc": true,
+   "adc": {
+    "unit": 2,
+    "channel": 8
+   },
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO19",
+    "U1RTS",
+    "CLK_OUT2",
+    "RTC_GPIO19",
+    "ADC2_CH8"
+   ],
+   "tags": []
+  },
+  {
+   "num": 20,
+   "name": "GPIO20",
+   "rtc": true,
+   "adc": {
+    "unit": 2,
+    "channel": 9
+   },
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO20",
+    "U1CTS",
+    "CLK_OUT1",
+    "RTC_GPIO20",
+    "ADC2_CH9"
+   ],
+   "tags": []
+  },
+  {
+   "num": 21,
+   "name": "GPIO21",
+   "rtc": true,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO21",
+    "RTC_GPIO21"
+   ],
+   "tags": []
+  },
+  {
+   "num": 26,
+   "name": "GPIO26",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "SPICS1",
+    "GPIO26"
+   ],
+   "tags": [
+    "SPI0/1"
+   ]
+  },
+  {
+   "num": 27,
+   "name": "GPIO27",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "SPIHD",
+    "GPIO27"
+   ],
+   "tags": [
+    "SPI0/1"
+   ]
+  },
+  {
+   "num": 28,
+   "name": "GPIO28",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "SPIWP",
+    "GPIO28"
+   ],
+   "tags": [
+    "SPI0/1"
+   ]
+  },
+  {
+   "num": 29,
+   "name": "GPIO29",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "SPICS0",
+    "GPIO29"
+   ],
+   "tags": [
+    "SPI0/1"
+   ]
+  },
+  {
+   "num": 30,
+   "name": "GPIO30",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "SPICLK",
+    "GPIO30"
+   ],
+   "tags": [
+    "SPI0/1"
+   ]
+  },
+  {
+   "num": 31,
+   "name": "GPIO31",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "SPIQ",
+    "GPIO31"
+   ],
+   "tags": [
+    "SPI0/1"
+   ]
+  },
+  {
+   "num": 32,
+   "name": "GPIO32",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "SPID",
+    "GPIO32"
+   ],
+   "tags": [
+    "SPI0/1"
+   ]
+  },
+  {
+   "num": 33,
+   "name": "GPIO33",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO33",
+    "FSPIHD",
+    "SUBSPIHD",
+    "SPIIO4"
+   ],
+   "tags": []
+  },
+  {
+   "num": 34,
+   "name": "GPIO34",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO34",
+    "FSPICS0",
+    "SUBSPICS0",
+    "SPIIO5"
+   ],
+   "tags": []
+  },
+  {
+   "num": 35,
+   "name": "GPIO35",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO35",
+    "FSPID",
+    "SUBSPID",
+    "SPIIO6"
+   ],
+   "tags": []
+  },
+  {
+   "num": 36,
+   "name": "GPIO36",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO36",
+    "FSPICLK",
+    "SUBSPICLK",
+    "SPIIO7"
+   ],
+   "tags": []
+  },
+  {
+   "num": 37,
+   "name": "GPIO37",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO37",
+    "FSPIQ",
+    "SUBSPIQ",
+    "SPIDQS"
+   ],
+   "tags": []
+  },
+  {
+   "num": 38,
+   "name": "GPIO38",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO38",
+    "FSPIWP",
+    "SUBSPIWP"
+   ],
+   "tags": []
+  },
+  {
+   "num": 39,
+   "name": "GPIO39",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "MTCK",
+    "GPIO39",
+    "CLK_OUT3",
+    "SUBSPICS1"
+   ],
+   "tags": [
+    "JTAG"
+   ]
+  },
+  {
+   "num": 40,
+   "name": "GPIO40",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "MTDO",
+    "GPIO40",
+    "CLK_OUT2"
+   ],
+   "tags": [
+    "JTAG"
+   ]
+  },
+  {
+   "num": 41,
+   "name": "GPIO41",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "MTDI",
+    "GPIO41",
+    "CLK_OUT1"
+   ],
+   "tags": [
+    "JTAG"
+   ]
+  },
+  {
+   "num": 42,
+   "name": "GPIO42",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "MTMS",
+    "GPIO42"
+   ],
+   "tags": [
+    "JTAG"
+   ]
+  },
+  {
+   "num": 43,
+   "name": "GPIO43",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "U0TXD",
+    "GPIO43",
+    "CLK_OUT1"
+   ],
+   "tags": []
+  },
+  {
+   "num": 44,
+   "name": "GPIO44",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "U0RXD",
+    "GPIO44",
+    "CLK_OUT2"
+   ],
+   "tags": []
+  },
+  {
+   "num": 45,
+   "name": "GPIO45",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO45"
+   ],
+   "tags": [
+    "Strapping pin"
+   ]
+  },
+  {
+   "num": 46,
+   "name": "GPIO46",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": true,
+   "internal_pulls": false,
+   "functions": [
+    "GPIO46"
+   ],
+   "tags": [
+    "GPI",
+    "Strapping pin"
+   ]
+  }
+ ],
+ "variants": [],
+ "rules": [
+  {
+   "id": "s2.strapping",
+   "title": "strapping pin",
+   "severity": "caution",
+   "pins": [
+    0,
+    45,
+    46
+   ],
+   "when": {},
+   "modes": [
+    "*"
+   ],
+   "message": "Strapping pin: its level at reset is part of the boot configuration (see the ESP32-S2 datasheet). Avoid loads or pull resistors that change it at reset.",
+   "source_id": "idf-v6.1-gpio-esp32s2",
+   "evidence": "GPIO0, GPIO45 and GPIO46 are strapping pins"
+  },
+  {
+   "id": "s2.spi_flash",
+   "title": "SPI flash/PSRAM",
+   "severity": "blocked",
+   "pins": [
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ],
+   "when": {},
+   "modes": [
+    "*"
+   ],
+   "message": "Used for the SPI flash and PSRAM of the module. Espressif: not recommended for other uses.",
+   "source_id": "idf-v6.1-gpio-esp32s2",
+   "evidence": "GPIO26-32 are usually used for SPI flash and PSRAM and not recommended for other uses"
+  },
+  {
+   "id": "s2.jtag",
+   "title": "JTAG",
+   "severity": "caution",
+   "pins": [
+    39,
+    40,
+    41,
+    42
+   ],
+   "when": {},
+   "modes": [
+    "*"
+   ],
+   "message": "JTAG pin (GPIO39-42: MTCK, MTDO, MTDI, MTMS), usually used for inline debugging.",
+   "source_id": "idf-v6.1-gpio-esp32s2",
+   "evidence": "GPIO39-42 are usually used for inline debug"
+  },
+  {
+   "id": "s2.input_only",
+   "title": "input only",
+   "severity": "blocked",
+   "pins": [
+    46
+   ],
+   "when": {},
+   "modes": [
+    "out",
+    "pwm",
+    "uart_tx",
+    "spi_mosi",
+    "spi_sck",
+    "spi_cs",
+    "i2c_sda",
+    "i2c_scl",
+    "in_pullup",
+    "in_pulldown"
+   ],
+   "message": "GPIO46 is input only and fixed to pull-down: it cannot drive an output, and its pull-down is always on (no pull-up, no switchable pull). Use mode 'in'.",
+   "source_id": "idf-v6.1-gpio-esp32s2",
+   "evidence": "GPIO46 is fixed to pull-down and is input only"
+  },
+  {
+   "id": "s2.usb_otg",
+   "title": "USB OTG",
+   "severity": "caution",
+   "pins": [
+    19,
+    20
+   ],
+   "when": {},
+   "modes": [
+    "*"
+   ],
+   "message": "USB OTG D- (GPIO19) / D+ (GPIO20), on the ESP32-S2-DevKitC-1 wired to the ESP32-S2 USB port (flashing and USB communication). Using them as GPIOs gives up native USB.",
+   "source_id": "devkitc1-s2",
+   "evidence": "RTC_GPIO19, GPIO19, U1RTS, ADC2_CH8, CLK_OUT2, USB_D-"
+  },
+  {
+   "id": "s2.uart0",
+   "title": "UART0 (console)",
+   "severity": "caution",
+   "pins": [
+    43,
+    44
+   ],
+   "when": {},
+   "modes": [
+    "*"
+   ],
+   "message": "UART0 U0TXD (GPIO43) / U0RXD (GPIO44): console and flashing over the USB-to-UART bridge.",
+   "source_id": "devkitc1-s2",
+   "evidence": "U0TXD, GPIO43, CLK_OUT1"
+  },
+  {
+   "id": "s2.adc2_wifi",
+   "title": "ADC2 with Wi-Fi (unverified)",
+   "severity": "info",
+   "pins": [
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "when": {
+    "wifi": true
+   },
+   "modes": [
+    "adc"
+   ],
+   "message": "ADC2 is shared with Wi-Fi. Whether ADC2 readings work while Wi-Fi is on is unverified; prefer an ADC1 pin (GPIO1-10).",
+   "source_id": "idf-v6.1-adc-oneshot",
+   "evidence": "ADC2 is also used by Wi-Fi",
+   "unverified": true
+  }
+ ]
+}

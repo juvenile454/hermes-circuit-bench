@@ -1,0 +1,50 @@
+[
+  {
+    "id": "mod-ambient-ds18b20-ds",
+    "title": "Analog Devices (Maxim Integrated) DS18B20 Programmable Resolution 1-Wire Digital Thermometer, Data sheet",
+    "url": "https://web.archive.org/web/20261012120012id_/https://www.analog.com/media/en/technical-documentation/data-sheets/ds18b20.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A1",
+    "note": "Document 19-7487 Rev 6 (7/19); web.archive.org snapshot 2026-10-12 of the official analog.com file (analog.com times out for scripts; served gzip, hash of the unpacked PDF); pages 2, 3, 4, 6, 7, 10; sha256 066c8a3c7e9222c49e84488840d5cfe9dd109cf0da6ab4a55480cebac8f97f76"
+  },
+  {
+    "id": "mod-ambient-bh1750fvi-ds",
+    "title": "ROHM BH1750FVI Digital 16bit Serial Output Type Ambient Light Sensor IC, Technical Note",
+    "url": "https://web.archive.org/web/20160804053938id_/http://rohmfs.rohm.com/en/products/databook/datasheet/ic/sensor/light/bh1750fvi-e.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A1",
+    "note": "Technical Note No.11046EDT01, 2011.11 Rev.D; web.archive.org snapshot 2016-08-04 of the official rohmfs.rohm.com file (the part is no longer listed on rohm.com; the Mouser copy of the research run is broken, PdfStreamError); pages 1, 2, 6, 8, 10, 13; sha256 a24bbf9d71afa6f66d88cbb6da6ce418d7d8762d17c3caca1137d9161936e8db"
+  },
+  {
+    "id": "mod-ambient-veml7700-ds",
+    "title": "Vishay VEML7700 High Accuracy Ambient Light Sensor With I2C Interface, Data sheet",
+    "url": "https://www.vishay.com/docs/84286/veml7700.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Document Number 84286, Rev. 1.8, 28-Nov-2024; pages 1, 2, 6; sha256 f338cf7d5911828a2f2ac8ae8324049380c852e34aa5afa43ac92c98ffe827d1"
+  },
+  {
+    "id": "mod-ambient-tsl2591-ds",
+    "title": "ams OSRAM TSL2591 Light-to-Digital Converter, Datasheet DS000338",
+    "url": "https://look.ams-osram.com/m/c901de8e97608f8/original/TSL2591-DS000338.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "DS000338 v3-00, 2023-Feb-08 (look.ams-osram.com is the ams OSRAM asset host); pages 5, 6, 7, 10, 14, 23, 29; sha256 0bf334ce6497dcd1afac2fdc86e6ffbd098a0c1044a92db39ecc7d321b226667"
+  },
+  {
+    "id": "mod-ambient-scd4x-ds",
+    "title": "Sensirion Datasheet SCD4x Miniaturized CO2 and Humidity & Temperature Sensor (SCD40, SCD41)",
+    "url": "https://sensirion.com/media/documents/E0F04247/631EF271/CD_DS_SCD40_SCD41_Datasheet_D1.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Version 1.3, September 2022; pages 4, 5, 6, 7, 17; sha256 ac1ba13f64a5d51a96ad0e11a5295623f9ae6cee7465c361513340274c4e90db"
+  },
+  {
+    "id": "mod-ambient-sgp40-ds",
+    "title": "Sensirion Datasheet SGP40 Indoor Air Quality Sensor for VOC Measurements",
+    "url": "https://sensirion.com/media/documents/296373BB/6203C5DF/Sensirion_Gas_Sensors_Datasheet_SGP40.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Version 1.2, February 2022; pypdf renders the µ and Ω glyphs of this file as private-use characters (U+F06D, U+F057); pages 5, 7, 11; sha256 884db88ab45ae4824474c919e2e6bf940122df19c610ee2493d0b23caac4effb"
+  }
+]

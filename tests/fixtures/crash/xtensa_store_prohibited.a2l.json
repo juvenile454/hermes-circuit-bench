@@ -1,0 +1,8 @@
+{
+ "addresses": {
+  "0x42001d67": "write_sensor_buffer(unsigned char*, int) at {project}/src/main.cpp:5",
+  "0x42001d8a": "loop() at {project}/src/main.cpp:21",
+  "0x42003a5e": "loopTask(void*) at {home}/.platformio/packages/framework-arduinoespressif32/cores/esp32/main.cpp:74",
+  "0x42001d6a": "write_sensor_buffer(unsigned char*, int) at {project}/src/main.cpp:5"
+ }
+}

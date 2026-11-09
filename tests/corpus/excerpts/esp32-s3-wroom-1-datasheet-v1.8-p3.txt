@@ -1,0 +1,59 @@
+Excerpt (text layer, page 3, extracted with pypdf) of: ESP32-S3-WROOM-1 & WROOM-1U Datasheet v1.8
+URL: https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf
+PDF SHA-256: 27d71971da07c280c6068d08c74720d1a25b8f20cf8494dc1765bdd28d40d435 (pinned in tests/corpus/pins.json)
+Retrieved: 2026-11-06. Copyright Espressif Systems; quoted for citation only.
+-----
+1 Module Overview
+1.2 Series Comparison
+ESP32-S3-WROOM-1 and ESP32-S3-WROOM-1U are two powerful, generic Wi-Fi + Bluetooth LE MCU modules
+that are built around the ESP32-S3 series of SoCs. On top of a rich set of peripherals, the acceleration for
+neural network computing and signal processing workloads provided by the SoC make the modules an ideal
+choice for a wide variety of application scenarios related to AI and Artificial Intelligence of Things (AIoT), such
+as wake word detection, speech commands recognition, face detection and recognition, smart home, smart
+appliances, smart control panel, smart speaker, etc.
+ESP32-S3-WROOM-1 comes with a PCB antenna. ESP32-S3-WROOM-1U comes with an external antenna
+connector. A wide selection of module variants are available for customers as shown in Table1-1and1-2. H4
+series modules operate at –40~105 °C ambient temperature, R8 and R16V series modules operate at –40~
+65 °C ambient temperature, and other module variants operate at –40~85 °C ambient temperature. For R8
+and R16V series modules with Octal SPI PSRAM, if the PSRAM ECC function is enabled, the maximum ambient
+temperature can be improved to 85 °C, while the usable size of PSRAM will be reduced by 1/16.
+T able 1-1. ESP32-S3-WROOM-1 Series Comparison1
+Ambient T emp.5 Size6Part Number2 Flash3, 4 PSRAM4 (°C) (mm)
+ESP32-S3-WROOM-1-N4 4 MB (Quad SPI) - –40 ~85
+18.0
+×
+25.5
+×
+3.1
+ESP32-S3-WROOM-1-N8 8 MB (Quad SPI) - –40 ~85
+ESP32-S3-WROOM-1-N16 16 MB (Quad SPI) - –40 ~85
+ESP32-S3-WROOM-1-H4 4 MB (Quad SPI) - –40 ~105
+ESP32-S3-WROOM-1-N4R2 4 MB (Quad SPI) 2 MB (Quad SPI) –40 ~85
+ESP32-S3-WROOM-1-N8R2 8 MB (Quad SPI) 2 MB (Quad SPI) –40 ~85
+ESP32-S3-WROOM-1-N16R2 16 MB (Quad SPI) 2 MB (Quad SPI) –40 ~85
+ESP32-S3-WROOM-1-N4R8 4 MB (Quad SPI) 8 MB (Octal SPI) –40 ~65
+ESP32-S3-WROOM-1-N8R8 8 MB (Quad SPI) 8 MB (Octal SPI) –40 ~65
+ESP32-S3-WROOM-1-N16R8 16 MB (Quad SPI) 8 MB (Octal SPI) –40 ~65
+ESP32-S3-WROOM-1-N16R16VA7 16 MB (Quad SPI) 16 MB (Octal SPI) –40 ~65
+1 This table shares the same notes presented in Table1-2below.
+T able 1-2. ESP32-S3-WROOM-1U Series Comparison
+Ambient T emp.5 Size6Part Number2 Flash3, 4 PSRAM4 (°C) (mm)
+ESP32-S3-WROOM-1U-N4 4 MB (Quad SPI) - –40 ~85
+18.0
+×
+19.2
+×
+3.2
+ESP32-S3-WROOM-1U-N8 8 MB (Quad SPI) - –40 ~85
+ESP32-S3-WROOM-1U-N16 16 MB (Quad SPI) - –40 ~85
+ESP32-S3-WROOM-1U-H4 4 MB (Quad SPI) - –40 ~105
+ESP32-S3-WROOM-1U-N4R2 4 MB (Quad SPI) 2 MB (Quad SPI) –40 ~85
+ESP32-S3-WROOM-1U-N8R2 8 MB (Quad SPI) 2 MB (Quad SPI) –40 ~85
+ESP32-S3-WROOM-1U-N16R2 16 MB (Quad SPI) 2 MB (Quad SPI) –40 ~85
+ESP32-S3-WROOM-1U-N4R8 4 MB (Quad SPI) 8 MB (Octal SPI) –40 ~65
+ESP32-S3-WROOM-1U-N8R8 8 MB (Quad SPI) 8 MB (Octal SPI) –40 ~65
+ESP32-S3-WROOM-1U-N16R8 16 MB (Quad SPI) 8 MB (Octal SPI) –40 ~65
+ESP32-S3-WROOM-1U-N16R16VA7 16 MB (Quad SPI) 16 MB (Octal SPI) –40 ~65
+Espressif Systems 3
+Submit Documentation Feedback
+ESP32-S3-WROOM-1 & WROOM-1U Datasheet v1.8

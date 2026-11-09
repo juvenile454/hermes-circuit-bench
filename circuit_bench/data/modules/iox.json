@@ -1,0 +1,2659 @@
+{
+  "schema": 1,
+  "wp": "iox",
+  "note": "Values only from manufacturer documents; 'evidence' quotes lines of tests/corpus/excerpts/mod-iox-*.txt (pypdf).",
+  "modules": [
+    {
+      "id": "mcp23017",
+      "aliases": [
+        "cjmcu-23017"
+      ],
+      "title": "MCP23017 16-bit I²C I/O expander",
+      "category": "io.expander",
+      "manufacturer": "Microchip",
+      "kind": "ic",
+      "source_ids": [
+        "mod-iox-mcp23017-ds"
+      ],
+      "supplies": {
+        "VDD": {
+          "min": {
+            "value": 1.8,
+            "unit": "V",
+            "page": 4,
+            "evidence": "D001 Supply Voltage VDD 1.8 — 5.5 V"
+          },
+          "max": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 4,
+            "evidence": "D001 Supply Voltage VDD 1.8 — 5.5 V"
+          },
+          "abs_max": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 3,
+            "evidence": [
+              "Voltage on VDD with respect to VSS",
+              "–0.3V to +5.5V"
+            ]
+          }
+        }
+      },
+      "io": {
+        "domain": "VDD",
+        "vih": {
+          "rel": 0.8,
+          "unit": "V",
+          "of": "VDD",
+          "page": 4,
+          "evidence": [
+            "D041 CS , GPIO, SCL/SCK,",
+            "VIH 0.8 VDD — V DD V For entire V DD range"
+          ],
+          "conditions": "GPIO, SCL, SDA, RESET (Schmitt trigger), entire VDD range"
+        },
+        "vil": {
+          "rel": 0.2,
+          "unit": "V",
+          "of": "VDD",
+          "page": 4,
+          "evidence": [
+            "D031 CS , GPIO, SCL/SCK,",
+            "VIL VSS — 0.2 V DD V"
+          ],
+          "conditions": "GPIO, SCL, SDA, RESET (Schmitt trigger)"
+        },
+        "voh": {
+          "rel_offset": -0.7,
+          "unit": "V",
+          "of": "VDD",
+          "page": 4,
+          "evidence": "D090 GPIO, INT, SO VOH VDD – 0.7 — — V I OH = –3.0 mA",
+          "conditions": "GPIO/INT at IOH = −3.0 mA, VDD = 4.5 V"
+        },
+        "vol": {
+          "value": 0.6,
+          "unit": "V",
+          "page": 4,
+          "evidence": "D080 GPIO VOL — — 0.6 V I OL = 8.0 mA",
+          "conditions": "GPIO, IOL = 8.0 mA, VDD 4.5 V"
+        },
+        "v_in_max": {
+          "rel_offset": 0.6,
+          "unit": "V",
+          "of": "VDD",
+          "page": 3,
+          "evidence": [
+            "Voltage on all other pins with respect to VSS (except VDD)",
+            "–0.6V to (VDD + 0.6V)"
+          ],
+          "conditions": "absolute maximum rating"
+        },
+        "outputs": "push_pull",
+        "five_v_tolerant": false
+      },
+      "pins": [
+        {
+          "name": "VDD",
+          "signal": "supply"
+        },
+        {
+          "name": "VSS",
+          "signal": "gnd"
+        },
+        {
+          "name": "SCL",
+          "signal": "i2c_scl",
+          "note": "named SCK in the pinout table"
+        },
+        {
+          "name": "SDA",
+          "signal": "i2c_sda"
+        },
+        {
+          "name": "A0",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "must be externally biased (p. 11)"
+        },
+        {
+          "name": "A1",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "must be externally biased (p. 11)"
+        },
+        {
+          "name": "A2",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "must be externally biased (p. 11)"
+        },
+        {
+          "name": "RESET",
+          "signal": "reset_in",
+          "active_low": true,
+          "must_connect": true,
+          "note": "must be externally biased (p. 11)"
+        },
+        {
+          "name": "INTA",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "active driver after reset; open-drain via IOCON.ODR"
+        },
+        {
+          "name": "INTB",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "active driver after reset; open-drain via IOCON.ODR"
+        },
+        {
+          "name": "GPA0",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "bidirectional I/O (input or push-pull output, optional weak pull-up); modelled as output"
+        },
+        {
+          "name": "GPA1",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "bidirectional I/O (input or push-pull output, optional weak pull-up); modelled as output"
+        },
+        {
+          "name": "GPA2",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "bidirectional I/O (input or push-pull output, optional weak pull-up); modelled as output"
+        },
+        {
+          "name": "GPA3",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "bidirectional I/O (input or push-pull output, optional weak pull-up); modelled as output"
+        },
+        {
+          "name": "GPA4",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "bidirectional I/O (input or push-pull output, optional weak pull-up); modelled as output"
+        },
+        {
+          "name": "GPA5",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "bidirectional I/O (input or push-pull output, optional weak pull-up); modelled as output"
+        },
+        {
+          "name": "GPA6",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "bidirectional I/O (input or push-pull output, optional weak pull-up); modelled as output"
+        },
+        {
+          "name": "GPA7",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "output only on the MCP23017 (p. 11)"
+        },
+        {
+          "name": "GPB0",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "bidirectional I/O (input or push-pull output, optional weak pull-up); modelled as output"
+        },
+        {
+          "name": "GPB1",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "bidirectional I/O (input or push-pull output, optional weak pull-up); modelled as output"
+        },
+        {
+          "name": "GPB2",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "bidirectional I/O (input or push-pull output, optional weak pull-up); modelled as output"
+        },
+        {
+          "name": "GPB3",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "bidirectional I/O (input or push-pull output, optional weak pull-up); modelled as output"
+        },
+        {
+          "name": "GPB4",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "bidirectional I/O (input or push-pull output, optional weak pull-up); modelled as output"
+        },
+        {
+          "name": "GPB5",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "bidirectional I/O (input or push-pull output, optional weak pull-up); modelled as output"
+        },
+        {
+          "name": "GPB6",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "bidirectional I/O (input or push-pull output, optional weak pull-up); modelled as output"
+        },
+        {
+          "name": "GPB7",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "output only on the MCP23017 (p. 11)"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {
+            "value": [
+              "0x20",
+              "0x21",
+              "0x22",
+              "0x23",
+              "0x24",
+              "0x25",
+              "0x26",
+              "0x27"
+            ],
+            "page": 15,
+            "evidence": "S 0 1 0 0 A2 A1 A0 R/W ACK",
+            "conditions": "7-bit address 0100 A2 A1 A0"
+          },
+          "default": "0x20",
+          "select": {
+            "pins": [
+              "A2",
+              "A1",
+              "A0"
+            ],
+            "map": {
+              "GND,GND,GND": "0x20",
+              "GND,GND,VDD": "0x21",
+              "GND,VDD,GND": "0x22",
+              "GND,VDD,VDD": "0x23",
+              "VDD,GND,GND": "0x24",
+              "VDD,GND,VDD": "0x25",
+              "VDD,VDD,GND": "0x26",
+              "VDD,VDD,VDD": "0x27"
+            }
+          },
+          "f_max_hz": {
+            "value": 400000.0,
+            "unit": "Hz",
+            "page": 6,
+            "evidence": [
+              "400 kHz mode 0.6 — — µs 2.7V – 5.5V",
+              "1.7 MHz mode 0.12 — — µs 4.5V – 5.5V"
+            ],
+            "conditions": "400 kHz at VDD 2.7–5.5 V; 1.7 MHz only at VDD 4.5–5.5 V; 100 kHz below 2.7 V"
+          },
+          "note": "hardware address pins are always active on the MCP23017; IOCON.HAEN only affects the MCP23S17 (p. 20)"
+        }
+      ],
+      "current": {
+        "supply": "VDD",
+        "max": {
+          "value": 0.001,
+          "unit": "A",
+          "page": 4,
+          "evidence": "D004 Supply Current IDD — — 1 mA SCL/SCK = 1 MHz",
+          "conditions": "SCL 1 MHz, without output load currents"
+        },
+        "sleep": {
+          "value": 1e-06,
+          "unit": "A",
+          "page": 4,
+          "evidence": "D005 Standby current IDDS8 — — 1 µA",
+          "conditions": "max, −40…+85 °C"
+        },
+        "note": "output load currents come on top: ≤ 25 mA per pin, ≤ 125 mA into VDD, ≤ 150 mA out of VSS (abs. max, p. 3)"
+      },
+      "requires": [],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "GPA7 and GPB7 are output only on the MCP23017; do not use them as inputs (buttons, sensors).",
+          "page": 11,
+          "evidence": [
+            "GPA7 24 28 I/O",
+            "Output only (MCP23017)."
+          ],
+          "verified": true
+        },
+        {
+          "text": "Feature list: GPA7 and GPB7 are output only.",
+          "page": 1,
+          "evidence": "GPB7 are output only for MCP23017):",
+          "verified": true
+        },
+        {
+          "text": "A0–A2 must be biased externally, regardless of IOCON.HAEN.",
+          "page": 20,
+          "evidence": "must be externally biased, regardless of the HAEN bit",
+          "verified": true
+        },
+        {
+          "text": "INTA/INTB are active drivers after reset (IOCON = 0x00, ODR = 0); set ODR for open-drain before wiring INT of a 5 V part to a 3.3 V input.",
+          "page": 21,
+          "evidence": "0 = Active driver output (INTPOL bit sets the polarity.)",
+          "verified": true
+        },
+        {
+          "text": "IOCON resets to 0000 0000.",
+          "page": 17,
+          "evidence": "IOCON 0A BANK MIRROR SEQOP DISSLW HAEN ODR INTPOL — 0000 0000",
+          "verified": true
+        },
+        {
+          "text": "Output current per pin max 25 mA (sink and source), absolute maximum.",
+          "page": 3,
+          "evidence": [
+            "Maximum output current sunk by any output pin",
+            "Maximum output current sourced by any output pin"
+          ],
+          "verified": true
+        },
+        {
+          "text": "Total current: max 125 mA into VDD and 150 mA out of VSS (absolute maximum).",
+          "page": 3,
+          "evidence": [
+            "Maximum current out of VSS pin",
+            "Maximum current into VDD pin"
+          ],
+          "verified": true
+        },
+        {
+          "text": "The datasheet gives no I²C pull-up value; SDA/SCL need external pull-ups like any I²C bus.",
+          "verified": false
+        },
+        {
+          "text": "Breakouts (e.g. CJMCU-23017) usually add address jumpers, a RESET pull-up and SDA/SCL pull-ups to the module VCC; at 5 V the bus is pulled to 5 V.",
+          "verified": false
+        },
+        {
+          "text": "Older libraries and keypad examples still use GPA7/GPB7 as inputs; the current datasheet does not allow it.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "mcp23008",
+      "aliases": [
+        "mcp23008-e"
+      ],
+      "title": "MCP23008 8-bit I²C I/O expander",
+      "category": "io.expander",
+      "manufacturer": "Microchip",
+      "kind": "ic",
+      "source_ids": [
+        "mod-iox-mcp23008-ds"
+      ],
+      "supplies": {
+        "VDD": {
+          "min": {
+            "value": 1.8,
+            "unit": "V",
+            "page": 21,
+            "evidence": "D001 Supply Voltage V DD 1.8 — 5.5 V"
+          },
+          "max": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 21,
+            "evidence": "D001 Supply Voltage V DD 1.8 — 5.5 V"
+          },
+          "abs_max": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 21,
+            "evidence": [
+              "Voltage on VDD with respect to VSS",
+              "-0.3V to +5.5V"
+            ]
+          }
+        }
+      },
+      "io": {
+        "domain": "VDD",
+        "vih": {
+          "rel": 0.8,
+          "unit": "V",
+          "of": "VDD",
+          "page": 22,
+          "evidence": [
+            "D041 CS , GPIO, SCL/SCK,",
+            "0.8 VDD —V DD V For entire V DD range."
+          ],
+          "conditions": "GPIO, SCL, SDA, A2, RESET (Schmitt trigger)"
+        },
+        "vil": {
+          "rel": 0.2,
+          "unit": "V",
+          "of": "VDD",
+          "page": 21,
+          "evidence": [
+            "D031 CS , GPIO, SCL/SCK,",
+            "VSS —0 . 2 V DD V"
+          ],
+          "conditions": "GPIO, SCL, SDA, A2, RESET (Schmitt trigger)"
+        },
+        "voh": {
+          "rel_offset": -0.7,
+          "unit": "V",
+          "of": "VDD",
+          "page": 22,
+          "evidence": "D090 GPIO, INT, SO V OH VDD – 0.7 — — V I OH = -3.0 mA, VDD = 4.5V",
+          "conditions": "GPIO/INT, IOH = −3.0 mA at VDD 4.5 V"
+        },
+        "vol": {
+          "value": 0.6,
+          "unit": "V",
+          "page": 22,
+          "evidence": "D080 GPIO V OL —— 0 . 6 V I OL = 8.5 mA, VDD = 4.5V",
+          "conditions": "GPIO, IOL = 8.5 mA, VDD 4.5 V"
+        },
+        "v_in_max": {
+          "rel_offset": 0.6,
+          "unit": "V",
+          "of": "VDD",
+          "page": 21,
+          "evidence": [
+            "Voltage on all other pins with respect to VSS (except VDD)",
+            "-0.6V to (VDD + 0.6V)"
+          ],
+          "conditions": "absolute maximum rating"
+        },
+        "outputs": "push_pull",
+        "five_v_tolerant": false
+      },
+      "pins": [
+        {
+          "name": "SCL",
+          "signal": "i2c_scl"
+        },
+        {
+          "name": "SDA",
+          "signal": "i2c_sda"
+        },
+        {
+          "name": "A2",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "must be biased externally (p. 4)"
+        },
+        {
+          "name": "A1",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "must be biased externally (p. 4)"
+        },
+        {
+          "name": "A0",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "must be biased externally (p. 4)"
+        },
+        {
+          "name": "RESET",
+          "signal": "reset_in",
+          "active_low": true,
+          "must_connect": true,
+          "note": "must be biased externally (p. 4)"
+        },
+        {
+          "name": "INT",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "active driver after reset; open-drain via IOCON.ODR"
+        },
+        {
+          "name": "VSS",
+          "signal": "gnd"
+        },
+        {
+          "name": "GP0",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "bidirectional I/O; modelled as output"
+        },
+        {
+          "name": "GP1",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "bidirectional I/O; modelled as output"
+        },
+        {
+          "name": "GP2",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "bidirectional I/O; modelled as output"
+        },
+        {
+          "name": "GP3",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "bidirectional I/O; modelled as output"
+        },
+        {
+          "name": "GP4",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "bidirectional I/O; modelled as output"
+        },
+        {
+          "name": "GP5",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "bidirectional I/O; modelled as output"
+        },
+        {
+          "name": "GP6",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "bidirectional I/O; modelled as output"
+        },
+        {
+          "name": "GP7",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "output only on the MCP23008 (p. 4)"
+        },
+        {
+          "name": "VDD",
+          "signal": "supply"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {
+            "value": [
+              "0x20",
+              "0x21",
+              "0x22",
+              "0x23",
+              "0x24",
+              "0x25",
+              "0x26",
+              "0x27"
+            ],
+            "page": 7,
+            "evidence": [
+              "FIGURE 1-4: I2C Addressing Registers.",
+              "S 0100 A2 A1 A0 R/W ACK"
+            ],
+            "conditions": "7-bit address 0100 A2 A1 A0"
+          },
+          "default": "0x20",
+          "select": {
+            "pins": [
+              "A2",
+              "A1",
+              "A0"
+            ],
+            "map": {
+              "GND,GND,GND": "0x20",
+              "GND,GND,VDD": "0x21",
+              "GND,VDD,GND": "0x22",
+              "GND,VDD,VDD": "0x23",
+              "VDD,GND,GND": "0x24",
+              "VDD,GND,VDD": "0x25",
+              "VDD,VDD,GND": "0x26",
+              "VDD,VDD,VDD": "0x27"
+            }
+          },
+          "f_max_hz": {
+            "value": 400000.0,
+            "unit": "Hz",
+            "page": 24,
+            "evidence": [
+              "400 kHz mode 0.6 — — µs 2.7V – 5.5V (I-Temp)",
+              "1.7 MHz mode 0.12 — — µs 4.5V – 5.5V (E-Temp)"
+            ],
+            "conditions": "400 kHz at VDD 2.7–5.5 V; 1.7 MHz only at VDD 4.5–5.5 V"
+          },
+          "note": "IOCON.HAEN applies to the MCP23S08 only (p. 14)"
+        }
+      ],
+      "current": {
+        "supply": "VDD",
+        "max": {
+          "value": 0.001,
+          "unit": "A",
+          "page": 21,
+          "evidence": "D004 Supply Current I DD — — 1 mA SCL/SCK = 1 MHz",
+          "conditions": "SCL 1 MHz, without output load currents"
+        },
+        "sleep": {
+          "value": 1e-06,
+          "unit": "A",
+          "page": 21,
+          "evidence": "D005 Standby current I DDS —— 1 µ A",
+          "conditions": "max, −40…+85 °C"
+        },
+        "note": "output load currents come on top: ≤ 25 mA per pin, ≤ 125 mA into VDD, ≤ 150 mA out of VSS (abs. max, p. 21)"
+      },
+      "requires": [],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "GP7 is output only on the MCP23008; do not use it as an input.",
+          "page": 4,
+          "evidence": [
+            "GP7 17 16 19 I/O",
+            "Output Only (MCP23008)."
+          ],
+          "verified": true
+        },
+        {
+          "text": "Feature list: GP7 is output only.",
+          "page": 1,
+          "evidence": "output only for MCP23008)",
+          "verified": true
+        },
+        {
+          "text": "Hardware address inputs A0–A2 must be biased externally.",
+          "page": 4,
+          "evidence": [
+            "A2 must be biased externally.",
+            "A1 4 2 4 I Hardware address input. Must be biased externally.",
+            "A0 5 3 5 I Hardware address input. Must be biased externally."
+          ],
+          "verified": true
+        },
+        {
+          "text": "IOCON.HAEN only exists on the MCP23S08.",
+          "page": 14,
+          "evidence": "bit 3 HAEN: Hardware Address Enable (MCP23S08 only)",
+          "verified": true
+        },
+        {
+          "text": "INT is an active driver after reset (ODR = 0); set ODR for open-drain.",
+          "page": 14,
+          "evidence": "0 =  Active driver output (INTPOL bit sets the polarity)",
+          "verified": true
+        },
+        {
+          "text": "Output current per pin max 25 mA; total max 125 mA into VDD, 150 mA out of VSS (absolute maximum).",
+          "page": 21,
+          "evidence": [
+            "Maximum current out of VSS pin",
+            "Maximum current into VDD pin",
+            "Maximum output current sunk by any output pin"
+          ],
+          "verified": true
+        },
+        {
+          "text": "The datasheet gives no I²C pull-up value; SDA/SCL need external pull-ups like any I²C bus.",
+          "verified": false
+        },
+        {
+          "text": "Breakouts usually add address jumpers and a RESET pull-up.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "pcf8574",
+      "aliases": [
+        "pcf8574t",
+        "pcf8574n"
+      ],
+      "title": "PCF8574 8-bit quasi-bidirectional I²C I/O expander",
+      "category": "io.expander",
+      "manufacturer": "Texas Instruments",
+      "kind": "ic",
+      "source_ids": [
+        "mod-iox-pcf8574-ds"
+      ],
+      "supplies": {
+        "VCC": {
+          "min": {
+            "value": 2.5,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VCC Supply voltage 2.5 6 V"
+          },
+          "max": {
+            "value": 6.0,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VCC Supply voltage 2.5 6 V"
+          },
+          "abs_max": {
+            "value": 6.5,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VCC Supply voltage range –0.5 6.5 V"
+          }
+        }
+      },
+      "io": {
+        "domain": "VCC",
+        "vih": {
+          "rel": 0.7,
+          "unit": "V",
+          "of": "VCC",
+          "page": 4,
+          "evidence": "VIH High-level input voltage 0.7 × VCC VCC + 0.5 V",
+          "conditions": "recommended operating conditions"
+        },
+        "vil": {
+          "rel": 0.3,
+          "unit": "V",
+          "of": "VCC",
+          "page": 4,
+          "evidence": "VIL Low-level input voltage –0.5 0.3 × VCC V",
+          "conditions": "recommended operating conditions"
+        },
+        "vol": {
+          "value": 0.4,
+          "unit": "V",
+          "page": 5,
+          "evidence": [
+            "IOL",
+            "SDA  VO = 0.4 V 2.5 V to 6 V 3"
+          ],
+          "conditions": "SDA sinks ≥ 3 mA at 0.4 V; VCC 2.5–6 V"
+        },
+        "v_in_max": {
+          "rel_offset": 0.5,
+          "unit": "V",
+          "of": "VCC",
+          "page": 4,
+          "evidence": "VI Input voltage range(2) –0.5 VCC + 0.5 V",
+          "conditions": "absolute maximum rating"
+        },
+        "outputs": "open_drain",
+        "five_v_tolerant": false
+      },
+      "pins": [
+        {
+          "name": "VCC",
+          "signal": "supply"
+        },
+        {
+          "name": "GND",
+          "signal": "gnd"
+        },
+        {
+          "name": "SDA",
+          "signal": "i2c_sda"
+        },
+        {
+          "name": "SCL",
+          "signal": "i2c_scl"
+        },
+        {
+          "name": "A0",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "connect directly to VCC or GND (p. 3)"
+        },
+        {
+          "name": "A1",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "connect directly to VCC or GND (p. 3)"
+        },
+        {
+          "name": "A2",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "connect directly to VCC or GND (p. 3)"
+        },
+        {
+          "name": "INT",
+          "signal": "open_drain_out",
+          "output": "open_drain",
+          "active_low": true,
+          "note": "pull-up to VCC when used (p. 3)"
+        },
+        {
+          "name": "P0",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–310 µA current source (p. 5)"
+        },
+        {
+          "name": "P1",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–310 µA current source (p. 5)"
+        },
+        {
+          "name": "P2",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–310 µA current source (p. 5)"
+        },
+        {
+          "name": "P3",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–310 µA current source (p. 5)"
+        },
+        {
+          "name": "P4",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–310 µA current source (p. 5)"
+        },
+        {
+          "name": "P5",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–310 µA current source (p. 5)"
+        },
+        {
+          "name": "P6",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–310 µA current source (p. 5)"
+        },
+        {
+          "name": "P7",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–310 µA current source (p. 5)"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {
+            "value": [
+              "0x20",
+              "0x21",
+              "0x22",
+              "0x23",
+              "0x24",
+              "0x25",
+              "0x26",
+              "0x27"
+            ],
+            "page": 14,
+            "evidence": [
+              "L L L 65 (decimal), 41 (hexadecimal) 64 (decimal), 40 (hexadecimal)",
+              "H H H 79 (decimal), 4F (hexadecimal) 78 (decimal), 4E (hexadecimal)"
+            ],
+            "conditions": "8-bit write addresses 0x40–0x4E = 7-bit 0x20–0x27"
+          },
+          "default": "0x20",
+          "select": {
+            "pins": [
+              "A2",
+              "A1",
+              "A0"
+            ],
+            "map": {
+              "GND,GND,GND": "0x20",
+              "GND,GND,VCC": "0x21",
+              "GND,VCC,GND": "0x22",
+              "GND,VCC,VCC": "0x23",
+              "VCC,GND,GND": "0x24",
+              "VCC,GND,VCC": "0x25",
+              "VCC,VCC,GND": "0x26",
+              "VCC,VCC,VCC": "0x27"
+            }
+          },
+          "f_max_hz": {
+            "value": 100000.0,
+            "unit": "Hz",
+            "page": 5,
+            "evidence": "fscl I2C clock frequency 100 kHz",
+            "conditions": "standard mode only"
+          }
+        }
+      ],
+      "current": {
+        "supply": "VCC",
+        "typ": {
+          "value": 4e-05,
+          "unit": "A",
+          "page": 5,
+          "evidence": "Operating mode VI = VCC or GND, IO = 0, fSCL = 100 kHz 6 V 40 100 μA",
+          "conditions": "VCC 6 V, fSCL 100 kHz, no load"
+        },
+        "max": {
+          "value": 0.0001,
+          "unit": "A",
+          "page": 5,
+          "evidence": "Operating mode VI = VCC or GND, IO = 0, fSCL = 100 kHz 6 V 40 100 μA",
+          "conditions": "VCC 6 V, fSCL 100 kHz, no load"
+        },
+        "sleep": {
+          "value": 1e-05,
+          "unit": "A",
+          "page": 5,
+          "evidence": "Standby mode VI = VCC or GND, IO = 0 2.5 10",
+          "conditions": "max"
+        },
+        "note": "port load currents come on top: IOL ≤ 25 mA per pin, ≤ 100 mA through VCC or GND (p. 4)"
+      },
+      "requires": [
+        {
+          "code": "pullup",
+          "kind": "resistor",
+          "pins": [
+            "SDA",
+            "SCL"
+          ],
+          "to": "VCC",
+          "page": 3,
+          "evidence": [
+            "Serial clock line. Connect to VCC through a pullup resistor",
+            "Serial data line. Connect to VCC through a pullup resistor."
+          ],
+          "note": "value from the I²C pull-up calculator (bus load ≤ 400 pF, p. 5)"
+        },
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "pins": [
+            "VCC"
+          ],
+          "to": "GND",
+          "page": 20,
+          "evidence": "By-pass and de-coupling capacitors",
+          "note": "TI gives no value; 100 nF ceramic close to VCC is common practice (unverified)"
+        }
+      ],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "Quasi-bidirectional port: a high output is only a weak current source to VCC (IOH −30…−310 µA); drive LEDs and loads active-low.",
+          "page": 5,
+          "evidence": "IOH P port  VO = GND 2.5 V to 6 V -310 -30 μA",
+          "verified": true
+        },
+        {
+          "text": "The I/Os should be high before being used as inputs.",
+          "page": 12,
+          "evidence": "used as inputs.",
+          "verified": true
+        },
+        {
+          "text": "At power on the I/Os are high with only the current source active.",
+          "page": 1,
+          "evidence": "only a current source to VCC is active.",
+          "verified": true
+        },
+        {
+          "text": "Port sink current per pin max 25 mA (recommended).",
+          "page": 4,
+          "evidence": "IOL Low-level output current 25 mA",
+          "verified": true
+        },
+        {
+          "text": "Total current through VCC or GND max ±100 mA (absolute maximum).",
+          "page": 4,
+          "evidence": "Continuous current through VCC or GND ±100 mA",
+          "verified": true
+        },
+        {
+          "text": "Address pins: connect directly to VCC or GND; pull-ups are not needed.",
+          "page": 3,
+          "evidence": "Connect directly to VCC or ground. Pullup resistors are not needed.",
+          "verified": true
+        },
+        {
+          "text": "INT is open-drain: connect to VCC through a pull-up resistor when used.",
+          "page": 3,
+          "evidence": "Interrupt output. Connect to VCC through a pullup resistor.",
+          "verified": true
+        },
+        {
+          "text": "Example address 0100000 = 0x20 with A2–A0 low.",
+          "page": 16,
+          "evidence": "Device address is configured as 0100000 for this example.",
+          "verified": true
+        },
+        {
+          "text": "HD44780 LCD I²C backpacks carry this chip with A0–A2 pulled up (solder jumpers), 4.7 kΩ pull-ups to the 5 V module supply and a backlight transistor; powered at 5 V they pull SDA/SCL to 5 V. TI documents none of this.",
+          "verified": false
+        },
+        {
+          "text": "LCD backpacks with a PCF8574T usually answer at 0x27 (all address jumpers open).",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "pcf8574a",
+      "aliases": [
+        "pcf8574at",
+        "pcf8574an"
+      ],
+      "title": "PCF8574A 8-bit quasi-bidirectional I²C I/O expander (address 0x38–0x3F)",
+      "category": "io.expander",
+      "manufacturer": "Texas Instruments",
+      "kind": "ic",
+      "source_ids": [
+        "mod-iox-pcf8574a-ds"
+      ],
+      "supplies": {
+        "VCC": {
+          "min": {
+            "value": 2.5,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VCC Supply voltage 2.5 6 V"
+          },
+          "max": {
+            "value": 6.0,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VCC Supply voltage 2.5 6 V"
+          },
+          "abs_max": {
+            "value": 6.5,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VCC Supply voltage range –0.5 6.5 V"
+          }
+        }
+      },
+      "io": {
+        "domain": "VCC",
+        "vih": {
+          "rel": 0.7,
+          "unit": "V",
+          "of": "VCC",
+          "page": 4,
+          "evidence": "VIH High-level input voltage 0.7 × VCC VCC + 0.5 V",
+          "conditions": "recommended operating conditions"
+        },
+        "vil": {
+          "rel": 0.3,
+          "unit": "V",
+          "of": "VCC",
+          "page": 4,
+          "evidence": "VIL Low-level input voltage –0.5 0.3 × VCC V",
+          "conditions": "recommended operating conditions"
+        },
+        "vol": {
+          "value": 0.4,
+          "unit": "V",
+          "page": 5,
+          "evidence": [
+            "IOL",
+            "SDA  VO = 0.4 V 2.5 V to 6 V 3"
+          ],
+          "conditions": "SDA sinks ≥ 3 mA at 0.4 V; VCC 2.5–6 V"
+        },
+        "v_in_max": {
+          "rel_offset": 0.5,
+          "unit": "V",
+          "of": "VCC",
+          "page": 4,
+          "evidence": "VI Input voltage range(2) –0.5 VCC + 0.5 V",
+          "conditions": "absolute maximum rating"
+        },
+        "outputs": "open_drain",
+        "five_v_tolerant": false
+      },
+      "pins": [
+        {
+          "name": "VCC",
+          "signal": "supply"
+        },
+        {
+          "name": "GND",
+          "signal": "gnd"
+        },
+        {
+          "name": "SDA",
+          "signal": "i2c_sda"
+        },
+        {
+          "name": "SCL",
+          "signal": "i2c_scl"
+        },
+        {
+          "name": "A0",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "connect directly to VCC or GND (p. 3)"
+        },
+        {
+          "name": "A1",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "connect directly to VCC or GND (p. 3)"
+        },
+        {
+          "name": "A2",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "connect directly to VCC or GND (p. 3)"
+        },
+        {
+          "name": "INT",
+          "signal": "open_drain_out",
+          "output": "open_drain",
+          "active_low": true,
+          "note": "pull-up to VCC when used (p. 3)"
+        },
+        {
+          "name": "P0",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–310 µA current source (p. 5)"
+        },
+        {
+          "name": "P1",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–310 µA current source (p. 5)"
+        },
+        {
+          "name": "P2",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–310 µA current source (p. 5)"
+        },
+        {
+          "name": "P3",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–310 µA current source (p. 5)"
+        },
+        {
+          "name": "P4",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–310 µA current source (p. 5)"
+        },
+        {
+          "name": "P5",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–310 µA current source (p. 5)"
+        },
+        {
+          "name": "P6",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–310 µA current source (p. 5)"
+        },
+        {
+          "name": "P7",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–310 µA current source (p. 5)"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {
+            "value": [
+              "0x38",
+              "0x39",
+              "0x3a",
+              "0x3b",
+              "0x3c",
+              "0x3d",
+              "0x3e",
+              "0x3f"
+            ],
+            "page": 14,
+            "evidence": [
+              "L L L 113 (dec), 71 (hex) 112 (dec), 70 (hex)",
+              "H H H 127 (dec), 7F (hex) 126 (dec), 7E (hex)"
+            ],
+            "conditions": "8-bit write addresses 0x70–0x7E = 7-bit 0x38–0x3f"
+          },
+          "default": "0x38",
+          "select": {
+            "pins": [
+              "A2",
+              "A1",
+              "A0"
+            ],
+            "map": {
+              "GND,GND,GND": "0x38",
+              "GND,GND,VCC": "0x39",
+              "GND,VCC,GND": "0x3a",
+              "GND,VCC,VCC": "0x3b",
+              "VCC,GND,GND": "0x3c",
+              "VCC,GND,VCC": "0x3d",
+              "VCC,VCC,GND": "0x3e",
+              "VCC,VCC,VCC": "0x3f"
+            }
+          },
+          "f_max_hz": {
+            "value": 100000.0,
+            "unit": "Hz",
+            "page": 5,
+            "evidence": "fscl I2C clock frequency 100 kHz",
+            "conditions": "standard mode only"
+          }
+        }
+      ],
+      "current": {
+        "supply": "VCC",
+        "typ": {
+          "value": 4e-05,
+          "unit": "A",
+          "page": 5,
+          "evidence": "Operating mode VI = VCC or GND, IO = 0, fSCL = 100 kHz 6 V 40 100 μA",
+          "conditions": "VCC 6 V, fSCL 100 kHz, no load"
+        },
+        "max": {
+          "value": 0.0001,
+          "unit": "A",
+          "page": 5,
+          "evidence": "Operating mode VI = VCC or GND, IO = 0, fSCL = 100 kHz 6 V 40 100 μA",
+          "conditions": "VCC 6 V, fSCL 100 kHz, no load"
+        },
+        "sleep": {
+          "value": 1e-05,
+          "unit": "A",
+          "page": 5,
+          "evidence": "Standby mode VI = VCC or GND, IO = 0 2.5 10",
+          "conditions": "max"
+        },
+        "note": "port load currents come on top: IOL ≤ 25 mA per pin, ≤ 100 mA through VCC or GND (p. 4)"
+      },
+      "requires": [
+        {
+          "code": "pullup",
+          "kind": "resistor",
+          "pins": [
+            "SDA",
+            "SCL"
+          ],
+          "to": "VCC",
+          "page": 3,
+          "evidence": [
+            "Serial clock line. Connect to VCC through a pullup resistor",
+            "Serial data line. Connect to VCC through a pullup resistor."
+          ],
+          "note": "value from the I²C pull-up calculator (bus load ≤ 400 pF, p. 5)"
+        },
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "pins": [
+            "VCC"
+          ],
+          "to": "GND",
+          "page": 20,
+          "evidence": "By-pass and de-coupling capacitors",
+          "note": "TI gives no value; 100 nF ceramic close to VCC is common practice (unverified)"
+        }
+      ],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "Quasi-bidirectional port: a high output is only a weak current source to VCC (IOH −30…−310 µA); drive LEDs and loads active-low.",
+          "page": 5,
+          "evidence": "IOH P port  VO = GND 2.5 V to 6 V -310 -30 μA",
+          "verified": true
+        },
+        {
+          "text": "The I/Os should be high before being used as inputs.",
+          "page": 12,
+          "evidence": "turns on when an output is written high and is switched off by the negative edge of SCL. The I/Os should be high",
+          "verified": true
+        },
+        {
+          "text": "At power on the I/Os are high with only the current source active.",
+          "page": 1,
+          "evidence": "only a current source to VCC is active.",
+          "verified": true
+        },
+        {
+          "text": "Port sink current per pin max 25 mA (recommended).",
+          "page": 4,
+          "evidence": "IOL Low-level output current 25 mA",
+          "verified": true
+        },
+        {
+          "text": "Total current through VCC or GND max ±100 mA (absolute maximum).",
+          "page": 4,
+          "evidence": "Continuous current through VCC or GND ±100 mA",
+          "verified": true
+        },
+        {
+          "text": "Address pins: connect directly to VCC or GND; pull-ups are not needed.",
+          "page": 3,
+          "evidence": "Connect directly to VCC or ground. Pullup resistors are not needed.",
+          "verified": true
+        },
+        {
+          "text": "INT is open-drain: connect to VCC through a pull-up resistor when used.",
+          "page": 3,
+          "evidence": "Interrupt output. Connect to VCC through a pullup resistor.",
+          "verified": true
+        },
+        {
+          "text": "Example address 0111000 = 0x38 with A2–A0 low.",
+          "page": 16,
+          "evidence": "Device address is configured as 0111000 for this example.",
+          "verified": true
+        },
+        {
+          "text": "HD44780 LCD I²C backpacks carry this chip with A0–A2 pulled up (solder jumpers), 4.7 kΩ pull-ups to the 5 V module supply and a backlight transistor; powered at 5 V they pull SDA/SCL to 5 V. TI documents none of this.",
+          "verified": false
+        },
+        {
+          "text": "LCD backpacks with a PCF8574AT usually answer at 0x3F; 0x3C/0x3D overlap common SSD1306 OLED addresses.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "pcf8575",
+      "aliases": [
+        "pcf8575dbr",
+        "pcf8575pw"
+      ],
+      "title": "PCF8575 16-bit quasi-bidirectional I²C I/O expander",
+      "category": "io.expander",
+      "manufacturer": "Texas Instruments",
+      "kind": "ic",
+      "source_ids": [
+        "mod-iox-pcf8575-ds"
+      ],
+      "supplies": {
+        "VCC": {
+          "min": {
+            "value": 2.5,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VCC Supply voltage 2.5 5.5 V"
+          },
+          "max": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VCC Supply voltage 2.5 5.5 V"
+          },
+          "abs_max": {
+            "value": 6.5,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VCC Supply voltage range –0.5 6.5 V"
+          }
+        }
+      },
+      "io": {
+        "domain": "VCC",
+        "vih": {
+          "rel": 0.7,
+          "unit": "V",
+          "of": "VCC",
+          "page": 4,
+          "evidence": "VIH High-level input voltage 0.7 × VCC VCC + 0.5 V",
+          "conditions": "recommended operating conditions"
+        },
+        "vil": {
+          "rel": 0.3,
+          "unit": "V",
+          "of": "VCC",
+          "page": 4,
+          "evidence": "VIL Low-level input voltage –0.5 0.3 × VCC V",
+          "conditions": "recommended operating conditions"
+        },
+        "v_in_max": {
+          "rel_offset": 0.5,
+          "unit": "V",
+          "of": "VCC",
+          "page": 4,
+          "evidence": "VI Input voltage range (2) –0.5 VCC + 0.5 V",
+          "conditions": "absolute maximum rating"
+        },
+        "outputs": "open_drain",
+        "five_v_tolerant": false
+      },
+      "pins": [
+        {
+          "name": "VCC",
+          "signal": "supply"
+        },
+        {
+          "name": "GND",
+          "signal": "gnd"
+        },
+        {
+          "name": "SDA",
+          "signal": "i2c_sda"
+        },
+        {
+          "name": "SCL",
+          "signal": "i2c_scl"
+        },
+        {
+          "name": "A0",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "connect directly to VCC or GND (p. 3)"
+        },
+        {
+          "name": "A1",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "connect directly to VCC or GND (p. 3)"
+        },
+        {
+          "name": "A2",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "connect directly to VCC or GND (p. 3)"
+        },
+        {
+          "name": "INT",
+          "signal": "open_drain_out",
+          "output": "open_drain",
+          "active_low": true,
+          "note": "pull-up to VCC when used (p. 3)"
+        },
+        {
+          "name": "P00",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–300 µA current source (p. 5)"
+        },
+        {
+          "name": "P01",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–300 µA current source (p. 5)"
+        },
+        {
+          "name": "P02",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–300 µA current source (p. 5)"
+        },
+        {
+          "name": "P03",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–300 µA current source (p. 5)"
+        },
+        {
+          "name": "P04",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–300 µA current source (p. 5)"
+        },
+        {
+          "name": "P05",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–300 µA current source (p. 5)"
+        },
+        {
+          "name": "P06",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–300 µA current source (p. 5)"
+        },
+        {
+          "name": "P07",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–300 µA current source (p. 5)"
+        },
+        {
+          "name": "P10",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–300 µA current source (p. 5)"
+        },
+        {
+          "name": "P11",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–300 µA current source (p. 5)"
+        },
+        {
+          "name": "P12",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–300 µA current source (p. 5)"
+        },
+        {
+          "name": "P13",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–300 µA current source (p. 5)"
+        },
+        {
+          "name": "P14",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–300 µA current source (p. 5)"
+        },
+        {
+          "name": "P15",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–300 µA current source (p. 5)"
+        },
+        {
+          "name": "P16",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–300 µA current source (p. 5)"
+        },
+        {
+          "name": "P17",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "quasi-bidirectional: low = strong sink, high = 30–300 µA current source (p. 5)"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {
+            "value": [
+              "0x20",
+              "0x21",
+              "0x22",
+              "0x23",
+              "0x24",
+              "0x25",
+              "0x26",
+              "0x27"
+            ],
+            "page": 16,
+            "evidence": [
+              "L L L 65 (decimal), 41 ",
+              "64 (decimal), 40 ",
+              "H H H 79 (decimal), 4F ",
+              "78 (decimal), 4E "
+            ],
+            "conditions": "8-bit write addresses 0x40–0x4E = 7-bit 0x20–0x27"
+          },
+          "default": "0x20",
+          "select": {
+            "pins": [
+              "A2",
+              "A1",
+              "A0"
+            ],
+            "map": {
+              "GND,GND,GND": "0x20",
+              "GND,GND,VCC": "0x21",
+              "GND,VCC,GND": "0x22",
+              "GND,VCC,VCC": "0x23",
+              "VCC,GND,GND": "0x24",
+              "VCC,GND,VCC": "0x25",
+              "VCC,VCC,GND": "0x26",
+              "VCC,VCC,VCC": "0x27"
+            }
+          },
+          "f_max_hz": {
+            "value": 400000.0,
+            "unit": "Hz",
+            "page": 5,
+            "evidence": "fscl I2C clock frequency 400 kHz"
+          }
+        }
+      ],
+      "current": {
+        "supply": "VCC",
+        "typ": {
+          "value": 0.0001,
+          "unit": "A",
+          "page": 5,
+          "evidence": [
+            "Operating mode VI = VCC or GND, IO = 0,fscl = 400 kHz",
+            "5.5 V 100 200"
+          ],
+          "conditions": "VCC 5.5 V, fSCL 400 kHz, no load (3.6 V: 30/75 µA)"
+        },
+        "max": {
+          "value": 0.0002,
+          "unit": "A",
+          "page": 5,
+          "evidence": [
+            "Operating mode VI = VCC or GND, IO = 0,fscl = 400 kHz",
+            "5.5 V 100 200"
+          ],
+          "conditions": "VCC 5.5 V, fSCL 400 kHz, no load (3.6 V: 30/75 µA)"
+        },
+        "sleep": {
+          "value": 1e-05,
+          "unit": "A",
+          "page": 5,
+          "evidence": [
+            "Standby mode VI = VCC or GND, IO = 0, fscl = 0 kHz",
+            "5.5 V 2.5 10"
+          ],
+          "conditions": "max, VCC 5.5 V"
+        },
+        "note": "port load currents come on top: IOL ≤ 25 mA per pin, ≤ 100 mA through VCC or GND (p. 4)"
+      },
+      "requires": [
+        {
+          "code": "pullup",
+          "kind": "resistor",
+          "pins": [
+            "SDA",
+            "SCL"
+          ],
+          "to": "VCC",
+          "page": 3,
+          "evidence": [
+            "Serial clock line. Connect to VCC through a pull-up resistor",
+            "Serial data line. Connect to VCC through a pull-up resistor."
+          ],
+          "note": "value from the I²C pull-up calculator"
+        },
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "pins": [
+            "VCC"
+          ],
+          "to": "GND",
+          "page": 21,
+          "evidence": "By-pass and de-coupling capacitors",
+          "note": "TI gives no value; 100 nF ceramic close to VCC is common practice (unverified)"
+        }
+      ],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "Quasi-bidirectional port: a high output is only a weak current source to VCC (IOH −30…−300 µA); drive LEDs and loads active-low.",
+          "page": 5,
+          "evidence": "IOH P port VO = GND 2.5 V to 5.5 V –30 –300 μA",
+          "verified": true
+        },
+        {
+          "text": "The I/Os should be high before being used as inputs.",
+          "page": 12,
+          "evidence": "The I/Os should be high before being used as inputs.",
+          "verified": true
+        },
+        {
+          "text": "Port sink current per pin max 25 mA (recommended).",
+          "page": 4,
+          "evidence": "IOL P-port low-level output current 25 mA",
+          "verified": true
+        },
+        {
+          "text": "Total current through VCC or GND max ±100 mA (absolute maximum).",
+          "page": 4,
+          "evidence": "Continuous current through VCC or GND ±100 mA",
+          "verified": true
+        },
+        {
+          "text": "Address pins: connect directly to VCC or GND; pull-ups are not needed.",
+          "page": 3,
+          "evidence": "A0 21 18 I Address input 0. Connect directly to VCC or ground. Pull-up resistors are not needed.",
+          "verified": true
+        },
+        {
+          "text": "Breakouts usually add address jumpers and SDA/SCL pull-ups.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "pca9685",
+      "aliases": [
+        "pca9685pw",
+        "pca9685-servo"
+      ],
+      "title": "PCA9685 16-channel 12-bit PWM / LED controller (I²C)",
+      "category": "io.pwm",
+      "manufacturer": "NXP",
+      "kind": "ic",
+      "source_ids": [
+        "mod-iox-pca9685-ds"
+      ],
+      "supplies": {
+        "VDD": {
+          "min": {
+            "value": 2.3,
+            "unit": "V",
+            "page": 38,
+            "evidence": "VDD supply voltage 2.3 - 5.5 V"
+          },
+          "max": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 38,
+            "evidence": "VDD supply voltage 2.3 - 5.5 V"
+          },
+          "abs_max": {
+            "value": 6.0,
+            "unit": "V",
+            "page": 38,
+            "evidence": [
+              "Table 13. Limiting values",
+              "VDD supply voltage",
+              "+6.0 V"
+            ]
+          }
+        }
+      },
+      "io": {
+        "domain": "VDD",
+        "vih": {
+          "rel": 0.7,
+          "unit": "V",
+          "of": "VDD",
+          "page": 38,
+          "evidence": [
+            "Input SCL; input/output SDA",
+            "VIH HIGH-level input voltage 0.7VDD"
+          ],
+          "conditions": "SCL, SDA; VDD 2.3–5.5 V"
+        },
+        "vil": {
+          "rel": 0.3,
+          "unit": "V",
+          "of": "VDD",
+          "page": 38,
+          "evidence": [
+            "Input SCL; input/output SDA",
+            "VIL LOW-level input voltage",
+            "+0.3V DD V"
+          ],
+          "conditions": "SCL, SDA"
+        },
+        "vol": {
+          "value": 0.4,
+          "unit": "V",
+          "page": 38,
+          "evidence": "IOL LOW-level output current V OL =0 . 4V",
+          "conditions": "SDA sinks ≥ 20 mA at 0.4 V (≥ 30 mA with a 5.0 V supply); VDD 2.3–5.5 V"
+        },
+        "v_in_max": {
+          "value": 5.5,
+          "unit": "V",
+          "page": 38,
+          "evidence": [
+            "VI/O voltage on an input/output pin VSS",
+            "0.5 5.5 V"
+          ],
+          "conditions": "absolute maximum rating, independent of VDD"
+        },
+        "outputs": "push_pull",
+        "five_v_tolerant": true
+      },
+      "pins": [
+        {
+          "name": "A0",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "no internal pull-up; pull HIGH or LOW (p. 7)"
+        },
+        {
+          "name": "A1",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "no internal pull-up; pull HIGH or LOW (p. 7)"
+        },
+        {
+          "name": "A2",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "no internal pull-up; pull HIGH or LOW (p. 7)"
+        },
+        {
+          "name": "A3",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "no internal pull-up; pull HIGH or LOW (p. 7)"
+        },
+        {
+          "name": "A4",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "no internal pull-up; pull HIGH or LOW (p. 7)"
+        },
+        {
+          "name": "A5",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "no internal pull-up; pull HIGH or LOW (p. 7)"
+        },
+        {
+          "name": "LED0",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "PWM output, totem pole by default (sink 25 mA / source 10 mA at 5 V), open-drain via MODE2.OUTDRV"
+        },
+        {
+          "name": "LED1",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "PWM output, totem pole by default (sink 25 mA / source 10 mA at 5 V), open-drain via MODE2.OUTDRV"
+        },
+        {
+          "name": "LED2",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "PWM output, totem pole by default (sink 25 mA / source 10 mA at 5 V), open-drain via MODE2.OUTDRV"
+        },
+        {
+          "name": "LED3",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "PWM output, totem pole by default (sink 25 mA / source 10 mA at 5 V), open-drain via MODE2.OUTDRV"
+        },
+        {
+          "name": "LED4",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "PWM output, totem pole by default (sink 25 mA / source 10 mA at 5 V), open-drain via MODE2.OUTDRV"
+        },
+        {
+          "name": "LED5",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "PWM output, totem pole by default (sink 25 mA / source 10 mA at 5 V), open-drain via MODE2.OUTDRV"
+        },
+        {
+          "name": "LED6",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "PWM output, totem pole by default (sink 25 mA / source 10 mA at 5 V), open-drain via MODE2.OUTDRV"
+        },
+        {
+          "name": "LED7",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "PWM output, totem pole by default (sink 25 mA / source 10 mA at 5 V), open-drain via MODE2.OUTDRV"
+        },
+        {
+          "name": "LED8",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "PWM output, totem pole by default (sink 25 mA / source 10 mA at 5 V), open-drain via MODE2.OUTDRV"
+        },
+        {
+          "name": "LED9",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "PWM output, totem pole by default (sink 25 mA / source 10 mA at 5 V), open-drain via MODE2.OUTDRV"
+        },
+        {
+          "name": "LED10",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "PWM output, totem pole by default (sink 25 mA / source 10 mA at 5 V), open-drain via MODE2.OUTDRV"
+        },
+        {
+          "name": "LED11",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "PWM output, totem pole by default (sink 25 mA / source 10 mA at 5 V), open-drain via MODE2.OUTDRV"
+        },
+        {
+          "name": "LED12",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "PWM output, totem pole by default (sink 25 mA / source 10 mA at 5 V), open-drain via MODE2.OUTDRV"
+        },
+        {
+          "name": "LED13",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "PWM output, totem pole by default (sink 25 mA / source 10 mA at 5 V), open-drain via MODE2.OUTDRV"
+        },
+        {
+          "name": "LED14",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "PWM output, totem pole by default (sink 25 mA / source 10 mA at 5 V), open-drain via MODE2.OUTDRV"
+        },
+        {
+          "name": "LED15",
+          "signal": "digital_out",
+          "output": "push_pull",
+          "note": "PWM output, totem pole by default (sink 25 mA / source 10 mA at 5 V), open-drain via MODE2.OUTDRV"
+        },
+        {
+          "name": "VSS",
+          "signal": "gnd"
+        },
+        {
+          "name": "OE",
+          "signal": "enable_in",
+          "active_low": true,
+          "note": "active-low output enable; tie to GND or drive from a GPIO"
+        },
+        {
+          "name": "EXTCLK",
+          "signal": "digital_in",
+          "tie": "GND",
+          "note": "must be grounded when the external clock is not used (p. 7)"
+        },
+        {
+          "name": "SCL",
+          "signal": "i2c_scl"
+        },
+        {
+          "name": "SDA",
+          "signal": "i2c_sda"
+        },
+        {
+          "name": "VDD",
+          "signal": "supply"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {
+            "value": [
+              "0x40",
+              "0x41",
+              "0x42",
+              "0x43",
+              "0x44",
+              "0x45",
+              "0x46",
+              "0x47",
+              "0x48",
+              "0x49",
+              "0x4a",
+              "0x4b",
+              "0x4c",
+              "0x4d",
+              "0x4e",
+              "0x4f",
+              "0x50",
+              "0x51",
+              "0x52",
+              "0x53",
+              "0x54",
+              "0x55",
+              "0x56",
+              "0x57",
+              "0x58",
+              "0x59",
+              "0x5a",
+              "0x5b",
+              "0x5c",
+              "0x5d",
+              "0x5e",
+              "0x5f",
+              "0x60",
+              "0x61",
+              "0x62",
+              "0x63",
+              "0x64",
+              "0x65",
+              "0x66",
+              "0x67",
+              "0x68",
+              "0x69",
+              "0x6a",
+              "0x6b",
+              "0x6c",
+              "0x6d",
+              "0x6e",
+              "0x6f",
+              "0x70",
+              "0x71",
+              "0x72",
+              "0x73",
+              "0x74",
+              "0x75",
+              "0x76",
+              "0x77",
+              "0x78",
+              "0x79",
+              "0x7a",
+              "0x7b",
+              "0x7c",
+              "0x7d",
+              "0x7e",
+              "0x7f"
+            ],
+            "page": 8,
+            "evidence": [
+              "Fig 4. Slave address",
+              "1 A5 A4 A3 A2 A1 A0"
+            ],
+            "conditions": "7-bit address 1 A5 A4 A3 A2 A1 A0"
+          },
+          "default": "0x40",
+          "select": {
+            "pins": [
+              "A5",
+              "A4",
+              "A3",
+              "A2",
+              "A1",
+              "A0"
+            ],
+            "map": {
+              "GND,GND,GND,GND,GND,GND": "0x40",
+              "GND,GND,GND,GND,GND,VDD": "0x41",
+              "GND,GND,GND,GND,VDD,GND": "0x42",
+              "GND,GND,GND,GND,VDD,VDD": "0x43",
+              "GND,GND,GND,VDD,GND,GND": "0x44",
+              "GND,GND,GND,VDD,GND,VDD": "0x45",
+              "GND,GND,GND,VDD,VDD,GND": "0x46",
+              "GND,GND,GND,VDD,VDD,VDD": "0x47",
+              "GND,GND,VDD,GND,GND,GND": "0x48",
+              "GND,GND,VDD,GND,GND,VDD": "0x49",
+              "GND,GND,VDD,GND,VDD,GND": "0x4a",
+              "GND,GND,VDD,GND,VDD,VDD": "0x4b",
+              "GND,GND,VDD,VDD,GND,GND": "0x4c",
+              "GND,GND,VDD,VDD,GND,VDD": "0x4d",
+              "GND,GND,VDD,VDD,VDD,GND": "0x4e",
+              "GND,GND,VDD,VDD,VDD,VDD": "0x4f",
+              "GND,VDD,GND,GND,GND,GND": "0x50",
+              "GND,VDD,GND,GND,GND,VDD": "0x51",
+              "GND,VDD,GND,GND,VDD,GND": "0x52",
+              "GND,VDD,GND,GND,VDD,VDD": "0x53",
+              "GND,VDD,GND,VDD,GND,GND": "0x54",
+              "GND,VDD,GND,VDD,GND,VDD": "0x55",
+              "GND,VDD,GND,VDD,VDD,GND": "0x56",
+              "GND,VDD,GND,VDD,VDD,VDD": "0x57",
+              "GND,VDD,VDD,GND,GND,GND": "0x58",
+              "GND,VDD,VDD,GND,GND,VDD": "0x59",
+              "GND,VDD,VDD,GND,VDD,GND": "0x5a",
+              "GND,VDD,VDD,GND,VDD,VDD": "0x5b",
+              "GND,VDD,VDD,VDD,GND,GND": "0x5c",
+              "GND,VDD,VDD,VDD,GND,VDD": "0x5d",
+              "GND,VDD,VDD,VDD,VDD,GND": "0x5e",
+              "GND,VDD,VDD,VDD,VDD,VDD": "0x5f",
+              "VDD,GND,GND,GND,GND,GND": "0x60",
+              "VDD,GND,GND,GND,GND,VDD": "0x61",
+              "VDD,GND,GND,GND,VDD,GND": "0x62",
+              "VDD,GND,GND,GND,VDD,VDD": "0x63",
+              "VDD,GND,GND,VDD,GND,GND": "0x64",
+              "VDD,GND,GND,VDD,GND,VDD": "0x65",
+              "VDD,GND,GND,VDD,VDD,GND": "0x66",
+              "VDD,GND,GND,VDD,VDD,VDD": "0x67",
+              "VDD,GND,VDD,GND,GND,GND": "0x68",
+              "VDD,GND,VDD,GND,GND,VDD": "0x69",
+              "VDD,GND,VDD,GND,VDD,GND": "0x6a",
+              "VDD,GND,VDD,GND,VDD,VDD": "0x6b",
+              "VDD,GND,VDD,VDD,GND,GND": "0x6c",
+              "VDD,GND,VDD,VDD,GND,VDD": "0x6d",
+              "VDD,GND,VDD,VDD,VDD,GND": "0x6e",
+              "VDD,GND,VDD,VDD,VDD,VDD": "0x6f",
+              "VDD,VDD,GND,GND,GND,GND": "0x70",
+              "VDD,VDD,GND,GND,GND,VDD": "0x71",
+              "VDD,VDD,GND,GND,VDD,GND": "0x72",
+              "VDD,VDD,GND,GND,VDD,VDD": "0x73",
+              "VDD,VDD,GND,VDD,GND,GND": "0x74",
+              "VDD,VDD,GND,VDD,GND,VDD": "0x75",
+              "VDD,VDD,GND,VDD,VDD,GND": "0x76",
+              "VDD,VDD,GND,VDD,VDD,VDD": "0x77",
+              "VDD,VDD,VDD,GND,GND,GND": "0x78",
+              "VDD,VDD,VDD,GND,GND,VDD": "0x79",
+              "VDD,VDD,VDD,GND,VDD,GND": "0x7a",
+              "VDD,VDD,VDD,GND,VDD,VDD": "0x7b",
+              "VDD,VDD,VDD,VDD,GND,GND": "0x7c",
+              "VDD,VDD,VDD,VDD,GND,VDD": "0x7d",
+              "VDD,VDD,VDD,VDD,VDD,GND": "0x7e",
+              "VDD,VDD,VDD,VDD,VDD,VDD": "0x7f"
+            }
+          },
+          "reserved": [
+            "0x70",
+            "0x00"
+          ],
+          "f_max_hz": {
+            "value": 1000000.0,
+            "unit": "Hz",
+            "page": 40,
+            "evidence": "fSCL SCL clock frequency [1] 0 100 0 400 0 1000 kHz",
+            "conditions": "Fast-mode Plus"
+          },
+          "note": "reserved: LED All Call 0x70 (enabled at power-up, MODE1.ALLCALL = 1) and the SWRST General Call 0x00 (p. 8, 28)"
+        }
+      ],
+      "current": {
+        "supply": "VDD",
+        "typ": {
+          "value": 0.006,
+          "unit": "A",
+          "page": 38,
+          "evidence": [
+            "IDD supply current operating mode; no load;",
+            "fSCL = 1 MHz; VDD = 2.3 V to 5.5 V",
+            "-6 1 0 m A"
+          ],
+          "conditions": "no load, fSCL 1 MHz"
+        },
+        "max": {
+          "value": 0.01,
+          "unit": "A",
+          "page": 38,
+          "evidence": [
+            "IDD supply current operating mode; no load;",
+            "fSCL = 1 MHz; VDD = 2.3 V to 5.5 V",
+            "-6 1 0 m A"
+          ],
+          "conditions": "no load, fSCL 1 MHz"
+        },
+        "sleep": {
+          "value": 1.55e-05,
+          "unit": "A",
+          "page": 38,
+          "evidence": [
+            "Istb standby current no load;",
+            "- 2.2 15.5"
+          ],
+          "conditions": "max, fSCL = 0 Hz"
+        },
+        "note": "LED output currents come on top: ≤ 25 mA per output, ≤ 400 mA total through VSS (p. 38)"
+      },
+      "requires": [],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "LED All Call address 0x70 (E0h) is enabled at power-up; it must not be used as a regular address, and no other device should sit at 0x70 while ALLCALL is on.",
+          "page": 8,
+          "evidence": [
+            "At power-up, LED All Call I2C-bus address is enabled.",
+            "Remark: The default LED All Call I2C-bus address (E0h or 1110 000X) must not be used"
+          ],
+          "verified": true
+        },
+        {
+          "text": "MODE1.ALLCALL defaults to 1 (the device answers the All Call address).",
+          "page": 14,
+          "evidence": "1* PCA9685 responds to LED All Call I 2C-bus address.",
+          "verified": true
+        },
+        {
+          "text": "Software Reset uses the General Call address 0x00 followed by 06h; it resets every PCA9685 on the bus.",
+          "page": 28,
+          "evidence": [
+            "The reserved SWRST I 2C-bus address ‘0000 000’",
+            "a. Byte 1 = 06h"
+          ],
+          "verified": true
+        },
+        {
+          "text": "Sub Call addresses (E2h, E4h, E8h) are disabled at power-up.",
+          "page": 8,
+          "evidence": "At power-up, Sub Call I2C-bus addresses are disabled.",
+          "verified": true
+        },
+        {
+          "text": "Two of the 64 pin-selectable addresses cannot be used, leaving 62.",
+          "page": 7,
+          "evidence": "Two of these addresses, Software Reset and LED All Call, cannot be used",
+          "verified": true
+        },
+        {
+          "text": "LED outputs are 5.5 V tolerant only and sink up to 25 mA at 5 V.",
+          "page": 29,
+          "evidence": "The PCA9685 LED output drivers are 5.5 V only tolerant and can sink up to 25 mA at 5 V.",
+          "verified": true
+        },
+        {
+          "text": "Output current per LED pin max 25 mA; ground supply current max 400 mA (limiting values).",
+          "page": 38,
+          "evidence": [
+            "IO(LEDn) output current on pin LEDn - 25 mA",
+            "ISS ground supply current - 400 mA"
+          ],
+          "verified": true
+        },
+        {
+          "text": "EXTCLK must be grounded when the external clock is not used.",
+          "page": 7,
+          "evidence": "[2] This pin must be grounded when this feature is not used.",
+          "verified": true
+        },
+        {
+          "text": "Address pins have no internal pull-ups and must be pulled HIGH or LOW.",
+          "page": 7,
+          "evidence": "they must be pulled HIGH or LOW.",
+          "verified": true
+        },
+        {
+          "text": "Internal 25 MHz oscillator needs no external parts.",
+          "page": 3,
+          "evidence": "25 MHz typical internal oscillator requires no external components",
+          "verified": true
+        },
+        {
+          "text": "NXP leaves external decoupling to the designer (FAQ, ground bounce with 16 outputs at 25 mA).",
+          "page": 36,
+          "evidence": "determine if additional decoupling capacitance externally placed as close as",
+          "verified": true
+        },
+        {
+          "text": "16-channel servo boards (Adafruit style) default to 0x40, have A0–A5 solder jumpers, 220 Ω series resistors and a separate V+ servo rail with a bulk capacitor; servo current must not come from the ESP 3.3 V rail. NXP documents none of the servo power side.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "tca9548a",
+      "aliases": [
+        "tca9548",
+        "tca9548apwr"
+      ],
+      "title": "TCA9548A 8-channel I²C switch (mux) with reset",
+      "category": "io.i2c_mux",
+      "manufacturer": "Texas Instruments",
+      "kind": "ic",
+      "source_ids": [
+        "mod-iox-tca9548a-ds"
+      ],
+      "supplies": {
+        "VCC": {
+          "min": {
+            "value": 1.65,
+            "unit": "V",
+            "page": 4,
+            "evidence": [
+              "VCC Supply voltage",
+              "-40 ℃ ≤ TA ≤ 85 ℃ 1.65 5.5 V"
+            ],
+            "conditions": "−40…85 °C (up to 125 °C only to 3.6 V)"
+          },
+          "max": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 4,
+            "evidence": [
+              "VCC Supply voltage",
+              "-40 ℃ ≤ TA ≤ 85 ℃ 1.65 5.5 V"
+            ],
+            "conditions": "−40…85 °C"
+          },
+          "abs_max": {
+            "value": 7.0,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VCC Supply voltage –0.5 7 V"
+          }
+        }
+      },
+      "io": {
+        "domain": "VCC",
+        "vih": {
+          "rel": 0.7,
+          "unit": "V",
+          "of": "VCC",
+          "page": 4,
+          "evidence": [
+            "VIH High-level input voltage",
+            "SCL, SDA 0.7 × VCC 6 V"
+          ],
+          "conditions": "SCL, SDA (A2–A0, RESET also 0.7 × VCC)"
+        },
+        "vil": {
+          "rel": 0.3,
+          "unit": "V",
+          "of": "VCC",
+          "page": 4,
+          "evidence": [
+            "VIL Low-level input voltage",
+            "SCL, SDA –0.5 0.3 × VCC"
+          ],
+          "conditions": "SCL, SDA"
+        },
+        "vol": {
+          "value": 0.4,
+          "unit": "V",
+          "page": 6,
+          "evidence": [
+            "IOL SDA",
+            "VOL = 0.4 V 1.65 V to 5.5 V 3 6 mA"
+          ],
+          "conditions": "SDA sinks ≥ 3 mA at 0.4 V"
+        },
+        "v_in_max": {
+          "value": 7.0,
+          "unit": "V",
+          "page": 4,
+          "evidence": "VI Input voltage(2) –0.5 7 V",
+          "conditions": "absolute maximum rating"
+        },
+        "outputs": "open_drain",
+        "five_v_tolerant": true
+      },
+      "pins": [
+        {
+          "name": "VCC",
+          "signal": "supply"
+        },
+        {
+          "name": "GND",
+          "signal": "gnd"
+        },
+        {
+          "name": "SDA",
+          "signal": "i2c_sda",
+          "note": "upstream bus"
+        },
+        {
+          "name": "SCL",
+          "signal": "i2c_scl",
+          "note": "upstream bus"
+        },
+        {
+          "name": "A0",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "connect directly to VCC or GND (p. 3)"
+        },
+        {
+          "name": "A1",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "connect directly to VCC or GND (p. 3)"
+        },
+        {
+          "name": "A2",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "connect directly to VCC or GND (p. 3)"
+        },
+        {
+          "name": "RESET",
+          "signal": "reset_in",
+          "active_low": true,
+          "must_connect": true,
+          "note": "pull-up to VCC if not used (p. 3)"
+        },
+        {
+          "name": "SD0",
+          "signal": "i2c_sda",
+          "note": "channel 0 data; pull-up to VDPU0 (p. 3)"
+        },
+        {
+          "name": "SC0",
+          "signal": "i2c_scl",
+          "note": "channel 0 clock; pull-up to VDPU0 (p. 3)"
+        },
+        {
+          "name": "SD1",
+          "signal": "i2c_sda",
+          "note": "channel 1 data; pull-up to VDPU1 (p. 3)"
+        },
+        {
+          "name": "SC1",
+          "signal": "i2c_scl",
+          "note": "channel 1 clock; pull-up to VDPU1 (p. 3)"
+        },
+        {
+          "name": "SD2",
+          "signal": "i2c_sda",
+          "note": "channel 2 data; pull-up to VDPU2 (p. 3)"
+        },
+        {
+          "name": "SC2",
+          "signal": "i2c_scl",
+          "note": "channel 2 clock; pull-up to VDPU2 (p. 3)"
+        },
+        {
+          "name": "SD3",
+          "signal": "i2c_sda",
+          "note": "channel 3 data; pull-up to VDPU3 (p. 3)"
+        },
+        {
+          "name": "SC3",
+          "signal": "i2c_scl",
+          "note": "channel 3 clock; pull-up to VDPU3 (p. 3)"
+        },
+        {
+          "name": "SD4",
+          "signal": "i2c_sda",
+          "note": "channel 4 data; pull-up to VDPU4 (p. 3)"
+        },
+        {
+          "name": "SC4",
+          "signal": "i2c_scl",
+          "note": "channel 4 clock; pull-up to VDPU4 (p. 3)"
+        },
+        {
+          "name": "SD5",
+          "signal": "i2c_sda",
+          "note": "channel 5 data; pull-up to VDPU5 (p. 3)"
+        },
+        {
+          "name": "SC5",
+          "signal": "i2c_scl",
+          "note": "channel 5 clock; pull-up to VDPU5 (p. 3)"
+        },
+        {
+          "name": "SD6",
+          "signal": "i2c_sda",
+          "note": "channel 6 data; pull-up to VDPU6 (p. 3)"
+        },
+        {
+          "name": "SC6",
+          "signal": "i2c_scl",
+          "note": "channel 6 clock; pull-up to VDPU6 (p. 3)"
+        },
+        {
+          "name": "SD7",
+          "signal": "i2c_sda",
+          "note": "channel 7 data; pull-up to VDPU7 (p. 3)"
+        },
+        {
+          "name": "SC7",
+          "signal": "i2c_scl",
+          "note": "channel 7 clock; pull-up to VDPU7 (p. 3)"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {
+            "value": [
+              "0x70",
+              "0x71",
+              "0x72",
+              "0x73",
+              "0x74",
+              "0x75",
+              "0x76",
+              "0x77"
+            ],
+            "page": 15,
+            "evidence": [
+              "A2 A1 A0",
+              "L L L 112 (decimal), 70 (hexadecimal)",
+              "H H H 119 (decimal), 77 (hexadecimal)"
+            ],
+            "conditions": "7-bit address 1110 A2 A1 A0 (Table 7-1)"
+          },
+          "default": "0x70",
+          "select": {
+            "pins": [
+              "A2",
+              "A1",
+              "A0"
+            ],
+            "map": {
+              "GND,GND,GND": "0x70",
+              "GND,GND,VCC": "0x71",
+              "GND,VCC,GND": "0x72",
+              "GND,VCC,VCC": "0x73",
+              "VCC,GND,GND": "0x74",
+              "VCC,GND,VCC": "0x75",
+              "VCC,VCC,GND": "0x76",
+              "VCC,VCC,VCC": "0x77"
+            }
+          },
+          "f_max_hz": {
+            "value": 400000.0,
+            "unit": "Hz",
+            "page": 7,
+            "evidence": "fscl I2C clock frequency 0 400 kHz",
+            "conditions": "fast mode"
+          },
+          "mux_channels": [
+            [
+              "SD0",
+              "SC0"
+            ],
+            [
+              "SD1",
+              "SC1"
+            ],
+            [
+              "SD2",
+              "SC2"
+            ],
+            [
+              "SD3",
+              "SC3"
+            ],
+            [
+              "SD4",
+              "SC4"
+            ],
+            [
+              "SD5",
+              "SC5"
+            ],
+            [
+              "SD6",
+              "SC6"
+            ],
+            [
+              "SD7",
+              "SC7"
+            ]
+          ],
+          "note": "channels 0–7 = control register bits B0–B7; any combination can be enabled, none after power-up/reset (p. 12, 18)"
+        }
+      ],
+      "current": {
+        "supply": "VCC",
+        "typ": {
+          "value": 5e-05,
+          "unit": "A",
+          "page": 6,
+          "evidence": [
+            "fSCL = 400 kHz VI = VCC or GND(3), IO = 0",
+            "5.5 V 50 80"
+          ],
+          "conditions": "VCC 5.5 V, fSCL 400 kHz (3.6 V: 20/35 µA)"
+        },
+        "max": {
+          "value": 8e-05,
+          "unit": "A",
+          "page": 6,
+          "evidence": [
+            "fSCL = 400 kHz VI = VCC or GND(3), IO = 0",
+            "5.5 V 50 80"
+          ],
+          "conditions": "VCC 5.5 V, fSCL 400 kHz (3.6 V: 20/35 µA)"
+        },
+        "sleep": {
+          "value": 2e-06,
+          "unit": "A",
+          "page": 6,
+          "evidence": [
+            "Standby mode",
+            "5.5 V 0.2 2"
+          ],
+          "conditions": "max, low inputs, −40…85 °C"
+        }
+      },
+      "requires": [
+        {
+          "code": "pullup",
+          "kind": "resistor",
+          "pins": [
+            "SDA",
+            "SCL"
+          ],
+          "page": 3,
+          "evidence": [
+            "SCL 22 19 I/O Serial clock bus. Connect to VDPUM (1) through a pull-up resistor",
+            "SDA 23 20 I/O Serial data bus. Connect to VDPUM (1) through a pull-up resistor"
+          ],
+          "note": "to the upstream pull-up voltage VDPUM"
+        },
+        {
+          "code": "pullup",
+          "kind": "resistor",
+          "pins": [
+            "RESET"
+          ],
+          "to": "VCC",
+          "page": 3,
+          "evidence": "RESET 3 24 I Active-low reset input. Connect to VCC or VDPUM (1) through a pull-up resistor, if not used"
+        },
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "pins": [
+            "VCC"
+          ],
+          "to": "GND",
+          "page": 24,
+          "evidence": "By-pass and de-coupling capacitors are commonly used to control the voltage on the VCC pin,",
+          "note": "TI gives no value; 100 nF ceramic close to VCC is common practice (unverified)"
+        }
+      ],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "Any single channel or any combination of the eight channels can be enabled at the same time: devices with the same address on two channels collide when both channels are on. Enable one channel at a time for duplicate addresses.",
+          "page": 12,
+          "evidence": [
+            "Any individual downstream channel can be",
+            "selected as well as any combination of the eight channels."
+          ],
+          "verified": true
+        },
+        {
+          "text": "After power-up or reset no channel is selected (control register 0x00).",
+          "page": 18,
+          "evidence": "0 0 0 0 0 0 0 0 No channel selected, power-up/reset default state",
+          "verified": true
+        },
+        {
+          "text": "Datasheet use case: identical-address targets on separate channels, one channel enabled while the others are switched off.",
+          "page": 19,
+          "evidence": "The downstream channels are used to resolve I 2C target address conflicts.",
+          "verified": true
+        },
+        {
+          "text": "With several channels enabled, the targets of all enabled channels add to the bus capacitance and their pull-ups add to the controller's IOL.",
+          "page": 21,
+          "evidence": [
+            "If multiple target channels are activated simultaneously in the application, then the total I OL from SCL/SDA to",
+            "channels are activated simultaneously, each of the targets on all channels contribute to total bus capacitance."
+          ],
+          "verified": true
+        },
+        {
+          "text": "Each downstream pair SDx/SCx needs its own pull-ups to the channel voltage VDPUx (voltage translation 1.8–5 V).",
+          "page": 3,
+          "evidence": "SD0 4 1 I/O Serial data 0. Connect to VDPU0 (1) through a pull-up resistor",
+          "verified": true
+        },
+        {
+          "text": "All I/O pins are 5 V tolerant.",
+          "page": 1,
+          "evidence": "channel. All I/O pins are 5V tolerant.",
+          "verified": true
+        },
+        {
+          "text": "The mux address 0x70–0x77 is also seen by devices on every enabled channel; a PCA9685 (All Call 0x70) on a channel collides with a TCA9548A at 0x70.",
+          "verified": false
+        },
+        {
+          "text": "Breakouts (Adafruit style) add A0–A2 pull-downs, a RESET pull-up and upstream pull-ups; downstream pull-ups vary by clone.",
+          "verified": false
+        }
+      ]
+    }
+  ]
+}

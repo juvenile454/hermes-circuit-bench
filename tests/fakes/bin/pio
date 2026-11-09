@@ -1,0 +1,125 @@
+#!/usr/bin/env python3
+"""Fake PlatformIO CLI. Never builds, never uploads, never touches a serial port.
+
+Scenario: JSON file named in CB_FAKE_SCENARIO, else `cb-fake-scenario.json` next to argv[0]. Keys:
+- "metadata" for `pio project metadata`, "config" for `pio project config` (default: the computed configuration of
+  the platformio.ini in -d, with [env], extends and extra_configs merged, like PlatformIO's --json-output),
+- "upload" for `pio run ... -t upload`, "run" for any other `pio run` (a `pio run` without -t/--target fails with
+  exit 97: real PlatformIO would run the `targets` option of platformio.ini, e.g. upload and monitor),
+- otherwise the first argument, then "*".
+Each step: {"rc", "stdout", "sleep", "json", "write_files": {path: text}, "spawn_child", "child_pid_file"}.
+"json" (metadata) is written to --json-output-path, or printed with --json-output.
+`{project_dir}`, `{env}` and `{upload_port}` in stdout, json and write_files paths/texts are replaced by the values
+of -d, -e and --upload-port. argv is appended as one JSON line to CB_FAKE_ARGV_LOG or `cb-fake-argv.log` next
+to argv[0] (only when the scenario file lies there, too).
+"""
+import json
+import os
+import subprocess
+import sys
+import time
+
+
+def opt(args, *names):
+    for i, a in enumerate(args):
+        if a in names and i + 1 < len(args):
+            return args[i + 1]
+        for n in names:
+            if n.startswith("--") and a.startswith(n + "="):
+                return a.split("=", 1)[1]
+    return ""
+
+
+here = os.path.dirname(os.path.abspath(sys.argv[0]))
+argv = sys.argv[1:]
+local = os.path.join(here, "cb-fake-scenario.json")
+path = os.environ.get("CB_FAKE_SCENARIO") or (local if os.path.isfile(local) else "")
+# log next to argv[0] only in a test-prepared folder (never into tests/fakes/bin itself)
+log = os.environ.get("CB_FAKE_ARGV_LOG") or (os.path.join(here, "cb-fake-argv.log") if path == local else "")
+if log:
+    with open(log, "a", encoding="utf-8") as f:
+        f.write(json.dumps({"tool": "pio", "argv": argv, "cwd": os.getcwd()}) + "\n")
+scenario = {}
+if path and os.path.isfile(path):
+    with open(path, encoding="utf-8") as f:
+        scenario = json.load(f)
+targets = [argv[i + 1] for i, a in enumerate(argv[:-1]) if a in ("-t", "--target")]
+targets += [a.split("=", 1)[1] for a in argv if a.startswith("--target=")]
+if argv[:1] == ["run"] and not targets:
+    # real PlatformIO would run the `targets` option of platformio.ini (e.g. upload, monitor): never acceptable
+    sys.stderr.write("FAKE-PIO: `pio run` without -t runs the targets of platformio.ini (refused)\n")
+    sys.exit(97)
+if argv[:2] == ["project", "metadata"]:
+    key = "metadata"
+elif argv[:2] == ["project", "config"]:
+    key = "config"
+elif argv[:1] == ["run"]:
+    key = "upload" if "upload" in targets else "run"
+else:
+    key = argv[0] if argv else "*"
+
+def computed_config(project_dir):
+    """Like `pio project config --json-output` (PlatformIO Core 6.2.0 ProjectConfig.to_json): every section with
+    its options; env sections also get the options of [env] and of `extends` sections. Multi-line values -> lists."""
+    import configparser
+    parser = configparser.ConfigParser(interpolation=None)
+    parser.optionxform = str
+    ini = os.path.join(project_dir, "platformio.ini")
+    parser.read(ini, encoding="utf-8")
+    for extra in [x.strip() for x in parser.get("platformio", "extra_configs", fallback="").split("\n") if x.strip()]:
+        parser.read(os.path.join(project_dir, extra), encoding="utf-8")
+
+    def value(raw):
+        items = [x.strip() for x in raw.replace(",", "\n").split("\n") if x.strip()] if "\n" in raw else None
+        return items if items is not None else raw.strip()
+
+    out = []
+    for section in parser.sections():
+        opts = dict(parser.items(section))
+        if section.startswith("env:"):
+            merged = dict(parser.items("env")) if parser.has_section("env") else {}
+            for base in [x.strip() for x in opts.get("extends", "").split(",") if x.strip()]:
+                merged.update(dict(parser.items(base)) if parser.has_section(base) else {})
+            merged.update(opts)
+            opts = merged
+        out.append([section, [[k, value(v)] for k, v in opts.items()]])
+    return out
+
+
+default = {"rc": 0, "stdout": ""}
+if key == "config":
+    default = {"rc": 0, "stdout": json.dumps(computed_config(opt(argv, "-d", "--project-dir") or ".")) + "\n"}
+step = scenario.get(key, scenario.get("*", default) if key != "config" else default)
+values = {"{project_dir}": opt(argv, "-d", "--project-dir"), "{env}": opt(argv, "-e", "--environment"),
+          "{upload_port}": opt(argv, "--upload-port")}
+
+
+def subst(text):
+    for k, v in values.items():
+        text = text.replace(k, v)
+    return text
+
+
+for name, text in (step.get("write_files") or {}).items():
+    target = subst(name)
+    os.makedirs(os.path.dirname(target), exist_ok=True)
+    with open(target, "w", encoding="utf-8") as f:
+        f.write(subst(text))
+if step.get("spawn_child"):
+    child = subprocess.Popen([sys.executable, "-c", "import time; time.sleep(120)"])
+    with open(step["child_pid_file"], "w", encoding="utf-8") as f:
+        f.write(str(child.pid))
+time.sleep(float(step.get("sleep", 0)))
+stdout = subst(step.get("stdout", ""))
+if "json" in step:  # pio project metadata: --json-output-path writes the file, --json-output prints it
+    text = subst(json.dumps(step["json"]))
+    out_path = opt(argv, "--json-output-path")
+    if out_path:
+        with open(out_path, "w", encoding="utf-8") as f:
+            f.write(text)
+        stdout += f"Saved metadata to the {out_path}\n"
+    elif "--json-output" in argv:
+        stdout += text + "\n"
+sys.stdout.write(stdout)
+sys.stdout.flush()
+sys.exit(int(step.get("rc", 0)))

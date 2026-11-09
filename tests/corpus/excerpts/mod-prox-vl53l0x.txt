@@ -1,0 +1,50 @@
+# source_id: mod-prox-vl53l0x-ds
+# document: VL53L0X Time-of-Flight ranging sensor, datasheet DS11555 Rev 6
+# url: https://web.archive.org/web/20260125042617id_/https://www.st.com/resource/en/datasheet/vl53l0x.pdf
+# corpus: mod/prox/vl53l0x.pdf sha256 f0ae51414474d311bc24c60cd77bfff968ea5c2b3765b2fb2a390b3078dd49be
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+• Class 1 laser device compliant with latest standard IEC 60825-1:2014 - 3rd
+@@ page 4
+Table 3. VL53L0X pin description
+1 AVDDVCSEL Supply VCSEL supply, to be connected to main supply
+5 XSHUT Digital input Xshutdown pin, active low
+7 GPIO1 Digital output Interrupt output. Open drain output
+8 DNC Digital input Do not connect, must be left floating
+9 SDA Digital input/output I²C serial data
+10 SCL Digital input I²C serial clock input
+11 AVDD Supply Supply, to be connected to the main supply
+@@ page 5
+100nF 4.7µF
+once per bus, near the host. Recommended values for pull-up resistors for an AVDD of 2.8 V and a 400 kHz I²C
+clock are 1.5 k to 2 kOhms
+Note: The XSHUT pin must always be driven to avoid leakage current. A pull-up is needed if the host state is not
+Note: The recommended value of the XSHUT and GPIO1 pull-ups is 10 kOhms.
+@@ page 15
+Both SDA and SCL lines are connected to a positive supply voltage using pull-up resistors located on the host.
+bus has a maximum speed of 400 kbits/s and uses a default device address of 0x52.
+0x52) the message is a controller write-to-the-target. If the LSB is set (that is, 0x53) then the message is a
+@@ page 19
+AVDD
+-0.5 — 3.6 V
+SCL, SDA, XSHUT, and GPIO1
+applied. The I/Os are internally failsafe with no diode connecting them to AVDD.
+Voltage (AVDD) 2.6 2.8 3.5
+2. SDA, SCL, XSHUT, and GPIO1 high levels have to be equal to AVDD in 2V8 mode.
+3. The default API mode is 1V8. 2V8 mode is programmable using the device settings loaded by the API. For more details
+@@ page 20
+HW STANDBY 3 5 7
+μASW STANDBY (2V8 mode) (1) 4 6 9
+Active ranging average consumption
+(including VCSEL) (2) (3) — 19 —
+mA
+Average power consumption at 10 Hz
+with 33 ms ranging sequence — — 20
+3. Peak current (including VCSEL) can reach 40 mA.
+Interrupt pin (GPIO1)
+VOL Low level output voltage (IOUT = 4 mA) — 0.4
+I²C interface (SDA/SCL)
+VIL Low level input voltage -0.5
+0.6
+VVIH High level input voltage 1.12 3.5

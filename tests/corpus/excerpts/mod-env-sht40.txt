@@ -1,0 +1,31 @@
+# source_id: mod-env-sht40-ds
+# document: Sensirion Datasheet SHT4x, Version 6.5 (April 2024)
+# url: https://sensirion.com/media/documents/33FD6951/661CD142/HT_DS_Datasheet_SHT4x.pdf
+# corpus: mod/env/HT_DS_Datasheet_SHT4x.pdf sha256 2d471eb9d9f57f619f697118a579240eaf160b8aa49275e0170ccf33eda16e93
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 9
+Supply voltage VDD  1.08 3.3 3.6 V - 
+Idle state - - 0.08 - 1.0 3.4 µA At 25 °C At 125 °C 
+Measurement - 320 500 µA Current while sensor is measuring 
+Nomin. heater “200 mW” - 60 100 mA 
+Low level input 
+voltage VIL - 0 - 0.3* VDD V - 
+High level input 
+voltage VIH - 0.7* VDD - VDD V - 
+Pull up resistors Rp 
+VDD < 1.62 V 820 - - Ω - 
+VDD ≥ 1.62 V 390 - - Ω - 
+@@ page 10
+Max. voltage on any pin  VSS −0.3 V … VDD +0.3 V 
+not support clock -stretching. In case the sensor receives a read header and is still busy with e.g. 
+@@ page 14
+1. The heater is designed for a maximum duty cycle of 10%, meaning the total heater -on-time 
+@@ page 20
+I2C interface with 0x44 address 
+I2C interface with 0x45 address 
+I2C interface with 0x46 address 
+@@ page 21
+SHT40-AD1B-R2 3.000.465 base RH&T acc., 0x44 I2C addr. 2’500 
+SHT40-BD1B-R2 3.000.492 base RH&T acc., 0x45 I2C addr. 2’500 
+SHT40-CD1B-R3 3.000.691 base RH&T acc., 0x46 I2C addr. 10’000 

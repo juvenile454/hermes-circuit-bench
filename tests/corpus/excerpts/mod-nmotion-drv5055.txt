@@ -1,0 +1,23 @@
+# source_id: mod-nmotion-drv5055-ds
+# document: Texas Instruments DRV5055 Ratiometric Linear Hall Effect Sensor, Data Sheet SBAS640C (January 2018, revised June 2026)
+# url: https://www.ti.com/lit/ds/symlink/drv5055.pdf
+# corpus: mod/nmotion/drv5055.pdf sha256 d04305a4ae7a603f95286c957160945ad5c7156b3d4e2137d47d74f614dd3194
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+SBAS640C – JANUARY 2018 – REVISED JUNE 2026
+@@ page 3
+VCC 1 1 — Power supply. TI recommends connecting this pin to a ceramic capacitor to ground with a value of at least 0.01 µF.
+@@ page 4
+Power supply voltage VCC –0.3 7 V
+VCC Power supply voltage(1) 3 3.63 V4.5 5.5
+IO Output continuous current –1 1 mA
+(1) There are two isolated operating VCC ranges. For more information see the  Feature Descriptionsection.
+@@ page 5
+VCC = 5.0V, B = 0mT 3 5 mA
+VCC = 3.3V, B = 0mT 2 4
+fBW Sensing bandwidth 20 kHz
+@@ page 6
+VCC = 3.3V 1.59 1.65 1.71
+DRV5055Z1 57 60 63
+VL Linear range of output voltage(4) 0.2 VCC – 0.2 V

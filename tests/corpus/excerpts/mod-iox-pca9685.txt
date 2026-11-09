@@ -1,0 +1,46 @@
+# source_id: mod-iox-pca9685-ds
+# document: PCA9685 16-channel, 12-bit PWM Fm+ I2C-bus LED controller, Product data sheet Rev. 4
+# url: https://cache.nxp.com/docs/en/data-sheet/PCA9685.pdf
+# corpus: mod/iox/pca9685-ds.pdf sha256 237d47f339cac4c3a0d56a5f0b4d3c93df71e3eb43f36ac57ea4ff38e6b2e585
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 3
+ 25 MHz typical internal oscillator requires no external components
+@@ page 7
+[2] This pin must be grounded when this feature is not used.
+address pins. Two of these addresses, Software Reset and LED All Call, cannot be used 
+they must be pulled HIGH or LOW.
+@@ page 8
+• At power-up, LED All Call I2C-bus address is enabled. PCA9685 sends an ACK when 
+Remark: The default LED All Call I2C-bus address (E0h or 1110 000X) must not be used 
+• At power-up, Sub Call I2C-bus addresses are disabled. PCA9685 does not send an 
+Fig 4. Slave address
+1 A5 A4 A3 A2 A1 A0
+@@ page 14
+1* PCA9685 responds to LED All Call I 2C-bus address.
+@@ page 28
+2. The reserved SWRST I 2C-bus address ‘0000 000’ with the R/W bit set to ‘0’ (write) is 
+a. Byte 1 = 06h: the PCA9685 acknowledges th is value only. If byte 1 is not equal to 
+@@ page 29
+The PCA9685 LED output drivers are 5.5 V only tolerant and can sink up to 25 mA at 5 V.
+@@ page 36
+determine if additional decoupling capacitance externally placed as close as 
+@@ page 38
+Table 13. Limiting values
+VDD supply voltage 0.5 +6.0 V
+VI/O voltage on an input/output pin VSS  0.5 5.5 V
+IO(LEDn) output current on pin LEDn - 25 mA
+ISS ground supply current - 400 mA
+VDD supply voltage 2.3 - 5.5 V
+IDD supply current operating mode; no load; 
+fSCL = 1 MHz; VDD = 2.3 V to 5.5 V
+-6 1 0 m A
+Istb standby current no load; fSCL =0H z ;  VI =V DD or VSS; 
+- 2.2 15.5 A
+Input SCL; input/output SDA
+VIL LOW-level input voltage 0.5 - +0.3V DD V
+VIH HIGH-level input voltage 0.7VDD -5 . 5 V
+IOL LOW-level output current V OL =0 . 4V ;  VDD =2 . 3V 2 0 2 8 - m A
+VOL =0 . 4V ;  VDD =5 . 0V 3 0 4 0 - m A
+@@ page 40
+fSCL SCL clock frequency [1] 0 100 0 400 0 1000 kHz

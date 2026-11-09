@@ -1,0 +1,23 @@
+# Citation excerpt. '#' lines are metadata; '@@ lines A-B' starts a segment of whole lines copied
+# verbatim from the pinned wikitext. tests/test_calc_sources.py checks eseries.py against it and, with the corpus
+# present, the segment against the pinned file.
+# source_id: iec-60063
+# document: Wikipedia, 'E series of preferred numbers', revision 1383955633 (2026-11-05T20:31:39Z), section 'Lists'
+# license: text by Wikipedia contributors, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/); only the value lists are used
+# url: https://en.wikipedia.org/w/index.php?title=E_series_of_preferred_numbers&oldid=1383955633
+# corpus: calc/wikipedia-e-series-1383955633.wiki sha256 bc92a9e701820310fb663d4c61b241a50089730e0c6a2105ce56d6336d223855
+# retrieved: 2026-11-06
+# Secondary source: the standard itself (IEC 60063:2015) is not freely available.
+@@ lines 223-234
+; E3 values
+: (40% tolerance)
+: 1.0, 2.2, 4.7
+; E6 values
+: (20% tolerance)
+: 1.0, 1.5, 2.2, 3.3, 4.7, 6.8
+; E12 values
+: (10% tolerance)
+: 1.0, 1.2, 1.5, 1.8, 2.2, 2.7, 3.3, 3.9, 4.7, 5.6, 6.8, 8.2
+; E24 values
+: (5% tolerance)
+: 1.0, 1.1, 1.2, 1.3, 1.5, 1.6, 1.8, 2.0, 2.2, 2.4, 2.7, 3.0, 3.3, 3.6, 3.9, 4.3, 4.7, 5.1, 5.6, 6.2, 6.8, 7.5, 8.2, 9.1

@@ -1,0 +1,33 @@
+# source_id: mod-motor-tb6612fng-ds
+# document: Toshiba TB6612FNG Driver IC for Dual DC motor data sheet, 2014-10-01
+# url: https://web.archive.org/web/20251012013050id_/https://toshiba.semicon-storage.com/info/TB6612FNG_datasheet_en_20141001.pdf?did=10660&prodName=TB6612FNG
+# corpus: mod/motor/TB6612FNG_datasheet_en_20141001.pdf sha256 a2f153a1bb4c1780a2fd82764be13d47805aabcf1396329d43ccca7c6ade2312
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+• Power supply voltage: VM = 15 V(Max)
+• Output current: IOUT = 1.2 A(ave)/3.2 A (peak)
+@@ page 2
+13 VM2 ― Motor supply 14 VM3
+19 STBY I “L” = standby/200 kΩ pull-down at internal
+20 Vcc  ― Small signal supply
+24 VM1 ― Motor supply
+@@ page 3
+VM 15
+VCC 6
+Input voltage VIN -0.2 to 6 V IN1,IN2,STBY,PWM pins
+IOUT 1.2
+Per 1 ch
+3.2 tw = 10 ms Single pulse
+Supply voltage VCC 2.7 3 5.5 V
+VM 2.5 5 13.5 V
+― ― 1.0
+VM ≥ 4.5 V
+Switching frequency fPWM ― ― 100 kHz
+@@ page 5
+ICC(3 V) STBY = Vcc = 3 V,  VM = 5 V ― 1.1 1.8 mA
+ICC(STB) STBY = 0 V ― ― 1 μA
+VIH ― Vcc×0.7 ― Vcc+0.2 V
+VIL -0.2 ― Vcc×0.3
+@@ page 10
+any time and condition.  These ICs generate heat even during normal use.  An inadequate IC heat

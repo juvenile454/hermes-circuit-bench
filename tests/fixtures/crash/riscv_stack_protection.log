@@ -1,0 +1,6 @@
+Guru Meditation Error: Core 0 panic'ed (Stack protection fault).
+
+Core  0 register dump:
+MEPC    : 0x4200b310  RA      : 0x4200b35a  SP      : 0x3fc96ff0  GP      : 0x3fc8a600
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000008  MTVAL   : 0x00000000
+MHARTID : 0x00000000

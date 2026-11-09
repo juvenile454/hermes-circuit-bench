@@ -1,0 +1,155 @@
+{
+ "ok": true,
+ "action": "calc.i2c_pullup",
+ "summary": "I²C standard mode at 3.30 V, 100 pF: pull-up between 967 Ω and 11.8 kΩ; 3.30 kΩ (E12) suggested.",
+ "result": {
+  "inputs": {
+   "v_dd": {
+    "value": 3.3,
+    "unit": "V",
+    "display": "3.30 V"
+   },
+   "c_bus": {
+    "value": 1e-10,
+    "unit": "F",
+    "display": "100 pF"
+   },
+   "mode": "standard",
+   "v_ol": {
+    "value": 0.4,
+    "unit": "V",
+    "display": "400 mV"
+   },
+   "i_ol": {
+    "value": 0.003,
+    "unit": "A",
+    "display": "3.00 mA"
+   }
+  },
+  "r_min": {
+   "value": 966.667,
+   "unit": "Ω",
+   "display": "967 Ω"
+  },
+  "r_max": {
+   "value": 11802.2,
+   "unit": "Ω",
+   "display": "11.8 kΩ"
+  },
+  "t_r_max": {
+   "value": 1e-06,
+   "unit": "s",
+   "display": "1.00 µs"
+  },
+  "suggested": {
+   "value": 3300.0,
+   "unit": "Ω",
+   "display": "3.30 kΩ"
+  },
+  "formula": "R_min = (V_DD − V_OL) / I_OL; R_max = t_r / (0.8473 · C_b)",
+  "steps": [
+   {
+    "name": "R_min",
+    "expr": "(3.30 V − 400 mV) / 3.00 mA",
+    "value": {
+     "value": 966.667,
+     "unit": "Ω",
+     "display": "967 Ω"
+    }
+   },
+   {
+    "name": "R_max",
+    "expr": "1.00 µs / (0.8473 · 100 pF)",
+    "value": {
+     "value": 11802.2,
+     "unit": "Ω",
+     "display": "11.8 kΩ"
+    }
+   },
+   {
+    "name": "t_r",
+    "expr": "0.8473 · 3.30 kΩ · 100 pF",
+    "value": {
+     "value": 2.79609e-07,
+     "unit": "s",
+     "display": "280 ns"
+    }
+   }
+  ],
+  "suggested_t_r": {
+   "value": 2.79609e-07,
+   "unit": "s",
+   "display": "280 ns"
+  },
+  "suggested_i_sink": {
+   "value": 0.000878788,
+   "unit": "A",
+   "display": "879 µA"
+  }
+ },
+ "checks": [
+  {
+   "id": "calc.i2c.window",
+   "status": "passed",
+   "detail": "R_min 967 Ω ≤ R_max 11.8 kΩ"
+  },
+  {
+   "id": "calc.i2c.c_bus_max",
+   "status": "passed",
+   "detail": "C_b 100 pF ≤ 400 pF (Standard-mode, UM10204 Table 11)"
+  }
+ ],
+ "warnings": [],
+ "assumptions": [
+  {
+   "key": "v_ol",
+   "value": "400 mV",
+   "reason": "UM10204 Table 10: V_OL1 max at 3 mA sink, V_DD > 2 V"
+  },
+  {
+   "key": "i_ol",
+   "value": "3.00 mA",
+   "reason": "UM10204 Table 10: minimum I_OL at V_OL 0.4 V (Standard-/Fast-mode)"
+  },
+  {
+   "key": "t_r",
+   "value": "1.00 µs",
+   "reason": "UM10204 Table 11: maximum rise time, Standard-mode"
+  },
+  {
+   "key": "c_bus",
+   "value": "100 pF",
+   "reason": "given by you: wires, connections and pins (UM10204 §7.1); up to 10 pF per I/O pin (Table 10)"
+  },
+  {
+   "key": "suggested",
+   "value": "E12 value nearest √(R_min · R_max)",
+   "reason": "rule of thumb: margin to both limits; UM10204 §7.1: low-power designs may go toward R_max"
+  }
+ ],
+ "sources": [
+  {
+   "id": "nxp-um10204",
+   "title": "NXP UM10204, I2C-bus specification and user manual, Rev. 7.0 (1 October 2021)",
+   "url": "https://www.nxp.com/docs/en/user-guide/UM10204.pdf",
+   "retrieved": "2026-11-06",
+   "note": "Section 1 features (pages 3-4: unique address per device, number of ICs on one bus limited only by the bus capacitance), Section 7.1 Pull-up resistor sizing (Equations 1 and 2), Table 10 (V_OL, I_OL, C_i), Table 11 (t_r, C_b). PDF SHA-256 dc91f00f65584e06ef36e26c93bf9d91a95fb3c8a1830a9223e53caf678b36af."
+  },
+  {
+   "id": "iec-60063",
+   "title": "IEC 60063:2015 preferred number series E6, E12, E24 (values via Wikipedia, secondary source)",
+   "url": "https://en.wikipedia.org/w/index.php?title=E_series_of_preferred_numbers&oldid=1383955633",
+   "retrieved": "2026-11-06",
+   "note": "Section 'Lists' of the pinned revision; the standard itself is not freely available."
+  },
+  {
+   "id": "rule-of-thumb",
+   "title": "Practice rule, not a standard",
+   "url": null,
+   "retrieved": "2026-11-05",
+   "note": "Shown for engineering judgement only; check the datasheet of your parts."
+  }
+ ],
+ "simulated": false,
+ "error": null
+}

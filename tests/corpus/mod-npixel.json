@@ -1,0 +1,8 @@
+{
+ "files": [
+  {"url": "https://www.world-semi.com/web/userfiles/productfile/WS2813B-V5WDatasheet_V6.0_EN.pdf", "path": "mod/npixel/WS2813B-V5WDatasheet_V6.0_EN.pdf", "source_id": "mod-npixel-ws2813-ds", "excerpt": "excerpts/mod-npixel-ws2813.txt", "sha256": "7cfac6bcd3a602fdc1b7cc4475b4fa99576ff1ad22581bc3afd001955fa8b7a4"},
+  {"url": "https://www.world-semi.com/downloads/datasheets/en/ws2815b-v1-v1.pdf", "path": "mod/npixel/ws2815b-v1-v1.pdf", "source_id": "mod-npixel-ws2815-ds", "excerpt": "excerpts/mod-npixel-ws2815.txt", "sha256": "5abda6670b053011fa6d2043c3c6d681077268be35590c603b0e9d28413dde6c"},
+  {"url": "https://web.archive.org/web/20240619113556id_/https://optoelectronics.liteon.com/upload/download/DS-70-96-0016/LTV-8X7%20series%20RevQ.PDF", "path": "mod/npixel/LTV-8X7_series_RevQ.pdf", "source_id": "mod-npixel-ltv817-ds", "excerpt": "excerpts/mod-npixel-ltv817.txt", "sha256": "89fff3d8b1ce1a66b79a5b6c33705ace957fd4a5a3676e8cb296797f51368c54"},
+  {"url": "https://www.everlighteurope.com/custom/files/datasheets/DPC-0000046.pdf", "path": "mod/npixel/everlight-EL817-DPC-0000046.pdf", "source_id": "mod-npixel-el817-ds", "excerpt": "excerpts/mod-npixel-el817.txt", "sha256": "d9b52e28759df28e6ce862ab5ab5f449136e9ef467c90755c8d90f80db279f69"}
+ ]
+}

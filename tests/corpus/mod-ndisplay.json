@@ -1,0 +1,32 @@
+{
+ "files": [
+  {
+   "url": "https://web.archive.org/web/20220609002357id_/https://www.holtek.com/documents/10179/116711/HT16K33v120.pdf",
+   "path": "mod/ndisplay/ht16k33-v120.pdf",
+   "source_id": "mod-ndisplay-ht16k33-ds",
+   "excerpt": "excerpts/mod-ndisplay-ht16k33.txt",
+   "sha256": "0528ca6ddcc8e6c54f95bc928d0d7a06e12acbf7d16f25e68a036fa729d1aed6"
+  },
+  {
+   "url": "https://web.archive.org/web/20241113181248id_/http://www.titanmec.com/index/article/download.html?file=aHR0cDovL3R3ZHotYXNzZXRzLmRqd2VpbGFpLmNvbS90d2R6X2NuLzIwMjMwNTA1LzIwMjMwNTA1MTUxODM0NzMxLnBkZg%3D%3D&name=TM1638_V2.2",
+   "path": "mod/ndisplay/tm1638-v2.2-zh.pdf",
+   "source_id": "mod-ndisplay-tm1638-ds",
+   "excerpt": "excerpts/mod-ndisplay-tm1638.txt",
+   "sha256": "d05aee5120550d2c0e54f48a84bedd8339ad331e727fea1cf151efc187501a17"
+  },
+  {
+   "url": "https://lumissil.com/assets/pdf/core/IS31FL3731_DS.pdf",
+   "path": "mod/ndisplay/is31fl3731-revg.pdf",
+   "source_id": "mod-ndisplay-is31fl3731-ds",
+   "excerpt": "excerpts/mod-ndisplay-is31fl3731.txt",
+   "sha256": "a9b1eb09c9fb0b86bbacd1672f63a0a66b9e1fda6c0aa22ba489cc2bbbcf4bbf"
+  },
+  {
+   "url": "https://www.waveshare.com/w/upload/e/e2/ST7735S_V1.1_20111121.pdf",
+   "path": "mod/ndisplay/st7735s-v1.1-waveshare.pdf",
+   "source_id": "mod-ndisplay-st7735s-ds",
+   "excerpt": "excerpts/mod-ndisplay-st7735s.txt",
+   "sha256": "37b93f0ef6d5ac0bafe76868e048b67dce682d92fb9bf5a7ca8d8070a45fcc94"
+  }
+ ]
+}

@@ -1,0 +1,57 @@
+# source_id: mod-logic-max98357a-ds
+# document: Analog Devices (Maxim Integrated) MAX98357A/MAX98357B Tiny, Low-Cost, PCM Class D Amplifier with Class AB Performance, data sheet 19-6779 Rev 16 (2/26)
+# url: https://web.archive.org/web/20261004230504id_/https://www.analog.com/media/en/technical-documentation/data-sheets/max98357a-max98357b.pdf
+# corpus: mod/logic/max98357a-max98357b.pdf sha256 dea228ad619901d34c2f5f106243bdb9b9e95e38989d4d66fd6c6c489bfa6f1c
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+19-6779; Rev 16; 2/26
+@@ page 4
+VDD, LRCLK, BCLK, and DIN to GND  ....................-0.3V to +6V
+All Other Pins to GND ..............................-0.3V to (VDD + 0.3V)
+Continuous Current In/Out of VDD/GND/OUT_..................±1.6A
+(VDD = 5V, VGND = 0V, GAIN_SLOT = V DD. BCLK = 3.072MHz, LRCLK = 48kHz, speaker loads (Z SPK) connected between OUTP 
+Supply Voltage Range VDD Guaranteed by PSSR test 2.5 5.5 V
+Quiescent Current IDD
+TA = +25°C 2.75 3.35 mA
+Shutdown Current ISHDN SD_MODE = 0V, TA = +25°C 0.6 2 µA
+@@ page 5
+Current Limit ILIM 2.8 A
+@@ page 6
+(VDD = 5V, VGND = 0V, GAIN_SLOT = V DD. BCLK = 3.072MHz, LRCLK = 48kHz, speaker loads (Z SPK) connected between OUTP 
+LRCLK Range 1 fS1 7.6 8 8.4
+LRCLK Range 4 fS4 83.8 96 100.8
+BCLK Frequency Range fBCLKH BCLK must be 32, 48, or 64X of LRCLK 0.2432 25.804 MHz
+Input High Voltage VIH Digital audio inputs 1.3 V
+@@ page 7
+(VDD = 5V, VGND = 0V, GAIN_SLOT = V DD. BCLK = 3.072MHz, LRCLK = 48kHz, speaker loads (Z SPK) connected between OUTP 
+Input Low Voltage VIL Digital audio inputs 0.6 V
+Input Leakage Current IIH, IIL VIN = 0V, VDD = 5.5V, TA = +25°C -1 +1 µA
+SD_MODE Pulldown Resistor RPD 92 100 108 kΩ
+@@ page 15
+A1 4 SD_MODE
+Shutdown and Channel Select. Pull SD_MODE low to place the device in shutdown. In I2S
+A2 7, 8 VDD Power-Supply Input
+A3 9 OUTP Positive Speaker Amplifier Output
+B1 1 DIN Digital Input Signal
+B2 2 GAIN_SLOT Gain and Channel Selection. In I2S and LJ mode determines amplifier output gain (Table 8)In TDM mode, used for channel selection with SD_MODE (Table 7). In TDM mode, gain isfixed at 12dB.
+B3 10 OUTN Negative Speaker Amplifier Output
+C1 16 BCLK Bit Clock Input
+C2 3, 11, 15 GND Ground
+C3 14 LRCLK Frame Clock. Left/right clock for I2S and LJ mode. Sync clock for TDM mode.
+@@ page 17
+High VSD_MODE > B2 trip point Left
+Pullup through RSMALL B2 trip point > VSD_MODE > B1 trip point Right
+Pullup through RLARGE B1 trip point > VSD_MODE > B0 trip point (Left/2 + right/2)
+Low B0 trip point > VSD_MODE Shutdown
+3.3 210.2 634
+@@ page 28
+Speaker Current Limit
+current limit (2.8A typ), the IC disables the outputs for 
+Table 8. Gain Selection
+Connect to GND 12
+Unconnected 9
+@@ page 33
+VDD, which ranges from 2.5V to 5.5V, powers the IC, 
+including the speaker amplifier. Bypass VDD with a 0.1µF 
+and 10µF capacitor to GND. Some applications might 

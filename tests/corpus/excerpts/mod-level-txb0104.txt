@@ -1,0 +1,43 @@
+# source_id: mod-level-txb0104-ds
+# document: TI TXB0104 4-Bit Bidirectional Voltage-Level Translator With Automatic Direction Sensing and ±15-kV ESD Protection, data sheet SCES650K
+# url: https://www.ti.com/lit/ds/symlink/txb0104.pdf
+# corpus: mod/level/txb0104.pdf sha256 9a852f7bcc4104df0676d7ee3e4918429c3db2cbd79a5338aca0a1d34471e400
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 4
+A1 2 2 2 A1 A3 I/O Input/output 1. Referenced to VCCA.
+B1 13 13 10 C1 A1 I/O Input/output 1. Referenced to VCCB.
+NC 6, 9 6,9 — — — — No connection. Not internally connected.
+OE 8 8 12 B3 C2 I Tri-state output-mode enable. Pull OE low to place all outputs in tri-state mode. Referenced to VCCA.
+@@ page 5
+Supply voltage, VCCA –0.5 4.6 V
+Supply voltage, VCCB –0.5 6.5
+Input voltage, VI
+A port –0.5 4.6
+A port –0.5 4.6
+Voltage applied to any output in the high or low state, VO (2) A port –0.5 VCCA + 0.5 VB port –0.5 VCCB + 0.5
+@@ page 6
+VCCA Supply voltage 1.2 3.6 V
+VCCB Supply voltage 1.65 5.5
+VCCB = 1.65 V to 5.5 V VCCI × 0.65(3) VCCI
+VCCB = 1.65 V to 5.5 V 0 VCCI × 0.35(3)
+(1) The A and B sides of an unused data I/O pair must be held in the same state, that is, both at VCCI or both at GND.
+(2) VCCA must be less than or equal to VCCB and must not exceed 3.6 V.
+(3) VCCI is the supply voltage associated with the input port.
+@@ page 8
+5.6 Electrical Characteristics (Other Packages)
+VOHA
+1.4 V to 3.6 V VCCA – 0.4
+VOHB Port B output high voltage IOH = –20 μA 1.65 V to 5.5 V VCCB – 0.4 V
+@@ page 19
+to improve the overall data rate. This device can only translate push-pull CMOS logic outputs. If for open-drain 
+@@ page 22
+The device is designed to drive capacitive loads of up to 70 pF. The output drivers of the TXB0104 device have 
+low dc drive strength. If pullup or pulldown resistors are connected externally to the data I/Os, their values must 
+be kept higher than 50 kΩ to ensure that they do not contend with the output drivers of the TXB0104 device.
+For the same reason, the TXB0104 device must not be used in applications such as I 2C or 1-Wire where an 
+open-drain driver is connected on the bidirectional data I/O. For these applications, use a device from the TI 
+@@ page 25
+During operation, ensure that V CCA ≤ V CCB at all times. During power-up sequencing, V CCA ≥ V CCB does not 
+GND through a pulldown resistor and must not be enabled until V CCA and VCCB are fully ramped and stable. The 
+• Bypass capacitors must be used on power supplies, and must be placed as close as possible to the VCCA, 

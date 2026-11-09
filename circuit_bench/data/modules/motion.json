@@ -1,0 +1,1930 @@
+{
+ "schema": 1,
+ "wp": "motion",
+ "note": "Values only from manufacturer documents; 'evidence' quotes lines of tests/corpus/excerpts/mod-motion-*.txt (pypdf).",
+ "modules": [
+  {
+   "id": "mpu6050",
+   "aliases": [
+    "mpu-6050",
+    "gy-521"
+   ],
+   "title": "MPU-6050 6-axis accelerometer and gyroscope",
+   "category": "sensor.motion",
+   "manufacturer": "TDK InvenSense",
+   "kind": "ic",
+   "source_ids": [
+    "mod-motion-mpu6050-ds"
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 2.375,
+      "unit": "V",
+      "page": 14,
+      "evidence": "Operating Voltages  2.375  3.46 V"
+     },
+     "max": {
+      "value": 3.46,
+      "unit": "V",
+      "page": 14,
+      "evidence": "Operating Voltages  2.375  3.46 V"
+     },
+     "abs_max": {
+      "value": 6.0,
+      "unit": "V",
+      "page": 20,
+      "evidence": "Supply Voltage, VDD -0.5V to +6V"
+     }
+    },
+    "VLOGIC": {
+     "min": {
+      "value": 1.71,
+      "unit": "V",
+      "page": 14,
+      "evidence": [
+       "Voltage Range VLOGIC must be",
+       "1.71  VDD V"
+      ],
+      "conditions": "max is VDD (VLOGIC must be ≤ VDD at all times)"
+     }
+    }
+   },
+   "io": {
+    "domain": "VLOGIC",
+    "vih": {
+     "rel": 0.7,
+     "of": "VLOGIC",
+     "unit": "V",
+     "page": 15,
+     "evidence": [
+      "VIH, High Level Input Voltage MPU-6000 0.7*VDD",
+      "MPU-6050 0.7*VLOGIC"
+     ],
+     "conditions": "digital inputs SDA, SCL, AD0, FSYNC, CLKIN"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VLOGIC",
+     "unit": "V",
+     "page": 15,
+     "evidence": [
+      "VIL, Low Level Input Voltage MPU-6000",
+      "MPU-6050   0.3*VLOGIC V"
+     ],
+     "conditions": "digital inputs SDA, SCL, AD0, FSYNC, CLKIN"
+    },
+    "voh": {
+     "rel": 0.9,
+     "of": "VLOGIC",
+     "unit": "V",
+     "page": 15,
+     "evidence": [
+      "VOH, High Level Output Voltage",
+      "MPU-6050 0.9*VLOGIC"
+     ],
+     "conditions": "SDO, INT; RLOAD = 1 MΩ"
+    },
+    "vol": {
+     "rel": 0.1,
+     "of": "VLOGIC",
+     "unit": "V",
+     "page": 15,
+     "evidence": [
+      "VOL1, LOW-Level Output Voltage",
+      "MPU-6050   0.1*VLOGIC V"
+     ],
+     "conditions": "SDO, INT; RLOAD = 1 MΩ (SDA: 0.4 V at 3 mA sink, p. 16)"
+    },
+    "v_in_max": {
+     "rel_offset": 0.5,
+     "of": "VDD",
+     "unit": "V",
+     "page": 20,
+     "evidence": [
+      "Input Voltage Level (CLKIN, AUX_DA,  AD0, FSYNC, INT,",
+      "SCL, SDA) -0.5V to VDD + 0.5V"
+     ],
+     "conditions": "absolute maximum rating"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "VDD",
+     "signal": "supply"
+    },
+    {
+     "name": "VLOGIC",
+     "signal": "supply",
+     "tie": "VDD",
+     "note": "digital I/O supply, ≤ VDD (p. 33)"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda"
+    },
+    {
+     "name": "SCL",
+     "signal": "i2c_scl"
+    },
+    {
+     "name": "AD0",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "I²C address LSB (p. 25)"
+    },
+    {
+     "name": "INT",
+     "signal": "digital_out",
+     "note": "totem pole or open-drain (p. 21)"
+    },
+    {
+     "name": "FSYNC",
+     "signal": "digital_in",
+     "tie": "GND",
+     "note": "connect to GND if unused (p. 21)"
+    },
+    {
+     "name": "CLKIN",
+     "signal": "digital_in",
+     "tie": "GND",
+     "note": "connect to GND if unused (p. 21)"
+    },
+    {
+     "name": "AUX_DA",
+     "signal": "nc",
+     "note": "auxiliary I²C master data to external sensors, not the host bus"
+    },
+    {
+     "name": "AUX_CL",
+     "signal": "nc",
+     "note": "auxiliary I²C master clock to external sensors, not the host bus"
+    },
+    {
+     "name": "REGOUT",
+     "signal": "nc",
+     "note": "regulator filter capacitor 0.1 µF to GND (p. 22), no signal"
+    },
+    {
+     "name": "CPOUT",
+     "signal": "nc",
+     "note": "charge pump capacitor 2.2 nF (p. 22), no signal"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "page": 15,
+      "evidence": [
+       "I2C ADDRESS AD0 = 0  1101000",
+       "AD0 = 1  1101001"
+      ],
+      "value": [
+       "0x68",
+       "0x69"
+      ]
+     },
+     "default": "0x68",
+     "select": {
+      "pin": "AD0",
+      "map": {
+       "GND": "0x68",
+       "VLOGIC": "0x69"
+      }
+     },
+     "f_max_hz": {
+      "value": 400000,
+      "unit": "Hz",
+      "page": 15,
+      "evidence": "I2C Operating Frequency All registers, Fast-mode   400 kHz"
+     },
+     "note": "I²C only (the SPI variant is the MPU-6000); bus level set by VLOGIC (p. 25)"
+    }
+   ],
+   "current": {
+    "supply": "VDD",
+    "typ": {
+     "value": 0.0039,
+     "unit": "A",
+     "page": 14,
+     "evidence": "Normal Operating Current Gyroscope + Accelerometer + DMP  3.9  mA",
+     "conditions": "gyroscope + accelerometer + DMP, typical"
+    },
+    "sleep": {
+     "value": 5e-06,
+     "unit": "A",
+     "page": 14,
+     "evidence": "Full-Chip Idle Mode Supply Current   5",
+     "conditions": "full-chip idle, typical"
+    }
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VDD"
+     ],
+     "to": "GND",
+     "page": 22,
+     "evidence": "VDD Bypass Capacitor (Pin 13) C2 Ceramic, X7R, 0.1"
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "10nF",
+     "pins": [
+      "VLOGIC"
+     ],
+     "to": "GND",
+     "page": 22,
+     "evidence": "VLOGIC Bypass Capacitor (Pin 8) C4* Ceramic, X7R, 10nF"
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "REGOUT"
+     ],
+     "to": "GND",
+     "note": "regulator filter capacitor C1 (rated 2 V)",
+     "page": 22,
+     "evidence": "Regulator Filter Capacitor (Pin 10) C1 Ceramic, X7R, 0.1"
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "2.2nF",
+     "pins": [
+      "CPOUT"
+     ],
+     "note": "charge pump capacitor C3 (rated 50 V; CPOUT reaches up to 30 V, p. 20)",
+     "page": 22,
+     "evidence": "Charge Pump Capacitor (Pin 20) C3 Ceramic, X7R, 2.2nF"
+    },
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "to": "VLOGIC",
+     "note": "the text says VDD; for the MPU-6050 the bus level is VLOGIC (p. 25). Value from the I²C pull-up calculator",
+     "page": 33,
+     "evidence": "SDA and SCL lines typically need pull -up resistors to VDD."
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "VLOGIC must stay at or below VDD at all times; its absolute maximum is VDD + 0.5 V.",
+     "verified": true,
+     "page": 20,
+     "evidence": "VLOGIC Input Voltage Level (MPU-6050) -0.5V to VDD + 0.5V"
+    },
+    {
+     "text": "Two MPU-6050 can share one bus: AD0 low = 0x68, AD0 high = 0x69. 0x68 is also the address of common RTCs (DS1307/DS3231).",
+     "verified": true,
+     "page": 33,
+     "evidence": "determined by the logic level on pin AD0. This allows two MPU-60X0s to be connected to the same I 2C bus."
+    },
+    {
+     "text": "GY-521 breakouts add a 3.3 V regulator, I²C pull-ups and a pull-down on AD0 (address 0x68); TDK documents the bare chip only.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "adxl345",
+   "aliases": [
+    "adxl-345",
+    "gy-291"
+   ],
+   "title": "ADXL345 3-axis digital accelerometer",
+   "category": "sensor.motion",
+   "manufacturer": "Analog Devices",
+   "kind": "ic",
+   "source_ids": [
+    "mod-motion-adxl345-ds"
+   ],
+   "supplies": {
+    "VS": {
+     "min": {
+      "value": 2.0,
+      "unit": "V",
+      "page": 4,
+      "evidence": "Operating Voltage Range (VS) 2.0 2.5 3.6 V"
+     },
+     "typ": {
+      "value": 2.5,
+      "unit": "V",
+      "page": 4,
+      "evidence": "Operating Voltage Range (VS) 2.0 2.5 3.6 V"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 4,
+      "evidence": "Operating Voltage Range (VS) 2.0 2.5 3.6 V"
+     },
+     "abs_max": {
+      "value": 3.9,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VS −0.3 V to +3.9 V"
+     }
+    },
+    "VDDIO": {
+     "min": {
+      "value": 1.7,
+      "unit": "V",
+      "page": 4,
+      "evidence": "Interface Voltage Range (VDD I/O) 1.7 1.8 VS V",
+      "conditions": "max is VS"
+     },
+     "typ": {
+      "value": 1.8,
+      "unit": "V",
+      "page": 4,
+      "evidence": "Interface Voltage Range (VDD I/O) 1.7 1.8 VS V"
+     },
+     "abs_max": {
+      "value": 3.9,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VDD I/O −0.3 V to +3.9 V"
+     }
+    }
+   },
+   "io": {
+    "domain": "VDDIO",
+    "vih": {
+     "rel": 0.7,
+     "of": "VDDIO",
+     "unit": "V",
+     "page": 17,
+     "evidence": "High Level Input Voltage (VIH) 0.7 × VDD I/O V",
+     "conditions": "I²C"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VDDIO",
+     "unit": "V",
+     "page": 17,
+     "evidence": "Low Level Input Voltage (VIL) 0.3 × VDD I/O V",
+     "conditions": "I²C"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 17,
+     "evidence": "VDD I/O ≥ 2 V, IOL = 3 mA 400 mV",
+     "conditions": "SDA, VDD I/O ≥ 2 V, IOL = 3 mA"
+    },
+    "v_in_max": {
+     "rel_offset": 0.3,
+     "of": "VDDIO",
+     "unit": "V",
+     "page": 5,
+     "evidence": [
+      "Digital Pins −0.3 V to VDD I/O + 0.3 V or 3.9 V,",
+      "whichever is less"
+     ],
+     "conditions": "absolute maximum rating, at most 3.9 V"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "VDDIO",
+     "signal": "supply",
+     "tie": "VS",
+     "note": "VDD I/O in the datasheet"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "VS",
+     "signal": "supply"
+    },
+    {
+     "name": "CS",
+     "signal": "mode_select",
+     "must_connect": true,
+     "note": "tie to VDD I/O for I²C; no default mode when open (p. 14)"
+    },
+    {
+     "name": "INT1",
+     "signal": "digital_out"
+    },
+    {
+     "name": "INT2",
+     "signal": "digital_out"
+    },
+    {
+     "name": "SDO",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "SDO/ALT ADDRESS"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda",
+     "note": "SDA/SDI/SDIO"
+    },
+    {
+     "name": "SCL",
+     "signal": "i2c_scl",
+     "note": "SCL/SCLK"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "page": 17,
+      "evidence": [
+       "I2C address for the device is 0x1D",
+       "I2C address of 0x53"
+      ],
+      "value": [
+       "0x1d",
+       "0x53"
+      ]
+     },
+     "default": "0x1d",
+     "select": {
+      "pin": "SDO",
+      "map": {
+       "VDDIO": "0x1d",
+       "GND": "0x53"
+      }
+     },
+     "f_max_hz": {
+      "value": 400000,
+      "unit": "Hz",
+      "page": 17,
+      "evidence": "supports standard (100 kHz) and fast (400 kHz) data transfer"
+     },
+     "note": "CS must be tied high to VDD I/O for I²C (p. 14, p. 17)"
+    }
+   ],
+   "current": {
+    "supply": "VS",
+    "typ": {
+     "value": 0.00014,
+     "unit": "A",
+     "page": 4,
+     "evidence": [
+      "Supply Current ODR",
+      "100 Hz 140"
+     ],
+     "conditions": "ODR ≥ 100 Hz, VS = 2.5 V, typical"
+    },
+    "sleep": {
+     "value": 1e-07,
+     "unit": "A",
+     "page": 4,
+     "evidence": "Standby Mode Leakage Current 0.1",
+     "conditions": "standby, typical"
+    }
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "capacitor",
+     "value": "1uF",
+     "note": "tantalum",
+     "pins": [
+      "VS"
+     ],
+     "to": "GND",
+     "page": 29,
+     "evidence": "A 1 µF tantalum capacitor (CS) at VS and a 0.1 µF ceramic"
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VDDIO"
+     ],
+     "to": "GND",
+     "page": 29,
+     "evidence": [
+      "and a 0.1 µF ceramic",
+      "capacitor (CI/O) at VDD I/O placed close to the ADXL345 supply pins"
+     ]
+    },
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "to": "VDDIO",
+     "note": "value from the I²C pull-up calculator",
+     "page": 17,
+     "evidence": "External pull-up resistors, RP, are necessary for"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "CS and SDO/ALT ADDRESS have no internal pull resistors: in I²C mode connect CS to VDD I/O and SDO to VDD I/O (0x1D) or GND (0x53).",
+     "verified": true,
+     "page": 17,
+     "evidence": [
+      "There are no internal pull-up or pull-down resistors for any unused",
+      "that the CS pin be connected to VDD I/O and that the ALT ADDRESS"
+     ]
+    },
+    {
+     "text": "DEVID register 0x00 reads 0xE5.",
+     "verified": true,
+     "page": 24,
+     "evidence": "The DEVID register holds a fixed device ID code of 0xE5"
+    },
+    {
+     "text": "GY-291 breakouts add a 3.3 V regulator and pull-ups; whether CS and SDO are strapped on the board varies, check the board before relying on I²C.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "lis3dh",
+   "aliases": [
+    "lis-3dh"
+   ],
+   "title": "LIS3DH 3-axis ultra-low-power accelerometer",
+   "category": "sensor.motion",
+   "manufacturer": "STMicroelectronics",
+   "kind": "ic",
+   "source_ids": [
+    "mod-motion-lis3dh-ds"
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 1.71,
+      "unit": "V",
+      "page": 12,
+      "evidence": "Vdd Supply voltage 1.71 2.5 3.6 V"
+     },
+     "typ": {
+      "value": 2.5,
+      "unit": "V",
+      "page": 12,
+      "evidence": "Vdd Supply voltage 1.71 2.5 3.6 V"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 12,
+      "evidence": "Vdd Supply voltage 1.71 2.5 3.6 V"
+     },
+     "abs_max": {
+      "value": 4.8,
+      "unit": "V",
+      "page": 15,
+      "evidence": "Vdd Supply voltage -0.3 to 4.8 V"
+     }
+    },
+    "VDD_IO": {
+     "min": {
+      "value": 1.71,
+      "unit": "V",
+      "page": 12,
+      "evidence": "Vdd_IO I/O pins supply voltage (2) 1.71 Vdd+0.1 V",
+      "conditions": "max is Vdd + 0.1 V"
+     },
+     "abs_max": {
+      "value": 4.8,
+      "unit": "V",
+      "page": 15,
+      "evidence": "Vdd_IO I/O pins Supply voltage -0.3 to 4.8 V"
+     }
+    }
+   },
+   "io": {
+    "domain": "VDD_IO",
+    "vih": {
+     "rel": 0.8,
+     "of": "VDD_IO",
+     "unit": "V",
+     "page": 12,
+     "evidence": "VIH Digital high-level input voltage 0.8*Vdd_IO V"
+    },
+    "vil": {
+     "rel": 0.2,
+     "of": "VDD_IO",
+     "unit": "V",
+     "page": 12,
+     "evidence": "VIL Digital low-level input voltage 0.2*Vdd_IO V"
+    },
+    "voh": {
+     "rel": 0.9,
+     "of": "VDD_IO",
+     "unit": "V",
+     "page": 12,
+     "evidence": "VOH High-level output voltage 0.9*Vdd_IO V"
+    },
+    "vol": {
+     "rel": 0.1,
+     "of": "VDD_IO",
+     "unit": "V",
+     "page": 12,
+     "evidence": "VOL Low-level output voltage 0.1*Vdd_IO V"
+    },
+    "v_in_max": {
+     "rel_offset": 0.3,
+     "of": "VDD_IO",
+     "unit": "V",
+     "page": 15,
+     "evidence": "Vin Input voltage on any control pin (CS, SCL/SPC, SDA/SDI/SDO, SDO/SA0)  -0.3 to Vdd_IO +0.3 V",
+     "conditions": "absolute maximum rating"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "VDD_IO",
+     "signal": "supply",
+     "tie": "VDD",
+     "note": "Vdd_IO in the datasheet"
+    },
+    {
+     "name": "SCL",
+     "signal": "i2c_scl",
+     "note": "SCL/SPC"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda",
+     "note": "SDA/SDI/SDO"
+    },
+    {
+     "name": "SDO",
+     "signal": "addr_select",
+     "internal_pull": "up",
+     "note": "SDO/SA0, internal pull-up (20.4–54.4 kΩ typ. by Vdd_IO, p. 9)"
+    },
+    {
+     "name": "CS",
+     "signal": "mode_select",
+     "must_connect": true,
+     "note": "1 = I²C enabled (p. 9)"
+    },
+    {
+     "name": "INT2",
+     "signal": "digital_out"
+    },
+    {
+     "name": "RES",
+     "signal": "nc",
+     "tie": "GND",
+     "note": "connect to GND (p. 9)"
+    },
+    {
+     "name": "INT1",
+     "signal": "digital_out"
+    },
+    {
+     "name": "ADC3",
+     "signal": "analog_in"
+    },
+    {
+     "name": "VDD",
+     "signal": "supply",
+     "note": "Vdd in the datasheet"
+    },
+    {
+     "name": "ADC2",
+     "signal": "analog_in"
+    },
+    {
+     "name": "ADC1",
+     "signal": "analog_in"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "page": 25,
+      "evidence": [
+       "(address 0011001b)",
+       "(address 0011000b)"
+      ],
+      "value": [
+       "0x18",
+       "0x19"
+      ]
+     },
+     "default": "0x19",
+     "select": {
+      "pin": "SDO",
+      "map": {
+       "GND": "0x18",
+       "VDD_IO": "0x19"
+      }
+     },
+     "f_max_hz": {
+      "value": 400000,
+      "unit": "Hz",
+      "page": 24,
+      "evidence": "The I2C interface is compliant with fast mode (400 kHz) I2C standards as well as with"
+     },
+     "note": "CS must be tied high (Vdd_IO) for I²C (p. 24); SDO/SA0 open = 0x19 (internal pull-up)"
+    }
+   ],
+   "current": {
+    "supply": "VDD",
+    "typ": {
+     "value": 1.1e-05,
+     "unit": "A",
+     "page": 12,
+     "evidence": "Idd Current consumption in normal mode 50 Hz ODR 11",
+     "conditions": "normal mode, ODR 50 Hz"
+    },
+    "sleep": {
+     "value": 5e-07,
+     "unit": "A",
+     "page": 12,
+     "evidence": "IddPdn Current consumption in power-down mode 0.5",
+     "conditions": "power-down"
+    }
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VDD"
+     ],
+     "to": "GND",
+     "page": 20,
+     "evidence": "Power supply decoupling capacitors (100 nF ceramic, 10"
+    },
+    {
+     "code": "bulk_cap",
+     "kind": "capacitor",
+     "value": "10uF",
+     "note": "aluminum electrolytic",
+     "pins": [
+      "VDD"
+     ],
+     "to": "GND",
+     "page": 20,
+     "evidence": "Power supply decoupling capacitors (100 nF ceramic, 10"
+    },
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "to": "VDD_IO",
+     "note": "value from the I²C pull-up calculator",
+     "page": 24,
+     "evidence": "Both the lines must be connected to Vdd_IO through external pull-up"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "SDO/SA0 is pulled up internally (address 0x19 when open); writing 0x90 to CTRL_REG0 (0x1E) disables the pull-up.",
+     "verified": true,
+     "page": 21,
+     "evidence": "In order to disable the internal pull-up on the SDO/SA0 pin, write 90h in CTRL_REG0 (1Eh)."
+    },
+    {
+     "text": "Vdd_IO may exceed Vdd by at most 0.1 V.",
+     "verified": true,
+     "page": 12,
+     "evidence": "Vdd_IO I/O pins supply voltage (2) 1.71 Vdd+0.1 V"
+    },
+    {
+     "text": "Breakout boards (e.g. Adafruit LIS3DH) add a 3.3 V regulator, level shifting and pull-ups; ST documents the bare chip only.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "bno055",
+   "aliases": [
+    "bno-055"
+   ],
+   "title": "BNO055 9-axis absolute orientation sensor (sensor fusion)",
+   "category": "sensor.motion",
+   "manufacturer": "Bosch Sensortec",
+   "kind": "ic",
+   "source_ids": [
+    "mod-motion-bno055-ds"
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 2.4,
+      "unit": "V",
+      "page": 13,
+      "evidence": "VDD -- 2.4 -- 3.6 V"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 13,
+      "evidence": "VDD -- 2.4 -- 3.6 V"
+     },
+     "abs_max": {
+      "value": 4.2,
+      "unit": "V",
+      "page": 18,
+      "evidence": "Voltage at Supply Pin VDD Pin  -0.3 4.2 V"
+     }
+    },
+    "VDDIO": {
+     "min": {
+      "value": 1.7,
+      "unit": "V",
+      "page": 13,
+      "evidence": "VDDIO -- 1.7 -- 3.6 V"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 13,
+      "evidence": "VDDIO -- 1.7 -- 3.6 V"
+     },
+     "abs_max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 18,
+      "evidence": "VDDIO Pin  -0.3 3.6 V"
+     }
+    }
+   },
+   "io": {
+    "domain": "VDDIO",
+    "vih": {
+     "rel": 0.55,
+     "of": "VDDIO",
+     "unit": "V",
+     "page": 13,
+     "evidence": [
+      "VDDIO_VIH VDDIO = 1.7-2.7V 0.7 VDDIO",
+      "VDDIO = 2.7-3.6V 0.55 VDDIO"
+     ],
+     "conditions": "VDDIO 2.7–3.6 V"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VDDIO",
+     "unit": "V",
+     "page": 13,
+     "evidence": [
+      "VDDIO_VIL VDDIO = 1.7-2.7V -- -- 0.25 VDDIO V",
+      "VDDIO = 2.7-3.6V -- -- 0.3 VDDIO V"
+     ],
+     "conditions": "VDDIO 2.7–3.6 V"
+    },
+    "voh": {
+     "rel": 0.8,
+     "of": "VDDIO",
+     "unit": "V",
+     "page": 13,
+     "evidence": "VDDIO_VOH VDDIO > 3V , IOH =10mA 0.8 VDDIO",
+     "conditions": "VDDIO > 3 V, IOH = 10 mA, min"
+    },
+    "vol": {
+     "rel": 0.2,
+     "of": "VDDIO",
+     "unit": "V",
+     "page": 13,
+     "evidence": "VDDIO_VOL VDDIO > 3V , IOL =20mA -- 0.1 VDDIO 0.2 VDDIO V",
+     "conditions": "VDDIO > 3 V, IOL = 20 mA, max"
+    },
+    "v_in_max": {
+     "rel_offset": 0.3,
+     "of": "VDDIO",
+     "unit": "V",
+     "page": 18,
+     "evidence": "Voltage at any Logic Pin Vnon-supply Pin  -0.3 VDDIO+0.3 V",
+     "conditions": "absolute maximum rating"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "VDD",
+     "signal": "supply"
+    },
+    {
+     "name": "nBOOT_LOAD_PIN",
+     "signal": "mode_select",
+     "active_low": true,
+     "note": "low during reset/power-on enters the bootloader (p. 51); keep high for normal operation"
+    },
+    {
+     "name": "PS1",
+     "signal": "mode_select",
+     "must_connect": true,
+     "note": "GND for I²C (p. 99)"
+    },
+    {
+     "name": "PS0",
+     "signal": "mode_select",
+     "must_connect": true,
+     "note": "GND for I²C (p. 99)"
+    },
+    {
+     "name": "CAP",
+     "signal": "nc",
+     "note": "external capacitor only (p. 106), no signal"
+    },
+    {
+     "name": "nRESET",
+     "signal": "reset_in",
+     "active_low": true
+    },
+    {
+     "name": "INT",
+     "signal": "digital_out"
+    },
+    {
+     "name": "COM3",
+     "signal": "addr_select",
+     "internal_pull": {
+      "up": {
+       "value": 40000,
+       "unit": "Ω",
+       "page": 99,
+       "evidence": [
+        "COM3 pin Rup",
+        "20 40 60 k"
+       ],
+       "conditions": "internal pull-up to VDDIO, typ"
+      }
+     },
+     "note": "I²C address select, internal pull-up: open = 0x29"
+    },
+    {
+     "name": "COM2",
+     "signal": "mode_select",
+     "tie": "GND",
+     "note": "GNDIO in I²C mode (p. 99)"
+    },
+    {
+     "name": "COM1",
+     "signal": "i2c_scl",
+     "note": "SCL in I²C mode, Rx in UART mode"
+    },
+    {
+     "name": "COM0",
+     "signal": "i2c_sda",
+     "note": "SDA in I²C mode, Tx in UART mode"
+    },
+    {
+     "name": "GNDIO",
+     "signal": "gnd",
+     "tie": "GND"
+    },
+    {
+     "name": "XOUT32",
+     "signal": "nc",
+     "note": "optional 32.768 kHz crystal"
+    },
+    {
+     "name": "XIN32",
+     "signal": "nc",
+     "note": "optional 32.768 kHz crystal"
+    },
+    {
+     "name": "VDDIO",
+     "signal": "supply",
+     "tie": "VDD"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "page": 100,
+      "evidence": [
+       "The default I²C address of the BNO055 device is 0101001b (0x29). The alternative address",
+       "0101000b (0x28)"
+      ],
+      "value": [
+       "0x28",
+       "0x29"
+      ]
+     },
+     "default": "0x29",
+     "select": {
+      "pin": "COM3",
+      "map": {
+       "GND": "0x28",
+       "VDDIO": "0x29"
+      }
+     },
+     "f_max_hz": {
+      "value": 400000,
+      "unit": "Hz",
+      "page": 100,
+      "evidence": "Clock Frequency fSCL   400 kHz"
+     },
+     "note": "PS1 = PS0 = GND selects standard/fast I²C (p. 99); the BNO055 stretches the clock (p. 100)"
+    }
+   ],
+   "current": {
+    "supply": "VDD",
+    "max": {
+     "value": 0.0123,
+     "unit": "A",
+     "page": 13,
+     "evidence": "IDD + IDDIO VDD = 3V, VDDIO = 2.5V -- -- 12.3 mA",
+     "conditions": "normal mode, VDD + VDDIO, VDD = 3 V, VDDIO = 2.5 V"
+    },
+    "sleep": {
+     "value": 4e-05,
+     "unit": "A",
+     "page": 13,
+     "evidence": "IDD_SuM VDD = 3V, VDDIO = 2.5V -- -- 0.04* mA",
+     "conditions": "suspend mode, max, VDD = 3 V, VDDIO = 2.5 V"
+    }
+   },
+   "requires": [
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "COM0",
+      "COM1"
+     ],
+     "to": "VDDIO",
+     "note": "value from the I²C pull-up calculator (bus load ≤ 400 pF, p. 99)",
+     "page": 100,
+     "evidence": "output) signal lines. Both lines are connected to V DDIO externally via pull-up resistors so that"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "The BNO055 I²C interface uses clock stretching.",
+     "verified": true,
+     "page": 100,
+     "evidence": [
+      "The BNO055 I²C interface uses clock",
+      "stretching."
+     ]
+    },
+    {
+     "text": "PS1/PS0 must not float: GND/GND = I²C, VDDIO/GND = UART on COM0 (Tx) and COM1 (Rx).",
+     "verified": true,
+     "page": 99,
+     "evidence": "It is not allowed to keep the protocol select pins floating."
+    },
+    {
+     "text": "VDD must be powered before or at the same time as VDDIO.",
+     "verified": true,
+     "page": 19,
+     "evidence": "For the switching sequence of power supply VDD and VDDIO it is mandatory that VDD is powered"
+    },
+    {
+     "text": "CHIP_ID register 0x00 reads 0xA0.",
+     "verified": true,
+     "page": 60,
+     "evidence": "BNO055 CHIP ID <7:0> Chip identification code, read-only fixed value 0xA0"
+    },
+    {
+     "text": "Below 2.7 V VDDIO (1.7–2.7 V) the input thresholds are VIL 0.25·VDDIO and VIH 0.7·VDDIO; the catalog levels hold only for VDDIO 2.7–3.6 V and are not used at other VDDIO voltages.",
+     "verified": true,
+     "page": 13,
+     "evidence": [
+      "VDDIO_VIL VDDIO = 1.7-2.7V -- -- 0.25 VDDIO V",
+      "VDDIO_VIH VDDIO = 1.7-2.7V 0.7 VDDIO"
+     ]
+    },
+    {
+     "text": "Breakouts (e.g. Adafruit BNO055) add a 3.3 V regulator and pull-ups and often pull COM3 low (0x28). The reference circuit (Figure 9, p. 107) draws 100 nF, 120 nF and 1 µF capacitors; the text layer gives the values but not the pins they sit on, so they are not modelled as required parts.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "qmc5883l",
+   "aliases": [
+    "qmc5883",
+    "gy-271"
+   ],
+   "title": "QMC5883L 3-axis magnetometer",
+   "category": "sensor.motion",
+   "manufacturer": "QST",
+   "kind": "ic",
+   "source_ids": [
+    "mod-motion-qmc5883l-ds"
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 2.16,
+      "unit": "V",
+      "page": 4,
+      "evidence": "Supply Voltage VDD 2.16  3.6 V"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 4,
+      "evidence": "Supply Voltage VDD 2.16  3.6 V"
+     },
+     "abs_max": {
+      "value": 5.4,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VDD -0.3 5.4 V"
+     }
+    },
+    "VDDIO": {
+     "min": {
+      "value": 1.65,
+      "unit": "V",
+      "page": 4,
+      "evidence": "I/O Voltage VDDIO 1.65  3.6 V",
+      "conditions": "Table 2; the pin table (p. 6) says 1.71 V to VDD"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 4,
+      "evidence": "I/O Voltage VDDIO 1.65  3.6 V"
+     },
+     "abs_max": {
+      "value": 5.4,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VDDIO -0.3 5.4 V"
+     }
+    }
+   },
+   "io": {
+    "domain": "VDDIO",
+    "vih": {
+     "rel": 0.7,
+     "of": "VDDIO",
+     "unit": "V",
+     "page": 5,
+     "evidence": [
+      "VIH1 SDA, SCL  0.7*VD",
+      "DIO"
+     ],
+     "conditions": "SDA, SCL"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VDDIO",
+     "unit": "V",
+     "page": 5,
+     "evidence": [
+      "VIL1 SDA, SCL  -0.3  0.3*VD",
+      "DIO"
+     ],
+     "conditions": "SDA, SCL"
+    },
+    "voh": {
+     "rel": 0.8,
+     "of": "VDDIO",
+     "unit": "V",
+     "page": 5,
+     "evidence": [
+      "VOH INT Output Current",
+      "0.8*VD"
+     ],
+     "conditions": "DRDY/INT, ≥ −100 µA"
+    },
+    "vol": {
+     "rel": 0.2,
+     "of": "VDDIO",
+     "unit": "V",
+     "page": 5,
+     "evidence": [
+      "VOL INT, SDA Output Current",
+      "0.2*VD"
+     ],
+     "conditions": "SDA ≤ 1 mA, INT ≤ 100 µA"
+    },
+    "v_in_max": {
+     "rel_offset": 0.3,
+     "of": "VDDIO",
+     "unit": "V",
+     "page": 5,
+     "evidence": [
+      "VIH1 SDA, SCL  0.7*VD",
+      "VDDIO+",
+      "0.3"
+     ],
+     "conditions": "max of VIH1 (I/O characteristics); no absolute rating for signal pins"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "SCL",
+     "signal": "i2c_scl"
+    },
+    {
+     "name": "VDD",
+     "signal": "supply"
+    },
+    {
+     "name": "S1",
+     "signal": "mode_select",
+     "tie": "VDDIO",
+     "note": "tie to VDDIO (p. 6)"
+    },
+    {
+     "name": "SETP",
+     "signal": "nc",
+     "note": "set/reset capacitor C2, no signal"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "C1",
+     "signal": "nc",
+     "note": "reservoir capacitor C1 4.7 µF to GND (p. 10), no signal"
+    },
+    {
+     "name": "SETC",
+     "signal": "nc",
+     "note": "set/reset capacitor C2, driver side, no signal"
+    },
+    {
+     "name": "VDDIO",
+     "signal": "supply",
+     "tie": "VDD"
+    },
+    {
+     "name": "DRDY",
+     "signal": "digital_out",
+     "note": "data ready, high until the data registers are read"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "page": 12,
+      "evidence": "The default  I2C address is 0D: 0001101",
+      "value": [
+       "0x0d"
+      ]
+     },
+     "default": "0x0d",
+     "f_max_hz": {
+      "value": 400000,
+      "unit": "Hz",
+      "page": 12,
+      "evidence": "speed modes, 100kHz and 400kHz, respectively."
+     },
+     "note": "one fixed address; other addresses only on request from QST (p. 12)"
+    }
+   ],
+   "current": {
+    "supply": "VDD",
+    "typ": {
+     "value": 0.00085,
+     "unit": "A",
+     "page": 4,
+     "evidence": "ODR = 200Hz   450/850",
+     "conditions": "continuous mode, ODR 200 Hz, high power (450 µA low power), VDD + VDDIO, typical: the largest listed current"
+    },
+    "peak": {
+     "value": 0.0026,
+     "unit": "A",
+     "page": 4,
+     "evidence": [
+      "Peak Current on VDD and",
+      " 2.6  mA"
+     ],
+     "conditions": "during measurement"
+    },
+    "sleep": {
+     "value": 3e-06,
+     "unit": "A",
+     "page": 4,
+     "evidence": "Standby Current Total Current on VDD and VDDIO  3",
+     "conditions": "standby, VDD + VDDIO"
+    },
+    "note": "typical values; the datasheet gives no maximum current (ODR 10 Hz: 75/100 µA low/high power)"
+   },
+   "requires": [
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "to": "VDDIO",
+     "note": "value from the I²C pull-up calculator",
+     "page": 12,
+     "evidence": "speed modes, 100kHz and 400kHz, respectively. External pull -up resistors are required to support all these"
+    },
+    {
+     "code": "bulk_cap",
+     "kind": "ceramic",
+     "value": "4.7uF",
+     "pins": [
+      "C1"
+     ],
+     "to": "GND",
+     "note": "reservoir capacitor, low ESR (< 200 mΩ)",
+     "page": 10,
+     "evidence": "not critical, but values less than 200 milli -ohms are recommended. Reservoir capacitor C1 is nominally 4.7"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Chip ID register 0x0D reads 0xFF.",
+     "verified": true,
+     "page": 20,
+     "evidence": "It returns 0xFF."
+    },
+    {
+     "text": "GY-271 boards are sold with an HMC5883L (address 0x1E) or a QMC5883L (0x0D); the register maps differ. Check the chip marking or scan the bus.",
+     "verified": false
+    },
+    {
+     "text": "The value of the set/reset capacitor C2 and of the supply decoupling are only in the figures (not in the text layer).",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "max30102",
+   "aliases": [
+    "max-30102"
+   ],
+   "title": "MAX30102 pulse oximeter and heart-rate sensor",
+   "category": "sensor.bio",
+   "manufacturer": "Analog Devices (Maxim Integrated)",
+   "kind": "ic",
+   "source_ids": [
+    "mod-motion-max30102-ds"
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 1.7,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Power-Supply Voltage VDD Guaranteed by RED and IR count tolerance 1.7 1.8 2.0 V"
+     },
+     "typ": {
+      "value": 1.8,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Power-Supply Voltage VDD Guaranteed by RED and IR count tolerance 1.7 1.8 2.0 V"
+     },
+     "max": {
+      "value": 2.0,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Power-Supply Voltage VDD Guaranteed by RED and IR count tolerance 1.7 1.8 2.0 V"
+     },
+     "abs_max": {
+      "value": 2.2,
+      "unit": "V",
+      "page": 2,
+      "evidence": [
+       "VDD to GND",
+       "-0.3V to +2.2V"
+      ]
+     }
+    },
+    "VLED+": {
+     "min": {
+      "value": 3.1,
+      "unit": "V",
+      "page": 2,
+      "evidence": "VLED+ to PGND VLED+ Guaranteed by PSRR of LED driver 3.1 3.3 5.0 V"
+     },
+     "typ": {
+      "value": 3.3,
+      "unit": "V",
+      "page": 2,
+      "evidence": "VLED+ to PGND VLED+ Guaranteed by PSRR of LED driver 3.1 3.3 5.0 V"
+     },
+     "max": {
+      "value": 5.0,
+      "unit": "V",
+      "page": 2,
+      "evidence": "VLED+ to PGND VLED+ Guaranteed by PSRR of LED driver 3.1 3.3 5.0 V"
+     },
+     "abs_max": {
+      "value": 6.0,
+      "unit": "V",
+      "page": 2,
+      "evidence": [
+       "VLED+ to PGND",
+       "-0.3V to +6.0V"
+      ]
+     }
+    }
+   },
+   "io": {
+    "domain": "VDD",
+    "vih": {
+     "rel": 0.7,
+     "of": "VDD",
+     "unit": "V",
+     "page": 4,
+     "evidence": "Input High Voltage VIH VDD = 2V 0.7 x VDD V",
+     "conditions": "SCL, SDA, VDD = 2 V"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VDD",
+     "unit": "V",
+     "page": 4,
+     "evidence": "Input Low Voltage VIL VDD = 2V 0.3 x VDD V",
+     "conditions": "SCL, SDA, VDD = 2 V"
+    },
+    "vol": {
+     "value": 0.2,
+     "unit": "V",
+     "page": 4,
+     "evidence": "Ouput Low Voltage VOL ISINK = 6mA 0.2 V",
+     "conditions": "SDA, INT, sink 6 mA"
+    },
+    "v_in_max": {
+     "value": 6.0,
+     "unit": "V",
+     "page": 2,
+     "evidence": [
+      "All Other Pins to GND",
+      "-0.3V to +6.0V"
+     ],
+     "conditions": "absolute maximum rating of SCL, SDA, INT (not tied to VDD)"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "SCL",
+     "signal": "i2c_scl"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda",
+     "note": "open-drain"
+    },
+    {
+     "name": "PGND",
+     "signal": "gnd",
+     "tie": "GND",
+     "note": "LED driver ground"
+    },
+    {
+     "name": "VLED+",
+     "signal": "supply",
+     "note": "LED anode supply (pins 9 and 10)"
+    },
+    {
+     "name": "VDD",
+     "signal": "supply",
+     "note": "1.8 V supply (1.7–2.0 V)"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "INT",
+     "signal": "open_drain_out",
+     "active_low": true
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "page": 5,
+      "evidence": [
+       "I2C Write Address AE Hex",
+       "I2C Read Address AF Hex"
+      ],
+      "value": [
+       "0x57"
+      ]
+     },
+     "default": "0x57",
+     "f_max_hz": {
+      "value": 400000,
+      "unit": "Hz",
+      "page": 5,
+      "evidence": "Serial Clock Frequency fSCL 0 400 kHz"
+     },
+     "note": "8-bit write/read addresses 0xAE/0xAF = 7-bit 0x57, fixed"
+    }
+   ],
+   "current": {
+    "supply": "VDD",
+    "typ": {
+     "value": 0.0006,
+     "unit": "A",
+     "page": 2,
+     "evidence": [
+      "SpO2 and HR mode, PW = 215",
+      "50sps 600 1200"
+     ],
+     "conditions": "SpO2 and HR mode, 50 sps"
+    },
+    "max": {
+     "value": 0.0012,
+     "unit": "A",
+     "page": 2,
+     "evidence": [
+      "SpO2 and HR mode, PW = 215",
+      "50sps 600 1200"
+     ],
+     "conditions": "SpO2 and HR mode, 50 sps"
+    },
+    "sleep": {
+     "value": 7e-07,
+     "unit": "A",
+     "page": 2,
+     "evidence": [
+      "Supply Current in Shutdown ISHDN",
+      "MODE = 0x80 0.7 10"
+     ],
+     "conditions": "shutdown, typ at 25 °C (max 10 µA)"
+    },
+    "note": "LED pulses (0–50 mA per LED, p. 9) come from VLED+, not VDD"
+   },
+   "requires": [
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "note": "SDA always; SCL with an open-drain master such as the ESP I²C pins. To the 1.8 V or 3.3 V bus (pins are rated to 6 V)",
+     "page": 28,
+     "evidence": "A pullup resistor, typically greater than 500"
+    },
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "INT"
+     ],
+     "page": 8,
+     "evidence": "13 INT Active-Low Interrupt (Open-Drain). Connect to an external voltage with a pullup resistor."
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "1uF",
+     "pins": [
+      "VLED+"
+     ],
+     "to": "PGND",
+     "page": 23,
+     "evidence": [
+      "that there is at least 1",
+      "of power supply bypass"
+     ]
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "pins": [
+      "VDD"
+     ],
+     "to": "GND",
+     "page": 8,
+     "evidence": "11 VDD Analog Power Supply Input. Use a bypass capacitor to GND for best performance."
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "VDD is a 1.8 V supply: 3.3 V exceeds the absolute maximum of 2.2 V. VLED+ takes 3.1–5.0 V.",
+     "verified": true,
+     "page": 2,
+     "evidence": [
+      "VDD to GND",
+      "-0.3V to +2.2V"
+     ]
+    },
+    {
+     "text": "Part ID register 0xFF reads 0x15.",
+     "verified": true,
+     "page": 11,
+     "evidence": "Part ID PART_ID[7] 0xFF 0x15 R"
+    },
+    {
+     "text": "Common MAX30102 breakouts carry a 1.8 V regulator for VDD; some board revisions pull SDA/SCL up to 1.8 V only. Check the board before connecting it to 3.3 V.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "apds9960",
+   "aliases": [
+    "apds-9960",
+    "gy-9960"
+   ],
+   "title": "APDS-9960 proximity, ambient light, RGB and gesture sensor",
+   "category": "sensor.light",
+   "manufacturer": "Broadcom",
+   "kind": "ic",
+   "source_ids": [
+    "mod-motion-apds9960-ds"
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 2.4,
+      "unit": "V",
+      "page": 3,
+      "evidence": "Power supply voltage VDD 2.4 3.0 3.6 V"
+     },
+     "typ": {
+      "value": 3.0,
+      "unit": "V",
+      "page": 3,
+      "evidence": "Power supply voltage VDD 2.4 3.0 3.6 V"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 3,
+      "evidence": "Power supply voltage VDD 2.4 3.0 3.6 V"
+     },
+     "abs_max": {
+      "value": 3.8,
+      "unit": "V",
+      "page": 3,
+      "evidence": "Power supply voltage [1] VDD 3.8 V"
+     }
+    },
+    "LEDA": {
+     "min": {
+      "value": 3.0,
+      "unit": "V",
+      "page": 3,
+      "evidence": "LED supply voltage VLEDA 3.0 4.5 V"
+     },
+     "max": {
+      "value": 4.5,
+      "unit": "V",
+      "page": 3,
+      "evidence": "LED supply voltage VLEDA 3.0 4.5 V"
+     }
+    }
+   },
+   "io": {
+    "domain": "VDD",
+    "vih": {
+     "value": 1.26,
+     "unit": "V",
+     "page": 3,
+     "evidence": "SCL, SDA input high voltage, VIH VIH 1.26 VDD V",
+     "conditions": "min"
+    },
+    "vil": {
+     "value": 0.54,
+     "unit": "V",
+     "page": 3,
+     "evidence": "SCL, SDA input low voltage, VIL VIL 0.54 V",
+     "conditions": "max"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 3,
+     "evidence": "VOL INT, SDA output low voltage VOL 0 0.4 V 3 mA sink current",
+     "conditions": "INT, SDA, 3 mA sink"
+    },
+    "v_in_max": {
+     "value": 3.8,
+     "unit": "V",
+     "page": 3,
+     "evidence": "Input voltage range VIN -0.5 3.8 V",
+     "conditions": "absolute maximum rating"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "SDA",
+     "signal": "i2c_sda"
+    },
+    {
+     "name": "INT",
+     "signal": "open_drain_out",
+     "active_low": true
+    },
+    {
+     "name": "LDR",
+     "signal": "nc",
+     "note": "internal IR LED driver: connect to LEDK (p. 3)"
+    },
+    {
+     "name": "LEDK",
+     "signal": "nc",
+     "note": "IR LED cathode: connect to LDR (p. 3)"
+    },
+    {
+     "name": "LEDA",
+     "signal": "supply",
+     "note": "IR LED anode supply (VLEDA)"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "SCL",
+     "signal": "i2c_scl"
+    },
+    {
+     "name": "VDD",
+     "signal": "supply"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "page": 8,
+      "evidence": "The device supports a single slave address of 0 ×39 Hex",
+      "value": [
+       "0x39"
+      ]
+     },
+     "default": "0x39",
+     "f_max_hz": {
+      "value": 400000,
+      "unit": "Hz",
+      "page": 6,
+      "evidence": "Clock frequency (I2C-bus only) fSCL 0 400 kHz"
+     },
+     "note": "one fixed address (other addresses on request from the factory, p. 8)"
+    }
+   ],
+   "current": {
+    "supply": "VDD",
+    "typ": {
+     "value": 0.00079,
+     "unit": "A",
+     "page": 3,
+     "evidence": [
+      "790 Proximity, LDR pulse ON,",
+      "790 Gesture, LDR pulse ON,"
+     ],
+     "conditions": "proximity or gesture engine, LDR pulse ON (8 pulses), LED current ILDR not included, VDD = 3 V, typical"
+    },
+    "sleep": {
+     "value": 1e-06,
+     "unit": "A",
+     "page": 3,
+     "evidence": "1.0 10.0 Sleep state [2]",
+     "conditions": "sleep, typ (max 10 µA)"
+    },
+    "note": "typical values; the datasheet gives a maximum only for the active ALS state (200 µA typ, 250 µA max), none for proximity/gesture (790 µA typ) or wait (38 µA typ); IR LED pulses (up to 100 mA, p. 4) come from LEDA and are not included"
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "1uF",
+     "pins": [
+      "VDD"
+     ],
+     "to": "GND",
+     "note": "low ESR",
+     "page": 34,
+     "evidence": [
+      "meet. Place a 1",
+      "low-ESR decoupling capacitor as close",
+      "as possible to the VDD pin and another at the LEDA pin,"
+     ]
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "1uF",
+     "pins": [
+      "LEDA"
+     ],
+     "to": "GND",
+     "note": "low ESR",
+     "page": 34,
+     "evidence": [
+      "meet. Place a 1",
+      "low-ESR decoupling capacitor as close",
+      "as possible to the VDD pin and another at the LEDA pin,"
+     ]
+    },
+    {
+     "code": "bulk_cap",
+     "kind": "capacitor",
+     "value": "10uF",
+     "pins": [
+      "LEDA"
+     ],
+     "to": "GND",
+     "note": "≥ 10 µF at the output of the LED supply regulator",
+     "page": 34,
+     "evidence": "along with a bulk storage capacitor"
+    },
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "note": "value from the I²C pull-up calculator",
+     "page": 34,
+     "evidence": [
+      "-bus signals and the Interrupt are open-drain outputs and",
+      "require pull"
+     ]
+    },
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "value": "10k",
+     "pins": [
+      "INT"
+     ],
+     "page": 34,
+     "evidence": [
+      "the capacitive load. A 10-k",
+      "pull-up resistor (R PI) can be"
+     ]
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "ID register 0x92 reads 0xAB.",
+     "verified": true,
+     "page": 25,
+     "evidence": "0xAB = APDS-9960"
+    },
+    {
+     "text": "From a single supply: 22 Ω in series with VDD plus 1 µF; above 100 mA LED current give LEDA its own supply.",
+     "verified": true,
+     "page": 34,
+     "evidence": "If operating from a single supply, use a 22"
+    },
+    {
+     "text": "VDD and the I/O pins are rated to 3.8 V absolute maximum: never 5 V.",
+     "verified": true,
+     "page": 3,
+     "evidence": "Input voltage range VIN -0.5 3.8 V"
+    },
+    {
+     "text": "Breakouts (e.g. SparkFun/GY-9960) differ in regulator and LED supply jumpers; check the board.",
+     "verified": false
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+# source_id: mod-rtc-pcf8563-ds
+# document: PCF8563 Real-Time Clock/Calendar, Product data sheet Rev. 11.1 (19 January 2026)
+# url: https://cache.nxp.com/docs/en/data-sheet/PCF8563.pdf
+# corpus: mod/rtc/PCF8563.pdf sha256 2ed5d1b0a1051d0e81399417c4ff0ced0658fa36e13c0487670f9cb6dfb4f1d4
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Rev. 11.1 — 19 January 2026 Product data sheet
+@@ page 3
+• Provides year, month, day, weekday, hours, minutes, and seconds based on a 32.768 kHz quartz crystal
+• I2C-bus target address: read A3h and write A2h
+@@ page 8
+OSCI 1 1 Oscillator input
+OSCO 2 2 Oscillator output
+INT 3 4 Interrupt output (open-drain; active LOW)
+VSS 4 5[1] Ground
+SDA 5 6 Serial data input and output
+SCL 6 7 Serial clock input
+CLKOUT 7 8 Clock output, open-drain
+VDD 8 9 Supply voltage
+@@ page 10
+is an open-drain output and enabled at power on. If disabled, it becomes high-impedance.
+@@ page 25
+SDA and SCL. Both lines must be connected to a positive supply via a pullup resistor. Data transfer can be
+@@ page 30
+VDD Supply voltage -0.5 +6.5 V
+VI Input voltage On pins SCL, SDA, and OSCI -0.5 +6.5 V
+VO Output voltage On pins CLKOUT and INT -0.5 +6.5 V
+@@ page 31
+VDD = 1.8 V to 5.5 V; VSS = 0 V; Tamb = -40 °C to +85 °C; fosc = 32.768 kHz; quartz Rs = 40 kΩ; CL = 8 pF; unless otherwise
+fSCL = 400 kHz
+1.8 - 5.5 V
+VDD Supply voltage
+Interface active
+fSCL = 400 kHz - - 800 μA
+VDD = 3.0 V - 250 500 nA
+IDD Supply current
+VIL LOW-level input
+-0.5 - +0.3VDD V
+VIH HIGH-level
+0.7VDD - 5.5 V
+@@ page 32
+On pin SDA 3 - - mA
+VO = VDD or VSS -1 0 +1 μA
+@@ page 34
+fSCL SCL clock frequency [5] - - 400 kHz

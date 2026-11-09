@@ -1,0 +1,35 @@
+# source_id: mod-ndisplay-ht16k33-ds
+# document: Holtek HT16K33 RAM Mapping 16×8 LED Controller Driver with Keyscan, Rev. 1.20, July 12, 2017 (archived copy of holtek.com)
+# url: https://web.archive.org/web/20220609002357id_/https://www.holtek.com/documents/10179/116711/HT16K33v120.pdf
+# corpus: mod/ndisplay/ht16k33-v120.pdf sha256 0528ca6ddcc8e6c54f95bc928d0d7a06e12acbf7d16f25e68a036fa729d1aed6
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Rev. 1.20 1 July 12, 2017
+•	 Operating	voltage:	4.5V~5.5V
+•	 I2C-bus	interface
+@@ page 4
+Supply	Voltage	.........................VSS-0.3V	to	VSS+6.5V
+Input	Voltage	...........................VSS-0.3V	to	VDD+0.3V
+@@ page 5
+VDD=4.5~5.5V;	Ta=25°C	(Unless	otherwise	specified)
+VDD Operating Voltage — — 4.5 5 5.5 V
+IDD Operating Current 5 No load, normal operation, INT/ROW bit is set to “0” — 1 2 mA
+ISTB Standby Current 5 No load, standby mode — 1 10 μA
+VIH Input high Voltage 5 SDA, SCL 0.7VDD — VDD V
+VIL Input Low Voltage 5 SDA, SCL 0 — 0.3VDD V
+IOL1 Low level output current 5 VOL=0.4V; SDA 6 — — mA
+@@ page 6
+fSCL Clock frequency — — 400 kHz
+@@ page 22
+A2~A0	are	set	to	“0”,	when	A2~A0	are	floating.	
+A2~A0	 are	to	“1”,	when	A2~A0	are	connected	to	
+an	AD	pin	with	a	diode	and	resister.
+1 1 1 0 A2 A1 A0 R/W
+11100 A 1 A 0 R / W
+1110000 R / W
+@@ page 27
+0.1μF
+4.7kΩ4.7kΩ
+Note:	1.	If	RA0,	RA1	and	RA2	are	Open,	the	I2C	slave	address	(A0~A2)	is	set	to	low.
+2.	If	RA0,	RA1	and	RA2	are	39kΩ,	the	I2C	slave	address	(A0~A2)	is	set	to	high.

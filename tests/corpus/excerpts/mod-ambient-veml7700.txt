@@ -1,0 +1,27 @@
+# source_id: mod-ambient-veml7700-ds
+# document: Vishay VEML7700 High Accuracy Ambient Light Sensor With I2C Interface, Document Number 84286, Rev. 1.8, 28-Nov-2024
+# url: https://www.vishay.com/docs/84286/veml7700.pdf
+# corpus: mod/ambient/veml7700.pdf sha256 f338cf7d5911828a2f2ac8ae8324049380c852e34aa5afa43ac92c98ffe827d1
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+1: SCL
+2: V DD
+3: GND
+4: SDA
+VEML7700 2.5 to 3.6 1.7 to 3.6 0 to 140 000 0.0042 16 bit, I 2C - / 0.0042
+@@ page 2
+Supply voltage VDD 04V
+Supply voltage  VDD 2.5 3.3 3.6 V
+Shut down current (2) VDD is 3.3 V I sd -0 . 5-μ A
+VDD is 3.3 V, PSM_EN = 0, refresh time 100 ms I DD 45 - μA
+I2C clock rate range f SCL 10 - 400 kHz
+I2C bus input H-level range V DD is 3.3 V V ih 1.3 - 3.6 V
+I2C bus input L-level range V DD is 3.3 V V il -0.3 - 0.4 V
+Digital current out (low, current sink) I ol 3-- m A
+@@ page 6
+• Proposed values for the pull-up resistor R1 and R2 should be > 1 k, e.g. 2.2 k to 4.7 k.
+The built in I2C interface is compatible with I2C modes “standard” and “fast”: 10 kHz to 400 kHz.
+The VEML7700 has a fix slave address for the host  
+The slave address (7 bit) is set to 0010000 = 0x10.
+100 nF10 μF

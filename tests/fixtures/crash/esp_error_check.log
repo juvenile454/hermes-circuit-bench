@@ -1,0 +1,9 @@
+ESP_ERROR_CHECK failed: esp_err_t 0x107 (ESP_ERR_TIMEOUT) at 0x400d1fdf
+
+file: "/Users/user/esp/example/main/main.c" line 20
+func: app_main
+expression: sdmmc_card_init(host, &card)
+
+Backtrace: 0x40086e7c:0x3ffb4ff0 0x40087328:0x3ffb5010 0x400d1fdf:0x3ffb5030 0x400d0816:0x3ffb5050
+
+Rebooting...

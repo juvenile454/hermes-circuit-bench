@@ -1,0 +1,4 @@
+Core  0 register dump:
+MEPC    : 0x42009e9a  RA      : 0x42009ea6  SP      : 0x3fc92120  GP      : 0x3fc8a600
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000005  MTVAL   : 0x0000000c
+MHARTID : 0x00000000

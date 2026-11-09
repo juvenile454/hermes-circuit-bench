@@ -1,0 +1,109 @@
+{
+ "schema": 1,
+ "note": "Values only from manufacturer datasheets (source_id; 'evidence' quotes a line of tests/corpus/excerpts/calc-plus-*.txt). SI units: V, A, Ω, °C, °C/W. kind nmos: N-channel MOSFET; kind ldo: linear regulator.",
+ "parts": [
+  {
+   "id": "AO3400A",
+   "kind": "nmos",
+   "title": "AO3400A 30 V N-channel MOSFET (Alpha & Omega, SOT-23)",
+   "package": "SOT-23",
+   "source_id": "aos-ao3400a",
+   "conditions": "Electrical Characteristics at T_J = 25 °C; maximum ratings at T_A = 25 °C",
+   "ratings": {
+    "v_ds_max": {"value": 30.0, "unit": "V", "conditions": "Absolute Maximum Ratings", "evidence": "Drain-Source Voltage 30"},
+    "v_gs_max": {"value": 12.0, "unit": "V", "conditions": "Absolute Maximum Ratings (±)", "evidence": "V±12Gate-Source Voltage"},
+    "i_d_max": {"value": 5.7, "unit": "A", "conditions": "continuous, T_A = 25 °C, V_GS = 10 V", "evidence": "ID (at VGS=10V) 5.7A"},
+    "t_j_max": {"value": 150.0, "unit": "°C", "conditions": "Absolute Maximum Ratings", "evidence": "Junction and Storage Temperature Range -55 to 150 °C"},
+    "r_th_ja": {"value": 125.0, "unit": "°C/W", "conditions": "maximum, steady state, on 1 in² FR-4 with 2 oz copper in still air (Notes A, D)", "evidence": "° C/WMaximum Junction-to-Ambient A D"}
+   },
+   "v_gs_th": {"min": 0.65, "typ": 1.05, "max": 1.45, "conditions": "V_DS = V_GS, I_D = 250 µA", "evidence": "VGS(th) Gate Threshold Voltage 0.65 1.05 1.45 V"},
+   "r_ds_on": {
+    "conditions": "T_J = 25 °C, pulsed",
+    "rows": [
+     {"v_gs": 2.5, "i_d": 3.0, "typ": 0.024, "max": 0.048, "evidence": "RDS(ON) (at VGS = 2.5V) < 48mW", "test": "VGS=2.5V, ID=3A"},
+     {"v_gs": 4.5, "i_d": 5.0, "typ": 0.019, "max": 0.032, "evidence": "RDS(ON) (at VGS = 4.5V) < 32mW", "test": "VGS=4.5V, ID=5A"},
+     {"v_gs": 10.0, "i_d": 5.7, "typ": 0.018, "max": 0.0265, "evidence": "RDS(ON) (at VGS=10V) < 26.5mW", "test": "VGS=10V, ID=5.7A"}
+    ]
+   }
+  },
+  {
+   "id": "IRLZ44N",
+   "aliases": ["IRLZ44NPbF"],
+   "kind": "nmos",
+   "title": "IRLZ44NPbF 55 V N-channel HEXFET power MOSFET (Infineon / International Rectifier, TO-220AB)",
+   "package": "TO-220AB",
+   "source_id": "infineon-irlz44n",
+   "conditions": "Electrical Characteristics at T_J = 25 °C; I_D rating at T_C = 25 °C",
+   "ratings": {
+    "v_ds_max": {"value": 55.0, "unit": "V", "conditions": "V_DSS", "evidence": "VDSS = 55V"},
+    "v_gs_max": {"value": 16.0, "unit": "V", "conditions": "Absolute Maximum Ratings (±)", "evidence": "VGS Gate-to-Source Voltage ±16 V"},
+    "i_d_max": {"value": 47.0, "unit": "A", "conditions": "continuous, case held at T_C = 25 °C, V_GS = 10 V", "evidence": "ID @ TC = 25°C Continuous Drain Current, V GS @ 10V 47"},
+    "t_j_max": {"value": 175.0, "unit": "°C", "conditions": "Absolute Maximum Ratings", "evidence": "TJ Operating Junction and -55 to + 175"},
+    "r_th_ja": {"value": 62.0, "unit": "°C/W", "conditions": "maximum, junction to ambient, no heat sink", "evidence": "RθJA Junction-to-Ambient –––– –––– 62"}
+   },
+   "v_gs_th": {"min": 1.0, "typ": null, "max": 2.0, "conditions": "V_DS = V_GS, I_D = 250 µA", "evidence": "VGS(th) Gate Threshold Voltage 1.0 ––– 2.0 V V DS = VGS, ID = 250µA"},
+   "r_ds_on": {
+    "conditions": "T_J = 25 °C, pulse width ≤ 300 µs (note 4)",
+    "rows": [
+     {"v_gs": 4.0, "i_d": 21.0, "typ": null, "max": 0.035, "evidence": "––– ––– 0.035 V GS = 4.0V, ID = 21A", "test": "V GS = 4.0V, ID = 21A"},
+     {"v_gs": 5.0, "i_d": 25.0, "typ": null, "max": 0.025, "evidence": "––– ––– 0.025 Ω VGS = 5.0V, ID = 25A", "test": "VGS = 5.0V, ID = 25A"},
+     {"v_gs": 10.0, "i_d": 25.0, "typ": null, "max": 0.022, "evidence": "––– ––– 0.022 V GS = 10V, ID = 25A", "test": "V GS = 10V, ID = 25A"}
+    ]
+   }
+  },
+  {
+   "id": "AMS1117-3.3",
+   "kind": "ldo",
+   "title": "AMS1117-3.3 fixed 3.3 V low-dropout regulator (Advanced Monolithic Systems, SOT-223)",
+   "package": "SOT-223",
+   "source_id": "ams-ams1117",
+   "conditions": "Electrical Characteristics at T_J = 25 °C unless marked bold (full operating temperature range)",
+   "v_out": {"value": 3.3, "unit": "V", "conditions": "typical at V_IN = 4.8 V", "evidence": "AMS1117-3.3 V IN = 4.8V 3.251"},
+   "dropout": {"value": 1.3, "typ": 1.1, "unit": "V", "i_out": 0.8, "conditions": "ΔV_OUT = 1 %, I_OUT = 0.8 A; specified up to 0.8 A (Note 4)", "evidence": "∆VOUT , ∆VREF = 1%, I OUT = 0.8A (Note 4)"},
+   "i_q": {"value": 0.011, "typ": 0.005, "unit": "A", "conditions": "maximum at (V_IN − V_OUT) = 1.5 V", "evidence": "Quiescent Current AMS1117-1.5/-1.8/-2.5/-"},
+   "ratings": {
+    "v_in_max": {"value": 15.0, "unit": "V", "conditions": "Absolute Maximum Ratings", "evidence": "Input Voltage 15V"},
+    "i_limit_min": {"value": 0.9, "unit": "A", "conditions": "current limit minimum at (V_IN − V_OUT) = 1.5 V", "evidence": "900 1,100 1,500 mA"},
+    "t_j_max": {"value": 125.0, "unit": "°C", "conditions": "continuous operation (Thermal Considerations)", "evidence": "Maximum junction temperature must not exceed 125 °C."},
+    "r_th_ja": {"value": 90.0, "unit": "°C/W", "conditions": "SOT-223 soldered to copper; 46 to >90 °C/W depending on mounting and copper area", "evidence": "SOT-223 package ϕ JA = 90 °C/W*"},
+    "t_shutdown": {"value": 165.0, "unit": "°C", "conditions": "thermal protection, at the sense point", "evidence": "the junction temperature exceed 165 °C at the sense point."}
+   }
+  },
+  {
+   "id": "AMS1117CD-3.3",
+   "kind": "ldo",
+   "title": "AMS1117CD-3.3 fixed 3.3 V low-dropout regulator (Advanced Monolithic Systems, TO-252 / DPAK)",
+   "package": "TO-252",
+   "source_id": "ams-ams1117",
+   "conditions": "Electrical Characteristics at T_J = 25 °C unless marked bold (full operating temperature range)",
+   "v_out": {"value": 3.3, "unit": "V", "conditions": "typical at V_IN = 4.8 V", "evidence": "AMS1117-3.3 V IN = 4.8V 3.251"},
+   "dropout": {"value": 1.3, "typ": 1.1, "unit": "V", "i_out": 0.8, "conditions": "ΔV_OUT = 1 %, I_OUT = 0.8 A; specified up to 0.8 A (Note 4)", "evidence": "∆VOUT , ∆VREF = 1%, I OUT = 0.8A (Note 4)"},
+   "i_q": {"value": 0.011, "typ": 0.005, "unit": "A", "conditions": "maximum at (V_IN − V_OUT) = 1.5 V", "evidence": "Quiescent Current AMS1117-1.5/-1.8/-2.5/-"},
+   "ratings": {
+    "v_in_max": {"value": 15.0, "unit": "V", "conditions": "Absolute Maximum Ratings", "evidence": "Input Voltage 15V"},
+    "i_limit_min": {"value": 0.9, "unit": "A", "conditions": "current limit minimum at (V_IN − V_OUT) = 1.5 V", "evidence": "900 1,100 1,500 mA"},
+    "t_j_max": {"value": 125.0, "unit": "°C", "conditions": "continuous operation (Thermal Considerations)", "evidence": "Maximum junction temperature must not exceed 125 °C."},
+    "r_th_ja": {"value": 80.0, "unit": "°C/W", "conditions": "TO-252 package", "evidence": "TO-252 package ϕ JA = 80 °C/W"},
+    "t_shutdown": {"value": 165.0, "unit": "°C", "conditions": "thermal protection, at the sense point", "evidence": "the junction temperature exceed 165 °C at the sense point."}
+   }
+  },
+  {
+   "id": "AMS1117CS-3.3",
+   "kind": "ldo",
+   "title": "AMS1117CS-3.3 fixed 3.3 V low-dropout regulator (Advanced Monolithic Systems, 8L SOIC)",
+   "package": "SO-8",
+   "source_id": "ams-ams1117",
+   "conditions": "Electrical Characteristics at T_J = 25 °C unless marked bold (full operating temperature range)",
+   "v_out": {"value": 3.3, "unit": "V", "conditions": "typical at V_IN = 4.8 V", "evidence": "AMS1117-3.3 V IN = 4.8V 3.251"},
+   "dropout": {"value": 1.3, "typ": 1.1, "unit": "V", "i_out": 0.8, "conditions": "ΔV_OUT = 1 %, I_OUT = 0.8 A; specified up to 0.8 A (Note 4)", "evidence": "∆VOUT , ∆VREF = 1%, I OUT = 0.8A (Note 4)"},
+   "i_q": {"value": 0.011, "typ": 0.005, "unit": "A", "conditions": "maximum at (V_IN − V_OUT) = 1.5 V", "evidence": "Quiescent Current AMS1117-1.5/-1.8/-2.5/-"},
+   "ratings": {
+    "v_in_max": {"value": 15.0, "unit": "V", "conditions": "Absolute Maximum Ratings", "evidence": "Input Voltage 15V"},
+    "i_limit_min": {"value": 0.9, "unit": "A", "conditions": "current limit minimum at (V_IN − V_OUT) = 1.5 V", "evidence": "900 1,100 1,500 mA"},
+    "t_j_max": {"value": 125.0, "unit": "°C", "conditions": "continuous operation (Thermal Considerations)", "evidence": "Maximum junction temperature must not exceed 125 °C."},
+    "r_th_ja": {"value": 160.0, "unit": "°C/W", "conditions": "SO-8 package", "evidence": "SO-8 package ϕ JA = 160 °C/W"},
+    "t_shutdown": {"value": 165.0, "unit": "°C", "conditions": "thermal protection, at the sense point", "evidence": "the junction temperature exceed 165 °C at the sense point."}
+   }
+  }
+ ]
+}

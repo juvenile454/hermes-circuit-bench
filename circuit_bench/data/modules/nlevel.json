@@ -1,0 +1,1414 @@
+{
+  "schema": 1,
+  "wp": "nlevel",
+  "note": "Values only from manufacturer documents (TI); 'evidence' quotes lines of tests/corpus/excerpts/mod-nlevel-*.txt (pypdf). Two-supply translators: io describes the A side (VCCA, the ESP side); direction, bias and B-side facts are checked by modrules/nlevel.py.",
+  "modules": [
+    {
+      "id": "pca9306",
+      "aliases": [
+        "pca9306dcur",
+        "pca9306dctr",
+        "pca9306dcu"
+      ],
+      "title": "PCA9306 dual bidirectional I²C/SMBus voltage-level translator (pass switch)",
+      "category": "logic.level_shifter",
+      "manufacturer": "Texas Instruments",
+      "kind": "ic",
+      "source_ids": [
+        "mod-nlevel-pca9306-ds"
+      ],
+      "supplies": {
+        "VREF1": {
+          "min": {
+            "value": 1.2,
+            "unit": "V",
+            "page": 5,
+            "evidence": "(1) To support translation, VREF1 supports 1.2 V to VREF2 - 0.6 V.",
+            "conditions": "translation mode; VREF1 at most VREF2 − 0.6 V"
+          },
+          "max": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 5,
+            "evidence": [
+              "VREF1 (1) Reference voltage 0 5.5 V",
+              "(1) To support translation, VREF1 supports 1.2 V to VREF2 - 0.6 V."
+            ],
+            "conditions": "recommended operating table; translation needs VREF1 ≤ VREF2 − 0.6 V (note 1, checked by mod.nlevel.pca9306_bias); the feature list names 1.2–3.3 V VREF1 (p. 1)"
+          },
+          "abs_max": {
+            "value": 7,
+            "unit": "V",
+            "page": 5,
+            "evidence": "VREF1 DC reference voltage range –0.5 7 V"
+          }
+        },
+        "VREF2": {
+          "min": {
+            "value": 1.8,
+            "unit": "V",
+            "page": 1,
+            "evidence": "and 1.8-V to 5.5-V VREF2."
+          },
+          "max": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 5,
+            "evidence": "VREF2 (1) Reference voltage 0 5.5 V"
+          },
+          "abs_max": {
+            "value": 7,
+            "unit": "V",
+            "page": 5,
+            "evidence": "VREF2 DC reference bias voltage range –0.5 7 V"
+          }
+        }
+      },
+      "io": {
+        "domain": "VREF1",
+        "v_in_max": {
+          "value": 5.5,
+          "unit": "V",
+          "page": 5,
+          "evidence": "VI/O Input/output voltage SCL1, SDA1, SCL2, SDA2 0 5.5 V",
+          "conditions": "recommended range on both sides (absolute maximum 7 V)"
+        },
+        "outputs": "open_drain",
+        "five_v_tolerant": true
+      },
+      "pins": [
+        {
+          "name": "GND",
+          "signal": "gnd"
+        },
+        {
+          "name": "VREF1",
+          "signal": "supply",
+          "note": "low-voltage-side reference = the low bus supply (ESP side, e.g. 3.3 V)"
+        },
+        {
+          "name": "SCL1",
+          "signal": "i2c_scl",
+          "note": "low-voltage side"
+        },
+        {
+          "name": "SDA1",
+          "signal": "i2c_sda",
+          "note": "low-voltage side"
+        },
+        {
+          "name": "SDA2",
+          "signal": "i2c_sda",
+          "note": "high-voltage side"
+        },
+        {
+          "name": "SCL2",
+          "signal": "i2c_scl",
+          "note": "high-voltage side"
+        },
+        {
+          "name": "VREF2",
+          "signal": "supply",
+          "note": "tie to EN and pull up to the high-side supply VDPU through 200 kΩ; never straight to a rail"
+        },
+        {
+          "name": "EN",
+          "signal": "enable_in",
+          "tie": "VREF2",
+          "must_connect": true,
+          "note": "high = switch on; low = sides disconnected; normally tied to VREF2"
+        }
+      ],
+      "requires": [
+        {
+          "code": "pullup",
+          "kind": "resistor",
+          "pins": [
+            "SDA1",
+            "SCL1"
+          ],
+          "to": "VREF1",
+          "page": 16,
+          "evidence": "standard, open-drain I 2C bus is achieved by simply connecting pullup resistors from SCL1 and SDA1 to V REF1",
+          "note": "the high side SDA2/SCL2 needs its own pull-ups to the high supply VDPU (same page)"
+        },
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "100pF",
+          "pins": [
+            "VREF2"
+          ],
+          "to": "GND",
+          "page": 18,
+          "evidence": [
+            "A 100-pF filter capacitor connected to V REF2 is",
+            "recommended."
+          ]
+        }
+      ],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "No drive capability and no address of its own: a pass switch. With EN high, logic lows pass both ways and each side's pull-ups make the high level.",
+          "page": 16,
+          "evidence": "H Logic Lows are propagated from one side to the other, Logic Highs blocked (independent pull up resistors passively drive the line high)",
+          "verified": true
+        },
+        {
+          "text": "Every side needs its own pull-up resistors (low side to VREF1, high side to VDPU).",
+          "page": 17,
+          "evidence": "As with the standard I 2C system, pullup resistors are required to provide the logic-high levels on the translator",
+          "verified": true
+        },
+        {
+          "text": "Operating range on the feature page: VREF1 1.2–3.3 V with VREF2 1.8–5.5 V; the recommended operating table allows 0–5.5 V on both with VREF1 ≤ VREF2 − 0.6 V for translation.",
+          "page": 1,
+          "evidence": [
+            "input, and is operational from 1.2-V to 3.3-V V REF1",
+            "and 1.8-V to 5.5-V VREF2."
+          ],
+          "verified": true
+        },
+        {
+          "text": "Translation needs VREF2 ≥ VREF1 + 0.6 V; with VREF1 = VREF2 the part is a plain bus switch.",
+          "page": 12,
+          "evidence": "PCA9306 has the capability of being used with its VREF1 voltage equal to VREF2. This essentially turns the device",
+          "verified": true
+        },
+        {
+          "text": "The bias resistor on VREF2 limits the current into VREF1: RCC(min) ≥ (VCC2 − VREF1 − 0.6 V) / 128 mA.",
+          "page": 15,
+          "evidence": "RCC(min) ≥ (VCC2 - Ven)/0.128 : Ven = VREF1 + Vth (6)",
+          "verified": true
+        },
+        {
+          "text": "Devices on both sides share one I²C address space while EN is high (one bus electrically).",
+          "verified": false
+        },
+        {
+          "text": "Common breakouts (SparkFun/Adafruit style) already carry the 200 kΩ, the 100 pF and pull-ups on both sides; check the board before adding more.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "sn74lvc1t45",
+      "aliases": [
+        "74lvc1t45",
+        "lvc1t45",
+        "sn74lvc1t45dbvr",
+        "sn74lvc1t45dckr"
+      ],
+      "title": "SN74LVC1T45 1-bit dual-supply bus transceiver with direction pin (1.65–5.5 V)",
+      "category": "logic.level_shifter",
+      "manufacturer": "Texas Instruments",
+      "kind": "ic",
+      "source_ids": [
+        "mod-nlevel-sn74lvc1t45-ds"
+      ],
+      "supplies": {
+        "VCCA": {
+          "min": {
+            "value": 1.65,
+            "unit": "V",
+            "page": 4,
+            "evidence": "1.65 5.5"
+          },
+          "max": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 4,
+            "evidence": "1.65 5.5"
+          },
+          "abs_max": {
+            "value": 6.5,
+            "unit": "V",
+            "page": 4,
+            "evidence": "Supply voltage –0.5 6.5 V"
+          }
+        },
+        "VCCB": {
+          "min": {
+            "value": 1.65,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VCCB 1.65 5.5"
+          },
+          "max": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VCCB 1.65 5.5"
+          },
+          "abs_max": {
+            "value": 6.5,
+            "unit": "V",
+            "page": 4,
+            "evidence": "Supply voltage –0.5 6.5 V"
+          }
+        }
+      },
+      "io": {
+        "domain": "VCCA",
+        "vih": {
+          "value": 2,
+          "unit": "V",
+          "page": 4,
+          "evidence": [
+            "VIH",
+            "input voltage Data inputs(4)",
+            "3 to 3.6V 2"
+          ],
+          "conditions": "data input on the A side, VCCA 3–3.6 V (VCCI = VCCA)"
+        },
+        "vil": {
+          "value": 0.8,
+          "unit": "V",
+          "page": 4,
+          "evidence": [
+            "VIL",
+            "input voltage Data inputs(4)",
+            "3 to 3.6V 0.8"
+          ],
+          "conditions": "data input on the A side, VCCA 3–3.6 V"
+        },
+        "voh": {
+          "rel_offset": -0.1,
+          "of": "VCCA",
+          "unit": "V",
+          "page": 6,
+          "evidence": [
+            "VOH",
+            "IOH = –100μA",
+            "1.65 to 4.5V 1.65 to 4.5V VCCO – 0.1"
+          ],
+          "conditions": "IOH −100 µA, VCCA 1.65–4.5 V, VCCB 1.65–4.5 V; A port as output (VCCO = VCCA)"
+        },
+        "vol": {
+          "value": 0.1,
+          "unit": "V",
+          "page": 6,
+          "evidence": [
+            "VOL",
+            "IOL = 100μA",
+            "1.65 to 4.5V 1.65 to 4.5V 0.1"
+          ],
+          "conditions": "IOL 100 µA, VCCA 1.65–4.5 V, VCCB 1.65–4.5 V"
+        },
+        "v_in_max": {
+          "value": 5.5,
+          "unit": "V",
+          "page": 5,
+          "evidence": "VI Input voltage 0 5.5 V",
+          "conditions": "recommended input range (absolute maximum 6.5 V)"
+        },
+        "outputs": "push_pull"
+      },
+      "pins": [
+        {
+          "name": "VCCA",
+          "signal": "supply",
+          "note": "A-side supply 1.65–5.5 V; DIR is referenced to VCCA"
+        },
+        {
+          "name": "GND",
+          "signal": "gnd"
+        },
+        {
+          "name": "A",
+          "signal": "digital_in",
+          "must_connect": true,
+          "note": "A side (VCCA); input when DIR is high, push-pull output when DIR is low"
+        },
+        {
+          "name": "B",
+          "signal": "digital_out",
+          "note": "B side (VCCB); output when DIR is high, input when DIR is low"
+        },
+        {
+          "name": "DIR",
+          "signal": "digital_in",
+          "must_connect": true,
+          "note": "high (VCCA) = A to B, low (GND) = B to A; referenced to VCCA"
+        },
+        {
+          "name": "VCCB",
+          "signal": "supply",
+          "note": "B-side supply 1.65–5.5 V"
+        }
+      ],
+      "current": {
+        "supply": "VCCA",
+        "max": {
+          "value": 4e-06,
+          "unit": "A",
+          "page": 6,
+          "evidence": [
+            "ICCA + ICCB",
+            "(see Table 7-1) VI = VCCI or GND, IO = 0 1.65 to 5.5V 1.65 to 5.5V 4 μA"
+          ],
+          "conditions": "ICCA + ICCB static, inputs at VCCI or GND"
+        },
+        "note": "sum of both supplies, booked on VCCA"
+      },
+      "requires": [
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "pins": [
+            "VCCA",
+            "VCCB"
+          ],
+          "to": "GND",
+          "page": 17,
+          "evidence": "• Bypass capacitors should be used on power supplies.",
+          "note": "no value given in the data sheet; 100 nF per supply is common practice (unverified)"
+        }
+      ],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "Direction is fixed by DIR: low = B data to A, high = A data to B. Not for I²C (no open-drain, no auto-direction).",
+          "page": 14,
+          "evidence": [
+            "L B data to A bus",
+            "H A data to B bus"
+          ],
+          "verified": true
+        },
+        {
+          "text": "Either side may be the higher voltage (both 1.65–5.5 V).",
+          "page": 3,
+          "evidence": "A1 VCCA P SYSTEM-1 supply voltage (1.65V to 5.5V)",
+          "verified": true
+        },
+        {
+          "text": "An unused data input must be held at VCCI or GND.",
+          "page": 5,
+          "evidence": "(3) All unused data inputs of the device must be held at VCCI or GND to ensure proper device operation. See the TI application report,",
+          "verified": true
+        },
+        {
+          "text": "VIH/VIL of the A side are modelled for VCCA 3–3.6 V only (other ranges: 0.65/0.7 × VCCI, p. 4).",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "sn74lvc8t245",
+      "aliases": [
+        "74lvc8t245",
+        "lvc8t245",
+        "sn74lvc8t245pwr",
+        "sn74lvc8t245dbr"
+      ],
+      "title": "SN74LVC8T245 8-bit dual-supply bus transceiver with DIR and OE (1.65–5.5 V)",
+      "category": "logic.level_shifter",
+      "manufacturer": "Texas Instruments",
+      "kind": "ic",
+      "source_ids": [
+        "mod-nlevel-sn74lvc8t245-ds"
+      ],
+      "supplies": {
+        "VCCA": {
+          "min": {
+            "value": 1.65,
+            "unit": "V",
+            "page": 7,
+            "evidence": "1.65 5.5"
+          },
+          "max": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 7,
+            "evidence": "1.65 5.5"
+          },
+          "abs_max": {
+            "value": 6.5,
+            "unit": "V",
+            "page": 6,
+            "evidence": "Supply voltage range, VCCA, VCCB –0.5 6.5 V"
+          }
+        },
+        "VCCB": {
+          "min": {
+            "value": 1.65,
+            "unit": "V",
+            "page": 7,
+            "evidence": "VCCB 1.65 5.5"
+          },
+          "max": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 7,
+            "evidence": "VCCB 1.65 5.5"
+          },
+          "abs_max": {
+            "value": 6.5,
+            "unit": "V",
+            "page": 6,
+            "evidence": "Supply voltage range, VCCA, VCCB –0.5 6.5 V"
+          }
+        }
+      },
+      "io": {
+        "domain": "VCCA",
+        "vih": {
+          "value": 2,
+          "unit": "V",
+          "page": 7,
+          "evidence": [
+            "VIH High-levelinput voltage Data inputs(5)",
+            "3V to 3.6V 2"
+          ],
+          "conditions": "data input on the A side, VCCA 3–3.6 V (VCCI = VCCA)"
+        },
+        "vil": {
+          "value": 0.8,
+          "unit": "V",
+          "page": 7,
+          "evidence": [
+            "VIL Low-levelinput voltage Data inputs(5)",
+            "3V to 3.6V 0.8"
+          ],
+          "conditions": "data input on the A side, VCCA 3–3.6 V"
+        },
+        "voh": {
+          "rel_offset": -0.1,
+          "of": "VCCA",
+          "unit": "V",
+          "page": 9,
+          "evidence": "IOH = –100μA, VI = VIH 1.65V to 4.5V 1.65V to 4.5V VCCO  – 0.1",
+          "conditions": "IOH −100 µA, VCCA 1.65–4.5 V, VCCB 1.65–4.5 V; A port as output (VCCO = VCCA)"
+        },
+        "vol": {
+          "value": 0.1,
+          "unit": "V",
+          "page": 9,
+          "evidence": "IOL = 100μA, VI = VIL 1.65V to 4.5V 1.65V to 4.5V 0.1",
+          "conditions": "IOL 100 µA, VCCA 1.65–4.5 V, VCCB 1.65–4.5 V"
+        },
+        "v_in_max": {
+          "value": 5.5,
+          "unit": "V",
+          "page": 7,
+          "evidence": [
+            "VI/O",
+            "3-State 0 5.5 V"
+          ],
+          "conditions": "I/O in the input (3-state) direction; as an active output 0 to VCCO"
+        },
+        "outputs": "push_pull"
+      },
+      "pins": [
+        {
+          "name": "VCCA",
+          "signal": "supply",
+          "note": "A-port supply 1.65–5.5 V; DIR and OE are referenced to VCCA"
+        },
+        {
+          "name": "DIR",
+          "signal": "digital_in",
+          "must_connect": true,
+          "note": "high = A to B, low = B to A"
+        },
+        {
+          "name": "A1",
+          "signal": "digital_in",
+          "must_connect": true,
+          "note": "A side (VCCA); input when DIR is high, output when DIR is low"
+        },
+        {
+          "name": "A2",
+          "signal": "digital_in",
+          "must_connect": true,
+          "note": "A side (VCCA); input when DIR is high, output when DIR is low"
+        },
+        {
+          "name": "A3",
+          "signal": "digital_in",
+          "must_connect": true,
+          "note": "A side (VCCA); input when DIR is high, output when DIR is low"
+        },
+        {
+          "name": "A4",
+          "signal": "digital_in",
+          "must_connect": true,
+          "note": "A side (VCCA); input when DIR is high, output when DIR is low"
+        },
+        {
+          "name": "A5",
+          "signal": "digital_in",
+          "must_connect": true,
+          "note": "A side (VCCA); input when DIR is high, output when DIR is low"
+        },
+        {
+          "name": "A6",
+          "signal": "digital_in",
+          "must_connect": true,
+          "note": "A side (VCCA); input when DIR is high, output when DIR is low"
+        },
+        {
+          "name": "A7",
+          "signal": "digital_in",
+          "must_connect": true,
+          "note": "A side (VCCA); input when DIR is high, output when DIR is low"
+        },
+        {
+          "name": "A8",
+          "signal": "digital_in",
+          "must_connect": true,
+          "note": "A side (VCCA); input when DIR is high, output when DIR is low"
+        },
+        {
+          "name": "GND",
+          "signal": "gnd"
+        },
+        {
+          "name": "B8",
+          "signal": "digital_out",
+          "note": "B side (VCCB); output when DIR is high, input when DIR is low"
+        },
+        {
+          "name": "B7",
+          "signal": "digital_out",
+          "note": "B side (VCCB); output when DIR is high, input when DIR is low"
+        },
+        {
+          "name": "B6",
+          "signal": "digital_out",
+          "note": "B side (VCCB); output when DIR is high, input when DIR is low"
+        },
+        {
+          "name": "B5",
+          "signal": "digital_out",
+          "note": "B side (VCCB); output when DIR is high, input when DIR is low"
+        },
+        {
+          "name": "B4",
+          "signal": "digital_out",
+          "note": "B side (VCCB); output when DIR is high, input when DIR is low"
+        },
+        {
+          "name": "B3",
+          "signal": "digital_out",
+          "note": "B side (VCCB); output when DIR is high, input when DIR is low"
+        },
+        {
+          "name": "B2",
+          "signal": "digital_out",
+          "note": "B side (VCCB); output when DIR is high, input when DIR is low"
+        },
+        {
+          "name": "B1",
+          "signal": "digital_out",
+          "note": "B side (VCCB); output when DIR is high, input when DIR is low"
+        },
+        {
+          "name": "OE",
+          "signal": "enable_in",
+          "active_low": true,
+          "must_connect": true,
+          "note": "low = enabled; high = both ports high-impedance (isolation)"
+        },
+        {
+          "name": "VCCB",
+          "signal": "supply",
+          "note": "B-port supply 1.65–5.5 V"
+        }
+      ],
+      "current": {
+        "supply": "VCCA",
+        "max": {
+          "value": 1.2e-05,
+          "unit": "A",
+          "page": 9,
+          "evidence": "ICCA + ICCB VI = VCCI or GND, IO = 0 1.65V to 5.5V 1.65V to 5.5V 12 μA",
+          "conditions": "ICCA + ICCB static, inputs at VCCI or GND"
+        },
+        "note": "sum of both supplies, booked on VCCA"
+      },
+      "requires": [
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "pins": [
+            "VCCA",
+            "VCCB"
+          ],
+          "to": "GND",
+          "page": 17,
+          "evidence": "• Bypass capacitors must be used on power supplies.",
+          "note": "no value given in the data sheet; 100 nF per supply is common practice (unverified)"
+        }
+      ],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "OE low and DIR low = B data to A; OE low and DIR high = A data to B; OE high = both ports Hi-Z.",
+          "page": 15,
+          "evidence": [
+            "L L Enabled Hi-Z B data to A bus",
+            "L H Hi-Z Enabled A data to B bus",
+            "H X Hi-Z Hi-Z Isolation"
+          ],
+          "verified": true
+        },
+        {
+          "text": "All unused or floating data I/Os must be held high or low (preferably VCCI or GND); unused control inputs at VCCA or GND.",
+          "page": 7,
+          "evidence": [
+            "(3) All unused or driven (floating) data inputs (I/Os) of the device must be held at logic HIGH or LOW (preferably VCCI or GND) to ensure",
+            "(4) All unused control inputs must be held at VCCA or GND to ensure proper device operation and minimize power comsumption."
+          ],
+          "verified": true
+        },
+        {
+          "text": "Keep OE high until VCCA and VCCB are powered up (pull-up on OE).",
+          "page": 18,
+          "evidence": [
+            "Keep OE high until VCCA",
+            "and  VCCB  are powered upVCC"
+          ],
+          "verified": true
+        },
+        {
+          "text": "Not for I²C (push-pull, fixed direction).",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "sn74lvc125a",
+      "aliases": [
+        "74lvc125a",
+        "74lvc125",
+        "lvc125a",
+        "sn74lvc125ad",
+        "sn74lvc125apwr"
+      ],
+      "title": "SN74LVC125A quad 3-state buffer, 5.5 V tolerant inputs (1.65–3.6 V)",
+      "category": "logic.level_shifter",
+      "manufacturer": "Texas Instruments",
+      "kind": "ic",
+      "source_ids": [
+        "mod-nlevel-sn74lvc125a-ds"
+      ],
+      "supplies": {
+        "VCC": {
+          "min": {
+            "value": 1.65,
+            "unit": "V",
+            "page": 5,
+            "evidence": [
+              "VCC Supply voltage",
+              "Operating 1.65 3.6 1.65 3.6 1.65 3.6"
+            ]
+          },
+          "max": {
+            "value": 3.6,
+            "unit": "V",
+            "page": 5,
+            "evidence": [
+              "VCC Supply voltage",
+              "Operating 1.65 3.6 1.65 3.6 1.65 3.6"
+            ]
+          },
+          "abs_max": {
+            "value": 6.5,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VCC Supply voltage range –0.5 6.5 V"
+          }
+        }
+      },
+      "io": {
+        "domain": "VCC",
+        "vih": {
+          "value": 2,
+          "unit": "V",
+          "page": 5,
+          "evidence": [
+            "VIH High-levelinput voltage",
+            "VCC = 2.7V to 3.6V 2 2 2"
+          ],
+          "conditions": "VCC 2.7–3.6 V"
+        },
+        "vil": {
+          "value": 0.8,
+          "unit": "V",
+          "page": 5,
+          "evidence": [
+            "VIL Low-levelinput voltage",
+            "VCC = 2.7V to 3.6V 0.8 0.8 0.8"
+          ],
+          "conditions": "VCC 2.7–3.6 V"
+        },
+        "voh": {
+          "rel_offset": -0.2,
+          "of": "VCC",
+          "unit": "V",
+          "page": 6,
+          "evidence": [
+            "VOH",
+            "IOH = –100μA 1.65V to3.6V VCC – 0.2 VCC – 0.2 VCC – 0.3"
+          ],
+          "conditions": "IOH −100 µA, VCC 1.65–3.6 V, TA −40 to 85 °C"
+        },
+        "v_in_max": {
+          "value": 5.5,
+          "unit": "V",
+          "page": 5,
+          "evidence": "VI Input voltage 0 5.5 0 5.5 0 5.5 V",
+          "conditions": "inputs at any valid VCC (absolute maximum 6.5 V); outputs 0 to VCC"
+        },
+        "outputs": "push_pull",
+        "five_v_tolerant": true
+      },
+      "pins": [
+        {
+          "name": "1OE",
+          "signal": "enable_in",
+          "active_low": true,
+          "must_connect": true,
+          "note": "low = buffer on; high = output high-impedance"
+        },
+        {
+          "name": "1A",
+          "signal": "digital_in",
+          "must_connect": true,
+          "note": "5.5 V tolerant input at any valid VCC"
+        },
+        {
+          "name": "1Y",
+          "signal": "digital_out",
+          "note": "3-state push-pull output at VCC"
+        },
+        {
+          "name": "2OE",
+          "signal": "enable_in",
+          "active_low": true,
+          "must_connect": true,
+          "note": "low = buffer on; high = output high-impedance"
+        },
+        {
+          "name": "2A",
+          "signal": "digital_in",
+          "must_connect": true,
+          "note": "5.5 V tolerant input at any valid VCC"
+        },
+        {
+          "name": "2Y",
+          "signal": "digital_out",
+          "note": "3-state push-pull output at VCC"
+        },
+        {
+          "name": "3OE",
+          "signal": "enable_in",
+          "active_low": true,
+          "must_connect": true,
+          "note": "low = buffer on; high = output high-impedance"
+        },
+        {
+          "name": "3A",
+          "signal": "digital_in",
+          "must_connect": true,
+          "note": "5.5 V tolerant input at any valid VCC"
+        },
+        {
+          "name": "3Y",
+          "signal": "digital_out",
+          "note": "3-state push-pull output at VCC"
+        },
+        {
+          "name": "4OE",
+          "signal": "enable_in",
+          "active_low": true,
+          "must_connect": true,
+          "note": "low = buffer on; high = output high-impedance"
+        },
+        {
+          "name": "4A",
+          "signal": "digital_in",
+          "must_connect": true,
+          "note": "5.5 V tolerant input at any valid VCC"
+        },
+        {
+          "name": "4Y",
+          "signal": "digital_out",
+          "note": "3-state push-pull output at VCC"
+        },
+        {
+          "name": "VCC",
+          "signal": "supply"
+        },
+        {
+          "name": "GND",
+          "signal": "gnd"
+        }
+      ],
+      "current": {
+        "supply": "VCC",
+        "max": {
+          "value": 1e-05,
+          "unit": "A",
+          "page": 6,
+          "evidence": "ICC VI = VCC or GND, IO = 0 3.6V 1 10 40 μA",
+          "conditions": "static, inputs at VCC or GND, VCC 3.6 V, TA −40 to 85 °C"
+        },
+        "note": "an input held at VCC − 0.6 V adds up to 500 µA (ΔICC, p. 6)"
+      },
+      "requires": [
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "100nF",
+          "pins": [
+            "VCC"
+          ],
+          "to": "GND",
+          "page": 11,
+          "evidence": "supply, 0.1 μf is recommended; if there are multiple V CC pins, then 0.01 μf or 0.022 μf is recommended for each"
+        }
+      ],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "Inputs accept up to 5.5 V at any valid VCC: with VCC = 3.3 V the buffer brings 5 V logic down to 3.3 V for an ESP input.",
+          "page": 10,
+          "evidence": [
+            "• Inputs are overvoltage tolerant allowing them to go as high as (VI max) in the Section 5.3 table at any",
+            "valid VCC."
+          ],
+          "verified": true
+        },
+        {
+          "text": "Outputs must not be pulled above VCC (no 5 V pull-ups on Y).",
+          "page": 10,
+          "evidence": "• Outputs should not be pulled above VCC.",
+          "verified": true
+        },
+        {
+          "text": "All unused inputs (A and OE of unused channels) must be held at VCC or GND.",
+          "page": 5,
+          "evidence": "(1) All unused inputs of the device must be held at VCC or GND to ensure proper device operation. Refer to the TI application report,",
+          "verified": true
+        },
+        {
+          "text": "Down-translation only: at VCC 3.3 V the output high is about 3.3 V, below a 5 V CMOS VIH; use an SN74AHCT125 or SN74HCT-type part at 5 V to go up.",
+          "verified": false
+        },
+        {
+          "text": "The feature list on p. 9 says 'Operates from 1.65V to 5.5V', the recommended operating conditions (p. 5) and p. 1 say 1.65–3.6 V; the catalogue uses 3.6 V.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "sn74hct595",
+      "aliases": [
+        "74hct595",
+        "hct595",
+        "sn74hct595pwr",
+        "sn74hct595n"
+      ],
+      "title": "SN74HCT595 8-bit shift register with 3-state output latch (TTL inputs, 5 V)",
+      "category": "logic.shift_register",
+      "manufacturer": "Texas Instruments",
+      "kind": "ic",
+      "source_ids": [
+        "mod-nlevel-sn74hct595-ds"
+      ],
+      "supplies": {
+        "VCC": {
+          "min": {
+            "value": 4.5,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VCC Supply voltage 4.5 5 5.5 V"
+          },
+          "max": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VCC Supply voltage 4.5 5 5.5 V"
+          },
+          "typ": {
+            "value": 5,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VCC Supply voltage 4.5 5 5.5 V"
+          },
+          "abs_max": {
+            "value": 7,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VCC Supply voltage –0.5 7 V"
+          }
+        }
+      },
+      "io": {
+        "domain": "VCC",
+        "vih": {
+          "value": 2,
+          "unit": "V",
+          "page": 4,
+          "evidence": "VIH High-level input voltage VCC = 4.5 V to 5.5V 2 V",
+          "conditions": "VCC 4.5–5.5 V (TTL thresholds)"
+        },
+        "vil": {
+          "value": 0.8,
+          "unit": "V",
+          "page": 4,
+          "evidence": "VIL Low-level input voltage VCC = 4.5 V to 5.5V 0.8 V",
+          "conditions": "VCC 4.5–5.5 V"
+        },
+        "voh": {
+          "value": 4.4,
+          "unit": "V",
+          "page": 5,
+          "evidence": [
+            "VOH High-level output voltage VI = VIH or VIL",
+            "IOH = -20 uA, VCC = ",
+            "4.5 V 4.4 4.4 V"
+          ],
+          "conditions": "IOH −20 µA, VCC = 4.5 V"
+        },
+        "v_in_max": {
+          "rel": 1.0,
+          "of": "VCC",
+          "unit": "V",
+          "page": 4,
+          "evidence": "VI Input voltage 0 VCC V",
+          "conditions": "recommended input range 0 to VCC"
+        },
+        "outputs": "push_pull"
+      },
+      "pins": [
+        {
+          "name": "QB",
+          "signal": "digital_out",
+          "note": "3-state push-pull output at VCC"
+        },
+        {
+          "name": "QC",
+          "signal": "digital_out",
+          "note": "3-state push-pull output at VCC"
+        },
+        {
+          "name": "QD",
+          "signal": "digital_out",
+          "note": "3-state push-pull output at VCC"
+        },
+        {
+          "name": "QE",
+          "signal": "digital_out",
+          "note": "3-state push-pull output at VCC"
+        },
+        {
+          "name": "QF",
+          "signal": "digital_out",
+          "note": "3-state push-pull output at VCC"
+        },
+        {
+          "name": "QG",
+          "signal": "digital_out",
+          "note": "3-state push-pull output at VCC"
+        },
+        {
+          "name": "QH",
+          "signal": "digital_out",
+          "note": "3-state push-pull output at VCC"
+        },
+        {
+          "name": "GND",
+          "signal": "gnd"
+        },
+        {
+          "name": "QH'",
+          "signal": "spi_sdo",
+          "note": "serial output for cascading (5 V push-pull at VCC 5 V)"
+        },
+        {
+          "name": "SRCLR",
+          "signal": "reset_in",
+          "active_low": true,
+          "tie": "VCC",
+          "note": "low clears the shift register; tie to VCC if unused"
+        },
+        {
+          "name": "SRCLK",
+          "signal": "spi_sck",
+          "must_connect": true,
+          "note": "shift clock, rising edge"
+        },
+        {
+          "name": "RCLK",
+          "signal": "spi_cs",
+          "active_low": false,
+          "must_connect": true,
+          "note": "storage (latch) clock, rising edge: a chip-select line works (latches on its rising edge)"
+        },
+        {
+          "name": "OE",
+          "signal": "enable_in",
+          "active_low": true,
+          "must_connect": true,
+          "note": "low = outputs QA–QH enabled; high = Hi-Z (shift register and QH' keep working)"
+        },
+        {
+          "name": "SER",
+          "signal": "spi_sdi",
+          "must_connect": true,
+          "note": "serial data in (TTL threshold)"
+        },
+        {
+          "name": "QA",
+          "signal": "digital_out",
+          "note": "3-state push-pull output at VCC"
+        },
+        {
+          "name": "VCC",
+          "signal": "supply"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "spi",
+          "f_max_hz": {
+            "value": 25000000.0,
+            "unit": "Hz",
+            "page": 5,
+            "evidence": "fclock Clock frequency 4.5 V 31 25 MHz",
+            "conditions": "VCC = 4.5 V, TA −40 to 125 °C (31 MHz at 25 °C)"
+          },
+          "note": "SER/SRCLK/RCLK; data shift on the SRCLK rising edge, QH' cascades to the next SER"
+        }
+      ],
+      "current": {
+        "supply": "VCC",
+        "max": {
+          "value": 8e-05,
+          "unit": "A",
+          "page": 5,
+          "evidence": "ICC Supply current VI = VCC or 0, IO = 0 VCC = 5.5 V 8 80 µA",
+          "conditions": "static, no load, inputs at VCC or 0, VCC 5.5 V, TA −40 to 125 °C"
+        },
+        "note": "output (LED) current comes on top: at most 35 mA per output and 70 mA through VCC/GND in total (absolute maximum, p. 4); a 3.3 V input adds up to 157.5 µA (ΔICC at VCC − 2.1 V)"
+      },
+      "requires": [
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "100nF",
+          "pins": [
+            "VCC"
+          ],
+          "to": "GND",
+          "page": 17,
+          "evidence": "disturbance. A 0.1-μF capacitor is recommended for this device. It is acceptable to parallel multiple bypass caps"
+        }
+      ],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "TTL inputs (VIH 2 V at VCC 4.5–5.5 V): a 3.3 V ESP output drives the 5 V shift register directly.",
+          "page": 4,
+          "evidence": "VIH High-level input voltage VCC = 4.5 V to 5.5V 2 V",
+          "verified": true
+        },
+        {
+          "text": "Total current through VCC or GND at most 70 mA (absolute maximum): eight LEDs at 10 mA already exceed it.",
+          "page": 4,
+          "evidence": "ICC Continuous output current through VCC or GND –70 70 mA",
+          "verified": true
+        },
+        {
+          "text": "Do not leave inputs floating; unused inputs to VCC or GND.",
+          "page": 11,
+          "evidence": [
+            "Do not leave TTL-compatible CMOS inputs floating at any time during operation. Unused inputs must be",
+            "terminated at V CC or GND. If a system will not be actively driving an input at all times, a pull-up or pull-down"
+          ],
+          "verified": true
+        },
+        {
+          "text": "OE high disables QA–QH only; SRCLR low clears the shift register.",
+          "page": 12,
+          "evidence": [
+            "X X X X H Outputs QA – QH are disabled",
+            "X X L X X Shift register is cleared."
+          ],
+          "verified": true
+        },
+        {
+          "text": "QH' runs at VCC (5 V): do not feed it back to an ESP input without a divider or buffer.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "cd74hct4067",
+      "aliases": [
+        "74hct4067",
+        "hct4067",
+        "cd74hct4067m",
+        "cd74hct4067pw"
+      ],
+      "title": "CD74HCT4067 16-channel analog multiplexer/demultiplexer (TTL control inputs, 5 V)",
+      "category": "logic.mux",
+      "manufacturer": "Texas Instruments",
+      "kind": "ic",
+      "source_ids": [
+        "mod-nlevel-cd74hct4067-ds"
+      ],
+      "supplies": {
+        "VCC": {
+          "min": {
+            "value": 4.5,
+            "unit": "V",
+            "page": 6,
+            "evidence": [
+              "CD54 and 74HCT",
+              "types 4.5 5.5"
+            ]
+          },
+          "max": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 6,
+            "evidence": [
+              "CD54 and 74HCT",
+              "types 4.5 5.5"
+            ]
+          },
+          "abs_max": {
+            "value": 7,
+            "unit": "V",
+            "page": 5,
+            "evidence": "VCC HCT –0.5 7 V"
+          }
+        }
+      },
+      "io": {
+        "domain": "VCC",
+        "vih": {
+          "value": 2,
+          "unit": "V",
+          "page": 8,
+          "evidence": [
+            "9 Electrical Characteristics: HCT Devices",
+            "High Level Input Voltage VIH",
+            "4.5",
+            "V–40°C to +85°C 2"
+          ],
+          "conditions": "control inputs, VCC = 4.5 V (only supply in the table), TA −40 to 85 °C"
+        },
+        "vil": {
+          "value": 0.8,
+          "unit": "V",
+          "page": 8,
+          "evidence": [
+            "9 Electrical Characteristics: HCT Devices",
+            "High Level Input Voltage VIH",
+            "4.5",
+            "Low Level Input Voltage VIL",
+            "V–40°C to +85°C 0.8"
+          ],
+          "conditions": "control inputs, VCC = 4.5 V (only supply in the table, shared with VIH), TA −40 to 85 °C"
+        },
+        "v_in_max": {
+          "rel": 1.0,
+          "of": "VCC",
+          "unit": "V",
+          "page": 6,
+          "evidence": "VIS Analog switch I/O voltage 0 VCC V",
+          "conditions": "analog switch I/O (COM and I0–I15)"
+        }
+      },
+      "pins": [
+        {
+          "name": "COM",
+          "signal": "analog_out",
+          "note": "COMMON INPUT/OUTPUT (pin 1); usually to the ESP ADC; follows the selected channel (0 to VCC)"
+        },
+        {
+          "name": "I0",
+          "signal": "analog_in",
+          "note": "switch input/output; analog range 0 to VCC"
+        },
+        {
+          "name": "I1",
+          "signal": "analog_in",
+          "note": "switch input/output; analog range 0 to VCC"
+        },
+        {
+          "name": "I2",
+          "signal": "analog_in",
+          "note": "switch input/output; analog range 0 to VCC"
+        },
+        {
+          "name": "I3",
+          "signal": "analog_in",
+          "note": "switch input/output; analog range 0 to VCC"
+        },
+        {
+          "name": "I4",
+          "signal": "analog_in",
+          "note": "switch input/output; analog range 0 to VCC"
+        },
+        {
+          "name": "I5",
+          "signal": "analog_in",
+          "note": "switch input/output; analog range 0 to VCC"
+        },
+        {
+          "name": "I6",
+          "signal": "analog_in",
+          "note": "switch input/output; analog range 0 to VCC"
+        },
+        {
+          "name": "I7",
+          "signal": "analog_in",
+          "note": "switch input/output; analog range 0 to VCC"
+        },
+        {
+          "name": "I8",
+          "signal": "analog_in",
+          "note": "switch input/output; analog range 0 to VCC"
+        },
+        {
+          "name": "I9",
+          "signal": "analog_in",
+          "note": "switch input/output; analog range 0 to VCC"
+        },
+        {
+          "name": "I10",
+          "signal": "analog_in",
+          "note": "switch input/output; analog range 0 to VCC"
+        },
+        {
+          "name": "I11",
+          "signal": "analog_in",
+          "note": "switch input/output; analog range 0 to VCC"
+        },
+        {
+          "name": "I12",
+          "signal": "analog_in",
+          "note": "switch input/output; analog range 0 to VCC"
+        },
+        {
+          "name": "I13",
+          "signal": "analog_in",
+          "note": "switch input/output; analog range 0 to VCC"
+        },
+        {
+          "name": "I14",
+          "signal": "analog_in",
+          "note": "switch input/output; analog range 0 to VCC"
+        },
+        {
+          "name": "I15",
+          "signal": "analog_in",
+          "note": "switch input/output; analog range 0 to VCC"
+        },
+        {
+          "name": "S0",
+          "signal": "digital_in",
+          "must_connect": true,
+          "note": "channel select (TTL threshold)"
+        },
+        {
+          "name": "S1",
+          "signal": "digital_in",
+          "must_connect": true,
+          "note": "channel select (TTL threshold)"
+        },
+        {
+          "name": "S2",
+          "signal": "digital_in",
+          "must_connect": true,
+          "note": "channel select (TTL threshold)"
+        },
+        {
+          "name": "S3",
+          "signal": "digital_in",
+          "must_connect": true,
+          "note": "channel select (TTL threshold)"
+        },
+        {
+          "name": "E",
+          "signal": "enable_in",
+          "active_low": true,
+          "must_connect": true,
+          "note": "high = all switches off"
+        },
+        {
+          "name": "VCC",
+          "signal": "supply"
+        },
+        {
+          "name": "GND",
+          "signal": "gnd"
+        }
+      ],
+      "current": {
+        "supply": "VCC",
+        "max": {
+          "value": 8e-05,
+          "unit": "A",
+          "page": 8,
+          "evidence": [
+            " ICC VCC or GND 5.5",
+            "–55°C to 85°C 80"
+          ],
+          "conditions": "quiescent, VCC 5.5 V, TA −55 to 85 °C"
+        },
+        "note": "a 3.3 V control input (VCC − 2.1 V) adds ΔICC; see p. 8"
+      },
+      "requires": [],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "Truth table: E high = no channel; E low and S3..S0 = channel number (S0 = LSB).",
+          "page": 5,
+          "evidence": [
+            "X X X X 1 None",
+            "0 0 0 0 0 0"
+          ],
+          "verified": true
+        },
+        {
+          "text": "Channels pass 0 to VCC: at VCC 5 V a 5 V signal reaches COM and the ESP ADC pin; keep the channel voltages ≤ 3.3 V or divide COM.",
+          "page": 6,
+          "evidence": "VIS Analog switch I/O voltage 0 VCC V",
+          "verified": true
+        },
+        {
+          "text": "On-resistance up to 200 Ω (VCC 4.5 V, −40 to 85 °C): it adds to the ADC source impedance.",
+          "page": 8,
+          "evidence": [
+            "\"ON\" Resistance IO = 1mA RON",
+            "Ω–40°C to +85°C 200"
+          ],
+          "verified": true
+        },
+        {
+          "text": "TTL control inputs (VIH 2 V): 3.3 V GPIOs select the channel with the chip at 5 V.",
+          "page": 1,
+          "evidence": "– Direct LSTTL input logic compatibility, VIL= 0.8V",
+          "verified": true
+        },
+        {
+          "text": "The data sheet gives no bypass capacitor value; 100 nF at VCC is common practice.",
+          "verified": false
+        },
+        {
+          "text": "The same TI document covers the CD74HC4067 (2–6 V, CMOS thresholds); this entry is the HCT type only.",
+          "verified": false
+        }
+      ]
+    }
+  ]
+}

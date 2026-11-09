@@ -1,0 +1,61 @@
+# source_id: mod-nlevel-sn74lvc8t245-ds
+# document: TI SN74LVC8T245 8-Bit Dual-Supply Bus Transceiver With Configurable Voltage Translation and 3-State Outputs, data sheet SCES584D
+# url: https://www.ti.com/lit/ds/symlink/sn74lvc8t245.pdf
+# corpus: mod/nlevel/sn74lvc8t245.pdf sha256 a2493b65471e5c873e3f71afbe152ac4d0f9233045c5ec289bda602a4b453cf0
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 5
+A1 3 I/O Input/output A1. Referenced to VCCA.
+A2 4 I/O Input/output A2. Referenced to VCCA.
+A3 5 I/O Input/output A3. Referenced to VCCA.
+A4 6 I/O Input/output A4. Referenced to VCCA.
+A5 7 I/O Input/output A5. Referenced to VCCA.
+A6 8 I/O Input/output A6. Referenced to VCCA.
+A7 9 I/O Input/output A7. Referenced to VCCA.
+A8 10 I/O Input/output A8. Referenced to VCCA.
+B1 21 I/O Input/output B1. Referenced to VCCB.
+B2 20 I/O Input/output B2. Referenced to VCCB.
+B3 19 I/O Input/output B3. Referenced to VCCB.
+B4 18 I/O Input/output B4. Referenced to VCCB.
+B5 17 I/O Input/output B5. Referenced to VCCB.
+B6 16 I/O Input/output B6. Referenced to VCCB.
+B7 15 I/O Input/output B7. Referenced to VCCB.
+B8 14 I/O Input/output B8. Referenced to VCCB.
+DIR 2 I Direction-control signal.
+GND 11, 12, 13 G Ground
+OE 22 I 3-state output-mode enables. Pull OE high to place all outputs in 3-state mode. Referenced to VCCA.
+VCCA 1 P A-port supply voltage. 1.65V ≤ VCCA ≤ 5.5V
+VCCB 23, 24 P B-port supply voltage. 1.65V ≤ VCCB ≤ 5.5V
+@@ page 6
+Supply voltage range, VCCA, VCCB –0.5 6.5 V
+VO Voltage range applied to any output in the high or low state(2) (3) A port –0.5 VCCA + 0.5 VB port –0.5 VCCB + 0.5
+@@ page 7
+1.65 5.5
+VCCB 1.65 5.5
+VIH High-levelinput voltage Data inputs(5)
+3V to 3.6V 2
+VIL Low-levelinput voltage Data inputs(5)
+3V to 3.6V 0.8
+3V to 3.6V 2
+3V to 3.6V 0.8
+VI Input voltage Control inputs 0 5.5 V
+VI/O
+Active state 0 VCCO V
+3-State 0 5.5 V
+(1) VCCI is the VCC associated with the data input port.
+(3) All unused or driven (floating) data inputs (I/Os) of the device must be held at logic HIGH or LOW (preferably VCCI or GND) to ensure 
+(4) All unused control inputs must be held at VCCA or GND to ensure proper device operation and minimize power comsumption.
+@@ page 9
+IOH = –100μA, VI = VIH 1.65V to 4.5V 1.65V to 4.5V VCCO  – 0.1
+IOL = 100μA, VI = VIL 1.65V to 4.5V 1.65V to 4.5V 0.1
+ICCA + ICCB VI = VCCI or GND, IO = 0 1.65V to 5.5V 1.65V to 5.5V 12 μA
+@@ page 15
+OE DIR A PORT B PORT
+L L Enabled Hi-Z B data to A bus
+L H Hi-Z Enabled A data to B bus
+H X Hi-Z Hi-Z Isolation
+@@ page 17
+• Bypass capacitors must be used on power supplies.
+@@ page 18
+Keep OE high until VCCA 
+and  VCCB  are powered upVCC

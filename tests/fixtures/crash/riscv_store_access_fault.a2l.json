@@ -1,0 +1,9 @@
+{
+ "addresses": {
+  "0x42006686": "bar at {project}/main/hello_world_main.c:18",
+  "0x42006692": "foo at {project}/main/hello_world_main.c:22",
+  "0x420066ac": "app_main at {project}/main/hello_world_main.c:28",
+  "0x42015ece": "main_task at /esp/esp-idf/components/freertos/app_startup.c:142",
+  "0x403859b8": "vPortTaskWrapper at /esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:130"
+ }
+}

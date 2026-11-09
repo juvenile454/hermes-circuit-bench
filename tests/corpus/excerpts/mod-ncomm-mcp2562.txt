@@ -1,0 +1,33 @@
+# source_id: mod-ncomm-mcp2562-ds
+# document: Microchip MCP2561/2 High-Speed CAN Transceiver data sheet DS20005167C (2013-2014)
+# url: https://ww1.microchip.com/downloads/en/DeviceDoc/20005167C.pdf
+# corpus: mod/ncomm/20005167C.pdf sha256 c36b24e45446d8a1b7d90c0618a924cac0f117994390e60169287e6ba488c53e
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 2
+3: Only MCP2562 has the VIO pin. In MCP2561, the supply for the digital I/O is internally connected to VDD.
+@@ page 3
+mode, the transmitter and the high-speed part of the 
+receiver are switched off to minimize power 
+@@ page 4
+data to the RXD pin down to 1.8V on the VIO supply.
+@@ page 5
+wake-up filter are active. STBY is connected to an 
+internal MOS pull-up resistor to V DD or V IO, in the 
+@@ page 8
+VDD.............................................................................................................................................................................7.0V
+VIO..............................................................................................................................................................................7.0V
+DC Voltage at TXD, RXD, STBY and VSS.............................................................................................-0.3V to VIO + 0.3V
+@@ page 9
+VDD Pin
+Voltage Range VDD 4.5 — 5.5
+Supply Current IDD — 5 10 mA Recessive; VTXD = VDD
+— 45 70 Dominant; VTXD = 0V
+Standby Current IDDS — 5 15 µA MCP2561
+— 5 15 MCP2562; Includes IIO
+Digital Supply Voltage Range VIO 1.8 — 5.5 V
+@@ page 11
+High-Level Input Voltage VIH 0.7VIO — VIO + 0.3 V
+Low-Level Input Voltage VIL -0.3 — 0.3VIO V
+VIO - 0.4 — — IOH = -1 mA (MCP2562); typical 
+Low-Level Output Voltage VOL — — 0.4 V IOL = 4 mA; typical 8 mA

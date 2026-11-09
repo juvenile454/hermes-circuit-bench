@@ -1,0 +1,58 @@
+[
+  {
+    "id": "mod-radio-nrf24l01p-ps",
+    "title": "Nordic Semiconductor nRF24L01+ Single Chip 2.4GHz Transceiver, Product Specification v1.0, copy hosted by SparkFun",
+    "url": "https://cdn.sparkfun.com/assets/3/d/8/5/1/nRF24L01P_Product_Specification_1_0.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A2",
+    "note": "Nordic document with manufacturer header and revision (Product Specification v1.0, 'Revision 1.0' page footers); nordicsemi.com blocks scripted downloads (403), so the SparkFun CDN copy is pinned. Pages 1, 11, 12, 13, 14, 20, 50, 53, 65; sha256 4dc3ed775dc49cd365ec95c677d1d010a43c8539614eb4b312211096ca0ddf7e"
+  },
+  {
+    "id": "mod-radio-sx1276-ds",
+    "title": "Semtech SX1276/77/78/79 datasheet Rev. 7 (May 2020), copy hosted by SparkFun",
+    "url": "https://cdn.sparkfun.com/assets/7/7/3/2/2/SX1276_Datasheet.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A2",
+    "note": "Semtech document with manufacturer header and revision ('Rev. 7 - May 2020' on every page); semtech.com serves downloads through a JS form, so the SparkFun CDN copy is pinned. Pages 1, 11, 13, 14, 22, 80, 84; sha256 330745f933df00015d2de3efd582608339350ba3a21001d11b9d449839ce016b"
+  },
+  {
+    "id": "mod-radio-rfm95w-ds",
+    "title": "HopeRF RFM95W/96W/98W Low Power Long Range Transceiver Module, datasheet Version 2.0",
+    "url": "https://hoperf.com/uploads/RFM95W_96W_98W_L_1713402518.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Current edition on hoperf.com (PDF created 2024-04-15); it specifies the PA_BOOST output up to +10 dBm only (the 2019 edition of the same version number says +20 dBm). Pages 1, 11, 12, 13, 20, 80; sha256 e99405dbef6926cb10041516c53bd835a3deccd4c23237d88c96f5a079b39553"
+  },
+  {
+    "id": "mod-radio-rfm95w-sf",
+    "title": "HopeRF RFM95W/96W/98W datasheet Version 2.0 (2019 edition, +20 dBm), copy hosted by SparkFun",
+    "url": "https://cdn.sparkfun.com/assets/a/9/6/1/0/RFM95W-V2.0.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A2",
+    "note": "HopeRF document with manufacturer header and version ('Version:2.0 www.hoperf.com' on every page, PDF created 2019-07-31); used only for the +20 dBm facts (TX current, 1 % duty cycle, 2.4 V minimum supply). The page header carries the 'PRELIMINARY DATASHEET' line inherited from the Semtech template. Pages 1, 13, 80; sha256 ae2a0cccdc4fbb9a3539b8a761d0a774a30b22982ba80f9572709035cd8ba803"
+  },
+  {
+    "id": "mod-radio-mfrc522-ds",
+    "title": "NXP MFRC522 Standard performance MIFARE and NTAG frontend, Product data sheet Rev. 3.9",
+    "url": "https://cache.nxp.com/docs/en/data-sheet/MFRC522.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Document 112139, Rev. 3.9 of 27 April 2016; cache.nxp.com is NXP's CDN. Pages 1, 2, 3, 6, 7, 9, 10, 74, 75, 76; sha256 5e2fdff12348a21b0203fed3fc49a252d589c39511324ad29396e1975fe01451"
+  },
+  {
+    "id": "mod-radio-pn532-ds",
+    "title": "NXP PN532/C1 Near Field Communication (NFC) controller, Product data sheet Rev. 3.6",
+    "url": "https://cache.nxp.com/docs/en/nxp/data-sheets/PN532_C1.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Rev. 3.6 of 28 November 2017; cache.nxp.com is NXP's CDN. Pages 1, 4, 8, 9, 48, 49, 79, 194, 195, 203, 211; sha256 46c4f04c44a36dfded8088e62cbcfe8cd3f785c460bb14f161ce0160ef84822d"
+  },
+  {
+    "id": "mod-radio-pn532-um",
+    "title": "NXP UM0701-02 PN532 User Manual Rev. 02",
+    "url": "https://cache.nxp.com/docs/en/user-guide/141520.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "User manual UM0701-02, Rev. 02 of 5 November 2007 (host interfaces, SPI mode and bit order, I²C address, HSU default); cache.nxp.com is NXP's CDN. Pages 2, 6, 24, 25, 26, 43; sha256 1826ce9f8e55ff43a8178fdd644a47c136160fc08cec16f38065796b0c27dd6f"
+  }
+]

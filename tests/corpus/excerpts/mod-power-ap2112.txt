@@ -1,0 +1,43 @@
+# source_id: mod-power-ap2112-ds
+# document: Diodes Incorporated AP2112 600mA CMOS LDO regulator with enable, Document number DS39724 Rev. 2 - 2 (June 2017)
+# url: https://www.diodes.com/assets/Datasheets/AP2112.pdf
+# corpus: mod/power/AP2112.pdf sha256 ef8d376f2ec356e29172eb9e053819a0ebdcc576dba7fc9ab0505c568427920f
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+ Output Current: 600mA (Min.) 
+ Foldback Short Current Protection: 50mA 
+ Low Dropout Voltage (3.3V): 250mV (Typ.) @IOUT = 600mA 
+ Low Quiescent Current: 55µ A (Typ.) 
+@@ page 2
+Note 4:      It is recommended to use X7R or X5R dielectric capacitor if 1.0 µF ceramic capacitor is selected as input/output capacitors.  
+SOT25  SOT89-5 SO-8 
+1 4 8 VIN Input Voltage 
+2 2 6, 7 GND GND 
+5 EN Chip Enable, H – normal work, L – shutdown output 
+5 5 1 VOUT Output Voltage 
+@@ page 3
+Document number: DS39724  Rev. 2 - 2 
+VCC Power Supply Voltage 6.5 V 
+TJ Operating Junction Temperature Range +150 °C 
+θJA Thermal Resistance (Junction to Ambient)(No Heatsink) 
+SOT25 184 
+VIN Supply Voltage 2.5 6.0 V 
+@@ page 8
+AP2112-3.3 Electrical Characteristics  (@VIN = 4.3V, CIN = 1.0µ F (Ceramic), COUT = 1.0µ F (Ceramic), Typical TA = +25° C, 
+*98.5% 3.3 VOUT  *101.5% V 
+IOUT(MAX) Maximum Output Current VIN = 4.3V, VOUT = 3.251V to 3.350V 600 — — mA 
+VDROP Dropout Voltage 
+IOUT = 10mA — 5 8 
+mV IOUT = 300mA — 125 200 
+IOUT = 600mA — 250 400 
+IQ Quiescent Current VIN = 4.3V, IOUT = 0mA — 55 80 µA 
+ISTD Standby Current VIN = 4.3V, VEN in OFF mode — 0.01 1.0 µA 
+ISHORT Short Current Limit VOUT = 0V — 50 — mA 
+VIH VEN High Voltage Enable logic high, regulator on 1.5 — 6.0 
+VIL VEN Low Voltage Enable logic low, regulator off 0 — 0.4 
+RPD EN Pull Down Resistor — — 3.0 — MΩ 
+TOTSD Thermal Shutdown Temperature — — +160 — 
+@@ page 12
+K : SOT25
+3.3V AP2112K-3.3TRG1 G3P 3000/7‖/Tape & Reel 

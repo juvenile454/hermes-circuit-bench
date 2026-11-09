@@ -1,0 +1,16 @@
+[
+ {
+  "id": "cflash-pio-boards-dir",
+  "title": "PlatformIO docs: boards_dir (board manifest lookup order: project boards_dir, core_dir/boards, platforms/*/boards)",
+  "url": "https://docs.platformio.org/en/latest/projectconf/sections/platformio/options/directory/boards_dir.html",
+  "retrieved": "2026-11-06",
+  "note": "Used by board.build_precheck to find the board manifest (build.mcu) the way PlatformIO does; PLATFORMIO_BOARDS_DIR replaces the project boards folder."
+ },
+ {
+  "id": "cflash-pio-6.2.0-get-package",
+  "title": "PlatformIO Core 6.2.0, platformio/package/manager/base.py: BasePackageManager.get_package (highest installed version that satisfies the requirement)",
+  "url": "https://github.com/platformio/platformio-core/blob/v6.2.0/platformio/package/manager/base.py",
+  "retrieved": "2026-11-06",
+  "note": "Read in the locally installed PlatformIO Core 6.2.0 (tag v6.2.0 exists upstream): get_package() skips installed packages whose version is not in spec.requirements and keeps the highest version. board.installed_platform and sim._offline_ready pick the espressif32 folder (espressif32 or espressif32@<version>) the same way."
+ }
+]

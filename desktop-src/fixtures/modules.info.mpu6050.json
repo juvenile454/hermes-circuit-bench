@@ -1,0 +1,323 @@
+{
+ "ok": true,
+ "action": "modules.info",
+ "summary": "MPU-6050 6-axis accelerometer and gyroscope (mpu6050): 13 pins, interfaces i2c; source class A1.",
+ "result": {
+  "module": {
+   "id": "mpu6050",
+   "title": "MPU-6050 6-axis accelerometer and gyroscope",
+   "category": "sensor.motion",
+   "manufacturer": "TDK InvenSense",
+   "kind": "ic",
+   "aliases": [
+    "mpu-6050",
+    "gy-521"
+   ],
+   "pins": [
+    {
+     "name": "VDD",
+     "signal": "supply"
+    },
+    {
+     "name": "VLOGIC",
+     "signal": "supply",
+     "tie": "VDD",
+     "note": "digital I/O supply, ≤ VDD (p. 33)"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda"
+    },
+    {
+     "name": "SCL",
+     "signal": "i2c_scl"
+    },
+    {
+     "name": "AD0",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "I²C address LSB (p. 25)"
+    },
+    {
+     "name": "INT",
+     "signal": "digital_out",
+     "note": "totem pole or open-drain (p. 21)"
+    },
+    {
+     "name": "FSYNC",
+     "signal": "digital_in",
+     "tie": "GND",
+     "note": "connect to GND if unused (p. 21)"
+    },
+    {
+     "name": "CLKIN",
+     "signal": "digital_in",
+     "tie": "GND",
+     "note": "connect to GND if unused (p. 21)"
+    },
+    {
+     "name": "AUX_DA",
+     "signal": "nc",
+     "note": "auxiliary I²C master data to external sensors, not the host bus"
+    },
+    {
+     "name": "AUX_CL",
+     "signal": "nc",
+     "note": "auxiliary I²C master clock to external sensors, not the host bus"
+    },
+    {
+     "name": "REGOUT",
+     "signal": "nc",
+     "note": "regulator filter capacitor 0.1 µF to GND (p. 22), no signal"
+    },
+    {
+     "name": "CPOUT",
+     "signal": "nc",
+     "note": "charge pump capacitor 2.2 nF (p. 22), no signal"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "page": 15,
+      "evidence": [
+       "I2C ADDRESS AD0 = 0  1101000",
+       "AD0 = 1  1101001"
+      ],
+      "value": [
+       "0x68",
+       "0x69"
+      ]
+     },
+     "default": "0x68",
+     "select": {
+      "pin": "AD0",
+      "map": {
+       "GND": "0x68",
+       "VLOGIC": "0x69"
+      }
+     },
+     "f_max_hz": {
+      "value": 400000,
+      "unit": "Hz",
+      "page": 15,
+      "evidence": "I2C Operating Frequency All registers, Fast-mode   400 kHz"
+     },
+     "note": "I²C only (the SPI variant is the MPU-6000); bus level set by VLOGIC (p. 25)"
+    }
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 2.375,
+      "unit": "V",
+      "page": 14,
+      "evidence": "Operating Voltages  2.375  3.46 V"
+     },
+     "max": {
+      "value": 3.46,
+      "unit": "V",
+      "page": 14,
+      "evidence": "Operating Voltages  2.375  3.46 V"
+     },
+     "abs_max": {
+      "value": 6.0,
+      "unit": "V",
+      "page": 20,
+      "evidence": "Supply Voltage, VDD -0.5V to +6V"
+     }
+    },
+    "VLOGIC": {
+     "min": {
+      "value": 1.71,
+      "unit": "V",
+      "page": 14,
+      "evidence": [
+       "Voltage Range VLOGIC must be",
+       "1.71  VDD V"
+      ],
+      "conditions": "max is VDD (VLOGIC must be ≤ VDD at all times)"
+     }
+    }
+   },
+   "io": {
+    "domain": "VLOGIC",
+    "vih": {
+     "rel": 0.7,
+     "of": "VLOGIC",
+     "unit": "V",
+     "page": 15,
+     "evidence": [
+      "VIH, High Level Input Voltage MPU-6000 0.7*VDD",
+      "MPU-6050 0.7*VLOGIC"
+     ],
+     "conditions": "digital inputs SDA, SCL, AD0, FSYNC, CLKIN"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VLOGIC",
+     "unit": "V",
+     "page": 15,
+     "evidence": [
+      "VIL, Low Level Input Voltage MPU-6000",
+      "MPU-6050   0.3*VLOGIC V"
+     ],
+     "conditions": "digital inputs SDA, SCL, AD0, FSYNC, CLKIN"
+    },
+    "voh": {
+     "rel": 0.9,
+     "of": "VLOGIC",
+     "unit": "V",
+     "page": 15,
+     "evidence": [
+      "VOH, High Level Output Voltage",
+      "MPU-6050 0.9*VLOGIC"
+     ],
+     "conditions": "SDO, INT; RLOAD = 1 MΩ"
+    },
+    "vol": {
+     "rel": 0.1,
+     "of": "VLOGIC",
+     "unit": "V",
+     "page": 15,
+     "evidence": [
+      "VOL1, LOW-Level Output Voltage",
+      "MPU-6050   0.1*VLOGIC V"
+     ],
+     "conditions": "SDO, INT; RLOAD = 1 MΩ (SDA: 0.4 V at 3 mA sink, p. 16)"
+    },
+    "v_in_max": {
+     "rel_offset": 0.5,
+     "of": "VDD",
+     "unit": "V",
+     "page": 20,
+     "evidence": [
+      "Input Voltage Level (CLKIN, AUX_DA,  AD0, FSYNC, INT,",
+      "SCL, SDA) -0.5V to VDD + 0.5V"
+     ],
+     "conditions": "absolute maximum rating"
+    },
+    "outputs": "open_drain"
+   },
+   "current": {
+    "supply": "VDD",
+    "typ": {
+     "value": 0.0039,
+     "unit": "A",
+     "page": 14,
+     "evidence": "Normal Operating Current Gyroscope + Accelerometer + DMP  3.9  mA",
+     "conditions": "gyroscope + accelerometer + DMP, typical"
+    },
+    "sleep": {
+     "value": 5e-06,
+     "unit": "A",
+     "page": 14,
+     "evidence": "Full-Chip Idle Mode Supply Current   5",
+     "conditions": "full-chip idle, typical"
+    }
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VDD"
+     ],
+     "to": "GND",
+     "page": 22,
+     "evidence": "VDD Bypass Capacitor (Pin 13) C2 Ceramic, X7R, 0.1"
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "10nF",
+     "pins": [
+      "VLOGIC"
+     ],
+     "to": "GND",
+     "page": 22,
+     "evidence": "VLOGIC Bypass Capacitor (Pin 8) C4* Ceramic, X7R, 10nF"
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "REGOUT"
+     ],
+     "to": "GND",
+     "note": "regulator filter capacitor C1 (rated 2 V)",
+     "page": 22,
+     "evidence": "Regulator Filter Capacitor (Pin 10) C1 Ceramic, X7R, 0.1"
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "2.2nF",
+     "pins": [
+      "CPOUT"
+     ],
+     "note": "charge pump capacitor C3 (rated 50 V; CPOUT reaches up to 30 V, p. 20)",
+     "page": 22,
+     "evidence": "Charge Pump Capacitor (Pin 20) C3 Ceramic, X7R, 2.2nF"
+    },
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "to": "VLOGIC",
+     "note": "the text says VDD; for the MPU-6050 the bus level is VLOGIC (p. 25). Value from the I²C pull-up calculator",
+     "page": 33,
+     "evidence": "SDA and SCL lines typically need pull -up resistors to VDD."
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "VLOGIC must stay at or below VDD at all times; its absolute maximum is VDD + 0.5 V.",
+     "verified": true,
+     "page": 20,
+     "evidence": "VLOGIC Input Voltage Level (MPU-6050) -0.5V to VDD + 0.5V"
+    },
+    {
+     "text": "Two MPU-6050 can share one bus: AD0 low = 0x68, AD0 high = 0x69. 0x68 is also the address of common RTCs (DS1307/DS3231).",
+     "verified": true,
+     "page": 33,
+     "evidence": "determined by the logic level on pin AD0. This allows two MPU-60X0s to be connected to the same I 2C bus."
+    },
+    {
+     "text": "GY-521 breakouts add a 3.3 V regulator, I²C pull-ups and a pull-down on AD0 (address 0x68); TDK documents the bare chip only.",
+     "verified": false
+    }
+   ],
+   "class": "A1",
+   "family": "motion",
+   "variant": null,
+   "variants": []
+  }
+ },
+ "checks": [],
+ "warnings": [],
+ "assumptions": [],
+ "sources": [
+  {
+   "id": "mod-motion-mpu6050-ds",
+   "title": "TDK InvenSense MPU-6000 and MPU-6050 Product Specification, Revision 3.4",
+   "url": "https://web.archive.org/web/20230118033738id_/https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf",
+   "retrieved": "2026-11-08",
+   "class": "A1",
+   "note": "Document PS-MPU-6000A-00, revision 3.4 (release 08/19/2013); archived copy of invensense.tdk.com (web.archive.org 2023-01-18); pages 14, 15, 20, 21, 22, 25, 33; sha256 a4fdf69590b8cbab1cf0a5bcd359327b0ac022061fb233855aff2e191e7e3584"
+  }
+ ],
+ "simulated": false,
+ "error": null
+}

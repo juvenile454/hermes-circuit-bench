@@ -1,0 +1,38 @@
+# Citation excerpt. '#' lines are metadata; '@@ page N' starts a segment of whole lines copied
+# from pypdf's text of that PDF page (runs of whitespace collapsed to one space). tests/test_plus_calc_sources.py
+# checks code and data against it and, with the corpus present, the segments against the pinned PDF.
+# source_id: infineon-irlz44n
+# document: Infineon (International Rectifier) IRLZ44NPbF, HEXFET Power MOSFET, PD - 94831, 11/11/03 (TO-220AB)
+# url: https://www.infineon.com/assets/row/public/documents/24/49/infineon-irlz44n-datasheet-en.pdf (permalink: https://www.infineon.com/dgdl/irlz44npbf.pdf?fileId=5546d462533600a40153567217c32725)
+# corpus: calc/infineon-irlz44npbf-pd94831.pdf sha256 b4f1361a4486b8ec84206012a3e4a985111203d140fa6da8d4190b867c9ba077
+# retrieved: 2026-11-06
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text(), then the glyph names '/G<n>' of this PDF
+# decoded as character n (cp1252 above 127): '–––' = not specified, '„' = note 4 (pulse width ≤ 300 µs), 'l' = bullet.
+# Page 2 R_DS(on) rows (max, Ω): 0.022 at VGS = 10V, ID = 25A; 0.025 at VGS = 5.0V, ID = 25A; 0.035 at VGS = 4.0V, ID = 21A.
+@@ page 1
+IRLZ44NPbF
+PD - 94831
+l Logic-Level Gate Drive
+VDSS = 55V
+RDS(on) = 0.022Ω
+ID = 47AS
+11/11/03
+Parameter Min. Typ. Max. Units
+RθJC Junction-to-Case –––– –––– 1.4
+RθJA Junction-to-Ambient –––– –––– 62
+Thermal Resistance
+ID @ TC = 25°C Continuous Drain Current, V GS @ 10V 47
+ID @ TC = 100°C Continuous Drain Current, V GS @ 10V 33 A
+VGS Gate-to-Source Voltage ±16 V
+TJ Operating Junction and -55 to + 175
+TSTG Storage Temperature Range °C
+Absolute Maximum Ratings
+@@ page 2
+IRLZ44NPbF
+V(BR)DSS Drain-to-Source Breakdown Voltage 55 ––– ––– V V GS = 0V, ID = 250µA
+––– ––– 0.022 V GS = 10V, ID = 25A „
+––– ––– 0.025 Ω VGS = 5.0V, ID = 25A „
+––– ––– 0.035 V GS = 4.0V, ID = 21A „
+VGS(th) Gate Threshold Voltage 1.0 ––– 2.0 V V DS = VGS, ID = 250µA
+Electrical Characteristics @ TJ = 25°C (unless otherwise specified)
+RDS(on) Static Drain-to-Source On-Resistance

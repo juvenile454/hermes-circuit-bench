@@ -1,0 +1,30 @@
+# source_id: mod-level-sn74ahct125-ds
+# document: TI SNx4AHCT125 Quadruple Bus Buffer Gates With 3-State Outputs, data sheet SCLS264R
+# url: https://web.archive.org/web/20261029144954id_/https://www.ti.com/lit/ds/symlink/sn74ahct125.pdf
+# corpus: mod/level/sn74ahct125.pdf sha256 66da72e586dbca7a1548164adf28e238484c5c1ad250fcb28ec972e4732c6fc2
+# retrieved: 2026-11-09
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+• Inputs are TTL-voltage compatible
+outputs. Each output is disabled when the associated 
+output-enable (OE) input is high. When OE is low, the 
+respective gate passes the data from the A input to its 
+For the high-impedance state during power up or 
+power down, OE should be tied to V CC through a 
+@@ page 5
+VCC Supply voltage range –0.5 7 V
+VI Input voltage range(2) –0.5 7 V
+VO Output voltage range(2) –0.5 VCC + 0.5 V
+VCC Supply voltage 4.5 5.5 4.5 5.5 V
+VIH High-level input voltage 2 2 V
+VIL Low-level input voltage 0.8 0.8 V
+VI Input voltage 0 5.5 0 5.5 V
+IOH High-level output current –8 –8 mA
+(1) All unused inputs of the device must be held at VCC or GND to ensure proper device operation. Refer to the TI application report, 
+@@ page 6
+VOH
+IOH = –50 µA 4.5 V 4.4 4.5 4.4 4.4 V
+ICC VI = VCC or GND, IO = 0 5.5 V 2 20 20 µA
+ΔICC (2) One input at 3.4 V,Other inputs at VCC or GND 5.5 V 1.35 1.5 1.5 mA
+@@ page 11
+power disturbance. A 0.1- μF capacitor is recommended for this device. It is acceptable to parallel multiple 

@@ -1,0 +1,51 @@
+{
+ "run": {
+  "rc": 0,
+  "stdout": "Processing {env} (platform: espressif32@6.9.0; board: esp32-s3-devkitc-1; framework: arduino)\n--------------------------------------------------------------------------------\nCompiling .pio/build/{env}/src/main.cpp.o\nLinking .pio/build/{env}/firmware.elf\nRetrieving maximum program size .pio/build/{env}/firmware.elf\nChecking size .pio/build/{env}/firmware.elf\nAdvanced Memory Usage is available via \"PlatformIO Home > Project Inspect\"\nRAM:   [=         ]   5.6% (used 18432 bytes from 327680 bytes)\nFlash: [=         ]   7.9% (used 263377 bytes from 3342336 bytes)\nBuilding .pio/build/{env}/firmware.bin\n========================= [SUCCESS] Took 4.22 seconds =========================\n",
+  "write_files": {
+   "{project_dir}/.pio/build/{env}/firmware.elf": "FAKE-ELF build 1\n",
+   "{project_dir}/.pio/build/{env}/firmware.bin": "FAKE-BIN build 1\n",
+   "{project_dir}/.pio/build/{env}/bootloader.bin": "FAKE-BOOTLOADER build 1\n",
+   "{project_dir}/.pio/build/{env}/partitions.bin": "FAKE-PARTITIONS build 1\n",
+   "{project_dir}/.pio/fake-framework/boot_app0.bin": "FAKE-BOOT-APP0\n"
+  }
+ },
+ "metadata": {
+  "rc": 0,
+  "json": {
+   "{env}": {
+    "env_name": "{env}",
+    "build_type": "release",
+    "cc_path": "/opt/cb-fake/toolchain-xtensa-esp32s3/bin/xtensa-esp32s3-elf-gcc",
+    "gdb_path": "/opt/cb-fake/toolchain-xtensa-esp32s3/bin/xtensa-esp32s3-elf-gdb",
+    "prog_path": "{project_dir}/.pio/build/{env}/firmware.elf",
+    "extra": {
+     "flash_images": [
+      {
+       "offset": "0x0000",
+       "path": "{project_dir}/.pio/build/{env}/bootloader.bin"
+      },
+      {
+       "offset": "0x8000",
+       "path": "{project_dir}/.pio/build/{env}/partitions.bin"
+      },
+      {
+       "offset": "0xe000",
+       "path": "{project_dir}/.pio/fake-framework/boot_app0.bin"
+      }
+     ],
+     "application_offset": "0x10000"
+    }
+   }
+  }
+ },
+ "image-info": {
+  "rc": 0,
+  "stdout": "esptool v5.6.0\nFile size: 17 (bytes)\nDetected image type: ESP32-S3\n\nESP32-S3 Image Header\n=====================\nImage version: 1\nEntry point: 0x40375a88\nSegments: 5\nFlash size: 8MB\nFlash freq: 80m\nFlash mode: DIO\n\nESP32-S3 Extended Image Header\n==============================\nChip ID: 9 (ESP32-S3)\n"
+ },
+ "write-flash": {
+  "rc": 0,
+  "sleep": 0.5,
+  "stdout": "esptool v5.6.0\nConnected to ESP32-S3 on {port}:\nChip type:          ESP32-S3 (QFN56) (revision v0.2)\nFeatures:           Wi-Fi, BT 5 (LE), Dual Core + LP Core, 240MHz\nCrystal frequency:  40MHz\nMAC:                aa:bb:cc:dd:ee:ff\n\nUploading stub flasher...\nRunning stub flasher...\nStub flasher running.\nChanging baud rate to 460800...\nChanged.\n\nConfiguring flash size...\nAuto-detected flash size: 16MB\nFlash will be erased from 0x00000000 to 0x00004fff...\nFlash will be erased from 0x00008000 to 0x00008fff...\nFlash will be erased from 0x0000e000 to 0x0000ffff...\nFlash will be erased from 0x00010000 to 0x0004ffff...\nWrote 15104 bytes (9711 compressed) at 0x00000000 in 0.3 seconds (459.1 kbit/s).\nHash of data verified.\nWrote 3072 bytes (146 compressed) at 0x00008000 in 0.0 seconds (601.4 kbit/s).\nHash of data verified.\nWrote 8192 bytes (47 compressed) at 0x0000e000 in 0.1 seconds (760.6 kbit/s).\nHash of data verified.\nWrote 263488 bytes (169392 compressed) at 0x00010000 in 3.9 seconds (540.2 kbit/s).\nHash of data verified.\n\nHard resetting via RTS pin...\n"
+ }
+}

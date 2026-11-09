@@ -1,0 +1,30 @@
+[
+ {
+  "id": "aos-ao3400a",
+  "title": "Alpha and Omega Semiconductor AO3400A, 30V N-Channel MOSFET, Rev 3.1 (July 2023)",
+  "url": "https://www.aosmd.com/res/datasheets/AO3400A.pdf",
+  "retrieved": "2026-11-06",
+  "note": "Page 1: Product Summary (R_DS(on) max per V_GS), Absolute Maximum Ratings, Thermal Characteristics (R_thJA, Notes A, D). Page 2: Electrical Characteristics (V_GS(th), R_DS(on) test currents). PDF SHA-256 9c60d0b6c1ddc7609a4b788a91181468d8ffe6c3e9ba425c3d8ffc5ba88c5033."
+ },
+ {
+  "id": "infineon-irlz44n",
+  "title": "Infineon (International Rectifier) IRLZ44NPbF HEXFET Power MOSFET, PD-94831 (11/11/03)",
+  "url": "https://www.infineon.com/assets/row/public/documents/24/49/infineon-irlz44n-datasheet-en.pdf",
+  "retrieved": "2026-11-06",
+  "note": "Page 1: V_DSS, Absolute Maximum Ratings, Thermal Resistance (R_thJA). Page 2: Electrical Characteristics (R_DS(on) at V_GS 10 / 5.0 / 4.0 V, V_GS(th)). PDF SHA-256 b4f1361a4486b8ec84206012a3e4a985111203d140fa6da8d4190b867c9ba077."
+ },
+ {
+  "id": "ams-ams1117",
+  "title": "Advanced Monolithic Systems AMS1117, 1A Low Dropout Voltage Regulator (DS1117)",
+  "url": "https://web.archive.org/web/20260102111411id_/http://www.advanced-monolithic.com/pdf/ds1117.pdf",
+  "retrieved": "2026-11-06",
+  "note": "No revision printed (PDF of 2009-08-27). Page 1 ordering information, page 2 Absolute Maximum Ratings (theta_JA per package), page 3 dropout, current limit, quiescent current, page 5 Thermal Considerations. Manufacturer copy http://www.advanced-monolithic.com/pdf/ds1117.pdf (its https host fails the TLS handshake); the link is the Internet Archive copy of 2026-01-02 over https, byte-identical (the 2023-12-26 and 2025-01-06 snapshots too). PDF SHA-256 189a2651878a87d590b768eaa9b44217a3fdf460352ce6ecaff127221282a3f0."
+ },
+ {
+  "id": "ds-esp32-s3-wroom-1-power",
+  "title": "ESP32-S3-WROOM-1 & WROOM-1U Datasheet v1.8, Tables 6-2, 6-3 and 6-4 (supply, V_OH, Wi-Fi current)",
+  "url": "https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+  "retrieved": "2026-11-06",
+  "note": "Page 27: VDD33 3.0 to 3.6 V, I_VDD min 0.5 A, V_OH min 0.8 x VDD. Page 28: Wi-Fi TX peak 355 mA. PDF SHA-256 27d71971da07c280c6068d08c74720d1a25b8f20cf8494dc1765bdd28d40d435 (tests/corpus/pins.json)."
+ }
+]

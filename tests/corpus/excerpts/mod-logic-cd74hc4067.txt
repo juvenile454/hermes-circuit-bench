@@ -1,0 +1,68 @@
+# source_id: mod-logic-cd74hc4067-ds
+# document: Texas Instruments CD74HCx4067 High-Speed CMOS Logic 16-Channel Analog Multiplexer and Demultiplexer, SCHS209D (November 1998, revised December 2024)
+# url: https://www.ti.com/lit/ds/symlink/cd74hc4067.pdf
+# corpus: mod/logic/cd74hc4067.pdf sha256 be0091cbec79831f5ced7d5d42016eadb88b8fad431a1d460a94b9f4f98a421d
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+CD74HCx4067 High-Speed CMOS Logic 16-Channel Analog Multiplexer and 
+SCHS209D – NOVEMBER 1998 – REVISED DECEMBER 2024
+@@ page 4
+COMMON 
+INPUT/
+OUTPUT
+1 IO Common input or output.
+I7 2 IO Switch input/output
+I6 3 IO Switch input/output
+I5 4 IO Switch input/output
+I4 5 IO Switch input/output
+I3 6 IO Switch input/output
+I2 7 IO Switch input/output
+I1 8 IO Switch input/output
+I0 9 IO Switch input/output
+S0 10 I Select/Address pin
+S1 11 I Select/Address pin
+GND 12 P Ground pin
+S3 13 I Select/Address pin
+S2 14 I Select/Address pin
+E 15 I Enable for all switches ON/OFF
+I15 16 IO Switch input/output
+I14 17 IO Switch input/output
+I13 18 IO Switch input/output
+I12 19 IO Switch input/output
+I11 20 IO Switch input/output
+I10 21 IO Switch input/output
+I9 22 IO Switch input/output
+I8 23 IO Switch input/output
+VCC 24 P Power pin
+@@ page 5
+X X X X 1 None
+VCC HC DC Supply voltage -0.5 7 V
+IIK DC input diode current For VI < -0.5V or VI > VCC + 0.5V –20 20 mA
+@@ page 6
+CD54 and 74HC 
+types 2 6 V
+VIS Analog switch I/O voltage 0 VCC V
+@@ page 7
+High Level Input Voltage VIH
+2
+–40°C to +85°C 1.5
+4.5
+–40°C to +85°C 3.15
+6
+–40°C to +85°C 4.2
+Low Level Input Voltage VIL
+2
+4.5
+–40°C to +85°C 1.35
+6
+4.5
+6
+4.5
+6
+4.5
+@@ page 8
+Quiescent Device Current
+ ICC VCC or GND 6
+µA–55°C to 85°C 80
+Quiescent Device Current

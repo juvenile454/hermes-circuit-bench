@@ -1,0 +1,114 @@
+# Citation excerpt (chip and board data). '#' lines are metadata; '@@ page N'
+# starts a segment of whole lines copied from pypdf's text of that PDF page, '@@ html' a segment of lines of
+# the page's visible text (script/style dropped). tests/test_c0_corpus.py checks every segment line, in order
+# and whitespace-insensitive, against the pinned file.
+# source_id: wiki-wt32-eth01-features
+# document: wireless-tag Wiki, 'WT32-ETH01 Feature Introduction', version 1.0.1 (2026-05-12, Yobie Zhou).
+# url: https://wiki.wireless-tag.com/docs/en/WT32-ETH01/board_features.html
+# corpus: wireless-tag/wiki/WT32-ETH01/board_features.html sha256 66070a754fd4b6c75d664d80b2356b4776cebae427474754e1e147c8bc4546e5
+# retrieved: 2026-11-06
+# extracted: html.parser text of the pinned HTML (tests/test_c0_corpus.py: html_text)
+# English manufacturer wiki. Ranked below the datasheet.
+@@ html
+WT32-ETH01 Feature Introduction
+WT32-ETH01
+esp32
+2026-05-12
+Update history
+Date
+Version
+Author
+Update content
+2026-05-12
+1.0.1
+Yobie Zhou
+Added board images and purchasing links
+2025-06-19
+1.0.0
+Kirto
+Initial document release
+1. Introduction
+The WT32-ETH01, launched by Wireless-tag, is an embedded development board module based on Espressif's ESP32 series, focusing on simplifying device networking and data communication.
+Its core positioning is to provide an efficient and low-cost serial-to-Ethernet solution for Internet of Things (IoT) applications, suitable for various scenarios such as smart homes, industrial automation, and energy monitoring.
+1.1 🔧 Core Hardware Configuration
+Main Control Chip: Equipped with the Espressif ESP32 dual-mode SoC, integrating 2.4GHz Wi-Fi (supporting 802.11 b/g/n protocol) and BLE 4.2 (BR/EDR + BLE), featuring high RF performance and ultra-low power consumption characteristics.
+Network Interface: Provides an RJ45 Ethernet port (10/100Mbps auto-negotiation), supporting direct wired network connection, while retaining Wi-Fi wireless access capability, enabling dual-network redundancy.
+Multi-Data Ports: Includes four data transmission channels: serial port (UART), Wi-Fi, Ethernet, and Bluetooth, supporting flexible configuration of data passthrough between ports (e.g., UART ↔ Ethernet) via AT commands.
+1.2 🛠️ Design Features
+Flexible Installation: Compatible with both half-pad direct soldering and through-hole connector hardware designs. Can be directly soldered onto the user's PCB or used for breadboard prototyping, adapting to different engineering scenarios.
+Power Supply Compatibility: Supports 5V or 3.3V dual voltage input (must choose one), with an average operating current of about 80mA, suitable for the low-power requirements of embedded devices.
+Development Convenience: Supports AT firmware, facilitating quick start and development using the module.
+Multiple pins are broken out, allowing for secondary development using ESP-IDF.
+Can be developed using the ETH library in Arduino.
+1.3 📡 Main Application Scenarios
+Smart Home Gateway: Connects devices like smart bulbs, sockets, and door locks, synchronizing data to the cloud or APP via Wi-Fi/Ethernet.
+Industrial Monitoring: Embedded in distribution boxes to collect real-time current, voltage, and power parameters, transmitting them to the monitoring center via Ethernet.
+Intelligent Security System: Used for devices like door/window sensors and cameras to enable remote alarms and status notifications.
+Agricultural and Medical IoT: Supports sensor data network monitoring (e.g., temperature, humidity, medical device status).
+1.4 ⚙️ Development Advantages
+Integrated Protocol Stack: Built-in optimized TCP/IP protocol stack, significantly reducing the complexity of device networking development.
+AT Command Control: Provides a rich AT command set (e.g., AT+PASSCHANNEL to set passthrough channel, AT+CIPETH_DEF to configure static IP/DHCP), simplifying network parameter adjustment and data transmission management.
+OTA Upgrade: Supports remote firmware updates, offering high maintenance convenience.
+2. Pin Description
+2.1 Programming/Debugging Pins
+Name
+Function
+EN
+Enable pin, active high
+GND
+Ground pin
+3V3
+3.3V input pin
+TXD
+Serial output pin for programming/debugging
+RXD
+Serial input pin for programming/debugging
+IO0
+Boot mode pin for programming
+2.2 O Pin Description
+Name
+Function
+EN
+Enable pin, active high
+CFG
+IO32 pin, used for hardware factory reset
+485_EN
+IO33, Enable pin for RS485
+RXD
+IO5, Input pin for uart2
+TXD
+IO17, Output pin for uart2
+GND
+Ground pin
+3V3
+3.3V power input/output
+GND
+Ground pin
+5V
+5V power input/output
+LINK
+Network link indicator LED pin
+GND
+Ground pin
+IO39
+IO39, input only
+IO36
+IO36, input only
+IO15
+General Purpose IO 15
+IO14
+General Purpose IO 14
+IO12
+General Purpose IO 12
+IO35
+IO35, input only
+IO4
+General Purpose IO 4
+IO2
+General Purpose IO 2
+GND
+Ground pin
+!! When powering, you must choose either the 3V3 power supply OR the 5V power supply!!!
+3. Power Characteristics
+3.1 Supply Voltage
+The module's supply voltage can be either 5V or 3V3. You must choose only one.

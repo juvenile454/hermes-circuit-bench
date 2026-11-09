@@ -1,0 +1,153 @@
+{
+ "ok": true,
+ "action": "calc.led",
+ "summary": "LED at 3.30 V: 130 Ω exact, use 150 Ω (E12) for 8.67 mA, 11.3 mW in the resistor (rate it ≥ 22.5 mW, rule of thumb).",
+ "result": {
+  "inputs": {
+   "v_supply": {
+    "value": 3.3,
+    "unit": "V",
+    "display": "3.30 V"
+   },
+   "v_f": {
+    "value": 2.0,
+    "unit": "V",
+    "display": "2.00 V"
+   },
+   "i_f": {
+    "value": 0.01,
+    "unit": "A",
+    "display": "10.0 mA"
+   }
+  },
+  "r_exact": {
+   "value": 130.0,
+   "unit": "Ω",
+   "display": "130 Ω"
+  },
+  "r_chosen": {
+   "value": 150.0,
+   "unit": "Ω",
+   "display": "150 Ω"
+  },
+  "series": "E12",
+  "r_deviation": {
+   "value": 15.3846,
+   "unit": "%",
+   "display": "15.4 %"
+  },
+  "i_actual": {
+   "value": 0.00866667,
+   "unit": "A",
+   "display": "8.67 mA"
+  },
+  "p_r": {
+   "value": 0.0112667,
+   "unit": "W",
+   "display": "11.3 mW"
+  },
+  "p_rating_min": {
+   "value": 0.0225333,
+   "unit": "W",
+   "display": "22.5 mW"
+  },
+  "formula": "R = (V_supply − V_f) / I_f; I = (V_supply − V_f) / R_chosen; P_R = I² · R_chosen",
+  "steps": [
+   {
+    "name": "R",
+    "expr": "(3.30 V − 2.00 V) / 10.0 mA",
+    "value": {
+     "value": 130.0,
+     "unit": "Ω",
+     "display": "130 Ω"
+    }
+   },
+   {
+    "name": "R_chosen",
+    "expr": "next E12 value ≥ 130 Ω",
+    "value": {
+     "value": 150.0,
+     "unit": "Ω",
+     "display": "150 Ω"
+    }
+   },
+   {
+    "name": "I",
+    "expr": "(3.30 V − 2.00 V) / 150 Ω",
+    "value": {
+     "value": 0.00866667,
+     "unit": "A",
+     "display": "8.67 mA"
+    }
+   },
+   {
+    "name": "P_R",
+    "expr": "(8.67 mA)² · 150 Ω",
+    "value": {
+     "value": 0.0112667,
+     "unit": "W",
+     "display": "11.3 mW"
+    }
+   },
+   {
+    "name": "P_rating",
+    "expr": "2 × 11.3 mW (rule of thumb)",
+    "value": {
+     "value": 0.0225333,
+     "unit": "W",
+     "display": "22.5 mW"
+    }
+   }
+  ]
+ },
+ "checks": [
+  {
+   "id": "calc.led.headroom",
+   "status": "passed",
+   "detail": "V_supply 3.30 V > V_f 2.00 V"
+  }
+ ],
+ "warnings": [
+  {
+   "code": "gpio_current",
+   "severity": "info",
+   "message": "The driving pin sources 8.67 mA. GPIO current limits are not checked here (unverified); see the chip datasheet.",
+   "source_ids": []
+  }
+ ],
+ "assumptions": [
+  {
+   "key": "r_chosen",
+   "value": "next larger E12 value",
+   "reason": "keeps the current at or below I_f"
+  },
+  {
+   "key": "p_rating",
+   "value": "2 × P",
+   "reason": "power rating with margin (rule of thumb)"
+  },
+  {
+   "key": "tolerance",
+   "value": "not included",
+   "reason": "resistor tolerance and the V_f spread of the LED shift the current"
+  }
+ ],
+ "sources": [
+  {
+   "id": "iec-60063",
+   "title": "IEC 60063:2015 preferred number series E6, E12, E24 (values via Wikipedia, secondary source)",
+   "url": "https://en.wikipedia.org/w/index.php?title=E_series_of_preferred_numbers&oldid=1383955633",
+   "retrieved": "2026-11-06",
+   "note": "Section 'Lists' of the pinned revision; the standard itself is not freely available."
+  },
+  {
+   "id": "rule-of-thumb",
+   "title": "Practice rule, not a standard",
+   "url": null,
+   "retrieved": "2026-11-05",
+   "note": "Shown for engineering judgement only; check the datasheet of your parts."
+  }
+ ],
+ "simulated": false,
+ "error": null
+}

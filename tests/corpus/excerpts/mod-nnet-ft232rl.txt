@@ -1,0 +1,28 @@
+# source_id: mod-nnet-ft232rl-ds
+# document: FTDI FT232R USB UART IC Datasheet Version 2.16, Document No. FT_000053
+# url: https://web.archive.org/web/20260321054008id_/https://ftdichip.com/wp-content/uploads/2020/08/DS_FT232R.pdf
+# corpus: mod/nnet/DS_FT232R.pdf sha256 ab81490c3ddaf5edc26e1e271490a2891683d3ef5fc199c62236aa5b0ec6b087
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 7
+to 3V3OUT pin to drive out at +3.3V levels, or connect to VCC to drive
+17 3V3OUT Output
+decoupled to ground using a 100nF capacitor. The main use of this pin is
+internal 1.5kΩ pull up resistor on USBDP. Up to 50mA can be drawn from
+@@ page 8
+26 TEST Input Puts the device into IC test mode. Must be tied to GND for normal operation, otherwise the device will appear to fail.
+1. The minimum operating voltage VCC must be +4.0V (could use VBUS=+5V) when using the
+@@ page 15
+VCC Supply Voltage -0.5 to +6.00 V
+DC Input Voltage – All Other Inputs -0.5 to + (VCC +0.5) V
+VCC1 VCC Operating Supply Voltage 4.0 --- 5.25 V Using Internal Oscillator
+VCC2 VCCIO Operating Supply Voltage 1.8 --- 5.25 V
+Icc1 Operating Supply Current --- 15 --- mA Normal Operation
+Icc2 Operating Supply Current 50 70 100 μA USB Suspend
+@@ page 16
+Voh Output Voltage High 2.2 2.7 3.2 V I source = 1mA
+Vol Output Voltage Low 0.3 0.4 0.5 V I sink = 2mA
+Vin Input Switching Threshold 1.0 1.2 1.5 V **
+Table 5.4 UART and CBUS I/O Pin Characteristics (VCCIO = +3.3V, Standard Drive Level)
+@@ page 17
+** Only input pins have an internal 200KΩ pull-up resistor to VCCIO

@@ -1,0 +1,163 @@
+{
+  "ok": true,
+  "action": "doctor.run",
+  "summary": "Doctor: 7/7 checks passed; 1 port visible; hardware off.",
+  "result": {
+    "tools": {
+      "pio": {
+        "path": "/usr/local/bin/pio",
+        "version": "PlatformIO Core, version 6.2.0",
+        "override": false
+      },
+      "esptool": {
+        "path": "/usr/local/bin/esptool",
+        "version": "esptool v5.6.0",
+        "override": false
+      },
+      "addr2line": {
+        "esp32": {
+          "path": null,
+          "version": null
+        },
+        "esp32s2": {
+          "path": "/home/user/.platformio/packages/toolchain/bin/xtensa-esp32s2-elf-addr2line",
+          "version": "GNU addr2line (fake xtensa-esp32s2-elf-addr2line) 2.35"
+        },
+        "esp32s3": {
+          "path": "/home/user/.platformio/packages/toolchain/bin/xtensa-esp32s3-elf-addr2line",
+          "version": "GNU addr2line (fake xtensa-esp32s3-elf-addr2line) 2.35"
+        },
+        "esp32c3": {
+          "path": "/home/user/.platformio/packages/toolchain/bin/riscv32-esp-elf-addr2line",
+          "version": "GNU addr2line (fake riscv32-esp-elf-addr2line) 2.35"
+        },
+        "esp32c6": {
+          "path": "/home/user/.platformio/packages/toolchain/bin/riscv32-esp-elf-addr2line",
+          "version": "GNU addr2line (fake riscv32-esp-elf-addr2line) 2.35"
+        }
+      },
+      "toolchains": {
+        "esp32": {
+          "addr2line": false,
+          "prefix": "xtensa-esp32-elf"
+        },
+        "esp32s2": {
+          "addr2line": true,
+          "prefix": "xtensa-esp32s2-elf"
+        },
+        "esp32s3": {
+          "addr2line": true,
+          "prefix": "xtensa-esp32s3-elf"
+        },
+        "esp32c3": {
+          "addr2line": true,
+          "prefix": "riscv32-esp-elf"
+        },
+        "esp32c6": {
+          "addr2line": true,
+          "prefix": "riscv32-esp-elf"
+        }
+      }
+    },
+    "serial_group": {
+      "group": "dialout",
+      "member": true
+    },
+    "ports": {
+      "ok": true,
+      "ports": [
+        {
+          "device": "sim://esp32s3-n16r8",
+          "kind": "sim",
+          "description": "Simulated ESP32-S3 N16R8",
+          "simulated": true
+        }
+      ],
+      "warnings": [
+        "hardware access is off: only simulated ports are listed"
+      ]
+    },
+    "dependencies": {
+      "schemdraw": {
+        "installed": true,
+        "version": "0.23"
+      },
+      "pyserial": {
+        "installed": true,
+        "version": "3.5"
+      }
+    },
+    "data_dir": {
+      "path": "/home/user/.hermes/plugin-data/circuit-bench",
+      "writable": true
+    },
+    "hardware": {
+      "enabled": false,
+      "env": "off",
+      "hardware_access": false
+    },
+    "settings": {
+      "allow_flash": false,
+      "approve_serial": true,
+      "default_baud": 115200,
+      "monitor_max_seconds": 120,
+      "build_timeout_seconds": 900
+    },
+    "approvals_bypassed": false
+  },
+  "checks": [
+    {
+      "id": "doctor.pio",
+      "status": "passed",
+      "detail": "/usr/local/bin/pio (PlatformIO Core, version 6.2.0)"
+    },
+    {
+      "id": "doctor.esptool",
+      "status": "passed",
+      "detail": "/usr/local/bin/esptool (esptool v5.6.0)"
+    },
+    {
+      "id": "doctor.addr2line",
+      "status": "passed",
+      "detail": "found for esp32s3, esp32c3, esp32c6"
+    },
+    {
+      "id": "doctor.serial_group",
+      "status": "passed",
+      "detail": "member of dialout"
+    },
+    {
+      "id": "doctor.dependencies",
+      "status": "passed",
+      "detail": "schemdraw 0.23, pyserial 3.5"
+    },
+    {
+      "id": "doctor.data_dir",
+      "status": "passed",
+      "detail": "/home/user/.hermes/plugin-data/circuit-bench"
+    },
+    {
+      "id": "doctor.settings",
+      "status": "passed",
+      "detail": "all settings readable"
+    }
+  ],
+  "warnings": [
+    {
+      "code": "toolchain_missing",
+      "severity": "info",
+      "message": "no addr2line for esp32 (xtensa-esp32-elf), esp32s2 (xtensa-esp32s2-elf): build once for this chip; pio installs its toolchain",
+      "source_ids": []
+    },
+    {
+      "code": "hardware_off",
+      "severity": "info",
+      "message": "hardware access is off: only simulated boards (sim://) are reachable (CIRCUIT_BENCH_HW=off)",
+      "source_ids": []
+    }
+  ],
+  "assumptions": [],
+  "sources": [],
+  "simulated": false,
+  "error": null
+}

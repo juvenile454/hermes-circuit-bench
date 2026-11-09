@@ -1,0 +1,49 @@
+# source_id: mod-net-sdcard-spec
+# document: SD Association, SD Specifications Part 1 Physical Layer Simplified Specification Version 6.00 (April 10, 2017)
+# url: https://academy.cba.mit.edu/classes/networking_communications/SD/SD.pdf
+# corpus: mod/net/SD_Physical_Layer_Simplified_v6.00.pdf sha256 86502198b4db01f0f7f7aea459210db969724800733411b5014b5548bb916fd2
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+ Version 6.00 
+@@ page 21
+High Voltage SD Memory Card – Operating voltage range: 2.7-3.6 V 
+(1) Default Speed mode: 3.3V signaling, Frequency up to 25 MHz, up to 12.5 MB/sec 
+@@ page 29
+Pin # SD Mode SPI Mode  
+1 CD/DAT32 I/O/PP3 Card Detect/ 
+CS   I3 Chip Select (neg true) 
+2 CMD I/O/PP Command/Response DI   I Data In  
+3 VSS1  S Supply voltage ground VSS  S Supply voltage ground  
+4 VDD  S Supply voltage VDD  S Supply voltage  
+5 CLK  I Clock SCLK  I Clock  
+6 VSS2  S Supply voltage ground VSS2  S Supply voltage ground  
+7 DAT0  I/O/PP Data Line [Bit 0] DO   O/PP Data Out  
+3) At power up this line has a 50KOhm pull up enabled in the card. This resistor serves two functions Card detection and 
+wants to select SPI mode it should drive the line low. For Card detection, the host detects that the line is pulled high. This 
+@@ page 36
+In SPI mode, XPC is not supported and the power shall be up to 0.36W (100mA at 3.6V on VDD1).  
+@@ page 45
+During the card identification process, the card shall operate in the SD clock frequency of the identification 
+clock rate fOD.  
+driver strength with 400KHz clock frequency. In case of 3.3V signaling, default driver strength is 
+@@ page 53
+Until the end of Card Identification Mode the host shall remain at fOD frequency because some cards may 
+@@ page 94
+frequency and the identification frequency defined by the specification document). 
+1) Issue continuous clock in the frequency range of 100 KHz-400 KHz. 
+@@ page 220
+6. SD Memory Card Hardware Interface 
+Description here is a blank in the Simplified Specification. 
+@@ page 221
+A device shall be ready to accept the first command within 1ms from detecting VDD min. 
+to supply at least 74 SD clocks to the SD card with keeping CMD line to high. In case of SPI mode, CS 
+shall be held to high during 74 clock cycles. 
+the idle state. In case of SD host, CMD0 is not necessary. In case of SPI host, CMD0 shall be the first 
+@@ page 224
+6.6 Bus Operating Conditions for 3.3V Signaling 
+6.6.1 Threshold Level for High Voltage Range 
+This section is a blank in the Simplified Specification. 
+@@ page 227
+interface is selected during the first reset command after power up (CMD0) and cannot be changed once 
+the part is powered on.  

@@ -1,0 +1,7 @@
+{
+ "addresses": {
+  "0x42008a1e": "wait_for_sensor at {project}/main/main.c:18",
+  "0x42008a42": "app_main at {project}/main/main.c:30",
+  "0x420196b3": "main_task at /esp/esp-idf/components/freertos/app_startup.c:208"
+ }
+}

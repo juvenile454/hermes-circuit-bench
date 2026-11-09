@@ -1,0 +1,29 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+entry 0x403c98d0
+boot ok
+Guru Meditation Error: Core  1 panic'ed (StoreProhibited). Exception was unhandled.
+
+Core  1 register dump:
+PC      : 0x42001d6a  PS      : 0x00060a30  A0      : 0x82001d8d  A1      : 0x3fcebf40
+A2      : 0x00000000  A3      : 0x0000002a  A4      : 0x00000001  A5      : 0x3fc94a60
+A6      : 0x00000000  A7      : 0x00000001  A8      : 0x00000000  A9      : 0x3fcebf20
+A10     : 0x00000000  A11     : 0x0000002a  A12     : 0x00000000  A13     : 0x3fc94a5c
+A14     : 0x00000000  A15     : 0x00000000  SAR     : 0x00000000  EXCCAUSE: 0x0000001d
+EXCVADDR: 0x0000000c  LBEG    : 0x400570e8  LEND    : 0x400570f3  LCOUNT  : 0x00000000
+
+
+Backtrace: 0x42001d67:0x3fcebf40 0x42001d8a:0x3fcebf60 0x42003a5e:0x3fcebf80
+
+
+
+
+ELF file SHA256: 3f9a5c0d2
+
+Rebooting...
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)

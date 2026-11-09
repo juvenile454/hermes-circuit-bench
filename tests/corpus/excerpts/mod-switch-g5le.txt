@@ -1,0 +1,22 @@
+# source_id: mod-switch-g5le-ds
+# document: Omron G5LE PCB Power Relay datasheet (omronfs.omron.com en-g5le.pdf, archived 2017-10-13)
+# url: https://web.archive.org/web/20171013023109id_/https://omronfs.omron.com/en_US/ecb/products/pdf/en-g5le.pdf
+# corpus: mod/switch/omron-en-g5le-2017.pdf sha256 8ba6b56408710348799925aab5d2975ef76c5c07b79d4cf47d237771566d0e4b
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Note 1. The rated current and coil resistance are measured at a coil temperature of 23°C with a tolerance
+ 2.The operating characteristics are measured at a coil temperature of 23°C.
+ 3.The “Max. voltage” is the maximum voltage that can be applied to the relay coil.
+SPDT (1c) G5LE-1
+Rated 
+Rated 
+current 
+(mA)
+5 VDC 79.4 63
+75% max. 10% min. 170% at 23°C Approx. 40012 VDC 33.3 36024 VDC 16.7 1,440
+Rated load 10 A at 120 VAC; 8 A at 30 VDC 5 A at 120 VAC; 4 A at 30 VDC
+Max. switching voltage 250 VAC, 125 VDC (30 VDC when UL/CSA standard is applied)
+Max. switching current 10 A 5 A
+@@ page 2
+G5LE-1 (SPDT contact)

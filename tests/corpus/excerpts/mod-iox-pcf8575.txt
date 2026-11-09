@@ -1,0 +1,34 @@
+# source_id: mod-iox-pcf8575-ds
+# document: PCF8575 Remote 16-Bit I2C and SMBus I/O Expander with Interrupt Output, SCPS121I
+# url: https://www.ti.com/lit/ds/symlink/pcf8575.pdf
+# corpus: mod/iox/pcf8575-scps121.pdf sha256 a3f71155a81f9da52f4f56e00e117e3b72e78f0af85767670e3d8c88d503b830
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 3
+A0 21 18 I Address input 0. Connect directly to VCC or ground. Pull-up resistors are not needed.
+SCL 22 19 I Serial clock line. Connect to VCC through a pull-up resistor
+SDA 23 20 I/O Serial data line. Connect to VCC through a pull-up resistor.
+@@ page 4
+VCC Supply voltage range –0.5 6.5 V
+VI Input voltage range (2) –0.5 VCC + 0.5 V
+Continuous current through VCC or GND ±100 mA
+VCC Supply voltage 2.5 5.5 V
+VIH High-level input voltage 0.7 × VCC VCC + 0.5 V
+VIL Low-level input voltage –0.5 0.3 × VCC V
+IOL P-port low-level output current 25 mA
+@@ page 5
+IOH P port VO = GND 2.5 V to 5.5 V –30 –300 μA
+Operating mode VI = VCC or GND, IO = 0,fscl = 400 kHz
+5.5 V 100 200
+Standby mode VI = VCC or GND, IO = 0, fscl = 0 kHz
+5.5 V 2.5 10
+fscl I2C clock frequency 400 kHz
+@@ page 12
+edge of SCL. The I/Os should be high before being used as inputs. After power on, as all the I/Os are set high, 
+@@ page 16
+L L L 65 (decimal), 41 
+64 (decimal), 40 
+H H H 79 (decimal), 4F 
+78 (decimal), 4E 
+@@ page 21
+amounts of current that commonly pass through power and ground traces. By-pass and de-coupling capacitors 

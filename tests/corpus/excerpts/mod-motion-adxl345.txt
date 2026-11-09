@@ -1,0 +1,43 @@
+# source_id: mod-motion-adxl345-ds
+# document: ADXL345 3-Axis, ±2 g/±4 g/±8 g/±16 g Digital Accelerometer, Data Sheet Rev. G
+# url: https://web.archive.org/web/20261012195641id_/https://www.analog.com/media/en/technical-documentation/data-sheets/ADXL345.pdf
+# corpus: mod/motion/ADXL345.pdf sha256 87ae2212498c35a6759d8732adee0ec9b9d8d60fa95688bc5904f1f07ceb8ff6
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 4
+Operating Voltage Range (VS) 2.0 2.5 3.6 V
+Interface Voltage Range (VDD I/O) 1.7 1.8 VS V
+Supply Current ODR ≥ 100 Hz 140 µA
+Standby Mode Leakage Current 0.1 µA
+@@ page 5
+VS −0.3 V to +3.9 V
+VDD I/O −0.3 V to +3.9 V
+Digital Pins −0.3 V to VDD I/O + 0.3 V or 3.9 V,
+whichever is less
+@@ page 6
+1 VDD I/O Digital Interface Supply Voltage.
+6 VS Supply Voltage.
+7 CS Chip Select.
+12 SDO/ALT ADDRESS Serial Data Output (SPI 4-Wire)/Alternate I2C Address Select (I2C).
+@@ page 14
+ADXL345 operates as a slave. I2C mode is enabled if the CS pin is
+tied high to VDD I/O. The CS pin should always be tied high to VDD
+I/O or be driven by an external controller because there is no default
+mode if the CS pin is left unconnected. Therefore, not taking these
+precautions may result in an inability to communicate with the part.
+@@ page 17
+With CS tied high to VDD I/O, the ADXL345 is in I2C mode, requiring
+supports standard (100 kHz) and fast (400 kHz) data transfer
+I2C address for the device is 0x1D, followed by the R/W bit. This
+I2C address of 0x53 (followed by the R/W bit) can be chosen by
+There are no internal pull-up or pull-down resistors for any unused
+that the CS pin be connected to VDD I/O and that the ALT ADDRESS
+by more than 0.3 V. External pull-up resistors, RP, are necessary for
+Low Level Input Voltage (VIL) 0.3 × VDD I/O V
+High Level Input Voltage (VIH) 0.7 × VDD I/O V
+VDD I/O ≥ 2 V, IOL = 3 mA 400 mV
+@@ page 24
+The DEVID register holds a fixed device ID code of 0xE5 (345 oc-
+@@ page 29
+A 1 µF tantalum capacitor (CS) at VS and a 0.1 µF ceramic
+capacitor (CI/O) at VDD I/O placed close to the ADXL345 supply pins

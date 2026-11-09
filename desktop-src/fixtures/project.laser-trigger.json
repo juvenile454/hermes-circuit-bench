@@ -1,0 +1,552 @@
+{
+  "ok": true,
+  "action": "project.get",
+  "summary": "Laser trigger (ESP32-S3 N16R8, simulated): 5 pins ok, solder 0/5, last build ok, last panic StoreProhibited.",
+  "result": {
+    "project": {
+      "schema": 1,
+      "id": "laser-trigger",
+      "rev": 6,
+      "title": "Laser trigger",
+      "simulated": true,
+      "created": "2026-11-09T20:15:00Z",
+      "updated": "2026-11-09T20:15:00Z",
+      "board": {
+        "chip": "esp32s3",
+        "module": "wroom-1",
+        "variant": "n16r8",
+        "devkit": "esp32-s3-devkitc-1",
+        "detected": {
+          "port": "sim://esp32s3-n16r8",
+          "mac": "aa:bb:cc:dd:ee:ff",
+          "chip": "ESP32-S3 (QFN56) (revision v0.2)",
+          "description": "Simulated ESP32-S3 N16R8",
+          "features": [
+            "Wi-Fi",
+            "BT 5 (LE)",
+            "Dual Core + LP Core",
+            "240MHz",
+            "Embedded PSRAM 8MB (AP_3v3)"
+          ],
+          "flash_size": "16MB",
+          "variant_suggestion": "n16r8",
+          "at": "2026-11-09T20:15:00Z",
+          "simulated": true
+        }
+      },
+      "options": {
+        "wifi": true,
+        "framework": "arduino",
+        "logic_v": 3.3
+      },
+      "assignments": [
+        {
+          "role": "LASER",
+          "mode": "out",
+          "pin": 14,
+          "net": "LASER_EN",
+          "verdict": "ok",
+          "rule_ids": [],
+          "updated_by": "agent"
+        },
+        {
+          "role": "BUTTON",
+          "mode": "in_pullup",
+          "pin": 2,
+          "net": "BTN",
+          "verdict": "ok",
+          "rule_ids": [],
+          "updated_by": "agent"
+        },
+        {
+          "role": "SDA",
+          "mode": "i2c_sda",
+          "pin": 8,
+          "net": "I2C_SDA",
+          "verdict": "ok",
+          "rule_ids": [],
+          "updated_by": "agent"
+        },
+        {
+          "role": "SCL",
+          "mode": "i2c_scl",
+          "pin": 9,
+          "net": "I2C_SCL",
+          "verdict": "ok",
+          "rule_ids": [],
+          "updated_by": "agent"
+        },
+        {
+          "role": "VBAT",
+          "mode": "adc",
+          "pin": 1,
+          "net": "VBAT_DIV",
+          "verdict": "ok",
+          "rule_ids": [],
+          "updated_by": "agent"
+        }
+      ],
+      "parts": [
+        {
+          "ref": "R1",
+          "kind": "resistor",
+          "value": "1 kΩ",
+          "from_calc": "npn-1"
+        },
+        {
+          "ref": "R2",
+          "kind": "resistor",
+          "value": "10 kΩ",
+          "from_calc": "npn-1"
+        },
+        {
+          "ref": "Q1",
+          "kind": "transistor",
+          "value": "2N2222A",
+          "package": "TO-18",
+          "from_calc": "npn-1"
+        },
+        {
+          "ref": "R3",
+          "kind": "resistor",
+          "value": "100 kΩ",
+          "from_calc": "div-1"
+        },
+        {
+          "ref": "R4",
+          "kind": "resistor",
+          "value": "100 kΩ",
+          "from_calc": "div-1"
+        },
+        {
+          "ref": "C1",
+          "kind": "electrolytic",
+          "value": "10 µF 16 V"
+        },
+        {
+          "ref": "SW1",
+          "kind": "switch",
+          "value": "push button"
+        },
+        {
+          "ref": "J2",
+          "kind": "connector",
+          "value": "laser module"
+        }
+      ],
+      "calcs": [
+        {
+          "id": "npn-1",
+          "type": "npn",
+          "inputs": {
+            "v_drive": 3.3,
+            "r_base": 1000,
+            "i_load": 0.013,
+            "r_pulldown": 10000,
+            "part": "2N2222A",
+            "load": "laser"
+          },
+          "result": {
+            "summary": "NPN low side at 3.30 V drive: base 2.53 mA net, forced beta 5.1; saturates by the hFE_min/2 rule of thumb (hFE_min 100, 2N2222A datasheet).",
+            "checks": [
+              {
+                "id": "calc.npn.base_drive",
+                "status": "passed",
+                "detail": "I_B 2.53 mA > 0"
+              },
+              {
+                "id": "calc.npn.saturation",
+                "status": "passed",
+                "detail": "β_forced 5.1 x ≤ hFE_min/2 = 50 x (hFE_min 100 from 2N2222A datasheet; rule of thumb)"
+              },
+              {
+                "id": "calc.npn.ic_max",
+                "status": "passed",
+                "detail": "I_load 13.0 mA ≤ I_C continuous 800 mA (2N2222A datasheet, maximum ratings)"
+              }
+            ],
+            "i_rb": {
+              "value": 0.0026,
+              "unit": "A",
+              "display": "2.60 mA"
+            },
+            "i_pd": {
+              "value": 7e-05,
+              "unit": "A",
+              "display": "70.0 µA"
+            },
+            "i_b": {
+              "value": 0.00253,
+              "unit": "A",
+              "display": "2.53 mA"
+            },
+            "forced_beta": {
+              "value": 5.13834,
+              "unit": "x",
+              "display": "5.1 x"
+            },
+            "p_rb": {
+              "value": 0.00676,
+              "unit": "W",
+              "display": "6.76 mW"
+            },
+            "hfe": {
+              "value": 100.0,
+              "from": "datasheet",
+              "part": "2N2222A",
+              "source_id": "onsemi-2n2222a",
+              "basis": "between_rows",
+              "conditions": "T_A = 25 °C; ON characteristics measured as pulse test (Note 1)",
+              "rows": [
+                {
+                  "i_c": {
+                    "value": 0.01,
+                    "unit": "A",
+                    "display": "10.0 mA"
+                  },
+                  "v_ce": {
+                    "value": 10.0,
+                    "unit": "V",
+                    "display": "10.0 V"
+                  },
+                  "min": 100,
+                  "evidence": "(IC = 10 mAdc, VCE = 10 Vdc)"
+                },
+                {
+                  "i_c": {
+                    "value": 0.15,
+                    "unit": "A",
+                    "display": "150 mA"
+                  },
+                  "v_ce": {
+                    "value": 10.0,
+                    "unit": "V",
+                    "display": "10.0 V"
+                  },
+                  "min": 100,
+                  "evidence": "(IC = 150 mAdc, VCE = 10 Vdc)"
+                }
+              ],
+              "i_b_needed": {
+                "value": 0.00026,
+                "unit": "A",
+                "display": "260 µA"
+              }
+            },
+            "formula": "I_RB = (V_drive − V_BE) / R_B; I_PD = V_BE / R_PD; I_B = I_RB − I_PD; β_forced = I_load / I_B; P_RB = I_RB² · R_B; saturated if β_forced ≤ hFE_min / 2 (rule of thumb)"
+          },
+          "assumptions": [
+            {
+              "key": "v_be",
+              "value": "0.7 V",
+              "reason": "typical small-signal silicon BJT; check the datasheet"
+            },
+            {
+              "key": "v_rpd",
+              "value": "V_BE",
+              "reason": "while the transistor is on, R_PD sees V_BE"
+            },
+            {
+              "key": "hfe_min",
+              "value": "100",
+              "reason": "the datasheet lists I_C 10.0 mA (min 100) and 150 mA (min 100); the smaller minimum is used for I_load 13.0 mA"
+            },
+            {
+              "key": "hfe_conditions",
+              "value": "V_CE 10.0 V, T_A = 25 °C; ON characteristics measured as pulse test (Note 1)",
+              "reason": "datasheet hFE of 2N2222A (onsemi-2n2222a); other makers and packages differ, and the gain in saturation is lower"
+            },
+            {
+              "key": "saturation",
+              "value": "β_forced ≤ hFE_min / 2",
+              "reason": "rule of thumb, not from a datasheet"
+            }
+          ],
+          "sources": [
+            "rule-of-thumb",
+            "onsemi-2n2222a"
+          ]
+        },
+        {
+          "id": "div-1",
+          "type": "divider",
+          "inputs": {
+            "v_in_max": 4.2,
+            "r1": 100000,
+            "r2": 100000
+          },
+          "result": {
+            "summary": "Divider 100 kΩ / 100 kΩ: 4.20 V in gives 2.10 V out, 21.0 µA through the divider.",
+            "checks": [
+              {
+                "id": "calc.divider.adc_range",
+                "status": "not_checked",
+                "detail": "give adc_range to compare with the ADC input range"
+              }
+            ],
+            "v_out_max": {
+              "value": 2.1,
+              "unit": "V",
+              "display": "2.10 V"
+            },
+            "ratio": 0.5,
+            "i_div": {
+              "value": 2.1e-05,
+              "unit": "A",
+              "display": "21.0 µA"
+            },
+            "p_r1": {
+              "value": 4.41e-05,
+              "unit": "W",
+              "display": "44.1 µW"
+            },
+            "p_r2": {
+              "value": 4.41e-05,
+              "unit": "W",
+              "display": "44.1 µW"
+            },
+            "r_source": {
+              "value": 50000.0,
+              "unit": "Ω",
+              "display": "50.0 kΩ"
+            },
+            "adc": null,
+            "formula": "V_out = V_in · R2 / (R1 + R2); I = V_in / (R1 + R2); R_source = R1 · R2 / (R1 + R2)"
+          },
+          "assumptions": [
+            {
+              "key": "load",
+              "value": "none",
+              "reason": "unloaded divider: the ADC input current is neglected; see r_source"
+            },
+            {
+              "key": "adc_pin",
+              "value": "add about 100 nF from the ADC pin to GND",
+              "reason": "steadies the reading with a high r_source (rule of thumb)"
+            }
+          ],
+          "sources": [
+            "rule-of-thumb"
+          ]
+        }
+      ],
+      "circuits": [
+        {
+          "id": "laser",
+          "block": "npn_low_side",
+          "params": {
+            "r_base": 1000,
+            "r_pulldown": 10000,
+            "transistor": "2N2222A",
+            "load": "laser module",
+            "supply": "5V",
+            "net": "LASER_EN"
+          },
+          "svg": "artifacts/laser.svg"
+        }
+      ],
+      "solder": {
+        "steps": [
+          {
+            "id": "73070adaa5",
+            "n": 1,
+            "refs": [
+              "R1",
+              "R2",
+              "R3",
+              "R4"
+            ],
+            "kind": "resistor",
+            "action": "Solder the resistors R1 (1 kΩ), R2 (10 kΩ), R3 (100 kΩ), R4 (100 kΩ) flat on the board.",
+            "hints": [
+              {
+                "code": "low_profile_first",
+                "severity": "info",
+                "text": "Low parts early, so the board lies flat while you solder (rule of thumb).",
+                "source_ids": [
+                  "rule-of-thumb"
+                ]
+              },
+              {
+                "code": "orientation",
+                "severity": "info",
+                "text": "Point the colour bands the same way; that makes checking the values easier (rule of thumb).",
+                "source_ids": [
+                  "rule-of-thumb"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "b1b88029d5",
+            "n": 2,
+            "refs": [
+              "Q1"
+            ],
+            "kind": "transistor",
+            "action": "Solder the transistor Q1 (2N2222A); match each pin to its pad.",
+            "hints": [
+              {
+                "code": "pinout",
+                "severity": "caution",
+                "text": "Pinout from the datasheet, do not guess: in the same TO-92 case the onsemi PN2222 is pin 1-2-3 = E-B-C, the onsemi P2N2222A is C-B-E.",
+                "source_ids": [
+                  "solder-onsemi-pn2222",
+                  "solder-onsemi-p2n2222a"
+                ]
+              },
+              {
+                "code": "heat_sensitive",
+                "severity": "caution",
+                "text": "Keep each joint short and let the part cool before the next joint (rule of thumb).",
+                "source_ids": [
+                  "rule-of-thumb"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "49a4dd4e87",
+            "n": 3,
+            "refs": [
+              "C1"
+            ],
+            "kind": "electrolytic",
+            "action": "Solder the electrolytic capacitor C1 (10 µF 16 V); the stripe on the sleeve marks minus.",
+            "hints": [
+              {
+                "code": "polarity",
+                "severity": "danger",
+                "text": "Polarised: reverse voltage can open the pressure relief vent (Nichicon). The stripe on the sleeve marks the negative lead (Rubycon). Confirm the polarity before soldering.",
+                "source_ids": [
+                  "solder-nichicon-al-guidelines",
+                  "solder-nichicon-al-technical-notes",
+                  "solder-rubycon-zlj-spec"
+                ]
+              },
+              {
+                "code": "heat_sensitive",
+                "severity": "caution",
+                "text": "The iron must not touch the capacitor body (Nichicon).",
+                "source_ids": [
+                  "solder-nichicon-al-guidelines"
+                ]
+              },
+              {
+                "code": "mechanical",
+                "severity": "info",
+                "text": "Do not tilt, lay down or twist the body once it is soldered (Nichicon).",
+                "source_ids": [
+                  "solder-nichicon-al-guidelines"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "280a914e68",
+            "n": 4,
+            "refs": [
+              "SW1"
+            ],
+            "kind": "switch",
+            "action": "Solder the switch SW1 (push button).",
+            "hints": [
+              {
+                "code": "mechanical",
+                "severity": "info",
+                "text": "Press the switch flat onto the board while you solder the first pin (rule of thumb).",
+                "source_ids": [
+                  "rule-of-thumb"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "4d1fded98e",
+            "n": 5,
+            "refs": [
+              "J2"
+            ],
+            "kind": "connector",
+            "action": "Solder the connector J2 (laser module).",
+            "hints": [
+              {
+                "code": "laser_safety",
+                "severity": "danger",
+                "text": "J2: laser. Never look into the beam and never aim it at anyone (FDA). Keep the laser unplugged while you solder (rule of thumb).",
+                "source_ids": [
+                  "solder-fda-laser-faq",
+                  "rule-of-thumb"
+                ]
+              },
+              {
+                "code": "mechanical",
+                "severity": "info",
+                "text": "Solder one pin, check the alignment, then solder the rest (rule of thumb).",
+                "source_ids": [
+                  "rule-of-thumb"
+                ]
+              }
+            ]
+          }
+        ],
+        "done": []
+      },
+      "firmware": {
+        "dir": "/home/user/.hermes/plugin-data/circuit-bench/projects/laser-trigger/firmware",
+        "env": "s3",
+        "last_build": {
+          "ok": true,
+          "at": "2026-11-09T20:15:00Z",
+          "ram_pct": 5.9,
+          "flash_pct": 8.5,
+          "elf": ".pio/build/s3/firmware.elf",
+          "elf_sha256": "d1061609434f397819b6c3044f3a4d65fe5b670539a51f1bfcd4f4d5d4e60b1f"
+        },
+        "last_flash": {
+          "ok": true,
+          "at": "2026-11-09T20:15:00Z",
+          "port": "sim://esp32s3-n16r8",
+          "mac": "aa:bb:cc:dd:ee:ff",
+          "elf_sha256": "d1061609434f397819b6c3044f3a4d65fe5b670539a51f1bfcd4f4d5d4e60b1f"
+        }
+      },
+      "debug": {
+        "last_panic": {
+          "kind": "cpu_exception",
+          "reason": "StoreProhibited",
+          "core": 1,
+          "arch": "xtensa",
+          "top_frame": "write_sensor_buffer(unsigned char*, unsigned int) (src/main.cpp:44)",
+          "at": "2026-11-09T20:15:00Z",
+          "log_ref": "panic-20261109-201500.log",
+          "elf_sha256": "d1061609434f3978"
+        }
+      },
+      "notes": [
+        {
+          "text": "Demo project (simulated board sim://esp32s3-n16r8). The load current of 13 mA is an example value: measure your laser module or LED and calculate again.",
+          "at": "2026-11-09T20:15:00Z",
+          "by": "agent"
+        },
+        {
+          "text": "Laser safety: use only a small, labelled low-power laser module, never look into the beam and never point it at people, animals, mirrors or windows. Try the circuit with an LED first.",
+          "at": "2026-11-09T20:15:00Z",
+          "by": "agent"
+        },
+        {
+          "text": "C1 (10 µF) buffers the 5 V load supply at J2 (rule of thumb, not calculated). VBAT: a single Li-ion cell, at most 4.2 V; R3/R4 halve it for GPIO1.",
+          "at": "2026-11-09T20:15:00Z",
+          "by": "agent"
+        }
+      ]
+    },
+    "rev": 6
+  },
+  "checks": [],
+  "warnings": [],
+  "assumptions": [],
+  "sources": [],
+  "simulated": true,
+  "error": null
+}

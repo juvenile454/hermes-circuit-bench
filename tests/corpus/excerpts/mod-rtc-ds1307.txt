@@ -1,0 +1,41 @@
+# source_id: mod-rtc-ds1307-ds
+# document: DS1307 64 x 8, Serial, I2C Real-Time Clock, data sheet (revision 3/15)
+# url: https://web.archive.org/web/20261019135807id_/https://www.analog.com/media/en/technical-documentation/data-sheets/DS1307.pdf
+# corpus: mod/rtc/DS1307.pdf sha256 c81233053aa1da1571258d117bf4ce7bcef8f6225e6895259add55809189516a
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 2
+Voltage Range on Any Pin Relative to Ground .................................................................................... -0.5V to +7.0V 
+Supply Voltage VCC  4.5 5.0 5.5 V 
+Logic 1 Input VIH  2.2  VCC + 0.3 V 
+Logic 0 Input VIL  -0.3  +0.8 V 
+VBAT Battery Voltage VBAT  2.0 3 3.5 V 
+Logic 0 Output (IOL = 5mA) VOL    0.4 V 
+Active Supply Current 
+(fSCL = 100kHz) ICCA    1.5 mA 
+Standby Current ICCS (Note 3)   200 µA 
+Power-Fail Voltage (VBAT = 3.0V) VPF  1.216 x VBAT 1.25 x VBAT 1.284 x VBAT V 
+SQW/OUT OFF IBAT1   300 500 nA 
+@@ page 3
+SCL Clock Frequency fSCL  0  100 kHz 
+Note 3: ICCS specified with VCC = 5.0V and SDA, SCL = 5.0V. 
+@@ page 6
+Connections for Standard 32.768kHz Quartz Crystal. The internal oscillator ci rcuitry is 
+X1 is the input to the oscillator and can optionally be connected to an external 32.768kHz 
+oscillator. The output of the internal oscillator, X2, is floated if an external oscillator is 
+3 VBAT 
+Diodes in series between the battery and the VBAT pin may prevent proper operation. If a 
+backup supply is not required, VBAT must be grounded. The nominal power-fail trip point 
+SDA pin is open drain and requires an external pullup resistor. The pullup voltage can be 
+up to 5.5V regardless of the voltage on VCC. 
+data movement on the serial interface. The pullup voltage can be up to 5.5V regardless of 
+7 SQW/OUT 
+pin is open drain and requires an external pullup resistor. SQW/OUT operates with either 
+8 VCC 
+executed. When V CC falls below 1.25 x V BAT, the device ter minates an access in progress and resets the device 
+@@ page 7
+The DS1307 uses an external 32.768kHz crystal. The oscillator circuit does not require any external resistors or 
+@@ page 12
+address byte contains the 7- bit DS1307 address, which is 1101000, followed by the direction bit (R/ W), 
+@@ page 14
+3/15 Updated Benefits and Features section 1 

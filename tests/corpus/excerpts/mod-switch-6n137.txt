@@ -1,0 +1,37 @@
+# source_id: mod-switch-6n137-ds
+# document: Vishay 6N137, VO2601, VO2611, VO2630, VO2631, VO4661 High Speed Optocoupler, 10 MBd, Document Number 84732, Rev. 2.2, 15-Mar-2023
+# url: https://www.vishay.com/docs/84732/6n137.pdf
+# corpus: mod/switch/vishay-6n137.pdf sha256 e838b59beab53ddad0fedf094df8bd32fc35297fda7d500fd24ddd188924f6d2
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+The detector has an open dr ain NMOS-transistor output, 
+VO4661. The use of a 0.1 μF bypass capacitor connected  
+between pin 5 and 8 is recommended.
+• +5 V CMOS compatibility
+• Low input current capability of 5 mA
+@@ page 2
+On NC L
+Off NC H
+Average forward current (single channel) I F 20 mA
+Reverse input voltage V R 5V
+Enable input voltage V E VCC + 0.5 V V
+Supply voltage 1 min maximum V CC 7V
+Output current I O 50 mA
+Output voltage V O 7V
+@@ page 3
+Supply voltage V CC 4.5 5.5 V
+Input current low level I FL 0 250 μA
+Input current  high level I FH 51 5 m A
+Logic high enable voltage V EH 2V CC V
+Logic low enable voltage V EL 00 . 8V
+Output pull up resistor R L 330 4K Ω
+@@ page 4
+• Over recommended temperature (T amb = -40 °C to +100 °C), VCC = 5 V, IF = 7.5 mA unless otherwise specified. All typicals at Tamb = 25 °C, 
+Input forward voltage I F = 10 mA V F 1.1 1.4 1.7 V
+VE = 0.5 V, IF = 0 mA I CCH -4 . 17m A
+Low level output voltage VE = 2 V, IF = 5 mA,IOL (sinking) = 13 mA VOL -0 . 2 0 . 6V
+Input threshold current VE = 2 V, VCC = 5.5 V,IOL (sinking) = 13 mA ITH -2 . 45m A
+Propagation delay time to high 
+output level RL = 350 Ω, CL = 15 pF tPLH 20 48 75  (1) nstPLH - - 100 ns
+output level RL = 350 Ω, CL = 15 pF tPHL 25 50 75  (1) nstPHL - - 100 ns

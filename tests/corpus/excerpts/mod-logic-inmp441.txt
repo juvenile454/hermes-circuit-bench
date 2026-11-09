@@ -1,0 +1,41 @@
+# source_id: mod-logic-inmp441-ds
+# document: InvenSense (TDK) INMP441 Omnidirectional Microphone with Bottom Port and I2S Digital Output, DS-INMP441-00 Revision 1.1
+# url: https://web.archive.org/web/20260318055936id_/https://invensense.tdk.com/wp-content/uploads/2015/02/INMP441.pdf
+# corpus: mod/logic/INMP441.pdf sha256 ddcc8ac55f9ff15e93760b5d01814bccbef0cebbb3857e0fb3954b2b4973d150
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 4
+Supply Voltage (VDD)  1.62  3.63 V  
+VDD = 3.3 V 
+Normal Mode   2.2 2.5 mA  Standby  0.8 mA  
+Power Down   4.5 µA  
+Document Number: DS-INMP441-00  
+Revision: 1.1 
+@@ page 5
+Input Voltage High (VIH) L/R, WS, SCK 0.7 x VDD  VDD V 1 
+Input Voltage Low (VIL) L/R, WS, SCK 0  0.25 x VDD V 1 
+Voltage Output Low (VOL) VDD = 3.3 V, ISINK = 0.5 mA   0.1 × VDD V 1 
+Voltage Output High (VOH) VDD = 3.3 V, ISINK = 0.5 mA 0.9 × VDD   V 1 
+fSCK SCK frequency 0.5  3.2 MHz  
+fWS WS frequency 7.8  50 kHz  
+@@ page 6
+Supply Voltage (VDD) −0.3 V to +3.63 V 
+Digital Pin Input Voltage −0.3 V to VDD + 0.3 V or 3.63 V, whichever is less 
+@@ page 8
+1 SCK Serial-Data Clock for I²S Interface 
+2 SD 
+Serial-Data Output for I²S Interface. This pin tri-states when not actively driving the 
+appropriate output channel. The SD trace should have a 100 kΩ pulldown  resistor to 
+3 WS Serial Data-Word Select for I²S Interface 
+4 L/R Left/Right Channel Select. When set low, the microphone outputs its signal in the left channel of the I²S frame. When set high, the microphone outputs its signal in the right channel.  
+5 GND Ground. Connect to ground on the PCB. 
+6 GND Ground. Connect to ground on the PCB. 
+7 VDD Power, 1.8 V to 3.3 V. This pin should be decoupled to Pin 6 with a 0.1 μF capacitor. 
+8 CHIPEN Microphone Enable. When set low (ground), the microphone is disabled and put in power -down mode. When set high (VDD), the microphone is enabled. 
+9 GND Ground. Connect to ground on the PCB. 
+@@ page 11
+The slave serial-data port’s format is I²S, 24-bit, twos complement. There must be 64 SCK cycles in each WS stereo frame, or 32 SCK 
+cycles per data-word. The L/R control pin determines whether the INMP441 outputs data in the left or right channel. For a stereo 
+application, the SD pins of the left and right INMP441 microphones should be tied together as shown in Figure 7. The format of a 
+The SD trace should have a pull-down resistor to discharge the line during the time that all microphones on the bus have  tri-stated 
+their outputs. A 100 kΩ resistor is sufficient for this, as shown in Figure 7. 

@@ -1,0 +1,120 @@
+[
+ {
+  "id": "idf-v6.1-fatal-errors-esp32",
+  "title": "ESP-IDF v6.1, Fatal Errors (ESP32)",
+  "url": "https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-guides/fatal-errors.html",
+  "retrieved": "2026-11-06",
+  "note": "stable = v6.1 at retrieval. Text source: docs/en/api-guides/fatal-errors.rst at tag v6.1 (commit fff9895c82d744c7237be8847347bdd1b07c6643)"
+ },
+ {
+  "id": "idf-v6.1-fatal-errors-esp32c3",
+  "title": "ESP-IDF v6.1, Fatal Errors (ESP32-C3)",
+  "url": "https://docs.espressif.com/projects/esp-idf/en/stable/esp32c3/api-guides/fatal-errors.html",
+  "retrieved": "2026-11-06",
+  "note": "stable = v6.1 at retrieval. RISC-V sections (MEPC/MTVAL register dump, access faults, Breakpoint). Text source: docs/en/api-guides/fatal-errors.rst at tag v6.1 (commit fff9895c82d744c7237be8847347bdd1b07c6643)"
+ },
+ {
+  "id": "idf-v6.1-wdts",
+  "title": "ESP-IDF v6.1, Watchdogs (ESP32-S3)",
+  "url": "https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-reference/system/wdts.html",
+  "retrieved": "2026-11-06",
+  "note": "stable = v6.1 at retrieval. Interrupt and task watchdog messages. Text source: docs/en/api-reference/system/wdts.rst at tag v6.1"
+ },
+ {
+  "id": "idf-v6.1-error-handling",
+  "title": "ESP-IDF v6.1, Error Handling (ESP32-S3)",
+  "url": "https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-guides/error-handling.html",
+  "retrieved": "2026-11-06",
+  "note": "stable = v6.1 at retrieval. ESP_ERROR_CHECK message format, abort(). Text source: docs/en/api-guides/error-handling.rst at tag v6.1"
+ },
+ {
+  "id": "idf-v6.1-idf-monitor",
+  "title": "ESP-IDF v6.1, IDF Monitor: automatic address decoding (ESP32-S3)",
+  "url": "https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-guides/tools/idf-monitor.html",
+  "retrieved": "2026-11-06",
+  "note": "stable = v6.1 at retrieval. Decoding command '<prefix>-addr2line -pfiaC -e build/PROJECT.elf ADDRESS' and '(inlined by)' output. Text source: docs/en/api-guides/tools/idf-monitor.rst at tag v6.1"
+ },
+ {
+  "id": "idf-v6.1-src-panic",
+  "title": "ESP-IDF v6.1 source, components/esp_system/panic.c (line 'ELF file SHA256: ')",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/components/esp_system/panic.c#L427-L431",
+  "retrieved": "2026-11-06",
+  "note": "Prints the first CONFIG_APP_RETRIEVE_LEN_ELF_SHA hex chars (default 9, range 8-64). Line format in real logs is unverified until checked against real device logs."
+ },
+ {
+  "id": "idf-v6.1-src-app-desc",
+  "title": "ESP-IDF v6.1 source, components/esp_app_format/esp_app_desc.c (boot line 'ELF file SHA256:  %s...')",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/components/esp_app_format/esp_app_desc.c#L145-L147",
+  "retrieved": "2026-11-06",
+  "note": "Boot log prints 16 hex chars followed by '...'. Line format in real logs is unverified until checked against real device logs."
+ },
+ {
+  "id": "idf-v6.1-app-image-format",
+  "title": "ESP-IDF v6.1, App Image Format (ESP32-S3): app_elf_sha256",
+  "url": "https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-reference/system/app_image_format.html",
+  "retrieved": "2026-11-06",
+  "note": "stable = v6.1 at retrieval. 'app_elf_sha256: contains SHA256 hash for the application ELF file'. Text source: docs/en/api-reference/system/app_image_format.rst at tag v6.1"
+ },
+ {
+  "id": "idf-v6.1-src-backtrace-xtensa",
+  "title": "ESP-IDF v6.1 source, components/esp_system/port/arch/xtensa/debug_helpers.c (backtrace markers)",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/components/esp_system/port/arch/xtensa/debug_helpers.c#L60-L97",
+  "retrieved": "2026-11-06",
+  "note": "'Backtrace:' line with PC:SP pairs; ' |<-CORRUPTED' when a frame is not sane, ' |<-CONTINUES' when the depth limit cut the backtrace."
+ },
+ {
+  "id": "idf-v6.1-src-panic-arch-xtensa",
+  "title": "ESP-IDF v6.1 source, components/esp_system/port/arch/xtensa/panic_arch.c (EXCCAUSE names, debug exception reason)",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/components/esp_system/port/arch/xtensa/panic_arch.c#L225-L245",
+  "retrieved": "2026-11-06",
+  "note": "reason[] table indexed by EXCCAUSE (e.g. 28 LoadProhibited, 29 StoreProhibited); 'Debug exception reason: Stack canary watchpoint triggered (<task>)' at L121-L165."
+ },
+ {
+  "id": "idf-v6.1-src-panic-arch-riscv",
+  "title": "ESP-IDF v6.1 source, components/esp_system/port/arch/riscv/panic_arch.c (MCAUSE names, stack memory dump)",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/components/esp_system/port/arch/riscv/panic_arch.c#L273-L296",
+  "retrieved": "2026-11-06",
+  "note": "reason[] table indexed by MCAUSE (e.g. 5 Load access fault, 7 Store access fault); 'Stack memory:' dump of 1024 bytes, 8 words per line, at L311-L326."
+ },
+ {
+  "id": "idf-v6.1-src-assert",
+  "title": "ESP-IDF v6.1 source, components/esp_libc/src/assert.c (message 'assert failed: <func> <file>:<line> (<expr>)')",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/components/esp_libc/src/assert.c#L14-L82",
+  "retrieved": "2026-11-06"
+ },
+ {
+  "id": "idf-v6.1-src-freertos-stack-overflow",
+  "title": "ESP-IDF v6.1 source, FreeRTOS port vApplicationStackOverflowHook ('***ERROR*** A stack overflow in task <name> has been detected.')",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c#L565-L578",
+  "retrieved": "2026-11-06",
+  "note": "Same message in portable/riscv/port.c (L674-L678). Printed when CONFIG_FREERTOS_CHECK_STACKOVERFLOW detects an overflow."
+ },
+ {
+  "id": "idf-v6.1-src-task-wdt",
+  "title": "ESP-IDF v6.1 source, components/esp_system/task_wdt/task_wdt.c (task watchdog message lines)",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/components/esp_system/task_wdt/task_wdt.c#L790-L822",
+  "retrieved": "2026-11-06",
+  "note": "'Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:', ' - <name> (CPU n)' per task; 'Tasks currently running:' and 'CPU n: <task>' at L491-L493. Used for the parser only."
+ },
+ {
+  "id": "riscv-isa-unpriv-rv32",
+  "title": "RISC-V Unprivileged ISA (ratified, v20260120), RV32I: JAL/JALR write the return address",
+  "url": "https://docs.riscv.org/reference/isa/v20260120/unpriv/rv32.html",
+  "retrieved": "2026-11-06",
+  "note": "'JAL stores the address of the instruction following the jump ('pc'+4) into register rd.' RA therefore points after the call."
+ },
+ {
+  "id": "binutils-addr2line",
+  "title": "GNU Binutils manual, addr2line (output format of -a -f -i -p -C)",
+  "url": "https://sourceware.org/binutils/docs/binutils/addr2line.html",
+  "retrieved": "2026-11-06",
+  "note": "'??' for unknown file or function, 0 for unknown line; with -p -i inlined callers follow on lines prefixed '(inlined by)'."
+ },
+ {
+  "id": "elf-gabi-e-machine",
+  "title": "System V ABI (gABI), ELF header e_machine values",
+  "url": "https://www.sco.com/developers/gabi/latest/ch4.eheader.html",
+  "retrieved": "2026-11-06",
+  "note": "EM_XTENSA = 94, EM_RISCV = 243; used to tell Xtensa from RISC-V ELF files."
+ }
+]

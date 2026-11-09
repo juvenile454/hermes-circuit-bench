@@ -1,0 +1,9 @@
+[
+ {
+  "id": "idf-v6.1-spi-master",
+  "title": "ESP-IDF v6.1, SPI Master Driver (docs/en/api-reference/peripherals/spi_master.rst)",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/spi_master.rst",
+  "retrieved": "2026-11-07",
+  "note": "ESP-IDF tag v6.1 (tag object 4dc1c65503e98e9a6b4c3c5646237280ba79829b, commit fff9895c82d744c7237be8847347bdd1b07c6643). Section Terminology: devices share MOSI, MISO and SCLK; each has its own CS line."
+ }
+]

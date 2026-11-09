@@ -1,0 +1,68 @@
+# source_id: mod-adc-ads1115-ds
+# document: ADS111x 16-Bit ADCs datasheet, SBAS444E (Rev. E, December 2024)
+# url: https://www.ti.com/lit/ds/symlink/ads1115.pdf
+# corpus: mod/adc/ads1115.pdf sha256 eefff4d412ce2dcd7e659f47238edc9b2fa02e5971f2625af730502033701834
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 3
+ADDR 1 1 1 Digital input I2C target address select
+AIN0 4 4 4 Analog input Analog input 0
+AIN1 5 5 5 Analog input Analog input 1
+AIN2 — — 6 Analog input Analog input 2 (ADS1115 only)
+AIN3 — — 7 Analog input Analog input 3 (ADS1115 only)
+ALERT/RDY — 2 2 Digital output Comparator output or conversion ready (ADS1114 and ADS1115 only).Open-drain output. Connect to VDD using a pullup resistor.
+GND 3 3 3 Analog Ground
+SCL 10 10 10 Digital input Serial clock input. Connect to VDD using a pullup resistor.
+SDA 9 9 9 Digital I/O Serial data input and output. Connect to VDD using a pullup resistor.
+VDD 8 8 8 Analog Power supply. Connect a 0.1μF, power-supply decoupling capacitor to GND.
+@@ page 4
+Power-supply voltage VDD to GND –0.3 7 V
+Analog input voltage AIN0, AIN1, AIN2, AIN3 GND – 0.3 VDD + 0.3 V
+Digital input voltage SDA, SCL, ADDR, ALERT/RDY GND – 0.3 5.5 V
+Power supply (VDD to GND) 2 5.5 V
+FSR Full-scale input voltage range(2) (VIN = V(AINP) – V(AINN)) ±0.256 ±6.144 V
+V(AINx) Absolute input voltage GND VDD V
+VDIG Digital input voltage GND 5.5 V
+(2) This parameter expresses the full-scale range of the ADC scaling. No more than VDD + 0.3V must be applied to the analog inputs of 
+@@ page 5
+Resolution (no missing codes) 16 Bits
+DR Data rate 8, 16, 32, 64, 128, 250, 475, 860 SPS
+VIH High-level input voltage 0.7 VDD 5.5 V
+VIL Low-level input voltage GND 0.3 VDD V
+VOL Low-level output voltage IOL = 3mA GND 0.15 0.4 V
+@@ page 6
+IVDD Supply current
+Power-down
+TA = 25°C 0.5 2
+5
+Operating
+TA = 25°C 150 200
+300
+fSCL SCL clock frequency 0.01 0.4 0.01 3.4 MHz
+@@ page 15
+LSB = FSR / 216 (4)
+±6.144V(1) 187.5μV
+±4.096V(1) 125μV
+±2.048V 62.5μV
+±1.024V 31.25μV
+±0.512V 15.625μV
+±0.256V 7.8125μV
+Analog input voltages must never exceed the analog input voltage limits given in the Absolute Maximum Ratings. 
+If a VDD supply voltage greater than 4V is used, the ±6.144V full-scale range allows input voltages to extend 
+example, VDD = 3.3V and full-scale range = ±4.096V), a full-scale ADC output code cannot be obtained. For 
+The ADS111x have an integrated voltage reference. An external reference cannot be used with these devices.
+@@ page 20
+The ADS111x have one address pin, ADDR, that configures the I 2C address of the device. This pin can be 
+connected to GND, VDD, SDA, or SCL, allowing for four different addresses to be selected with one pin, as 
+shown in Table 7-2. The state of address pin ADDR is sampled continuously. Use the GND, VDD and SCL 
+addresses first. If SDA is used as the device address, hold the SDA line low for at least 100 ns after the SCL line 
+ADDR PIN CONNECTION TARGET ADDRESS
+GND 1001000b
+VDD 1001001b
+SDA 1001010b
+SCL 1001011b
+frequency of up to 3.4MHz. The ADS111x are fully compatible with all three modes.
+@@ page 29
+The ADS111x offer a differential input voltage range of ±FSR. Single-ended configurations use only one-half 
+of the full-scale input voltage range. Differential configurations maximize the dynamic range of the ADC and 
+• Either float unused analog inputs, or tie unused analog inputs to GND.

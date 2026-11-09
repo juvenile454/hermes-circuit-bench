@@ -1,0 +1,482 @@
+{
+  "ok": true,
+  "action": "serial.tail",
+  "summary": "sim://esp32s3-n16r8: 76 lines, panic at seq 58.",
+  "result": {
+    "port": "sim://esp32s3-n16r8",
+    "state": "open",
+    "lines": [
+      {
+        "t": "line",
+        "seq": 1,
+        "ts": "12:14:07.039",
+        "text": "ESP-ROM:esp32s3-20210327"
+      },
+      {
+        "t": "line",
+        "seq": 2,
+        "ts": "12:14:07.039",
+        "text": "rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)"
+      },
+      {
+        "t": "line",
+        "seq": 3,
+        "ts": "12:14:07.039",
+        "text": "load:0x3fce2810,len:0x178c"
+      },
+      {
+        "t": "line",
+        "seq": 4,
+        "ts": "12:14:07.039",
+        "text": "entry 0x403c8854"
+      },
+      {
+        "t": "line",
+        "seq": 5,
+        "ts": "12:14:07.056",
+        "text": "ESP-ROM:esp32s3-20210327"
+      },
+      {
+        "t": "line",
+        "seq": 6,
+        "ts": "12:14:07.056",
+        "text": "rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)"
+      },
+      {
+        "t": "line",
+        "seq": 7,
+        "ts": "12:14:07.056",
+        "text": "load:0x3fce2810,len:0x178c"
+      },
+      {
+        "t": "line",
+        "seq": 8,
+        "ts": "12:14:07.056",
+        "text": "entry 0x403c8854"
+      },
+      {
+        "t": "line",
+        "seq": 9,
+        "ts": "12:14:07.056",
+        "text": "[laser-trigger] boot, laser off"
+      },
+      {
+        "t": "line",
+        "seq": 10,
+        "ts": "12:14:07.056",
+        "text": "Guru Meditation Error: Core  1 panic'ed (StoreProhibited). Exception was unhandled."
+      },
+      {
+        "t": "line",
+        "seq": 11,
+        "ts": "12:14:07.056",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 12,
+        "ts": "12:14:07.056",
+        "text": "Core  1 register dump:"
+      },
+      {
+        "t": "line",
+        "seq": 13,
+        "ts": "12:14:07.056",
+        "text": "PC      : 0x420019e4  PS      : 0x00060030  A0      : 0x82001a04  A1      : 0x3fcebf20"
+      },
+      {
+        "t": "line",
+        "seq": 14,
+        "ts": "12:14:07.056",
+        "text": "A2      : 0x00000000  A3      : 0x000000c7  A4      : 0x3fc95e14  A5      : 0x00000000"
+      },
+      {
+        "t": "line",
+        "seq": 15,
+        "ts": "12:14:07.056",
+        "text": "A6      : 0x00000001  A7      : 0x00000000  A8      : 0xcccccccd  A9      : 0x3fcebf00"
+      },
+      {
+        "t": "line",
+        "seq": 16,
+        "ts": "12:14:07.056",
+        "text": "A10     : 0x00000000  A11     : 0x00000f8c  A12     : 0x3fc95e14  A13     : 0x00000000"
+      },
+      {
+        "t": "line",
+        "seq": 17,
+        "ts": "12:14:07.056",
+        "text": "A14     : 0x00000000  A15     : 0x00000000  SAR     : 0x00000004  EXCCAUSE: 0x0000001d"
+      },
+      {
+        "t": "line",
+        "seq": 18,
+        "ts": "12:14:07.056",
+        "text": "EXCVADDR: 0x0000000c  LBEG    : 0x400556d5  LEND    : 0x400556e5  LCOUNT  : 0xfffffffd"
+      },
+      {
+        "t": "line",
+        "seq": 19,
+        "ts": "12:14:07.056",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 20,
+        "ts": "12:14:07.056",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 21,
+        "ts": "12:14:07.056",
+        "text": "Backtrace: 0x420019e1:0x3fcebf20 0x42001a01:0x3fcebf40 0x42001a45:0x3fcebf60 0x42003dc6:0x3fcebf80"
+      },
+      {
+        "t": "line",
+        "seq": 22,
+        "ts": "12:14:07.056",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 23,
+        "ts": "12:14:07.056",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 24,
+        "ts": "12:14:07.056",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 25,
+        "ts": "12:14:07.056",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 26,
+        "ts": "12:14:07.056",
+        "text": "ELF file SHA256: d1061609434f3978"
+      },
+      {
+        "t": "line",
+        "seq": 27,
+        "ts": "12:14:07.056",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 28,
+        "ts": "12:14:07.056",
+        "text": "Rebooting..."
+      },
+      {
+        "t": "line",
+        "seq": 29,
+        "ts": "12:14:07.062",
+        "text": "ESP-ROM:esp32s3-20210327"
+      },
+      {
+        "t": "line",
+        "seq": 30,
+        "ts": "12:14:07.062",
+        "text": "rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)"
+      },
+      {
+        "t": "line",
+        "seq": 31,
+        "ts": "12:14:07.062",
+        "text": "Saved PC:0x40377ab6"
+      },
+      {
+        "t": "line",
+        "seq": 32,
+        "ts": "12:14:07.062",
+        "text": "entry 0x403c8854"
+      },
+      {
+        "t": "line",
+        "seq": 33,
+        "ts": "12:14:07.062",
+        "text": "[laser-trigger] boot, laser off"
+      },
+      {
+        "t": "line",
+        "seq": 34,
+        "ts": "12:14:07.062",
+        "text": "Guru Meditation Error: Core  1 panic'ed (StoreProhibited). Exception was unhandled."
+      },
+      {
+        "t": "line",
+        "seq": 35,
+        "ts": "12:14:07.062",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 36,
+        "ts": "12:14:07.062",
+        "text": "Core  1 register dump:"
+      },
+      {
+        "t": "line",
+        "seq": 37,
+        "ts": "12:14:07.062",
+        "text": "PC      : 0x420019e4  PS      : 0x00060030  A0      : 0x82001a04  A1      : 0x3fcebf20"
+      },
+      {
+        "t": "line",
+        "seq": 38,
+        "ts": "12:14:07.062",
+        "text": "A2      : 0x00000000  A3      : 0x000000c7  A4      : 0x3fc95e14  A5      : 0x00000000"
+      },
+      {
+        "t": "line",
+        "seq": 39,
+        "ts": "12:14:07.062",
+        "text": "A6      : 0x00000001  A7      : 0x00000000  A8      : 0xcccccccd  A9      : 0x3fcebf00"
+      },
+      {
+        "t": "line",
+        "seq": 40,
+        "ts": "12:14:07.062",
+        "text": "A10     : 0x00000000  A11     : 0x00000f8c  A12     : 0x3fc95e14  A13     : 0x00000000"
+      },
+      {
+        "t": "line",
+        "seq": 41,
+        "ts": "12:14:07.062",
+        "text": "A14     : 0x00000000  A15     : 0x00000000  SAR     : 0x00000004  EXCCAUSE: 0x0000001d"
+      },
+      {
+        "t": "line",
+        "seq": 42,
+        "ts": "12:14:07.062",
+        "text": "EXCVADDR: 0x0000000c  LBEG    : 0x400556d5  LEND    : 0x400556e5  LCOUNT  : 0xfffffffd"
+      },
+      {
+        "t": "line",
+        "seq": 43,
+        "ts": "12:14:07.062",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 44,
+        "ts": "12:14:07.062",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 45,
+        "ts": "12:14:07.062",
+        "text": "Backtrace: 0x420019e1:0x3fcebf20 0x42001a01:0x3fcebf40 0x42001a45:0x3fcebf60 0x42003dc6:0x3fcebf80"
+      },
+      {
+        "t": "line",
+        "seq": 46,
+        "ts": "12:14:07.062",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 47,
+        "ts": "12:14:07.062",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 48,
+        "ts": "12:14:07.062",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 49,
+        "ts": "12:14:07.062",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 50,
+        "ts": "12:14:07.062",
+        "text": "ELF file SHA256: d1061609434f3978"
+      },
+      {
+        "t": "line",
+        "seq": 51,
+        "ts": "12:14:07.062",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 52,
+        "ts": "12:14:07.062",
+        "text": "Rebooting..."
+      },
+      {
+        "t": "line",
+        "seq": 53,
+        "ts": "12:14:07.063",
+        "text": "ESP-ROM:esp32s3-20210327"
+      },
+      {
+        "t": "line",
+        "seq": 54,
+        "ts": "12:14:07.063",
+        "text": "rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)"
+      },
+      {
+        "t": "line",
+        "seq": 55,
+        "ts": "12:14:07.063",
+        "text": "Saved PC:0x40377ab6"
+      },
+      {
+        "t": "line",
+        "seq": 56,
+        "ts": "12:14:07.063",
+        "text": "entry 0x403c8854"
+      },
+      {
+        "t": "line",
+        "seq": 57,
+        "ts": "12:14:07.063",
+        "text": "[laser-trigger] boot, laser off"
+      },
+      {
+        "t": "line",
+        "seq": 58,
+        "ts": "12:14:07.063",
+        "text": "Guru Meditation Error: Core  1 panic'ed (StoreProhibited). Exception was unhandled."
+      },
+      {
+        "t": "line",
+        "seq": 59,
+        "ts": "12:14:07.063",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 60,
+        "ts": "12:14:07.063",
+        "text": "Core  1 register dump:"
+      },
+      {
+        "t": "line",
+        "seq": 61,
+        "ts": "12:14:07.063",
+        "text": "PC      : 0x420019e4  PS      : 0x00060030  A0      : 0x82001a04  A1      : 0x3fcebf20"
+      },
+      {
+        "t": "line",
+        "seq": 62,
+        "ts": "12:14:07.063",
+        "text": "A2      : 0x00000000  A3      : 0x000000c7  A4      : 0x3fc95e14  A5      : 0x00000000"
+      },
+      {
+        "t": "line",
+        "seq": 63,
+        "ts": "12:14:07.063",
+        "text": "A6      : 0x00000001  A7      : 0x00000000  A8      : 0xcccccccd  A9      : 0x3fcebf00"
+      },
+      {
+        "t": "line",
+        "seq": 64,
+        "ts": "12:14:07.063",
+        "text": "A10     : 0x00000000  A11     : 0x00000f8c  A12     : 0x3fc95e14  A13     : 0x00000000"
+      },
+      {
+        "t": "line",
+        "seq": 65,
+        "ts": "12:14:07.063",
+        "text": "A14     : 0x00000000  A15     : 0x00000000  SAR     : 0x00000004  EXCCAUSE: 0x0000001d"
+      },
+      {
+        "t": "line",
+        "seq": 66,
+        "ts": "12:14:07.063",
+        "text": "EXCVADDR: 0x0000000c  LBEG    : 0x400556d5  LEND    : 0x400556e5  LCOUNT  : 0xfffffffd"
+      },
+      {
+        "t": "line",
+        "seq": 67,
+        "ts": "12:14:07.063",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 68,
+        "ts": "12:14:07.063",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 69,
+        "ts": "12:14:07.063",
+        "text": "Backtrace: 0x420019e1:0x3fcebf20 0x42001a01:0x3fcebf40 0x42001a45:0x3fcebf60 0x42003dc6:0x3fcebf80"
+      },
+      {
+        "t": "line",
+        "seq": 70,
+        "ts": "12:14:07.063",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 71,
+        "ts": "12:14:07.063",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 72,
+        "ts": "12:14:07.063",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 73,
+        "ts": "12:14:07.063",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 74,
+        "ts": "12:14:07.063",
+        "text": "ELF file SHA256: d1061609434f3978"
+      },
+      {
+        "t": "line",
+        "seq": 75,
+        "ts": "12:14:07.063",
+        "text": ""
+      },
+      {
+        "t": "line",
+        "seq": 76,
+        "ts": "12:14:07.063",
+        "text": "Rebooting..."
+      }
+    ],
+    "panic": {
+      "t": "panic",
+      "seq": 58,
+      "summary": "StoreProhibited · core 1",
+      "log_ref": "panic-20261109-201500.log"
+    },
+    "next_seq": 77,
+    "simulated": true,
+    "epoch": "5f3c9a1e-0b7d42c6"
+  },
+  "checks": [],
+  "warnings": [],
+  "assumptions": [],
+  "sources": [],
+  "simulated": true,
+  "error": null
+}

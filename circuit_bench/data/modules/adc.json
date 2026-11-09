@@ -1,0 +1,418 @@
+{
+  "schema": 1,
+  "wp": "adc",
+  "note": "Values only from manufacturer documents; 'evidence' quotes lines of tests/corpus/excerpts/mod-adc-*.txt (pypdf). Analog input limits (VDD + 0.3 V and similar) live in bench_core/modrules/adc.py, the LSB/PGA tables in bench_core/calcs/adc_ext.py, both with page and evidence.",
+  "modules": [
+    {
+      "id": "ads1115",
+      "aliases": ["ads-1115", "gy-ads1115", "ads1115idgs"],
+      "title": "ADS1115 16-bit 4-channel I²C ADC with PGA",
+      "category": "adc",
+      "manufacturer": "Texas Instruments",
+      "kind": "ic",
+      "source_ids": ["mod-adc-ads1115-ds"],
+      "supplies": {
+        "VDD": {
+          "min": {"value": 2.0, "unit": "V", "page": 4, "evidence": "Power supply (VDD to GND) 2 5.5 V"},
+          "max": {"value": 5.5, "unit": "V", "page": 4, "evidence": "Power supply (VDD to GND) 2 5.5 V"},
+          "abs_max": {"value": 7.0, "unit": "V", "page": 4, "evidence": "Power-supply voltage VDD to GND –0.3 7 V"}
+        }
+      },
+      "io": {
+        "domain": "VDD",
+        "vih": {"rel": 0.7, "of": "VDD", "unit": "V", "page": 5, "evidence": "VIH High-level input voltage 0.7 VDD 5.5 V"},
+        "vil": {"rel": 0.3, "of": "VDD", "unit": "V", "page": 5, "evidence": "VIL Low-level input voltage GND 0.3 VDD V"},
+        "vol": {"value": 0.4, "unit": "V", "page": 5, "evidence": "VOL Low-level output voltage IOL = 3mA GND 0.15 0.4 V", "conditions": "IOL = 3 mA, max"},
+        "v_in_max": {"value": 5.5, "unit": "V", "page": 4, "evidence": "Digital input voltage SDA, SCL, ADDR, ALERT/RDY GND – 0.3 5.5 V", "conditions": "absolute maximum rating of SDA, SCL, ADDR, ALERT/RDY, independent of VDD"},
+        "outputs": "open_drain",
+        "five_v_tolerant": true
+      },
+      "pins": [
+        {"name": "ADDR", "signal": "addr_select", "must_connect": true, "note": "GND, VDD, SDA or SCL selects 0x48–0x4B (p. 20)"},
+        {"name": "ALERT/RDY", "signal": "open_drain_out", "note": "comparator / conversion ready; open drain, pull-up to VDD (p. 3)"},
+        {"name": "GND", "signal": "gnd", "tie": "GND"},
+        {"name": "AIN0", "signal": "analog_in", "note": "max VDD + 0.3 V (absolute maximum, p. 4)"},
+        {"name": "AIN1", "signal": "analog_in", "note": "max VDD + 0.3 V (absolute maximum, p. 4)"},
+        {"name": "AIN2", "signal": "analog_in", "note": "max VDD + 0.3 V (absolute maximum, p. 4)"},
+        {"name": "AIN3", "signal": "analog_in", "note": "max VDD + 0.3 V (absolute maximum, p. 4)"},
+        {"name": "VDD", "signal": "supply"},
+        {"name": "SDA", "signal": "i2c_sda"},
+        {"name": "SCL", "signal": "i2c_scl"}
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {"value": ["0x48", "0x49", "0x4a", "0x4b"], "page": 20, "evidence": ["ADDR PIN CONNECTION TARGET ADDRESS", "GND 1001000b", "VDD 1001001b", "SDA 1001010b", "SCL 1001011b"]},
+          "default": "0x48",
+          "select": {"pin": "ADDR", "map": {"GND": "0x48", "VDD": "0x49", "SDA": "0x4a", "SCL": "0x4b"}},
+          "f_max_hz": {"value": 400000, "unit": "Hz", "page": 6, "evidence": "fSCL SCL clock frequency 0.01 0.4 0.01 3.4 MHz", "conditions": "fast mode; Hs mode up to 3.4 MHz needs the Hs controller code (p. 20)"},
+          "note": "ADDR to SDA needs SDA held low ≥ 100 ns after SCL falls; prefer GND, VDD, SCL (p. 20)"
+        }
+      ],
+      "current": {
+        "supply": "VDD",
+        "typ": {"value": 0.00015, "unit": "A", "page": 6, "evidence": ["Operating", "TA = 25°C 150 200"], "conditions": "operating, TA = 25 °C"},
+        "max": {"value": 0.0003, "unit": "A", "page": 6, "evidence": ["Operating", "TA = 25°C 150 200", "300"], "conditions": "operating, max over –40…125 °C"},
+        "sleep": {"value": 5e-06, "unit": "A", "page": 6, "evidence": ["Power-down", "TA = 25°C 0.5 2", "5"], "conditions": "power-down, max over –40…125 °C"}
+      },
+      "requires": [
+        {"code": "decoupling", "kind": "ceramic", "value": "100nF", "pins": ["VDD"], "to": "GND", "page": 3, "evidence": "VDD 8 8 8 Analog Power supply. Connect a 0.1μF, power-supply decoupling capacitor to GND."},
+        {"code": "pullup", "kind": "resistor", "pins": ["SDA", "SCL"], "to": "VDD", "page": 3, "evidence": ["SCL 10 10 10 Digital input Serial clock input. Connect to VDD using a pullup resistor.", "SDA 9 9 9 Digital I/O Serial data input and output. Connect to VDD using a pullup resistor."], "note": "value from the I²C pull-up calculator"}
+      ],
+      "hazards": [],
+      "notes": [
+        {"text": "Analog inputs: never more than VDD + 0.3 V (absolute maximum), measuring range GND…VDD; the ±6.144 V and ±4.096 V ranges are scaling only.", "page": 4, "evidence": ["Analog input voltage AIN0, AIN1, AIN2, AIN3 GND – 0.3 VDD + 0.3 V", "V(AINx) Absolute input voltage GND VDD V"], "verified": true},
+        {"text": "Single-ended inputs use only one half of the full-scale range (15 bits effective).", "page": 29, "evidence": ["Single-ended configurations use only one-half", "of the full-scale input voltage range."], "verified": true},
+        {"text": "Internal reference only; an external reference cannot be used.", "page": 15, "evidence": "An external reference cannot be used with these devices.", "verified": true},
+        {"text": "Breakout boards (e.g. Adafruit, GY-ADS1115) usually add 10 kΩ pull-ups on SDA/SCL and a pull-down on ADDR (address 0x48 when ADDR is left open); TI documents the bare chip only.", "verified": false}
+      ]
+    },
+    {
+      "id": "ads1015",
+      "aliases": ["ads-1015", "ads1015idgs"],
+      "title": "ADS1015 12-bit 4-channel I²C ADC with PGA",
+      "category": "adc",
+      "manufacturer": "Texas Instruments",
+      "kind": "ic",
+      "source_ids": ["mod-adc-ads1015-ds"],
+      "supplies": {
+        "VDD": {
+          "min": {"value": 2.0, "unit": "V", "page": 4, "evidence": "Power supply (VDD to GND) 2 5.5 V"},
+          "max": {"value": 5.5, "unit": "V", "page": 4, "evidence": "Power supply (VDD to GND) 2 5.5 V"},
+          "abs_max": {"value": 7.0, "unit": "V", "page": 4, "evidence": "Power-supply voltage VDD to GND –0.3 7 V"}
+        }
+      },
+      "io": {
+        "domain": "VDD",
+        "vih": {"rel": 0.7, "of": "VDD", "unit": "V", "page": 5, "evidence": "VIH High-level input voltage 0.7 VDD 5.5 V"},
+        "vil": {"rel": 0.3, "of": "VDD", "unit": "V", "page": 5, "evidence": "VIL Low-level input voltage GND 0.3 VDD V"},
+        "vol": {"value": 0.4, "unit": "V", "page": 5, "evidence": "VOL Low-level output voltage IOL = 3mA GND 0.15 0.4 V", "conditions": "IOL = 3 mA, max"},
+        "v_in_max": {"value": 5.5, "unit": "V", "page": 4, "evidence": "Digital input voltage SDA, SCL, ADDR, ALERT/RDY GND – 0.3 5.5 V", "conditions": "absolute maximum rating of SDA, SCL, ADDR, ALERT/RDY, independent of VDD"},
+        "outputs": "open_drain",
+        "five_v_tolerant": true
+      },
+      "pins": [
+        {"name": "ADDR", "signal": "addr_select", "must_connect": true, "note": "GND, VDD, SDA or SCL selects 0x48–0x4B (p. 16)"},
+        {"name": "ALERT/RDY", "signal": "open_drain_out", "note": "comparator / conversion ready; open drain, pull-up to VDD (p. 3)"},
+        {"name": "GND", "signal": "gnd", "tie": "GND"},
+        {"name": "AIN0", "signal": "analog_in", "note": "max VDD + 0.3 V (absolute maximum, p. 4)"},
+        {"name": "AIN1", "signal": "analog_in", "note": "max VDD + 0.3 V (absolute maximum, p. 4)"},
+        {"name": "AIN2", "signal": "analog_in", "note": "max VDD + 0.3 V (absolute maximum, p. 4)"},
+        {"name": "AIN3", "signal": "analog_in", "note": "max VDD + 0.3 V (absolute maximum, p. 4)"},
+        {"name": "VDD", "signal": "supply"},
+        {"name": "SDA", "signal": "i2c_sda"},
+        {"name": "SCL", "signal": "i2c_scl"}
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {"value": ["0x48", "0x49", "0x4a", "0x4b"], "page": 16, "evidence": ["ADDR PIN CONNECTION TARGET ADDRESS", "GND 1001000b", "VDD 1001001b", "SDA 1001010b", "SCL 1001011b"]},
+          "default": "0x48",
+          "select": {"pin": "ADDR", "map": {"GND": "0x48", "VDD": "0x49", "SDA": "0x4a", "SCL": "0x4b"}},
+          "f_max_hz": {"value": 400000, "unit": "Hz", "page": 6, "evidence": "fSCL SCL clock frequency 0.01 0.4 0.01 3.4 MHz", "conditions": "fast mode; Hs mode up to 3.4 MHz needs the Hs controller code (p. 16)"}
+        }
+      ],
+      "current": {
+        "supply": "VDD",
+        "typ": {"value": 0.00015, "unit": "A", "page": 6, "evidence": ["Operating", "TA = 25°C 150 200"], "conditions": "operating, TA = 25 °C"},
+        "max": {"value": 0.0003, "unit": "A", "page": 6, "evidence": ["Operating", "TA = 25°C 150 200", "300"], "conditions": "operating, max over –40…125 °C"},
+        "sleep": {"value": 5e-06, "unit": "A", "page": 6, "evidence": ["Power-down", "TA = 25°C 0.5 2", "5"], "conditions": "power-down, max over –40…125 °C"}
+      },
+      "requires": [
+        {"code": "decoupling", "kind": "ceramic", "value": "100nF", "pins": ["VDD"], "to": "GND", "page": 3, "evidence": "VDD 8 8 8 Analog Power supply. Connect a 0.1μF, power-supply decoupling capacitor to GND."},
+        {"code": "pullup", "kind": "resistor", "pins": ["SDA", "SCL"], "to": "VDD", "page": 3, "evidence": ["SCL 10 10 10 Digital input Serial clock input. Connect to VDD using a pullup resistor.", "SDA 9 9 9 Digital I/O Serial data input and output. Connect to VDD using a pullup resistor."], "note": "value from the I²C pull-up calculator"}
+      ],
+      "hazards": [],
+      "notes": [
+        {"text": "Analog inputs: never more than VDD + 0.3 V (absolute maximum), measuring range GND…VDD.", "page": 4, "evidence": ["Analog input voltage AIN0, AIN1, AIN2, AIN3 GND – 0.3 VDD + 0.3 V", "V(AINx) Absolute input voltage GND VDD V"], "verified": true},
+        {"text": "Internal reference only; an external reference cannot be used.", "page": 11, "evidence": "An external reference cannot be used with these devices.", "verified": true},
+        {"text": "ADS1015 and ADS1115 breakouts often share one PCB; check the chip marking (BRPI = ADS1015, BOGI = ADS1115).", "verified": false}
+      ]
+    },
+    {
+      "id": "mcp3008",
+      "aliases": ["mcp-3008"],
+      "title": "MCP3008 10-bit 8-channel SPI ADC",
+      "category": "adc",
+      "manufacturer": "Microchip Technology",
+      "kind": "ic",
+      "source_ids": ["mod-adc-mcp3008-ds"],
+      "supplies": {
+        "VDD": {
+          "min": {"value": 2.7, "unit": "V", "page": 5, "evidence": "Operating Voltage V DD 2.7 — 5.5 V"},
+          "max": {"value": 5.5, "unit": "V", "page": 5, "evidence": "Operating Voltage V DD 2.7 — 5.5 V"},
+          "abs_max": {"value": 7.0, "unit": "V", "page": 3, "evidence": "VDD ..................................................................................7.0V"}
+        },
+        "VREF": {
+          "min": {"value": 0.25, "unit": "V", "page": 3, "evidence": "Voltage Range 0.25 — V DD V Note 2", "conditions": "reference input range 0.25 V…VDD"}
+        }
+      },
+      "io": {
+        "domain": "VDD",
+        "vih": {"rel": 0.7, "of": "VDD", "unit": "V", "page": 4, "evidence": "High Level Input Voltage V IH 0.7 VDD ——V"},
+        "vil": {"rel": 0.3, "of": "VDD", "unit": "V", "page": 4, "evidence": "Low Level Input Voltage V IL — 0.3 V DD V"},
+        "voh": {"value": 4.1, "unit": "V", "page": 4, "evidence": "High Level Output Voltage V OH 4.1 — — V I OH = -1 mA, VDD = 4.5V", "conditions": "min at IOH = −1 mA, VDD = 4.5 V"},
+        "vol": {"value": 0.4, "unit": "V", "page": 4, "evidence": "Low Level Output Voltage V OL ——0 . 4V I OL = 1 mA, VDD = 4.5V", "conditions": "max at IOL = 1 mA, VDD = 4.5 V"},
+        "v_in_max": {"rel_offset": 0.6, "of": "VDD", "unit": "V", "page": 3, "evidence": "All Inputs and Outputs w.r.t. VSS ............ - 0.6V to VDD +0 . 6 V", "conditions": "absolute maximum rating, all inputs and outputs"},
+        "outputs": "push_pull"
+      },
+      "pins": [
+        {"name": "CH0", "signal": "analog_in"},
+        {"name": "CH1", "signal": "analog_in"},
+        {"name": "CH2", "signal": "analog_in"},
+        {"name": "CH3", "signal": "analog_in"},
+        {"name": "CH4", "signal": "analog_in"},
+        {"name": "CH5", "signal": "analog_in"},
+        {"name": "CH6", "signal": "analog_in"},
+        {"name": "CH7", "signal": "analog_in"},
+        {"name": "DGND", "signal": "gnd", "tie": "GND"},
+        {"name": "CS/SHDN", "signal": "spi_cs", "active_low": true},
+        {"name": "DIN", "signal": "spi_sdi"},
+        {"name": "DOUT", "signal": "spi_sdo", "output": "tristate"},
+        {"name": "CLK", "signal": "spi_sck", "note": "SCLK in the datasheet"},
+        {"name": "AGND", "signal": "gnd", "tie": "GND"},
+        {"name": "VREF", "signal": "supply", "tie": "VDD", "note": "reference input 0.25 V…VDD; inputs measure 0…VREF (p. 3, 4)"},
+        {"name": "VDD", "signal": "supply"}
+      ],
+      "interfaces": [
+        {
+          "type": "spi",
+          "mode": 0,
+          "f_max_hz": {"value": 1350000, "unit": "Hz", "page": 4, "evidence": ["Clock Frequency f SCLK ——3 . 6", "1.35", "VDD = 5V (Note 3)", "VDD = 2.7V (Note 3)"], "conditions": "VDD = 2.7 V; 3.6 MHz at VDD = 5 V; keep above about 10 kHz (p. 3, note 3)"},
+          "note": "SPI modes 0,0 and 1,1 (p. 1)"
+        }
+      ],
+      "current": {
+        "supply": "VDD",
+        "typ": {"value": 0.000425, "unit": "A", "page": 5, "evidence": ["Operating Current I DD —", "425", "µA V DD = VREF = 5V"], "conditions": "VDD = VREF = 5 V, DOUT unloaded"},
+        "max": {"value": 0.00055, "unit": "A", "page": 5, "evidence": ["Operating Current I DD —", "425", "550", "µA V DD = VREF = 5V"], "conditions": "VDD = VREF = 5 V, DOUT unloaded"},
+        "sleep": {"value": 2e-06, "unit": "A", "page": 5, "evidence": "Standby Current I DDS —0 . 0 0 5 2 µ A C S  = VDD = 5.0V", "conditions": "max, CS = VDD = 5 V"}
+      },
+      "requires": [
+        {"code": "decoupling", "kind": "ceramic", "value": "1uF", "pins": ["VDD"], "to": "GND", "page": 23, "evidence": "capacitor value of 1 µF is recommended."}
+      ],
+      "hazards": [],
+      "notes": [
+        {"text": "Input voltage range 0…VREF; above VREF the code clips at 1023, above VDD + 0.6 V the absolute maximum is exceeded.", "page": 4, "evidence": "VIN VSS —V REF V", "verified": true},
+        {"text": "Digital output code = 1024 · VIN / VREF (LSB = VREF / 1024).", "page": 17, "evidence": ["Digital Output Code", "1024 V IN", "VREF"], "verified": true},
+        {"text": "SPI clock: 3.6 MHz at VDD = 5 V, 1.35 MHz at VDD = 2.7 V; below about 10 kHz the sample capacitor loses charge.", "page": 4, "evidence": ["Clock Frequency f SCLK ——3 . 6", "1.35"], "verified": true},
+        {"text": "At VDD = 5 V DOUT drives 5 V into the ESP32 MISO pin; run the MCP3008 at 3.3 V or shift the level.", "verified": false}
+      ]
+    },
+    {
+      "id": "mcp4725",
+      "aliases": ["mcp-4725", "mcp4725a0"],
+      "title": "MCP4725 12-bit I²C DAC with EEPROM",
+      "category": "dac",
+      "manufacturer": "Microchip Technology",
+      "kind": "ic",
+      "source_ids": ["mod-adc-mcp4725-ds"],
+      "supplies": {
+        "VDD": {
+          "min": {"value": 2.7, "unit": "V", "page": 3, "evidence": "Operating Voltage V DD 2.7 5.5 V"},
+          "max": {"value": 5.5, "unit": "V", "page": 3, "evidence": "Operating Voltage V DD 2.7 5.5 V"},
+          "abs_max": {"value": 6.5, "unit": "V", "page": 3, "evidence": "VDD...................................................................................6.5V"}
+        }
+      },
+      "io": {
+        "domain": "VDD",
+        "vih": {"rel": 0.7, "of": "VDD", "unit": "V", "page": 4, "evidence": ["(SDA and SCL Pins)", "VIH 0.7V DD —— V"], "conditions": "SDA and SCL; A0 pin: 0.8 VDD"},
+        "vil": {"rel": 0.3, "of": "VDD", "unit": "V", "page": 4, "evidence": ["(SDA and SCL Pins)", "VIL —  —0 . 3 V DD V"], "conditions": "SDA and SCL; A0 pin: 0.2 VDD"},
+        "vol": {"value": 0.4, "unit": "V", "page": 4, "evidence": "Output Low Voltage V OL — — 0.4 V I OL = 3 mA", "conditions": "IOL = 3 mA"},
+        "v_in_max": {"rel_offset": 0.3, "of": "VDD", "unit": "V", "page": 3, "evidence": "All inputs and outputs w.r.t VSS .................–0.3V to VDD+0.3V", "conditions": "absolute maximum rating, all inputs and outputs"},
+        "outputs": "open_drain"
+      },
+      "pins": [
+        {"name": "VOUT", "signal": "analog_out", "note": "DAC output VSS…VDD; VOUT = VDD · code / 4096 (p. 13, 19)"},
+        {"name": "VSS", "signal": "gnd", "tie": "GND"},
+        {"name": "VDD", "signal": "supply", "note": "supply and DAC reference"},
+        {"name": "SDA", "signal": "i2c_sda"},
+        {"name": "SCL", "signal": "i2c_scl"},
+        {"name": "A0", "signal": "addr_select", "must_connect": true}
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {"value": ["0x60", "0x61"], "page": 27, "evidence": ["which is set to 1100 for the MCP4725. The device code", "is followed by three address bits (A2, A1, A0) which are", "• The A2 and A1 are programmed to ‘ 00’ (default),", "• A0 bit is determined by the logic state of A0 pin."]},
+          "default": "0x60",
+          "select": {"pin": "A0", "map": {"VSS": "0x60", "VDD": "0x61"}},
+          "f_max_hz": {"value": 400000, "unit": "Hz", "page": 27, "evidence": "• Fast Mode: bit rates up to 400 kbit/s", "conditions": "fast mode; HS mode up to 3.4 Mbit/s"},
+          "note": "address 1100 A2 A1 A0: A2/A1 are fixed by the ordering option (A0 = 00 default, A1 = 01, A2 = 10, A3 = 11; p. 47), A0 follows the pin"
+        }
+      ],
+      "current": {
+        "supply": "VDD",
+        "typ": {"value": 0.00021, "unit": "A", "page": 3, "evidence": "Supply Current I DD — 210 400 µA Digital input pins are", "conditions": "VOUT unloaded, code 000h"},
+        "max": {"value": 0.0004, "unit": "A", "page": 3, "evidence": "Supply Current I DD — 210 400 µA Digital input pins are", "conditions": "VOUT unloaded, code 000h; a load on VOUT adds its current (short circuit up to 24 mA at 5 V, p. 3)"},
+        "sleep": {"value": 2e-06, "unit": "A", "page": 3, "evidence": "Power-Down Current I DDP —0 . 0 6 2 . 0  µ A  V DD = 5.5V", "conditions": "max at VDD = 5.5 V"}
+      },
+      "requires": [
+        {"code": "decoupling", "kind": "ceramic", "value": "100nF", "pins": ["VDD"], "to": "GND", "page": 13, "evidence": ["This pin requires an appropriate bypass capacitor of", "about 0.1 µF (ceramic) to ground. An additional 10 µF"], "note": "a 10 µF tantalum in parallel is also recommended"},
+        {"code": "pullup", "kind": "resistor", "pins": ["SDA"], "to": "VDD", "page": 13, "evidence": ["nel driver. Therefore, it needs a pull-up resistor from the", "VDD line to the SDA pin."], "note": "SCL needs one too (I²C bus); value from the I²C pull-up calculator"}
+      ],
+      "hazards": [],
+      "variants": [
+        {"id": "a1", "title": "MCP4725A1 (address option A1: 0x62/0x63)", "overrides": {"interfaces": [{
+          "type": "i2c",
+          "addresses": {"value": ["0x62", "0x63"], "page": 47, "evidence": ["Address Options: XX A2 A1 A0", "A1 = 0 1 External"]},
+          "default": "0x62",
+          "select": {"pin": "A0", "map": {"VSS": "0x62", "VDD": "0x63"}},
+          "f_max_hz": {"value": 400000, "unit": "Hz", "page": 27, "evidence": "• Fast Mode: bit rates up to 400 kbit/s", "conditions": "fast mode; HS mode up to 3.4 Mbit/s"}
+        }]}},
+        {"id": "a2", "title": "MCP4725A2 (address option A2: 0x64/0x65)", "overrides": {"interfaces": [{
+          "type": "i2c",
+          "addresses": {"value": ["0x64", "0x65"], "page": 47, "evidence": ["Address Options: XX A2 A1 A0", "A2 = 1 0 External"]},
+          "default": "0x64",
+          "select": {"pin": "A0", "map": {"VSS": "0x64", "VDD": "0x65"}},
+          "f_max_hz": {"value": 400000, "unit": "Hz", "page": 27, "evidence": "• Fast Mode: bit rates up to 400 kbit/s", "conditions": "fast mode; HS mode up to 3.4 Mbit/s"}
+        }]}},
+        {"id": "a3", "title": "MCP4725A3 (address option A3: 0x66/0x67)", "overrides": {"interfaces": [{
+          "type": "i2c",
+          "addresses": {"value": ["0x66", "0x67"], "page": 47, "evidence": ["Address Options: XX A2 A1 A0", "A3 = 1 1 External"]},
+          "default": "0x66",
+          "select": {"pin": "A0", "map": {"VSS": "0x66", "VDD": "0x67"}},
+          "f_max_hz": {"value": 400000, "unit": "Hz", "page": 27, "evidence": "• Fast Mode: bit rates up to 400 kbit/s", "conditions": "fast mode; HS mode up to 3.4 Mbit/s"}
+        }]}}
+      ],
+      "notes": [
+        {"text": "Output voltage VOUT = VDD · code / 4096: VDD is the reference, so supply noise shows on the output.", "page": 19, "evidence": ["VREF Dn×()", "4096-------------------------------=", "VREF =V DD"], "verified": true},
+        {"text": "Breakout boards (e.g. Adafruit, SparkFun) often carry the A1 option (0x62/0x63) and pull A0 down; read the chip's address option before trusting the default 0x60.", "verified": false}
+      ]
+    },
+    {
+      "id": "pcf8591",
+      "aliases": ["pcf8591t", "yl-40"],
+      "title": "PCF8591 8-bit 4-channel I²C ADC with one DAC output",
+      "category": "adc",
+      "manufacturer": "NXP Semiconductors",
+      "kind": "ic",
+      "source_ids": ["mod-adc-pcf8591-ds"],
+      "supplies": {
+        "VDD": {
+          "min": {"value": 2.5, "unit": "V", "page": 17, "evidence": "VDD supply voltage 2.5 - 6.0 V"},
+          "max": {"value": 6.0, "unit": "V", "page": 17, "evidence": "VDD supply voltage 2.5 - 6.0 V"},
+          "abs_max": {"value": 8.0, "unit": "V", "page": 16, "evidence": "VDD supply voltage \uf02d0.5 +8.0 V", "conditions": "limiting value (min −0.5 V; the text layer shows the minus sign as a private-use glyph)"}
+        },
+        "VREF": {
+          "min": {"value": 1.6, "unit": "V", "page": 17, "evidence": "Vref reference voltage V ref > VAGND [2] VSS +1 . 6 - V DD V", "conditions": "VSS + 1.6 V … VDD"}
+        }
+      },
+      "io": {
+        "domain": "VDD",
+        "vih": {"rel": 0.7, "of": "VDD", "unit": "V", "page": 17, "evidence": ["VIH HIGH-level input", "0.7 \uf0b4 VDD -V DD V"], "conditions": "SCL, SDA, A0, A1, A2"},
+        "vil": {"rel": 0.3, "of": "VDD", "unit": "V", "page": 17, "evidence": ["VIL LOW-level input", "0- 0 . 3 \uf0b4 VDD V"], "conditions": "SCL, SDA, A0, A1, A2"},
+        "v_in_max": {"rel_offset": 0.5, "of": "VDD", "unit": "V", "page": 16, "evidence": "VI input voltage any input \uf02d0.5 V DD + 0.5 V", "conditions": "limiting value, any input"},
+        "outputs": "open_drain"
+      },
+      "pins": [
+        {"name": "AIN0", "signal": "analog_in", "note": "measuring range AGND…VREF; tie to VSS or VDD when unused (p. 14, 18)"},
+        {"name": "AIN1", "signal": "analog_in", "note": "measuring range AGND…VREF; tie to VSS or VDD when unused (p. 14, 18)"},
+        {"name": "AIN2", "signal": "analog_in", "note": "measuring range AGND…VREF; tie to VSS or VDD when unused (p. 14, 18)"},
+        {"name": "AIN3", "signal": "analog_in", "note": "measuring range AGND…VREF; tie to VSS or VDD when unused (p. 14, 18)"},
+        {"name": "A0", "signal": "addr_select", "must_connect": true},
+        {"name": "A1", "signal": "addr_select", "must_connect": true},
+        {"name": "A2", "signal": "addr_select", "must_connect": true},
+        {"name": "VSS", "signal": "gnd", "tie": "GND"},
+        {"name": "SDA", "signal": "i2c_sda"},
+        {"name": "SCL", "signal": "i2c_scl"},
+        {"name": "OSC", "signal": "nc", "note": "oscillator output when EXT = VSS (p. 10)"},
+        {"name": "EXT", "signal": "mode_select", "tie": "GND", "note": "VSS = internal oscillator (p. 10)"},
+        {"name": "AGND", "signal": "gnd", "tie": "GND"},
+        {"name": "VREF", "signal": "supply", "tie": "VDD", "note": "reference input VSS + 1.6 V…VDD (p. 17)"},
+        {"name": "AOUT", "signal": "analog_out", "note": "DAC output"},
+        {"name": "VDD", "signal": "supply"}
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {"value": ["0x48", "0x49", "0x4a", "0x4b", "0x4c", "0x4d", "0x4e", "0x4f"], "page": 13, "evidence": ["Bit 1 to bit 3 of the slave address are defined by connecting the input pins A0 to A2 to", "either VSS (logic 0) or VDD (logic 1).", "slave address 1 0 0 1 A2 A1 A0 R/W"]},
+          "default": "0x48",
+          "select": {"pins": ["A2", "A1", "A0"], "map": {
+            "GND,GND,GND": "0x48", "GND,GND,VDD": "0x49", "GND,VDD,GND": "0x4a", "GND,VDD,VDD": "0x4b",
+            "VDD,GND,GND": "0x4c", "VDD,GND,VDD": "0x4d", "VDD,VDD,GND": "0x4e", "VDD,VDD,VDD": "0x4f"}},
+          "f_max_hz": {"value": 100000, "unit": "Hz", "page": 20, "evidence": "fSCL SCL clock frequency - - 100 kHz", "conditions": "standard mode only: the whole bus must run at ≤ 100 kHz"}
+        }
+      ],
+      "current": {
+        "supply": "VDD",
+        "typ": {"value": 0.00045, "unit": "A", "page": 17, "evidence": ["operating; fSCL =1 0 0k H z", "AOUT active - 0.45 1.0 mA"], "conditions": "operating at fSCL = 100 kHz, AOUT active"},
+        "max": {"value": 0.001, "unit": "A", "page": 17, "evidence": ["operating; fSCL =1 0 0k H z", "AOUT active - 0.45 1.0 mA"], "conditions": "operating at fSCL = 100 kHz, AOUT active; AOUT off: 250 µA"},
+        "sleep": {"value": 1.5e-05, "unit": "A", "page": 17, "evidence": "standby; VI =V SS or VDD; no load - 1 15 \uf06dA", "conditions": "standby max 15 µA (the text layer shows µ as a private-use glyph)"}
+      },
+      "requires": [
+        {"code": "pullup", "kind": "resistor", "pins": ["SDA", "SCL"], "to": "VDD", "page": 11, "evidence": "be connected to a positive supply via a pull-up resistor.", "note": "value from the I²C pull-up calculator at 100 kHz"},
+        {"code": "decoupling", "kind": "capacitor", "value": "10uF", "pins": ["VDD", "VREF"], "to": "GND", "page": 14, "evidence": ["loops should be avoided. Decoupling capacitors (>10 \uf06dF) are recommended for power", "supply and reference voltage inputs."], "note": "> 10 µF (the text layer shows µ as a private-use glyph)"}
+      ],
+      "hazards": [],
+      "notes": [
+        {"text": "I²C at 100 kHz only: one PCF8591 limits the whole bus to standard mode.", "page": 20, "evidence": "fSCL SCL clock frequency - - 100 kHz", "verified": true},
+        {"text": "Analog inputs: any input max VDD + 0.5 V (limiting value), measuring range AGND…VREF; LSB = (VREF − VAGND) / 256.", "page": 16, "evidence": "VI input voltage any input \uf02d0.5 V DD + 0.5 V", "verified": true},
+        {"text": "Unused inputs must be tied to VSS or VDD.", "page": 14, "evidence": "Inputs must be connected to VSS or VDD when not in use.", "verified": true},
+        {"text": "The common YL-40 module puts an LDR, a thermistor and a potentiometer on AIN0–AIN3 via jumpers, adds pull-ups and an LED on AOUT, and grounds A0–A2 (0x48); NXP documents the chip only.", "verified": false}
+      ]
+    },
+    {
+      "id": "hx711",
+      "aliases": ["hx-711", "hx711-module"],
+      "title": "HX711 24-bit bridge ADC for load cells",
+      "category": "adc",
+      "manufacturer": "Avia Semiconductor",
+      "kind": "ic",
+      "source_ids": ["mod-adc-hx711-ds"],
+      "supplies": {
+        "DVDD": {
+          "min": {"value": 2.6, "unit": "V", "page": 3, "evidence": "DVDD 2.6   5.5 V Power supply voltage"},
+          "max": {"value": 5.5, "unit": "V", "page": 3, "evidence": "DVDD 2.6   5.5 V Power supply voltage"}
+        },
+        "AVDD": {
+          "min": {"value": 2.6, "unit": "V", "page": 3, "evidence": "  AVDD，VSUP 2.6   5.5"},
+          "max": {"value": 5.5, "unit": "V", "page": 3, "evidence": "  AVDD，VSUP 2.6   5.5"}
+        },
+        "VSUP": {
+          "min": {"value": 2.7, "unit": "V", "page": 2, "evidence": "1 VSUP Power Regulator supply: 2.7 ~ 5.5V", "conditions": "regulator supply (Table 1); Table 2 says 2.6 V"},
+          "max": {"value": 5.5, "unit": "V", "page": 2, "evidence": "1 VSUP Power Regulator supply: 2.7 ~ 5.5V"}
+        }
+      },
+      "io": {
+        "domain": "DVDD",
+        "outputs": "push_pull"
+      },
+      "pins": [
+        {"name": "VSUP", "signal": "supply", "note": "regulator supply; without the regulator tie to the higher of AVDD/DVDD (p. 4)"},
+        {"name": "BASE", "signal": "nc", "note": "regulator control output to the external PNP base; NC when not used"},
+        {"name": "AVDD", "signal": "supply"},
+        {"name": "VFB", "signal": "nc", "note": "regulator feedback; connect to AGND when the regulator is not used"},
+        {"name": "AGND", "signal": "gnd", "tie": "GND"},
+        {"name": "VBG", "signal": "nc", "note": "reference bypass output (0.1 µF to AGND with the regulator)"},
+        {"name": "INA-", "signal": "analog_in"},
+        {"name": "INA+", "signal": "analog_in"},
+        {"name": "INB-", "signal": "analog_in"},
+        {"name": "INB+", "signal": "analog_in"},
+        {"name": "PD_SCK", "signal": "digital_in", "note": "serial clock; high > 60 µs = power down (p. 5)"},
+        {"name": "DOUT", "signal": "digital_out", "note": "low = data ready"},
+        {"name": "XO", "signal": "nc"},
+        {"name": "XI", "signal": "mode_select", "tie": "GND", "note": "GND = on-chip oscillator"},
+        {"name": "RATE", "signal": "mode_select", "tie": "GND", "note": "GND = 10 SPS, DVDD = 80 SPS"},
+        {"name": "DVDD", "signal": "supply", "note": "same supply as the MCU (p. 4)"}
+      ],
+      "interfaces": [
+        {"type": "digital", "note": "two-wire serial (PD_SCK clock in, DOUT data out), not SPI or I²C: 25–27 clock pulses per conversion select channel and gain (A/128, B/32, A/64; p. 4)"}
+      ],
+      "current": {
+        "supply": "AVDD",
+        "typ": {"value": 0.0015, "unit": "A", "page": 3, "evidence": ["Normal   1400   µA Analog supply current (including regulator)", "Normal   100   µA Digital supply current"], "conditions": "analog 1400 µA (including the regulator) + digital 100 µA, typical"},
+        "sleep": {"value": 5e-07, "unit": "A", "page": 3, "evidence": ["Normal   1400   µA Analog supply current (including regulator)", " Power down   0.3", "Normal   100   µA Digital supply current", "  Power down   0.2"], "conditions": "power down, analog 0.3 µA + digital 0.2 µA, typical"},
+        "note": "only typical values in the datasheet; the load cell's own current comes on top"
+      },
+      "requires": [],
+      "hazards": [],
+      "notes": [
+        {"text": "DVDD should be the same supply as the MCU: run DVDD from 3.3 V on an ESP32 so DOUT stays at 3.3 V; AVDD may be higher.", "page": 4, "evidence": ["Digital power supply (DVDD) should be the", "same power supply as the MCU power supply."], "verified": true},
+        {"text": "PD_SCK high longer than 60 µs powers the chip down (high time max 50 µs); interrupts or Wi-Fi on the ESP32 can stretch a pulse.", "page": 5, "evidence": ["T3 PD_SCK high time  0.2 1 50", "and stays at high for longer than 60 µs, HX711"], "verified": true},
+        {"text": "Full-scale differential input ±0.5 · AVDD / gain (±20 mV at gain 128 and AVDD = 5 V); common-mode input AGND + 1.2 V…AVDD − 1.3 V.", "page": 3, "evidence": ["input range V(inp)-V(inn)   ±0.5(AVDD/GAIN)   V", "Common mode input   AGND+1.2   AVDD-1.3 V"], "verified": true},
+        {"text": "The datasheet gives no absolute maximum ratings and no input logic levels (VIH/VIL); level checks against the ESP32 stay not_checked.", "verified": false},
+        {"text": "Green HX711 breakouts carry the S8550 regulator transistor, R1/R2 for AVDD ≈ 4.3 V and a crystal-less oscillator; header pins are VCC/GND/DT/SCK and E+/E−/A−/A+/B−/B+. Many boards tie VSUP, AVDD and DVDD together, so DOUT then swings to VCC.", "verified": false}
+      ]
+    }
+  ]
+}

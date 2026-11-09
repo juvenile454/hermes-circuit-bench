@@ -1,0 +1,30 @@
+[
+ {
+  "id": "devkitc-esp32-v4",
+  "title": "ESP32-DevKitC V4 User Guide, Header Block (J2, J3) and Functional Description",
+  "url": "https://github.com/espressif/esp-dev-kits/blob/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-devkitc/user_guide.rst",
+  "retrieved": "2026-11-06",
+  "note": "espressif/esp-dev-kits commit 5c06bf18 (2026-11-02), sha256 a6e89080a3a5f9b99f33e63e7a0d9788fa858ad11cd25feffbb9e4df15229f1b. Rendered: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html. J2 and J3 have 19 pins each; footnote [2]: D0-D3, CMD, CLK (GPIO6-11) 'are used internally for communication between ESP32 and SPI flash memory'; footnote [3]: GPIO16/17 'available for use only on the boards with the modules ESP32-WROOM and ESP32-SOLO-1'."
+ },
+ {
+  "id": "devkitc-esp32-v4-ordering",
+  "title": "ESP32-DevKitC V4 Ordering Information (part number, module, flash, PSRAM)",
+  "url": "https://github.com/espressif/esp-dev-kits/blob/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-devkitc/ordering-info.inc",
+  "retrieved": "2026-11-06",
+  "note": "espressif/esp-dev-kits commit 5c06bf18, sha256 673ce22fc37b60afe6286a28d3bd1bb617b0fb2812609e086ba3577f72987e8b, included by the user guide. ESP32-DevKitC-32E: ESP32-WROOM-32E, 4 MB flash, no PSRAM; -32UE: ESP32-WROOM-32UE; -VE/-VIE: ESP32-WROVER-E/-IE with 8 MB PSRAM."
+ },
+ {
+  "id": "devkitm1-c3-v1",
+  "title": "ESP32-C3-DevKitM-1 User Guide, Header Block (J1, J3) and Description of Components",
+  "url": "https://github.com/espressif/esp-dev-kits/blob/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-c3-devkitm-1/user_guide.rst",
+  "retrieved": "2026-11-06",
+  "note": "espressif/esp-dev-kits commit 5c06bf18 (2026-11-02), sha256 6859d66ec8f3793845bc993e5993db4bbb0310c434f30a41c019a0c507f4ae2c. Rendered: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c3/esp32-c3-devkitm-1/user_guide.html. J1 and J3 have 15 pins each, numbering as in the schematic SCH_ESP32-C3-DEVKITM-1_V1_20200915A; 'Addressable RGB LED, driven by GPIO8.'; 'No previous versions available.'"
+ },
+ {
+  "id": "devkitm1-c3-ordering",
+  "title": "ESP32-C3-DevKitM-1 Ordering Information (part number, module, flash, PSRAM)",
+  "url": "https://github.com/espressif/esp-dev-kits/blob/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-c3-devkitm-1/ordering-info.inc",
+  "retrieved": "2026-11-06",
+  "note": "espressif/esp-dev-kits commit 5c06bf18, sha256 d6ce9d95d89ddb9afe66aada226073c419617f0b4f5e34c4452ded22f40a464b, included by the user guide. ESP32-C3-DevKitM-1-N4X: ESP32-C3-MINI-1, 4 MB flash, no PSRAM."
+ }
+]

@@ -1,0 +1,6 @@
+{
+ "addresses": {
+  "0x400e14ea": "app_main at /home/user/esp/example/main/main.cpp:36",
+  "0x400d0802": "main_task at /home/user/esp/esp-idf/components/freertos/app_startup.c:208"
+ }
+}

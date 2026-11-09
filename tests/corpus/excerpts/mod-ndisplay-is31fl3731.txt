@@ -1,0 +1,43 @@
+# source_id: mod-ndisplay-is31fl3731-ds
+# document: Lumissil Microsystems IS31FL3731 Audio Modulated Matrix LED Driver, Rev. G, 10/24/2024
+# url: https://lumissil.com/assets/pdf/core/IS31FL3731_DS.pdf
+# corpus: mod/ndisplay/is31fl3731-revg.pdf sha256 a9b1eb09c9fb0b86bbacd1672f63a0a66b9e1fda6c0aa22ba489cc2bbbcf4bbf
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Rev. G, 10/24/2024 
+ Supply voltage range: 2.7V to 5.5V 
+ 400kHz I2C-compatible interface 
+@@ page 3
+2 VCC Power supply. 
+3 SDB Shutdown the chip when pull to low. 
+4 INTB Open drain, interrupt output. Active low. 
+5 GND Ground. 
+6 R_EXT 20kΩ resistance to confirm the LED current. 
+18 AD I2C address setting. 
+19 SDA I2C compatible serial data. 
+20 SCL I2C compatible serial clock. 
+@@ page 5
+Supply voltage, VCC -0.3V ~ +6V 
+Voltage at any input pin  -0.3V ~ V CC+0.3V
+The following specifications apply for VCC= 3.6V, TA= 25°C, unless otherwise noted. 
+VCC Supply voltage  2.7  5.5 V 
+ICC Quiescent power supply current VIN= 0V, without audio input, all LEDs off  2 . 1 7   m A  
+VSDB= 0V  0.5 5 
+VIL Logic “0” input voltage V CC= 2.7V   0.4 V 
+VIH Logic “1” input voltage V CC= 5.5V 1.4   V 
+@@ page 6
+fSCL Serial-Clock frequency     400 kHz 
+Note 6: ILED = 64.7/REXT, REXT = 20kΩ is recommended. The recommended minimum value of REXT is 18kΩ, or it may cause a large current. 
+@@ page 7
+Value 11101 AD 0/1 
+ AD connected to GND, AD=00; 
+ AD connected to VCC, AD=11; 
+ AD connected to SCL, AD=01; 
+ AD connected to SDA, AD=10; 
+directional (open-collector) with a pull-up resistor 
+(typically 4.7kΩ). The maximum clock frequency 
+@@ page 18
+Hardware Shutdown 
+The chip enters hardwar e shutdown mode when the 
+SDB pin is pulled low. All registers are forbidden 

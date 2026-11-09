@@ -1,0 +1,31 @@
+# source_id: mod-nnet-ch9102f-ds
+# document: WCH CH9102 Datasheet (CH9102DS1), Version: 1C
+# url: https://www.wch-ic.com/download/file?id=297
+# corpus: mod/nnet/CH9102DS1.pdf sha256 876966aa794ec18d850b622a76386d7565bd76e7f76fdb972b1602172062fb3a
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+l CH9102F UART interface I/O powered independently, support 5V, 3.3V, 2.5V, 1.8V power supply
+l CH9102X UART interface I/O only supports 3.3V power supply voltage.
+l Integrated power-on reset, integrated clock, no external crystal required.
+@@ page 2
+7 7 VDD5 POWER Power supply voltage input, requires an external decoupling capacitor
+VIO POWER I/O power supply voltage input, requires an external decoupling capacitor
+Internal voltage regulator output and kernel and USB
+power supply input. When VDD5 voltage is less than
+3.6V, connects to VDD5. When VDD5 voltage is more
+than 3.6V, connects to external 0.1uF decoupling
+@@ page 7
+VDD5 USB power supply voltage (VDD5 connects to power, GND connects to ground) -0.5 6.0 V
+VIO Serial port I/O power supply voltage (VIO connects to power, GND connects to ground) -0.5 6.0 V
+VUART Voltage on UART and other pins -0.5 VIO+0.5 V
+@@ page 8
+connected to capacitor 4.0 5 5.5 VDD5 USB power supply
+voltage V3 connected to VDD5, VDD5=V3 3.0 3.3 3.6
+VIO Serial port I/O power supply voltage 1.7 5 5.5 V
+IVDD Operating VDD5 or V3 power supply current  3 15 mA
+VDD5 power supply =5V  0.09 0.16 mA
+VIO=3.3V 0  0.9 V VIL Input high voltage
+VIO=3.3V 1.9  VIO V VIH Input high voltage
+VIO=3.3V, 8mA draw current  0.3 0.4 V VOL Output Low Voltage
+VIO=3.3V, 5mA output current VIO-0.4 VIO-0.3  V VOH Output High Voltage

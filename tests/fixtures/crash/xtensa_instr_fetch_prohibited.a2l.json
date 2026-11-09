@@ -1,0 +1,6 @@
+{
+ "addresses": {
+  "0x42001bce": "on_button(Event const&) at /p/src/main.cpp:33",
+  "0x42003a5e": "loopTask(void*) at /p/cores/esp32/main.cpp:74"
+ }
+}

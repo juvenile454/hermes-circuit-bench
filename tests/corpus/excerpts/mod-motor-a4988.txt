@@ -1,0 +1,66 @@
+# source_id: mod-motor-a4988-ds
+# document: Allegro MicroSystems A4988 DMOS Microstepping Driver with Translator and Overcurrent Protection, 4988-DS Rev. 8
+# url: https://www.allegromicro.com/-/media/files/datasheets/a4988-datasheet.pdf
+# corpus: mod/motor/a4988-datasheet.pdf sha256 d1dfba3bb7be2cbf2b689f39424569fc78b1f4fd1f427648bbd8f291ebb933ea
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+▪	 3.3	and	5	 V	compatible	logic	supply
+@@ page 1
+VBB1CP1 VCPVREG
+100 µF
+@@ page 2
+Load Supply Voltage VBB 35 V
+Output Current IOUT ±2 A
+Logic Input Voltage VIN –0.3 to 5.5 V
+Logic Supply Voltage VDD –0.3 to 5.5 V
+Sense Voltage VSENSE –0.5 to 0.5 V
+Reference Voltage VREF  5.5 V
+@@ page 4
+Load Supply Voltage Range VBB
+Operating 8 – 35 V
+Logic Supply Voltage Range VDD Operating 3 – 5.5 V
+Motor Supply Current IBB
+fPWM < 50 kHz – – 4 mA
+Sleep Mode – – 10 µA
+Logic Supply Current IDD
+fPWM < 50 kHz – – 8 mA
+Sleep Mode – – 10 µA
+VIN(1) VDD × 0.7 – – V
+VIN(0) – – VDD × 0.3 V
+Reference Input Voltage Range VREF 0 – 4 V
+VDD Undervoltage Lockout VDDUVLO VDD rising 2.7 2.8 2.9 V
+@@ page 4
+RMS1 MS1 pin – 100 – kΩ
+RMS2 MS2 pin – 50 – kΩ
+RMS3 MS3 pin – 100 – kΩ
+@@ page 6
+STEP minimum, HIGH pulse width tA 1 μs
+@@ page 6
+Table 1: Microstepping Resolution Truth Table
+MS1 MS2 MS3 Microstep Resolution Excitation Mode
+L L L Full Step 2 Phase
+H L L Half Step 1-2 Phase
+L H L Quarter Step W1-2 Phase
+H H L Eighth Step 2W1-2 Phase
+H H H Sixteenth Step 4W1-2 Phase
+@@ page 7
+MS3	pins	have	a	100	kΩ	pull-down	resistance,	and	the	MS2	pin
+has	a	50	kΩ	pull-down	resistance.	When	changing	the	step	mode,
+@@ page 9
+ITripMAX = VREF / ( 8 × RS)
+It	is	critical	that	the	maximum	rating	(0.5	V)	on	the	SENSE1	and
+SENSE2	pins	is	not	exceeded.
+source-side	FET	gates.	A	0.1	µF	ceramic	capacitor	should	be
+connected	between	CP1	and	CP2.	In	addition,	a	0.1	µF	ceramic
+capacitor	is	required	between	VCP	and	VBB,	to	act	as	a	reservoir
+@@ page 10
+terminal	is	7	V .	The	VREG	pin	must	be	decoupled	with	a	0.22	µF
+ceramic	capacitor	to	ground.	VREG	is	internally	monitored.	In	the
+@@ page 12
+The	two	input	capacitors	should	be	placed	in	parallel,	and	as
+tor	(CIN1)	should	be	closer	to	the	pins	than	the	bulk	capacitor
+@@ page 18
+VDD 15 Logic supply
+REF 17 Gm reference voltage input
+PAD – Exposed pad for enhanced thermal dissipation*

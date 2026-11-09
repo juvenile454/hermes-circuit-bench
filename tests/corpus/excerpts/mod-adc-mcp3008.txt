@@ -1,0 +1,76 @@
+# source_id: mod-adc-mcp3008-ds
+# document: MCP3004/3008 2.7V 10-Bit A/D Converters with SPI Serial Interface, DS20001295E
+# url: https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/MCP3004-MCP3008-Data-Sheet-DS20001295.pdf
+# corpus: mod/adc/MCP3004-MCP3008-Data-Sheet-DS20001295.pdf sha256 26a503d76279cc10e40cfc36e80bb87fd33d0de80093d1bdcc4dc29435b10f72
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+• SPI serial interface (modes 0,0 and 1,1)
+- 200 ksps max. at V DD =5 V
+- 75 ksps max. at V DD =2 . 7 V
+@@ page 3
+VDD ..................................................................................7.0V
+All Inputs and Outputs w.r.t. VSS ............ - 0.6V to VDD +0 . 6 V
+Resolution — 10 —b i t s
+Voltage Range 0.25 — V DD V Note 2
+Current Drain —
+100
+150
+During operation 
+3: Because the sample cap will eventually lose charge, effective clock rates below 10 kHz can affect linearity 
+@@ page 4
+VIN VSS —V REF V
+High Level Input Voltage V IH 0.7 VDD ——V
+Low Level Input Voltage V IL — 0.3 V DD V
+High Level Output Voltage V OH 4.1 — — V I OH = -1 mA, VDD = 4.5V
+Low Level Output Voltage V OL ——0 . 4V I OL = 1 mA, VDD = 4.5V
+Clock Frequency f SCLK ——3 . 6
+1.35
+VDD = 5V (Note 3)
+VDD = 2.7V (Note 3)
+@@ page 5
+Operating Voltage V DD 2.7 — 5.5 V
+Operating Current I DD —
+425
+287
+216
+550
+µA V DD = VREF = 5V
+VDD = VREF = 3.3V, 
+Standby Current I DDS —0 . 0 0 5 2 µ A C S  = VDD = 5.0V
+@@ page 15
+3.1 Digital Ground (DGND)
+3.2 Analog Ground (AGND)
+3.3 Analog inputs (CH0 - CH7)
+3.4 Serial Clock (SCLK)
+3.5 Serial Data Input (D IN)
+3.6 Serial Data Output (D OUT)
+3.7 Chip Select/Shutdown (CS /SHDN)
+1 1 CH0 Analog Input
+2 2 CH1 Analog Input
+3 3 CH2 Analog Input
+4 4 CH3 Analog Input
+– 5 CH4 Analog Input
+– 6 CH5 Analog Input
+– 7 CH6 Analog Input
+– 8 CH7 Analog Input
+7 9 DGND Digital Ground
+81 0 C S /SHDN Chip Select/Shutdown Input
+91 1 D IN Serial Data In
+10 12 D OUT Serial Data Out
+11 13 SCLK Serial Clock
+12 14 AGND Analog Ground
+13 15 V REF Reference Voltage Input
+14 16 V DD +2.7V to 5.5V Power Supply
+@@ page 17
+LSB Size
+VREF
+1024-------------=
+Digital Output Code
+1024 V IN
+VREF
+VIN = analog input voltage
+@@ page 21
+Mode 0,0, which requires that the SCLK from the MCU
+@@ page 23
+capacitor value of 1 µF is recommended.

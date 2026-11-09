@@ -1,0 +1,33 @@
+# source_id: mod-ambient-scd4x-ds
+# document: Sensirion Datasheet SCD4x Miniaturized CO2 and Humidity & Temperature Sensor, Version 1.3, September 2022
+# url: https://sensirion.com/media/documents/E0F04247/631EF271/CD_DS_SCD40_SCD41_Datasheet_D1.pdf
+# corpus: mod/ambient/CD_DS_SCD40_SCD41_Datasheet_D1.pdf sha256 ac1ba13f64a5d51a96ad0e11a5295623f9ae6cee7465c361513340274c4e90db
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 4
+Supply voltage DC6 VDD  2.4 3.3 or 5.0 5.5 V 
+Voltage ripple peak to peak VRPP    30  mV 
+Peak supply current7 Ipeak VDD = 3.3 V  175 205 mA VDD = 5 V  115 137 mA 
+measurement IDD VDD = 3.3 V  15 18 mA VDD = 5 V  11 13 mA 
+Input high level voltage VIH  0.65 x VDD  1 x VDD - 
+Input low level voltage VIL    0.3 x VDD - 
+Output low level voltage VOL 3 mA sink current   0.66  V 
+DC supply voltage  - 0.3 V – 6.0 V 
+Max voltage on pins SDA, SCL, GND  – 0.3 V to VDD+0.3 V 
+7 Power supply should be designed with respect to peak current.  
+@@ page 5
+Supply voltage IR source, must 
+be connected to VDD on 
+Do not connect, pads must be 
+VDD and VDDH are used to supply the sensor and must always be kept at the same voltage, i.e. should both be connected to 
+taken to choose a low noise power supply (preferably a low-dropout regulator, LDO, with output ripple of less than 30 mV p-p), 
+which is adequately dimensioned for the relatively large peak currents. Power supply configurations with large transient voltage 
+must be met. Both SCL and SDA lines should be connected to external pull -up resistors (e.g. Rp = 10 kΩ, see Figure 1). To 
+avoid signal contention, the microcontroller must only drive SDA and SCL low. For dimensioning resistor sizes please take bus 
+@@ page 6
+Power-up time  After hard reset, VDD  ≥ 2.25 V - 1000 ms 
+SCL clock frequency - 0 100 kHz 
+@@ page 7
+I2C address 0x62 
+@@ page 17
+In addition to periodic measurement modes, the SCD41 features a single shot measurement mode, i.e. allows for on-demand 

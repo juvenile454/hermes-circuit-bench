@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+"""Fake esptool. Never touches a serial port.
+
+Scenario: JSON file named in CB_FAKE_SCENARIO, else `cb-fake-scenario.json` next to argv[0] (tests link this
+script into a temporary bin folder, because clitools.run passes only a minimal environment). Keys are esptool
+commands (`flash-id`, `version`, ...) or "*"; each step: {"rc", "stdout", "sleep", "spawn_child", "child_pid_file"}.
+`{port}` in stdout is replaced by the value of --port. argv is appended as one JSON line to CB_FAKE_ARGV_LOG or
+`cb-fake-argv.log` next to argv[0] (only when the scenario file lies there, too); the cwd, HOME and ESPTOOL_*
+variables the fake saw are logged as well.
+"""
+import json
+import os
+import subprocess
+import sys
+import time
+
+here = os.path.dirname(os.path.abspath(sys.argv[0]))
+argv = sys.argv[1:]
+local = os.path.join(here, "cb-fake-scenario.json")
+path = os.environ.get("CB_FAKE_SCENARIO") or (local if os.path.isfile(local) else "")
+# log next to argv[0] only in a test-prepared folder (never into tests/fakes/bin itself)
+log = os.environ.get("CB_FAKE_ARGV_LOG") or (os.path.join(here, "cb-fake-argv.log") if path == local else "")
+if log:
+    with open(log, "a", encoding="utf-8") as f:
+        f.write(json.dumps({"tool": "esptool", "argv": argv, "cwd": os.getcwd(), "home": os.environ.get("HOME"),
+                        "esptool_env": sorted(k for k in os.environ if k.startswith("ESPTOOL_"))}) + "\n")
+scenario = {}
+if path and os.path.isfile(path):
+    with open(path, encoding="utf-8") as f:
+        scenario = json.load(f)
+port = argv[argv.index("--port") + 1] if "--port" in argv[:-1] else ""
+command = next((a for a in argv if a in scenario), "*")
+step = scenario.get(command, {"rc": 0, "stdout": ""})
+if step.get("spawn_child"):
+    child = subprocess.Popen([sys.executable, "-c", "import time; time.sleep(120)"])
+    with open(step["child_pid_file"], "w", encoding="utf-8") as f:
+        f.write(str(child.pid))
+time.sleep(float(step.get("sleep", 0)))
+sys.stdout.write(step.get("stdout", "").replace("{port}", port))
+sys.stdout.flush()
+# "phases": output over time, [{"pid_file", "stdout", "sleep", "touch"}, ...] in this order per
+# phase; a killed fake never reaches the later phases (their "touch" marker files stay missing)
+for phase in step.get("phases", []):
+    if phase.get("pid_file"):
+        with open(phase["pid_file"], "w", encoding="utf-8") as f:
+            f.write(str(os.getpid()))
+    sys.stdout.write(phase.get("stdout", "").replace("{port}", port))
+    sys.stdout.flush()
+    time.sleep(float(phase.get("sleep", 0)))
+    if phase.get("touch"):
+        with open(phase["touch"], "w", encoding="utf-8") as f:
+            f.write("written\n")
+sys.exit(int(step.get("rc", 0)))

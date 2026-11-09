@@ -1,0 +1,39 @@
+{
+  "ok": true,
+  "action": "job.get",
+  "summary": "Flash done: Flashed firmware (aaaaaaaa…) to sim://esp32s3-n16r8 (simulated).",
+  "result": {
+    "job_id": "j-0004-f074f5",
+    "kind": "flash",
+    "state": "done",
+    "progress": 1.0,
+    "started": "2026-11-06T06:50:45Z",
+    "finished": "2026-11-06T06:50:45Z",
+    "log_tail": [],
+    "result": {
+      "ok": true,
+      "action": "board.flash",
+      "summary": "Flashed firmware (aaaaaaaa…) to sim://esp32s3-n16r8 (simulated).",
+      "result": {
+        "mac": "aa:bb:cc:dd:ee:ff",
+        "elf_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "duration_s": 0.1,
+        "simulated": true,
+        "port": "sim://esp32s3-n16r8",
+        "ok": true
+      },
+      "checks": [],
+      "warnings": [],
+      "assumptions": [],
+      "sources": [],
+      "simulated": true,
+      "error": null
+    }
+  },
+  "checks": [],
+  "warnings": [],
+  "assumptions": [],
+  "sources": [],
+  "simulated": true,
+  "error": null
+}

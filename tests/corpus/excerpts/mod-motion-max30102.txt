@@ -1,0 +1,36 @@
+# source_id: mod-motion-max30102-ds
+# document: MAX30102 High-Sensitivity Pulse Oximeter and Heart-Rate Sensor for Wearable Health, Data Sheet Rev. 1
+# url: https://web.archive.org/web/20251218104804id_/https://www.analog.com/media/en/technical-documentation/data-sheets/max30102.pdf
+# corpus: mod/motion/max30102.pdf sha256 252e039335aea4bf1dae577eada92fe2630bce123fde691a11b3d890bfd0b53c
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+The MAX30102 operates on a single 1.8V power supply
+@@ page 2
+VDD to GND .........................................................-0.3V to +2.2V
+VLED+ to PGND....................................................-0.3V to +6.0V
+All Other Pins to GND ..........................................-0.3V to +6.0V
+Power-Supply Voltage VDD Guaranteed by RED and IR count tolerance 1.7 1.8 2.0 V
+VLED+ to PGND VLED+ Guaranteed by PSRR of LED driver 3.1 3.3 5.0 V
+SpO2 and HR mode, PW = 215µs,
+50sps 600 1200 µA
+Supply Current in Shutdown ISHDN TA = +25°C, MODE = 0x80 0.7 10 µA
+@@ page 4
+Input High Voltage VIH VDD = 2V 0.7 x VDD V
+Input Low Voltage VIL VDD = 2V 0.3 x VDD V
+Ouput Low Voltage VOL ISINK = 6mA 0.2 V
+@@ page 5
+I2C Write Address AE Hex
+I2C Read Address AF Hex
+Serial Clock Frequency fSCL 0 400 kHz
+@@ page 8
+11 VDD Analog Power Supply Input. Use a bypass capacitor to GND for best performance.
+13 INT Active-Low Interrupt (Open-Drain). Connect to an external voltage with a pullup resistor.
+@@ page 9
+The LED current can be programmed from 0 to 50mA
+@@ page 11
+Part ID PART_ID[7] 0xFF 0x15 R
+@@ page 23
+1Ω, and that there is at least 1µF of power supply bypass
+@@ page 28
+A pullup resistor, typically greater than 500Ω, is required

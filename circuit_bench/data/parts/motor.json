@@ -1,0 +1,231 @@
+{
+ "schema": 1,
+ "note": "Current-limit data of the motor drivers, only from manufacturer datasheets (source_id; 'evidence' quotes lines of tests/corpus/excerpts/mod-motor-*.txt on 'page'). SI units. kind motor_driver: calculator current_limit.",
+ "parts": [
+  {
+   "id": "A4988",
+   "kind": "motor_driver",
+   "title": "A4988 microstepping stepper driver (Allegro)",
+   "source_id": "mod-motor-a4988-ds",
+   "module": "a4988",
+   "method": "vref_div",
+   "formula": "I_TripMAX = V_REF / (8 · R_S)",
+   "k": {
+    "value": 8,
+    "unit": "",
+    "page": 9,
+    "evidence": "ITripMAX = VREF / ( 8 × RS)"
+   },
+   "v_ref_max": {
+    "value": 4.0,
+    "unit": "V",
+    "page": 4,
+    "evidence": "Reference Input Voltage Range VREF 0 – 4 V",
+    "conditions": "operating range"
+   },
+   "v_ref_abs_max": {
+    "value": 5.5,
+    "unit": "V",
+    "page": 2,
+    "evidence": "Reference Voltage VREF  5.5 V",
+    "conditions": "absolute maximum"
+   },
+   "i_max": {
+    "value": 2.0,
+    "unit": "A",
+    "page": 2,
+    "evidence": "Output Current IOUT ±2 A",
+    "conditions": "absolute maximum output current"
+   },
+   "v_sense_max": {
+    "value": 0.5,
+    "unit": "V",
+    "page": 2,
+    "evidence": "Sense Voltage VSENSE –0.5 to 0.5 V",
+    "conditions": "absolute maximum"
+   }
+  },
+  {
+   "id": "DRV8825",
+   "kind": "motor_driver",
+   "title": "DRV8825 stepper motor controller (TI)",
+   "source_id": "mod-motor-drv8825-ds",
+   "module": "drv8825",
+   "method": "vref_div",
+   "formula": "I_FS = V_xREF / (5 · R_ISENSE)",
+   "k": {
+    "value": 5,
+    "unit": "",
+    "page": 12,
+    "evidence": "connected to the xISEN pins, multiplied by a factor of 5, with a reference voltage."
+   },
+   "example": {
+    "v_ref": 2.5,
+    "r_sense": 0.25,
+    "i": 2.0,
+    "page": 12,
+    "evidence": "2.5 V / (5 x 0.25"
+   },
+   "v_ref_min": {
+    "value": 1.0,
+    "unit": "V",
+    "page": 4,
+    "evidence": "V(VREF) VREF input voltage (2) 1 3.5 V",
+    "conditions": "recommended; 0–1 V works with degraded accuracy"
+   },
+   "v_ref_max": {
+    "value": 3.5,
+    "unit": "V",
+    "page": 4,
+    "evidence": "V(VREF) VREF input voltage (2) 1 3.5 V",
+    "conditions": "recommended"
+   },
+   "v_ref_abs_max": {
+    "value": 4.0,
+    "unit": "V",
+    "page": 4,
+    "evidence": "V(xVREF) Input voltage –0.3 4 V",
+    "conditions": "absolute maximum"
+   },
+   "i_max": {
+    "value": 2.5,
+    "unit": "A",
+    "page": 4,
+    "evidence": "Continuous motor drive output current (4) 0 2.5 A",
+    "conditions": "absolute maximum, continuous; power dissipation and thermal limits apply"
+   },
+   "v_sense_max": {
+    "value": 0.8,
+    "unit": "V",
+    "page": 4,
+    "evidence": "ISENSEx pin voltage (3) –0.8 0.8 V",
+    "conditions": "absolute maximum"
+   }
+  },
+  {
+   "id": "DRV8833",
+   "kind": "motor_driver",
+   "title": "DRV8833 dual H-bridge motor driver (TI)",
+   "source_id": "mod-motor-drv8833-ds",
+   "module": "drv8833",
+   "method": "fixed_ref",
+   "formula": "I_LIM = 200 mV / R_ISEN",
+   "v_trip": {
+    "value": 0.2,
+    "unit": "V",
+    "page": 10,
+    "evidence": "connected to the xISEN pins with a reference voltage. The reference voltage is fixed at 200 mV."
+   },
+   "example": {
+    "r_sense": 1.0,
+    "i": 0.2,
+    "page": 10,
+    "evidence": "Example: If a 1-"
+   },
+   "i_max": {
+    "value": 1.5,
+    "unit": "A",
+    "page": 5,
+    "evidence": "IOUT RTY package continuous RMS or DC output current per bridge (2) 1.5 A",
+    "conditions": "recommended, RTY package, VM = 5 V; PWP 1.5 A RMS, PW 500 mA RMS"
+   },
+   "i_ocp_min": {
+    "value": 2.0,
+    "unit": "A",
+    "page": 6,
+    "evidence": "IOCP Overcurrent protection trip level 2 3.3 A",
+    "conditions": "overcurrent protection trip level, min"
+   },
+   "v_sense_max": {
+    "value": 0.5,
+    "unit": "V",
+    "page": 5,
+    "evidence": "xISEN pin voltage –0.3 0.5 V",
+    "conditions": "absolute maximum"
+   }
+  },
+  {
+   "id": "TMC2209",
+   "kind": "motor_driver",
+   "title": "TMC2209 stepper driver (Trinamic/ADI)",
+   "source_id": "mod-motor-tmc2209-ds",
+   "module": "tmc2209",
+   "method": "tmc_rms",
+   "formula": "I_RMS = V_FS / (R_SENSE + 20 mΩ) · 1/√2 · V_VREF / 2.5 V",
+   "formula_evidence": {
+    "page": 53,
+    "evidence": [
+     "STANDALONE MODE RMS RUN CURRENT CALCULATION:",
+     "𝐼𝑅𝑀𝑆 = 325𝑚𝑉𝑅𝑆𝐸𝑁𝑆𝐸 + 20𝑚Ω ∗ 1√2 ∗ 𝑉𝑉𝑅𝐸𝐹2.5𝑉"
+    ]
+   },
+   "r_internal": {
+    "value": 0.02,
+    "unit": "Ω",
+    "page": 53,
+    "evidence": "𝐼𝑅𝑀𝑆 = 325𝑚𝑉𝑅𝑆𝐸𝑁𝑆𝐸 + 20𝑚Ω ∗ 1√2 ∗ 𝑉𝑉𝑅𝐸𝐹2.5𝑉",
+    "conditions": "added to R_SENSE in the formula"
+   },
+   "v_fs": {
+    "0": {
+     "value": 0.325,
+     "unit": "V",
+     "page": 78,
+     "evidence": [
+      "VSRTL vsense=0",
+      "325  mV"
+     ],
+     "conditions": "vsense = 0 (default)"
+    },
+    "1": {
+     "value": 0.18,
+     "unit": "V",
+     "page": 78,
+     "evidence": [
+      "VSRTH vsense=1",
+      "180  mV"
+     ],
+     "conditions": "vsense = 1"
+    }
+   },
+   "v_ref_full": {
+    "value": 2.5,
+    "unit": "V",
+    "page": 53,
+    "evidence": ">2.5V: 100%",
+    "conditions": "VREF at or above 2.5 V = 100 % current scale"
+   },
+   "v_ref_min": {
+    "value": 0.5,
+    "unit": "V",
+    "page": 53,
+    "evidence": "<0.5V: not recommended",
+    "conditions": "below 0.5 V not recommended"
+   },
+   "v_ref_abs_max": {
+    "value": 6.0,
+    "unit": "V",
+    "page": 75,
+    "evidence": "VVREF -0.5 6 V",
+    "conditions": "absolute maximum; do not exceed VCC_IO and 5VOUT by more than 10 %"
+   },
+   "i_max": {
+    "value": 1.4,
+    "unit": "A",
+    "page": 75,
+    "evidence": "RMS motor coil current per coil (value for design guideline) IRMS  1.4 A",
+    "conditions": "RMS design guideline"
+   },
+   "i_peak_max": {
+    "value": 2.8,
+    "unit": "A",
+    "page": 75,
+    "evidence": [
+     "Peak output current per motor coil output (sine wave peak)",
+     "IOx  2.8 A"
+    ],
+    "conditions": "sine wave peak"
+   }
+  }
+ ]
+}

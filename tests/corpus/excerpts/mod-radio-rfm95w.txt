@@ -1,0 +1,41 @@
+# source_id: mod-radio-rfm95w-ds
+# document: HopeRF RFM95W/96W/98W Low Power Long Range Transceiver Module, datasheet Version 2.0
+# url: https://hoperf.com/uploads/RFM95W_96W_98W_L_1713402518.pdf
+# corpus: mod/radio/RFM95W_96W_98W_L_1713402518.pdf sha256 e99405dbef6926cb10041516c53bd835a3deccd4c23237d88c96f5a079b39553
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+www.hoperf.com Version:2.0 1/123 
+Model No.:RFM95W/96W/98W 
+integrated +10 dBm power amplifier yields  industry leading 
+@@ page 11
+1 GND - Ground 
+2 MISO O SPI Data output 
+3 MOSI I SPI Data input 
+4 SCK I SPI Clock input 
+5 NSS I SPI Chip select input 
+6 RESET I Reset trigger input 
+13 3.3V - Supply voltage 
+14 DIO0 I/O Digital I/O, software configured 
+15 DIO1 I/O Digital I/O, software configured 
+16 DIO2 I/O Digital I/O, software configured 
+@@ page 12
+VDDmr Supply Voltage -0.5 3.9 V 
+VDDop Supply voltage 1.8 3.7 V 
+@@ page 13
+IDDSL Supply current in Sleep mode  - 0.2 1 uA 
+IDDR 
+LnaBoost Off, higher bands 
+10.8 
+IDDT 
+RFOP = +10 dBm, on PA_BOOST 
+22 
+@@ page 20
+VIH Digital input level high  0.8 - - VDD 
+VIL Digital input level low  - - 0.2 VDD 
+VOH Digital output level high Imax = 1 mA 0.9 - - VDD 
+VOL Digital output level low Imax = -1 mA - - 0.1 VDD 
+FSCK SCK frequency  - - 10 MHz 
+@@ page 80
+DC_10dBm Duty Cycle of transmission at +10 dBm output - 1 % 
+The duty cycle of transmission at +10 dBm is limited to 80%, with a maximum VSWR of 3:1 at antenna port, over the 

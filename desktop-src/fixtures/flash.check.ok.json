@@ -1,0 +1,15 @@
+{
+ "ok": true,
+ "action": "board.flash_check",
+ "summary": "Ready to flash project laser-trigger on sim://esp32s3-n16r8.",
+ "result": {
+  "ready": true,
+  "refusal": null
+ },
+ "checks": [],
+ "warnings": [],
+ "assumptions": [],
+ "sources": [],
+ "simulated": true,
+ "error": null
+}

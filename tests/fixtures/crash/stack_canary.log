@@ -1,0 +1,14 @@
+Guru Meditation Error: Core  0 panic'ed (Unhandled debug exception).
+Debug exception reason: Stack canary watchpoint triggered (sensor_task)
+Core  0 register dump:
+PC      : 0x40379e3c  PS      : 0x00060036  A0      : 0x82008a4d  A1      : 0x3fc9c000
+A2      : 0x00000000  A3      : 0x3fc9c0a0  A4      : 0x00000000  A5      : 0x00000000
+A6      : 0x00000000  A7      : 0x00000000  A8      : 0x00000000  A9      : 0x3fc9bfe0
+A10     : 0x00000000  A11     : 0x00000000  A12     : 0x00000000  A13     : 0x00000000
+A14     : 0x00000000  A15     : 0x00000000  SAR     : 0x00000000  EXCCAUSE: 0x00000001
+EXCVADDR: 0x00000000  LBEG    : 0x00000000  LEND    : 0x00000000  LCOUNT  : 0x00000000
+
+
+Backtrace: 0x40379e39:0x3fc9c000 0x42008a4a:0x3fc9c020 0x42008a4a:0x3fc9c240 |<-CONTINUES
+
+Rebooting...

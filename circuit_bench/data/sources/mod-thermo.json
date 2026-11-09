@@ -1,0 +1,34 @@
+[
+  {
+    "id": "mod-thermo-max31855-ds",
+    "title": "Maxim Integrated (Analog Devices) MAX31855 Cold-Junction Compensated Thermocouple-to-Digital Converter, data sheet 19-5793",
+    "url": "https://web.archive.org/web/20250118052800id_/https://www.analog.com/media/en/technical-documentation/data-sheets/MAX31855.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A1",
+    "note": "Rev 5 (1/15), 13 pages; analog.com file via the Wayback Machine (snapshot 2025-01-18); pages 1, 2, 4, 7, 9, 11, 12; sha256 0da8c21e66d26950f16b5dee20d09e9aff3b017d5d34156808deccd0ad6567ec"
+  },
+  {
+    "id": "mod-thermo-max6675-ds",
+    "title": "Maxim Integrated MAX6675 Cold-Junction-Compensated K-Thermocouple-to-Digital Converter (0°C to +1024°C), data sheet 19-2235, copy hosted by Adafruit",
+    "url": "https://cdn-shop.adafruit.com/datasheets/MAX6675.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A2",
+    "note": "Rev 1 (3/02), 8 pages; Maxim original, no script-loadable copy on analog.com; pages 1, 2, 3, 4, 5; sha256 f354adbf8b44b2b4d90840bf67c810386c717d80e943d828404f1add0c286bf9"
+  },
+  {
+    "id": "mod-thermo-max31865-ds",
+    "title": "Maxim Integrated (Analog Devices) MAX31865 RTD-to-Digital Converter, data sheet 19-6478",
+    "url": "https://web.archive.org/web/20250124124921id_/https://www.analog.com/media/en/technical-documentation/data-sheets/MAX31865.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A1",
+    "note": "Rev 3 (7/15), 26 pages; analog.com file via the Wayback Machine (snapshot 2025-01-24); pages 1, 2, 3, 4, 8, 10, 11, 15, 16, 17, 19, 20, 21; sha256 88f540410eb8c2ac4c051594c92927fc8c5876446bec1c2448934fc2605395f7"
+  },
+  {
+    "id": "mod-thermo-ntcle100e3-ds",
+    "title": "Vishay BCcomponents NTCLE100E3 NTC Thermistors, Radial Leaded, Standard Precision, document 29049",
+    "url": "https://www.vishay.com/docs/29049/ntcle100.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Revision 07-May-2025, 17 pages; pages 1, 2, 4, 9, 10, 11, 12, 13; sha256 f9d6153738198dc705ed681c3b55e70a6571f8fee13a4ed7b2b41e49973cb9c9"
+  }
+]

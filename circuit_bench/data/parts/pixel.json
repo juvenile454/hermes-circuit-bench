@@ -1,0 +1,212 @@
+{
+ "schema": 1,
+ "note": "Addressable LEDs for calc led_strip. Values from the datasheets in data/sources/mod-pixel.json; 'evidence' quotes a line of tests/corpus/excerpts/mod-pixel-*.txt. kind addressable_led: i_channel is the per-colour current of a datasheet test condition (basis 'test_condition'), not a guaranteed maximum. APA102C: image-only class B datasheet, every value verified false (read from the page images).",
+ "parts": [
+  {
+   "id": "WS2812B",
+   "aliases": [
+    "WS2812B-V5"
+   ],
+   "kind": "addressable_led",
+   "title": "WS2812B-V5/W addressable RGB LED (Worldsemi, datasheet V6.1)",
+   "source_id": "mod-pixel-ws2812b-ds",
+   "class": "A",
+   "verified": true,
+   "interface": "single_wire",
+   "channels": 3,
+   "i_channel": {
+    "value": 0.012,
+    "unit": "A",
+    "page": 3,
+    "evidence": "mcd 12mAGreen 600 780 1000",
+    "basis": "test_condition",
+    "conditions": "working current of the LED characteristics table (brightness and wavelength of red, green and blue), TA 25 °C, VDD 5 V"
+   },
+   "i_quiescent": {
+    "value": 0.0006,
+    "unit": "A",
+    "page": 3,
+    "evidence": "QuiescentCurrent(centervalue):0.6mA",
+    "conditions": "per LED, center value, LEDs dark"
+   },
+   "vdd": {
+    "min": {
+     "value": 3.7,
+     "unit": "V",
+     "page": 2,
+     "evidence": "Powersupplyvoltage VDD +3.7~+5.3 V",
+     "conditions": "supply range of the Absolute Maximum Ratings table"
+    },
+    "max": {
+     "value": 5.3,
+     "unit": "V",
+     "page": 2,
+     "evidence": "Powersupplyvoltage VDD +3.7~+5.3 V",
+     "conditions": "supply range of the Absolute Maximum Ratings table"
+    },
+    "test": {
+     "value": 5.0,
+     "unit": "V",
+     "page": 3,
+     "evidence": "LEDCharacteristics（TA=25℃，VDD=5V，VSS=0V）",
+     "conditions": "condition of the LED characteristics"
+    }
+   },
+   "vih": {
+    "rel": 0.63,
+    "of": "VDD",
+    "unit": "V",
+    "page": 3,
+    "evidence": "HighVoltageInput VIH 0.63VDD —— VDD+0.7V V DIN，SET",
+    "conditions": "DIN, revision V6.1 (older revisions: 0.7·VDD)"
+   },
+   "bits_per_led": {
+    "value": 24,
+    "page": 4,
+    "evidence": "Compositionof24bitData"
+   },
+   "bit_rate": {
+    "value": 800000,
+    "unit": "Hz",
+    "page": 1,
+    "evidence": "Senddataatspeedsof800Kbps.",
+    "conditions": "800 kbit/s"
+   },
+   "t_reset": {
+    "value": 0.00028,
+    "unit": "s",
+    "page": 3,
+    "evidence": "RES Frameunit,lowvoltagetime >280µs",
+    "conditions": "frame (reset) low time, minimum"
+   }
+  },
+  {
+   "id": "SK6812",
+   "kind": "addressable_led",
+   "title": "SK6812 addressable RGB LED (Opsco, SPC/SK6812 Rev. 02)",
+   "source_id": "mod-pixel-sk6812-ds",
+   "class": "A2",
+   "verified": true,
+   "interface": "single_wire",
+   "channels": 3,
+   "i_channel": {
+    "value": 0.013,
+    "unit": "A",
+    "page": 4,
+    "evidence": "IOUT=13mATf --- 100 --- ns",
+    "basis": "test_condition",
+    "conditions": "output current of the IOUT rise/fall time test (VDS 1.5 V); the datasheet gives no LED current table"
+   },
+   "i_quiescent": {
+    "value": 0.001,
+    "unit": "A",
+    "page": 4,
+    "evidence": "consumption IDD --- 1 --- mA ---",
+    "conditions": "static power consumption per LED, typical"
+   },
+   "p_rated": {
+    "value": 0.2,
+    "unit": "W",
+    "page": 1,
+    "evidence": "Description: 5.5x5.0x1.6mm Top SMD Type 0.2Watt Power tegrated",
+    "conditions": "power rating per LED in the product description"
+   },
+   "vdd": {
+    "min": {
+     "value": 4.5,
+     "unit": "V",
+     "page": 4,
+     "evidence": "8. The electrical parameters (unless otherwise specified, TA=-20 ~ +70 ℃, VDD=4.5 ~ 5.5V,",
+     "conditions": "supply range of the electrical parameter table"
+    },
+    "max": {
+     "value": 5.5,
+     "unit": "V",
+     "page": 4,
+     "evidence": "8. The electrical parameters (unless otherwise specified, TA=-20 ~ +70 ℃, VDD=4.5 ~ 5.5V,",
+     "conditions": "supply range of the electrical parameter table (also the absolute maximum)"
+    },
+    "test": {
+     "value": 5.0,
+     "unit": "V",
+     "page": 4,
+     "evidence": "VDD=5.0V",
+     "conditions": "condition of VIH/VIL"
+    }
+   },
+   "vih": {
+    "value": 3.4,
+    "unit": "V",
+    "at_vdd": 5.0,
+    "page": 4,
+    "evidence": "VIH 3.4 --- --- V",
+    "conditions": "signal input flip threshold, given at VDD 5.0 V only"
+   },
+   "bits_per_led": {
+    "value": 24,
+    "page": 2,
+    "evidence": "The 24-bit data is transmitted",
+    "conditions": "RGB SK6812"
+   },
+   "bit_rate": {
+    "value": 800000,
+    "unit": "Hz",
+    "page": 4,
+    "evidence": "transmission fDIN --- 800 --- KHZ The duty ratio of 67% (data 1)",
+    "conditions": "typical"
+   },
+   "t_reset": {
+    "value": 8e-05,
+    "unit": "s",
+    "page": 5,
+    "evidence": "Trst Reset code，low level time 80µs",
+    "conditions": "reset code low time"
+   }
+  },
+  {
+   "id": "APA102C",
+   "aliases": [
+    "APA102"
+   ],
+   "kind": "addressable_led",
+   "title": "APA102C addressable RGB LED (Shiji Lighting / iPixel LED), image-only datasheet",
+   "source_id": "mod-pixel-apa102c-ds",
+   "class": "B",
+   "verified": false,
+   "interface": "clocked",
+   "channels": 3,
+   "i_channel": {
+    "value": 0.02,
+    "unit": "A",
+    "page": 1,
+    "basis": "nominal",
+    "conditions": "'Built-20mA constant current output' read from the page image (unverified); sink current per channel 22.5/24.5/26.5 mA min/typ/max at VDD 5 V on p. 3",
+    "verified": false
+   },
+   "vdd": {
+    "max": {
+     "value": 5.5,
+     "unit": "V",
+     "page": 3,
+     "conditions": "supply voltage max, read from the page image (unverified)",
+     "verified": false
+    },
+    "test": {
+     "value": 5.0,
+     "unit": "V",
+     "page": 3,
+     "conditions": "supply voltage typical, read from the page image (unverified)",
+     "verified": false
+    }
+   },
+   "vih": {
+    "rel": 0.7,
+    "of": "VDD",
+    "unit": "V",
+    "page": 3,
+    "conditions": "Input High Voltage min, read from the page image (unverified)",
+    "verified": false
+   }
+  }
+ ]
+}

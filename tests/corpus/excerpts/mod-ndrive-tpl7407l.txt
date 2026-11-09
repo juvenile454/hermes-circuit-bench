@@ -1,0 +1,57 @@
+# source_id: mod-ndrive-tpl7407l-ds
+# document: Texas Instruments TPL7407L 40-V 7-Channel Low Side Driver data sheet, SLRS066D (revised March 2016)
+# url: https://www.ti.com/lit/ds/symlink/tpl7407l.pdf
+# corpus: mod/ndrive/tpl7407l.pdf sha256 8d610edc083388a90d99b0cc07ab5c7be18ea51e49502d6fdf9f119df03bd1ec
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+1• 600-mA Rated Drain Current (Per Channel)
+• CMOS Pin-to-Pin Improvement of 7-channel
+Darlington Array (e.g. ULN2003A)
+• Compatible with 1.8-V to 5.0-V Micro-controllers
+• Internal Free-wheeling Diodes for Inductive Kick-
+• Input Pull-down Resistors Allows Tri-stating the
+@@ page 3
+COM 9 — Supply pin that should be tied to 8.5 V or higher for proper operation (seePower Supply Recommendations for further instruction)
+GND 8 — Ground pin
+IN(X) 1, 2, 3, 4, 5, 6, 7 I GPIO inputs that will drive the outputs "low" (or sink current) when driven"high"
+OUT(X) 16, 15, 14, 13, 12,11, 10 O Driver output that sinks currents after input is driven "high"
+VOUT Pins OUT1-OUT7 to GND voltage –0.3 42 V
+VCOM COM pin voltage (2) –0.3 42 V
+VIN Pins IN1-IN7 to GND voltage (2) –0.3 30 V
+IDS Continuous drain current per channel (3) (4) 600 mA
+IOK Output clamp current 500 mA
+IGND Total continuous GND-pin current –2 A
+@@ page 4
+VOUT OUT1 – OUT7 pin voltage for recommended operation 0 40 V
+VCOM COM pin voltage range for full output drive 8.5 40 V
+VIL IN1- IN7 input low voltage ("Off" high impedance output) 0.9 V
+VIH IN1- IN7 input high voltage ("Full Drive" low impedance output) 1.5 V
+IDS Continuous drain current 0 500 mA
+θJA Junction-to-ambient thermal resistance 91.9 115.2 °C/W
+VOL (VDS) OUT1- OUT7 low-level outputvoltage VIN ≥ 1.5 V ID = 100 mA 200 320 mVID = 200 mA 420 650
+VF Clamp forward voltage IF = 200 mA 1.4 V
+ICOM Static current flowing through COM
+VCOM = 8.5 V - 40 V 15 25 μA
+@@ page 7
+In order to enable floating inputs a 1MΩ pull-down resistor exists on each channel. Another 50-kΩ resistor exists
+When the COM pin is tied to the coil supply voltage, TPL7407L is able to drive inductive loads and supress the
+kick-back voltage via the internal free wheeling diodes.
+When driving a resistive load, a pull-up resistor is needed in order for TPL7407L to sink current and for there to
+be a logic high level. The COM pin should be supplied ≥8.5V for full functionality.
+@@ page 8
+If the application has an inductive load connected to OUT7, it is recommended to use an external Schottky diode
+to protect the OUT7 pin from negative transients larger than those listed in the Absolute Maximum Ratings table,
+@@ page 9
+Coil Supply Voltage 8.5 V to 40 V
+CCOM 0.1 µF
+TPL7407L input interface is specified for standard 1.8 V through 5 V CMOS logic interface and can tolerate up to
+@@ page 12
+dissipation. COM must be tied to highest load voltage, which may or may not be same as inductive load supply.
+@@ page 13
+regulated voltage of 7 V. Though 8.5 V minimum is recommended for Vcom, the part will still function with a
+reduced COM voltage that has a reduced gate drive voltage and a resulting higher Rdson.
+The COM pin must be limited to below 0.5 V/μsTo prevent overvoltage on the internal LDO output due to a line
+loaded by capacitors > 10 μF, this should not be of any concern. It is recommended to use a bypass capacitor
+In summary, whenever the COM pin may experience a slew rate greater than 0.5 V/µs a capacitor must be
+Some applications require up to 2 A.

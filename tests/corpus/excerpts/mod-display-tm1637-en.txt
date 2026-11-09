@@ -1,0 +1,24 @@
+# source_id: mod-display-tm1637-en
+# document: Titan Micro Electronics TM1637 LED Drive Control Special Circuit (English), V2.4; copy hosted by M5Stack
+# url: https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/docs/datasheet/unit/digi_clock/TM1637.pdf
+# corpus: mod/display/tm1637-v2.4-en-m5stack.pdf sha256 d832b7ead17c875904337b45cbcf5daa4b19c5500ff4de8bc0b84a89a7e82e35
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+©Titan Micro Electronics                                                                 www.titanmec.com 
+V2.4 
+@@ page 3
+Microprocessor data realize the communication  with TM1637 by means of two–wire bus interface ( Note: The 
+communication method is not equal to 12C bus protocol totally because there is no slave address). When data is input, 
+@@ page 8
+MCU
+Interface
+DIO
+CLK
+R1
+10K
+R2
+10K
+VCC
+Note: 1. filtering capacitor between VDD and GND should be arranged on PCB plate as close to TM1637 chip as possible to 
+2. 100pF capacitor connected to the DIO, CLK communication port pull-up and pull-down can reduce interference to 

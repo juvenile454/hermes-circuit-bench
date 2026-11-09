@@ -1,0 +1,65 @@
+# source_id: mod-npower-tps563201-ds
+# document: Texas Instruments TPS56320x 4.5V to 17V Input, 3A Synchronous Step-Down Voltage Regulator in SOT-23, Data sheet SLVSD90B (revised September 2024)
+# url: https://web.archive.org/web/20261028161408id_/https://www.ti.com/lit/ds/symlink/tps563201.pdf
+# corpus: mod/npower/tps563201.pdf sha256 192afd5a009073c1c62ba36c054af0911cacc86469ae6059a26fed9f230f1ec9
+# retrieved: 2026-11-09
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+TPS56320x 4.5V to 17V Input, 3A Synchronous Step-Down Voltage Regulator in 
+• TPS563201 and TPS563208 3A converter 
+• Input voltage range: 4.5V to 17V
+• Output voltage range: 0.76V to 7V
+• Pulse-skip mode (TPS563201) or continuous 
+• 580kHz switching frequency
+@@ page 3
+GND 1 — Ground pin Source terminal of low-side power NFET as well as the ground terminal for controller circuit. Connect sensitive VFB to this GND at a single point.
+SW 2 O Switch node connection between high-side NFET and low-side NFET.
+VIN 3 I Input voltage supply pin. The drain terminal of high-side power NFET.
+VFB 4 I Converter feedback input. Connect to output voltage with feedback resistor divider.
+EN 5 I Enable input control. Active high and must be pulled up to enable the device.
+VBST 6 O Supply input for the high-side NFET gate drive circuit. Connect 0.1 µF capacitor between VBST and SW pins.
+@@ page 4
+VIN, EN –0.3 19 V
+VFB –0.3 6 V
+SW –2 19 V
+Operating junction temperature, TJ –40 150 °C
+VIN Supply input voltage range 4.5 17 V
+EN –0.1 17
+VFB –0.1 5.5
+TJ Operating junction temperature –40 125 °C
+@@ page 4
+5.1 Absolute Maximum Ratings
+Input voltage
+VIN, EN –0.3 19 V
+@@ page 5
+RθJA Junction-to-ambient thermal resistance 92.6 °C/W
+@@ page 6
+TJ = –40°C to 125°C, VIN = 12 V (unless otherwise noted)
+IVIN
+supply current VIN current, EN = 5 V, VFB = 0.9 V
+TPS563201 120 200
+IVINSDN Shutdown supply current VIN current, EN = 0 V 8 20 µA
+VENH EN high-level input voltage 1.6 V
+VENL EN low-level input voltage 0.8 V
+REN EN pin resistance to GND VEN = 1.5 V 600 1500 2400 kΩ
+VFB threshold voltage (1) VO = 1.05 V, IO = 10 mA, Eco-mode operation 774 mV
+VFB threshold voltage VO = 1.05 V, continuous mode operation 749 768 787 mV
+Iocl Current limit DC current, VOUT = 1.05 V, L1 = 1.5 µH 3.3 4.2 5.1 A
+Shutdown temperature 172
+Fsw Switching frequency VIN = 12 V, VO = 3.3 V, IO = 1 A 580 kHz
+(1) Not production tested.
+@@ page 14
+The output voltage is set with a resistor divider from the output node to the VFB pin. TI recommends to use 1% 
+tolerance or better divider resistors. Start by using Equation 2 to calculate VOUT.
+@@ page 15
+OUTPUT VOLTAGE 
+(V) R1 (kΩ) R2 (kΩ)
+L1 (µH)
+3.3 33.2 10.0 2.2 2.2 4.7 20 to 68
+5 54.9 10.0 3.3 3.3 4.7 20 to 68
+are intended for use with ceramic or other low ESR capacitors. Recommended values range from 20 µF to 68 
+µF. Use Equation 7 to determine the required RMS current rating for the output capacitor.
+depending on the application. TI recommends a ceramic capacitor over 10 µF for the decoupling capacitor. 
+The capacitor voltage rating needs to be greater than the maximum input voltage.
+@@ page 23
+TPS563201DDCR SOT-23- THIN DDC 6 3000 180.0 8.4 3.2 3.2 1.4 4.0 8.0 Q3

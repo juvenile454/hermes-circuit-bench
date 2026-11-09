@@ -1,0 +1,130 @@
+{
+ "ok": true,
+ "action": "calc.divider",
+ "summary": "Divider 100 kΩ / 100 kΩ: 4.20 V in gives 2.10 V out, 21.0 µA through the divider.",
+ "result": {
+  "inputs": {
+   "v_in_max": {
+    "value": 4.2,
+    "unit": "V",
+    "display": "4.20 V"
+   },
+   "r1": {
+    "value": 100000.0,
+    "unit": "Ω",
+    "display": "100 kΩ"
+   },
+   "r2": {
+    "value": 100000.0,
+    "unit": "Ω",
+    "display": "100 kΩ"
+   }
+  },
+  "v_out_max": {
+   "value": 2.1,
+   "unit": "V",
+   "display": "2.10 V"
+  },
+  "ratio": 0.5,
+  "i_div": {
+   "value": 2.1e-05,
+   "unit": "A",
+   "display": "21.0 µA"
+  },
+  "p_r1": {
+   "value": 4.41e-05,
+   "unit": "W",
+   "display": "44.1 µW"
+  },
+  "p_r2": {
+   "value": 4.41e-05,
+   "unit": "W",
+   "display": "44.1 µW"
+  },
+  "r_source": {
+   "value": 50000.0,
+   "unit": "Ω",
+   "display": "50.0 kΩ"
+  },
+  "adc": null,
+  "formula": "V_out = V_in · R2 / (R1 + R2); I = V_in / (R1 + R2); R_source = R1 · R2 / (R1 + R2)",
+  "steps": [
+   {
+    "name": "V_out",
+    "expr": "4.20 V · 100 kΩ / (100 kΩ + 100 kΩ)",
+    "value": {
+     "value": 2.1,
+     "unit": "V",
+     "display": "2.10 V"
+    }
+   },
+   {
+    "name": "I",
+    "expr": "4.20 V / 200 kΩ",
+    "value": {
+     "value": 2.1e-05,
+     "unit": "A",
+     "display": "21.0 µA"
+    }
+   },
+   {
+    "name": "P_R1",
+    "expr": "(21.0 µA)² · 100 kΩ",
+    "value": {
+     "value": 4.41e-05,
+     "unit": "W",
+     "display": "44.1 µW"
+    }
+   },
+   {
+    "name": "P_R2",
+    "expr": "(21.0 µA)² · 100 kΩ",
+    "value": {
+     "value": 4.41e-05,
+     "unit": "W",
+     "display": "44.1 µW"
+    }
+   },
+   {
+    "name": "R_source",
+    "expr": "100 kΩ · 100 kΩ / 200 kΩ",
+    "value": {
+     "value": 50000.0,
+     "unit": "Ω",
+     "display": "50.0 kΩ"
+    }
+   }
+  ]
+ },
+ "checks": [
+  {
+   "id": "calc.divider.adc_range",
+   "status": "not_checked",
+   "detail": "give adc_range ([min, max] in V, e.g. [0, 2.9]) to compare with the ADC input range"
+  }
+ ],
+ "warnings": [],
+ "assumptions": [
+  {
+   "key": "load",
+   "value": "none",
+   "reason": "unloaded divider: the ADC input current is neglected; see r_source"
+  },
+  {
+   "key": "adc_pin",
+   "value": "add about 100 nF from the ADC pin to GND",
+   "reason": "steadies the reading with a high r_source (rule of thumb)"
+  }
+ ],
+ "sources": [
+  {
+   "id": "rule-of-thumb",
+   "title": "Practice rule, not a standard",
+   "url": null,
+   "retrieved": "2026-11-05",
+   "note": "Shown for engineering judgement only; check the datasheet of your parts."
+  }
+ ],
+ "simulated": false,
+ "error": null
+}

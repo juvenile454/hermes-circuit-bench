@@ -1,0 +1,649 @@
+{
+ "schema": 1,
+ "id": "esp32-c6-devkitc-1",
+ "title": "ESP32-C6-DevKitC-1",
+ "revision": "v1.2",
+ "chip": "esp32c6",
+ "source_id": "devkitc1-c6-v1.2",
+ "module": {
+  "name": "ESP32-C6-WROOM-1",
+  "part_numbers": [
+   "ESP32-C6-DevKitC-1-N8"
+  ],
+  "variant": "wroom-1",
+  "flash_mb": 8,
+  "psram_mb": 0,
+  "antenna": "pcb",
+  "source_id": "devkitc1-c6-ordering"
+ },
+ "buttons": [
+  "Boot",
+  "Reset"
+ ],
+ "headers": [
+  {
+   "id": "J1",
+   "side": "left",
+   "pins": [
+    {
+     "n": 1,
+     "label": "3V3",
+     "kind": "power"
+    },
+    {
+     "n": 2,
+     "label": "RST",
+     "kind": "reset"
+    },
+    {
+     "n": 3,
+     "label": "4",
+     "kind": "gpio",
+     "gpio": 4
+    },
+    {
+     "n": 4,
+     "label": "5",
+     "kind": "gpio",
+     "gpio": 5
+    },
+    {
+     "n": 5,
+     "label": "6",
+     "kind": "gpio",
+     "gpio": 6
+    },
+    {
+     "n": 6,
+     "label": "7",
+     "kind": "gpio",
+     "gpio": 7
+    },
+    {
+     "n": 7,
+     "label": "0",
+     "kind": "gpio",
+     "gpio": 0
+    },
+    {
+     "n": 8,
+     "label": "1",
+     "kind": "gpio",
+     "gpio": 1
+    },
+    {
+     "n": 9,
+     "label": "8",
+     "kind": "gpio",
+     "gpio": 8
+    },
+    {
+     "n": 10,
+     "label": "10",
+     "kind": "gpio",
+     "gpio": 10
+    },
+    {
+     "n": 11,
+     "label": "11",
+     "kind": "gpio",
+     "gpio": 11
+    },
+    {
+     "n": 12,
+     "label": "2",
+     "kind": "gpio",
+     "gpio": 2
+    },
+    {
+     "n": 13,
+     "label": "3",
+     "kind": "gpio",
+     "gpio": 3
+    },
+    {
+     "n": 14,
+     "label": "5V",
+     "kind": "power"
+    },
+    {
+     "n": 15,
+     "label": "G",
+     "kind": "ground"
+    },
+    {
+     "n": 16,
+     "label": "NC",
+     "kind": "nc"
+    }
+   ]
+  },
+  {
+   "id": "J3",
+   "side": "right",
+   "pins": [
+    {
+     "n": 1,
+     "label": "G",
+     "kind": "ground"
+    },
+    {
+     "n": 2,
+     "label": "TX",
+     "kind": "gpio",
+     "gpio": 16
+    },
+    {
+     "n": 3,
+     "label": "RX",
+     "kind": "gpio",
+     "gpio": 17
+    },
+    {
+     "n": 4,
+     "label": "15",
+     "kind": "gpio",
+     "gpio": 15
+    },
+    {
+     "n": 5,
+     "label": "23",
+     "kind": "gpio",
+     "gpio": 23
+    },
+    {
+     "n": 6,
+     "label": "22",
+     "kind": "gpio",
+     "gpio": 22
+    },
+    {
+     "n": 7,
+     "label": "21",
+     "kind": "gpio",
+     "gpio": 21
+    },
+    {
+     "n": 8,
+     "label": "20",
+     "kind": "gpio",
+     "gpio": 20
+    },
+    {
+     "n": 9,
+     "label": "19",
+     "kind": "gpio",
+     "gpio": 19
+    },
+    {
+     "n": 10,
+     "label": "18",
+     "kind": "gpio",
+     "gpio": 18
+    },
+    {
+     "n": 11,
+     "label": "9",
+     "kind": "gpio",
+     "gpio": 9
+    },
+    {
+     "n": 12,
+     "label": "G",
+     "kind": "ground"
+    },
+    {
+     "n": 13,
+     "label": "13",
+     "kind": "gpio",
+     "gpio": 13
+    },
+    {
+     "n": 14,
+     "label": "12",
+     "kind": "gpio",
+     "gpio": 12
+    },
+    {
+     "n": 15,
+     "label": "G",
+     "kind": "ground"
+    },
+    {
+     "n": 16,
+     "label": "NC",
+     "kind": "nc"
+    }
+   ]
+  }
+ ],
+ "onboard": [
+  {
+   "gpio": 8,
+   "what": "RGB LED",
+   "severity": "caution",
+   "source_id": "devkitc1-c6-v1.2"
+  }
+ ],
+ "usb": [
+  {
+   "label": "USB",
+   "kind": "usb_serial_jtag",
+   "gpios": [
+    12,
+    13
+   ],
+   "source_id": "devkitc1-c6-v1.2"
+  },
+  {
+   "label": "UART",
+   "kind": "usb_uart_bridge",
+   "gpios": [
+    16,
+    17
+   ],
+   "source_id": "devkitc1-c6-v1.2"
+  }
+ ],
+ "notes": [
+  "Not broken out: GPIO14 (the ESP32-C6 in the ESP32-C6-WROOM-1 has no in-package flash and does not lead GPIO14 out) and GPIO24-30 (SPI flash); all other GPIOs are on J1/J3.",
+  "Strapping pins on the headers: GPIO4 (MTMS), GPIO5 (MTDI), GPIO8 (RGB LED), GPIO9 and GPIO15.",
+  "TX/RX (GPIO16/GPIO17) are U0TXD/U0RXD on the USB-to-UART bridge.",
+  "GPIO12/GPIO13 are USB_D-/USB_D+ of the USB-Serial/JTAG port (J3-14/J3-13); used as normal GPIOs, USB-JTAG stops working.",
+  "Standard module: ESP32-C6-WROOM-1 (ESP32-C6-DevKitC-1-N8: 8 MB flash, no PSRAM; module variant wroom-1). The guide also names ESP32-C6-WROOM-1U with an external antenna connector.",
+  "Power the board one way only: the USB ports, or the 5V and GND pins, or the 3V3 and GND pins (the guide calls them mutually exclusive).",
+  "J1-16 and J3-16 are not connected (NC).",
+  "This layout follows the v1.2 user guide; the older v1.1 board has its own guide (not pinned).",
+  "J1 is drawn on the left and J3 on the right (USB at the bottom) as on the other Espressif DevKits; the guide's pin layout figure is not in the pinned corpus, so the side is unverified."
+ ],
+ "citations": [
+  {
+   "about": "revision",
+   "source_id": "devkitc1-c6-v1.2",
+   "quote": "ESP32-C6-DevKitC-1 v1.2\n======================="
+  },
+  {
+   "about": "revision",
+   "source_id": "devkitc1-c6-v1.2",
+   "quote": "The older version: :doc:`user_guide_v1.1`"
+  },
+  {
+   "about": "headers.J1",
+   "source_id": "devkitc1-c6-v1.2",
+   "table": "J1"
+  },
+  {
+   "about": "headers.J3",
+   "source_id": "devkitc1-c6-v1.2",
+   "table": "J3"
+  },
+  {
+   "about": "headers.side",
+   "source_id": "devkitc1-c6-v1.2",
+   "quote": "The two tables below provide the **Name** and **Function** of the pin headers on both sides of the board (J1 and J3)."
+  },
+  {
+   "about": "module",
+   "source_id": "devkitc1-c6-ordering",
+   "row": [
+    "ESP32-C6-DevKitC-1-N8",
+    "ESP32-C6-WROOM-1",
+    "8 MB",
+    "---",
+    "PCB on-board antenna"
+   ]
+  },
+  {
+   "about": "module",
+   "source_id": "devkitc1-c6-v1.2",
+   "quote": "ESP32-C6-WROOM-1 uses on-board PCB antenna, whereas ESP32-C6-WROOM-1U uses external antenna connector."
+  },
+  {
+   "about": "buttons[0]",
+   "source_id": "devkitc1-c6-v1.2",
+   "row": [
+    "Boot Button",
+    "Download button. Holding down **Boot** and then pressing **Reset** initiates Firmware Download mode for downloading firmware through the serial port."
+   ]
+  },
+  {
+   "about": "buttons[1]",
+   "source_id": "devkitc1-c6-v1.2",
+   "row": [
+    "Reset Button",
+    "Press this button to restart the system."
+   ]
+  },
+  {
+   "about": "onboard[0]",
+   "source_id": "devkitc1-c6-v1.2",
+   "row": [
+    "RGB LED",
+    "Addressable RGB LED, driven by GPIO8."
+   ]
+  },
+  {
+   "about": "onboard[0]",
+   "source_id": "devkitc1-c6-v1.2",
+   "row": [
+    "9",
+    "8",
+    "I/O/T",
+    "GPIO8 [2]_ [3]_"
+   ]
+  },
+  {
+   "about": "onboard[0]",
+   "source_id": "devkitc1-c6-v1.2",
+   "quote": ".. [2] Used to drive the RGB LED."
+  },
+  {
+   "about": "usb[0]",
+   "source_id": "devkitc1-c6-v1.2",
+   "row": [
+    "ESP32-C6 USB Type-C Port",
+    "The USB Type-C port on the ESP32-C6 chip compliant with USB 2.0 full speed. It is capable of up to 12 Mbps transfer speed (Note that this port does not support the faster 480 Mbps high-speed transfer mode). This port is used for power supply to the board, for flashing applications to the chip, for communication with the chip using USB protocols, as well as for JTAG debugging."
+   ]
+  },
+  {
+   "about": "usb[0]",
+   "source_id": "devkitc1-c6-v1.2",
+   "row": [
+    "13",
+    "13",
+    "I/O/T",
+    "GPIO13, USB_D+"
+   ]
+  },
+  {
+   "about": "usb[0]",
+   "source_id": "devkitc1-c6-v1.2",
+   "row": [
+    "14",
+    "12",
+    "I/O/T",
+    "GPIO12, USB_D-"
+   ]
+  },
+  {
+   "about": "usb[0]",
+   "source_id": "idf-v6.1-gpio-esp32c6",
+   "quote": "GPIO12 and GPIO13 are used by USB-JTAG by default. If they are reconfigured to operate as normal GPIOs, USB-JTAG functionality will be disabled."
+  },
+  {
+   "about": "usb[1]",
+   "source_id": "devkitc1-c6-v1.2",
+   "row": [
+    "USB-to-UART Bridge",
+    "Single USB-to-UART bridge chip provides transfer rates up to 3 Mbps."
+   ]
+  },
+  {
+   "about": "usb[1]",
+   "source_id": "devkitc1-c6-v1.2",
+   "row": [
+    "USB Type-C to UART Port",
+    "Used for power supply to the board, for flashing applications to the chip, as well as the communication with the ESP32-C6 chip via the on-board USB-to-UART bridge."
+   ]
+  },
+  {
+   "about": "usb[1]",
+   "source_id": "devkitc1-c6-v1.2",
+   "row": [
+    "2",
+    "TX",
+    "I/O/T",
+    "U0TXD, GPIO16, FSPICS0"
+   ]
+  },
+  {
+   "about": "usb[1]",
+   "source_id": "devkitc1-c6-v1.2",
+   "row": [
+    "3",
+    "RX",
+    "I/O/T",
+    "U0RXD, GPIO17, FSPICS1"
+   ]
+  },
+  {
+   "about": "notes[0]",
+   "source_id": "devkitc1-c6-v1.2",
+   "row": [
+    "Pin Header",
+    "All available GPIO pins (except for the SPI bus for flash) are broken out to the pin headers on the board."
+   ]
+  },
+  {
+   "about": "notes[0]",
+   "source_id": "idf-v6.1-gpio-esp32c6",
+   "quote": "GPIO24 ~ GPIO30 are usually used for SPI flash and not recommended for other uses."
+  },
+  {
+   "about": "notes[0]",
+   "source_id": "idf-v6.1-gpio-esp32c6",
+   "quote": "For chip variants without an in-package flash, GPIO14 is not led out to any chip pins."
+  },
+  {
+   "about": "notes[0]",
+   "source_id": "ds-esp32-c6-wroom-1",
+   "quote": "At the core of the modules is ESP32-C6, a 32-bit RISC-V single-core processor."
+  },
+  {
+   "about": "notes[1]",
+   "source_id": "devkitc1-c6-v1.2",
+   "quote": ".. [3] MTMS, MTDI, GPIO8, GPIO9, and GPIO15 are strapping pins of the ESP32-C6 chip."
+  },
+  {
+   "about": "notes[1]",
+   "source_id": "idf-v6.1-gpio-esp32c6",
+   "quote": "GPIO4, GPIO5, GPIO8, GPIO9, and GPIO15 are strapping pins."
+  },
+  {
+   "about": "notes[2]",
+   "source_id": "devkitc1-c6-v1.2",
+   "row": [
+    "2",
+    "TX",
+    "I/O/T",
+    "U0TXD, GPIO16, FSPICS0"
+   ]
+  },
+  {
+   "about": "notes[2]",
+   "source_id": "devkitc1-c6-v1.2",
+   "row": [
+    "3",
+    "RX",
+    "I/O/T",
+    "U0RXD, GPIO17, FSPICS1"
+   ]
+  },
+  {
+   "about": "notes[3]",
+   "source_id": "devkitc1-c6-v1.2",
+   "row": [
+    "13",
+    "13",
+    "I/O/T",
+    "GPIO13, USB_D+"
+   ]
+  },
+  {
+   "about": "notes[3]",
+   "source_id": "devkitc1-c6-v1.2",
+   "row": [
+    "14",
+    "12",
+    "I/O/T",
+    "GPIO12, USB_D-"
+   ]
+  },
+  {
+   "about": "notes[3]",
+   "source_id": "idf-v6.1-gpio-esp32c6",
+   "quote": "GPIO12 and GPIO13 are used by USB-JTAG by default. If they are reconfigured to operate as normal GPIOs, USB-JTAG functionality will be disabled."
+  },
+  {
+   "about": "notes[4]",
+   "source_id": "devkitc1-c6-ordering",
+   "row": [
+    "ESP32-C6-DevKitC-1-N8",
+    "ESP32-C6-WROOM-1",
+    "8 MB",
+    "---",
+    "PCB on-board antenna"
+   ]
+  },
+  {
+   "about": "notes[4]",
+   "source_id": "devkitc1-c6-v1.2",
+   "quote": "ESP32-C6-WROOM-1 uses on-board PCB antenna, whereas ESP32-C6-WROOM-1U uses external antenna connector."
+  },
+  {
+   "about": "notes[5]",
+   "source_id": "devkitc1-c6-v1.2",
+   "quote": "There are three mutually exclusive ways to provide power to the board:"
+  },
+  {
+   "about": "notes[5]",
+   "source_id": "devkitc1-c6-v1.2",
+   "quote": "- 5V and GND pin headers"
+  },
+  {
+   "about": "notes[5]",
+   "source_id": "devkitc1-c6-v1.2",
+   "quote": "- 3V3 and GND pin headers"
+  },
+  {
+   "about": "notes[6]",
+   "source_id": "devkitc1-c6-v1.2",
+   "row": [
+    "16",
+    "NC",
+    "–",
+    "No connection"
+   ]
+  },
+  {
+   "about": "notes[6]",
+   "source_id": "devkitc1-c6-v1.2",
+   "row": [
+    "16",
+    "NC",
+    "–",
+    "No connection"
+   ]
+  },
+  {
+   "about": "notes[7]",
+   "source_id": "devkitc1-c6-v1.2",
+   "quote": "The older version: :doc:`user_guide_v1.1`"
+  },
+  {
+   "about": "notes[8]",
+   "source_id": "devkitc1-c6-v1.2",
+   "quote": "The two tables below provide the **Name** and **Function** of the pin headers on both sides of the board (J1 and J3)."
+  },
+  {
+   "about": "notes[8]",
+   "source_id": "devkitc1-c6-v1.2",
+   "quote": "figure:: ../../_static/esp32-c6-devkitc-1/esp32-c6-devkitc-1-pin-layout.png"
+  }
+ ],
+ "drawing": {
+  "schema": 1,
+  "orientation": "module_top",
+  "parts": [
+   {
+    "kind": "usb_port",
+    "ref": "UART",
+    "connector": "usb_c",
+    "edge": "bottom",
+    "order": 1,
+    "source_id": "devkitc1-c6-v1.2",
+    "quote": "USB Type-C to UART Port",
+    "figure": "esp32-c6-devkitc-1-v1.2-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "usb_port",
+    "ref": "USB",
+    "connector": "usb_c",
+    "edge": "bottom",
+    "order": 2,
+    "source_id": "devkitc1-c6-v1.2",
+    "quote": "The USB Type-C port on the ESP32-C6 chip compliant with USB 2.0 full speed.",
+    "figure": "esp32-c6-devkitc-1-v1.2-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "button",
+    "label": "Boot",
+    "zone": "lower",
+    "side": "right",
+    "source_id": "devkitc1-c6-v1.2",
+    "quote": "Holding down **Boot** and then pressing **Reset** initiates Firmware Download mode for downloading firmware through the serial port.",
+    "figure": "esp32-c6-devkitc-1-v1.2-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "button",
+    "label": "Reset",
+    "zone": "lower",
+    "side": "left",
+    "source_id": "devkitc1-c6-v1.2",
+    "quote": "Press this button to restart the system.",
+    "figure": "esp32-c6-devkitc-1-v1.2-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "bridge_ic",
+    "label": "USB-UART",
+    "zone": "middle",
+    "side": "center",
+    "source_id": "devkitc1-c6-v1.2",
+    "quote": "Single USB-to-UART bridge chip provides transfer rates up to 3 Mbps.",
+    "figure": "esp32-c6-devkitc-1-v1.2-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "led",
+    "label": "RGB",
+    "gpio": 8,
+    "zone": "middle",
+    "side": "left",
+    "source_id": "devkitc1-c6-v1.2",
+    "quote": "Addressable RGB LED, driven by GPIO8.",
+    "figure": "esp32-c6-devkitc-1-v1.2-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "ldo",
+    "label": "LDO 3V3",
+    "zone": "below_module",
+    "side": "center",
+    "source_id": "devkitc1-c6-v1.2",
+    "quote": "Power regulator that converts a 5 V supply into a 3.3 V output.",
+    "figure": "esp32-c6-devkitc-1-v1.2-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "power_led",
+    "label": "PWR",
+    "zone": "below_module",
+    "side": "right",
+    "source_id": "devkitc1-c6-v1.2",
+    "quote": "Turns on when the USB power is connected to the board.",
+    "figure": "esp32-c6-devkitc-1-v1.2-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   }
+  ],
+  "module_size_mm": {
+   "w": 18.0,
+   "h": 25.5,
+   "source_id": "ds-esp32-c6-wroom-1",
+   "quote": "18.0 × 25.5 × 3.1"
+  }
+ }
+}

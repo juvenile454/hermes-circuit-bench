@@ -1,0 +1,21 @@
+# source_id: mod-wired-tja1050-ds
+# document: Philips Semiconductors (NXP) TJA1050 High speed CAN transceiver, Product specification, 2003 Oct 22
+# url: https://cache.nxp.com/docs/en/data-sheet/TJA1050.pdf
+# corpus: mod/wired/TJA1050.pdf sha256 f95c1ffa13e4d80e63e520a7d842cc8bcd98f8c945cf8939d51b31368d0f77a0
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 2
+• Input levels compatible with 3.3 V and 5 V devices
+VCC supply voltage 4.75 5.25 V
+@@ page 4
+selected by connecting pin S to VCC and can be used to
+@@ page 5
+VCC supply voltage −0.3 +6 V
+VTXD DC voltage at pin TXD −0.3 V CC + 0.3 V
+@@ page 6
+ICC supply current dominant; V TXD = 0 V 2 55 07 5m A
+recessive; VTXD =V CC 2.5 5 10 mA
+VIH HIGH-level input voltage output recessive 2.0 − VCC + 0.3 V
+VIL LOW-level input voltage output dominant −0.3 − +0.8 V
+IIL LOW-level input current V TXD =0V −100 −200 −300 μA
+IOH HIGH-level output current V RXD = 0.7VCC −2 −6 −15 mA

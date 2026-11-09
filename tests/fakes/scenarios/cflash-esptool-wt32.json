@@ -1,0 +1,7 @@
+{
+ "_about": "synthetic esptool v5.6.0 flash-id output (format: esptool/__init__.py + cmds.py read_mac/print_flash_id; chip names: targets/<chip>.py get_chip_description, corpus esptool-5.6.0-target-*)",
+ "flash-id": {
+  "rc": 0,
+  "stdout": "esptool v5.6.0\nConnecting....\nDetecting chip type... ESP32\nConnected to ESP32 on {port}:\nChip type:          ESP32-D0WD-V3 (revision v3.1)\nFeatures:           Wi-Fi, BT, Dual Core + LP Core, 240MHz, Vref calibration in eFuse, Coding Scheme None\nCrystal frequency:  40MHz\nMAC:                aa:bb:cc:dd:ee:03\n\nUploading stub flasher...\nRunning stub flasher...\nStub flasher running.\n\nFlash Memory Information:\n=========================\nManufacturer: 20\nDevice: 4016\nDetected flash size: 4MB\n\nHard resetting via RTS pin...\n"
+ }
+}

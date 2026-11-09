@@ -1,0 +1,352 @@
+[
+ {
+  "id": "idf-v6.1-gpio-esp32s2",
+  "title": "ESP-IDF v6.1, GPIO summary (ESP32-S2): pin table and notes",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/gpio/esp32s2.inc",
+  "retrieved": "2026-11-06",
+  "note": "ESP-IDF tag v6.1 (tag object 4dc1c65503e98e9a6b4c3c5646237280ba79829b, commit fff9895c82d744c7237be8847347bdd1b07c6643), sha256 604ab54585c66ba197d9bbb66c784ce42ec783c5a950cc9f89399531f987195d"
+ },
+ {
+  "id": "idf-v6.1-soccaps-esp32s2",
+  "title": "ESP-IDF v6.1, soc_caps.h (ESP32-S2): GPIO masks and capabilities",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/components/soc/esp32s2/include/soc/soc_caps.h",
+  "retrieved": "2026-11-06",
+  "note": "ESP-IDF tag v6.1 (tag object 4dc1c65503e98e9a6b4c3c5646237280ba79829b, commit fff9895c82d744c7237be8847347bdd1b07c6643), sha256 6130ea6732556274a1164ab4f72e3126fdda63c417ab122cec0e4305fae27cf9"
+ },
+ {
+  "id": "idf-v6.1-adc-channel-esp32s2",
+  "title": "ESP-IDF v6.1, adc_channel.h (ESP32-S2): ADC channel to GPIO",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/components/soc/esp32s2/include/soc/adc_channel.h",
+  "retrieved": "2026-11-06",
+  "note": "ESP-IDF tag v6.1 (tag object 4dc1c65503e98e9a6b4c3c5646237280ba79829b, commit fff9895c82d744c7237be8847347bdd1b07c6643), sha256 f10562ae5525311a3e5178ca1b8a4aa19e022a3baaa8be0470e1d67c1dc77096"
+ },
+ {
+  "id": "idf-v6.1-iomux-esp32s2",
+  "title": "ESP-IDF v6.1, io_mux_reg.h (ESP32-S2): IO_MUX functions per pad",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/components/soc/esp32s2/register/soc/io_mux_reg.h",
+  "retrieved": "2026-11-06",
+  "note": "ESP-IDF tag v6.1 (tag object 4dc1c65503e98e9a6b4c3c5646237280ba79829b, commit fff9895c82d744c7237be8847347bdd1b07c6643), sha256 25c2cf960a0f2378bb2d54fa55facc8b46558f6b1478bbbdeddf527d1bc4384d"
+ },
+ {
+  "id": "idf-v6.1-gpio-esp32c6",
+  "title": "ESP-IDF v6.1, GPIO summary (ESP32-C6): pin table and notes",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/gpio/esp32c6.inc",
+  "retrieved": "2026-11-06",
+  "note": "ESP-IDF tag v6.1 (tag object 4dc1c65503e98e9a6b4c3c5646237280ba79829b, commit fff9895c82d744c7237be8847347bdd1b07c6643), sha256 bc6dbfbf11be2e5d728b7f1c470030540bdade492e2308a4d575d5dbdfa8ff85"
+ },
+ {
+  "id": "idf-v6.1-soccaps-esp32c6",
+  "title": "ESP-IDF v6.1, soc_caps.h (ESP32-C6): GPIO masks and capabilities",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/components/soc/esp32c6/include/soc/soc_caps.h",
+  "retrieved": "2026-11-06",
+  "note": "ESP-IDF tag v6.1 (tag object 4dc1c65503e98e9a6b4c3c5646237280ba79829b, commit fff9895c82d744c7237be8847347bdd1b07c6643), sha256 3fac01ec0fa52d68b1e8eafadaceeb93ed208bf74276565e944ee786d2202f2f"
+ },
+ {
+  "id": "idf-v6.1-adc-channel-esp32c6",
+  "title": "ESP-IDF v6.1, adc_channel.h (ESP32-C6): ADC channel to GPIO",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/components/soc/esp32c6/include/soc/adc_channel.h",
+  "retrieved": "2026-11-06",
+  "note": "ESP-IDF tag v6.1 (tag object 4dc1c65503e98e9a6b4c3c5646237280ba79829b, commit fff9895c82d744c7237be8847347bdd1b07c6643), sha256 db06168289bbb76025d761e536a91c802940dc3eb4e227875282a3469ca0cb5d"
+ },
+ {
+  "id": "idf-v6.1-iomux-esp32c6",
+  "title": "ESP-IDF v6.1, io_mux_reg.h (ESP32-C6): IO_MUX functions per pad",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/components/soc/esp32c6/register/soc/io_mux_reg.h",
+  "retrieved": "2026-11-06",
+  "note": "ESP-IDF tag v6.1 (tag object 4dc1c65503e98e9a6b4c3c5646237280ba79829b, commit fff9895c82d744c7237be8847347bdd1b07c6643), sha256 a88d2e0363a57d9aa7cdb5d00738509f6be3c572c1834482defbf810d028ed46"
+ },
+ {
+  "id": "idf-v6.1-touch-esp32s2",
+  "title": "ESP-IDF v6.1, capacitive touch channels (ESP32-S2)",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/cap_touch_sens/esp32s2.inc",
+  "retrieved": "2026-11-06",
+  "note": "ESP-IDF tag v6.1 (tag object 4dc1c65503e98e9a6b4c3c5646237280ba79829b, commit fff9895c82d744c7237be8847347bdd1b07c6643), sha256 931a53a018f0b8ff9c34cb9b2f3389753020237e2de7d9e2999fab352283e945"
+ },
+ {
+  "id": "devkitc1-s2",
+  "title": "ESP32-S2-DevKitC-1 User Guide (esp-dev-kits)",
+  "url": "https://github.com/espressif/esp-dev-kits/blob/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-s2-devkitc-1/user_guide.rst",
+  "retrieved": "2026-11-06",
+  "note": "espressif/esp-dev-kits at commit 5c06bf1835329d6525f316475f7218aab6acfe79, sha256 76ba36747ba03db2fa96c4d9072640ae332c321d18257f5aaca189841a84f2e0"
+ },
+ {
+  "id": "devkitc1-c6-v1.2",
+  "title": "ESP32-C6-DevKitC-1 v1.2 User Guide (esp-dev-kits)",
+  "url": "https://github.com/espressif/esp-dev-kits/blob/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-c6-devkitc-1/user_guide.rst",
+  "retrieved": "2026-11-06",
+  "note": "espressif/esp-dev-kits at commit 5c06bf1835329d6525f316475f7218aab6acfe79, sha256 0c5d5b143e380f9e34844f1782a38a23558eba04a36574d0a7679e184c8d607d"
+ },
+ {
+  "id": "devkitm1-c6",
+  "title": "ESP32-C6-DevKitM-1 User Guide (esp-dev-kits)",
+  "url": "https://github.com/espressif/esp-dev-kits/blob/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-c6-devkitm-1/user_guide.rst",
+  "retrieved": "2026-11-06",
+  "note": "espressif/esp-dev-kits at commit 5c06bf1835329d6525f316475f7218aab6acfe79, sha256 71e3ae7c4a88ec8f792d00e0b4c41f64c06a1d2b3c103309c2fb8c74af6b79b5"
+ },
+ {
+  "id": "ds-esp32-c6-wroom-1",
+  "title": "Espressif ESP32-C6-WROOM-1 & WROOM-1U Datasheet v1.4",
+  "url": "https://www.espressif.com/sites/default/files/documentation/esp32-c6-wroom-1_wroom-1u_datasheet_en.pdf",
+  "retrieved": "2026-11-06",
+  "note": "PDF pinned by SHA-256; excerpt tests/corpus/excerpts/esp32-c6-wroom-1-datasheet-v1.4.txt; sha256 163020762fa6d499e0c611c5a13e78ad9d4720b421c6bc5e14e16fc748862b73"
+ },
+ {
+  "id": "ds-esp32-c6-mini-1",
+  "title": "Espressif ESP32-C6-MINI-1 & MINI-1U Datasheet v1.5",
+  "url": "https://www.espressif.com/sites/default/files/documentation/esp32-c6-mini-1_mini-1u_datasheet_en.pdf",
+  "retrieved": "2026-11-06",
+  "note": "PDF pinned by SHA-256; excerpt tests/corpus/excerpts/esp32-c6-mini-1-datasheet-v1.5.txt; sha256 26691033f31cbebf623842c16624e61151b152533c13a850c091c8e858c510a2"
+ },
+ {
+  "id": "devkitc1-s2-ordering",
+  "title": "ESP32-S2-DevKitC-1 ordering information (esp-dev-kits)",
+  "url": "https://github.com/espressif/esp-dev-kits/blob/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-s2-devkitc-1/ordering-info.inc",
+  "retrieved": "2026-11-06",
+  "note": "espressif/esp-dev-kits at commit 5c06bf1835329d6525f316475f7218aab6acfe79, sha256 c88c206d47c27195a08869334a31385e2fcd0030ade5dafc807e6691121a3427"
+ },
+ {
+  "id": "devkitc1-c6-ordering",
+  "title": "ESP32-C6-DevKitC-1 ordering information (esp-dev-kits)",
+  "url": "https://github.com/espressif/esp-dev-kits/blob/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-c6-devkitc-1/ordering-info.inc",
+  "retrieved": "2026-11-06",
+  "note": "espressif/esp-dev-kits at commit 5c06bf1835329d6525f316475f7218aab6acfe79, sha256 1398d681249fe78a113d69cc05802c597dc031a6721b8c0b8b8a393d36d91907"
+ },
+ {
+  "id": "devkitm1-c6-ordering",
+  "title": "ESP32-C6-DevKitM-1 ordering information (esp-dev-kits)",
+  "url": "https://github.com/espressif/esp-dev-kits/blob/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-c6-devkitm-1/ordering-info.inc",
+  "retrieved": "2026-11-06",
+  "note": "espressif/esp-dev-kits at commit 5c06bf1835329d6525f316475f7218aab6acfe79, sha256 80cf7f6a339ce313824780006bdcb6187bb4211a8486cd2626042e623153d426"
+ },
+ {
+  "id": "devkits-eol",
+  "title": "Espressif development boards: end-of-life (EOL) list (esp-dev-kits)",
+  "url": "https://github.com/espressif/esp-dev-kits/blob/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/eol/eol-boards.rst",
+  "retrieved": "2026-11-06",
+  "note": "espressif/esp-dev-kits at commit 5c06bf1835329d6525f316475f7218aab6acfe79, sha256 2372219758071d1af332ac279b527755d2ced9428fdd0db62c44adc319b14bed"
+ },
+ {
+  "id": "idf-v6.1-esp-eth",
+  "title": "ESP-IDF v6.1, Ethernet (esp_eth): RMII clock and GPIO0",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/network/esp_eth.rst",
+  "retrieved": "2026-11-06",
+  "note": "ESP-IDF tag v6.1 (tag object 4dc1c65503e98e9a6b4c3c5646237280ba79829b, commit fff9895c82d744c7237be8847347bdd1b07c6643), sha256 df52aaba08d95c587d837801d951761589e8379407bac9af5257739afd674b79"
+ },
+ {
+  "id": "ds-wt32-eth01-v1.4",
+  "title": "Wireless-Tag WT32-ETH01 datasheet (规格书) V1.4, Chinese",
+  "url": "https://res.8ms.xyz/wiki_assets/WT32-ETH01/WT32-ETH01_V1.4%E8%A7%84%E6%A0%BC%E4%B9%A6.pdf",
+  "retrieved": "2026-11-06",
+  "note": "PDF linked from the wireless-tag wiki; pinned by SHA-256; excerpt tests/corpus/excerpts/wt32-eth01-datasheet-v1.4.txt; sha256 c09c58b0d69405d6aa4f2332d89126b0aca9df9c13723bde1dc42e1ef174d5e7"
+ },
+ {
+  "id": "sch-wt32-eth01-v1.4",
+  "title": "Wireless-Tag WT32-ETH01 schematic (原理图) V1.4",
+  "url": "https://res.8ms.xyz/wiki_assets/WT32-ETH01/WT32-ETH01_V1.4%E5%8E%9F%E7%90%86%E5%9B%BE.pdf",
+  "retrieved": "2026-11-06",
+  "note": "PDF linked from the wireless-tag wiki; pinned by SHA-256; excerpt tests/corpus/excerpts/wt32-eth01-schematic-v1.4.txt; sha256 18c7870ddf47145629e1cd618f4cd940ce0c48aa16a06a6addd85e8acab84b82"
+ },
+ {
+  "id": "wiki-wt32-eth01-features",
+  "title": "wireless-tag Wiki: WT32-ETH01 Feature Introduction (v1.0.1, 2026-05-12)",
+  "url": "https://wiki.wireless-tag.com/docs/en/WT32-ETH01/board_features.html",
+  "retrieved": "2026-11-06",
+  "note": "HTML pinned by SHA-256; excerpt tests/corpus/excerpts/wt32-eth01-wiki-board-features.txt; sha256 66070a754fd4b6c75d664d80b2356b4776cebae427474754e1e147c8bc4546e5"
+ },
+ {
+  "id": "wiki-wt32-eth01-resources",
+  "title": "wireless-tag Wiki: WT32-ETH01 Development Board Related Materials (v1.0.0)",
+  "url": "https://wiki.wireless-tag.com/docs/en/WT32-ETH01/board_resources.html",
+  "retrieved": "2026-11-06",
+  "note": "HTML pinned by SHA-256; links the datasheet and schematic V1.4; sha256 2f0c3c60a988f5ded096767d6f80342942a2dd3dc8bab4ab080d8ccb2704b8db"
+ },
+ {
+  "id": "idf-v6.1-kconfig",
+  "title": "ESP-IDF v6.1, Kconfig: IDF_TARGET_ARCH_XTENSA / IDF_TARGET_ARCH_RISCV per target",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/Kconfig",
+  "retrieved": "2026-11-06",
+  "note": "ESP-IDF tag v6.1 (tag object 4dc1c65503e98e9a6b4c3c5646237280ba79829b, commit fff9895c82d744c7237be8847347bdd1b07c6643), sha256 b869f322b5af54b83a12a4139cc43816baab61d9a41a77f7d348649e4cae506e"
+ },
+ {
+  "id": "idf-v6.1-toolchain-esp32",
+  "title": "ESP-IDF v6.1, tools/cmake/toolchain-esp32.cmake: GCC toolchain prefix (ESP32)",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/tools/cmake/toolchain-esp32.cmake",
+  "retrieved": "2026-11-06",
+  "note": "ESP-IDF tag v6.1 (tag object 4dc1c65503e98e9a6b4c3c5646237280ba79829b, commit fff9895c82d744c7237be8847347bdd1b07c6643), sha256 e3f4125ead3a6a3e32fa6d5b2b8d7908c776f045a0537cba7646a2e622f10e8d"
+ },
+ {
+  "id": "idf-v6.1-toolchain-esp32s2",
+  "title": "ESP-IDF v6.1, tools/cmake/toolchain-esp32s2.cmake: GCC toolchain prefix (ESP32-S2)",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/tools/cmake/toolchain-esp32s2.cmake",
+  "retrieved": "2026-11-06",
+  "note": "ESP-IDF tag v6.1 (tag object 4dc1c65503e98e9a6b4c3c5646237280ba79829b, commit fff9895c82d744c7237be8847347bdd1b07c6643), sha256 99cc17f93f425a133da02491eddb882fe379894b8925bed90eb06a05869ec46e"
+ },
+ {
+  "id": "idf-v6.1-toolchain-esp32s3",
+  "title": "ESP-IDF v6.1, tools/cmake/toolchain-esp32s3.cmake: GCC toolchain prefix (ESP32-S3)",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/tools/cmake/toolchain-esp32s3.cmake",
+  "retrieved": "2026-11-06",
+  "note": "ESP-IDF tag v6.1 (tag object 4dc1c65503e98e9a6b4c3c5646237280ba79829b, commit fff9895c82d744c7237be8847347bdd1b07c6643), sha256 25323260dee4df19e35d9aed84bacdd71bb46df9165c286d060dceaa6368ac02"
+ },
+ {
+  "id": "idf-v6.1-toolchain-esp32c3",
+  "title": "ESP-IDF v6.1, tools/cmake/toolchain-esp32c3.cmake: GCC toolchain prefix (ESP32-C3)",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/tools/cmake/toolchain-esp32c3.cmake",
+  "retrieved": "2026-11-06",
+  "note": "ESP-IDF tag v6.1 (tag object 4dc1c65503e98e9a6b4c3c5646237280ba79829b, commit fff9895c82d744c7237be8847347bdd1b07c6643), sha256 4663bf2f8ef1f650d3d1e641d029e0336753d9aea8e6ef5643048b8095d2fb49"
+ },
+ {
+  "id": "idf-v6.1-toolchain-esp32c6",
+  "title": "ESP-IDF v6.1, tools/cmake/toolchain-esp32c6.cmake: GCC toolchain prefix (ESP32-C6)",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/tools/cmake/toolchain-esp32c6.cmake",
+  "retrieved": "2026-11-06",
+  "note": "ESP-IDF tag v6.1 (tag object 4dc1c65503e98e9a6b4c3c5646237280ba79829b, commit fff9895c82d744c7237be8847347bdd1b07c6643), sha256 4663bf2f8ef1f650d3d1e641d029e0336753d9aea8e6ef5643048b8095d2fb49"
+ },
+ {
+  "id": "esptool-5.6.0-target-esp32",
+  "title": "esptool v5.6.0, esptool/targets/esp32.py: CHIP_NAME and chip description (ESP32)",
+  "url": "https://github.com/espressif/esptool/blob/e970488de2c8f1906ca9b08de681b3f9dc58b2d5/esptool/targets/esp32.py",
+  "retrieved": "2026-11-06",
+  "note": "esptool tag v5.6.0, commit e970488de2c8f1906ca9b08de681b3f9dc58b2d5; GPL-2.0, read only, never imported, sha256 97e6f0abb526dd0ebfa0e4a00baf22b2257e41ab43f9d9412e8d063ba1bf7d93"
+ },
+ {
+  "id": "esptool-5.6.0-target-esp32s2",
+  "title": "esptool v5.6.0, esptool/targets/esp32s2.py: CHIP_NAME and chip description (ESP32-S2)",
+  "url": "https://github.com/espressif/esptool/blob/e970488de2c8f1906ca9b08de681b3f9dc58b2d5/esptool/targets/esp32s2.py",
+  "retrieved": "2026-11-06",
+  "note": "esptool tag v5.6.0, commit e970488de2c8f1906ca9b08de681b3f9dc58b2d5; GPL-2.0, read only, never imported, sha256 5b8965f42fbd2478b84ea3bc300f91a65e5dbccb04afe13edc1ec7d857e06da0"
+ },
+ {
+  "id": "esptool-5.6.0-target-esp32s3",
+  "title": "esptool v5.6.0, esptool/targets/esp32s3.py: CHIP_NAME and chip description (ESP32-S3)",
+  "url": "https://github.com/espressif/esptool/blob/e970488de2c8f1906ca9b08de681b3f9dc58b2d5/esptool/targets/esp32s3.py",
+  "retrieved": "2026-11-06",
+  "note": "esptool tag v5.6.0, commit e970488de2c8f1906ca9b08de681b3f9dc58b2d5; GPL-2.0, read only, never imported, sha256 0bd890760cf847410985915c384423772df8f8a473d0d4bf6ae9b5a21d542082"
+ },
+ {
+  "id": "esptool-5.6.0-target-esp32c3",
+  "title": "esptool v5.6.0, esptool/targets/esp32c3.py: CHIP_NAME and chip description (ESP32-C3)",
+  "url": "https://github.com/espressif/esptool/blob/e970488de2c8f1906ca9b08de681b3f9dc58b2d5/esptool/targets/esp32c3.py",
+  "retrieved": "2026-11-06",
+  "note": "esptool tag v5.6.0, commit e970488de2c8f1906ca9b08de681b3f9dc58b2d5; GPL-2.0, read only, never imported, sha256 b3f0aca6f63719937f971eb7c5b85ed81ebca63a0f1f4b7f6063fb7c29e2bc95"
+ },
+ {
+  "id": "esptool-5.6.0-target-esp32c6",
+  "title": "esptool v5.6.0, esptool/targets/esp32c6.py: CHIP_NAME and chip description (ESP32-C6)",
+  "url": "https://github.com/espressif/esptool/blob/e970488de2c8f1906ca9b08de681b3f9dc58b2d5/esptool/targets/esp32c6.py",
+  "retrieved": "2026-11-06",
+  "note": "esptool tag v5.6.0, commit e970488de2c8f1906ca9b08de681b3f9dc58b2d5; GPL-2.0, read only, never imported, sha256 f7f89ca3dbfe356efb52ad3d5dfbbdd28202860fd2e516c8891720398b088759"
+ },
+ {
+  "id": "pio-esp32-8.0.0-platform-json",
+  "title": "PlatformIO platform-espressif32 v8.0.0, platform.json (packages and versions)",
+  "url": "https://github.com/platformio/platform-espressif32/blob/39d87f8c599b0a31cf56a1cf16c7756742ca7736/platform.json",
+  "retrieved": "2026-11-06",
+  "note": "platformio/platform-espressif32 tag v8.0.0 = commit 39d87f8c599b0a31cf56a1cf16c7756742ca7736, sha256 9c9b3fbaddc00420aaa208c33d6f2a8e6eef0a29d533e94620601d33ccc86e02"
+ },
+ {
+  "id": "pio-esp32-8.0.0-platform-py",
+  "title": "PlatformIO platform-espressif32 v8.0.0, platform.py (configure_default_packages: toolchain and framework packages per MCU)",
+  "url": "https://github.com/platformio/platform-espressif32/blob/39d87f8c599b0a31cf56a1cf16c7756742ca7736/platform.py",
+  "retrieved": "2026-11-06",
+  "note": "platformio/platform-espressif32 tag v8.0.0 = commit 39d87f8c599b0a31cf56a1cf16c7756742ca7736, sha256 82f03c6bdd2d0b3149b5fe28bdb06729398f205d0b52dee3bb59a31893ab5bd4"
+ },
+ {
+  "id": "pio-esp32-8.0.0-board-c6",
+  "title": "PlatformIO platform-espressif32 v8.0.0, boards/esp32-c6-devkitc-1.json (frameworks, MCU)",
+  "url": "https://github.com/platformio/platform-espressif32/blob/39d87f8c599b0a31cf56a1cf16c7756742ca7736/boards/esp32-c6-devkitc-1.json",
+  "retrieved": "2026-11-06",
+  "note": "platformio/platform-espressif32 tag v8.0.0 = commit 39d87f8c599b0a31cf56a1cf16c7756742ca7736, sha256 90b27be7673626dcc36ef5e1243f3c5e2254919ea3bb916a73397d6a8bda49ab"
+ },
+ {
+  "id": "pio-esp32-8.0.0-board-c6m",
+  "title": "PlatformIO platform-espressif32 v8.0.0, boards/esp32-c6-devkitm-1.json (frameworks, MCU)",
+  "url": "https://github.com/platformio/platform-espressif32/blob/39d87f8c599b0a31cf56a1cf16c7756742ca7736/boards/esp32-c6-devkitm-1.json",
+  "retrieved": "2026-11-06",
+  "note": "platformio/platform-espressif32 tag v8.0.0 = commit 39d87f8c599b0a31cf56a1cf16c7756742ca7736, sha256 a6d8a222af88d9d87418ebd9f1190a04e7f59d4b11264ec9503e07226cfc0047"
+ },
+ {
+  "id": "pio-esp32-8.0.0-board-s2-saola-1",
+  "title": "PlatformIO platform-espressif32 v8.0.0, boards/esp32-s2-saola-1.json (frameworks, MCU, flash size)",
+  "url": "https://github.com/platformio/platform-espressif32/blob/39d87f8c599b0a31cf56a1cf16c7756742ca7736/boards/esp32-s2-saola-1.json",
+  "retrieved": "2026-11-06",
+  "note": "platformio/platform-espressif32 tag v8.0.0 = commit 39d87f8c599b0a31cf56a1cf16c7756742ca7736, sha256 2fdfbac4eeed19b035b5b7fee09af8d60672ba46eff64805a0bb740a9b52d5ab"
+ },
+ {
+  "id": "pio-esp32-8.0.0-board-wt32-eth01",
+  "title": "PlatformIO platform-espressif32 v8.0.0, boards/wt32-eth01.json (frameworks, MCU, flash size)",
+  "url": "https://github.com/platformio/platform-espressif32/blob/39d87f8c599b0a31cf56a1cf16c7756742ca7736/boards/wt32-eth01.json",
+  "retrieved": "2026-11-06",
+  "note": "platformio/platform-espressif32 tag v8.0.0 = commit 39d87f8c599b0a31cf56a1cf16c7756742ca7736, sha256 a19d16adb3395f3e78e5fb7cfa6e9c366f33fe7ab6dd419043b4472a55ed2e49"
+ },
+ {
+  "id": "pio-esp32-7.1.3-board-c6",
+  "title": "PlatformIO platform-espressif32 v7.1.3, boards/esp32-c6-devkitc-1.json (frameworks, MCU)",
+  "url": "https://github.com/platformio/platform-espressif32/blob/ac95e7aa3b0e5f309359a028706f809f03ffa612/boards/esp32-c6-devkitc-1.json",
+  "retrieved": "2026-11-06",
+  "note": "platformio/platform-espressif32 tag v7.1.3 = commit ac95e7aa3b0e5f309359a028706f809f03ffa612, sha256 a6e22ee4b7d798e13067b0e1b40a0fb4391c597012433293f415d0db47c7cee5"
+ },
+ {
+  "id": "pio-esp32-6.9.0-platform-json",
+  "title": "PlatformIO platform-espressif32 v6.9.0, platform.json (packages and versions)",
+  "url": "https://github.com/platformio/platform-espressif32/blob/268f561df4793d631d02e4ff5e67b6b11d1be4ec/platform.json",
+  "retrieved": "2026-11-06",
+  "note": "platformio/platform-espressif32 tag v6.9.0 = commit 268f561df4793d631d02e4ff5e67b6b11d1be4ec, sha256 952bbadd902e83ccdcbad0b4eecb0f92e07683ab81fc60477d33210d6e19254d"
+ },
+ {
+  "id": "pio-esp32-6.9.0-platform-py",
+  "title": "PlatformIO platform-espressif32 v6.9.0, platform.py (configure_default_packages: toolchain and framework packages per MCU)",
+  "url": "https://github.com/platformio/platform-espressif32/blob/268f561df4793d631d02e4ff5e67b6b11d1be4ec/platform.py",
+  "retrieved": "2026-11-06",
+  "note": "platformio/platform-espressif32 tag v6.9.0 = commit 268f561df4793d631d02e4ff5e67b6b11d1be4ec, sha256 b30bd918852577397d47411c0d6d993179caa3228b835fc786dde1a4a63fcc2c"
+ },
+ {
+  "id": "pio-esp32-6.9.0-board-c6",
+  "title": "PlatformIO platform-espressif32 v6.9.0, boards/esp32-c6-devkitc-1.json (frameworks, MCU)",
+  "url": "https://github.com/platformio/platform-espressif32/blob/268f561df4793d631d02e4ff5e67b6b11d1be4ec/boards/esp32-c6-devkitc-1.json",
+  "retrieved": "2026-11-06",
+  "note": "platformio/platform-espressif32 tag v6.9.0 = commit 268f561df4793d631d02e4ff5e67b6b11d1be4ec, sha256 a6e22ee4b7d798e13067b0e1b40a0fb4391c597012433293f415d0db47c7cee5"
+ },
+ {
+  "id": "pio-esp32-6.9.0-board-s2-saola-1",
+  "title": "PlatformIO platform-espressif32 v6.9.0, boards/esp32-s2-saola-1.json (frameworks, MCU, flash size)",
+  "url": "https://github.com/platformio/platform-espressif32/blob/268f561df4793d631d02e4ff5e67b6b11d1be4ec/boards/esp32-s2-saola-1.json",
+  "retrieved": "2026-11-06",
+  "note": "platformio/platform-espressif32 tag v6.9.0 = commit 268f561df4793d631d02e4ff5e67b6b11d1be4ec, sha256 2fdfbac4eeed19b035b5b7fee09af8d60672ba46eff64805a0bb740a9b52d5ab"
+ },
+ {
+  "id": "pio-esp32-6.9.0-board-wt32-eth01",
+  "title": "PlatformIO platform-espressif32 v6.9.0, boards/wt32-eth01.json (frameworks, MCU, flash size)",
+  "url": "https://github.com/platformio/platform-espressif32/blob/268f561df4793d631d02e4ff5e67b6b11d1be4ec/boards/wt32-eth01.json",
+  "retrieved": "2026-11-06",
+  "note": "platformio/platform-espressif32 tag v6.9.0 = commit 268f561df4793d631d02e4ff5e67b6b11d1be4ec, sha256 a19d16adb3395f3e78e5fb7cfa6e9c366f33fe7ab6dd419043b4472a55ed2e49"
+ },
+ {
+  "id": "pio-esp32-6.9.0-board-s3",
+  "title": "PlatformIO platform-espressif32 v6.9.0, boards/esp32-s3-devkitc-1.json (frameworks, MCU)",
+  "url": "https://github.com/platformio/platform-espressif32/blob/268f561df4793d631d02e4ff5e67b6b11d1be4ec/boards/esp32-s3-devkitc-1.json",
+  "retrieved": "2026-11-06",
+  "note": "platformio/platform-espressif32 tag v6.9.0 = commit 268f561df4793d631d02e4ff5e67b6b11d1be4ec, sha256 f6fb1e46c45c4c1b79471fe4cff799e548bc4ef95f0bf00a8335a7d5ac477767"
+ },
+ {
+  "id": "pio-esp32-6.9.0-board-c3",
+  "title": "PlatformIO platform-espressif32 v6.9.0, boards/esp32-c3-devkitm-1.json (frameworks, MCU)",
+  "url": "https://github.com/platformio/platform-espressif32/blob/268f561df4793d631d02e4ff5e67b6b11d1be4ec/boards/esp32-c3-devkitm-1.json",
+  "retrieved": "2026-11-06",
+  "note": "platformio/platform-espressif32 tag v6.9.0 = commit 268f561df4793d631d02e4ff5e67b6b11d1be4ec, sha256 d268b6a8e6531d41d42648329066da0bce9c082728346f65b949c8ff8ec9b2ec"
+ },
+ {
+  "id": "idf-v6.1-fatal-errors-esp32s2",
+  "title": "ESP-IDF v6.1 Programming Guide (ESP32-S2): Fatal Errors",
+  "url": "https://docs.espressif.com/projects/esp-idf/en/v6.1/esp32s2/api-guides/fatal-errors.html",
+  "retrieved": "2026-11-06",
+  "note": "rendered for the ESP32-S2 target from docs/en/api-guides/fatal-errors.rst at ESP-IDF tag v6.1 (tag object 4dc1c65503e98e9a6b4c3c5646237280ba79829b, commit fff9895c82d744c7237be8847347bdd1b07c6643)"
+ },
+ {
+  "id": "idf-v6.1-fatal-errors-esp32c6",
+  "title": "ESP-IDF v6.1 Programming Guide (ESP32-C6): Fatal Errors",
+  "url": "https://docs.espressif.com/projects/esp-idf/en/v6.1/esp32c6/api-guides/fatal-errors.html",
+  "retrieved": "2026-11-06",
+  "note": "rendered for the ESP32-C6 target from docs/en/api-guides/fatal-errors.rst at ESP-IDF tag v6.1 (tag object 4dc1c65503e98e9a6b4c3c5646237280ba79829b, commit fff9895c82d744c7237be8847347bdd1b07c6643)"
+ }
+]

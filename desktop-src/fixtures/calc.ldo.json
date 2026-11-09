@@ -1,0 +1,259 @@
+{
+ "ok": true,
+ "action": "calc.ldo",
+ "summary": "LDO AMS1117-3.3 5.00 V → 3.30 V at 500 mA: 905 mW in the regulator, efficiency 64.6 %, T_J ≈ 106 °C (within T_J max 125 °C); dropout ok.",
+ "result": {
+  "inputs": {
+   "v_in": {
+    "value": 5.0,
+    "unit": "V",
+    "display": "5.00 V"
+   },
+   "v_out": {
+    "value": 3.3,
+    "unit": "V",
+    "display": "3.30 V"
+   },
+   "i_load": {
+    "value": 0.5,
+    "unit": "A",
+    "display": "500 mA"
+   },
+   "t_ambient": {
+    "value": 25.0,
+    "unit": "°C",
+    "display": "25.0 °C"
+   },
+   "part": "AMS1117-3.3"
+  },
+  "v_headroom": {
+   "value": 1.7,
+   "unit": "V",
+   "display": "1.70 V"
+  },
+  "p_load": {
+   "value": 0.85,
+   "unit": "W",
+   "display": "850 mW"
+  },
+  "p_q": {
+   "value": 0.055,
+   "unit": "W",
+   "display": "55.0 mW"
+  },
+  "p_total": {
+   "value": 0.905,
+   "unit": "W",
+   "display": "905 mW"
+  },
+  "efficiency": {
+   "value": 64.5793,
+   "unit": "%",
+   "display": "64.6 %"
+  },
+  "t_j": {
+   "value": 106.45,
+   "unit": "°C",
+   "display": "106 °C"
+  },
+  "part": {
+   "id": "AMS1117-3.3",
+   "package": "SOT-223",
+   "source_id": "ams-ams1117",
+   "v_out": {
+    "value": 3.3,
+    "unit": "V",
+    "display": "3.30 V"
+   },
+   "i_q": {
+    "value": 0.011,
+    "unit": "A",
+    "display": "11.0 mA"
+   },
+   "dropout": {
+    "value": 1.3,
+    "unit": "V",
+    "display": "1.30 V",
+    "i_out": {
+     "value": 0.8,
+     "unit": "A",
+     "display": "800 mA"
+    },
+    "conditions": "ΔV_OUT = 1 %, I_OUT = 0.8 A; specified up to 0.8 A (Note 4)",
+    "evidence": "∆VOUT , ∆VREF = 1%, I OUT = 0.8A (Note 4)"
+   },
+   "v_in_max": {
+    "value": 15.0,
+    "unit": "V",
+    "display": "15.0 V"
+   },
+   "i_limit_min": {
+    "value": 0.9,
+    "unit": "A",
+    "display": "900 mA"
+   },
+   "t_j_max": {
+    "value": 125.0,
+    "unit": "°C",
+    "display": "125 °C"
+   },
+   "r_th_ja": {
+    "value": 90.0,
+    "unit": "°C/W",
+    "display": "90.0 °C/W",
+    "conditions": "SOT-223 soldered to copper; 46 to >90 °C/W depending on mounting and copper area"
+   },
+   "t_shutdown": {
+    "value": 165.0,
+    "unit": "°C",
+    "display": "165 °C"
+   }
+  },
+  "formula": "P = (V_in − V_out) · I_load + V_in · I_q; T_J = T_A + P · θ_JA; η = V_out · I_load / (V_in · (I_load + I_q))",
+  "steps": [
+   {
+    "name": "ΔV",
+    "expr": "5.00 V − 3.30 V",
+    "value": {
+     "value": 1.7,
+     "unit": "V",
+     "display": "1.70 V"
+    }
+   },
+   {
+    "name": "P_load",
+    "expr": "1.70 V · 500 mA",
+    "value": {
+     "value": 0.85,
+     "unit": "W",
+     "display": "850 mW"
+    }
+   },
+   {
+    "name": "P_q",
+    "expr": "5.00 V · 11.0 mA",
+    "value": {
+     "value": 0.055,
+     "unit": "W",
+     "display": "55.0 mW"
+    }
+   },
+   {
+    "name": "P",
+    "expr": "850 mW + 55.0 mW",
+    "value": {
+     "value": 0.905,
+     "unit": "W",
+     "display": "905 mW"
+    }
+   },
+   {
+    "name": "T_J",
+    "expr": "25.0 °C + 905 mW · 90.0 °C/W",
+    "value": {
+     "value": 106.45,
+     "unit": "°C",
+     "display": "106 °C"
+    }
+   },
+   {
+    "name": "η",
+    "expr": "3.30 V · 500 mA / (5.00 V · 511 mA)",
+    "value": {
+     "value": 64.5793,
+     "unit": "%",
+     "display": "64.6 %"
+    }
+   }
+  ]
+ },
+ "checks": [
+  {
+   "id": "calc.ldo.headroom",
+   "status": "passed",
+   "detail": "V_in 5.00 V > V_out 3.30 V"
+  },
+  {
+   "id": "calc.ldo.dropout",
+   "status": "passed",
+   "detail": "V_in − V_out 1.70 V ≥ dropout max 1.30 V at 800 mA (AMS1117-3.3 datasheet)"
+  },
+  {
+   "id": "calc.ldo.current_limit",
+   "status": "passed",
+   "detail": "I_load 500 mA ≤ current limit min 900 mA (AMS1117-3.3 datasheet)"
+  },
+  {
+   "id": "calc.ldo.v_in_max",
+   "status": "passed",
+   "detail": "V_in 5.00 V ≤ 15.0 V (AMS1117-3.3 absolute maximum)"
+  },
+  {
+   "id": "calc.ldo.t_j",
+   "status": "passed",
+   "detail": "T_J 106 °C ≤ T_J max 125 °C (θ_JA 90.0 °C/W, SOT-223, AMS1117-3.3 datasheet)"
+  }
+ ],
+ "warnings": [
+  {
+   "code": "esp32s3_supply",
+   "severity": "info",
+   "message": "chip not given; ESP32-S3-WROOM-1 values: For an ESP32-S3-WROOM-1 module the datasheet asks for a supply that delivers at least 500 mA (Table 6-2); Wi-Fi TX peaks at 355 mA (Table 6-4). I_load 500 mA is at or above that.",
+   "source_ids": [
+    "ds-esp32-s3-wroom-1-power"
+   ]
+  }
+ ],
+ "assumptions": [
+  {
+   "key": "i_load",
+   "value": "steady (average) current",
+   "reason": "T_J follows the average power; check the dropout and the current limit with the peak current (rule of thumb)"
+  },
+  {
+   "key": "t_ambient",
+   "value": "25.0 °C",
+   "reason": "room temperature; inside a case it is warmer"
+  },
+  {
+   "key": "i_q",
+   "value": "11.0 mA max",
+   "reason": "AMS1117-3.3 datasheet quiescent current (maximum at (V_IN − V_OUT) = 1.5 V), used at your V_in as the worst case; it flows from V_in to GND"
+  },
+  {
+   "key": "dropout",
+   "value": "1.30 V max at 800 mA",
+   "reason": "AMS1117-3.3 datasheet: the dropout decreases at lower load currents, so this value is used for every I_load up to it (conservative)"
+  },
+  {
+   "key": "theta_ja",
+   "value": "90.0 °C/W",
+   "reason": "AMS1117-3.3 datasheet, SOT-223 soldered to copper; 46 to >90 °C/W depending on mounting and copper area; your board decides"
+  }
+ ],
+ "sources": [
+  {
+   "id": "ams-ams1117",
+   "title": "Advanced Monolithic Systems AMS1117, 1A Low Dropout Voltage Regulator (DS1117)",
+   "url": "https://web.archive.org/web/20260102111411id_/http://www.advanced-monolithic.com/pdf/ds1117.pdf",
+   "retrieved": "2026-11-06",
+   "note": "No revision printed (PDF of 2009-08-27). Page 1 ordering information, page 2 Absolute Maximum Ratings (theta_JA per package), page 3 dropout, current limit, quiescent current, page 5 Thermal Considerations. Manufacturer copy http://www.advanced-monolithic.com/pdf/ds1117.pdf (its https host fails the TLS handshake); the link is the Internet Archive copy of 2026-01-02 over https, byte-identical (the 2023-12-26 and 2025-01-06 snapshots too). PDF SHA-256 189a2651878a87d590b768eaa9b44217a3fdf460352ce6ecaff127221282a3f0."
+  },
+  {
+   "id": "rule-of-thumb",
+   "title": "Practice rule, not a standard",
+   "url": null,
+   "retrieved": "2026-11-05",
+   "note": "Shown for engineering judgement only; check the datasheet of your parts."
+  },
+  {
+   "id": "ds-esp32-s3-wroom-1-power",
+   "title": "ESP32-S3-WROOM-1 & WROOM-1U Datasheet v1.8, Tables 6-2, 6-3 and 6-4 (supply, V_OH, Wi-Fi current)",
+   "url": "https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+   "retrieved": "2026-11-06",
+   "note": "Page 27: VDD33 3.0 to 3.6 V, I_VDD min 0.5 A, V_OH min 0.8 x VDD. Page 28: Wi-Fi TX peak 355 mA. PDF SHA-256 27d71971da07c280c6068d08c74720d1a25b8f20cf8494dc1765bdd28d40d435 (tests/corpus/pins.json)."
+  }
+ ],
+ "simulated": false,
+ "error": null
+}

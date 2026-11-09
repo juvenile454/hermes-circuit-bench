@@ -1,0 +1,37 @@
+# source_id: mod-power-xc6206-ds
+# document: Torex XC6206 Series positive voltage regulators (SOT-23, SOT-89, USP-6B)
+# url: https://web.archive.org/web/20261016093418id_/https://product.torexsemi.com/system/files/series/xc6206.pdf
+# corpus: mod/power/xc6206.pdf sha256 4c419be08c950e3e70f17083ca4a5b5bc59d38a438bcab38f84bd6b219fb472b
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Maximum Output Current 
+: 200mA (3.0V type) 
+: 250mV @ 100mA (3.0V type) 
+: 1.2V ~ 5.0V (0.1V increments) 
+: 1.0μA (TYP.) 
+The series is compatible with low ESR ceram ic capacitors. The cur rent limiter's foldback circuit operates as a short circuit 
+@@ page 3
+PIN NUMBER PIN NAME FUNCTIONS SOT-23 SOT-89 USP-6B 
+1 1 2 VSS Ground 
+3 2 4 VIN Power Input 
+2 3 6 VOUT Output 
+Input Voltage VIN -0.3 ~ 7.0 V 
+Output Current IOUT 500 (*1) mA 
+Power Dissipation 
+250 (IC only) 
+Operating Ambient Temperature Topr -40 ~ 85 ℃ 
+(*1) IOUT≦Pd / (VIN-VOUT) 
+@@ page 4
+Supply Current IDD  - 1.0 3.0 μA ① 
+Dropout Voltage 2 Vdif2(*6) VOUT(T)≦1.8V, IOUT=60mA - E-3(*5) 
+VOUT(T)>1.8V, IOUT=100mA 
+Input Voltage VIN  1.8 - 6.0 V ② 
+*1: Unless otherwise stated, VIN = VOUT(T) + 1.0V 
+*7: The low ESR capacitors use that is more than 1.0μF as CL is possible. 
+@@ page 5
+⊿VOUT (mV) Vdif1 (mV) Vdif2 (mV) IOUTMAX  (mA) ISHORT  (mA) 
+VOUT(T) MAX. TYP. MAX. TYP. MAX. MIN. TYP. 
+3.0  
+75 350 250 680 200  
+3.9  

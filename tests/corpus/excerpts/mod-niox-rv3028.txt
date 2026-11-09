@@ -1,0 +1,35 @@
+# source_id: mod-niox-rv3028-am
+# document: RV-3028-C7 Application Manual Rev. 1.4 (November 2021)
+# url: https://web.archive.org/web/20261003114803id_/https://www.microcrystal.com/fileadmin/Media/Products/RTC/App.Manual/RV-3028-C7_App-Manual.pdf
+# corpus: mod/niox/RV-3028-C7_App-Manual.pdf sha256 146f8af2b28c162a84b1d9395a51a363ac239f5ef8b9162122f6ca25773160b9
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 9
+SCL 3 I2C Serial Clock Input; requires pull-up resistor. In VBACKUP Power state, the SCL pin is disabled.
+SDA 4 I2C Serial Data Input-Output; open-drain; requires pull-up resistor. In VBACKUP Power state, the SDA pin is disabled (high impedance).
+VBACKUP 6 Backup Supply Voltage. When the backup switchover function is not needed, VBACKUP must be tied to VSS with a 10 kΩ resistor.
+@@ page 48
+In the register EEPROM 37h t he Trickle Charger is enabled with bit TCE  (default value on delivery is disabled) and
+output to CLKOUT pin since the bit CLKOE is set to 1 (default) and FD field is set to 00 0 (default). Hint: These are
+@@ page 93
+On the I2C-bus the 7-bit slave address 1010010b is reserved for the RV-3028-C7. The entire I2C-bus slave address
+@@ page 96
+VDD Power Supply Voltage  -0.3  6.0 V
+VI Input voltage Input Pin -0.3  VDD +0.3 V
+@@ page 97
+I2C-bus (100 kHz) 1.2  5.5
+I2C-bus (400 kHz) 2.0  5.5
+VBACKUP Backup Supply Voltage  1.1  5.5 V
+VDD supply current timekeeping
+VDD = 3.0 V(2), TA = 25°C  45 60
+VDD supply current during
+µA VDD = 3.0 V, SCL = 400 kHz(3)  5 40
+@@ page 98
+VIH HIGH level input voltage VDD = 1.1 V to 5.5 V
+Pins: SCL, SDA, EVI
+0.8 VDD   V
+VIL LOW level input voltage   0.2 VDD V
+VOL LOW level output voltage Pins: SDA, INT̅̅̅̅̅
+V VDD = 3.0 V, IOL = 3.0 mA   0.4
+@@ page 102
+fSCL SCL input clock frequency 0 100 0 400 kHz

@@ -1,0 +1,36 @@
+# source_id: mod-rtc-at24c32-ds
+# document: AT24C32D I2C-Compatible (Two-Wire) Serial EEPROM 32-Kbit, Data Sheet DS20006047B
+# url: https://ww1.microchip.com/downloads/aemDocuments/documents/MPD/ProductDocuments/DataSheets/AT24C32D-2-Kbit-I2C-Serial-EEPROM-Industrial-Grade-DS20006047.pdf
+# corpus: mod/rtc/AT24C32D-DS20006047.pdf sha256 041f1a3e6364a5ae5ae77ff598d52e1ffcdf725ed8ae0f26b3f6f8de7588c6b9
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+– 400 kHz Fast Mode, 1.7V to 5.5V
+– 1 MHz Fast Mode Plus (FM+), 2.5V to 5.5V
+@@ page 5
+A0(2) 1 — 1 1 1 Device Address Input
+A1(2) 2 — 2 2 2 Device Address Input
+A2(2) 3 — 3 3 3 Device Address Input
+GND 4 2 4 4 4 Ground
+SDA 5 3 5 5 5 Serial Data
+SCL 6 1 6 6 6 Serial Clock
+WP(2) 7 5 7 7 7 Write-Protect
+VCC 8 4 8 8 8 Device Power Supply
+2. If the A0, A1, A2 or WP pins are not driven, they are internally pulled down to GND. In order to
+using a pull‑up resistor, Microchip recommends using 10 kΩ or less.
+The SDA pin is an open‑drain bidirectional input/output pin used to serially transfer data to and
+from the device. The SDA pin must be pulled high using an external pull‑up resistor (not to exceed
+@@ page 9
+VCC 6.25V
+Voltage on any pin with respect to ground -1.0V to +7.0V
+Supply Voltage VCC1 1.7 5.5 V
+Supply Current ICC2 — 3.0 mA VCC = 5.0V, Write at 400 kHz
+— 6.0 μA VCC = 5.0V, VIN = VCC or GND
+Input Low Level VIL -0.6 VCC x 0.3 V Note 1
+Input High Level VIH VCC x 0.7 VCC + 0.5 V Note 1
+Output Low Level VOL2 — 0.4 V VCC = 3.0V, IOL = 2.1 mA
+@@ page 10
+Clock Frequency, SCL fSCL — 400 — 1000 kHz
+@@ page 15
+The device type identifier ‘1010’ (Ah) is required in bits 7 through 4 of the device address byte (see
+Following the 4-bit device type identifier are the hardware client address bits, A2, A1 and A0. These

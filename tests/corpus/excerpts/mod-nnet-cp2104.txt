@@ -1,0 +1,30 @@
+# source_id: mod-nnet-cp2104-ds
+# document: Silicon Labs CP2104 data sheet Rev. 1.2 (2017)
+# url: https://web.archive.org/web/20261026065118id_/https://www.silabs.com/documents/public/data-sheets/cp2104.pdf
+# corpus: mod/nnet/cp2104.pdf sha256 9569257991f26467e18c46ad6d7fd033ef1351110241b8554c23a0495c7d6d36
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 5
+Voltage on RST, GPIO or UART Pin with respect to
+VIO > 2.2 V
+5.8
+Voltage on VDD or VIO with respect to GND –0.3 — 4.2 V
+Digital Supply Voltage (VDD) 3.0 — 3.6 V
+Digital Port I/O Supply Voltage (VIO)1 .8 — VDD V
+Supply Current1 Normal Operation;
+VREG Enabled
+— 17.0 18.5 mA
+Supply Current1 Suspended;
+—1 0 0 2 0 0µ A
+@@ page 6
+Output High Voltage (VOH)I OH =– 1 0µ A
+VIO –0 . 2
+Input High Voltage (VIH) 0.7 x VIO —— V
+Input Low Voltage (VIL)— — 0.6 V
+Input Voltage Range 3.0 — 5.25 V
+Output Voltage Output Current = 1 to 100 mA* 3.3 3.45 3.6 V
+*Note:  The maximum regulator supply current is 100 mA. This includes the supply current of the CP2104.
+@@ page 8
+VPP 16* Special Connect a 4.7 µF capacitor between this pin and ground to support
+@@ page 13
+higher, external voltage through an external pull-up resistor. The maximum external pull-up voltage is 5 V.

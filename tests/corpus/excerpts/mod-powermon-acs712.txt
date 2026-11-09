@@ -1,0 +1,34 @@
+# source_id: mod-powermon-acs712-ds
+# document: Allegro MicroSystems ACS712 Fully Integrated, Hall-Effect-Based Linear Current Sensor IC with 2.4 kVRMS Isolation and a Low-Resistance Current Conductor, ACS712-DS Rev. 22 (February 13, 2024)
+# url: https://www.allegromicro.com/-/media/files/datasheets/acs712-datasheet.pdf
+# corpus: mod/powermon/acs712-datasheet.pdf sha256 21b345f7a98d36947d5562218b0bc730b80609b614e9fc4374f56993011466b9
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+CBYP
+0.1 µF
+is recommended for noise management, with values that
+@@ page 2
+Supply Voltage VCC 8 V
+Output Voltage VIOUT 8 V
+Overcurrent Transient Tolerance IP 1 pulse, 100 ms 100 A
+@@ page 5
+Supply Voltage VCC 4.5 5.0 5.5 V
+Supply Current ICC VCC = 5.0 V, output open – 10 13 mA
+Output Capacitance Load CLOAD VIOUT to GND – – 10 nF
+Output Resistive Load RLOAD VIOUT to GND 4.7 – – kΩ
+Primary Conductor Resistance RPRIMARY TA = 25°C – 1.2 – mΩ
+Zero Current Output Voltage VIOUT(Q) Bidirectional; IP = 0 A, TA = 25°C – VCC  × 0.5 – V
+@@ page 6
+x05B PERFORMANCE CHARACTERISTICS [1] : TA = –40°C to 85°C, CF = 1 nF, and VCC = 5 V, unless otherwise specified
+Optimized Accuracy Range IP –5 – 5 A
+Sensitivity Sens Over full range of IP, TA = 25°C 180 185 190 mV/A
+x20A PERFORMANCE CHARACTERISTICS [1] TA = –40°C to 85°C, CF = 1 nF, and VCC = 5 V, unless otherwise specified
+Optimized Accuracy Range IP –20 – 20 A
+Sensitivity Sens Over full range of IP, TA = 25°C 96 100 104 mV/A
+x30A PERFORMANCE CHARACTERISTICS [1]:  TA = –40°C to 85°C, CF = 1 nF, and VCC = 5 V, unless otherwise specified
+Optimized Accuracy Range IP –30 – 30 A
+Sensitivity Sens Over full range of IP , TA = 25°C 63 66 69 mV/A
+@@ page 10
+VIOUT(Q), (nominally equal to VCC/2) and sensitivity, Sens, are
+proportional to its supply voltage, VCC . The following formula is

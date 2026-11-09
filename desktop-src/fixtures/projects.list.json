@@ -1,0 +1,25 @@
+{
+ "ok": true,
+ "action": "project.list",
+ "summary": "1 bench project.",
+ "result": {
+  "projects": [
+   {
+    "id": "laser-trigger",
+    "title": "Laser trigger",
+    "chip": "esp32s3",
+    "variant": "n16r8",
+    "devkit": "esp32-s3-devkitc-1",
+    "rev": 12,
+    "updated": "2026-11-06T21:41:07Z",
+    "simulated": true
+   }
+  ]
+ },
+ "checks": [],
+ "warnings": [],
+ "assumptions": [],
+ "sources": [],
+ "simulated": false,
+ "error": null
+}

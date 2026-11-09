@@ -1,0 +1,101 @@
+{
+ "schema": 1,
+ "chip": "esp32s3",
+ "note": "ESP32-S3 Series Datasheet v2.2 (Espressif), chapter 5 Electrical Characteristics: Table 5-1 Absolute Maximum Ratings, Table 5-2, Table 5-4 DC Characteristics. 'evidence' quotes lines (a list = lines of one page, in order) of tests/corpus/excerpts/esp-esp32s3-dc.txt; 'page' is the 1-based PDF page. Relative values: rel = factor of VDD, rel_offset = VDD + offset; electrical.get() resolves them at VDD 3.3 V.",
+ "source_ids": [
+  "elec-ds-esp32s3"
+ ],
+ "vdd": {
+  "min": {
+   "value": 3.0,
+   "unit": "V",
+   "page": 64,
+   "evidence": "VDDA, VDD3P3 Recommended input voltage 3.0 3.3 3.6 V",
+   "conditions": "Table 5-2 Recommended Operating Conditions"
+  },
+  "max": {
+   "value": 3.6,
+   "unit": "V",
+   "page": 64,
+   "evidence": "VDDA, VDD3P3 Recommended input voltage 3.0 3.3 3.6 V",
+   "conditions": "Table 5-2 Recommended Operating Conditions"
+  },
+  "abs_max": {
+   "value": 3.6,
+   "unit": "V",
+   "page": 64,
+   "evidence": "Input power pins1 Allowed input voltage ⚶0.3 3.6 V",
+   "conditions": "Table 5-1 Absolute Maximum Ratings, allowed input voltage on the power pins (min -0.3 V)"
+  }
+ },
+ "io": {
+  "vih": {
+   "rel": 0.75,
+   "of": "VDD",
+   "unit": "V",
+   "page": 65,
+   "evidence": "VIH High-level input voltage 0.75 × VDD1 — VDD1 + 0.3 V",
+   "conditions": "DC Characteristics table (3.3 V, 25 °C); VDD = I/O voltage of the pin's power domain; Min column"
+  },
+  "vil": {
+   "rel": 0.25,
+   "of": "VDD",
+   "unit": "V",
+   "page": 65,
+   "evidence": "VIL Low-level input voltage ⚶0.3 — 0.25 × VDD1 V",
+   "conditions": "DC Characteristics table (3.3 V, 25 °C); VDD = I/O voltage of the pin's power domain; Max column (Min -0.3 V)"
+  },
+  "voh": {
+   "rel": 0.8,
+   "of": "VDD",
+   "unit": "V",
+   "page": 65,
+   "evidence": "VOH 2 High-level output voltage 0.8 × VDD1 — — V",
+   "conditions": "DC Characteristics table (3.3 V, 25 °C); VDD = I/O voltage of the pin's power domain; measured with a high-impedance load; Min column"
+  },
+  "vol": {
+   "rel": 0.1,
+   "of": "VDD",
+   "unit": "V",
+   "page": 65,
+   "evidence": "VOL 2 Low-level output voltage — — 0.1 × VDD1 V",
+   "conditions": "DC Characteristics table (3.3 V, 25 °C); VDD = I/O voltage of the pin's power domain; measured with a high-impedance load; Max column"
+  },
+  "v_in_max": {
+   "rel_offset": 0.3,
+   "of": "VDD",
+   "unit": "V",
+   "page": 65,
+   "evidence": "VIH High-level input voltage 0.75 × VDD1 — VDD1 + 0.3 V",
+   "conditions": "DC Characteristics table (3.3 V, 25 °C); VDD = I/O voltage of the pin's power domain; VIH Max column (VDD + 0.3 V)"
+  },
+  "ioh": {
+   "value": 0.04,
+   "unit": "A",
+   "page": 65,
+   "evidence": [
+    "High-level source current (VDD1 = 3.3 V,",
+    "VOH >= 2.64 V, PAD_DRIVER = 3) — 40 — mA"
+   ],
+   "conditions": "Typ column (no Min/Max in the datasheet); VDD = 3.3 V, VOH >= 2.64 V, maximum drive strength (PAD_DRIVER = 3); a capability figure, not a guaranteed limit"
+  },
+  "iol": {
+   "value": 0.028,
+   "unit": "A",
+   "page": 65,
+   "evidence": [
+    "Low-level sink current (VDD1 = 3.3 V, VOL =",
+    "0.495 V, PAD_DRIVER = 3) — 28 — mA"
+   ],
+   "conditions": "Typ column (no Min/Max in the datasheet); VDD = 3.3 V, VOL = 0.495 V, maximum drive strength (PAD_DRIVER = 3); a capability figure, not a guaranteed limit"
+  },
+  "i_out_total_max": {
+   "value": 1.5,
+   "unit": "A",
+   "page": 64,
+   "evidence": "Ioutput2 Cumulative IO output current — 1500 mA",
+   "conditions": "Table 5-1 Absolute Maximum Ratings, cumulative IO output current (all pins together)"
+  }
+ },
+ "conditions": "Table 5-4 DC Characteristics (3.3 V, 25 °C); VDD is the I/O voltage of the pin's power domain. IOH/IOL are typical values at maximum drive strength, not limits; the only current limit in the datasheet is the cumulative IO output current (absolute maximum)."
+}

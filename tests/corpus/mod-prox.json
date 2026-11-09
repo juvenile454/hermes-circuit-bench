@@ -1,0 +1,46 @@
+{
+ "files": [
+  {
+   "url": "https://web.archive.org/web/20260125042617id_/https://www.st.com/resource/en/datasheet/vl53l0x.pdf",
+   "path": "mod/prox/vl53l0x.pdf",
+   "source_id": "mod-prox-vl53l0x-ds",
+   "excerpt": "excerpts/mod-prox-vl53l0x.txt",
+   "sha256": "f0ae51414474d311bc24c60cd77bfff968ea5c2b3765b2fb2a390b3078dd49be"
+  },
+  {
+   "url": "https://web.archive.org/web/20260210224308id_/https://www.st.com/resource/en/datasheet/vl53l1x.pdf",
+   "path": "mod/prox/vl53l1x.pdf",
+   "source_id": "mod-prox-vl53l1x-ds",
+   "excerpt": "excerpts/mod-prox-vl53l1x.txt",
+   "sha256": "b7f4174afaff82a82b5af68746e2df6f946a0de6733608e376b320a8cee6034a"
+  },
+  {
+   "url": "https://www.vishay.com/docs/82491/tsop382.pdf",
+   "path": "mod/prox/tsop382.pdf",
+   "source_id": "mod-prox-tsop382-ds",
+   "excerpt": "excerpts/mod-prox-tsop38238.txt",
+   "sha256": "5f81c36aa02e9901e51c749d03aee75a23a29b8195b30bf1cba95f536c865074"
+  },
+  {
+   "url": "https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf",
+   "path": "mod/prox/HCSR04.pdf",
+   "source_id": "mod-prox-hcsr04-sheet",
+   "excerpt": "excerpts/mod-prox-hcsr04.txt",
+   "sha256": "4ebdc3e1f70d84a1ca856d8fcd7f8b1f9e548a94e4012cd86d14ca0b30543b06"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/drv5032.pdf",
+   "path": "mod/prox/drv5032.pdf",
+   "source_id": "mod-prox-drv5032-ds",
+   "excerpt": "excerpts/mod-prox-drv5032.txt",
+   "sha256": "0bdec04d64591bbb62c74f2e5d4dc10f21de5f76b0b0f12fca5c6a277037ceee"
+  },
+  {
+   "url": "https://www.tontek.com.tw/uploads/product/243/TTP223-BA6_V2.1_EN.pdf",
+   "path": "mod/prox/TTP223-BA6_V2.1_EN.pdf",
+   "source_id": "mod-prox-ttp223-ds",
+   "excerpt": "excerpts/mod-prox-ttp223.txt",
+   "sha256": "9b3adc3dcc42b9f5ce7bc36e406892c9a0134b88919d3e6fc1b8e1eb583ed9b8"
+  }
+ ]
+}

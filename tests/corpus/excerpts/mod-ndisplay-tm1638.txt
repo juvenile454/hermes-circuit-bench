@@ -1,0 +1,36 @@
+# source_id: mod-ndisplay-tm1638-ds
+# document: Titan Micro Electronics TM1638 LED drive control special circuit (Chinese), V2.2 (archived copy of the titanmec.com download)
+# url: https://web.archive.org/web/20241113181248id_/http://www.titanmec.com/index/article/download.html?file=aHR0cDovL3R3ZHotYXNzZXRzLmRqd2VpbGFpLmNvbS90d2R6X2NuLzIwMjMwNTA1LzIwMjMwNTA1MTUxODM0NzMxLnBkZg%3D%3D&name=TM1638_V2.2
+# corpus: mod/ndisplay/tm1638-v2.2-zh.pdf sha256 d05aee5120550d2c0e54f48a84bedd8339ad331e727fea1cf151efc187501a17
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+V2.2 
+➢ 串行接口（CLK，STB，DIO） 
+@@ page 2
+DIO 数据输出输入 26 
+输出时为N管开漏输出,外 部需要接1-10K
+Ω上拉电阻到VCC 
+CLK 时钟输入 27 在上升沿读取串行数据,下降沿输出数据。 
+STB 片选输入 28 
+理指令时,当前其它处理被终止。当STB为高
+VDD 逻辑电源 4、15 接电源正 
+GND 逻辑地 18、25 接系统地 
+▲ 注意：DIO口输出数据时为N管开漏输出，在读键的时候需要外接1K-10K的上拉电阻。本公司推荐10K的
+@@ page 13
+▲注意：   1、VDD、GND之间滤波电容在PCB板布线应尽量靠近TM1638芯片放置，加强滤波效果。 
+2、连接在DIO、CLK、STB通讯口上三个100P电容可以降低对通讯口的干扰。 
+@@ page 14
+逻辑电源电压 VDD -0.5 ～+7.0 V 
+逻辑输入电压 VI1 -0.5 ～ VDD + 0.5 V 
+LED Grid 驱动输出电流 IO2 +200 mA 
+功率损耗 PD 400 mW 
+2、正常工作范围（Vss = 0 V） 
+逻辑电源电压 VDD 3 5 6 V - 
+高电平输入电压 VIH 0.7 VDD - VDD V - 
+低电平输入电压 VIL 0 - 0.3 VDD V - 
+3、电气特性（VDD = 4.5 ～ 5.5 V， Vss = 0 V 
+@@ page 15
+动态电流损耗 IDDdyn - - 5 mA 无负载，显示关 
+4、开关特性（VDD = 4.5 ～ 5.5 V） 
+最大时钟频率 Fmax - - 1 MHz 占空比50% 

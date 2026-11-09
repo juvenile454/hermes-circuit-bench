@@ -1,0 +1,46 @@
+{
+ "files": [
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/ads1115.pdf",
+   "path": "mod/adc/ads1115.pdf",
+   "source_id": "mod-adc-ads1115-ds",
+   "excerpt": "excerpts/mod-adc-ads1115.txt",
+   "sha256": "eefff4d412ce2dcd7e659f47238edc9b2fa02e5971f2625af730502033701834"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/ads1015.pdf",
+   "path": "mod/adc/ads1015.pdf",
+   "source_id": "mod-adc-ads1015-ds",
+   "excerpt": "excerpts/mod-adc-ads1015.txt",
+   "sha256": "4617aa3843b16d23264f5eff63b90b1afffefff7af97ae29f0eb8c5a153156d4"
+  },
+  {
+   "url": "https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/MCP3004-MCP3008-Data-Sheet-DS20001295.pdf",
+   "path": "mod/adc/MCP3004-MCP3008-Data-Sheet-DS20001295.pdf",
+   "source_id": "mod-adc-mcp3008-ds",
+   "excerpt": "excerpts/mod-adc-mcp3008.txt",
+   "sha256": "26a503d76279cc10e40cfc36e80bb87fd33d0de80093d1bdcc4dc29435b10f72"
+  },
+  {
+   "url": "https://ww1.microchip.com/downloads/en/devicedoc/22039d.pdf",
+   "path": "mod/adc/22039d.pdf",
+   "source_id": "mod-adc-mcp4725-ds",
+   "excerpt": "excerpts/mod-adc-mcp4725.txt",
+   "sha256": "746d95dfdaaf0a9da4698e2c0a201ac2736d8589a752ab0dcd903f4a1603077d"
+  },
+  {
+   "url": "https://cache.nxp.com/docs/en/data-sheet/PCF8591.pdf",
+   "path": "mod/adc/PCF8591.pdf",
+   "source_id": "mod-adc-pcf8591-ds",
+   "excerpt": "excerpts/mod-adc-pcf8591.txt",
+   "sha256": "b89feb48ffdbebfe802065da8c56762760c54db06c26117be1bf3fcd50462aee"
+  },
+  {
+   "url": "https://cdn.sparkfun.com/datasheets/Sensors/ForceFlex/hx711_english.pdf",
+   "path": "mod/adc/hx711_english.pdf",
+   "source_id": "mod-adc-hx711-ds",
+   "excerpt": "excerpts/mod-adc-hx711.txt",
+   "sha256": "6050e88a5e938ff9ac3292bfbc9fea2afa0ca73d1a649d5398ae8de5ab7c017e"
+  }
+ ]
+}

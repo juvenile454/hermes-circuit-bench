@@ -1,0 +1,66 @@
+[
+  {
+    "id": "mod-switch-pc817-ds",
+    "title": "Sharp PC817XxNSZ1B Series DIP 4pin Photocoupler, data sheet",
+    "url": "https://global.sharp/products/device/lineup/data/pdf/datasheet/PC817XxNSZ1B_e.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Sheet No. OP18002EN, Jan. 15, 2018; pages 1, 2, 4, 9; page 4 sets '=' and '–' as private-use symbol glyphs (U+F03D, U+F02D, quoted around them); sha256 04c5dfe12e1140687ec47236af43378758d2b84e2195cdf498cba06646b672f2"
+  },
+  {
+    "id": "mod-switch-6n137-ds",
+    "title": "Vishay 6N137, VO2601, VO2611, VO2630, VO2631, VO4661 High Speed Optocoupler, Single and Dual, 10 MBd",
+    "url": "https://www.vishay.com/docs/84732/6n137.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Document Number 84732, Rev. 2.2, 15-Mar-2023; pages 1-4; the pypdf text layer spaces some table digits oddly (e.g. 'I FH 51 5 m A' = IFH 5 / 15 mA): such values carry a 'conditions' note; sha256 e838b59beab53ddad0fedf094df8bd32fc35297fda7d500fd24ddd188924f6d2"
+  },
+  {
+    "id": "mod-switch-srd-ds",
+    "title": "Songle SRD Series 7A/10A/15A Subminiature High Power Relay, data sheet (archived)",
+    "url": "https://web.archive.org/web/20240210050919id_/http://www.songlerelay.com/Public/Uploads/20161104/581c81ac16e36.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A1",
+    "note": "Ningbo Songle Relay file of 2016-11-04 from songlerelay.com, Wayback snapshot 2024-02-10; page 1 (text layer; the coil table is split into columns, values follow the column headers in row order 05, 06, 09 …); the current file songlerelay.com/upload/8670/srd-t73-relay-290486.pdf has no text layer for its tables; sha256 900ec995acaf29fea0b8e9496c3e76423a32515e93155101fbad47170f0f2743"
+  },
+  {
+    "id": "mod-switch-g5le-ds",
+    "title": "Omron G5LE PCB Power Relay, data sheet (archived)",
+    "url": "https://web.archive.org/web/20171013023109id_/https://omronfs.omron.com/en_US/ecb/products/pdf/en-g5le.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A1",
+    "note": "Omron en-g5le.pdf, Wayback snapshot 2017-10-13 (this edition has the coil table in its text layer; the current K100-E1-08 edition does not); pages 1, 2; sha256 8ba6b56408710348799925aab5d2975ef76c5c07b79d4cf47d237771566d0e4b"
+  },
+  {
+    "id": "mod-switch-relay-precautions",
+    "title": "Omron Safety Precautions for All Relays",
+    "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/precautions_pcb.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Omron 'PCB Relays Common Precautions' file referenced by the G5LE data sheet, 19 pages; pages 1, 8, 9 (coil surge absorption with a diode); sha256 abd9df6258105f9445a2ab556b199d03a8e3e42995bbdc9e39fb1799bc9c3ab9"
+  },
+  {
+    "id": "mod-switch-1n4148-ds",
+    "title": "Vishay 1N4148 Small Signal Fast Switching Diode",
+    "url": "https://www.vishay.com/docs/81857/1n4148.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Document Number 81857, Rev. 1.6, 07-Nov-2024; pages 1, 2; sha256 aefe85400a427ed886a4e1c88205ceabb9f9b38044b29c6acee4bb00146a44b7"
+  },
+  {
+    "id": "mod-switch-1n4007-ds",
+    "title": "Vishay 1N4001 thru 1N4007 General Purpose Plastic Rectifier",
+    "url": "https://www.vishay.com/docs/88503/1n4001.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Document Number 88503, Revision 29-Apr-2020; pages 1, 2 (1N4007 = last column); sha256 56a77c6615c90c11993d37d94e67f335cf3a2d1fe00f25d2a1a4833834356d07"
+  },
+  {
+    "id": "mod-switch-1n5819-ds",
+    "title": "Vishay 1N5817, 1N5818, 1N5819 Schottky Barrier Plastic Rectifier",
+    "url": "https://www.vishay.com/docs/88525/1n5817.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Document Number 88525, Revision 01-Jul-2020; page 1 (1N5819 = last column); sha256 4465c825da3be36cc8a180c252d5d80e7651d9dc237cd3d09822a759f39c970b"
+  }
+]

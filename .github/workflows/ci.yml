@@ -1,0 +1,172 @@
+# CI for hermes-circuit-bench. On every push and pull request:
+# - python (Linux): ruff, pytest on Python 3.11 and 3.14, pytest with the lowest declared dependency versions, and
+#   the citation tests against the pinned corpus (scripts/fetch_corpus.py);
+# - node (Linux): node --test and the desktop build check;
+# - hermes (Linux): per Hermes Agent release in the matrix, a locked source checkout of that release,
+#   `hermes plugins validate circuit_bench --install-deps` and the simulated build/flash/crash chain
+#   (scripts/sim_probe.py --fast);
+# - macos: pytest on Python 3.11, node --test, the desktop build check and the hermes steps for the newest release;
+#   on every push and pull request in a public repository. In a private copy, where macOS minutes are billed at a
+#   higher rate, only on main, on tags, on a manual run and for a commit whose message contains [macos].
+# Development packages = DEV_DEPS in scripts/dev_deps.sh (tests/test_p0_ci.py keeps both in step). No hardware:
+# CIRCUIT_BENCH_HW=off, only simulated sim:// ports. Network only for packages, the corpus and the Hermes checkout.
+# Third-party actions are pinned to a full commit SHA (the comment names the release); each Hermes checkout is
+# compared with the commit SHA of its release tag, so a moved tag fails the job.
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DEV_DEPS: "pytest>=8,<10 httpx>=0.27,<1 fastapi>=0.115,<1 pyyaml>=6,<7 pypdf>=6.21.4,<7 cryptography>=42,<47 ruff>=0.8,<1"
+  CIRCUIT_BENCH_HW: "off"
+
+jobs:
+  python:
+    name: pytest (Python ${{ matrix.python }}${{ matrix.lowest && ', lowest-direct' || '' }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python: "3.11"
+            lowest: false
+          - python: "3.14"
+            lowest: false
+          - python: "3.11"
+            lowest: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2  # v10.3.3
+      - name: venv
+        run: |
+          uv venv -p ${{ matrix.python }} .venv
+          uv pip install --python .venv/bin/python ${{ matrix.lowest && '--resolution lowest-direct' || '' }} -r circuit_bench/pyproject.toml $DEV_DEPS
+      - name: Cache corpus
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9  # v6.1.0
+        with:
+          path: tests/.corpus
+          key: corpus-${{ hashFiles('tests/corpus/*.json') }}
+          restore-keys: corpus-
+      - name: Fetch corpus
+        timeout-minutes: 12
+        run: .venv/bin/python scripts/fetch_corpus.py
+      - name: ruff
+        if: ${{ !matrix.lowest && matrix.python == '3.11' }}
+        run: .venv/bin/ruff check --no-cache .
+      - name: pytest
+        run: .venv/bin/python -m pytest tests
+
+  node:
+    name: desktop (node 22)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38  # v6.5.0
+        with:
+          node-version: "22"
+      - run: node --test tests-js/*.mjs
+      - run: node scripts/build-desktop.mjs --check
+
+  macos:
+    name: macOS (pytest Python 3.11, node 22, Hermes v0.23.0)
+    if: >-
+      github.event.repository.private == false || github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/') ||
+      github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[macos]')
+    runs-on: macos-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2  # v10.3.3
+      - name: venv
+        # .venv/bin goes first on PATH: the fake CLIs in tests/fakes/bin start with `#!/usr/bin/env python3`
+        run: |
+          uv venv -p 3.11 .venv
+          uv pip install --python .venv/bin/python -r circuit_bench/pyproject.toml $DEV_DEPS
+          echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
+      - name: Cache corpus
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9  # v6.1.0
+        with:
+          path: tests/.corpus
+          key: corpus-${{ hashFiles('tests/corpus/*.json') }}
+          restore-keys: corpus-
+      - name: Fetch corpus
+        timeout-minutes: 12
+        run: .venv/bin/python scripts/fetch_corpus.py
+      - name: pytest
+        # -rs lists every skip with its reason (Linux-only pseudo-terminal tests skip themselves on macOS)
+        run: .venv/bin/python -m pytest -rs tests
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38  # v6.5.0
+        with:
+          node-version: "22"
+      - run: node --test tests-js/*.mjs
+      - run: node scripts/build-desktop.mjs --check
+      - name: Hermes v0.23.0 (uv sync --locked)
+        run: |
+          git clone --depth 1 --branch v0.23.0 -c advice.detachedHead=false \
+            https://github.com/NousResearch/hermes-agent "$RUNNER_TEMP/hermes-agent"
+          test "$(git -C "$RUNNER_TEMP/hermes-agent" rev-parse HEAD)" = 2bd378ed1b8d6bf2192cb26e0a55ff3091e6bd19
+          cd "$RUNNER_TEMP/hermes-agent" && uv sync --locked --python 3.14
+      - name: plugins validate --install-deps (Hermes v0.23.0)
+        # same as the hermes job: temporary HOME and HERMES_HOME
+        run: |
+          set -o pipefail
+          export HOME="$RUNNER_TEMP/home" HERMES_HOME="$RUNNER_TEMP/hhome"
+          mkdir -p "$HOME" "$HERMES_HOME"
+          "$RUNNER_TEMP/hermes-agent/.venv/bin/hermes" plugins validate circuit_bench --install-deps 2>&1 \
+            | tee "$RUNNER_TEMP/validate.log"
+          grep -q 'Validation passed' "$RUNNER_TEMP/validate.log"
+      - name: sim_probe --fast
+        # the job's own .venv (Python 3.11, plugin dependencies); simulated port only
+        run: .venv/bin/python scripts/sim_probe.py --fast
+
+  hermes:
+    # A locked source checkout of the release: `uv pip install git+...@<tag>` cannot work (the release's setup.py
+    # refuses wheel builds, and its requirements resolve only with the [tool.uv] overrides that project mode applies).
+    name: Hermes ${{ matrix.hermes }} (plugins validate, sim_probe)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        hermes: [v0.22.5, v0.23.0]
+        include:
+          - hermes: v0.22.5
+            sha: bf0203a794a07aac3ff764972ab9087baa4e4f4e
+          - hermes: v0.23.0
+            sha: 2bd378ed1b8d6bf2192cb26e0a55ff3091e6bd19
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2  # v10.3.3
+        with:
+          cache-suffix: hermes-${{ matrix.hermes }}
+      - name: Hermes ${{ matrix.hermes }} (uv sync --locked)
+        run: |
+          git clone --depth 1 --branch "${{ matrix.hermes }}" -c advice.detachedHead=false \
+            https://github.com/NousResearch/hermes-agent "$RUNNER_TEMP/hermes-agent"
+          test "$(git -C "$RUNNER_TEMP/hermes-agent" rev-parse HEAD)" = "${{ matrix.sha }}"
+          cd "$RUNNER_TEMP/hermes-agent" && uv sync --locked --python 3.14
+      - name: plugins validate --install-deps
+        # HOME is temporary as well: the package manager keys its install root on HOME, so a temporary HERMES_HOME
+        # alone would still put the new dependency environment under ~/.hermes/installs
+        run: |
+          set -o pipefail
+          export HOME="$RUNNER_TEMP/home" HERMES_HOME="$RUNNER_TEMP/hhome"
+          mkdir -p "$HOME" "$HERMES_HOME"
+          "$RUNNER_TEMP/hermes-agent/.venv/bin/hermes" plugins validate circuit_bench --install-deps 2>&1 \
+            | tee "$RUNNER_TEMP/validate.log"
+          grep -q 'Validation passed' "$RUNNER_TEMP/validate.log"
+      - name: sim_probe --fast
+        # Hermes' venv already carries pyserial and schemdraw; simulated port only
+        run: '"$RUNNER_TEMP/hermes-agent/.venv/bin/python" scripts/sim_probe.py --fast'

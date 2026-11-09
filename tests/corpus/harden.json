@@ -1,0 +1,11 @@
+{
+ "note": "Corpus of the hardening rules. ESP-IDF tag v6.1 = commit fff9895c82d744c7237be8847347bdd1b07c6643. The I2C quotes for the shared-bus rule come from NXP UM10204, already pinned in calc.json (excerpt calc-nxp-um10204.txt, pages 3 and 4).",
+ "files": [
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/spi_master.rst",
+   "path": "esp-idf/v6.1/docs/en/api-reference/peripherals/spi_master.rst",
+   "source_id": "idf-v6.1-spi-master",
+   "sha256": "1f50c25b83cb90f52fe8531ee832336d0674ec8c13a2b6ccfae206a97ec361eb"
+  }
+ ]
+}

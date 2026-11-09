@@ -1,0 +1,31 @@
+# source_id: mod-env-sht31-ds
+# document: Sensirion Datasheet SHT3x-DIS, Humidity and Temperature Sensor, Version 7 (December 2022)
+# url: https://sensirion.com/media/documents/213E6A3B/63A5A569/Datasheet_SHT3x_DIS.pdf
+# corpus: mod/env/Datasheet_SHT3x_DIS.pdf sha256 095b1853e7f4328f5897c9ca6c392a7dd8b0202eda66b0a2629f9cb840dd496d
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 6
+Supply voltage VDD  2.15 3.3 5.5 V  
+idle state 
+(single shot mode) 
+- 0.2 2.0 
+Measuring 
+- 600 1500 A 
+Heater power  PHeater Heater running 3.6 - 33 mW Depending on the supply voltage 
+@@ page 7
+Supply voltage VDD  -0.3 to 6 V 
+Max Voltage on pins (pin 1 (SDA); pin 2 (ADDR); pin 3 (ALERT); pin 4 (SCL); pin 6 
+-0.3 to VDD+0.3 V 
+@@ page 8
+with a 100 nF capacitor that shall be placed as close to 
+pull-up resistors (e.g. Rp=10 kΩ) are required to pull the 
+@@ page 9
+The ADDR pin must not be left floating. Please note that 
+I2C address A 0x44 (default) 
+I2C address B 0x45 
+up resistor of R = 50 kΩ (typ.).  
+@@ page 14
+SCL clock frequency fSCL  0 - 1000 kHz  
+Low level input voltage VIL  0 - 0.3xVDD V  
+High level input voltage VIH  0.7xVDD - 1xVDD V  
+Low level output voltage VOL 3 mA sink current - - 0.4 V  

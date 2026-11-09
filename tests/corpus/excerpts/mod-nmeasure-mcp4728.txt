@@ -1,0 +1,45 @@
+# source_id: mod-nmeasure-mcp4728-ds
+# document: Microchip MCP4728 12-Bit, Quad Digital-to-Analog Converter with EEPROM Memory, DS22187E (2010)
+# url: https://ww1.microchip.com/downloads/en/DeviceDoc/22187E.pdf
+# corpus: mod/nmeasure/22187E.pdf sha256 7e6515c45a02ffe4ad7506f3347cce7714cdd56659ff2fb22b858fc0472f381e
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+0.000V to 2.048V with Gain Setting = 1
+0.000V to 4.096V with Gain Setting = 2
+• Single-Supply Operation: 2.7V to 5.5V
+@@ page 3
+VDD...................................................................................6.5V
+All inputs and outputs w.r.t VSS ................. -0.3V to VDD+0.3V
+Operating Voltage V DD 2.7 5.5 V 
+IDD_EXT — 800 1400 µA V REF =V DD, VDD =5 . 5 V
+IPD_EXT — 40 — nA All 4 channels are powered down.
+@@ page 4
+Internal Voltage Reference V REF 2.007 2.048 2.089     V 
+@@ page 6
+Output Low Voltage V OL — — 0.4 V I OL =3m A  
+VIL —— 0 . 3 V DD V V DD >2 . 7 V .  
+VIH 0.7V DD — — V SDA, SCL, LDAC  pins 
+@@ page 8
+Clock Frequency f SCL 0 — 100 kHz Standard Mode
+0 — 400 kHz Fast Mode
+0 — 3.4 MHz High Speed Mode 3.4
+Cb = 100 pF, 4.5V – 5.5V
+@@ page 21
+capacitor of about 0.1 µF (ceramic) to ground. An
+additional 10 µF capacitor (tantalum) in parallel is also
+The SCL pin is an open-drain N-channel driver.
+Therefore, it needs a pull-up resistor from the V DD line
+to the SCL pin. 
+resistor (about 100 kΩ) is needed from RDY/BSY pin to VDD line. (Note 1)
+Note 1: This pin needs an external pull-up resistor from VDD line. Leave this pin float if it is not used.
+@@ page 22
+If this pin is permanently tied to “Low”, the content of
+the input register is transferred to its output register
+@@ page 30
+which is set to 1100 for the MCP4728 device. The
+device code is followed by three I 2C address bits (A2,
+A1, A0) which are programmable by the users.
+there is no user’s request, the factory default setting of
+the three address bits is “000”, programmed into the
+EEPROM. The three address bits allow eight unique

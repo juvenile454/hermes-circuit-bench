@@ -1,0 +1,16 @@
+# source_id: mod-switch-1n5819-ds
+# document: Vishay 1N5817, 1N5818, 1N5819 Schottky Barrier Plastic Rectifier, Document Number 88525, Revision 01-Jul-2020
+# url: https://www.vishay.com/docs/88525/1n5817.pdf
+# corpus: mod/switch/vishay-1n5817.pdf sha256 4465c825da3be36cc8a180c252d5d80e7651d9dc237cd3d09822a759f39c970b
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Polarity: color band denotes the cathode end
+PARAMETER SYMBOL 1N5817 1N5818 1N5819 UNIT
+Maximum repetitive peak reverse voltage V RRM 20 30 40 V
+at 0.375" (9.5 mm) lead length at TL = 90 °C IF(AV) 1.0 A
+sine-wave superimposed on rated load IFSM 25 A
+PARAMETER TEST CONDITIONS SYMBOL 1N5817 1N5818 1N5819 UNIT 
+Maximum instantaneous forward voltage 1.0 V F (1) 0.450 0.550 0.600 V 
+Maximum instantaneous forward voltage 3.1 V F (1) 0.750 0.875 0.900 V 
+TA = 25 °C IR (1) 1.0 mATA = 100 °C 10

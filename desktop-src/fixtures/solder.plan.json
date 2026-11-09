@@ -1,0 +1,249 @@
+{
+ "ok": true,
+ "action": "solder.plan",
+ "summary": "5 solder steps for 8 parts: resistors, transistor, electrolytic capacitor, switch, connector; danger at C1, J2.",
+ "result": {
+  "steps": [
+   {
+    "id": "73070adaa5",
+    "n": 1,
+    "refs": [
+     "R1",
+     "R2",
+     "R3",
+     "R4"
+    ],
+    "kind": "resistor",
+    "action": "Solder the resistors R1 (1 kΩ), R2 (10 kΩ), R3 (100 kΩ), R4 (100 kΩ) flat on the board.",
+    "hints": [
+     {
+      "code": "low_profile_first",
+      "severity": "info",
+      "text": "Low parts early, so the board lies flat while you solder (rule of thumb).",
+      "source_ids": [
+       "rule-of-thumb"
+      ]
+     },
+     {
+      "code": "orientation",
+      "severity": "info",
+      "text": "Point the colour bands the same way; that makes checking the values easier (rule of thumb).",
+      "source_ids": [
+       "rule-of-thumb"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "b1b88029d5",
+    "n": 2,
+    "refs": [
+     "Q1"
+    ],
+    "kind": "transistor",
+    "action": "Solder the transistor Q1 (2N2222A); match each pin to its pad.",
+    "hints": [
+     {
+      "code": "pinout",
+      "severity": "caution",
+      "text": "Pinout from the datasheet, do not guess: in the same TO-92 case the onsemi PN2222 is pin 1-2-3 = E-B-C, the onsemi P2N2222A is C-B-E.",
+      "source_ids": [
+       "solder-onsemi-pn2222",
+       "solder-onsemi-p2n2222a"
+      ]
+     },
+     {
+      "code": "heat_sensitive",
+      "severity": "caution",
+      "text": "Keep each joint short and let the part cool before the next joint (rule of thumb).",
+      "source_ids": [
+       "rule-of-thumb"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "49a4dd4e87",
+    "n": 3,
+    "refs": [
+     "C1"
+    ],
+    "kind": "electrolytic",
+    "action": "Solder the electrolytic capacitor C1 (10 µF 16 V); the stripe on the sleeve marks minus.",
+    "hints": [
+     {
+      "code": "polarity",
+      "severity": "danger",
+      "text": "Polarised: reverse voltage can open the pressure relief vent (Nichicon). The stripe on the sleeve marks the negative lead (Rubycon). Confirm the polarity before soldering.",
+      "source_ids": [
+       "solder-nichicon-al-guidelines",
+       "solder-nichicon-al-technical-notes",
+       "solder-rubycon-zlj-spec"
+      ]
+     },
+     {
+      "code": "heat_sensitive",
+      "severity": "caution",
+      "text": "The iron must not touch the capacitor body (Nichicon).",
+      "source_ids": [
+       "solder-nichicon-al-guidelines"
+      ]
+     },
+     {
+      "code": "mechanical",
+      "severity": "info",
+      "text": "Do not tilt, lay down or twist the body once it is soldered (Nichicon).",
+      "source_ids": [
+       "solder-nichicon-al-guidelines"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "280a914e68",
+    "n": 4,
+    "refs": [
+     "SW1"
+    ],
+    "kind": "switch",
+    "action": "Solder the switch SW1 (push button).",
+    "hints": [
+     {
+      "code": "mechanical",
+      "severity": "info",
+      "text": "Press the switch flat onto the board while you solder the first pin (rule of thumb).",
+      "source_ids": [
+       "rule-of-thumb"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "4d1fded98e",
+    "n": 5,
+    "refs": [
+     "J2"
+    ],
+    "kind": "connector",
+    "action": "Solder the connector J2 (laser module).",
+    "hints": [
+     {
+      "code": "laser_safety",
+      "severity": "danger",
+      "text": "J2: laser. Never look into the beam and never aim it at anyone (FDA). Keep the laser unplugged while you solder (rule of thumb).",
+      "source_ids": [
+       "solder-fda-laser-faq",
+       "rule-of-thumb"
+      ]
+     },
+     {
+      "code": "mechanical",
+      "severity": "info",
+      "text": "Solder one pin, check the alignment, then solder the rest (rule of thumb).",
+      "source_ids": [
+       "rule-of-thumb"
+      ]
+     }
+    ]
+   }
+  ],
+  "parts_total": 8,
+  "unknown_parts": [],
+  "unclear_parts": []
+ },
+ "checks": [],
+ "warnings": [
+  {
+   "code": "polarity",
+   "severity": "danger",
+   "message": "C1: Polarised: reverse voltage can open the pressure relief vent (Nichicon). The stripe on the sleeve marks the negative lead (Rubycon). Confirm the polarity before soldering.",
+   "source_ids": [
+    "solder-nichicon-al-guidelines",
+    "solder-nichicon-al-technical-notes",
+    "solder-rubycon-zlj-spec"
+   ]
+  },
+  {
+   "code": "laser_safety",
+   "severity": "danger",
+   "message": "J2: laser. Never look into the beam and never aim it at anyone (FDA). Keep the laser unplugged while you solder (rule of thumb).",
+   "source_ids": [
+    "solder-fda-laser-faq",
+    "rule-of-thumb"
+   ]
+  },
+  {
+   "code": "polarity",
+   "severity": "caution",
+   "message": "Orientation matters for Q1 (transistor); check each mark before soldering.",
+   "source_ids": [
+    "solder-onsemi-pn2222",
+    "solder-onsemi-p2n2222a"
+   ]
+  }
+ ],
+ "assumptions": [
+  {
+   "key": "order",
+   "value": "mechanical parts last; low before tall; robust before heat-sensitive",
+   "reason": "practice rule, not a standard (rule-of-thumb)"
+  },
+  {
+   "key": "soldering_temperature",
+   "value": "not given",
+   "reason": "no iron temperature without the datasheets of your solder and parts; use their values"
+  },
+  {
+   "key": "rated_voltage",
+   "value": "C1: above its rail, with margin",
+   "reason": "not in the BOM; over-voltage can vent it (Nichicon); the margin is a rule of thumb (datasheet)"
+  }
+ ],
+ "sources": [
+  {
+   "id": "rule-of-thumb",
+   "title": "Practice rule, not a standard",
+   "url": null,
+   "retrieved": "2026-11-05",
+   "note": "Shown for engineering judgement only; check the datasheet of your parts."
+  },
+  {
+   "id": "solder-onsemi-pn2222",
+   "title": "onsemi, PN2222 NPN Epitaxial Silicon Transistor, data sheet PN2222T/D Rev. 4 (June 2024)",
+   "url": "https://www.onsemi.com/pdf/datasheet/pn2222t-d.pdf",
+   "retrieved": "2026-11-06"
+  },
+  {
+   "id": "solder-onsemi-p2n2222a",
+   "title": "onsemi, P2N2222A Amplifier Transistors NPN Silicon, data sheet P2N2222A/D Rev. 7 (January 2013)",
+   "url": "https://www.onsemi.com/pdf/datasheet/p2n2222a-d.pdf",
+   "retrieved": "2026-11-06"
+  },
+  {
+   "id": "solder-nichicon-al-guidelines",
+   "title": "Nichicon, Application Guidelines for Aluminum Electrolytic Capacitors (CAT.8100Z-2)",
+   "url": "https://www.nichicon.co.jp/english/products/pdf/e-al_gui.pdf",
+   "retrieved": "2026-11-06"
+  },
+  {
+   "id": "solder-nichicon-al-technical-notes",
+   "title": "Nichicon, General Descriptions of Aluminum Electrolytic Capacitors, Technical Notes (CAT.8101H)",
+   "url": "https://www.nichicon.co.jp/english/products/pdf/aluminum.pdf",
+   "retrieved": "2026-11-06"
+  },
+  {
+   "id": "solder-rubycon-zlj-spec",
+   "title": "Rubycon, Specification Sheet 50 ZLJ 560 M 12.5X20 (Drawing No. RER-215026, 08 May 2023), 4. Marking",
+   "url": "https://media.digikey.com/pdf/Data%20Sheets/Rubycon%20PDFs/50ZLJ560M12.5X20.pdf",
+   "retrieved": "2026-11-06"
+  },
+  {
+   "id": "solder-fda-laser-faq",
+   "title": "U.S. FDA, Frequently Asked Questions About Lasers",
+   "url": "https://www.fda.gov/radiation-emitting-products/laser-products-and-instruments/frequently-asked-questions-about-lasers",
+   "retrieved": "2026-11-06"
+  }
+ ],
+ "simulated": false,
+ "error": null
+}

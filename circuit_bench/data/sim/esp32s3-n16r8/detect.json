@@ -1,0 +1,39 @@
+{
+ "_about": "Simulated board.detect answer of sim://esp32s3-n16r8 (synthetic; esptool v5.6.0 output format, MAC is the placeholder aa:bb:cc:dd:ee:ff).",
+ "mac": "aa:bb:cc:dd:ee:ff",
+ "chip": "ESP32-S3 (QFN56) (revision v0.2)",
+ "description": "Simulated ESP32-S3 N16R8",
+ "features": [
+  "Wi-Fi",
+  "BT 5 (LE)",
+  "Dual Core + LP Core",
+  "240MHz",
+  "Embedded PSRAM 8MB (AP_3v3)"
+ ],
+ "flash_size": "16MB",
+ "variant_suggestion": "n16r8",
+ "chip_id": "esp32s3",
+ "crystal_mhz": 40,
+ "usb_mode": "USB-Serial/JTAG",
+ "base_mac": null,
+ "flash_type": "quad",
+ "psram_mb": 8,
+ "psram_vendor": "AP_3v3",
+ "embedded_flash_mb": null,
+ "port_kind": "sim",
+ "reset_happened": false,
+ "log_tail": [
+  "esptool v5.6.0",
+  "Connecting....",
+  "Detecting chip type... ESP32-S3",
+  "Connected to ESP32-S3 on {port}:",
+  "Chip type:          ESP32-S3 (QFN56) (revision v0.2)",
+  "Features:           Wi-Fi, BT 5 (LE), Dual Core + LP Core, 240MHz, Embedded PSRAM 8MB (AP_3v3)",
+  "Crystal frequency:  40MHz",
+  "USB mode:           USB-Serial/JTAG",
+  "MAC:                aa:bb:cc:dd:ee:ff",
+  "Detected flash size: 16MB",
+  "Flash type set in eFuse: quad (4 data lines)",
+  "Hard resetting via RTS pin... (simulated)"
+ ]
+}

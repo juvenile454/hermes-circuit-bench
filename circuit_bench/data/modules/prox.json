@@ -1,0 +1,1304 @@
+{
+ "schema": 1,
+ "wp": "prox",
+ "note": "Values only from manufacturer documents; 'evidence' quotes lines of tests/corpus/excerpts/mod-prox-*.txt (pypdf). HC-SR04 has no manufacturer document: class B, notes only.",
+ "modules": [
+  {
+   "id": "vl53l0x",
+   "aliases": [
+    "vl53-l0x",
+    "gy-530",
+    "gy530"
+   ],
+   "title": "VL53L0X time-of-flight ranging sensor (up to 2 m)",
+   "category": "sensor.distance",
+   "manufacturer": "STMicroelectronics",
+   "kind": "ic",
+   "source_ids": [
+    "mod-prox-vl53l0x-ds"
+   ],
+   "supplies": {
+    "AVDD": {
+     "min": {
+      "value": 2.6,
+      "unit": "V",
+      "page": 19,
+      "evidence": "Voltage (AVDD) 2.6 2.8 3.5"
+     },
+     "typ": {
+      "value": 2.8,
+      "unit": "V",
+      "page": 19,
+      "evidence": "Voltage (AVDD) 2.6 2.8 3.5"
+     },
+     "max": {
+      "value": 3.5,
+      "unit": "V",
+      "page": 19,
+      "evidence": "Voltage (AVDD) 2.6 2.8 3.5"
+     },
+     "abs_max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 19,
+      "evidence": [
+       "AVDD",
+       "-0.5 — 3.6 V"
+      ]
+     }
+    }
+   },
+   "io": {
+    "domain": "AVDD",
+    "vih": {
+     "value": 1.12,
+     "unit": "V",
+     "page": 20,
+     "evidence": [
+      "I²C interface (SDA/SCL)",
+      "VVIH High level input voltage 1.12 3.5"
+     ],
+     "conditions": "SDA/SCL (I²C); min value"
+    },
+    "vil": {
+     "value": 0.6,
+     "unit": "V",
+     "page": 20,
+     "evidence": [
+      "I²C interface (SDA/SCL)",
+      "VIL Low level input voltage -0.5",
+      "0.6"
+     ],
+     "conditions": "SDA/SCL (I²C); max value (next lines)"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 20,
+     "evidence": [
+      "Interrupt pin (GPIO1)",
+      "VOL Low level output voltage (IOUT = 4 mA) — 0.4"
+     ],
+     "conditions": "GPIO1, IOUT = 4 mA; SDA has the same 0.4 V max"
+    },
+    "v_in_max": {
+     "value": 3.6,
+     "unit": "V",
+     "page": 19,
+     "evidence": [
+      "-0.5 — 3.6 V",
+      "SCL, SDA, XSHUT, and GPIO1"
+     ],
+     "conditions": "absolute maximum; the table cell is shared by the AVDD row and the I/O row"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "AVDDVCSEL",
+     "signal": "supply",
+     "tie": "AVDD",
+     "note": "VCSEL supply, connect to the main supply"
+    },
+    {
+     "name": "AVSSVCSEL",
+     "signal": "gnd",
+     "tie": "GND"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd",
+     "tie": "GND"
+    },
+    {
+     "name": "GND2",
+     "signal": "gnd",
+     "tie": "GND"
+    },
+    {
+     "name": "XSHUT",
+     "signal": "reset_in",
+     "must_connect": true,
+     "active_low": true,
+     "note": "shutdown input, active low; must always be driven (p. 5): to an ESP output, or 10 kΩ pull-up to AVDD if the host does not control it"
+    },
+    {
+     "name": "GND3",
+     "signal": "gnd",
+     "tie": "GND"
+    },
+    {
+     "name": "GPIO1",
+     "signal": "open_drain_out",
+     "output": "open_drain",
+     "active_low": true,
+     "note": "interrupt output; leave unconnected if not used"
+    },
+    {
+     "name": "DNC",
+     "signal": "nc",
+     "note": "do not connect, leave floating"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda"
+    },
+    {
+     "name": "SCL",
+     "signal": "i2c_scl"
+    },
+    {
+     "name": "AVDD",
+     "signal": "supply"
+    },
+    {
+     "name": "GND4",
+     "signal": "gnd",
+     "tie": "GND"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "value": [
+       "0x29"
+      ],
+      "page": 15,
+      "evidence": [
+       "bus has a maximum speed of 400 kbits/s and uses a default device address of 0x52.",
+       "0x52) the message is a controller write-to-the-target. If the LSB is set (that is, 0x53) then the message is a"
+      ]
+     },
+     "default": "0x29",
+     "f_max_hz": {
+      "value": 400000,
+      "unit": "Hz",
+      "page": 15,
+      "evidence": "bus has a maximum speed of 400 kbits/s and uses a default device address of 0x52."
+     },
+     "note": "The datasheet gives the 8-bit address 0x52 (write) / 0x53 (read) = 7-bit 0x29. The address is programmable by software only: every sensor starts at 0x29, so several sensors on one bus need one XSHUT GPIO each (rule mod.prox.vl53_xshut)."
+    }
+   ],
+   "current": {
+    "supply": "AVDD",
+    "typ": {
+     "value": 0.019,
+     "unit": "A",
+     "page": 20,
+     "evidence": [
+      "Active ranging average consumption",
+      "(including VCSEL) (2) (3) — 19 —",
+      "mA"
+     ],
+     "conditions": "active ranging average, default API settings (33 ms timing budget), 2.8 V; unit mA"
+    },
+    "max": {
+     "value": 0.02,
+     "unit": "A",
+     "page": 20,
+     "evidence": [
+      "Average power consumption at 10 Hz",
+      "with 33 ms ranging sequence — — 20"
+     ],
+     "conditions": "average at 10 Hz with a 33 ms ranging sequence, 2.8 V; unit cell mA (shared with the row above)"
+    },
+    "peak": {
+     "value": 0.04,
+     "unit": "A",
+     "page": 20,
+     "evidence": "3. Peak current (including VCSEL) can reach 40 mA.",
+     "conditions": "AVDD + AVDDVCSEL"
+    },
+    "sleep": {
+     "value": 7e-06,
+     "unit": "A",
+     "page": 20,
+     "evidence": [
+      "HW STANDBY 3 5 7",
+      "μASW STANDBY"
+     ],
+     "conditions": "hardware standby (XSHUT low), max; unit µA"
+    }
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "AVDD",
+      "AVDDVCSEL"
+     ],
+     "to": "GND",
+     "page": 5,
+     "evidence": "100nF 4.7µF",
+     "note": "close to AVDDVCSEL/AVSSVCSEL (application schematic)"
+    },
+    {
+     "code": "bulk_cap",
+     "kind": "capacitor",
+     "value": "4.7uF",
+     "pins": [
+      "AVDD",
+      "AVDDVCSEL"
+     ],
+     "to": "GND",
+     "page": 5,
+     "evidence": "100nF 4.7µF"
+    },
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "to": "AVDD",
+     "page": 15,
+     "evidence": "Both SDA and SCL lines are connected to a positive supply voltage using pull-up resistors located on the host.",
+     "note": "ST recommends 1.5–2 kΩ for AVDD 2.8 V at 400 kHz (p. 5); size them with the I²C pull-up calculator"
+    }
+   ],
+   "hazards": [
+    {
+     "code": "laser",
+     "text": "Contains a 940 nm VCSEL laser emitter (Class 1 per IEC 60825-1, invisible). Do not look into the emitter through optics and do not modify or remove the cover.",
+     "page": 1,
+     "evidence": "Class 1 laser device compliant with latest standard IEC 60825-1:2014 - 3rd"
+    }
+   ],
+   "notes": [
+    {
+     "text": "XSHUT must always be driven (leakage otherwise); fit a 10 kΩ pull-up if the host state is not known. XSHUT high only while AVDD is on.",
+     "page": 5,
+     "evidence": [
+      "Note: The XSHUT pin must always be driven to avoid leakage current. A pull-up is needed if the host state is not",
+      "Note: The recommended value of the XSHUT and GPIO1 pull-ups is 10 kOhms."
+     ],
+     "verified": true
+    },
+    {
+     "text": "GPIO1 (interrupt) is open drain: 10 kΩ pull-up when used, else leave it unconnected.",
+     "page": 4,
+     "evidence": "7 GPIO1 Digital output Interrupt output. Open drain output",
+     "verified": true
+    },
+    {
+     "text": "I/O mode: SDA, SCL, XSHUT and GPIO1 high levels must equal AVDD in 2V8 mode; the driver starts in 1V8 mode and switches to 2V8 with its settings.",
+     "page": 19,
+     "evidence": [
+      "2. SDA, SCL, XSHUT, and GPIO1 high levels have to be equal to AVDD in 2V8 mode.",
+      "3. The default API mode is 1V8. 2V8 mode is programmable using the device settings loaded by the API. For more details"
+     ],
+     "verified": true
+    },
+    {
+     "text": "The I/Os are failsafe: no diode to AVDD, no power sequencing required.",
+     "page": 19,
+     "evidence": "applied. The I/Os are internally failsafe with no diode connecting them to AVDD.",
+     "verified": true
+    },
+    {
+     "text": "Breakouts (GY-530, Pololu, Adafruit, CJMCU) usually add a 2.8 V/3.3 V regulator, I²C level shifting and pull-ups, and often a pull-up on XSHUT to VIN; ST documents the bare sensor only. Wire the breakout's VIN/GND/SCL/SDA/XSHUT/GPIO1 to the matching chip pins.",
+     "verified": false
+    },
+    {
+     "text": "A programmed I²C address is lost on power cycle or XSHUT reset; firmware must re-address the sensors after every start (ST API, not in the datasheet).",
+     "verified": false
+    },
+    {
+     "text": "Pull-up values: 1.5 k to 2 kΩ for AVDD 2.8 V and 400 kHz.",
+     "page": 5,
+     "evidence": [
+      "once per bus, near the host. Recommended values for pull-up resistors for an AVDD of 2.8 V and a 400 kHz I²C",
+      "clock are 1.5 k to 2 kOhms"
+     ],
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "vl53l1x",
+   "aliases": [
+    "vl53-l1x",
+    "gy-vl53l1x"
+   ],
+   "title": "VL53L1X time-of-flight long-distance ranging sensor (up to 4 m)",
+   "category": "sensor.distance",
+   "manufacturer": "STMicroelectronics",
+   "kind": "ic",
+   "source_ids": [
+    "mod-prox-vl53l1x-ds"
+   ],
+   "supplies": {
+    "AVDD": {
+     "min": {
+      "value": 2.6,
+      "unit": "V",
+      "page": 18,
+      "evidence": "Voltage (AVDD) 2.6 2.8 3.5"
+     },
+     "typ": {
+      "value": 2.8,
+      "unit": "V",
+      "page": 18,
+      "evidence": "Voltage (AVDD) 2.6 2.8 3.5"
+     },
+     "max": {
+      "value": 3.5,
+      "unit": "V",
+      "page": 18,
+      "evidence": "Voltage (AVDD) 2.6 2.8 3.5"
+     },
+     "abs_max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 18,
+      "evidence": [
+       "AVDD",
+       "-0.5 — 3.6 V"
+      ]
+     }
+    }
+   },
+   "io": {
+    "domain": "AVDD",
+    "vih": {
+     "value": 1.12,
+     "unit": "V",
+     "page": 19,
+     "evidence": [
+      "I²C interface (SDA/SCL)",
+      "VVIH High level input voltage 1.12 3.5"
+     ],
+     "conditions": "SDA/SCL (I²C); min value"
+    },
+    "vil": {
+     "value": 0.6,
+     "unit": "V",
+     "page": 19,
+     "evidence": [
+      "I²C interface (SDA/SCL)",
+      "VIL Low level input voltage -0.5",
+      "0.6"
+     ],
+     "conditions": "SDA/SCL (I²C); max value (next lines)"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 19,
+     "evidence": [
+      "Interrupt pin (GPIO1)",
+      "VOL Low level output voltage (IOUT = 4 mA) — 0.4"
+     ],
+     "conditions": "GPIO1, IOUT = 4 mA; SDA has the same 0.4 V max"
+    },
+    "v_in_max": {
+     "value": 3.6,
+     "unit": "V",
+     "page": 18,
+     "evidence": [
+      "-0.5 — 3.6 V",
+      "SCL, SDA, XSHUT, and GPIO1"
+     ],
+     "conditions": "absolute maximum; the table cell is shared by the AVDD row and the I/O row"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "AVDDVCSEL",
+     "signal": "supply",
+     "tie": "AVDD",
+     "note": "VCSEL supply, connect to the main supply"
+    },
+    {
+     "name": "AVSSVCSEL",
+     "signal": "gnd",
+     "tie": "GND"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd",
+     "tie": "GND"
+    },
+    {
+     "name": "GND2",
+     "signal": "gnd",
+     "tie": "GND"
+    },
+    {
+     "name": "XSHUT",
+     "signal": "reset_in",
+     "must_connect": true,
+     "active_low": true,
+     "note": "shutdown input, active low; must always be driven (p. 6): to an ESP output, or 10 kΩ pull-up to AVDD if the host does not control it"
+    },
+    {
+     "name": "GND3",
+     "signal": "gnd",
+     "tie": "GND"
+    },
+    {
+     "name": "GPIO1",
+     "signal": "open_drain_out",
+     "output": "open_drain",
+     "active_low": true,
+     "note": "interrupt output; leave unconnected if not used"
+    },
+    {
+     "name": "DNC",
+     "signal": "nc",
+     "note": "do not connect, leave floating"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda"
+    },
+    {
+     "name": "SCL",
+     "signal": "i2c_scl"
+    },
+    {
+     "name": "AVDD",
+     "signal": "supply"
+    },
+    {
+     "name": "GND4",
+     "signal": "gnd",
+     "tie": "GND"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "value": [
+       "0x29"
+      ],
+      "page": 13,
+      "evidence": [
+       "bus on the VL53L1X has a maximum speed of 400 kbits/s and uses a default device address of 0x52.",
+       "0x52) the message is a controller write-to-the-target. If the LSB is set (that is, 0x53) then the message is a"
+      ]
+     },
+     "default": "0x29",
+     "f_max_hz": {
+      "value": 400000,
+      "unit": "Hz",
+      "page": 13,
+      "evidence": "bus on the VL53L1X has a maximum speed of 400 kbits/s and uses a default device address of 0x52."
+     },
+     "note": "The datasheet gives the 8-bit address 0x52 (write) / 0x53 (read) = 7-bit 0x29. The address is programmable by software only: every sensor starts at 0x29, so several sensors on one bus need one XSHUT GPIO each (rule mod.prox.vl53_xshut)."
+    }
+   ],
+   "current": {
+    "supply": "AVDD",
+    "typ": {
+     "value": 0.016,
+     "unit": "A",
+     "page": 19,
+     "evidence": [
+      "Ranging average (AVDD +",
+      "AVDDVCSEL) (2) (3) — 16 18 mA"
+     ],
+     "conditions": "average during ranging in long distance mode, 2.8 V"
+    },
+    "max": {
+     "value": 0.018,
+     "unit": "A",
+     "page": 19,
+     "evidence": [
+      "Ranging average (AVDD +",
+      "AVDDVCSEL) (2) (3) — 16 18 mA"
+     ],
+     "conditions": "average during ranging in long distance mode, 2.8 V"
+    },
+    "peak": {
+     "value": 0.04,
+     "unit": "A",
+     "page": 19,
+     "evidence": "3. Peak current (including VCSEL) can reach 40 mA.",
+     "conditions": "AVDD + AVDDVCSEL"
+    },
+    "sleep": {
+     "value": 7e-06,
+     "unit": "A",
+     "page": 19,
+     "evidence": [
+      "HW STANDBY 3 5 7",
+      "μASW STANDBY"
+     ],
+     "conditions": "hardware standby (XSHUT low), max; unit µA"
+    }
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "AVDD",
+      "AVDDVCSEL"
+     ],
+     "to": "GND",
+     "page": 6,
+     "evidence": "100nF 4.7µF",
+     "note": "close to AVDDVCSEL/AVSSVCSEL (application schematic)"
+    },
+    {
+     "code": "bulk_cap",
+     "kind": "capacitor",
+     "value": "4.7uF",
+     "pins": [
+      "AVDD",
+      "AVDDVCSEL"
+     ],
+     "to": "GND",
+     "page": 6,
+     "evidence": "100nF 4.7µF"
+    },
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "to": "AVDD",
+     "page": 13,
+     "evidence": "Both SDA and SCL lines are connected to a positive supply voltage using pull-up resistors located on the host.",
+     "note": "ST Table 4 (p. 6): 3.6 kΩ up to 90 pF, 2.4 kΩ up to 140 pF, 1.2 kΩ up to 270 pF, 0.8 kΩ up to 400 pF"
+    }
+   ],
+   "hazards": [
+    {
+     "code": "laser",
+     "text": "Contains a 940 nm VCSEL laser emitter (Class 1 per IEC 60825-1, invisible). Do not look into the emitter through optics and do not modify or remove the cover.",
+     "page": 1,
+     "evidence": "Class 1 laser device compliant with latest standard IEC 60825-1:2014 - 3rd"
+    }
+   ],
+   "notes": [
+    {
+     "text": "XSHUT must always be driven (leakage otherwise); fit a 10 kΩ pull-up if the host state is not known. XSHUT high only while AVDD is on.",
+     "page": 6,
+     "evidence": [
+      "Note: The XSHUT pin must always be driven to avoid leakage current. A pull-up is needed if the host state is not",
+      "Note: The recommended value of the XSHUT and GPIO1 pull-ups is 10 kOhms."
+     ],
+     "verified": true
+    },
+    {
+     "text": "GPIO1 (interrupt) is open drain: 10 kΩ pull-up when used, else leave it unconnected.",
+     "page": 5,
+     "evidence": "7 GPIO1 Digital output Interrupt output. Open drain output",
+     "verified": true
+    },
+    {
+     "text": "I/O mode: SDA, SCL, XSHUT and GPIO1 high levels must equal AVDD in 2V8 mode; the driver starts in 1V8 mode and switches to 2V8 with its settings.",
+     "page": 18,
+     "evidence": [
+      "2. SDA, SCL, XSHUT, and GPIO1 high levels have to be equal to AVDD in 2V8 mode.",
+      "3. The default driver mode is 1V8. 2V8 mode is programmable using the device settings loaded by the driver. For more details,"
+     ],
+     "verified": true
+    },
+    {
+     "text": "The I/Os are failsafe: no diode to AVDD, no power sequencing required.",
+     "page": 18,
+     "evidence": "are internally failsafe with no diode connecting them to AVDD.",
+     "verified": true
+    },
+    {
+     "text": "Breakouts (GY-530, Pololu, Adafruit, CJMCU) usually add a 2.8 V/3.3 V regulator, I²C level shifting and pull-ups, and often a pull-up on XSHUT to VIN; ST documents the bare sensor only. Wire the breakout's VIN/GND/SCL/SDA/XSHUT/GPIO1 to the matching chip pins.",
+     "verified": false
+    },
+    {
+     "text": "A programmed I²C address is lost on power cycle or XSHUT reset; firmware must re-address the sensors after every start (ST API, not in the datasheet).",
+     "verified": false
+    },
+    {
+     "text": "Pull-up values for AVDD 1.8–2.8 V at 400 kHz: 3.6 kΩ (CL ≤ 90 pF), 2.4 kΩ (≤ 140 pF), 1.2 kΩ (≤ 270 pF), 0.8 kΩ (≤ 400 pF).",
+     "page": 6,
+     "evidence": [
+      "Table 4. Suggested pull-up and series resistors for I2C fast mode",
+      "CL ≤ 90 pF 3.6 k",
+      "90 pF < CL ≤ 140 pF 2.4 k",
+      "140 pF < CL ≤ 270 pF 1.2 k",
+      "270 pF < CL ≤ 400 pF 0.8 k"
+     ],
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "tsop38238",
+   "aliases": [
+    "tsop382",
+    "tsop-38238"
+   ],
+   "title": "TSOP38238 IR receiver module, 38 kHz",
+   "category": "sensor.ir",
+   "manufacturer": "Vishay",
+   "kind": "ic",
+   "source_ids": [
+    "mod-prox-tsop382-ds"
+   ],
+   "supplies": {
+    "VS": {
+     "min": {
+      "value": 2.0,
+      "unit": "V",
+      "page": 3,
+      "evidence": "Supply voltage V S 2.0 - 5.5 V"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 3,
+      "evidence": "Supply voltage V S 2.0 - 5.5 V"
+     },
+     "abs_max": {
+      "value": 6.0,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Supply voltage V S -0.3 to +6 V"
+     }
+    }
+   },
+   "io": {
+    "domain": "VS",
+    "vol": {
+     "value": 0.1,
+     "unit": "V",
+     "page": 3,
+     "evidence": "Output voltage low IOSL = 0.5 mA, Ee = 0.7 mW/m2, test signal see Fig. 1 VOSL - - 100 mV",
+     "conditions": "IOSL = 0.5 mA; max 100 mV"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "OUT",
+     "signal": "digital_out",
+     "output": "open_drain",
+     "active_low": true,
+     "internal_pull": {
+      "up": {
+       "value": 30000,
+       "unit": "Ω",
+       "page": 1,
+       "evidence": "30 kΩ",
+       "conditions": "block diagram: 30 kΩ from VS (pin 3) to OUT (pin 1), NPN to GND"
+      }
+     },
+     "note": "pin 1; demodulated output, active low; pulled up to VS internally"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd",
+     "note": "pin 2"
+    },
+    {
+     "name": "VS",
+     "signal": "supply",
+     "note": "pin 3"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "digital",
+     "note": "demodulated IR output for a 38 kHz carrier (NEC, RC-5, …)"
+    }
+   ],
+   "current": {
+    "supply": "VS",
+    "typ": {
+     "value": 0.00035,
+     "unit": "A",
+     "page": 3,
+     "evidence": "Supply current Ev = 0, VS = 3.3 V I SD 0.25 0.35 0.45 mA",
+     "conditions": "Ev = 0, VS = 3.3 V"
+    },
+    "max": {
+     "value": 0.00045,
+     "unit": "A",
+     "page": 3,
+     "evidence": "Supply current Ev = 0, VS = 3.3 V I SD 0.25 0.35 0.45 mA",
+     "conditions": "Ev = 0, VS = 3.3 V"
+    }
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Application circuit: R1 in series to VS and C1 from VS to GND are recommended when the supply has strong ripple or spikes (values only in the figure, not in the text layer).",
+     "page": 2,
+     "evidence": [
+      "R1 and C1 recommended in case there are strong ripple or",
+      "spikes on the supply line."
+     ],
+     "verified": true
+    },
+    {
+     "text": "Pinning 1 = OUT, 2 = GND, 3 = VS.",
+     "page": 2,
+     "evidence": "Pinning 1 = OUT, 2 = GND, 3 = VS",
+     "verified": true
+    },
+    {
+     "text": "Output current at most 5 mA (absolute maximum).",
+     "page": 2,
+     "evidence": "Output current I O 5m A",
+     "verified": true
+    },
+    {
+     "text": "The OUT high level is VS (internal 30 kΩ pull-up): at VS = 5 V the output reaches 5 V. Supply the TSOP from 3.3 V when OUT goes to an ESP32 GPIO (rule mod.prox.tsop_vs_5v).",
+     "page": 2,
+     "evidence": "Output voltage V O -0.3 to (VS + 0.3) V",
+     "verified": true
+    },
+    {
+     "text": "38 kHz part of the series: TSOP38238 (AGC2, NEC/Sharp/Mitsubishi codes).",
+     "page": 2,
+     "evidence": "38 kHz TSOP38238 TSOP38438 (4)(5)(6)",
+     "verified": true
+    },
+    {
+     "text": "Bursts of at least 10 carrier cycles are recommended (tpi ≥ 10/f0).",
+     "page": 3,
+     "evidence": "(1) tpi ≥ 10/f0 is recommended for optimal function",
+     "verified": true
+    },
+    {
+     "text": "KY-022 style boards add an LED with resistor and sometimes a filter; VS1838B/HX1838 clones are not Vishay parts and may differ.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "hcsr04",
+   "aliases": [
+    "hc-sr04",
+    "hc_sr04",
+    "sr04"
+   ],
+   "title": "HC-SR04 ultrasonic ranging module (unverified vendor sheet)",
+   "category": "sensor.distance",
+   "manufacturer": "unknown (sheet by Elecfreaks)",
+   "kind": "module",
+   "source_ids": [
+    "mod-prox-hcsr04-sheet"
+   ],
+   "pins": [
+    {
+     "name": "VCC",
+     "signal": "supply",
+     "note": "5 V per the vendor sheet"
+    },
+    {
+     "name": "Trig",
+     "signal": "digital_in",
+     "note": "trigger, ≥ 10 µs high pulse"
+    },
+    {
+     "name": "Echo",
+     "signal": "digital_out",
+     "note": "high for the echo time; 5 V level on 5 V modules"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "digital",
+     "note": "Trig pulse in, Echo pulse out; distance = echo high time / 58 µs per cm"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "No manufacturer datasheet exists; the values below come from a vendor sheet (class B) and are unverified.",
+     "verified": false
+    },
+    {
+     "text": "Vendor sheet: working voltage DC 5 V, working current 15 mA.",
+     "page": 1,
+     "evidence": [
+      "Working Voltage DC 5 V",
+      "Working Current 15mA"
+     ],
+     "verified": false
+    },
+    {
+     "text": "Vendor sheet: trigger with a ≥ 10 µs TTL pulse; Echo is a TTL-level pulse whose width is proportional to the range.",
+     "page": 1,
+     "evidence": [
+      "Trigger Input Signal 10uS TTL pulse",
+      "Echo Output Signal Input TTL lever signal and the r ange in"
+     ],
+     "verified": false
+    },
+    {
+     "text": "Vendor sheet: range 2 cm – 4 m, 40 kHz burst.",
+     "page": 1,
+     "evidence": [
+      "Max Range 4m",
+      "Min Range 2cm"
+     ],
+     "verified": false
+    },
+    {
+     "text": "Vendor sheet: distance in cm = echo time in µs / 58; use a measurement cycle over 60 ms.",
+     "page": 2,
+     "evidence": [
+      "calculate the range through the time interval between sending trigger signal and",
+      "receiving echo signal. Formula: uS / 58 = centimeters or uS / 148 =inch; or: the",
+      "range = high level time * velocity (340M/S) / 2; we suggest to use over 60ms"
+     ],
+     "verified": false
+    },
+    {
+     "text": "Vendor sheet: connect GND first when hot-plugging.",
+     "page": 3,
+     "evidence": "electric, the GND terminal should be connected the module first, otherwise,",
+     "verified": false
+    },
+    {
+     "text": "At VCC = 5 V the Echo high level is about 5 V: put a divider (e.g. 1 kΩ / 2 kΩ) or a level shifter between Echo and the ESP32 GPIO (rule mod.prox.hcsr04_echo). Some clones (e.g. RCWL-9610 based) run at 3.3 V.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "drv5032",
+   "aliases": [
+    "drv5032fa",
+    "drv5032du",
+    "drv5032fd"
+   ],
+   "title": "DRV5032 ultra-low-power digital-switch Hall sensor (push-pull, 20 Hz: FA/DU/FD)",
+   "category": "sensor.hall",
+   "manufacturer": "Texas Instruments",
+   "kind": "ic",
+   "source_ids": [
+    "mod-prox-drv5032-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 1.65,
+      "unit": "V",
+      "page": 4,
+      "evidence": "VCC Power supply voltage 1.65 5.5 V"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 4,
+      "evidence": "VCC Power supply voltage 1.65 5.5 V"
+     },
+     "abs_max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 4,
+      "evidence": "Power supply voltage VCC –0.3 5.5 V"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "voh": {
+     "rel_offset": -0.35,
+     "unit": "V",
+     "page": 5,
+     "evidence": [
+      "PUSH-PULL OUTPUT DRIVER",
+      "VOH High-level output voltage IOUT = –1mA VCC – 0.35 VCC – 0.1 V"
+     ],
+     "of": "VCC",
+     "conditions": "push-pull, IOUT = −1 mA, min"
+    },
+    "vol": {
+     "value": 0.3,
+     "unit": "V",
+     "page": 5,
+     "evidence": [
+      "PUSH-PULL OUTPUT DRIVER",
+      "VOL Low-level output voltage IOUT = 1mA 0.1 0.3 V"
+     ],
+     "conditions": "IOUT = 1 mA, max"
+    },
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "VCC",
+     "signal": "supply",
+     "note": "SOT-23 / TO-92 pin 1"
+    },
+    {
+     "name": "OUT",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "active_low": true,
+     "note": "SOT-23 pin 2 (OUT2 on DU), TO-92 pin 3; low when a magnet is present"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd",
+     "note": "SOT-23 pin 3, TO-92 pin 2"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "digital",
+     "note": "switch output: low above BOP, released below BRP"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "typ": {
+     "value": 1.6e-06,
+     "unit": "A",
+     "page": 5,
+     "evidence": [
+      "DU, FA, FC, FD, AJ, ZE VERSIONS",
+      "ICC(AVG) Average current consumption",
+      "µAVCC = 3V 1.6 3.5"
+     ],
+     "conditions": "average, 20 Hz versions, VCC = 3 V"
+    },
+    "max": {
+     "value": 3.5e-06,
+     "unit": "A",
+     "page": 5,
+     "evidence": [
+      "DU, FA, FC, FD, AJ, ZE VERSIONS",
+      "ICC(AVG) Average current consumption",
+      "µAVCC = 3V 1.6 3.5"
+     ],
+     "conditions": "average, 20 Hz versions, VCC = 3 V"
+    },
+    "peak": {
+     "value": 0.0027,
+     "unit": "A",
+     "page": 5,
+     "evidence": [
+      "ALL VERSIONS",
+      "ICC(PK) Peak current consumption 2 2.7 mA"
+     ],
+     "conditions": "all versions, max"
+    }
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VCC"
+     ],
+     "to": "GND",
+     "page": 3,
+     "evidence": "TI recommends connecting this pin to a ceramic capacitor to ground with a value of at least 0.1 µF.",
+     "note": "at least 0.1 µF"
+    }
+   ],
+   "hazards": [],
+   "variants": [
+    {
+     "id": "fb",
+     "title": "DRV5032FB (push-pull, 5 Hz)",
+     "overrides": {
+      "current": {
+       "supply": "VCC",
+       "typ": {
+        "value": 6.9e-07,
+        "unit": "A",
+        "page": 5,
+        "evidence": [
+         "FB VERSION",
+         "ICC(AVG) Average current consumption",
+         "µAVCC = 3V 0.69 1.8"
+        ],
+        "conditions": "average, FB (5 Hz), VCC = 3 V"
+       },
+       "max": {
+        "value": 1.8e-06,
+        "unit": "A",
+        "page": 5,
+        "evidence": [
+         "FB VERSION",
+         "ICC(AVG) Average current consumption",
+         "µAVCC = 3V 0.69 1.8"
+        ],
+        "conditions": "average, FB (5 Hz), VCC = 3 V"
+       },
+       "peak": {
+        "value": 0.0027,
+        "unit": "A",
+        "page": 5,
+        "evidence": [
+         "ALL VERSIONS",
+         "ICC(PK) Peak current consumption 2 2.7 mA"
+        ],
+        "conditions": "all versions, max"
+       }
+      }
+     }
+    },
+    {
+     "id": "open_drain",
+     "title": "DRV5032FC/AJ/ZE (open-drain, 20 Hz)",
+     "overrides": {
+      "pins": [
+       {
+        "name": "VCC",
+        "signal": "supply",
+        "note": "SOT-23 / TO-92 pin 1"
+       },
+       {
+        "name": "OUT",
+        "signal": "open_drain_out",
+        "output": "open_drain",
+        "active_low": true,
+        "note": "SOT-23 pin 2 (OUT2 on DU), TO-92 pin 3; low when a magnet is present"
+       },
+       {
+        "name": "GND",
+        "signal": "gnd",
+        "note": "SOT-23 pin 3, TO-92 pin 2"
+       }
+      ],
+      "io": {
+       "domain": "VCC",
+       "vol": {
+        "value": 0.3,
+        "unit": "V",
+        "page": 5,
+        "evidence": [
+         "OPEN-DRAIN OUTPUT",
+         "VOL Low-level output voltage IOUT = 1mA 0.1 0.3 V"
+        ],
+        "conditions": "IOUT = 1 mA, max"
+       },
+       "outputs": "open_drain"
+      },
+      "requires": [
+       {
+        "code": "decoupling",
+        "kind": "ceramic",
+        "value": "100nF",
+        "pins": [
+         "VCC"
+        ],
+        "to": "GND",
+        "page": 3,
+        "evidence": "TI recommends connecting this pin to a ceramic capacitor to ground with a value of at least 0.1 µF.",
+        "note": "at least 0.1 µF"
+       },
+       {
+        "code": "pullup",
+        "kind": "resistor",
+        "pins": [
+         "OUT"
+        ],
+        "to": "3V3",
+        "page": 13,
+        "evidence": [
+         "The FC, AJ, and ZE device versions have open-drain outputs that can become high impedance or drive",
+         "ground. For these versions, an external pullup resistor must be used."
+        ],
+        "note": "pull up to the ESP32's 3.3 V (not 5 V); the ESP32 internal pull-up also works for slow edges"
+       }
+      ]
+     }
+    }
+   ],
+   "notes": [
+    {
+     "text": "Versions: DU/DG/FA/FB/FD push-pull, FC/AJ/ZE open-drain; pick the variant that matches the marking.",
+     "page": 13,
+     "evidence": [
+      "The DU, DG, FA, FB, and FD device versions have push-pull CMOS outputs that can drive a V CC or ground",
+      "level. The FC, AJ, and ZE device versions have open-drain outputs that can become high impedance or drive"
+     ],
+     "verified": true
+    },
+    {
+     "text": "Maximum BOP: DG 3.4 mT, DU 3.9 mT, FA–FD 4.8 mT, AJ 9.5 mT, ZE 63 mT.",
+     "page": 1,
+     "evidence": [
+      "– DG Version: 3.4mT",
+      "– DU Version: 3.9mT",
+      "– FA, FB, FC, FD Versions: 4.8mT",
+      "– AJ Version: 9.5mT",
+      "– ZE Version: 63mT"
+     ],
+     "verified": true
+    },
+    {
+     "text": "The output goes low while the flux density exceeds BOP; with push-pull versions the high level is VCC, so power the sensor from 3.3 V when OUT goes to an ESP32 GPIO.",
+     "page": 1,
+     "evidence": [
+      "BOP threshold, the device outputs a low voltage. The"
+     ],
+     "verified": true
+    },
+    {
+     "text": "DG is X2SON only and has two unipolar outputs (OUT1/OUT2); not modelled as a variant.",
+     "page": 2,
+     "evidence": "DRV5032DG 3.4 mT Unipolar Push-pull 80 Hz X2SON",
+     "verified": true
+    },
+    {
+     "text": "Generic 'hall switch' boards mostly carry an A3144/44E, not a DRV5032.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "ttp223",
+   "aliases": [
+    "ttp223-ba6",
+    "ttp223b",
+    "ttp223n"
+   ],
+   "title": "TTP223 one-key capacitive touch detector (TTP223-BA6, preliminary datasheet)",
+   "category": "sensor.touch",
+   "manufacturer": "Tontek",
+   "kind": "ic",
+   "source_ids": [
+    "mod-prox-ttp223-ds"
+   ],
+   "io": {
+    "domain": "VDD",
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "Q",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "pin 1, CMOS output; high level = VDD"
+    },
+    {
+     "name": "VSS",
+     "signal": "gnd",
+     "note": "pin 2"
+    },
+    {
+     "name": "I",
+     "signal": "analog_in",
+     "note": "pin 3, touch electrode (sense pad)"
+    },
+    {
+     "name": "AHLB",
+     "signal": "mode_select",
+     "note": "pin 4: open/0 = active high (default), 1 = active low; internal pull-down (28 kΩ typ at VDD 3 V, preliminary sheet)"
+    },
+    {
+     "name": "VDD",
+     "signal": "supply",
+     "note": "pin 5"
+    },
+    {
+     "name": "TOG",
+     "signal": "mode_select",
+     "note": "pin 6: open/0 = direct mode (default), 1 = toggle mode; internal pull-down (28 kΩ typ at VDD 3 V, preliminary sheet)"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "digital",
+     "note": "Q = touch state (direct or toggle, active high or low by pad option)"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Tontek publishes only a preliminary datasheet (Ver 2.1, 'Preliminary' in the header of every page): class B, so findings from it are capped to info and its values are kept as unverified notes.",
+     "page": 1,
+     "evidence": [
+      "Preliminary",
+      "TTP223-BA6"
+     ],
+     "verified": false
+    },
+    {
+     "text": "Preliminary sheet: operating voltage VDD 2.0–5.5 V (3 V typ); absolute maximum VSS + 5.5 V.",
+     "page": 3,
+     "evidence": [
+      "Power Supply Voltage VDD Ta=25°C VSS-0.3 ~ VSS+5.5 V",
+      "Operating V oltage VDD  2.0 3 5.5 V"
+     ],
+     "verified": false
+    },
+    {
+     "text": "Preliminary sheet: input voltage at most VDD + 0.3 V; input ports (TOG, AHLB) VIL 0.2·VDD, VIH 0.8·VDD.",
+     "page": 3,
+     "evidence": [
+      "Input Voltage V IN Ta=25°C VSS-0.3 ~ VDD+0.3 V",
+      "Input Ports VIL Input Low V oltage 0 - 0.2 VDD",
+      "Input Ports VIH Input High V oltage 0.8 - 1.0 VDD"
+     ],
+     "verified": false
+    },
+    {
+     "text": "Preliminary sheet: operating current 1.5 µA typ, 3.0 µA max (low power mode, VDD = 3 V, no load).",
+     "page": 3,
+     "evidence": [
+      "Operating Current IOP VDD=3V",
+      "- 1.5 3.0"
+     ],
+     "verified": false
+    },
+    {
+     "text": "Preliminary sheet: C1 = 100 nF (marked 104) between VDD and VSS, routed short (application circuit).",
+     "page": 6,
+     "evidence": [
+      "104",
+      "5. The C1 capacitor must be used between VDD and VSS; and should be routed with very short"
+     ],
+     "verified": false
+    },
+    {
+     "text": "Preliminary sheet: Q is a CMOS push-pull output: its high level is VDD. Power the TTP223 from 3.3 V when Q goes to an ESP32 GPIO (rule mod.prox.ttp223_vs_5v).",
+     "page": 2,
+     "evidence": "1 Q O CMOS output pin",
+     "verified": false
+    },
+    {
+     "text": "Preliminary sheet: do not touch the pad for about 0.5 s after power-on (calibration).",
+     "page": 1,
+     "evidence": [
+      "After power-on have about 0.5sec stable-time, during the time do not touch the key pad,"
+     ],
+     "verified": false
+    },
+    {
+     "text": "Preliminary sheet: sensitivity set by Cs 0–50 pF from the pad to VSS (smaller = more sensitive).",
+     "page": 1,
+     "evidence": "Sensitivity can adjust by the capacitance(0~50pF) outside",
+     "verified": false
+    },
+    {
+     "text": "Preliminary sheet: response time max 220 ms in low power mode (VDD = 3 V).",
+     "page": 1,
+     "evidence": "The response time max 220mS at low power mode @VDD=3V",
+     "verified": false
+    },
+    {
+     "text": "Red/blue TTP223 boards carry an LED with resistor and solder jumpers A (AHLB) and B (TOG); they have no regulator, so Q follows the board's VCC.",
+     "verified": false
+    }
+   ]
+  }
+ ]
+}

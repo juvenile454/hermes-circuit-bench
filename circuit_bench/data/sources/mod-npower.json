@@ -1,0 +1,26 @@
+[
+  {
+    "id": "mod-npower-tlv755p-ds",
+    "title": "Texas Instruments TLV755P 500mA, Low-IQ, Small-Size, Low-Dropout Regulator, Data sheet SBVS320D",
+    "url": "https://web.archive.org/web/20261025050805id_/https://www.ti.com/lit/ds/symlink/tlv755p.pdf",
+    "retrieved": "2026-11-09",
+    "class": "A1",
+    "note": "Document SBVS320D (November 2017, revised September 2024), 51 pages; web.archive.org snapshot 2026-10-25 of the official ti.com file (ti.com re-stamps the PDF daily); pages 1, 3, 4, 5, 6, 15, 23, 28; sha256 96e2706d4b13656d2d550fdbb5be9861c56b058822109bb39a906d4ad1beb019"
+  },
+  {
+    "id": "mod-npower-tps563201-ds",
+    "title": "Texas Instruments TPS56320x 4.5V to 17V Input, 3A Synchronous Step-Down Voltage Regulator in SOT-23, Data sheet SLVSD90B",
+    "url": "https://web.archive.org/web/20261028161408id_/https://www.ti.com/lit/ds/symlink/tps563201.pdf",
+    "retrieved": "2026-11-09",
+    "class": "A1",
+    "note": "Document SLVSD90B (December 2015, revised September 2024), 30 pages; web.archive.org snapshot 2026-10-28 of the official ti.com file (ti.com re-stamps the PDF daily); pages 1, 3, 4, 5, 6, 14, 15, 23; sha256 192afd5a009073c1c62ba36c054af0911cacc86469ae6059a26fed9f230f1ec9"
+  },
+  {
+    "id": "mod-npower-bq24074-ds",
+    "title": "Texas Instruments BQ2407x Standalone 1-Cell 1.5-A Linear Battery Chargers with Power Path, Data sheet SLUS810N",
+    "url": "https://www.ti.com/lit/ds/symlink/bq24074.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "SLUS810N (September 2008, revised October 2021), 55 pages; pages 1, 6, 7, 8, 9, 10, 11, 12, 13, 14, 25, 42, 44; sha256 4fe4e4f9855501f83b400c6932e3098439e51c50539e40dc45b44a8d509e8db1"
+  }
+]

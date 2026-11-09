@@ -1,0 +1,53 @@
+# source_id: mod-nlevel-cd74hct4067-ds
+# document: TI CD74HC4067, CD74HCT4067 High-Speed CMOS Logic 16-Channel Analog Multiplexer and Demultiplexer, data sheet SCHS209D
+# url: https://www.ti.com/lit/ds/symlink/cd74hct4067.pdf
+# corpus: mod/nlevel/cd74hct4067.pdf sha256 be0091cbec79831f5ced7d5d42016eadb88b8fad431a1d460a94b9f4f98a421d
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+– 4.5V to 5.5V operation
+– Direct LSTTL input logic compatibility, VIL= 0.8V 
+@@ page 4
+1 IO Common input or output.
+I7 2 IO Switch input/output
+I6 3 IO Switch input/output
+I5 4 IO Switch input/output
+I4 5 IO Switch input/output
+I3 6 IO Switch input/output
+I2 7 IO Switch input/output
+I1 8 IO Switch input/output
+I0 9 IO Switch input/output
+S0 10 I Select/Address pin
+S1 11 I Select/Address pin
+GND 12 P Ground pin
+S3 13 I Select/Address pin
+S2 14 I Select/Address pin
+E 15 I Enable for all switches ON/OFF
+I15 16 IO Switch input/output
+I14 17 IO Switch input/output
+I13 18 IO Switch input/output
+I12 19 IO Switch input/output
+I11 20 IO Switch input/output
+I10 21 IO Switch input/output
+I9 22 IO Switch input/output
+I8 23 IO Switch input/output
+VCC 24 P Power pin
+@@ page 5
+X X X X 1 None
+0 0 0 0 0 0
+VCC HCT –0.5 7 V
+@@ page 6
+CD54 and 74HCT 
+types 4.5 5.5
+VIS Analog switch I/O voltage 0 VCC V
+@@ page 8
+9 Electrical Characteristics: HCT Devices
+High Level Input Voltage VIH
+4.5
+V–40°C to +85°C 2
+Low Level Input Voltage VIL
+V–40°C to +85°C 0.8
+"ON" Resistance IO = 1mA RON
+Ω–40°C to +85°C 200
+ ICC VCC or GND 5.5
+–55°C to 85°C 80

@@ -1,0 +1,32 @@
+# Citation excerpt (chip and board data). '#' lines are metadata; '@@ page N'
+# starts a segment of whole lines copied from pypdf's text of that PDF page, '@@ html' a segment of lines of
+# the page's visible text (script/style dropped). tests/test_c0_corpus.py checks every segment line, in order
+# and whitespace-insensitive, against the pinned file.
+# source_id: wiki-wt32-eth01-resources
+# document: wireless-tag Wiki, 'WT32-ETH01 Development Board Related Materials', version 1.0.0 (2025-06-19).
+# url: https://wiki.wireless-tag.com/docs/en/WT32-ETH01/board_resources.html
+# corpus: wireless-tag/wiki/WT32-ETH01/board_resources.html sha256 2f0c3c60a988f5ded096767d6f80342942a2dd3dc8bab4ab080d8ccb2704b8db
+# retrieved: 2026-11-06
+# extracted: html.parser text of the pinned HTML (tests/test_c0_corpus.py: html_text)
+# The page links the datasheet and schematic PDFs pinned as ds-wt32-eth01-v1.4 and sch-wt32-eth01-v1.4
+# (href https://res.8ms.xyz/wiki_assets/WT32-ETH01/...).
+@@ html
+WT32-ETH01 Development Board Related Materials
+WT32-ETH01
+esp32
+2025-06-19
+Update history
+Date
+Version
+Author
+Update content
+2025-06-19
+1.0.0
+Kirto
+Initial document release
+1. WT32-ETH01 Datasheet
+📥 Download PDF
+2. WT32-ETH01 Schematic
+📥 Download PDF
+3. WT32-ETH01 AT Command Set
+📥 Download PDF

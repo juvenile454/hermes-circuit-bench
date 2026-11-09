@@ -1,0 +1,46 @@
+# source_id: mod-radio-sx1276-ds
+# document: Semtech SX1276/77/78/79 datasheet, Rev. 7 - May 2020
+# url: https://cdn.sparkfun.com/assets/7/7/3/2/2/SX1276_Datasheet.pdf
+# corpus: mod/radio/SX1276_Datasheet.pdf sha256 330745f933df00015d2de3efd582608339350ba3a21001d11b9d449839ce016b
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Rev. 7 - May 2020
+@@ page 11
+3 VBAT_ANA - Supply voltage for analogue circuitry
+7 NRESET I/O Reset trigger input
+8 DIO0 I/O Digital I/O, software configured
+9 DIO1/DCLK I/O Digital I/O, software configured
+10 DIO2/DATA I/O Digital I/O, software configured
+14 VBAT_DIG - Supply voltage for digital blocks
+15 GND - Ground
+16 SCK I SPI Clock input
+17 MISO O SPI Data output
+18 MOSI I SPI Data input
+19 NSS I SPI Chip select input
+24 VBAT_RF - Supply voltage for RF blocks
+@@ page 13
+VDDmr Supply Voltage -0.5 3.9 V
+VDDop Supply voltage 1.8 3.7 V
+@@ page 14
+IDDSL Supply current in Sleep mode - 0.2 1 uA
+IDDR Supply current in Receive mode
+LnaBoost Off, band 1
+10.8
+IDDT Supply current in Transmit mode with impedance matching
+RFOP = +20 dBm, on PA_BOOST
+120
+@@ page 22
+VIH Digital input level high 0.8 - - VDD
+VIL Digital input level low - - 0.2 VDD
+VOH Digital output level high Imax = 1 mA 0.9 - - VDD
+VOL Digital output level low Imax = -1 mA - - 0.1 VDD
+FSCK SCK frequency - - 10 MHz
+@@ page 80
+CPOL = 0 and CPHA = 0 in Motorola/Freescale nomenclature. Only the slave side is implemented.
+MISO in case of read access. The data byte is transmitted MSB first.
+@@ page 84
+3.4.3.  High Power +20 dBm Operation
+The duty cycle of transmission at +20 dBm is limited to 1%, with a maximum VSWR of 3:1 at antenna port, over the
+DC_20dBm Duty Cycle of transmission at +20 dBm output - 1 %
+VDDop_20dBm Supply voltage, +20 dBm output 2.4 3.7 V

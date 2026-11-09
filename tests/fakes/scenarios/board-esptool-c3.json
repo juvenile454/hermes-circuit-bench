@@ -1,0 +1,6 @@
+{
+ "flash-id": {
+  "rc": 0,
+  "stdout": "esptool v5.6.0\nConnecting....\nDetecting chip type... ESP32-C3\nConnected to ESP32-C3 on {port}:\nChip type:          ESP32-C3 (QFN32) (revision v0.4)\nFeatures:           Wi-Fi, BT 5 (LE), Single Core, 160MHz, Embedded Flash 4MB (XMC)\nCrystal frequency:  40MHz\nUSB mode:           USB-Serial/JTAG\nMAC:                aa:bb:cc:dd:ee:fe\n\nUploading stub flasher...\nRunning stub flasher...\nStub flasher running.\n\nFlash Memory Information:\n=========================\nManufacturer: 20\nDevice: 4016\nDetected flash size: 4MB\n\nHard resetting via RTS pin...\n"
+ }
+}

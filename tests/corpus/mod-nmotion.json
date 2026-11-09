@@ -1,0 +1,46 @@
+{
+ "files": [
+  {
+   "url": "https://web.archive.org/web/20250522133817id_/https://invensense.tdk.com/wp-content/uploads/2024/03/DS-000189-ICM-20948-v1.6.pdf",
+   "path": "mod/nmotion/DS-000189-ICM-20948-v1.6.pdf",
+   "source_id": "mod-nmotion-icm20948-ds",
+   "excerpt": "excerpts/mod-nmotion-icm20948.txt",
+   "sha256": "0588625f4f1d6d27382a4322f48073dc0ce569e537c63786b13aab3eeb76b718"
+  },
+  {
+   "url": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi270-ds000.pdf",
+   "path": "mod/nmotion/bst-bmi270-ds000.pdf",
+   "source_id": "mod-nmotion-bmi270-ds",
+   "excerpt": "excerpts/mod-nmotion-bmi270.txt",
+   "sha256": "0dab40659d3a8598af76a0b2da1fd8a216aeb87254541632c89145f974694af7"
+  },
+  {
+   "url": "https://web.archive.org/web/20260901085931id_/https://www.st.com/resource/en/datasheet/lsm6ds3tr-c.pdf",
+   "path": "mod/nmotion/lsm6ds3tr-c.pdf",
+   "source_id": "mod-nmotion-lsm6ds3trc-ds",
+   "excerpt": "excerpts/mod-nmotion-lsm6ds3trc.txt",
+   "sha256": "251737db70e3b6cdc217a5681dd4634a05faffd5288aff6a576078a6464a1b2b"
+  },
+  {
+   "url": "https://web.archive.org/web/20261011095228id_/https://www.st.com/resource/en/datasheet/vl6180x.pdf",
+   "path": "mod/nmotion/vl6180x.pdf",
+   "source_id": "mod-nmotion-vl6180x-ds",
+   "excerpt": "excerpts/mod-nmotion-vl6180x.txt",
+   "sha256": "87e1b09668160d714276cdb093a41e7bf18120c81c25888a309e8fcfdc6a6724"
+  },
+  {
+   "url": "https://web.archive.org/web/20261013150839id_/https://www.analog.com/media/en/technical-documentation/data-sheets/MAX30101.pdf",
+   "path": "mod/nmotion/MAX30101.pdf",
+   "source_id": "mod-nmotion-max30101-ds",
+   "excerpt": "excerpts/mod-nmotion-max30101.txt",
+   "sha256": "bac191bcf3240ecca1c8e07e18fb39bca1aa4d2f39c8658aea988239c07d2ed6"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/drv5055.pdf",
+   "path": "mod/nmotion/drv5055.pdf",
+   "source_id": "mod-nmotion-drv5055-ds",
+   "excerpt": "excerpts/mod-nmotion-drv5055.txt",
+   "sha256": "d04305a4ae7a603f95286c957160945ad5c7156b3d4e2137d47d74f614dd3194"
+  }
+ ]
+}

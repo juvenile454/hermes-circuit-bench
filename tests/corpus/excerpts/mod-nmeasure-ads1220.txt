@@ -1,0 +1,45 @@
+# source_id: mod-nmeasure-ads1220-ds
+# document: Texas Instruments ADS1220 4-Channel, 2kSPS, Low-Power, 24-Bit ADC With Integrated PGA and Reference, SBAS501D (May 2013, revised May 2026)
+# url: https://www.ti.com/lit/ds/symlink/ads1220.pdf
+# corpus: mod/nmeasure/ads1220.pdf sha256 218e25810febc1d740287cebe0678d844817a5db9191cba59cb471647ace3ac4
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+• SPI-compatible interface (mode 1)
+@@ page 4
+AVDD 10 12 Analog supply Positive analog power supply. Connect a 100nF (or larger) capacitor to AVSS.
+CLK 1 3 Digital input External clock source pin. Connect to DGND if not used.
+CS 16 2 Digital input Chip select; active low. Connect to DGND if not used.
+DOUT/ DRDY 13 15 Digital output Serial data output combined with data ready; active low
+DRDY 12 14 Digital output Data ready, active low.Leave unconnected or tie to DVDD using a weak pull-up resistor if not used.
+DVDD 11 13 Digital supply Positive digital power supply. Connect a 100nF (or larger) capacitor to DGND.
+@@ page 5
+AVDD to AVSS –0.3 7 V
+DVDD to DGND –0.3 7 V
+Analog input voltage AIN0/REFP1, AIN1, AIN2, AIN3/REFN1, REFP0, REFN0 AVSS – 0.3 AVDD + 0.3 V
+Digital input voltage CS, SCLK, DIN, DOUT/ DRDY, DRDY, CLK DGND – 0.3 DVDD + 0.3 V
+@@ page 6
+Unipolar analog power supply
+AVDD to AVSS 2.3 5.5
+Digital power supply DVDD to DGND 2.3 5.5 V
+VAINx Absolute input voltage
+PGA disabled, gain = 1 to 4 AVSS – 0.1 AVDD + 0.1 V
+@@ page 7
+Initial accuracy TA = 25°C 2.045 2.048 2.051 V
+@@ page 8
+VIH High-level input voltage 0.7 DVDD DVDD V
+VIL Low-level input voltage DGND 0.3 DVDD V
+VOH High-level output voltage IOH = 3mA 0.8 DVDD V
+VOL Low-level output voltage IOL = 3mA 0.2 DVDD V
+IAVDD Analog supply current(2)
+Power-down mode 0.1 3
+Normal mode, gain = 1 to 16 340 490
+IDVDD Digital supply current(2)
+Power-down mode 0.3 5
+Normal mode 75 110
+@@ page 9
+tc(SC) SCLK period 150 ns
+@@ page 36
+configuration registers, and control device operation. Only SPI mode 1 (CPOL = 0, CPHA = 1) is supported. The 
+@@ page 37
+1LSB = (2 × VREF / Gain) / 224 = +FS / 223 (15)

@@ -1,0 +1,50 @@
+[
+ {
+  "id": "mod-nenv-bmp388-ds",
+  "title": "Bosch Sensortec BMP388 Digital pressure sensor, Datasheet",
+  "url": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp388-ds001.pdf",
+  "retrieved": "2026-11-08",
+  "class": "A",
+  "note": "Document BST-BMP388-DS001-07 (revision 1.7, 11/2020); pages 3, 7, 9, 11, 31, 40, 43, 46, 48; sha256 1ab21c90aaf15542751be6b970d53dc57893a4ea948f45f9fe96e844789fdec2"
+ },
+ {
+  "id": "mod-nenv-bmp390-ds",
+  "title": "Bosch Sensortec BMP390 High-Performance Barometric Pressure Sensor, Datasheet",
+  "url": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp390-ds002.pdf",
+  "retrieved": "2026-11-08",
+  "class": "A",
+  "note": "Document BST-BMP390-DS002-07 (revision 1.7, 03/2021); pages 3, 7, 9, 11, 30, 40, 43, 46, 48; sha256 8dcf0f74449cb1627e865c7f24d328b76c204d8b9621091ede8c6869fb393e48"
+ },
+ {
+  "id": "mod-nenv-shtc3-ds",
+  "title": "Sensirion Datasheet SHTC3 Humidity and Temperature Sensor IC",
+  "url": "https://sensirion.com/media/documents/643F9C8E/63A5A436/Datasheet_SHTC3.pdf",
+  "retrieved": "2026-11-08",
+  "class": "A",
+  "note": "Version 4 (December 2022); pages 3, 4, 5, 6; sha256 dbe979c975fe520663606b5c278d2b9130f4e402e6d9d943ca06c4e4f38e63d9"
+ },
+ {
+  "id": "mod-nenv-tmp117-ds",
+  "title": "Texas Instruments TMP117 High-Accuracy, Low-Power, Digital Temperature Sensor, Datasheet",
+  "url": "https://www.ti.com/lit/ds/symlink/tmp117.pdf",
+  "retrieved": "2026-11-08",
+  "class": "A",
+  "note": "SNOSD82D (June 2018, revised September 2022); pages 4, 5, 6, 7, 21, 35; sha256 78212e91e478035a91165397a8de8a90bfc776759dc445243c033537f0c4b789"
+ },
+ {
+  "id": "mod-nenv-ens160-ds",
+  "title": "ScioSense ENS160 Digital Metal-Oxide Multi-Gas Sensor, Datasheet",
+  "url": "https://www.sciosense.com/wp-content/uploads/2023/12/ENS160-Datasheet.pdf",
+  "retrieved": "2026-11-08",
+  "class": "A",
+  "note": "Version 1.3, SC-001224-DS-9 (2023-03-29); pages 5, 6, 7, 15, 16, 17, 18, 25, 36; sha256 dbe06607f42bef636900da5f732b249ff595e5495fd84fd16e7d36ea3a1ca410"
+ },
+ {
+  "id": "mod-nenv-sen55-ds",
+  "title": "Sensirion Datasheet SEN5x Environmental Sensor Node",
+  "url": "https://sensirion.com/media/documents/6791EFA0/62A1F68F/Sensirion_Datasheet_Environmental_Node_SEN5x.pdf",
+  "retrieved": "2026-11-08",
+  "class": "A",
+  "note": "Version 2 – D1 (March 2022); pages 11, 13, 17; sha256 274338ac3d69f3b1cd1d58d995ad05e1f5ab6cd824df39b80d89c66218b322fc"
+ }
+]

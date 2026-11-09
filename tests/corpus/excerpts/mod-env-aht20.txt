@@ -1,0 +1,24 @@
+# source_id: mod-env-aht20-ds
+# document: Aosong (Guangzhou) Electronics AHT20 Data Sheet, Version V1.0 (May 2021)
+# url: https://www.aosong.com/userfiles/files/media/Data%20Sheet%20AHT20.pdf
+# corpus: mod/env/Data_Sheet_AHT20.pdf sha256 1e460b777986e711f301eb468265603ea6242ab44735b2686801d78d9779079e
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 7
+that the IIC frequency should be between 10K and 400KHz during measurement, and should not be too high, and
+@@ page 8
+3.TheVDDofthesensorshallbesupplementedwithRCfilteringcircuit,asshowninthefigureR1andC1.
+@@ page 9
+The power supply range of the sensor is 2.2-5.5V. A decoupling capacitor of 10uF must be added between VDD
+1.Thepull-up voltageofSCL andSDAmust bepoweredby VDD, andthepowersupply voltagerangeis2.2~5.5V;
+external pull-up resistors (forexample:2.0 ~ 4.7K Ω) will liftthe signals tohigh level,pull-upresistance may have
+@@ page 10
+VDDto GND -0.3 5.5 V
+(SDA,SCL)toGND -0.3 VCC+0.3 V
+LowoutputVoltage VOL VDD=3.3V,-4mA<IOL<0mA 0 - 0.4 V
+LowoutputVoltage VIL 0 - 30%VDD V
+HighoutputVoltage VIH 70%VDD - VDD V
+@@ page 11
+After power-on, the sensor needs ≥100ms time (SCL is high at this time) to reach the idle state and it is ready to
+@@ page 12
+address 0x38 and a SDA direction bit x (read R: ‘1’, write W: ‘0’). After the 8th falling edge of the SCL clock, pull

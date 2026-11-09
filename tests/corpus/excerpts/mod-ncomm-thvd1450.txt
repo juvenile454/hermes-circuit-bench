@@ -1,0 +1,32 @@
+# source_id: mod-ncomm-thvd1450-ds
+# document: Texas Instruments THVD1410/THVD1450/THVD1451/THVD1452 data sheet SLLSEY3E (May 2018, revised May 2019)
+# url: https://www.ti.com/lit/ds/symlink/thvd1450.pdf
+# corpus: mod/ncomm/thvd1450.pdf sha256 58ecc4cc07dd1d3206c2e67ffa734ad21a6d3a9e3c8c307068e6385bd79ee897
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+• Open, Short, and Idle Bus Failsafe
+• 1/8 Unit Load (Up to 256 Bus Nodes)
+@@ page 8
+Supply voltage VCC -0.5 7 V
+Input voltage Range at any logic pin (D, DE, or RE) -0.3 5.7 V
+@@ page 9
+VCC Supply voltage 3 5.5 V
+VIH High-level input voltage (driver, driverenable, and receiver enable inputs) 2 VCC V
+VIL Low-level input voltage (driver, driverenable, and receiver enable inputs) 0 0.8 V
+@@ page 10
+VOH Output high voltage IOH = -8 mA VCC –0.4 VCC –0.2 V
+VOL Output low voltage IOL = 8 mA 0.2 0.4 V
+ICC Supply current (quiescent)
+Driver and receiver enabled
+No load
+2.4 3 mA
+Driver and receiver disabled
+load
+0.1 1 µA
+@@ page 19
+has an internal pull-down resistor to ground, thus when left open the driver is disabled (high-impedance) by
+default. The D pin has an internal pull-up resistor to VCC, thus, when left open while the driver is enabled, output
+@@ page 22
+reflections, each cable end is terminated with a termination resistor, RT, whose value matches the characteristic
+impedance, Z0, of the cable. This method, known as parallel termination, generally allows for higher data rates

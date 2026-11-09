@@ -1,0 +1,50 @@
+[
+  {
+    "id": "mod-level-sn74ahct125-ds",
+    "title": "Texas Instruments SNx4AHCT125 Quadruple Bus Buffer Gates With 3-State Outputs, data sheet",
+    "url": "https://web.archive.org/web/20261029144954id_/https://www.ti.com/lit/ds/symlink/sn74ahct125.pdf",
+    "retrieved": "2026-11-09",
+    "class": "A1",
+    "note": "Document SCLS264R (revised February 2024); web.archive.org snapshot 2026-10-29 of the official ti.com file (ti.com re-stamps the PDF daily); pages 1, 5, 6, 11; sha256 66da72e586dbca7a1548164adf28e238484c5c1ad250fcb28ec972e4732c6fc2"
+  },
+  {
+    "id": "mod-level-sn74lv1t34-ds",
+    "title": "Texas Instruments SN74LV1T34 Single Power Supply Single Buffer Gate CMOS Logic Level Shifter, data sheet",
+    "url": "https://www.ti.com/lit/ds/symlink/sn74lv1t34.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Document SCLS743E (revised February 2024); pages 4, 5, 6, 7, 10, 13; sha256 07c6cf783df4d2762f18760217310ef48174adc9984f791fde64bcd21f13d360"
+  },
+  {
+    "id": "mod-level-txs0108e-ds",
+    "title": "Texas Instruments TXS0108E 8-Bit Bi-Directional, Level-Shifting, Voltage Translator for Open-Drain and Push-Pull Applications, data sheet",
+    "url": "https://www.ti.com/lit/ds/symlink/txs0108e.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Document SCES642L (revised November 2024); pages 1, 4, 5, 6, 16, 20, 21; sha256 a6ddbe03088d291d1a1f8012189086b4b9962d1c878a462a8393c59fe225c883"
+  },
+  {
+    "id": "mod-level-txb0104-ds",
+    "title": "Texas Instruments TXB0104 4-Bit Bidirectional Voltage-Level Translator With Automatic Direction Sensing, data sheet",
+    "url": "https://www.ti.com/lit/ds/symlink/txb0104.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Document SCES650K (revised March 2025); pages 4, 5, 6, 8, 19, 22, 25; sha256 9a852f7bcc4104df0676d7ee3e4918429c3db2cbd79a5338aca0a1d34471e400"
+  },
+  {
+    "id": "mod-level-bss138-ds",
+    "title": "onsemi BSS138 N-Channel Logic Level Enhancement Mode Field Effect Transistor, data sheet",
+    "url": "https://www.onsemi.cn/download/data-sheet/pdf/bss138-d.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Document BSS138/D Rev. 7 (April 2024), onsemi China domain; pages 1, 2; sha256 cd98f819a8d80b65f0e855309274a23d51c28d58a8a7d1dea704fe7505bd9883"
+  },
+  {
+    "id": "mod-level-an10441",
+    "title": "AN10441 Level shifting techniques in I2C-bus design, application note (NXP, now Nexperia)",
+    "url": "https://web.archive.org/web/20231201131917id_/https://assets.nexperia.com/documents/application-note/AN10441.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A1",
+    "note": "Rev. 2 of 10 February 2020 (Nexperia re-issue of NXP AN10441 Rev. 01, 2007; text unchanged apart from format and legal texts, p. 3); archived copy of assets.nexperia.com; pages 1, 2, 3; sha256 67a04c7ece897c95123a1f9ea76068dad6b076927ea53859abd50ccdd55bf295"
+  }
+]

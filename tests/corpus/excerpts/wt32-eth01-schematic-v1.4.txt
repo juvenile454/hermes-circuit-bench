@@ -1,0 +1,31 @@
+# Citation excerpt (chip and board data). '#' lines are metadata; '@@ page N'
+# starts a segment of whole lines copied from pypdf's text of that PDF page, '@@ html' a segment of lines of
+# the page's visible text (script/style dropped). tests/test_c0_corpus.py checks every segment line, in order
+# and whitespace-insensitive, against the pinned file.
+# source_id: sch-wt32-eth01-v1.4
+# document: Wireless-Tag WT32-ETH01 V1.4 原理图 (schematic), 1 page. Quoted for citation only.
+# url: https://res.8ms.xyz/wiki_assets/WT32-ETH01/WT32-ETH01_V1.4%E5%8E%9F%E7%90%86%E5%9B%BE.pdf
+# corpus: wireless-tag/WT32-ETH01_V1.4_schematic.pdf sha256 18c7870ddf47145629e1cd618f4cd940ce0c48aa16a06a6addd85e8acab84b82
+# retrieved: 2026-11-06
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+# Net labels (text layer, in page order): IO0_RMII_EMAC_REF_CLK (50 MHz oscillator CLK50M into GPIO0),
+# IO16_OSC_EN (oscillator enable), IO23_RMII_MDC, IO18_RMII_MDIO, LAN8720A, IO17_TXD2, EX_IO5 and IO35_RXD2.
+# Conflict (recorded with the source): the schematic names a net IO35_RXD2, the datasheet V1.4 (table 2,
+# LED3), the wiki and this schematic's own LED3 note (RXD2(IO5)) say RXD = IO5, RXD2; IO35_RXD2 stays recorded.
+@@ page 1
+LED3：串口指示灯，RXD2(IO5)有数据流时，灯亮
+LED4：串口指示灯，TXD2(IO17)有数据流时，灯亮
+PHY-10-100M LAN8720A 8P8C-RJ45网口+带滤波器
+OSC50MHZ
+LAN8720A
+MDIO12
+MDC13
+IO35_RXD2
+EX_IO5
+IO17_TXD2
+IO23_RMII_MDC
+IO18_RMII_MDIO
+IO16_OSC_EN
+IO0_RMII_EMAC_REF_CLK
+LED2-nINTSEL LINK
+IO0_RMII_EMAC_REF_CLK GPIO0

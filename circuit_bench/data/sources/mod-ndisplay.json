@@ -1,0 +1,34 @@
+[
+  {
+    "id": "mod-ndisplay-ht16k33-ds",
+    "title": "Holtek HT16K33 RAM Mapping 16x8 LED Controller Driver with Keyscan, data sheet (archived copy)",
+    "url": "https://web.archive.org/web/20220609002357id_/https://www.holtek.com/documents/10179/116711/HT16K33v120.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A1",
+    "note": "HT16K33 Rev. 1.20 (July 12, 2017), Holtek header on every page. Wayback snapshot 2022-06-09 of holtek.com/documents/10179/116711/HT16K33v120.pdf (the live holtek.com/webapi link answers 'file not found'). Pages 1, 4, 5, 6, 22, 27; sha256 0528ca6ddcc8e6c54f95bc928d0d7a06e12acbf7d16f25e68a036fa729d1aed6"
+  },
+  {
+    "id": "mod-ndisplay-tm1638-ds",
+    "title": "Titan Micro Electronics TM1638 LED drive control special circuit, data sheet in Chinese (archived copy)",
+    "url": "https://web.archive.org/web/20241113181248id_/http://www.titanmec.com/index/article/download.html?file=aHR0cDovL3R3ZHotYXNzZXRzLmRqd2VpbGFpLmNvbS90d2R6X2NuLzIwMjMwNTA1LzIwMjMwNTA1MTUxODM0NzMxLnBkZg%3D%3D&name=TM1638_V2.2",
+    "retrieved": "2026-11-08",
+    "class": "A1",
+    "note": "TM1638 V2.2 (Chinese; Word 2019, 2023-04-21), Titan Micro footer on every page. Wayback snapshot 2024-11-13 of the titanmec.com download link (the live link answers HTTP 500). Pages 1, 2, 13, 14, 15; sha256 d05aee5120550d2c0e54f48a84bedd8339ad331e727fea1cf151efc187501a17"
+  },
+  {
+    "id": "mod-ndisplay-is31fl3731-ds",
+    "title": "Lumissil Microsystems IS31FL3731 Audio Modulated Matrix LED Driver, data sheet",
+    "url": "https://lumissil.com/assets/pdf/core/IS31FL3731_DS.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "IS31FL3731 Rev. G (10/24/2024), Lumissil header on every page, from lumissil.com. Pages 1, 3, 5, 6, 7, 18; sha256 a9b1eb09c9fb0b86bbacd1672f63a0a66b9e1fda6c0aa22ba489cc2bbbcf4bbf"
+  },
+  {
+    "id": "mod-ndisplay-st7735s-ds",
+    "title": "Sitronix ST7735S 132RGB x 162dot 262K Color with Frame Memory Single-Chip TFT Controller/Driver, data sheet V1.1, copy hosted by Waveshare",
+    "url": "https://www.waveshare.com/w/upload/e/e2/ST7735S_V1.1_20111121.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A2",
+    "note": "ST7735S Version 1.1 (2011/11), Sitronix header 'ST7735S / V 1.1 Page N of 193' on every page; PDF of 2011-11-22 (Ghostscript). PDF page = printed page + 8. Pages 1, 11, 23, 24, 28, 29, 30, 36, 93; sha256 37b93f0ef6d5ac0bafe76868e048b67dce682d92fb9bf5a7ca8d8070a45fcc94"
+  }
+]

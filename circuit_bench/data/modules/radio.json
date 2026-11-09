@@ -1,0 +1,1337 @@
+{
+ "schema": 1,
+ "wp": "radio",
+ "note": "Values only from manufacturer documents; 'evidence' quotes lines of tests/corpus/excerpts/mod-radio-*.txt (pypdf).",
+ "modules": [
+  {
+   "id": "nrf24l01p",
+   "aliases": [
+    "nrf24l01+",
+    "nrf24l01",
+    "nrf24"
+   ],
+   "title": "nRF24L01+ 2.4 GHz transceiver module",
+   "category": "comm.radio",
+   "manufacturer": "Nordic Semiconductor",
+   "kind": "module",
+   "source_ids": [
+    "mod-radio-nrf24l01p-ps"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 1.9,
+      "unit": "V",
+      "page": 13,
+      "evidence": "VDD Supply voltage 1.9 3.0 3.6 V"
+     },
+     "typ": {
+      "value": 3.0,
+      "unit": "V",
+      "page": 13,
+      "evidence": "VDD Supply voltage 1.9 3.0 3.6 V"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 13,
+      "evidence": "VDD Supply voltage 1.9 3.0 3.6 V",
+      "conditions": "input signals up to 3.6 V; with inputs above 3.6 V VDD must be 2.7–3.3 V (p. 13)"
+     },
+     "abs_max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 12,
+      "evidence": "VDD -0.3 3.6 V"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "rel": 0.7,
+     "of": "VCC",
+     "unit": "V",
+     "page": 20,
+     "evidence": "VIH HIGH level input voltage 0.7 VDD 5.25a"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VCC",
+     "unit": "V",
+     "page": 20,
+     "evidence": "VIL LOW level input voltage VSS 0.3VDD V"
+    },
+    "voh": {
+     "rel_offset": -0.3,
+     "of": "VCC",
+     "unit": "V",
+     "page": 20,
+     "evidence": "VOH HIGH level output voltage (IOH=-0.25mA) VDD -0.3 VDD V",
+     "conditions": "IOH = -0.25 mA"
+    },
+    "vol": {
+     "value": 0.3,
+     "unit": "V",
+     "page": 20,
+     "evidence": "VOL LOW level output voltage (IOL=0.25mA) 0.3 V",
+     "conditions": "IOL = 0.25 mA"
+    },
+    "v_in_max": {
+     "value": 5.25,
+     "unit": "V",
+     "page": 12,
+     "evidence": [
+      "Input voltage",
+      "VI -0.3 5.25 V"
+     ],
+     "conditions": "absolute maximum; inputs above 3.6 V need VDD 2.7–3.3 V (p. 20)"
+    },
+    "five_v_tolerant": true,
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply",
+     "note": "VDD of the chip"
+    },
+    {
+     "name": "CE",
+     "signal": "enable_in",
+     "note": "Chip Enable: activates RX or TX mode"
+    },
+    {
+     "name": "CSN",
+     "signal": "spi_cs",
+     "active_low": true
+    },
+    {
+     "name": "SCK",
+     "signal": "spi_sck"
+    },
+    {
+     "name": "MOSI",
+     "signal": "spi_sdi"
+    },
+    {
+     "name": "MISO",
+     "signal": "spi_sdo",
+     "output": "tristate"
+    },
+    {
+     "name": "IRQ",
+     "signal": "digital_out",
+     "active_low": true,
+     "note": "maskable interrupt, active low"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "spi",
+     "mode": 0,
+     "lsb_first": false,
+     "f_max_hz": {
+      "value": 10000000.0,
+      "unit": "Hz",
+      "page": 53,
+      "evidence": "Fsck SCK Frequency 0 10 MHz",
+      "conditions": "Cload = 5 pF (Table 22); a second timing table gives 8 MHz"
+     },
+     "note": "commands MSBit first; multi-byte data LSByte first, MSBit first in each byte (p. 50). SPI mode 0 is the usual setting; the timing figures are not quoted here."
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "typ": {
+     "value": 0.0113,
+     "unit": "A",
+     "page": 14,
+     "evidence": [
+      "IVDD_TX0 Supply current @ 0dBm output power b",
+      "11.3 mA"
+     ],
+     "conditions": "TX at 0 dBm output power"
+    },
+    "peak": {
+     "value": 0.0135,
+     "unit": "A",
+     "page": 14,
+     "evidence": "IVDD_2M Supply current 2Mbps 13.5 mA",
+     "conditions": "RX at 2 Mbps: the highest current in the power table (TX at 0 dBm: 11.3 mA)"
+    },
+    "sleep": {
+     "value": 9e-07,
+     "unit": "A",
+     "page": 14,
+     "evidence": "IVDD_PD Supply current in power down 900 nA"
+    }
+   },
+   "requires": [
+    {
+     "code": "bulk_cap",
+     "kind": "ceramic",
+     "value": "4.7uF",
+     "pins": [
+      "VCC"
+     ],
+     "to": "GND",
+     "page": 65,
+     "evidence": "example, 4.7µF ceramic) in parallel with the smaller value capacitors is recommended",
+     "note": "Nordic: a large ceramic capacitor (for example 4.7 µF) in parallel with the small decoupling capacitors at VDD"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "5 V tolerant inputs, but only with VDD 2.7–3.3 V when an input is above 3.6 V.",
+     "page": 20,
+     "evidence": "a. If the input signal >3.6V, the VDD of the nRF24L01+ must be between 2.7V and 3.3V",
+     "verified": true
+    },
+    {
+     "text": "Module pin names (GND, VCC, CE, CSN, SCK, MOSI, MISO, IRQ) and the 2×4 header follow the common breakout boards; Nordic documents the bare chip only.",
+     "verified": false
+    },
+    {
+     "text": "Long-range modules with PA/LNA (nRF24L01+PA+LNA) draw much more current in TX than the bare chip; the values here are for the nRF24L01+ itself.",
+     "verified": false
+    },
+    {
+     "text": "Breakout boards usually carry no regulator: VCC must come from a 1.9–3.6 V rail, never from 5 V.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "sx1276",
+   "aliases": [
+    "sx1277",
+    "sx1278",
+    "sx1279",
+    "sx127x"
+   ],
+   "title": "SX1276/77/78/79 LoRa transceiver",
+   "category": "comm.radio",
+   "manufacturer": "Semtech",
+   "kind": "ic",
+   "source_ids": [
+    "mod-radio-sx1276-ds"
+   ],
+   "supplies": {
+    "VBAT_DIG": {
+     "min": {
+      "value": 1.8,
+      "unit": "V",
+      "page": 13,
+      "evidence": "VDDop Supply voltage 1.8 3.7 V"
+     },
+     "max": {
+      "value": 3.7,
+      "unit": "V",
+      "page": 13,
+      "evidence": "VDDop Supply voltage 1.8 3.7 V",
+      "conditions": "+20 dBm on PA_BOOST needs 2.4–3.7 V (p. 84)"
+     },
+     "abs_max": {
+      "value": 3.9,
+      "unit": "V",
+      "page": 13,
+      "evidence": "VDDmr Supply Voltage -0.5 3.9 V"
+     }
+    },
+    "VBAT_ANA": {
+     "min": {
+      "value": 1.8,
+      "unit": "V",
+      "page": 13,
+      "evidence": "VDDop Supply voltage 1.8 3.7 V"
+     },
+     "max": {
+      "value": 3.7,
+      "unit": "V",
+      "page": 13,
+      "evidence": "VDDop Supply voltage 1.8 3.7 V",
+      "conditions": "+20 dBm on PA_BOOST needs 2.4–3.7 V (p. 84)"
+     },
+     "abs_max": {
+      "value": 3.9,
+      "unit": "V",
+      "page": 13,
+      "evidence": "VDDmr Supply Voltage -0.5 3.9 V"
+     }
+    },
+    "VBAT_RF": {
+     "min": {
+      "value": 1.8,
+      "unit": "V",
+      "page": 13,
+      "evidence": "VDDop Supply voltage 1.8 3.7 V"
+     },
+     "max": {
+      "value": 3.7,
+      "unit": "V",
+      "page": 13,
+      "evidence": "VDDop Supply voltage 1.8 3.7 V",
+      "conditions": "+20 dBm on PA_BOOST needs 2.4–3.7 V (p. 84)"
+     },
+     "abs_max": {
+      "value": 3.9,
+      "unit": "V",
+      "page": 13,
+      "evidence": "VDDmr Supply Voltage -0.5 3.9 V"
+     }
+    }
+   },
+   "io": {
+    "domain": "VBAT_DIG",
+    "vih": {
+     "rel": 0.8,
+     "of": "VBAT_DIG",
+     "unit": "V",
+     "page": 22,
+     "evidence": "VIH Digital input level high 0.8 - - VDD"
+    },
+    "vil": {
+     "rel": 0.2,
+     "of": "VBAT_DIG",
+     "unit": "V",
+     "page": 22,
+     "evidence": "VIL Digital input level low - - 0.2 VDD"
+    },
+    "voh": {
+     "rel": 0.9,
+     "of": "VBAT_DIG",
+     "unit": "V",
+     "page": 22,
+     "evidence": "VOH Digital output level high Imax = 1 mA 0.9 - - VDD",
+     "conditions": "Imax = 1 mA"
+    },
+    "vol": {
+     "rel": 0.1,
+     "of": "VBAT_DIG",
+     "unit": "V",
+     "page": 22,
+     "evidence": "VOL Digital output level low Imax = -1 mA - - 0.1 VDD",
+     "conditions": "Imax = -1 mA"
+    },
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "VBAT_DIG",
+     "signal": "supply"
+    },
+    {
+     "name": "VBAT_ANA",
+     "signal": "supply",
+     "tie": "VBAT_DIG"
+    },
+    {
+     "name": "VBAT_RF",
+     "signal": "supply",
+     "tie": "VBAT_DIG"
+    },
+    {
+     "name": "NSS",
+     "signal": "spi_cs",
+     "active_low": true
+    },
+    {
+     "name": "SCK",
+     "signal": "spi_sck"
+    },
+    {
+     "name": "MOSI",
+     "signal": "spi_sdi"
+    },
+    {
+     "name": "MISO",
+     "signal": "spi_sdo",
+     "output": "tristate",
+     "note": "high impedance while NSS is high (p. 80)"
+    },
+    {
+     "name": "NRESET",
+     "signal": "reset_in"
+    },
+    {
+     "name": "DIO0",
+     "signal": "digital_out"
+    },
+    {
+     "name": "DIO1",
+     "signal": "digital_out"
+    },
+    {
+     "name": "DIO2",
+     "signal": "digital_out"
+    },
+    {
+     "name": "DIO3",
+     "signal": "digital_out"
+    },
+    {
+     "name": "DIO4",
+     "signal": "digital_out"
+    },
+    {
+     "name": "DIO5",
+     "signal": "digital_out"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "spi",
+     "mode": 0,
+     "lsb_first": false,
+     "f_max_hz": {
+      "value": 10000000.0,
+      "unit": "Hz",
+      "page": 22,
+      "evidence": "FSCK SCK frequency - - 10 MHz"
+     },
+     "note": "CPOL = 0, CPHA = 0; address and data MSB first (p. 80)"
+    }
+   ],
+   "current": {
+    "supply": "VBAT_DIG",
+    "typ": {
+     "value": 0.0108,
+     "unit": "A",
+     "page": 14,
+     "evidence": [
+      "IDDR Supply current in Receive mode",
+      "LnaBoost Off, band 1",
+      "10.8"
+     ],
+     "conditions": "RX, LnaBoost off, band 1 (typ; values in the next lines of the table)"
+    },
+    "peak": {
+     "value": 0.12,
+     "unit": "A",
+     "page": 14,
+     "evidence": [
+      "IDDT Supply current in Transmit mode with impedance matching",
+      "RFOP = +20 dBm, on PA_BOOST",
+      "120"
+     ],
+     "conditions": "TX at +20 dBm on PA_BOOST (typ; values in the next lines of the table)"
+    },
+    "sleep": {
+     "value": 1e-06,
+     "unit": "A",
+     "page": 14,
+     "evidence": "IDDSL Supply current in Sleep mode - 0.2 1 uA",
+     "conditions": "max"
+    },
+    "note": "current.supply names VBAT_DIG; the figures are for the whole chip (all VBAT pins)"
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "+20 dBm on PA_BOOST: transmit duty cycle at most 1 %.",
+     "page": 84,
+     "evidence": "DC_20dBm Duty Cycle of transmission at +20 dBm output - 1 %",
+     "verified": true
+    },
+    {
+     "text": "+20 dBm on PA_BOOST: supply 2.4–3.7 V.",
+     "page": 84,
+     "evidence": "VDDop_20dBm Supply voltage, +20 dBm output 2.4 3.7 V",
+     "verified": true
+    },
+    {
+     "text": "The decoupling and RF matching parts of the reference design are not quoted here; use the board vendor's schematic.",
+     "verified": false
+    },
+    {
+     "text": "SX1278 boards (e.g. 433 MHz Ra-02) share this datasheet; the frequency band depends on the chip and the matching network of the board.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "rfm95w",
+   "aliases": [
+    "rfm95",
+    "rfm96w",
+    "rfm98w"
+   ],
+   "title": "RFM95W LoRa transceiver module (SX1276 based)",
+   "category": "comm.radio",
+   "manufacturer": "HopeRF",
+   "kind": "module",
+   "module_datasheet": true,
+   "source_ids": [
+    "mod-radio-rfm95w-ds",
+    "mod-radio-rfm95w-sf"
+   ],
+   "supplies": {
+    "3.3V": {
+     "min": {
+      "value": 1.8,
+      "unit": "V",
+      "page": 12,
+      "evidence": "VDDop Supply voltage 1.8 3.7 V",
+      "source_id": "mod-radio-rfm95w-ds"
+     },
+     "max": {
+      "value": 3.7,
+      "unit": "V",
+      "page": 12,
+      "evidence": "VDDop Supply voltage 1.8 3.7 V",
+      "source_id": "mod-radio-rfm95w-ds"
+     },
+     "abs_max": {
+      "value": 3.9,
+      "unit": "V",
+      "page": 12,
+      "evidence": "VDDmr Supply Voltage -0.5 3.9 V",
+      "source_id": "mod-radio-rfm95w-ds"
+     }
+    }
+   },
+   "io": {
+    "domain": "3.3V",
+    "vih": {
+     "rel": 0.8,
+     "of": "3.3V",
+     "unit": "V",
+     "page": 20,
+     "evidence": "VIH Digital input level high  0.8 - - VDD",
+     "source_id": "mod-radio-rfm95w-ds"
+    },
+    "vil": {
+     "rel": 0.2,
+     "of": "3.3V",
+     "unit": "V",
+     "page": 20,
+     "evidence": "VIL Digital input level low  - - 0.2 VDD",
+     "source_id": "mod-radio-rfm95w-ds"
+    },
+    "voh": {
+     "rel": 0.9,
+     "of": "3.3V",
+     "unit": "V",
+     "page": 20,
+     "evidence": "VOH Digital output level high Imax = 1 mA 0.9 - - VDD",
+     "source_id": "mod-radio-rfm95w-ds",
+     "conditions": "Imax = 1 mA"
+    },
+    "vol": {
+     "rel": 0.1,
+     "of": "3.3V",
+     "unit": "V",
+     "page": 20,
+     "evidence": "VOL Digital output level low Imax = -1 mA - - 0.1 VDD",
+     "source_id": "mod-radio-rfm95w-ds",
+     "conditions": "Imax = -1 mA"
+    },
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "3.3V",
+     "signal": "supply",
+     "note": "module pin 13, supply voltage"
+    },
+    {
+     "name": "NSS",
+     "signal": "spi_cs",
+     "active_low": true
+    },
+    {
+     "name": "SCK",
+     "signal": "spi_sck"
+    },
+    {
+     "name": "MOSI",
+     "signal": "spi_sdi"
+    },
+    {
+     "name": "MISO",
+     "signal": "spi_sdo",
+     "output": "tristate"
+    },
+    {
+     "name": "RESET",
+     "signal": "reset_in"
+    },
+    {
+     "name": "DIO0",
+     "signal": "digital_out"
+    },
+    {
+     "name": "DIO1",
+     "signal": "digital_out"
+    },
+    {
+     "name": "DIO2",
+     "signal": "digital_out"
+    },
+    {
+     "name": "DIO3",
+     "signal": "digital_out"
+    },
+    {
+     "name": "DIO4",
+     "signal": "digital_out"
+    },
+    {
+     "name": "DIO5",
+     "signal": "digital_out"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "spi",
+     "mode": 0,
+     "lsb_first": false,
+     "f_max_hz": {
+      "value": 10000000.0,
+      "unit": "Hz",
+      "page": 20,
+      "evidence": "FSCK SCK frequency  - - 10 MHz",
+      "source_id": "mod-radio-rfm95w-ds"
+     },
+     "note": "same SPI as the SX1276: CPOL = 0, CPHA = 0, MSB first"
+    }
+   ],
+   "current": {
+    "supply": "3.3V",
+    "typ": {
+     "value": 0.0108,
+     "unit": "A",
+     "page": 13,
+     "evidence": [
+      "IDDR",
+      "LnaBoost Off, higher bands",
+      "10.8"
+     ],
+     "source_id": "mod-radio-rfm95w-ds",
+     "conditions": "RX, LnaBoost off, higher bands (typ; values in the next lines of the table)"
+    },
+    "peak": {
+     "value": 0.12,
+     "unit": "A",
+     "page": 13,
+     "evidence": [
+      "IDDT SupplycurrentinTransmitmodewithimpedancematching",
+      "RFOP=+20dBm,onPA_BOOST",
+      "120"
+     ],
+     "source_id": "mod-radio-rfm95w-sf",
+     "conditions": "TX at +20 dBm on PA_BOOST, 2019 edition (typ); the 2024 edition lists 22 mA at +10 dBm"
+    },
+    "sleep": {
+     "value": 1e-06,
+     "unit": "A",
+     "page": 13,
+     "evidence": "IDDSL Supply current in Sleep mode  - 0.2 1 uA",
+     "source_id": "mod-radio-rfm95w-ds",
+     "conditions": "max"
+    }
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "+20 dBm on PA_BOOST (2019 edition): transmit duty cycle at most 1 %.",
+     "page": 80,
+     "evidence": "DC_20dBm DutyCycleoftransmissionat+20dBmoutput - 1 %",
+     "verified": true,
+     "source_id": "mod-radio-rfm95w-sf"
+    },
+    {
+     "text": "+20 dBm on PA_BOOST (2019 edition): supply 2.4–3.7 V.",
+     "page": 80,
+     "evidence": "VDDop_20dBm Supplyvoltage,+20dBmoutput 2.4 3.7 V",
+     "verified": true,
+     "source_id": "mod-radio-rfm95w-sf"
+    },
+    {
+     "text": "The current hoperf.com edition (2024) specifies the PA_BOOST output up to +10 dBm only.",
+     "page": 1,
+     "evidence": "integrated +10 dBm power amplifier",
+     "verified": true,
+     "source_id": "mod-radio-rfm95w-ds"
+    },
+    {
+     "text": "RFM95W is 868/915 MHz; RFM96W/RFM98W are the 433/470 MHz versions with the same pinout.",
+     "verified": false
+    },
+    {
+     "text": "Adafruit and other breakouts add a 3.3 V regulator and level shifting; the bare module has neither.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "mfrc522",
+   "aliases": [
+    "rc522",
+    "rfid-rc522",
+    "mfrc-522"
+   ],
+   "title": "MFRC522 13.56 MHz RFID reader module (RC522)",
+   "category": "comm.rfid",
+   "manufacturer": "NXP Semiconductors",
+   "kind": "module",
+   "source_ids": [
+    "mod-radio-mfrc522-ds"
+   ],
+   "supplies": {
+    "3.3V": {
+     "min": {
+      "value": 2.5,
+      "unit": "V",
+      "page": 2,
+      "evidence": "VDDD digital supply voltage 2.5 3.3 3.6 V",
+      "conditions": "VDDA = VDDD = VDD(TVDD); PVDD ≤ VDDD"
+     },
+     "typ": {
+      "value": 3.3,
+      "unit": "V",
+      "page": 2,
+      "evidence": "VDDD digital supply voltage 2.5 3.3 3.6 V"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 2,
+      "evidence": "VDDD digital supply voltage 2.5 3.3 3.6 V"
+     },
+     "abs_max": {
+      "value": 4.0,
+      "unit": "V",
+      "page": 74,
+      "evidence": "VDDD digital supply voltage 0.5 +4.0 V"
+     }
+    }
+   },
+   "io": {
+    "domain": "3.3V",
+    "vih": {
+     "rel": 0.7,
+     "of": "3.3V",
+     "unit": "V",
+     "page": 76,
+     "evidence": [
+      "pins D1, D2, D3, D4, D5, D6 and D7",
+      "VIH HIGH-level input voltage 0.7VDD(PVDD) -- V"
+     ],
+     "conditions": "pins D1–D7 (SCK, MOSI, MISO), relative to PVDD; on RC522 boards PVDD is the 3.3 V pin"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "3.3V",
+     "unit": "V",
+     "page": 76,
+     "evidence": [
+      "pins D1, D2, D3, D4, D5, D6 and D7",
+      "VIL LOW-level input voltage - - 0.3V DD(PVDD) V"
+     ],
+     "conditions": "pins D1–D7, relative to PVDD"
+    },
+    "v_in_max": {
+     "rel_offset": 0.5,
+     "of": "3.3V",
+     "unit": "V",
+     "page": 74,
+     "evidence": [
+      "VI input voltage all input pins except pins MFIN and",
+      "0.5 V DD(PVDD) + 0.5 V"
+     ],
+     "conditions": "absolute maximum, relative to PVDD"
+    },
+    "outputs": "push_pull",
+    "five_v_tolerant": false
+   },
+   "pins": [
+    {
+     "name": "3.3V",
+     "signal": "supply",
+     "note": "AVDD, DVDD, TVDD and PVDD of the chip on RC522 boards"
+    },
+    {
+     "name": "RST",
+     "signal": "reset_in",
+     "active_low": true,
+     "note": "NRSTPD: low = hard power-down"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "IRQ",
+     "signal": "digital_out",
+     "note": "interrupt request output"
+    },
+    {
+     "name": "MISO",
+     "signal": "spi_sdo",
+     "note": "D7 of the chip (SCL in I²C mode, TX in UART mode)"
+    },
+    {
+     "name": "MOSI",
+     "signal": "spi_sdi",
+     "note": "D6 of the chip"
+    },
+    {
+     "name": "SCK",
+     "signal": "spi_sck",
+     "note": "D5 of the chip"
+    },
+    {
+     "name": "SDA",
+     "signal": "spi_cs",
+     "active_low": true,
+     "note": "chip pin 24 SDA/NSS/RX: the SPI chip select (NSS) when the board selects SPI, not I²C SDA"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "spi",
+     "lsb_first": false,
+     "f_max_hz": {
+      "value": 10000000.0,
+      "unit": "Hz",
+      "page": 10,
+      "evidence": "The interface can handle data speeds up to 10 Mbit/s",
+      "conditions": "10 Mbit/s"
+     },
+     "note": "MSB first; data stable on the rising SCK edge, changed on the falling edge (p. 10). The chip selects SPI with pin I2C low and EA high (Table 5, p. 9)."
+    }
+   ],
+   "current": {
+    "supply": "3.3V",
+    "typ": {
+     "value": 0.06,
+     "unit": "A",
+     "page": 3,
+     "evidence": "IDD(TVDD) TVDD supply current pin TVDD; continuous wave",
+     "conditions": "TVDD, continuous wave, typ 60 mA (max 100 mA); DVDD adds 6.5 mA typ"
+    },
+    "peak": {
+     "value": 0.1,
+     "unit": "A",
+     "page": 3,
+     "evidence": "IDD(TVDD) TVDD supply current pin TVDD; continuous wave",
+     "conditions": "TVDD max 100 mA, continuous wave; depends on the antenna circuit"
+    },
+    "sleep": {
+     "value": 5e-06,
+     "unit": "A",
+     "page": 3,
+     "evidence": "hard power-down; pin NRSTPD set LOW [4] --5",
+     "conditions": "hard power-down, max"
+    },
+    "note": "the 3.3 V pin also feeds DVDD (IDDD max 9 mA), AVDD and PVDD"
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "SPI frames are sent MSB first.",
+     "page": 10,
+     "evidence": "Data bytes on both MOSI and MISO lines are sent with the MSB first",
+     "verified": true
+    },
+    {
+     "text": "VDDA, VDDD and VDD(TVDD) must always be the same voltage.",
+     "page": 3,
+     "evidence": "V DDA, VDDD and VDD(TVDD) must always be the same voltage",
+     "verified": true
+    },
+    {
+     "text": "RC522 boards tie the chip's I2C pin low and EA high, so only SPI is available on the header; the chip also supports I²C and UART.",
+     "verified": false
+    },
+    {
+     "text": "The header labels (SDA, SCK, MOSI, MISO, IRQ, GND, RST, 3.3V) follow the common RC522 board; NXP documents the bare chip.",
+     "verified": false
+    },
+    {
+     "text": "RC522 boards carry no regulator: the 3.3V pin must not see 5 V.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "pn532",
+   "aliases": [
+    "pn532-nfc",
+    "pn5321"
+   ],
+   "title": "PN532 NFC controller (SPI, I²C or HSU)",
+   "category": "comm.rfid",
+   "manufacturer": "NXP Semiconductors",
+   "kind": "ic",
+   "source_ids": [
+    "mod-radio-pn532-ds",
+    "mod-radio-pn532-um"
+   ],
+   "supplies": {
+    "VBAT": {
+     "min": {
+      "value": 2.7,
+      "unit": "V",
+      "page": 194,
+      "evidence": [
+       "VBAT Power Supply Voltage V SS = 0 V [1]",
+       "2.7 5.5 V"
+      ],
+      "source_id": "mod-radio-pn532-ds"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 194,
+      "evidence": [
+       "VBAT Power Supply Voltage V SS = 0 V [1]",
+       "2.7 5.5 V"
+      ],
+      "source_id": "mod-radio-pn532-ds"
+     },
+     "abs_max": {
+      "value": 6.0,
+      "unit": "V",
+      "page": 194,
+      "evidence": "VBAT Power Supply Voltage -0.5 6.0 V",
+      "source_id": "mod-radio-pn532-ds"
+     }
+    },
+    "PVDD": {
+     "min": {
+      "value": 1.6,
+      "unit": "V",
+      "page": 194,
+      "evidence": "PVDD Supply Voltage for host interface V SS =0V [3] 1.6 1.8 to 3.3 3.6 V",
+      "source_id": "mod-radio-pn532-ds"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 194,
+      "evidence": "PVDD Supply Voltage for host interface V SS =0V [3] 1.6 1.8 to 3.3 3.6 V",
+      "source_id": "mod-radio-pn532-ds"
+     },
+     "abs_max": {
+      "value": 4.0,
+      "unit": "V",
+      "page": 194,
+      "evidence": "PVDD Supply Voltage -0.5 4 V",
+      "source_id": "mod-radio-pn532-ds"
+     }
+    }
+   },
+   "io": {
+    "domain": "PVDD",
+    "vih": {
+     "rel": 0.7,
+     "of": "PVDD",
+     "unit": "V",
+     "page": 203,
+     "evidence": [
+      "VIH High level Input voltage PV DD > 1.6V [1]",
+      "0.7"
+     ],
+     "source_id": "mod-radio-pn532-ds",
+     "conditions": "NSS / HSU_RX pin, PVDD > 1.6 V"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "PVDD",
+     "unit": "V",
+     "page": 203,
+     "evidence": "VIL Low level Input voltage PV DD > 1.6V [2] 00 . 3",
+     "source_id": "mod-radio-pn532-ds",
+     "conditions": "NSS / HSU_RX pin, PVDD > 1.6 V"
+    },
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "VBAT",
+     "signal": "supply",
+     "note": "main supply, internal LDO"
+    },
+    {
+     "name": "PVDD",
+     "signal": "supply",
+     "note": "host interface pad supply"
+    },
+    {
+     "name": "DVDD",
+     "signal": "power_out",
+     "note": "internal LDO output (digital supply); decouple with 10 µF low ESR ceramic"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "I0",
+     "signal": "mode_select",
+     "tie": "GND",
+     "note": "host interface selector 0 (SPI: low)"
+    },
+    {
+     "name": "I1",
+     "signal": "mode_select",
+     "note": "host interface selector 1 (SPI: high, referenced to DVDD); breakouts set it with a switch or jumper"
+    },
+    {
+     "name": "NSS",
+     "signal": "spi_cs",
+     "active_low": true,
+     "note": "pin 27"
+    },
+    {
+     "name": "MOSI",
+     "signal": "spi_sdi",
+     "note": "pin 28"
+    },
+    {
+     "name": "MISO",
+     "signal": "spi_sdo",
+     "note": "pin 29"
+    },
+    {
+     "name": "SCK",
+     "signal": "spi_sck",
+     "note": "pin 30"
+    },
+    {
+     "name": "IRQ",
+     "signal": "digital_out",
+     "active_low": true,
+     "note": "P70_IRQ, low when an interrupt occurs"
+    },
+    {
+     "name": "RSTPD_N",
+     "signal": "reset_in",
+     "active_low": true,
+     "note": "reset and power-down"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "spi",
+     "mode": 0,
+     "lsb_first": true,
+     "f_max_hz": {
+      "value": 5000000.0,
+      "unit": "Hz",
+      "page": 79,
+      "evidence": "Synchronous, Serial, Half-Duplex communication, 5 MHz max",
+      "source_id": "mod-radio-pn532-ds"
+     },
+     "note": "mode 0 and LSB first (UM0701-02 p. 25); select with I0 = 0, I1 = 1 (p. 24)"
+    }
+   ],
+   "current": {
+    "supply": "VBAT",
+    "typ": {
+     "value": 0.06,
+     "unit": "A",
+     "page": 4,
+     "evidence": [
+      "ITVDD Transmitter supply current During RF transmission,",
+      "-6 0 [3]"
+     ],
+     "source_id": "mod-radio-pn532-ds",
+     "conditions": "TVDD during RF transmission, VBAT = 5 V, antenna tuned at 50 Ω (typ); TVDD is fed from the internal LDO"
+    },
+    "peak": {
+     "value": 0.15,
+     "unit": "A",
+     "page": 194,
+     "evidence": "ITVDD Maximum current in TVDD [1] 150 mA",
+     "source_id": "mod-radio-pn532-ds",
+     "conditions": "limiting value for TVDD; the antenna must be tuned not to exceed it"
+    },
+    "sleep": {
+     "value": 2e-06,
+     "unit": "A",
+     "page": 4,
+     "evidence": "VBAT =5V - - 2",
+     "source_id": "mod-radio-pn532-ds",
+     "conditions": "hard power-down, VBAT = 5 V, max"
+    },
+    "note": "VBAT also carries the digital supply current (IDVDD 25 mA typ at VBAT = 5 V)"
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "10uF",
+     "pins": [
+      "DVDD"
+     ],
+     "to": "GND",
+     "page": 195,
+     "source_id": "mod-radio-pn532-ds",
+     "evidence": "Cdec DVDD decoupling capacitor Low ESR, like X7R or",
+     "note": "on the DVDD pin (internal LDO output), low ESR X7R/X5R ceramic; breakouts already carry it"
+    }
+   ],
+   "hazards": [],
+   "variants": [
+    {
+     "id": "i2c",
+     "title": "I²C host interface (I0 = 1, I1 = 0)",
+     "overrides": {
+      "pins": [
+       {
+        "name": "VBAT",
+        "signal": "supply",
+        "note": "main supply, internal LDO"
+       },
+       {
+        "name": "PVDD",
+        "signal": "supply",
+        "note": "host interface pad supply"
+       },
+       {
+        "name": "DVDD",
+        "signal": "power_out",
+        "note": "internal LDO output (digital supply); decouple with 10 µF low ESR ceramic"
+       },
+       {
+        "name": "GND",
+        "signal": "gnd"
+       },
+       {
+        "name": "I0",
+        "signal": "mode_select",
+        "note": "host interface selector 0 (I²C: high, referenced to DVDD); breakouts set it with a switch or jumper"
+       },
+       {
+        "name": "I1",
+        "signal": "mode_select",
+        "note": "host interface selector 1 (I²C: low)",
+        "tie": "GND"
+       },
+       {
+        "name": "SCL",
+        "signal": "i2c_scl",
+        "note": "pin 27 (P50_SCL), open drain"
+       },
+       {
+        "name": "SDA",
+        "signal": "i2c_sda",
+        "note": "pin 28, open drain"
+       },
+       {
+        "name": "IRQ",
+        "signal": "digital_out",
+        "active_low": true,
+        "note": "P70_IRQ, low when an interrupt occurs"
+       },
+       {
+        "name": "RSTPD_N",
+        "signal": "reset_in",
+        "active_low": true,
+        "note": "reset and power-down"
+       }
+      ],
+      "io": {
+       "domain": "PVDD",
+       "vih": {
+        "rel": 0.7,
+        "of": "PVDD",
+        "unit": "V",
+        "page": 203,
+        "evidence": [
+         "VIH High level Input voltage PV DD > 1.6V [1]",
+         "0.7"
+        ],
+        "source_id": "mod-radio-pn532-ds",
+        "conditions": "PVDD > 1.6 V"
+       },
+       "vil": {
+        "rel": 0.3,
+        "of": "PVDD",
+        "unit": "V",
+        "page": 203,
+        "evidence": "VIL Low level Input voltage PV DD > 1.6V [2] 00 . 3",
+        "source_id": "mod-radio-pn532-ds",
+        "conditions": "PVDD > 1.6 V"
+       },
+       "outputs": "open_drain"
+      },
+      "interfaces": [
+       {
+        "type": "i2c",
+        "addresses": {
+         "value": [
+          "0x24"
+         ],
+         "page": 26,
+         "source_id": "mod-radio-pn532-um",
+         "evidence": "The PN532 is configured with I2C address 0x48",
+         "conditions": "0x48 is the 8-bit write address (read 0x49, p. 43) = 7-bit 0x24"
+        },
+        "default": "0x24",
+        "f_max_hz": {
+         "value": 400000.0,
+         "unit": "Hz",
+         "page": 211,
+         "evidence": "fSCL SCL clock frequency 0 400 kHz",
+         "source_id": "mod-radio-pn532-ds"
+        },
+        "note": "MSB first; select with I0 = 1, I1 = 0 (UM0701-02 p. 24)"
+       }
+      ],
+      "requires": [
+       {
+        "code": "pullup",
+        "kind": "resistor",
+        "pins": [
+         "SDA",
+         "SCL"
+        ],
+        "to": "PVDD",
+        "page": 49,
+        "source_id": "mod-radio-pn532-ds",
+        "evidence": "In I2C mode, P50_SCL and SDA are configured in Open Drain mode.",
+        "note": "value from the I²C pull-up calculator; breakouts often carry pull-ups"
+       },
+       {
+        "code": "decoupling",
+        "kind": "ceramic",
+        "value": "10uF",
+        "pins": [
+         "DVDD"
+        ],
+        "to": "GND",
+        "page": 195,
+        "source_id": "mod-radio-pn532-ds",
+        "evidence": "Cdec DVDD decoupling capacitor Low ESR, like X7R or",
+        "note": "on the DVDD pin (internal LDO output), low ESR X7R/X5R ceramic; breakouts already carry it"
+       }
+      ]
+     }
+    },
+    {
+     "id": "hsu",
+     "title": "High Speed UART host interface (I0 = 0, I1 = 0)",
+     "overrides": {
+      "pins": [
+       {
+        "name": "VBAT",
+        "signal": "supply",
+        "note": "main supply, internal LDO"
+       },
+       {
+        "name": "PVDD",
+        "signal": "supply",
+        "note": "host interface pad supply"
+       },
+       {
+        "name": "DVDD",
+        "signal": "power_out",
+        "note": "internal LDO output (digital supply); decouple with 10 µF low ESR ceramic"
+       },
+       {
+        "name": "GND",
+        "signal": "gnd"
+       },
+       {
+        "name": "I0",
+        "signal": "mode_select",
+        "tie": "GND",
+        "note": "host interface selector 0 (HSU: low)"
+       },
+       {
+        "name": "I1",
+        "signal": "mode_select",
+        "note": "host interface selector 1 (HSU: low)",
+        "tie": "GND"
+       },
+       {
+        "name": "HSU_RX",
+        "signal": "uart_rx",
+        "note": "pin 27, the PN532 receives"
+       },
+       {
+        "name": "HSU_TX",
+        "signal": "uart_tx",
+        "note": "pin 28, the PN532 sends"
+       },
+       {
+        "name": "IRQ",
+        "signal": "digital_out",
+        "active_low": true,
+        "note": "P70_IRQ, low when an interrupt occurs"
+       },
+       {
+        "name": "RSTPD_N",
+        "signal": "reset_in",
+        "active_low": true,
+        "note": "reset and power-down"
+       }
+      ],
+      "interfaces": [
+       {
+        "type": "uart",
+        "baud_default": 115200,
+        "note": "8 data bits, no parity, 1 stop bit, LSB first (UM0701-02 p. 26)"
+       }
+      ]
+     }
+    }
+   ],
+   "notes": [
+    {
+     "text": "SPI bit order is LSB first.",
+     "page": 25,
+     "evidence": "The data order used is LSB first.",
+     "verified": true,
+     "source_id": "mod-radio-pn532-um"
+    },
+    {
+     "text": "Host interface selection by I0/I1: HSU 00, I2C 10, SPI 01 (I0, I1).",
+     "page": 24,
+     "evidence": "Table 7. Host controller interface selection",
+     "verified": true,
+     "source_id": "mod-radio-pn532-um"
+    },
+    {
+     "text": "HSU default baud rate 115200.",
+     "page": 26,
+     "evidence": "Baud rate : 115 200 bauds,",
+     "verified": true,
+     "source_id": "mod-radio-pn532-um"
+    },
+    {
+     "text": "DVDD, AVDD and TVDD must always be at the same supply voltage.",
+     "page": 4,
+     "evidence": "[1] DV DD, AVDD and TVDD must always be at the same supply voltage.",
+     "verified": true,
+     "source_id": "mod-radio-pn532-ds"
+    },
+    {
+     "text": "Breakout boards (e.g. Elechouse PN532 V3, Adafruit) add a 3.3 V regulator for PVDD and set I0/I1 with switches or jumpers; their header labels vary.",
+     "verified": false
+    }
+   ]
+  }
+ ]
+}

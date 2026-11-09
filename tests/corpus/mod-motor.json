@@ -1,0 +1,67 @@
+{
+ "files": [
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/uln2003a.pdf",
+   "path": "mod/motor/uln2003a.pdf",
+   "source_id": "mod-motor-uln2003a-ds",
+   "excerpt": "excerpts/mod-motor-uln2003a.txt",
+   "sha256": "ba83a908675b45c41e84fb06ea390efb10f4b7a358edfee656f87a968dd1d62f"
+  },
+  {
+   "url": "https://cdn.sparkfun.com/assets/f/0/6/6/5/uln2803a.pdf",
+   "path": "mod/motor/uln2803a-sparkfun.pdf",
+   "source_id": "mod-motor-uln2803a-ds",
+   "excerpt": "excerpts/mod-motor-uln2803a.txt",
+   "sha256": "95f7684f3c9710adf9c998e279f4f5d3bd7a8c1012272136d704c905dd2f4c4e"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/uln2803c.pdf",
+   "path": "mod/motor/uln2803c.pdf",
+   "source_id": "mod-motor-uln2803c-ds",
+   "excerpt": "excerpts/mod-motor-uln2803c.txt",
+   "sha256": "12d7302794e2a590d744efe718bb47781720e8ce1999c038772f9af961181f00"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/drv8833.pdf",
+   "path": "mod/motor/drv8833.pdf",
+   "source_id": "mod-motor-drv8833-ds",
+   "excerpt": "excerpts/mod-motor-drv8833.txt",
+   "sha256": "3e400e333f08f1b93ec99a2d52a6af2a864e88462cc892282208548d9e9f0de4"
+  },
+  {
+   "url": "https://web.archive.org/web/20261028181412id_/https://www.ti.com/lit/ds/symlink/drv8825.pdf",
+   "path": "mod/motor/drv8825.pdf",
+   "source_id": "mod-motor-drv8825-ds",
+   "excerpt": "excerpts/mod-motor-drv8825.txt",
+   "sha256": "5b4dccc2497334e10574ffa5a55518c8d59b0ed35758f5e8f099b84bbfbb407b"
+  },
+  {
+   "url": "https://www.allegromicro.com/-/media/files/datasheets/a4988-datasheet.pdf",
+   "path": "mod/motor/a4988-datasheet.pdf",
+   "source_id": "mod-motor-a4988-ds",
+   "excerpt": "excerpts/mod-motor-a4988.txt",
+   "sha256": "d1dfba3bb7be2cbf2b689f39424569fc78b1f4fd1f427648bbd8f291ebb933ea"
+  },
+  {
+   "url": "https://web.archive.org/web/20261004082311id_/https://www.analog.com/media/en/technical-documentation/data-sheets/tmc2209_datasheet_rev1.09.pdf",
+   "path": "mod/motor/tmc2209_datasheet_rev1.09.pdf",
+   "source_id": "mod-motor-tmc2209-ds",
+   "excerpt": "excerpts/mod-motor-tmc2209.txt",
+   "sha256": "1d9e8eed9ad2edc17b112c1d54e3c468c34102a629bc3dbf729828919a7b0893"
+  },
+  {
+   "url": "https://web.archive.org/web/20251012013050id_/https://toshiba.semicon-storage.com/info/TB6612FNG_datasheet_en_20141001.pdf?did=10660&prodName=TB6612FNG",
+   "path": "mod/motor/TB6612FNG_datasheet_en_20141001.pdf",
+   "source_id": "mod-motor-tb6612fng-ds",
+   "excerpt": "excerpts/mod-motor-tb6612fng.txt",
+   "sha256": "a2f153a1bb4c1780a2fd82764be13d47805aabcf1396329d43ccca7c6ade2312"
+  },
+  {
+   "url": "https://web.archive.org/web/20260710114354id_/https://www.st.com/resource/en/datasheet/l298.pdf",
+   "path": "mod/motor/l298.pdf",
+   "source_id": "mod-motor-l298n-ds",
+   "excerpt": "excerpts/mod-motor-l298n.txt",
+   "sha256": "d0fab11686343b5db91f84bd4b1dcb7b0c99d940672bc8ddd6fff4e340843551"
+  }
+ ]
+}

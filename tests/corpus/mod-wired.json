@@ -1,0 +1,53 @@
+{
+ "files": [
+  {
+   "url": "https://web.archive.org/web/20261005193054id_/https://www.analog.com/media/en/technical-documentation/data-sheets/MAX1487-MAX491.pdf",
+   "path": "mod/wired/MAX1487-MAX491.pdf",
+   "source_id": "mod-wired-max485-ds",
+   "excerpt": "excerpts/mod-wired-max485.txt",
+   "sha256": "b7888c0d45b0dc581a11cbc10cc53e2e2563271d5a01baed74dbae2845065d05"
+  },
+  {
+   "url": "https://web.archive.org/web/20260916071442id_/https://www.analog.com/media/en/technical-documentation/data-sheets/max3483-max3491.pdf",
+   "path": "mod/wired/max3483-max3491.pdf",
+   "source_id": "mod-wired-max3485-ds",
+   "excerpt": "excerpts/mod-wired-max3485.txt",
+   "sha256": "e648fd27831d1ba1f5b587708a97b34742783f1b464e410dc895e4393b8054b0"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/sn65hvd230.pdf",
+   "path": "mod/wired/sn65hvd230.pdf",
+   "source_id": "mod-wired-sn65hvd230-ds",
+   "excerpt": "excerpts/mod-wired-sn65hvd230.txt",
+   "sha256": "e98fc0c59168c035d7958111924dae7e21e46ab45bdfd6400aef048299d6d716"
+  },
+  {
+   "url": "https://cache.nxp.com/docs/en/data-sheet/TJA1050.pdf",
+   "path": "mod/wired/TJA1050.pdf",
+   "source_id": "mod-wired-tja1050-ds",
+   "excerpt": "excerpts/mod-wired-tja1050.txt",
+   "sha256": "f95c1ffa13e4d80e63e520a7d842cc8bcd98f8c945cf8939d51b31368d0f77a0"
+  },
+  {
+   "url": "https://ww1.microchip.com/downloads/en/DeviceDoc/MCP2515-Stand-Alone-CAN-Controller-with-SPI-20001801J.pdf",
+   "path": "mod/wired/MCP2515-20001801J.pdf",
+   "source_id": "mod-wired-mcp2515-ds",
+   "excerpt": "excerpts/mod-wired-mcp2515.txt",
+   "sha256": "f2cf92a2d1ed42b285bf1e2395b859c91114f6a6774d90cf3e4ccda36b840aca"
+  },
+  {
+   "url": "https://web.archive.org/web/20261005161823id_/https://www.silabs.com/documents/public/data-sheets/CP2102N-DataSheet.pdf",
+   "path": "mod/wired/CP2102N-DataSheet.pdf",
+   "source_id": "mod-wired-cp2102n-ds",
+   "excerpt": "excerpts/mod-wired-cp2102n.txt",
+   "sha256": "32fbab0ba17f394ab76fbbd8129bddad228c1c486a1693d96ea5905936e437fe"
+  },
+  {
+   "url": "https://web.archive.org/web/20240520142238id_/https://www.wch-ic.com/downloads/file/79.html",
+   "path": "mod/wired/CH340DS1.pdf",
+   "source_id": "mod-wired-ch340c-ds",
+   "excerpt": "excerpts/mod-wired-ch340c.txt",
+   "sha256": "1602f81b665c499e0913d77ac76fd5112c644b8f1272ae57be16d7e9251f1f2b"
+  }
+ ]
+}

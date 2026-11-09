@@ -1,0 +1,2520 @@
+{
+ "schema": 1,
+ "note": "Vishay NTCLE100E3 (document 29049, 07-May-2025). R(T) = R25·exp(A + B/T + C/T² + D/T³), 1/T = A1 + B1·ln(R/R25) + C1·ln²(R/R25) + D1·ln³(R/R25), T in K (p. 4); 'evidence' quotes tests/corpus/excerpts/mod-thermo-ntcle100e3.txt.",
+ "parts": [
+  {
+   "id": "NTCLE100E3331",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3331JB0"
+   ],
+   "title": "Vishay NTCLE100E3331 NTC 330 Ω",
+   "r25": {
+    "value": 330,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "330 5 3560 1.5"
+   },
+   "b25_85": {
+    "value": 3560,
+    "unit": "K",
+    "page": 2,
+    "evidence": "330 5 3560 1.5"
+   },
+   "b_tol": {
+    "value": 1.5,
+    "unit": "%",
+    "page": 2,
+    "evidence": "330 5 3560 1.5"
+   },
+   "material": "H",
+   "dissipation": {
+    "value": 0.0085,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "page": 4,
+     "evidence": [
+      "73 5 6 0 Mat H. withBn = 3560K 1.5"
+     ],
+     "A": -13.0723,
+     "B": 4190.574,
+     "C": -47158.4,
+     "D": -11992560.0,
+     "A1": 0.003354016,
+     "B1": 0.0002884193,
+     "C1": 4.118032e-06,
+     "D1": 1.78679e-07
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3471",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3471JB0"
+   ],
+   "title": "Vishay NTCLE100E3471 NTC 470 Ω",
+   "r25": {
+    "value": 470,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "470 5 3560 1.5"
+   },
+   "b25_85": {
+    "value": 3560,
+    "unit": "K",
+    "page": 2,
+    "evidence": "470 5 3560 1.5"
+   },
+   "b_tol": {
+    "value": 1.5,
+    "unit": "%",
+    "page": 2,
+    "evidence": "470 5 3560 1.5"
+   },
+   "material": "H",
+   "dissipation": {
+    "value": 0.0085,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "page": 4,
+     "evidence": [
+      "73 5 6 0 Mat H. withBn = 3560K 1.5"
+     ],
+     "A": -13.0723,
+     "B": 4190.574,
+     "C": -47158.4,
+     "D": -11992560.0,
+     "A1": 0.003354016,
+     "B1": 0.0002884193,
+     "C1": 4.118032e-06,
+     "D1": 1.78679e-07
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3681",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3681JB0"
+   ],
+   "title": "Vishay NTCLE100E3681 NTC 680 Ω",
+   "r25": {
+    "value": 680,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "680 5 3560 1.5"
+   },
+   "b25_85": {
+    "value": 3560,
+    "unit": "K",
+    "page": 2,
+    "evidence": "680 5 3560 1.5"
+   },
+   "b_tol": {
+    "value": 1.5,
+    "unit": "%",
+    "page": 2,
+    "evidence": "680 5 3560 1.5"
+   },
+   "material": "H",
+   "dissipation": {
+    "value": 0.0085,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "page": 4,
+     "evidence": [
+      "73 5 6 0 Mat H. withBn = 3560K 1.5"
+     ],
+     "A": -13.0723,
+     "B": 4190.574,
+     "C": -47158.4,
+     "D": -11992560.0,
+     "A1": 0.003354016,
+     "B1": 0.0002884193,
+     "C1": 4.118032e-06,
+     "D1": 1.78679e-07
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3102",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3102JB0",
+    "NTCLE100E3102HB0",
+    "NTCLE100E3102GB0"
+   ],
+   "title": "Vishay NTCLE100E3102 NTC 1000 Ω",
+   "r25": {
+    "value": 1000,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "1000 2, 3, 5 3528 0.5"
+   },
+   "b25_85": {
+    "value": 3528,
+    "unit": "K",
+    "page": 2,
+    "evidence": "1000 2, 3, 5 3528 0.5"
+   },
+   "b_tol": {
+    "value": 0.5,
+    "unit": "%",
+    "page": 2,
+    "evidence": "1000 2, 3, 5 3528 0.5"
+   },
+   "material": "I",
+   "dissipation": {
+    "value": 0.007,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "t_below": 25.0,
+     "page": 4,
+     "evidence": [
+      "3528 (1) Mat I. with",
+      "- 12.0596 3687.667 - 7617.13 - 5.914730E+06"
+     ],
+     "A": -12.0596,
+     "B": 3687.667,
+     "C": -7617.13,
+     "D": -5914730.0,
+     "A1": 0.003354016,
+     "B1": 0.000290967,
+     "C1": 1.632136e-06,
+     "D1": 7.1922e-08
+    },
+    {
+     "t_from": 25.0,
+     "page": 4,
+     "evidence": [
+      "3528 (2) - 21.0704 11903.95 - 2504699 2.470338E+08"
+     ],
+     "A": -21.0704,
+     "B": 11903.95,
+     "C": -2504699,
+     "D": 247033800.0,
+     "A1": 0.003354016,
+     "B1": 0.0002933908,
+     "C1": 3.494314e-06,
+     "D1": -7.71269e-07
+    }
+   ],
+   "rt_table": [
+    {
+     "t": -40,
+     "r": 23342,
+     "page": 9,
+     "evidence": "-40 23 342"
+    },
+    {
+     "t": 0,
+     "r": 2854,
+     "page": 9,
+     "evidence": "0 2854"
+    },
+    {
+     "t": 85,
+     "r": 137.7,
+     "page": 9,
+     "evidence": "85 137.7"
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3152",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3152JB0",
+    "NTCLE100E3152HB0",
+    "NTCLE100E3152GB0"
+   ],
+   "title": "Vishay NTCLE100E3152 NTC 1500 Ω",
+   "r25": {
+    "value": 1500,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "1500 2, 3, 5 3528 0.5"
+   },
+   "b25_85": {
+    "value": 3528,
+    "unit": "K",
+    "page": 2,
+    "evidence": "1500 2, 3, 5 3528 0.5"
+   },
+   "b_tol": {
+    "value": 0.5,
+    "unit": "%",
+    "page": 2,
+    "evidence": "1500 2, 3, 5 3528 0.5"
+   },
+   "material": "I",
+   "dissipation": {
+    "value": 0.007,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "t_below": 25.0,
+     "page": 4,
+     "evidence": [
+      "3528 (1) Mat I. with",
+      "- 12.0596 3687.667 - 7617.13 - 5.914730E+06"
+     ],
+     "A": -12.0596,
+     "B": 3687.667,
+     "C": -7617.13,
+     "D": -5914730.0,
+     "A1": 0.003354016,
+     "B1": 0.000290967,
+     "C1": 1.632136e-06,
+     "D1": 7.1922e-08
+    },
+    {
+     "t_from": 25.0,
+     "page": 4,
+     "evidence": [
+      "3528 (2) - 21.0704 11903.95 - 2504699 2.470338E+08"
+     ],
+     "A": -21.0704,
+     "B": 11903.95,
+     "C": -2504699,
+     "D": 247033800.0,
+     "A1": 0.003354016,
+     "B1": 0.0002933908,
+     "C1": 3.494314e-06,
+     "D1": -7.71269e-07
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3202",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3202JB0",
+    "NTCLE100E3202HB0",
+    "NTCLE100E3202GB0"
+   ],
+   "title": "Vishay NTCLE100E3202 NTC 2000 Ω",
+   "r25": {
+    "value": 2000,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "2000 2, 3, 5 3528 0.5"
+   },
+   "b25_85": {
+    "value": 3528,
+    "unit": "K",
+    "page": 2,
+    "evidence": "2000 2, 3, 5 3528 0.5"
+   },
+   "b_tol": {
+    "value": 0.5,
+    "unit": "%",
+    "page": 2,
+    "evidence": "2000 2, 3, 5 3528 0.5"
+   },
+   "material": "I",
+   "dissipation": {
+    "value": 0.007,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "t_below": 25.0,
+     "page": 4,
+     "evidence": [
+      "3528 (1) Mat I. with",
+      "- 12.0596 3687.667 - 7617.13 - 5.914730E+06"
+     ],
+     "A": -12.0596,
+     "B": 3687.667,
+     "C": -7617.13,
+     "D": -5914730.0,
+     "A1": 0.003354016,
+     "B1": 0.000290967,
+     "C1": 1.632136e-06,
+     "D1": 7.1922e-08
+    },
+    {
+     "t_from": 25.0,
+     "page": 4,
+     "evidence": [
+      "3528 (2) - 21.0704 11903.95 - 2504699 2.470338E+08"
+     ],
+     "A": -21.0704,
+     "B": 11903.95,
+     "C": -2504699,
+     "D": 247033800.0,
+     "A1": 0.003354016,
+     "B1": 0.0002933908,
+     "C1": 3.494314e-06,
+     "D1": -7.71269e-07
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3222",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3222JB0",
+    "NTCLE100E3222HB0",
+    "NTCLE100E3222GB0"
+   ],
+   "title": "Vishay NTCLE100E3222 NTC 2200 Ω",
+   "r25": {
+    "value": 2200,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "2200 2, 3, 5 3977 0.75"
+   },
+   "b25_85": {
+    "value": 3977,
+    "unit": "K",
+    "page": 2,
+    "evidence": "2200 2, 3, 5 3977 0.75"
+   },
+   "b_tol": {
+    "value": 0.75,
+    "unit": "%",
+    "page": 2,
+    "evidence": "2200 2, 3, 5 3977 0.75"
+   },
+   "material": "A",
+   "dissipation": {
+    "value": 0.007,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "page": 4,
+     "evidence": [
+      "93 9 7 7 Mat A. withBn =3977K 0.75"
+     ],
+     "A": -14.6337,
+     "B": 4791.842,
+     "C": -115334,
+     "D": -3730535.0,
+     "A1": 0.003354016,
+     "B1": 0.000256985,
+     "C1": 2.620131e-06,
+     "D1": 6.383091e-08
+    }
+   ],
+   "rt_table": [
+    {
+     "t": -40,
+     "r": 73061,
+     "page": 10,
+     "evidence": "-40 73 061"
+    },
+    {
+     "t": 0,
+     "r": 7162,
+     "page": 10,
+     "evidence": "0 7162"
+    },
+    {
+     "t": 85,
+     "r": 235.5,
+     "page": 10,
+     "evidence": "85 235.5"
+    },
+    {
+     "t": 100,
+     "r": 149.0,
+     "page": 10,
+     "evidence": "100 149.0"
+    },
+    {
+     "t": 150,
+     "r": 40.18,
+     "page": 10,
+     "evidence": "150 40.18"
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3272",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3272JB0",
+    "NTCLE100E3272HB0",
+    "NTCLE100E3272GB0"
+   ],
+   "title": "Vishay NTCLE100E3272 NTC 2700 Ω",
+   "r25": {
+    "value": 2700,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "2700 2, 3, 5 3977 0.75"
+   },
+   "b25_85": {
+    "value": 3977,
+    "unit": "K",
+    "page": 2,
+    "evidence": "2700 2, 3, 5 3977 0.75"
+   },
+   "b_tol": {
+    "value": 0.75,
+    "unit": "%",
+    "page": 2,
+    "evidence": "2700 2, 3, 5 3977 0.75"
+   },
+   "material": "A",
+   "dissipation": {
+    "value": 0.007,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "page": 4,
+     "evidence": [
+      "93 9 7 7 Mat A. withBn =3977K 0.75"
+     ],
+     "A": -14.6337,
+     "B": 4791.842,
+     "C": -115334,
+     "D": -3730535.0,
+     "A1": 0.003354016,
+     "B1": 0.000256985,
+     "C1": 2.620131e-06,
+     "D1": 6.383091e-08
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3332",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3332JB0",
+    "NTCLE100E3332HB0",
+    "NTCLE100E3332GB0"
+   ],
+   "title": "Vishay NTCLE100E3332 NTC 3300 Ω",
+   "r25": {
+    "value": 3300,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "3300 2, 3, 5 3977 0.75"
+   },
+   "b25_85": {
+    "value": 3977,
+    "unit": "K",
+    "page": 2,
+    "evidence": "3300 2, 3, 5 3977 0.75"
+   },
+   "b_tol": {
+    "value": 0.75,
+    "unit": "%",
+    "page": 2,
+    "evidence": "3300 2, 3, 5 3977 0.75"
+   },
+   "material": "A",
+   "dissipation": {
+    "value": 0.007,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "page": 4,
+     "evidence": [
+      "93 9 7 7 Mat A. withBn =3977K 0.75"
+     ],
+     "A": -14.6337,
+     "B": 4791.842,
+     "C": -115334,
+     "D": -3730535.0,
+     "A1": 0.003354016,
+     "B1": 0.000256985,
+     "C1": 2.620131e-06,
+     "D1": 6.383091e-08
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3472",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3472JB0",
+    "NTCLE100E3472HB0",
+    "NTCLE100E3472GB0"
+   ],
+   "title": "Vishay NTCLE100E3472 NTC 4700 Ω",
+   "r25": {
+    "value": 4700,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "4700 2, 3, 5 3977 0.75"
+   },
+   "b25_85": {
+    "value": 3977,
+    "unit": "K",
+    "page": 2,
+    "evidence": "4700 2, 3, 5 3977 0.75"
+   },
+   "b_tol": {
+    "value": 0.75,
+    "unit": "%",
+    "page": 2,
+    "evidence": "4700 2, 3, 5 3977 0.75"
+   },
+   "material": "A",
+   "dissipation": {
+    "value": 0.007,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "page": 4,
+     "evidence": [
+      "93 9 7 7 Mat A. withBn =3977K 0.75"
+     ],
+     "A": -14.6337,
+     "B": 4791.842,
+     "C": -115334,
+     "D": -3730535.0,
+     "A1": 0.003354016,
+     "B1": 0.000256985,
+     "C1": 2.620131e-06,
+     "D1": 6.383091e-08
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3502",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3502JB0",
+    "NTCLE100E3502HB0",
+    "NTCLE100E3502GB0"
+   ],
+   "title": "Vishay NTCLE100E3502 NTC 5000 Ω",
+   "r25": {
+    "value": 5000,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "5000 2, 3, 5 3977 0.75"
+   },
+   "b25_85": {
+    "value": 3977,
+    "unit": "K",
+    "page": 2,
+    "evidence": "5000 2, 3, 5 3977 0.75"
+   },
+   "b_tol": {
+    "value": 0.75,
+    "unit": "%",
+    "page": 2,
+    "evidence": "5000 2, 3, 5 3977 0.75"
+   },
+   "material": "A",
+   "dissipation": {
+    "value": 0.007,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "page": 4,
+     "evidence": [
+      "93 9 7 7 Mat A. withBn =3977K 0.75"
+     ],
+     "A": -14.6337,
+     "B": 4791.842,
+     "C": -115334,
+     "D": -3730535.0,
+     "A1": 0.003354016,
+     "B1": 0.000256985,
+     "C1": 2.620131e-06,
+     "D1": 6.383091e-08
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3682",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3682JB0",
+    "NTCLE100E3682HB0",
+    "NTCLE100E3682GB0"
+   ],
+   "title": "Vishay NTCLE100E3682 NTC 6800 Ω",
+   "r25": {
+    "value": 6800,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "6800 2, 3, 5 3977 0.75"
+   },
+   "b25_85": {
+    "value": 3977,
+    "unit": "K",
+    "page": 2,
+    "evidence": "6800 2, 3, 5 3977 0.75"
+   },
+   "b_tol": {
+    "value": 0.75,
+    "unit": "%",
+    "page": 2,
+    "evidence": "6800 2, 3, 5 3977 0.75"
+   },
+   "material": "A",
+   "dissipation": {
+    "value": 0.007,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "page": 4,
+     "evidence": [
+      "93 9 7 7 Mat A. withBn =3977K 0.75"
+     ],
+     "A": -14.6337,
+     "B": 4791.842,
+     "C": -115334,
+     "D": -3730535.0,
+     "A1": 0.003354016,
+     "B1": 0.000256985,
+     "C1": 2.620131e-06,
+     "D1": 6.383091e-08
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3103",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3103JB0",
+    "NTCLE100E3103HB0",
+    "NTCLE100E3103GB0"
+   ],
+   "title": "Vishay NTCLE100E3103 NTC 10000 Ω",
+   "r25": {
+    "value": 10000,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "10 000 2, 3, 5 3977 0.75"
+   },
+   "b25_85": {
+    "value": 3977,
+    "unit": "K",
+    "page": 2,
+    "evidence": "10 000 2, 3, 5 3977 0.75"
+   },
+   "b_tol": {
+    "value": 0.75,
+    "unit": "%",
+    "page": 2,
+    "evidence": "10 000 2, 3, 5 3977 0.75"
+   },
+   "material": "A",
+   "dissipation": {
+    "value": 0.007,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "page": 4,
+     "evidence": [
+      "93 9 7 7 Mat A. withBn =3977K 0.75"
+     ],
+     "A": -14.6337,
+     "B": 4791.842,
+     "C": -115334,
+     "D": -3730535.0,
+     "A1": 0.003354016,
+     "B1": 0.000256985,
+     "C1": 2.620131e-06,
+     "D1": 6.383091e-08
+    }
+   ],
+   "rt_table": [
+    {
+     "t": -40,
+     "r": 332094,
+     "page": 10,
+     "evidence": "-40 73 061 89 665 109 591 156 084 166 047 225 824 332 094"
+    },
+    {
+     "t": 0,
+     "r": 32554,
+     "page": 10,
+     "evidence": "0 7162 8790 10 743 15 300 16 277 22 137 32 554"
+    },
+    {
+     "t": 85,
+     "r": 1070,
+     "page": 10,
+     "evidence": "85 235.5 289.0 353.2 503.0 535.2 727.8 1070"
+    },
+    {
+     "t": 100,
+     "r": 677.3,
+     "page": 10,
+     "evidence": "100 149.0 182.9 223.5 318.3 338.6 460.6 677.3"
+    },
+    {
+     "t": 150,
+     "r": 182.6,
+     "page": 10,
+     "evidence": "150 40.18 49.31 60.27 85.84 91.32 124.2 182.6"
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3123",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3123JB0",
+    "NTCLE100E3123HB0",
+    "NTCLE100E3123GB0"
+   ],
+   "title": "Vishay NTCLE100E3123 NTC 12000 Ω",
+   "r25": {
+    "value": 12000,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "12 000 2, 3, 5 3740 2"
+   },
+   "b25_85": {
+    "value": 3740,
+    "unit": "K",
+    "page": 2,
+    "evidence": "12 000 2, 3, 5 3740 2"
+   },
+   "b_tol": {
+    "value": 2,
+    "unit": "%",
+    "page": 2,
+    "evidence": "12 000 2, 3, 5 3740 2"
+   },
+   "material": "B",
+   "dissipation": {
+    "value": 0.007,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "page": 4,
+     "evidence": [
+      "83 7 4 0 Mat B. withBn = 3740K 2"
+     ],
+     "A": -13.8973,
+     "B": 4557.725,
+     "C": -98275,
+     "D": -7522357.0,
+     "A1": 0.003354016,
+     "B1": 0.0002744032,
+     "C1": 3.666944e-06,
+     "D1": 1.375492e-07
+    }
+   ],
+   "rt_table": [
+    {
+     "t": -40,
+     "r": 309400,
+     "page": 11,
+     "evidence": "-40 309.4"
+    },
+    {
+     "t": 0,
+     "r": 36130,
+     "page": 11,
+     "evidence": "0 36.13"
+    },
+    {
+     "t": 85,
+     "r": 1467,
+     "page": 11,
+     "evidence": "85 1.467"
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3153",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3153JB0",
+    "NTCLE100E3153HB0",
+    "NTCLE100E3153GB0"
+   ],
+   "title": "Vishay NTCLE100E3153 NTC 15000 Ω",
+   "r25": {
+    "value": 15000,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "15 000 2, 3, 5 3740 2"
+   },
+   "b25_85": {
+    "value": 3740,
+    "unit": "K",
+    "page": 2,
+    "evidence": "15 000 2, 3, 5 3740 2"
+   },
+   "b_tol": {
+    "value": 2,
+    "unit": "%",
+    "page": 2,
+    "evidence": "15 000 2, 3, 5 3740 2"
+   },
+   "material": "B",
+   "dissipation": {
+    "value": 0.007,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "page": 4,
+     "evidence": [
+      "83 7 4 0 Mat B. withBn = 3740K 2"
+     ],
+     "A": -13.8973,
+     "B": 4557.725,
+     "C": -98275,
+     "D": -7522357.0,
+     "A1": 0.003354016,
+     "B1": 0.0002744032,
+     "C1": 3.666944e-06,
+     "D1": 1.375492e-07
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3223",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3223JB0",
+    "NTCLE100E3223HB0",
+    "NTCLE100E3223GB0"
+   ],
+   "title": "Vishay NTCLE100E3223 NTC 22000 Ω",
+   "r25": {
+    "value": 22000,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "22 000 2, 3, 5 3740 2"
+   },
+   "b25_85": {
+    "value": 3740,
+    "unit": "K",
+    "page": 2,
+    "evidence": "22 000 2, 3, 5 3740 2"
+   },
+   "b_tol": {
+    "value": 2,
+    "unit": "%",
+    "page": 2,
+    "evidence": "22 000 2, 3, 5 3740 2"
+   },
+   "material": "B",
+   "dissipation": {
+    "value": 0.007,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "page": 4,
+     "evidence": [
+      "83 7 4 0 Mat B. withBn = 3740K 2"
+     ],
+     "A": -13.8973,
+     "B": 4557.725,
+     "C": -98275,
+     "D": -7522357.0,
+     "A1": 0.003354016,
+     "B1": 0.0002744032,
+     "C1": 3.666944e-06,
+     "D1": 1.375492e-07
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3333",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3333JB0",
+    "NTCLE100E3333HB0",
+    "NTCLE100E3333GB0"
+   ],
+   "title": "Vishay NTCLE100E3333 NTC 33000 Ω",
+   "r25": {
+    "value": 33000,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "33 000 2, 3, 5 4090 1.5"
+   },
+   "b25_85": {
+    "value": 4090,
+    "unit": "K",
+    "page": 2,
+    "evidence": "33 000 2, 3, 5 4090 1.5"
+   },
+   "b_tol": {
+    "value": 1.5,
+    "unit": "%",
+    "page": 2,
+    "evidence": "33 000 2, 3, 5 4090 1.5"
+   },
+   "material": "C",
+   "dissipation": {
+    "value": 0.007,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "page": 4,
+     "evidence": [
+      "10 4090 Mat C. withBn = 4090K 1.5"
+     ],
+     "A": -15.5322,
+     "B": 5229.973,
+     "C": -160451,
+     "D": -5414091.0,
+     "A1": 0.003354016,
+     "B1": 0.0002519107,
+     "C1": 3.510939e-06,
+     "D1": 1.105179e-07
+    }
+   ],
+   "rt_table": [
+    {
+     "t": -40,
+     "r": 1116000,
+     "page": 12,
+     "evidence": "-40 1116"
+    },
+    {
+     "t": 0,
+     "r": 109400,
+     "page": 12,
+     "evidence": "0 109.4"
+    },
+    {
+     "t": 85,
+     "r": 3315,
+     "page": 12,
+     "evidence": "85 3.315"
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3473",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3473JB0",
+    "NTCLE100E3473HB0",
+    "NTCLE100E3473GB0"
+   ],
+   "title": "Vishay NTCLE100E3473 NTC 47000 Ω",
+   "r25": {
+    "value": 47000,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "47 000 2, 3, 5 4090 1.5"
+   },
+   "b25_85": {
+    "value": 4090,
+    "unit": "K",
+    "page": 2,
+    "evidence": "47 000 2, 3, 5 4090 1.5"
+   },
+   "b_tol": {
+    "value": 1.5,
+    "unit": "%",
+    "page": 2,
+    "evidence": "47 000 2, 3, 5 4090 1.5"
+   },
+   "material": "C",
+   "dissipation": {
+    "value": 0.007,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "page": 4,
+     "evidence": [
+      "10 4090 Mat C. withBn = 4090K 1.5"
+     ],
+     "A": -15.5322,
+     "B": 5229.973,
+     "C": -160451,
+     "D": -5414091.0,
+     "A1": 0.003354016,
+     "B1": 0.0002519107,
+     "C1": 3.510939e-06,
+     "D1": 1.105179e-07
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3503",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3503JB0",
+    "NTCLE100E3503HB0",
+    "NTCLE100E3503GB0"
+   ],
+   "title": "Vishay NTCLE100E3503 NTC 50000 Ω",
+   "r25": {
+    "value": 50000,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "50 000 2, 3, 5 4190 1.5"
+   },
+   "b25_85": {
+    "value": 4190,
+    "unit": "K",
+    "page": 2,
+    "evidence": "50 000 2, 3, 5 4190 1.5"
+   },
+   "b_tol": {
+    "value": 1.5,
+    "unit": "%",
+    "page": 2,
+    "evidence": "50 000 2, 3, 5 4190 1.5"
+   },
+   "material": "D",
+   "dissipation": {
+    "value": 0.007,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "page": 4,
+     "evidence": [
+      "11 4190 Mat D. withBn = 4190K 1.5"
+     ],
+     "A": -16.0349,
+     "B": 5459.339,
+     "C": -191141,
+     "D": -3328322.0,
+     "A1": 0.003354016,
+     "B1": 0.0002460382,
+     "C1": 3.405377e-06,
+     "D1": 1.03424e-07
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3683",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3683JB0",
+    "NTCLE100E3683HB0",
+    "NTCLE100E3683GB0"
+   ],
+   "title": "Vishay NTCLE100E3683 NTC 68000 Ω",
+   "r25": {
+    "value": 68000,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "68 000 2, 3, 5 4190 1.5"
+   },
+   "b25_85": {
+    "value": 4190,
+    "unit": "K",
+    "page": 2,
+    "evidence": "68 000 2, 3, 5 4190 1.5"
+   },
+   "b_tol": {
+    "value": 1.5,
+    "unit": "%",
+    "page": 2,
+    "evidence": "68 000 2, 3, 5 4190 1.5"
+   },
+   "material": "D",
+   "dissipation": {
+    "value": 0.007,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "page": 4,
+     "evidence": [
+      "11 4190 Mat D. withBn = 4190K 1.5"
+     ],
+     "A": -16.0349,
+     "B": 5459.339,
+     "C": -191141,
+     "D": -3328322.0,
+     "A1": 0.003354016,
+     "B1": 0.0002460382,
+     "C1": 3.405377e-06,
+     "D1": 1.03424e-07
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3104",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3104JB0",
+    "NTCLE100E3104HB0",
+    "NTCLE100E3104GB0"
+   ],
+   "title": "Vishay NTCLE100E3104 NTC 100000 Ω",
+   "r25": {
+    "value": 100000,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "100 000 2, 3, 5 4190 1.5"
+   },
+   "b25_85": {
+    "value": 4190,
+    "unit": "K",
+    "page": 2,
+    "evidence": "100 000 2, 3, 5 4190 1.5"
+   },
+   "b_tol": {
+    "value": 1.5,
+    "unit": "%",
+    "page": 2,
+    "evidence": "100 000 2, 3, 5 4190 1.5"
+   },
+   "material": "D",
+   "dissipation": {
+    "value": 0.007,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "page": 4,
+     "evidence": [
+      "11 4190 Mat D. withBn = 4190K 1.5"
+     ],
+     "A": -16.0349,
+     "B": 5459.339,
+     "C": -191141,
+     "D": -3328322.0,
+     "A1": 0.003354016,
+     "B1": 0.0002460382,
+     "C1": 3.405377e-06,
+     "D1": 1.03424e-07
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3154",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3154JB0",
+    "NTCLE100E3154HB0",
+    "NTCLE100E3154GB0"
+   ],
+   "title": "Vishay NTCLE100E3154 NTC 150000 Ω",
+   "r25": {
+    "value": 150000,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "150 000 2, 3, 5 4370 2.5"
+   },
+   "b25_85": {
+    "value": 4370,
+    "unit": "K",
+    "page": 2,
+    "evidence": "150 000 2, 3, 5 4370 2.5"
+   },
+   "b_tol": {
+    "value": 2.5,
+    "unit": "%",
+    "page": 2,
+    "evidence": "150 000 2, 3, 5 4370 2.5"
+   },
+   "material": "E",
+   "dissipation": {
+    "value": 0.007,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "page": 4,
+     "evidence": [
+      "12 4370 Mat E. withBn = 4370K 2.5"
+     ],
+     "A": -16.8717,
+     "B": 5759.15,
+     "C": -194267,
+     "D": -6869149.0,
+     "A1": 0.003354016,
+     "B1": 0.000236772,
+     "C1": 3.58514e-06,
+     "D1": 1.255349e-07
+    }
+   ],
+   "rt_table": [
+    {
+     "t": -40,
+     "r": 6153000,
+     "page": 13,
+     "evidence": "-40 6153"
+    },
+    {
+     "t": 0,
+     "r": 535000,
+     "page": 13,
+     "evidence": "0 535.0"
+    },
+    {
+     "t": 85,
+     "r": 12870,
+     "page": 13,
+     "evidence": "85 12.87"
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3224",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3224JB0",
+    "NTCLE100E3224HB0",
+    "NTCLE100E3224GB0"
+   ],
+   "title": "Vishay NTCLE100E3224 NTC 220000 Ω",
+   "r25": {
+    "value": 220000,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "220 000 2, 3, 5 4370 2.5"
+   },
+   "b25_85": {
+    "value": 4370,
+    "unit": "K",
+    "page": 2,
+    "evidence": "220 000 2, 3, 5 4370 2.5"
+   },
+   "b_tol": {
+    "value": 2.5,
+    "unit": "%",
+    "page": 2,
+    "evidence": "220 000 2, 3, 5 4370 2.5"
+   },
+   "material": "E",
+   "dissipation": {
+    "value": 0.007,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "page": 4,
+     "evidence": [
+      "12 4370 Mat E. withBn = 4370K 2.5"
+     ],
+     "A": -16.8717,
+     "B": 5759.15,
+     "C": -194267,
+     "D": -6869149.0,
+     "A1": 0.003354016,
+     "B1": 0.000236772,
+     "C1": 3.58514e-06,
+     "D1": 1.255349e-07
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3334",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3334JB0",
+    "NTCLE100E3334HB0",
+    "NTCLE100E3334GB0"
+   ],
+   "title": "Vishay NTCLE100E3334 NTC 330000 Ω",
+   "r25": {
+    "value": 330000,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "330 000 2, 3, 5 4570 1.5"
+   },
+   "b25_85": {
+    "value": 4570,
+    "unit": "K",
+    "page": 2,
+    "evidence": "330 000 2, 3, 5 4570 1.5"
+   },
+   "b_tol": {
+    "value": 1.5,
+    "unit": "%",
+    "page": 2,
+    "evidence": "330 000 2, 3, 5 4570 1.5"
+   },
+   "material": "F",
+   "dissipation": {
+    "value": 0.007,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "page": 4,
+     "evidence": [
+      "13 4570 Mat F. withBn = 4570K 1.5"
+     ],
+     "A": -17.6439,
+     "B": 6022.726,
+     "C": -203157,
+     "D": -7183526.0,
+     "A1": 0.003354016,
+     "B1": 0.0002264097,
+     "C1": 3.278184e-06,
+     "D1": 1.097628e-07
+    }
+   ]
+  },
+  {
+   "id": "NTCLE100E3474",
+   "kind": "ntc",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "aliases": [
+    "NTCLE100E3474JB0",
+    "NTCLE100E3474HB0",
+    "NTCLE100E3474GB0"
+   ],
+   "title": "Vishay NTCLE100E3474 NTC 470000 Ω",
+   "r25": {
+    "value": 470000,
+    "unit": "Ω",
+    "page": 2,
+    "evidence": "470 000 2, 3, 5 4570 1.5"
+   },
+   "b25_85": {
+    "value": 4570,
+    "unit": "K",
+    "page": 2,
+    "evidence": "470 000 2, 3, 5 4570 1.5"
+   },
+   "b_tol": {
+    "value": 1.5,
+    "unit": "%",
+    "page": 2,
+    "evidence": "470 000 2, 3, 5 4570 1.5"
+   },
+   "material": "F",
+   "dissipation": {
+    "value": 0.007,
+    "unit": "W/K",
+    "page": 1,
+    "evidence": [
+     "Dissipation factor δ",
+     "7",
+     "mW/K8.5",
+     "(for R25-value ≤ 680 Ω)"
+    ],
+    "conditions": "for information only; 8.5 mW/K for R25 ≤ 680 Ω, else 7 mW/K"
+   },
+   "p_max": {
+    "value": 0.5,
+    "unit": "W",
+    "page": 1,
+    "evidence": [
+     "Maximum power dissipation",
+     "at 55 °C 500 mW"
+    ],
+    "conditions": "at 55 °C"
+   },
+   "zero_power_fraction": {
+    "value": 0.01,
+    "unit": "",
+    "page": 2,
+    "evidence": "• Zero power is considered as measuring power max. 1 % of max."
+   },
+   "v_max": {
+    "value": 50.0,
+    "unit": "V",
+    "page": 2,
+    "evidence": "power. Voltage on the NTC should always be below 50 VDC"
+   },
+   "t_op": {
+    "min": -40.0,
+    "max": 125.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "continuously -40 to +125"
+   },
+   "t_short_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "page": 1,
+    "evidence": "for short periods ≤ 150"
+   },
+   "steinhart_hart": [
+    {
+     "page": 4,
+     "evidence": [
+      "13 4570 Mat F. withBn = 4570K 1.5"
+     ],
+     "A": -17.6439,
+     "B": 6022.726,
+     "C": -203157,
+     "D": -7183526.0,
+     "A1": 0.003354016,
+     "B1": 0.0002264097,
+     "C1": 3.278184e-06,
+     "D1": 1.097628e-07
+    }
+   ]
+  }
+ ]
+}

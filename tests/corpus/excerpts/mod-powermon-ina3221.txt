@@ -1,0 +1,35 @@
+# source_id: mod-powermon-ina3221-ds
+# document: Texas Instruments INA3221 Triple-Channel, High-Side Measurement, Shunt and Bus Voltage Monitor with I2C- and SMBUS-Compatible Interface, SBOS576C (May 2012, revised September 2026)
+# url: https://www.ti.com/lit/ds/symlink/ina3221.pdf
+# corpus: mod/powermon/ina3221.pdf sha256 d622c93ffe599b246fd3c6285996f219786235b635a30cca512229919a5f4ebc
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 4
+Voltage Supply, VS 6 V
+VCommon-mode (VIN+) + (VIN–) / 2 –0.3 26
+Data line, SDA (GND – 0.3) 6
+Clock line, SCL (GND – 0.3) 6
+Operating supply voltage 2.7 5.5 V
+@@ page 5
+VSHUNT Shunt voltage input –163.84 163.8 mV
+VBUS Bus voltage input 0 26 V
+@@ page 6
+VIH High-level input voltage 0.7 (VS) 6 V
+VIL Low-level input voltage –0.5 0.3 (VS) V
+VOL Low-level output voltage SDA, critical, warning, PV VS > +2.7V, IOL = 3mA 0 0.4 VTC VS > +2.7V, IOL = 1.2mA 0 0.4
+Quiescent current
+350 450
+Power-down mode 0.5 2
+@@ page 20
+Table 7-1. Address Pins and Target Addresses
+GND 1000000
+VS 1000001
+SDA 1000010
+SCL 1000011
+The INA3221 supports a transmission protocol for Fast (1kHz to 400kHz) and High-speed (1kHz to 2.44MHz)
+@@ page 28
+Full-scale range = 163.8mV (decimal = 7FF8); LSB (SD0): 40μV.
+@@ page 37
+The digital pins (SCL, SDA, Critical, Warning, TC) are connected to supply through pull-up resistors. The power
+@@ page 39
+this supply bypass capacitor is 0.1 μF. Applications with noisy or high-impedance power supplies can require

@@ -1,0 +1,39 @@
+# source_id: mod-nmotion-icm20948-ds
+# document: TDK InvenSense ICM-20948 World's Lowest Power 9-Axis MEMS MotionTracking Device, Datasheet DS-000189 Rev 1.6 (03/12/2024)
+# url: https://web.archive.org/web/20250522133817id_/https://invensense.tdk.com/wp-content/uploads/2024/03/DS-000189-ICM-20948-v1.6.pdf
+# corpus: mod/nmotion/DS-000189-ICM-20948-v1.6.pdf sha256 0588625f4f1d6d27382a4322f48073dc0ce569e537c63786b13aab3eeb76b718
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Document Number: DS-000189
+                          Revision: 1.6
+                          Release Date: 03/12/2024
+Note: ICM-20948 VDDIO range is 1.71V to 1.95V, different
+@@ page 13
+VDD  1.71 1.8 3.6 V 1
+VDDIO  1.71 1.8 1.95 V 1
+9-Axis (DMP disabled) Low-Noise Mode; Compass in Continuous Mode  3.11  mA 2
+Full-Chip Sleep Mode   8  µA 2
+@@ page 14
+I2C ADDRESS AD0 = 0 AD0 = 1  1101000 1101001
+VIH, High Level Input Voltage  0.7*VDDIO   V
+1 VIL, Low Level Input Voltage    0.3*VDDIO V
+VOH, High Level Output Voltage RLOAD=1 MΩ;  0.9*VDDIO   V
+VOL1, LOW-Level Output Voltage RLOAD=1 MΩ;    0.1*VDDIO V
+@@ page 15
+I2C Operating Frequency All registers, Fast-mode   400 kHz  All registers, Standard-mode   100 kHz
+@@ page 18
+Supply Voltage, VDD -0.5V to +4V
+Supply Voltage, VDDIO -0.3V to +2.5V
+Input Voltage Level (AUX_DA, AD0, FSYNC, INT, SCL, SDA) -0.5V to VDDIO + 0.5V
+@@ page 19
+NOTE: Power up with SCL/SCLK and nCS pins held low is not a supported use case. In case this power up approach is used, software
+@@ page 20
+I2C lines are open drain and pullup resistors (e.g. 10 kΩ) are required.
+Regulator Filter Capacitor C1 Ceramic, X7R, 0.1 µF ±10%, 2V 1
+VDD Bypass Capacitor C2 Ceramic, X7R, 0.1 µF ±10%, 4V 1
+VDDIO Bypass Capacitor C3 Ceramic, X7R, 0.1 µF ±10%, 4V 1
+@@ page 24
+are connected to the main I2C bus (Pins 23 and 24) through analog switches internally. Pass-Through mode is
+@@ page 36
+The value for ICM-20948 is 0xEA.

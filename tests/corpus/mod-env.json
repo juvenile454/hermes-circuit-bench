@@ -1,0 +1,60 @@
+{
+ "files": [
+  {
+   "url": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme280-ds002.pdf",
+   "path": "mod/env/bst-bme280-ds002.pdf",
+   "source_id": "mod-env-bme280-ds",
+   "excerpt": "excerpts/mod-env-bme280.txt",
+   "sha256": "a2ccdb449fec94380742fe8eec851a11d9bd4142252d332b34682b4deecd7d89"
+  },
+  {
+   "url": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001.pdf",
+   "path": "mod/env/bst-bmp280-ds001.pdf",
+   "source_id": "mod-env-bmp280-ds",
+   "excerpt": "excerpts/mod-env-bmp280.txt",
+   "sha256": "473ff27d9df698b4757e36b36209f83b9f637b592c999d5fabe2a9453a488da6"
+  },
+  {
+   "url": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme680-ds001.pdf",
+   "path": "mod/env/bst-bme680-ds001.pdf",
+   "source_id": "mod-env-bme680-ds",
+   "excerpt": "excerpts/mod-env-bme680.txt",
+   "sha256": "8e42b591a9cabd84ae3377f2ea11e794120e4140dc4f0e4f29a30be3d1f6c9f6"
+  },
+  {
+   "url": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme688-ds000.pdf",
+   "path": "mod/env/bst-bme688-ds000.pdf",
+   "source_id": "mod-env-bme688-ds",
+   "excerpt": "excerpts/mod-env-bme688.txt",
+   "sha256": "fce73ae028a985b3265ce3dbc17ab5b7bea1ae31b7ea84c6698c7694083e2478"
+  },
+  {
+   "url": "https://sensirion.com/media/documents/213E6A3B/63A5A569/Datasheet_SHT3x_DIS.pdf",
+   "path": "mod/env/Datasheet_SHT3x_DIS.pdf",
+   "source_id": "mod-env-sht31-ds",
+   "excerpt": "excerpts/mod-env-sht31.txt",
+   "sha256": "095b1853e7f4328f5897c9ca6c392a7dd8b0202eda66b0a2629f9cb840dd496d"
+  },
+  {
+   "url": "https://sensirion.com/media/documents/33FD6951/661CD142/HT_DS_Datasheet_SHT4x.pdf",
+   "path": "mod/env/HT_DS_Datasheet_SHT4x.pdf",
+   "source_id": "mod-env-sht40-ds",
+   "excerpt": "excerpts/mod-env-sht40.txt",
+   "sha256": "2d471eb9d9f57f619f697118a579240eaf160b8aa49275e0170ccf33eda16e93"
+  },
+  {
+   "url": "https://www.aosong.com/userfiles/files/media/Data%20Sheet%20AHT20.pdf",
+   "path": "mod/env/Data_Sheet_AHT20.pdf",
+   "source_id": "mod-env-aht20-ds",
+   "excerpt": "excerpts/mod-env-aht20.txt",
+   "sha256": "1e460b777986e711f301eb468265603ea6242ab44735b2686801d78d9779079e"
+  },
+  {
+   "url": "https://web.archive.org/web/20251104075029id_/https://www.silabs.com/documents/public/data-sheets/Si7021-A20.pdf",
+   "path": "mod/env/Si7021-A20.pdf",
+   "source_id": "mod-env-si7021-ds",
+   "excerpt": "excerpts/mod-env-si7021.txt",
+   "sha256": "bf27225c31fb38fdcf5d6c1536aef5242458a21b7421049aede726787af68017"
+  }
+ ]
+}

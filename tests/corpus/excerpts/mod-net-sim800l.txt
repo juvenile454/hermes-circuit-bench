@@ -1,0 +1,72 @@
+# source_id: mod-net-sim800l-hd
+# document: SIMCom SIM800L(MT6261) Hardware Design V1.01 (2016-07-07)
+# url: https://simcom.ee/documents/SIM800L/SIM800L(MT6261)_Hardware%20Design_V1.01.pdf
+# corpus: mod/net/SIM800L_MT6261_Hardware_Design_V1.01.pdf sha256 f6da4cb6194b4fe81a1a5d8785054fe3abc7cfc01a314d9f7fd46afd559a15f8
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 11
+Power supply 3.4V ~4.4V 
+@@ page 15
+VBAT 1,42  I Power supply  
+@@ page 16
+VDD_EXT 18 O 2.8V power output 
+PWRKEY 48 I 
+PWRKEY should be pulled low at 
+least 1 second and then released to 
+Internally pulled up to 
+@@ page 17
+TXD 32 O Transmit data 
+RXD 31 I Receive data 
+RESET 49 I Reset input(Active low)  
+@@ page 20
+The power supply range of SIM800L is from 3.4V to 4.4V .Recommended voltage is 4.0V.The transmitting burst 
+will cause voltage drop and the power supply must be able to provide sufficient current up to 2A. For the VBAT 
+input, a bypass capacitor (low ESR) such as a 100 uF is strongly recommended. 
+5.1V/500mW Zener diode is strongly recommended, the diode can prevent chip from damaging by the voltage 
+@@ page 21
+The single 3.7V Li-ion cell battery can be connected to SIM800L VBAT pins directly. But the Ni-Cd or Ni-MH 
+the input voltage never drops below 3.0V even when current consumption rises to 2A in the transmit burst. If the 
+power voltage drops below 3.0V , the module may be shut down automatically. The PCB traces from the VBA T 
+@@ page 24
+If the voltage < 3.4V , the following URC will be reported, and the module will be automatically powered down. 
+If the voltage > 4.4V , the following URC will be reported, and the module will be automatically powered down. 
+@@ page 25
+The typical value of RESET pin at High level is 1.8V , RESET hardware parameters can refer to the table below: 
+VIH 1.5 1.8 2.0 V 
+VIL - - 0.6 V 
+@@ page 28
+Table 10: Serial port characteristics 
+VIL -0.3 - 0.7 V 
+VIH 2.1 - 3.1  V 
+VOL - - 0.4 V 
+VOH 2.4 2.8 - V 
+ Serial port supports the following baud rates: 
+1200, 2400, 4800, 9600, 19200, 38400, 57600,115200,230400 and 460800bps 
+1200, 2400, 4800, 9600, 19200, 38400, 57600 and 115200bps 
+@@ page 29
+ The default setting is autobauding. 
+If the voltage of UART is 3.3V , the following reference circuits are recommended. If the voltage is 3.0V , please 
+@@ page 30
+If the voltage of UART is 5V, the following reference circuits are recommended: 
+@@ page 32
+The UART interface supports the CMOS level. If customer connects the module to the computer, the level shifter 
+@@ page 53
+VBAT - - 4.5 V 
+Current  0 - 2.0 A 
+*These parameters are for digital interface pins, such as keypad, GPIO, I2C, UART, and PCM. 
+VBAT Power supply voltage 3.4 4.0 4.4 V 
+Table 38: Digital interface characteristics 
+VIH High-level input voltage 2.1 - 3.0 V 
+VIL Low-level input voltage -0.3 - 0.7 V 
+VOH High-level output voltage 2.4 2.8 - V 
+VOL Low-level output voltage - - 0.4 V 
+Note: These parameters are for digital interface pins, such as keypad, GPIO, I2C, UART, and PCM. 
+@@ page 54
+Table 41: VDD_EXT characteristics 
+VO Output voltage 2.7 2.8 2.9 V 
+IO Output current - - 50 mA 
+@@ page 55
+Power down mode  144.3 200 uA   
+Idle mode (AT+CFUN=1)： 
+13.42 
+IMAX Peak current During Tx burst   2.0 A 

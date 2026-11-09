@@ -1,0 +1,39 @@
+{
+ "note": "Corpus for the Wireless-Tag WT32-ETH01 V1.4: datasheet and schematic PDFs and the two wiki pages, each with a committed excerpt; ESP-IDF v6.1 esp_eth.rst (commit fff9895c82d744c7237be8847347bdd1b07c6643) for the RMII clock on GPIO0.",
+ "files": [
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/network/esp_eth.rst",
+   "path": "esp-idf/v6.1/docs/en/api-reference/network/esp_eth.rst",
+   "source_id": "idf-v6.1-esp-eth",
+   "sha256": "df52aaba08d95c587d837801d951761589e8379407bac9af5257739afd674b79"
+  },
+  {
+   "url": "https://res.8ms.xyz/wiki_assets/WT32-ETH01/WT32-ETH01_V1.4%E8%A7%84%E6%A0%BC%E4%B9%A6.pdf",
+   "path": "wireless-tag/WT32-ETH01_V1.4_datasheet.pdf",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "excerpt": "excerpts/wt32-eth01-datasheet-v1.4.txt",
+   "sha256": "c09c58b0d69405d6aa4f2332d89126b0aca9df9c13723bde1dc42e1ef174d5e7"
+  },
+  {
+   "url": "https://res.8ms.xyz/wiki_assets/WT32-ETH01/WT32-ETH01_V1.4%E5%8E%9F%E7%90%86%E5%9B%BE.pdf",
+   "path": "wireless-tag/WT32-ETH01_V1.4_schematic.pdf",
+   "source_id": "sch-wt32-eth01-v1.4",
+   "excerpt": "excerpts/wt32-eth01-schematic-v1.4.txt",
+   "sha256": "18c7870ddf47145629e1cd618f4cd940ce0c48aa16a06a6addd85e8acab84b82"
+  },
+  {
+   "url": "https://wiki.wireless-tag.com/docs/en/WT32-ETH01/board_features.html",
+   "path": "wireless-tag/wiki/WT32-ETH01/board_features.html",
+   "source_id": "wiki-wt32-eth01-features",
+   "excerpt": "excerpts/wt32-eth01-wiki-board-features.txt",
+   "sha256": "66070a754fd4b6c75d664d80b2356b4776cebae427474754e1e147c8bc4546e5"
+  },
+  {
+   "url": "https://wiki.wireless-tag.com/docs/en/WT32-ETH01/board_resources.html",
+   "path": "wireless-tag/wiki/WT32-ETH01/board_resources.html",
+   "source_id": "wiki-wt32-eth01-resources",
+   "excerpt": "excerpts/wt32-eth01-wiki-board-resources.txt",
+   "sha256": "2f0c3c60a988f5ded096767d6f80342942a2dd3dc8bab4ab080d8ccb2704b8db"
+  }
+ ]
+}

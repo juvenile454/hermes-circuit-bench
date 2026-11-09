@@ -1,0 +1,35 @@
+# source_id: mod-ambient-tsl2591-ds
+# document: ams OSRAM TSL2591 Light-to-Digital Converter, Datasheet DS000338 v3-00, 2023-Feb-08
+# url: https://look.ams-osram.com/m/c901de8e97608f8/original/TSL2591-DS000338.pdf
+# corpus: mod/ambient/TSL2591-DS000338.pdf sha256 0bf334ce6497dcd1afac2fdc86e6ffbd098a0c1044a92db39ecc7d321b226667
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 5
+1 SCL I²C serial clock input terminal 
+2 INT Interrupt — open drain output (active low).
+3 GND Power supply ground. All voltages are referenced to GND.
+4 NC No connect — do not connect.
+5 VDD Supply voltage
+6 SDA I²C serial data I/O terminal
+@@ page 6
+Supply voltage, VDD 3.8 V All voltages are with respect to GND
+Input terminal voltage -0.5 3.8 V
+@@ page 7
+VDD Supply voltage 2.7 3 3.6 V
+IDD Supply Current ActiveSleep state - no I²C activity 2752.3 3254 μA
+VOL INT, SDA output low voltage 3mA sink current6mA sink current 00 0.40.6 V
+VIH SCL, SDA input high voltage TSL25911 (Vbus = VDD)0 . 7  V DD VTSL25913 (Vbus = 1.8) 1.26
+VIL SCL, SDA input low voltage TSL25911 (Vbus = VDD)0 . 3  V DD VTSL25913 (Vbus = 1.8) 0.54
+@@ page 10
+f(SCL)     Clock frequency (I²C only) 0 400 kHz
+@@ page 14
+1. Devices with a primary I 2C address of 0x29 also have a secondary I 2C address of 0x28 that can be used for read only registers to 
+@@ page 23
+Figure 16  shows a typical hardware application circuit. A 1-μF 
+low-ESR decoupling capacitor should be placed as close as 
+The I²C signals and the Interrupt are open-drain outputs and 
+require pull-up resistors. The pull-up resistor (RP) value is a 
+1.5-kΩ resistors. A 10-kΩ pull-up resistor (RPI) can be used for 
+the interrupt line.
+@@ page 29
+TSL25911FN 0x29 I²C Vbus = VDD Interface ODFN-6

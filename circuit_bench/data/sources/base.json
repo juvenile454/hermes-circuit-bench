@@ -1,0 +1,43 @@
+[
+ {
+  "id": "idf-v6.1-gpio-esp32",
+  "title": "ESP-IDF v6.1, GPIO & RTC GPIO (ESP32)",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/gpio/esp32.inc",
+  "retrieved": "2026-11-05",
+  "note": "Tag v6.1 = commit fff9895c (tag object 4dc1c655). Rendered: https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/gpio.html (stable = v6.1 at retrieval)"
+ },
+ {
+  "id": "idf-v6.1-gpio-esp32s3",
+  "title": "ESP-IDF v6.1, GPIO & RTC GPIO (ESP32-S3)",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/gpio/esp32s3.inc",
+  "retrieved": "2026-11-05",
+  "note": "Tag v6.1 = commit fff9895c (tag object 4dc1c655). Rendered: https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-reference/peripherals/gpio.html (stable = v6.1 at retrieval)"
+ },
+ {
+  "id": "idf-v6.1-gpio-esp32c3",
+  "title": "ESP-IDF v6.1, GPIO & RTC GPIO (ESP32-C3)",
+  "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/gpio/esp32c3.inc",
+  "retrieved": "2026-11-05",
+  "note": "Tag v6.1 = commit fff9895c (tag object 4dc1c655). Rendered: https://docs.espressif.com/projects/esp-idf/en/stable/esp32c3/api-reference/peripherals/gpio.html (stable = v6.1 at retrieval)"
+ },
+ {
+  "id": "devkitc1-s3-v1.1",
+  "title": "ESP32-S3-DevKitC-1 v1.1 User Guide, Header Block (J1, J3)",
+  "url": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html",
+  "retrieved": "2026-11-05"
+ },
+ {
+  "id": "idf-v6.1-fatal-errors",
+  "title": "ESP-IDF v6.1, Fatal Errors (ESP32-S3)",
+  "url": "https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-guides/fatal-errors.html",
+  "retrieved": "2026-11-05",
+  "note": "stable = v6.1 at retrieval"
+ },
+ {
+  "id": "rule-of-thumb",
+  "title": "Practice rule, not a standard",
+  "url": null,
+  "retrieved": "2026-11-05",
+  "note": "Shown for engineering judgement only; check the datasheet of your parts."
+ }
+]

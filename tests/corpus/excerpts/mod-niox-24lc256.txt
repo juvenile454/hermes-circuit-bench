@@ -1,0 +1,28 @@
+# source_id: mod-niox-24lc256-ds
+# document: 24AA256/24LC256/24FC256 256K I2C Serial EEPROM, DS20001203W
+# url: https://ww1.microchip.com/downloads/en/DeviceDoc/24AA256-24LC256-24FC256-Data-Sheet-20001203W.pdf
+# corpus: mod/niox/24AA256-24LC256-24FC256-Data-Sheet-20001203W.pdf sha256 ee9e9f15a6ce94e324c6d30f11fd3b8648741cc465feb67599e4e250868ce507
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+24AA256 1.7V-5.5V 400 kHz (1) I, E MF, MS, P, SN, SM, MNY, ST, CS
+24LC256 2.5V-5.5V 400 kHz I, E MF, MS, P, SN, SM, MNY, ST
+24FC256 1.7V-5.5V 1 MHz (2) I MF, MS, P, SN, SM, MNY, ST
+Note 1: 100 kHz for VCC <2 . 5 V .
+2: 400 kHz for VCC <2 . 5 V .
+@@ page 3
+All inputs and outputs w.r.t. VSS ..........................................................................................................-0.6V to VCC +1.0V
+D1 V IH High-Level Input Voltage 0.7 V CC —V
+D2 V IL Low-Level Input Voltage — 0.3 V CC
+D4 V OL Low-Level Output Voltage — 0.40 V I OL = 3.0 mA @ VCC = 4.5V
+ICC Write — 3 mA V CC = 5.5V
+D9 I CCS Standby Current — 1 µA SDA = SCL = V CC =3 . 6 V
+@@ page 7
+connected to either VCC or VSS.
+terminal. Therefore, the SDA bus requires a pull-up
+resistor to V CC (typical 10 k  for 100 kHz, 2 k  for
+Note: For the MSOP package only, pins A0 and
+A1 are not connected.
+@@ page 10
+is set as ‘1010’ binary for read and write operations.
+Select bits (A2, A1, A0). The Chip Select bits allow the

@@ -1,0 +1,50 @@
+# source_id: mod-nlevel-sn74hct595-ds
+# document: TI SN74HCT595 8-Bit Shift Registers with 3-State Output Registers, data sheet SCLS880A
+# url: https://www.ti.com/lit/ds/symlink/sn74hct595.pdf
+# corpus: mod/nlevel/sn74hct595.pdf sha256 07a763edcc4ae0eea846ecb27c75e3ec84ea43af2613c6e5fe9af6bf52bb98a5
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+– VIL(max) = 0.8 V, VIH(min) = 2 V
+• 4.5 V to 5.5 V operation
+@@ page 3
+QB 1 O QB O
+QC 2 O QC O
+QD 3 O QD O
+QE 4 O QE O
+QF 5 O QF O
+QG 6 O QG O
+QH 7 O QH O
+GND 8 — Ground
+QH' 9 O Serial O, can be used for cascading
+SRCLR 10 I Shift register clear, active low
+SRCLK 11 I Shift register clock, rising edge triggered
+RCLK 12 I O register clock, rising edge triggered
+OE 13 I O Enable, active low
+SER 14 I Serial I
+QA 15 O QA O
+VCC 16 — Positive supply
+@@ page 4
+VCC Supply voltage –0.5 7 V
+IO Continuous output current VO = 0 to VCC –35 35 mA
+ICC Continuous output current through VCC or GND –70 70 mA
+VCC Supply voltage 4.5 5 5.5 V
+VIH High-level input voltage VCC = 4.5 V to 5.5V 2 V
+VIL Low-level input voltage VCC = 4.5 V to 5.5V 0.8 V
+VI Input voltage 0 VCC V
+@@ page 5
+VOH High-level output voltage VI = VIH or VIL
+IOH = -20 uA, VCC = 
+4.5 V 4.4 4.4 V
+ICC Supply current VI = VCC or 0, IO = 0 VCC = 5.5 V 8 80 µA
+VI = VCC - 2.1V VCC = 4.5V to 5.5V 126.2 157.5 µA
+fclock Clock frequency 4.5 V 31 25 MHz
+@@ page 11
+Do not leave TTL-compatible CMOS inputs floating at any time during operation. Unused inputs must be 
+terminated at V CC or GND. If a system will not be actively driving an input at all times, a pull-up or pull-down 
+@@ page 12
+X X X X H Outputs QA – QH are disabled
+X X X X L Outputs QA – QH are enabled.
+X X L X X Shift register is cleared.
+@@ page 17
+disturbance. A 0.1-μF capacitor is recommended for this device. It is acceptable to parallel multiple bypass caps 

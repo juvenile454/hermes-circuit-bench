@@ -1,0 +1,58 @@
+[
+  {
+    "id": "mod-display-ssd1306-ds",
+    "title": "Solomon Systech SSD1306 128 x 64 Dot Matrix OLED/PLED Segment/Common Driver with Controller, Advance Information, copy hosted by Adafruit",
+    "url": "https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A2",
+    "note": "SSD1306 Rev 1.1 (Apr 2008), Solomon Systech header on every page; pages 59-65 append the SSD1306 charge pump App Note Rev 0.4 (Jan 2009). Pages 1, 6, 19, 47, 48, 52, 54, 62; sha256 d55f875357de96d8c0e92153a389acc57e8bab4db7a0687f2e0bd3362f0036f6"
+  },
+  {
+    "id": "mod-display-sh1106-ds",
+    "title": "Sino Wealth SH1106 132 X 64 Dot Matrix OLED/PLED Segment/Common Driver with Controller, copy hosted by Pololu",
+    "url": "https://www.pololu.com/file/0J1813/SH1106.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A2",
+    "note": "SH1106 V2.3 (revision history to V2.3 on p. 49); the SINO WEALTH logo on p. 1 is an image, not text. The text layer maps the micro sign to 'm' (p. 35 currents read 'mA'), so no currents are taken from it. Pages 1, 11, 13, 35, 36, 41, 43; sha256 ab5ce5f30dcd5b7e6b77ebb324b3c90489f7c0f481e72effbf77ed988219d8a7"
+  },
+  {
+    "id": "mod-display-ssd1309-ds",
+    "title": "Solomon Systech SSD1309 128 x 64 Dot Matrix OLED/PLED Segment/Common Driver with Controller, Advance Information, copy hosted by Crystalfontz",
+    "url": "https://www.crystalfontz.com/controllers/uploaded/Solomon_SSD1309_v1.1.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A2",
+    "note": "SSD1309 Rev 1.1 (Jul 2011), Solomon Systech header on every page; Crystalfontz adds a download stamp per page (the same Distiller file as the hpinfotech.ro copy of the research, sha256 7946195c...). Pages 1, 7, 19, 51, 52, 56, 58; sha256 37909523e9b24e2ad434854b065968e8a5deb546721835d1e201a28b62b9cf22"
+  },
+  {
+    "id": "mod-display-hd44780-ds",
+    "title": "Hitachi HD44780U (LCD-II) Dot Matrix Liquid Crystal Display Controller/Driver, copy hosted by SparkFun",
+    "url": "https://cdn.sparkfun.com/assets/9/5/f/7/b/HD44780.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A2",
+    "note": "Hitachi document ADE-207-272(Z) Rev. 0.0 ('99.9). The text layer maps the micro sign to 'm' (pp. 48, 51 read 'mA' for µA), so no currents are taken from it. Pages 1, 8, 13, 23, 47, 48, 51, 54, 55; sha256 4324d67ec14fc8e7ba8cf7db7256749c9b80b94b3f8bedfa614a0d2839c7dea9"
+  },
+  {
+    "id": "mod-display-max7219-ds",
+    "title": "Analog Devices (Maxim Integrated) MAX7219/MAX7221 Serially Interfaced, 8-Digit LED Display Drivers, data sheet (archived copy)",
+    "url": "https://web.archive.org/web/20260107024235id_/https://www.analog.com/media/en/technical-documentation/data-sheets/max7219-max7221.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A1",
+    "note": "19-4452; Rev 6; 8/21. Official URL https://www.analog.com/media/en/technical-documentation/data-sheets/max7219-max7221.pdf (not loadable by script: HTTP/2 INTERNAL_ERROR); Wayback snapshot 2026-01-07. Pages 1, 2, 3, 5, 10; sha256 7585bd4469c4355ea7e7d7193710605f2ab96afa14491c377420d057f9c8d5eb"
+  },
+  {
+    "id": "mod-display-tm1637-ds",
+    "title": "Titan Micro Electronics TM1637 LED drive control special circuit, data sheet in Chinese (archived copy)",
+    "url": "https://web.archive.org/web/20250726211808id_/http://www.titanmec.com/index/article/download.html?file=aHR0cDovL3R3ZHotYXNzZXRzLmRqd2VpbGFpLmNvbS90d2R6X2NuLzIwMjMwNTA1LzIwMjMwNTA1MTUxODAwMjExLnBkZg%3D%3D&name=TM1637_V2.6",
+    "retrieved": "2026-11-08",
+    "class": "A1",
+    "note": "TM1637 V2.6 (Chinese; Word 2019, 2023-04-21), Titan Micro footer on every page. Wayback snapshot 2025-07-26 of the titanmec.com download link (the live link answers HTTP 500). Pages 2, 3, 8, 9, 10; sha256 700720276ce0b91b4dba94476c20675ddab141cb5ea7fac3cad6d28b61119b9e"
+  },
+  {
+    "id": "mod-display-tm1637-en",
+    "title": "Titan Micro Electronics TM1637 LED Drive Control Special Circuit (English), copy hosted by M5Stack",
+    "url": "https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/docs/datasheet/unit/digi_clock/TM1637.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A2",
+    "note": "TM1637 V2.4 (English), Titan Micro footer on every page; older revision than mod-display-tm1637-ds, used for the statement that the two-wire bus is not I2C (no slave address), which V2.6 does not repeat, and the layout notes. Pages 1, 3, 8; sha256 d832b7ead17c875904337b45cbcf5daa4b19c5500ff4de8bc0b84a89a7e82e35"
+  }
+]

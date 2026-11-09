@@ -1,0 +1,39 @@
+{
+ "files": [
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/ina219.pdf",
+   "path": "mod/powermon/ina219.pdf",
+   "source_id": "mod-powermon-ina219-ds",
+   "excerpt": "excerpts/mod-powermon-ina219.txt",
+   "sha256": "58004eda854d07478e6fc6f4398c114f60a3bcf18d4877471c7c1a306d1fa1cb"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/ina226.pdf",
+   "path": "mod/powermon/ina226.pdf",
+   "source_id": "mod-powermon-ina226-ds",
+   "excerpt": "excerpts/mod-powermon-ina226.txt",
+   "sha256": "c9b67f886d4a5241a5e070723f7b61867409eeb27eed768b9cdd9cb17e03ca2d"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/ina260.pdf",
+   "path": "mod/powermon/ina260.pdf",
+   "source_id": "mod-powermon-ina260-ds",
+   "excerpt": "excerpts/mod-powermon-ina260.txt",
+   "sha256": "5160ed4af198b093e541beb3fe5f1048f00233fa23cd4f4822391acad9f94dcf"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/ina3221.pdf",
+   "path": "mod/powermon/ina3221.pdf",
+   "source_id": "mod-powermon-ina3221-ds",
+   "excerpt": "excerpts/mod-powermon-ina3221.txt",
+   "sha256": "d622c93ffe599b246fd3c6285996f219786235b635a30cca512229919a5f4ebc"
+  },
+  {
+   "url": "https://www.allegromicro.com/-/media/files/datasheets/acs712-datasheet.pdf",
+   "path": "mod/powermon/acs712-datasheet.pdf",
+   "source_id": "mod-powermon-acs712-ds",
+   "excerpt": "excerpts/mod-powermon-acs712.txt",
+   "sha256": "21b345f7a98d36947d5562218b0bc730b80609b614e9fc4374f56993011466b9"
+  }
+ ]
+}

@@ -1,0 +1,42 @@
+# source_id: mod-nmotion-bmi270-ds
+# document: Bosch Sensortec BMI270 6-axis smart, low-power Inertial Measurement Unit, Datasheet BST-BMI270-DS000-08, revision 1.6
+# url: https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi270-ds000.pdf
+# corpus: mod/nmotion/bst-bmi270-ds000.pdf sha256 0dab40659d3a8598af76a0b2da1fd8a216aeb87254541632c89145f974694af7
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Document revision 1.6
+Document number BST-BMI270-DS000-08
+@@ page 11
+Core Domain VDD  1.71 1.8 3.6 V
+I/O Domain VDDIO  1.2 1.8 3.6 V
+Low Level VIL SPI & I²C   0.3VDDIO -
+High Level VIH SPI & I²C 0.7VDDIO   -
+VDDIO>=1.62V,
+IOL<=2mA, SPI   0.2VDDIO -
+IOH<=2mA, SPI 0.8VDDIO   -
+A+G Performance Mode
+ 970
+A+G Normal Mode
+ 685
+A+G Suspend mode,
+VDD= 1.8 V, TA=25°C  3.5
+@@ page 16
+Voltage at Supply Pin VDD Pin -0.3 4 V
+VDDIO Pin -0.3 4 V
+Voltage at any Logic Pin Non-Supply Pin -0.3 VDDIO+0.3, <4 V
+@@ page 17
+a. Reading CHIP_ID (0x24) (checking correct communication). The interface is coming up configured for I2C, the
+@@ page 25
+o Burst write 8 kB  initialization data to Register INIT_DATA (start with byte 0 of initialization data)4. This
+@@ page 123
+not changed, the primary interface works in I2C mode. For using I2C, it is recommended to hard -wire the CSB line to
+@@ page 128
+lines are connected to VDDIO externally via pull-up resistors so that they are pulled high when the bus is free.
+The default I²C address of the device is 0b1101000 (0x68). It is used if the SDO pin is pulled to ´GND´. The alternative
+address 0b1101001 (0x69) is selected by pulling the SDO pin to ´VDDIO´.
+Clock Frequency fSCL   400 (FM) 1000 (FM+) kHz
+@@ page 135
+**) If secondary interface is unused, ASDx and ASCx can be connected to VDDIO or left unconnected. Do not connect to GND. If
+@@ page 136
+It is recommended to use 100nF decoupling capacitors at pin 5 (VDDIO) and pin 8 (VDD).

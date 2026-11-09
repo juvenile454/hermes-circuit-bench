@@ -1,0 +1,46 @@
+# source_id: mod-nmeasure-max31856-ds
+# document: Maxim Integrated (Analog Devices) MAX31856 Precision Thermocouple to Digital Converter with Linearization, 19-7534 Rev 0 (2/15)
+# url: https://web.archive.org/web/20251010155415id_/https://www.analog.com/media/en/technical-documentation/data-sheets/max31856.pdf
+# corpus: mod/nmeasure/max31856.pdf sha256 385702a94433d75e89ad4f04ab197fd73ab166a21fbd453fcedd9a9821acc662
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+19-7534; Rev 0;  2/15
+@@ page 2
+AVDD, DVDD........................................................-0.3V to +4.0V
+T+, T-, Bias ..........................................................................±45V
+All Other Pins .......................................-0.3V to (VDVDD + 0.3V)
+Power-Supply Voltage VAVDD, VDVDD 3.0 3.3 3.6 V
+AVDD-DVDD -100 +100 mV
+Input Logic 0 VIL 0.8 V
+Input Logic 1 VIH 2.1 V
+Supply Current IDD
+Standby 5.25 10 µA
+Active conversion 1.2 2 mA
+@@ page 3
+Bias Voltage VBIAS 0.735 V
+Input Common-Mode Range 0.5 1.4 V
+@@ page 4
+Type K, 
+TTC = -200°C to +1372°C
+@@ page 5
+Note 7: Input-referred full-scale voltage is 78.125mV when AV = 8 and is 19.531mV when AV = 32.
+Output High Voltage VOH IOUT = -1.6mA VCC - 0.4 V
+Output Low Voltage VOL IOUT = 1.6mA 0.4 V
+Serial Clock Frequency fSCL 5 MHz
+@@ page 10
+2 BIAS Bias Voltage Source. Nominally 0.735V. This pin is floating when no conversions are taking place.
+5 AVDD Analog Positive Supply. Bypass with a 0.1µF capacitor to AGND.
+6 DNC Do Not Connect
+7 DRDY Data Ready Output
+8 DVDD Digital Positive Supply. Bypass with a 0.1µF capacitor to DGND.
+9 CS Chip Select. Set CS low to enable the serial interface.
+13 FAULT Cable, thermocouple, or temperature fault output
+@@ page 11
+T+ and T- are the thermocouple inputs. T- is biased to 
+approximately 0.735V by the BIAS output. The amplifier 
+@@ page 15
+The DRDY output goes low when a new conversion result 
+Note: CPHA bit polarity must be set to 1.  
+@@ page 27
+The ±45V input protection circuitry prevents damage to 

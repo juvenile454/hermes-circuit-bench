@@ -1,0 +1,50 @@
+[
+  {
+    "id": "mod-prox-vl53l0x-ds",
+    "title": "STMicroelectronics VL53L0X Time-of-Flight ranging sensor, datasheet",
+    "url": "https://web.archive.org/web/20260125042617id_/https://www.st.com/resource/en/datasheet/vl53l0x.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A1",
+    "note": "Document DS11555 Rev 6 (June 2024); Wayback copy of the st.com file (st.com blocks scripted downloads); pages 1, 4, 5, 15, 19, 20; sha256 f0ae51414474d311bc24c60cd77bfff968ea5c2b3765b2fb2a390b3078dd49be"
+  },
+  {
+    "id": "mod-prox-vl53l1x-ds",
+    "title": "STMicroelectronics VL53L1X Time-of-Flight long-distance ranging sensor, datasheet",
+    "url": "https://web.archive.org/web/20260210224308id_/https://www.st.com/resource/en/datasheet/vl53l1x.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A1",
+    "note": "Document DS12385 Rev 8 (August 2024); Wayback copy of the st.com file (served gzip, unpacked before hashing); pages 1, 5, 6, 13, 18, 19; sha256 b7f4174afaff82a82b5af68746e2df6f946a0de6733608e376b320a8cee6034a"
+  },
+  {
+    "id": "mod-prox-tsop382-ds",
+    "title": "Vishay TSOP382.., TSOP384.. IR Receiver Modules for Remote Control Systems, datasheet",
+    "url": "https://www.vishay.com/docs/82491/tsop382.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Document Number 82491, Rev. 2.1, 27-May-2025; pages 1, 2, 3; sha256 5f81c36aa02e9901e51c749d03aee75a23a29b8195b30bf1cba95f536c865074"
+  },
+  {
+    "id": "mod-prox-hcsr04-sheet",
+    "title": "Ultrasonic Ranging Module HC-SR04, vendor sheet by Elecfreaks, copy hosted by SparkFun",
+    "url": "https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf",
+    "retrieved": "2026-11-08",
+    "class": "B",
+    "note": "No manufacturer datasheet exists (module of unknown origin); 3-page vendor sheet without revision; pages 1, 2, 3; sha256 4ebdc3e1f70d84a1ca856d8fcd7f8b1f9e548a94e4012cd86d14ca0b30543b06"
+  },
+  {
+    "id": "mod-prox-drv5032-ds",
+    "title": "Texas Instruments DRV5032 Ultra-Low-Power Digital-Switch Hall Effect Sensor, datasheet",
+    "url": "https://www.ti.com/lit/ds/symlink/drv5032.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Document SLVSDC7H (April 2017, revised December 2024); pages 1, 2, 3, 4, 5, 13; sha256 0bdec04d64591bbb62c74f2e5d4dc10f21de5f76b0b0f12fca5c6a277037ceee"
+  },
+  {
+    "id": "mod-prox-ttp223-ds",
+    "title": "Tontek TTP223-BA6 / TTP223N-BA6 TonTouch 1 Key Touch Pad Detector IC, datasheet",
+    "url": "https://www.tontek.com.tw/uploads/product/243/TTP223-BA6_V2.1_EN.pdf",
+    "retrieved": "2026-11-08",
+    "class": "B",
+    "note": "Ver 2.1 (09/11/30), status 'Preliminary' in the header of every page (Tontek's only edition): class B (preliminary document), findings capped to info; SOT-23-6 BA6 version used on the common touch boards; pages 1, 2, 3, 6; sha256 9b3adc3dcc42b9f5ce7bc36e406892c9a0134b88919d3e6fc1b8e1eb583ed9b8"
+  }
+]

@@ -1,0 +1,30 @@
+# source_id: mod-niox-pca9555-ds
+# document: PCA9555 16-bit I2C-bus and SMBus I/O port with interrupt, Rev. 10 (8 November 2017)
+# url: https://cache.nxp.com/docs/en/data-sheet/PCA9555.pdf
+# corpus: mod/niox/PCA9555.pdf sha256 9f4f9c0ce4c461d71e0a46858394f830c74daba72bb6616f368af78a39f44b1f
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+address compatible with the PCF8575, software changes are required due to the
+@@ page 6
+0 1 0 0 A2 A1 A0
+@@ page 8
+reset, the device's ports are inputs with a pull-up to VDD.
+@@ page 14
+connected to a positive supply via a pull-up resistor when connected to the output stages
+@@ page 17
+VDD supply voltage 0.5 +6.0 V
+VI/O voltage on an input/output pin VSS  0.5 6 V
+@@ page 18
+VDD supply voltage 2.3 - 5.5 V
+IDD supply current Operating mode; VDD = 5.5 V; no load;
+- 135 200 A
+VI =V SS; fSCL = 0 kHz; I/O = inputs
+-1 . 1 1 . 5 m A
+VI =V DD; fSCL = 0 kHz; I/O = inputs
+-0 . 2 5 1 A
+VIL LOW-level input voltage 0.5 - +0.3V DD V
+VIH HIGH-level input voltage 0.7VDD -5 . 5 V
+IOL LOW-level output current V OL =0 . 4V 3 - - m A
+@@ page 20
+fSCL SCL clock frequency 0 100 0 400 kHz

@@ -1,0 +1,25 @@
+# source_id: mod-motor-uln2803c-ds
+# document: Texas Instruments ULN2803C Eight-Channel Darlington Transistor Array data sheet, SLRS076B (revised September 2024)
+# url: https://www.ti.com/lit/ds/symlink/uln2803c.pdf
+# corpus: mod/motor/uln2803c.pdf sha256 12d7302794e2a590d744efe718bb47781720e8ce1999c038772f9af961181f00
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 3
+GND 9 — Common emitter shared by all channels (typically tied to ground).
+COM 12 I/O Common cathode node for flyback diodes (required for inductive loads).
+NC 10, 11 — No connect pin.
+@@ page 4
+VCC Collector-emitter voltge 50 V
+VI Input voltage 30 V
+IC Peak collector current 500 mA
+IOK Output clamp current 500 mA
+IMAX Total substrate-terminal current -2.5 A
+@@ page 5
+VCE = 2V, IC = 200mA 25°C 2.4 V
+VCE = 2V, IC = 300mA 25°C 3 V
+II = 350uA, IC = 200mA 25°C 1 1.3 V
+VF Clamp forward voltage IF = 350mA 25°C 1.3 2 V
+II Input current VI = 3.85V 25°C 0.93 1.35 mA
+@@ page 9
+allowing operation directly with TTL or CMOS operating at supply voltages of 5 V or 3.3 V. The ULN2803C
+When the COM pin is tied to the coil supply voltage, ULN2803C can drive inductive loads and suppress the

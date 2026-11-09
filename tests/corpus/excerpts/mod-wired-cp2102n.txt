@@ -1,0 +1,29 @@
+# source_id: mod-wired-cp2102n-ds
+# document: Silicon Labs CP2102N Data Sheet, USBXpress Family CP2102N, Rev. 1.5
+# url: https://web.archive.org/web/20261005161823id_/https://www.silabs.com/documents/public/data-sheets/CP2102N-DataSheet.pdf
+# corpus: mod/wired/CP2102N-DataSheet.pdf sha256 32fbab0ba17f394ab76fbbd8129bddad228c1c486a1693d96ea5905936e437fe
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 5
+In all cases, a 1 k Ω pull-up on the RSTb pin is recommended. This pull-up should be tied to VIO on devices that have it. On devices
+4.7 µF and 0.1 µF bypass 
+capacitors required for 
+@@ page 10
+Operating Supply Voltage on VDD
+VDD 3.0 — 3.6 V
+Operating Supply Voltage on VIO 3 VIO 1.71 — VDD V
+VREGIN 3.0 — 5.25 V
+Normal Operation1, 2 IDD 115200 baud transmitting continu-
+— 9.5 — mA
+USB Suspend1, 2 IDD — 195 — µA
+@@ page 13
+Output High Voltage (High Drive) VOH IOH = -7 mA, VIO ≥ 3.0 V VIO - 0.7 — — V
+Output Low Voltage (High Drive) VOL IOL = 13.5 mA, VIO ≥ 3.0 V — — 0.6 V
+VIH VIO - 0.6 — — V
+VIL — — 0.6 V
+@@ page 15
+Voltage on VDD VDD GND-0.3 4.2 V
+Voltage on VIO2 VIO GND-0.3 4.2 V
+Voltage on VREGIN VREGIN GND-0.3 5.8 V
+VIN VIO > 3.3 V GND-0.3 5.8 V
+VIO < 3.3 V GND-0.3 VIO+2.5 V

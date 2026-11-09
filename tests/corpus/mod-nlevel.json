@@ -1,0 +1,46 @@
+{
+ "files": [
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/pca9306.pdf",
+   "path": "mod/nlevel/pca9306.pdf",
+   "source_id": "mod-nlevel-pca9306-ds",
+   "excerpt": "excerpts/mod-nlevel-pca9306.txt",
+   "sha256": "1cd97c734729f2bfca26ccaa93521c04c373568e4ebe6d892267dba2571e21e6"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1t45.pdf",
+   "path": "mod/nlevel/sn74lvc1t45.pdf",
+   "source_id": "mod-nlevel-sn74lvc1t45-ds",
+   "excerpt": "excerpts/mod-nlevel-sn74lvc1t45.txt",
+   "sha256": "e6fbd8400161399554fe905326e73236e74bb3af0b546ea1942deed14310536e"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/sn74lvc8t245.pdf",
+   "path": "mod/nlevel/sn74lvc8t245.pdf",
+   "source_id": "mod-nlevel-sn74lvc8t245-ds",
+   "excerpt": "excerpts/mod-nlevel-sn74lvc8t245.txt",
+   "sha256": "a2493b65471e5c873e3f71afbe152ac4d0f9233045c5ec289bda602a4b453cf0"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/sn74lvc125a.pdf",
+   "path": "mod/nlevel/sn74lvc125a.pdf",
+   "source_id": "mod-nlevel-sn74lvc125a-ds",
+   "excerpt": "excerpts/mod-nlevel-sn74lvc125a.txt",
+   "sha256": "06ff124c6c762b7c8e0e6f2df79edd1dacb1368a40039542da0b5cedb7c54b28"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/sn74hct595.pdf",
+   "path": "mod/nlevel/sn74hct595.pdf",
+   "source_id": "mod-nlevel-sn74hct595-ds",
+   "excerpt": "excerpts/mod-nlevel-sn74hct595.txt",
+   "sha256": "07a763edcc4ae0eea846ecb27c75e3ec84ea43af2613c6e5fe9af6bf52bb98a5"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/cd74hct4067.pdf",
+   "path": "mod/nlevel/cd74hct4067.pdf",
+   "source_id": "mod-nlevel-cd74hct4067-ds",
+   "excerpt": "excerpts/mod-nlevel-cd74hct4067.txt",
+   "sha256": "be0091cbec79831f5ced7d5d42016eadb88b8fad431a1d460a94b9f4f98a421d"
+  }
+ ]
+}

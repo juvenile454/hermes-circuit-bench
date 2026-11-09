@@ -1,0 +1,28 @@
+# Citation excerpt. '#' lines are metadata; '@@ page N' starts a segment of whole lines copied
+# from pypdf's text of that PDF page (runs of whitespace collapsed to one space). tests/test_plus_calc_sources.py
+# checks code and data against it and, with the corpus present, the segments against the pinned PDF.
+# source_id: ds-esp32-s3-wroom-1-power
+# document: ESP32-S3-WROOM-1 & WROOM-1U Datasheet v1.8, 6 Electrical Characteristics
+# url: https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf
+# corpus: espressif/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf sha256 27d71971da07c280c6068d08c74720d1a25b8f20cf8494dc1765bdd28d40d435
+# retrieved: 2026-11-06
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text() (pinned by tests/corpus/pins.json)
+# Table 6-2: IVDD 0.5 A is the Min column (Min Typ Max). Table 6-3 note 2: VOH and VOL are measured using high-impedance load.
+@@ page 27
+T able 6-2. Recommended Operating Conditions
+Symbol Parameter Min T yp Max Unit
+VDD33 Power supply voltage 3.0 3.3 3.6 V
+IV DD Current delivered by external power supply 0.5 — — A
+6.3 DC Characteristics (3.3 V , 25 °C)
+T able 6-3. DC Characteristics (3.3 V , 25 °C)
+Parameter Description Min T yp Max Unit
+VOH 2 High-level output voltage 0.8 × VDD1 — — V
+@@ page 28
+2VOH and VOL are measured using high-impedance load.
+The current consumption measurements are taken with a 3.3 V supply at 25 °C ambient temperature.
+TX current consumption is rated at a 100% duty cycle.
+T able 6-4. Current Consumption for Wi-Fi (2.4 GHz) in Active Mode
+Work Mode RF Condition Description Peak (mA)
+Active (RF working)
+TX
+802.11b, 1 Mbps, @20.5 dBm 355

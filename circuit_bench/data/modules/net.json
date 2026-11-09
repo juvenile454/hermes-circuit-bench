@@ -1,0 +1,1588 @@
+{
+ "schema": 1,
+ "wp": "net",
+ "note": "Values only from manufacturer documents (SD card: the SD Association's Simplified Specification); 'evidence' quotes lines of tests/corpus/excerpts/mod-net-*.txt (pypdf).",
+ "modules": [
+  {
+   "id": "w5500",
+   "aliases": [
+    "wiz5500",
+    "w5500_lite",
+    "usr_es1"
+   ],
+   "title": "W5500 hardwired TCP/IP Ethernet controller (SPI, 10/100 PHY)",
+   "category": "comm.ethernet",
+   "manufacturer": "WIZnet",
+   "kind": "ic",
+   "source_ids": [
+    "mod-net-w5500-ds"
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 2.97,
+      "unit": "V",
+      "page": 59,
+      "evidence": "VDD Supply voltage Apply VDD, AVDD 2.97 3.3 3.63 V"
+     },
+     "typ": {
+      "value": 3.3,
+      "unit": "V",
+      "page": 59,
+      "evidence": "VDD Supply voltage Apply VDD, AVDD 2.97 3.3 3.63 V"
+     },
+     "max": {
+      "value": 3.63,
+      "unit": "V",
+      "page": 59,
+      "evidence": "VDD Supply voltage Apply VDD, AVDD 2.97 3.3 3.63 V"
+     },
+     "abs_max": {
+      "value": 4.6,
+      "unit": "V",
+      "page": 58,
+      "evidence": "VDD DC Supply voltage -0.5 to 4.6 V",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "VDD",
+    "vih": {
+     "value": 2.0,
+     "unit": "V",
+     "page": 59,
+     "evidence": [
+      "VIH High level input",
+      "2.0  5.5 V"
+     ]
+    },
+    "vil": {
+     "value": 0.8,
+     "unit": "V",
+     "page": 59,
+     "evidence": [
+      "VIL Low level input",
+      "- 0.3  0.8 V"
+     ]
+    },
+    "voh": {
+     "value": 2.4,
+     "unit": "V",
+     "page": 59,
+     "evidence": [
+      "VOH High level output",
+      "IOH = 8mA,",
+      "2.4   V"
+     ],
+     "conditions": "IOH = 8 mA"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 59,
+     "evidence": [
+      "VOL Low level output",
+      "IOL = 8mA,",
+      "0.4 V"
+     ],
+     "conditions": "IOL = 8 mA"
+    },
+    "v_in_max": {
+     "value": 6.0,
+     "unit": "V",
+     "page": 58,
+     "evidence": "VIN DC input voltage -0.5 to 6 V",
+     "conditions": "absolute maximum rating, DC input voltage (VIH range ends at 5.5 V, p. 59)"
+    },
+    "five_v_tolerant": true
+   },
+   "pins": [
+    {
+     "name": "VDD",
+     "signal": "supply",
+     "note": "digital 3.3 V; AVDD (analog 3.3 V, pins 4/8/11/15/17/21) on the same rail"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "SCSn",
+     "signal": "spi_cs",
+     "active_low": true,
+     "internal_pull": {
+      "up": {
+       "value": 77000.0,
+       "unit": "Ω",
+       "page": 59,
+       "evidence": "RPU Pull-up Resistor SCSn, RSTn, PMODE[2:0] 50 77 112 Kohm",
+       "conditions": "typ; 50–112 kΩ"
+      }
+     },
+     "note": "chip select, low = selected (p. 9)"
+    },
+    {
+     "name": "SCLK",
+     "signal": "spi_sck"
+    },
+    {
+     "name": "MOSI",
+     "signal": "spi_sdi"
+    },
+    {
+     "name": "MISO",
+     "signal": "spi_sdo",
+     "output": "tristate",
+     "note": "high impedance while SCSn is high (p. 10)"
+    },
+    {
+     "name": "INTn",
+     "signal": "digital_out",
+     "active_low": true,
+     "note": "interrupt output, low = interrupt (p. 10); optional"
+    },
+    {
+     "name": "RSTn",
+     "signal": "reset_in",
+     "active_low": true,
+     "internal_pull": {
+      "up": {
+       "value": 77000.0,
+       "unit": "Ω",
+       "page": 59,
+       "evidence": "RPU Pull-up Resistor SCSn, RSTn, PMODE[2:0] 50 77 112 Kohm",
+       "conditions": "typ; 50–112 kΩ"
+      }
+     },
+     "note": "hold low ≥ 500 µs for a reset (p. 10)"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "spi",
+     "mode": 0,
+     "f_max_hz": {
+      "value": 33300000.0,
+      "unit": "Hz",
+      "page": 61,
+      "evidence": "is 33.3 MHz which was tested and measured with the stable waveform.",
+      "conditions": "minimum guaranteed SCLK; 80 MHz is the theoretical design speed"
+     },
+     "note": "SPI mode 0 or 3, MSB first (p. 12); 80 MHz theoretical, 33.3 MHz guaranteed (p. 61)"
+    }
+   ],
+   "current": {
+    "supply": "VDD",
+    "typ": {
+     "value": 0.132,
+     "unit": "A",
+     "page": 59,
+     "evidence": [
+      "IDD1 Supply",
+      "132  mA"
+     ],
+     "conditions": "normal operation at 3.3 V, 25 °C (VDD and AVDD together)"
+    },
+    "max": {
+     "value": 0.132,
+     "unit": "A",
+     "page": 60,
+     "evidence": "100M Transmitting - 132 - mA",
+     "conditions": "highest typical figure (100M transmitting); the data sheet gives no maximum"
+    },
+    "sleep": {
+     "value": 0.013,
+     "unit": "A",
+     "page": 59,
+     "evidence": [
+      "IDD2 Supply",
+      "13  mA"
+     ],
+     "conditions": "PHY power down mode, typ"
+    },
+    "note": "VDD and AVDD together; 100M link 128 mA, 10M link 75 mA (p. 60)"
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Inputs are 5 V tolerant, the chip itself runs from 3.3 V only (VDD 2.97–3.63 V, abs max 4.6 V).",
+     "verified": true,
+     "page": 2,
+     "evidence": "3.3V operation with 5V I/O signal tolerance"
+    },
+    {
+     "text": "PMODE[2:0] have internal pull-ups: left open the PHY runs 'all capable, auto-negotiation'.",
+     "verified": true,
+     "page": 10,
+     "evidence": "1 1 1 All capable, Auto-negotiation enabled"
+    },
+    {
+     "text": "About 130 mA from the 3.3 V rail while linked at 100 Mbit/s: count it in the 3V3 budget (mod.power_budget).",
+     "verified": true,
+     "page": 60,
+     "evidence": "100M Link - 128 - mA"
+    },
+    {
+     "text": "SPI mode 0 and mode 3 are supported.",
+     "verified": true,
+     "page": 12,
+     "evidence": "The W5500 supports SPI Mode 0 and Mode 3."
+    }
+   ],
+   "variants": [
+    {
+     "id": "breakout",
+     "title": "W5500 breakout board with RJ45 jack (W5500 Lite / USR-ES1 style, 3.3 V header)",
+     "overrides": {
+      "kind": "module",
+      "supplies": {
+       "VCC": {
+        "min": {
+         "value": 2.97,
+         "unit": "V",
+         "page": 59,
+         "evidence": "VDD Supply voltage Apply VDD, AVDD 2.97 3.3 3.63 V",
+         "conditions": "W5500 VDD; reaches the chip directly unless the board has a regulator"
+        },
+        "typ": {
+         "value": 3.3,
+         "unit": "V",
+         "page": 59,
+         "evidence": "VDD Supply voltage Apply VDD, AVDD 2.97 3.3 3.63 V",
+         "conditions": "W5500 VDD; reaches the chip directly unless the board has a regulator"
+        },
+        "max": {
+         "value": 3.63,
+         "unit": "V",
+         "page": 59,
+         "evidence": "VDD Supply voltage Apply VDD, AVDD 2.97 3.3 3.63 V",
+         "conditions": "W5500 VDD; reaches the chip directly unless the board has a regulator"
+        },
+        "abs_max": {
+         "value": 4.6,
+         "unit": "V",
+         "page": 58,
+         "evidence": "VDD DC Supply voltage -0.5 to 4.6 V",
+         "conditions": "absolute maximum rating; W5500 VDD; reaches the chip directly unless the board has a regulator"
+        }
+       }
+      },
+      "io": {
+       "domain": "VCC",
+       "vih": {
+        "value": 2.0,
+        "unit": "V",
+        "page": 59,
+        "evidence": [
+         "VIH High level input",
+         "2.0  5.5 V"
+        ]
+       },
+       "vil": {
+        "value": 0.8,
+        "unit": "V",
+        "page": 59,
+        "evidence": [
+         "VIL Low level input",
+         "- 0.3  0.8 V"
+        ]
+       },
+       "voh": {
+        "value": 2.4,
+        "unit": "V",
+        "page": 59,
+        "evidence": [
+         "VOH High level output",
+         "IOH = 8mA,",
+         "2.4   V"
+        ],
+        "conditions": "IOH = 8 mA"
+       },
+       "vol": {
+        "value": 0.4,
+        "unit": "V",
+        "page": 59,
+        "evidence": [
+         "VOL Low level output",
+         "IOL = 8mA,",
+         "0.4 V"
+        ],
+        "conditions": "IOL = 8 mA"
+       },
+       "v_in_max": {
+        "value": 6.0,
+        "unit": "V",
+        "page": 58,
+        "evidence": "VIN DC input voltage -0.5 to 6 V",
+        "conditions": "absolute maximum rating, DC input voltage"
+       },
+       "five_v_tolerant": true
+      },
+      "pins": [
+       {
+        "name": "VCC",
+        "signal": "supply",
+        "note": "3.3 V header pin (often labelled 3.3V or V)"
+       },
+       {
+        "name": "GND",
+        "signal": "gnd"
+       },
+       {
+        "name": "CS",
+        "signal": "spi_cs",
+        "active_low": true,
+        "internal_pull": {
+         "up": {
+          "value": 77000.0,
+          "unit": "Ω",
+          "page": 59,
+          "evidence": "RPU Pull-up Resistor SCSn, RSTn, PMODE[2:0] 50 77 112 Kohm",
+          "conditions": "typ; 50–112 kΩ"
+         }
+        },
+        "note": "SCSn (also labelled SCS/SS)"
+       },
+       {
+        "name": "SCK",
+        "signal": "spi_sck"
+       },
+       {
+        "name": "MOSI",
+        "signal": "spi_sdi"
+       },
+       {
+        "name": "MISO",
+        "signal": "spi_sdo",
+        "output": "tristate"
+       },
+       {
+        "name": "INT",
+        "signal": "digital_out",
+        "active_low": true
+       },
+       {
+        "name": "RST",
+        "signal": "reset_in",
+        "active_low": true,
+        "internal_pull": {
+         "up": {
+          "value": 77000.0,
+          "unit": "Ω",
+          "page": 59,
+          "evidence": "RPU Pull-up Resistor SCSn, RSTn, PMODE[2:0] 50 77 112 Kohm",
+          "conditions": "typ; 50–112 kΩ"
+         }
+        }
+       }
+      ],
+      "current": {
+       "supply": "VCC",
+       "typ": {
+        "value": 0.132,
+        "unit": "A",
+        "page": 59,
+        "evidence": [
+         "IDD1 Supply",
+         "132  mA"
+        ],
+        "conditions": "normal operation at 3.3 V, 25 °C (VDD and AVDD together)"
+       },
+       "max": {
+        "value": 0.132,
+        "unit": "A",
+        "page": 60,
+        "evidence": "100M Transmitting - 132 - mA",
+        "conditions": "highest typical figure (100M transmitting); the data sheet gives no maximum"
+       },
+       "sleep": {
+        "value": 0.013,
+        "unit": "A",
+        "page": 59,
+        "evidence": [
+         "IDD2 Supply",
+         "13  mA"
+        ],
+        "conditions": "PHY power down mode, typ"
+       },
+       "note": "VDD and AVDD together; 100M link 128 mA, 10M link 75 mA (p. 60)"
+      },
+      "notes": [
+       {
+        "text": "Header labels differ between boards (3.3V/V, G, MI/MO, SCK, CS/SCS/SS, RST, INT); some boards add a 5 V pin with a 3.3 V regulator. Feed only the 3.3 V pin unless the board's regulator is confirmed (facts.regulator).",
+        "verified": false
+       },
+       {
+        "text": "The RJ45 jack with magnetics, the 25 MHz crystal and the decoupling are on the board.",
+        "verified": false
+       },
+       {
+        "text": "About 130 mA from the 3.3 V rail while linked at 100 Mbit/s.",
+        "verified": true,
+        "page": 60,
+        "evidence": "100M Link - 128 - mA"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "neo6m",
+   "aliases": [
+    "neo_6m",
+    "neo6",
+    "gps_neo6m"
+   ],
+   "title": "NEO-6M u-blox 6 GPS receiver module (UART)",
+   "category": "comm.gnss",
+   "manufacturer": "u-blox",
+   "kind": "ic",
+   "source_ids": [
+    "mod-net-neo6m-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 2.7,
+      "unit": "V",
+      "page": 15,
+      "evidence": [
+       "NEO-6Q/M",
+       "2.7 3.0 3.6 V"
+      ]
+     },
+     "typ": {
+      "value": 3.0,
+      "unit": "V",
+      "page": 15,
+      "evidence": [
+       "NEO-6Q/M",
+       "2.7 3.0 3.6 V"
+      ]
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 15,
+      "evidence": [
+       "NEO-6Q/M",
+       "2.7 3.0 3.6 V"
+      ]
+     },
+     "abs_max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 14,
+      "evidence": "NEO-6Q, 6M, 6P, 6V, 6T -0.5 3.6 V",
+      "conditions": "absolute maximum rating"
+     }
+    },
+    "V_BCKP": {
+     "min": {
+      "value": 1.4,
+      "unit": "V",
+      "page": 15,
+      "evidence": "Backup battery voltage V_BCKP All 1.4  3.6 V"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 15,
+      "evidence": "Backup battery voltage V_BCKP All 1.4  3.6 V"
+     },
+     "abs_max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 14,
+      "evidence": "Backup battery voltage V_BCKP All -0.5 3.6 V",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "rel": 0.7,
+     "of": "VCC",
+     "unit": "V",
+     "page": 15,
+     "evidence": "Digital IO Pin High level input voltage Vih All 0.7*VCC  VCC V"
+    },
+    "vil": {
+     "rel": 0.2,
+     "of": "VCC",
+     "unit": "V",
+     "page": 15,
+     "evidence": "Digital IO Pin Low level input voltage Vil All 0  0.2*VCC V"
+    },
+    "voh": {
+     "rel_offset": -0.4,
+     "of": "VCC",
+     "unit": "V",
+     "page": 15,
+     "evidence": "Digital IO Pin High level output voltage Voh All VCC -0.4   V Ioh=4mA",
+     "conditions": "IOH = 4 mA"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 15,
+     "evidence": "Digital IO Pin Low level output voltage Vol All   0.4 V Iol=4mA",
+     "conditions": "IOL = 4 mA"
+    },
+    "v_in_max": {
+     "value": 3.6,
+     "unit": "V",
+     "page": 14,
+     "evidence": "Input pin voltage  Vin All -0.5 3.6 V",
+     "conditions": "absolute maximum rating"
+    },
+    "five_v_tolerant": false
+   },
+   "pins": [
+    {
+     "name": "VCC",
+     "signal": "supply"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "TxD1",
+     "signal": "uart_tx",
+     "note": "serial port 1 output (p. 12)"
+    },
+    {
+     "name": "RxD1",
+     "signal": "uart_rx",
+     "note": "serial port 1 input; not 5 V tolerant (abs max 3.6 V, p. 14)"
+    },
+    {
+     "name": "V_BCKP",
+     "signal": "supply",
+     "note": "backup supply 1.4–3.6 V for RTC and battery-backed RAM (p. 15)"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "uart",
+     "baud_default": 9600,
+     "note": "9600 Baud 8N1, NMEA output (p. 22); UBX and NMEA accepted on input"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "typ": {
+     "value": 0.047,
+     "unit": "A",
+     "page": 15,
+     "evidence": "Icc Acquisition All  47",
+     "conditions": "acquisition, average, measured at 3.0 V"
+    },
+    "max": {
+     "value": 0.067,
+     "unit": "A",
+     "page": 15,
+     "evidence": "Iccp All   67 mA VCC = 3.6 V",
+     "conditions": "peak supply current, measured at 3.6 V"
+    },
+    "note": "tracking 39 mA (max performance), power save 11 mA (p. 15); an active antenna adds up to 50 mA on VCC_RF"
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "VCC 2.7–3.6 V: the NEO-6M module itself does not run from 5 V (abs max 3.6 V).",
+     "verified": true,
+     "page": 15,
+     "evidence": [
+      "NEO-6Q/M",
+      "2.7 3.0 3.6 V"
+     ]
+    },
+    {
+     "text": "No overvoltage or reverse-voltage protection in the module.",
+     "verified": true,
+     "page": 14,
+     "evidence": "The product is not protected against overvoltage or reversed"
+    },
+    {
+     "text": "Default: NMEA at 9600 Baud, 8 bits, no parity, 1 stop bit.",
+     "verified": true,
+     "page": 22,
+     "evidence": "9600 Baud, 8 bits, no parity bit, 1 stop bit"
+    }
+   ],
+   "variants": [
+    {
+     "id": "gy_neo6mv2",
+     "title": "GY-NEO6MV2 breakout (NEO-6M, regulator, backup cell, ceramic antenna)",
+     "overrides": {
+      "kind": "module",
+      "supplies": {
+       "VCC": {
+        "min": {
+         "value": 2.7,
+         "unit": "V",
+         "page": 15,
+         "evidence": [
+          "NEO-6Q/M",
+          "2.7 3.0 3.6 V"
+         ],
+         "conditions": "NEO-6M VCC; reaches the module directly unless the board has a regulator"
+        },
+        "typ": {
+         "value": 3.0,
+         "unit": "V",
+         "page": 15,
+         "evidence": [
+          "NEO-6Q/M",
+          "2.7 3.0 3.6 V"
+         ],
+         "conditions": "NEO-6M VCC; reaches the module directly unless the board has a regulator"
+        },
+        "max": {
+         "value": 3.6,
+         "unit": "V",
+         "page": 15,
+         "evidence": [
+          "NEO-6Q/M",
+          "2.7 3.0 3.6 V"
+         ],
+         "conditions": "NEO-6M VCC; reaches the module directly unless the board has a regulator"
+        },
+        "abs_max": {
+         "value": 3.6,
+         "unit": "V",
+         "page": 14,
+         "evidence": "NEO-6Q, 6M, 6P, 6V, 6T -0.5 3.6 V",
+         "conditions": "absolute maximum rating; NEO-6M VCC; reaches the module directly unless the board has a regulator"
+        }
+       }
+      },
+      "pins": [
+       {
+        "name": "VCC",
+        "signal": "supply"
+       },
+       {
+        "name": "RX",
+        "signal": "uart_rx",
+        "note": "NEO-6M RxD1; not 5 V tolerant (abs max 3.6 V, p. 14)"
+       },
+       {
+        "name": "TX",
+        "signal": "uart_tx",
+        "note": "NEO-6M TxD1"
+       },
+       {
+        "name": "GND",
+        "signal": "gnd"
+       }
+      ],
+      "notes": [
+       {
+        "text": "GY-NEO6MV2 boards are reported to carry a 3.3 V LDO and accept VCC 3.3–5 V; the UART stays at the module's 3.3 V level. Confirm the regulator (facts.regulator) before 5 V.",
+        "verified": false
+       },
+       {
+        "text": "The board's backup cell (or supercap) and an EEPROM for the configuration are reported; many boards carry clones or used NEO-6M modules.",
+        "verified": false
+       },
+       {
+        "text": "RxD1 is not 5 V tolerant: input pin abs max 3.6 V.",
+        "verified": true,
+        "page": 14,
+        "evidence": "Input pin voltage  Vin All -0.5 3.6 V"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "neom8n",
+   "aliases": [
+    "neo_m8n",
+    "neom8",
+    "gps_neom8n"
+   ],
+   "title": "NEO-M8N u-blox M8 concurrent GNSS receiver module (UART/I²C/SPI)",
+   "category": "comm.gnss",
+   "manufacturer": "u-blox",
+   "kind": "ic",
+   "source_ids": [
+    "mod-net-neom8n-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 2.7,
+      "unit": "V",
+      "page": 18,
+      "evidence": "Power supply voltage NEO-M8N/Q/J  VCC 2.7 3.0 3.6 V"
+     },
+     "typ": {
+      "value": 3.0,
+      "unit": "V",
+      "page": 18,
+      "evidence": "Power supply voltage NEO-M8N/Q/J  VCC 2.7 3.0 3.6 V"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 18,
+      "evidence": "Power supply voltage NEO-M8N/Q/J  VCC 2.7 3.0 3.6 V"
+     },
+     "abs_max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 18,
+      "evidence": "Power supply voltage VCC  –0.5 3.6 V",
+      "conditions": "absolute maximum rating"
+     }
+    },
+    "V_BCKP": {
+     "min": {
+      "value": 1.4,
+      "unit": "V",
+      "page": 18,
+      "evidence": "Backup battery voltage V_BCKP 1.4  3.6 V"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 18,
+      "evidence": "Backup battery voltage V_BCKP 1.4  3.6 V"
+     },
+     "abs_max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 18,
+      "evidence": "Backup battery voltage V_BCKP  –0.5 3.6 V",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "rel": 0.7,
+     "of": "VCC",
+     "unit": "V",
+     "page": 18,
+     "evidence": "Digital IO pin high level input voltage VIH 0.7*VCC  VCC V"
+    },
+    "vil": {
+     "rel": 0.2,
+     "of": "VCC",
+     "unit": "V",
+     "page": 18,
+     "evidence": "Digital IO pin low level input voltage VIL 0  0.2*VCC V"
+    },
+    "voh": {
+     "rel_offset": -0.4,
+     "of": "VCC",
+     "unit": "V",
+     "page": 19,
+     "evidence": "Digital IO pin high level output voltage VOH VCC–0.4   V IOH = 4mA",
+     "conditions": "IOH = 4 mA"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 19,
+     "evidence": "Digital IO pin low level output voltage VOL   0.4 V IOL = 4mA",
+     "conditions": "IOL = 4 mA"
+    },
+    "v_in_max": {
+     "rel_offset": 0.5,
+     "of": "VCC",
+     "unit": "V",
+     "page": 18,
+     "evidence": [
+      "Input pin voltage  VIN If VCC < 3.1V",
+      "If VCC > 3.1V",
+      "VCC+0.5",
+      "3.6"
+     ],
+     "conditions": "abs max VCC+0.5 V, capped at 3.6 V once the supply is above 3.1 V (p. 18)"
+    },
+    "five_v_tolerant": false
+   },
+   "pins": [
+    {
+     "name": "VCC",
+     "signal": "supply"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "TXD",
+     "signal": "uart_tx",
+     "note": "serial port if D_SEL = 1 or open (p. 15)"
+    },
+    {
+     "name": "RXD",
+     "signal": "uart_rx",
+     "note": "serial port if D_SEL = 1 or open (p. 15); not 5 V tolerant"
+    },
+    {
+     "name": "V_BCKP",
+     "signal": "supply",
+     "note": "backup supply 1.4–3.6 V (p. 18)"
+    },
+    {
+     "name": "RESET_N",
+     "signal": "reset_in",
+     "active_low": true,
+     "internal_pull": {
+      "up": {
+       "value": 11000.0,
+       "unit": "Ω",
+       "page": 19,
+       "evidence": "Pull-up resistor for RESET_N (internal) RPU  11  kΩ",
+       "conditions": "typ"
+      }
+     }
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "uart",
+     "baud_default": 9600,
+     "note": "9600 baud 8N1 (p. 25); D_SEL open selects UART + DDC (I²C), D_SEL = 0 selects SPI"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "typ": {
+     "value": 0.032,
+     "unit": "A",
+     "page": 19,
+     "evidence": "NEO-M8N 32 25  mA Estimated at 3 V",
+     "conditions": "acquisition, GPS & GLONASS, estimated at 3 V"
+    },
+    "max": {
+     "value": 0.067,
+     "unit": "A",
+     "page": 19,
+     "evidence": "Max. supply current 13 ICCP All   67 mA",
+     "conditions": "peak supply current"
+    }
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "VCC 2.7–3.6 V: the NEO-M8N module itself does not run from 5 V (abs max 3.6 V).",
+     "verified": true,
+     "page": 18,
+     "evidence": "Power supply voltage NEO-M8N/Q/J  VCC 2.7 3.0 3.6 V"
+    },
+    {
+     "text": "No overvoltage or reverse-voltage protection in the module.",
+     "verified": true,
+     "page": 18,
+     "evidence": "The product is not protected against overvoltage or reversed"
+    },
+    {
+     "text": "D_SEL selects the interface: open or 1 = UART and DDC (I²C), 0 = SPI.",
+     "verified": true,
+     "page": 15,
+     "evidence": "Serial port if D_SEL =1 (or open)"
+    },
+    {
+     "text": "The DDC (I²C) slave address 0x42 is documented in the u-blox receiver description, not in this data sheet.",
+     "verified": false
+    }
+   ],
+   "variants": [
+    {
+     "id": "gy_neom8n",
+     "title": "GY-NEO-M8N / GPS-compass breakout (NEO-M8N, regulator, backup cell)",
+     "overrides": {
+      "kind": "module",
+      "supplies": {
+       "VCC": {
+        "min": {
+         "value": 2.7,
+         "unit": "V",
+         "page": 18,
+         "evidence": "Power supply voltage NEO-M8N/Q/J  VCC 2.7 3.0 3.6 V",
+         "conditions": "NEO-M8N VCC; reaches the module directly unless the board has a regulator"
+        },
+        "typ": {
+         "value": 3.0,
+         "unit": "V",
+         "page": 18,
+         "evidence": "Power supply voltage NEO-M8N/Q/J  VCC 2.7 3.0 3.6 V",
+         "conditions": "NEO-M8N VCC; reaches the module directly unless the board has a regulator"
+        },
+        "max": {
+         "value": 3.6,
+         "unit": "V",
+         "page": 18,
+         "evidence": "Power supply voltage NEO-M8N/Q/J  VCC 2.7 3.0 3.6 V",
+         "conditions": "NEO-M8N VCC; reaches the module directly unless the board has a regulator"
+        },
+        "abs_max": {
+         "value": 3.6,
+         "unit": "V",
+         "page": 18,
+         "evidence": "Power supply voltage VCC  –0.5 3.6 V",
+         "conditions": "absolute maximum rating; NEO-M8N VCC; reaches the module directly unless the board has a regulator"
+        }
+       }
+      },
+      "pins": [
+       {
+        "name": "VCC",
+        "signal": "supply"
+       },
+       {
+        "name": "GND",
+        "signal": "gnd"
+       },
+       {
+        "name": "TX",
+        "signal": "uart_tx",
+        "note": "NEO-M8N TXD"
+       },
+       {
+        "name": "RX",
+        "signal": "uart_rx",
+        "note": "NEO-M8N RXD; not 5 V tolerant"
+       }
+      ],
+      "notes": [
+       {
+        "text": "GY-NEO-M8N boards are reported to carry a 3.3 V LDO (VCC 3.3–5 V) and a backup cell; confirm the regulator (facts.regulator) before 5 V.",
+        "verified": false
+       },
+       {
+        "text": "GPS-compass variants add an HMC5883L/QMC5883L magnetometer on separate SDA/SCL pins; add it as its own part.",
+        "verified": false
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "sdcard",
+   "aliases": [
+    "sd_card",
+    "microsd",
+    "micro_sd",
+    "sd_spi",
+    "tf_card"
+   ],
+   "title": "SD / microSD memory card in SPI mode",
+   "category": "storage.sd",
+   "manufacturer": "SD Association (specification)",
+   "kind": "ic",
+   "source_ids": [
+    "mod-net-sdcard-spec"
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 2.7,
+      "unit": "V",
+      "page": 21,
+      "evidence": "High Voltage SD Memory Card – Operating voltage range: 2.7-3.6 V"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 21,
+      "evidence": "High Voltage SD Memory Card – Operating voltage range: 2.7-3.6 V"
+     }
+    }
+   },
+   "pins": [
+    {
+     "name": "CS",
+     "signal": "spi_cs",
+     "active_low": true,
+     "internal_pull": {
+      "up": {
+       "value": 50000.0,
+       "unit": "Ω",
+       "page": 29,
+       "evidence": "At power up this line has a 50KOhm pull up enabled in the card.",
+       "conditions": "at power up, card detect / mode select"
+      }
+     },
+     "note": "pin 1 (CD/DAT3); low during CMD0 selects SPI mode (p. 29)"
+    },
+    {
+     "name": "DI",
+     "signal": "spi_sdi",
+     "note": "pin 2 (CMD), data in"
+    },
+    {
+     "name": "VSS",
+     "signal": "gnd",
+     "note": "pins 3 and 6"
+    },
+    {
+     "name": "VDD",
+     "signal": "supply",
+     "note": "pin 4"
+    },
+    {
+     "name": "SCLK",
+     "signal": "spi_sck",
+     "note": "pin 5 (CLK)"
+    },
+    {
+     "name": "DO",
+     "signal": "spi_sdo",
+     "output": "push_pull",
+     "note": "pin 7 (DAT0), data out, push-pull (p. 29)"
+    },
+    {
+     "name": "RSV1",
+     "signal": "nc",
+     "note": "pin 8 (DAT1), reserved in SPI mode"
+    },
+    {
+     "name": "RSV2",
+     "signal": "nc",
+     "note": "pin 9 (DAT2), reserved in SPI mode"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "spi",
+     "f_max_hz": {
+      "value": 25000000.0,
+      "unit": "Hz",
+      "page": 21,
+      "evidence": "(1) Default Speed mode: 3.3V signaling, Frequency up to 25 MHz",
+      "conditions": "Default Speed, 3.3 V signaling; identification and ACMD41 at 100 to 400 kHz (p. 94)"
+     },
+     "note": "one CS per card; the SPI interface is selected by CMD0 and stays until power-off (p. 227)"
+    }
+   ],
+   "current": {
+    "supply": "VDD",
+    "max": {
+     "value": 0.1,
+     "unit": "A",
+     "page": 36,
+     "evidence": "In SPI mode, XPC is not supported and the power shall be up to 0.36W (100mA at 3.6V on VDD1).",
+     "conditions": "SPI mode, up to 0.36 W at 3.6 V"
+    },
+    "note": "the Simplified Specification gives no typical or idle current (section 6.6.3 is blank)"
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Card supply 2.7–3.6 V (High Voltage SD card): a bare card or socket must not see 5 V.",
+     "verified": true,
+     "page": 21,
+     "evidence": "High Voltage SD Memory Card – Operating voltage range: 2.7-3.6 V"
+    },
+    {
+     "text": "Initialisation: hold CS high for at least 74 clocks after power-up, send CMD0 with CS low to enter SPI mode, then clock at 100–400 kHz until ACMD41 reports ready (mod.net.sd_spi_init_400k).",
+     "verified": true,
+     "page": 94,
+     "evidence": "1) Issue continuous clock in the frequency range of 100 KHz-400 KHz."
+    },
+    {
+     "text": "The Simplified Specification leaves the electrical tables blank (thresholds, leakage, pull-ups, power consumption): logic levels are not checked.",
+     "verified": true,
+     "page": 224,
+     "evidence": "6.6.1 Threshold Level for High Voltage Range"
+    },
+    {
+     "text": "MISO pull-up: commonly 10–100 kΩ on DO and the unused DAT lines; the values are in the full (non-simplified) specification only.",
+     "verified": false
+    }
+   ],
+   "variants": [
+    {
+     "id": "breakout",
+     "title": "microSD card breakout board (socket, 3.3 V regulator, 74LVC125 buffer; 'Catalex' style)",
+     "overrides": {
+      "kind": "module",
+      "supplies": {
+       "VCC": {
+        "min": {
+         "value": 2.7,
+         "unit": "V",
+         "page": 21,
+         "evidence": "High Voltage SD Memory Card – Operating voltage range: 2.7-3.6 V",
+         "conditions": "card VDD; reaches the card directly unless the board has a regulator"
+        },
+        "max": {
+         "value": 3.6,
+         "unit": "V",
+         "page": 21,
+         "evidence": "High Voltage SD Memory Card – Operating voltage range: 2.7-3.6 V",
+         "conditions": "card VDD; reaches the card directly unless the board has a regulator"
+        }
+       }
+      },
+      "pins": [
+       {
+        "name": "GND",
+        "signal": "gnd"
+       },
+       {
+        "name": "VCC",
+        "signal": "supply"
+       },
+       {
+        "name": "MISO",
+        "signal": "spi_sdo",
+        "note": "card DO, on many boards through a 74LVC125 buffer"
+       },
+       {
+        "name": "MOSI",
+        "signal": "spi_sdi"
+       },
+       {
+        "name": "SCK",
+        "signal": "spi_sck"
+       },
+       {
+        "name": "CS",
+        "signal": "spi_cs",
+        "active_low": true
+       }
+      ],
+      "current": {
+       "supply": "VCC",
+       "max": {
+        "value": 0.1,
+        "unit": "A",
+        "page": 36,
+        "evidence": "In SPI mode, XPC is not supported and the power shall be up to 0.36W (100mA at 3.6V on VDD1).",
+        "conditions": "SPI mode, up to 0.36 W at 3.6 V"
+       },
+       "note": "the Simplified Specification gives no typical or idle current (section 6.6.3 is blank)"
+      },
+      "notes": [
+       {
+        "text": "Common microSD boards carry an AMS1117-3.3 regulator and a 74LVC125 buffer and are meant for VCC = 5 V; at VCC = 3.3 V the regulator's dropout leaves the card below 3.3 V. Record facts.regulator = '3V3' once confirmed.",
+        "verified": false
+       },
+       {
+        "text": "On some boards the 74LVC125 keeps MISO driven while CS is high, which disturbs other devices on a shared SPI bus; give the card its own bus or check the board.",
+        "verified": false
+       },
+       {
+        "text": "Initialisation: hold CS high for at least 74 clocks after power-up, send CMD0 with CS low to enter SPI mode, then clock at 100–400 kHz until ACMD41 reports ready (mod.net.sd_spi_init_400k).",
+        "verified": true,
+        "page": 94,
+        "evidence": "1) Issue continuous clock in the frequency range of 100 KHz-400 KHz."
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "sim800l",
+   "aliases": [
+    "sim800",
+    "sim800l_mt6261"
+   ],
+   "title": "SIM800L quad-band GSM/GPRS module (UART, 2.8 V I/O)",
+   "category": "comm.cellular",
+   "manufacturer": "SIMCom",
+   "kind": "ic",
+   "source_ids": [
+    "mod-net-sim800l-hd"
+   ],
+   "supplies": {
+    "VBAT": {
+     "min": {
+      "value": 3.4,
+      "unit": "V",
+      "page": 53,
+      "evidence": "VBAT Power supply voltage 3.4 4.0 4.4 V"
+     },
+     "typ": {
+      "value": 4.0,
+      "unit": "V",
+      "page": 53,
+      "evidence": "VBAT Power supply voltage 3.4 4.0 4.4 V"
+     },
+     "max": {
+      "value": 4.4,
+      "unit": "V",
+      "page": 53,
+      "evidence": "VBAT Power supply voltage 3.4 4.0 4.4 V"
+     },
+     "abs_max": {
+      "value": 4.5,
+      "unit": "V",
+      "page": 53,
+      "evidence": "VBAT - - 4.5 V",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "vih": {
+     "value": 2.1,
+     "unit": "V",
+     "page": 28,
+     "evidence": "VIH 2.1 - 3.1  V",
+     "conditions": "serial port, Table 10 (VIH maximum 3.1 V)"
+    },
+    "vil": {
+     "value": 0.7,
+     "unit": "V",
+     "page": 28,
+     "evidence": "VIL -0.3 - 0.7 V",
+     "conditions": "serial port (Table 10)"
+    },
+    "voh": {
+     "value": 2.4,
+     "unit": "V",
+     "page": 28,
+     "evidence": "VOH 2.4 2.8 - V",
+     "conditions": "serial port (Table 10), typ 2.8 V"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 28,
+     "evidence": "VOL - - 0.4 V",
+     "conditions": "serial port (Table 10)"
+    },
+    "five_v_tolerant": false,
+    "domain_v": {
+     "value": 2.8,
+     "unit": "V",
+     "page": 28,
+     "evidence": "VOH 2.4 2.8 - V",
+     "conditions": "serial port high level typ 2.8 V (Table 10): the I/O runs on the internal 2.8 V domain (VDD_EXT 2.8 V, p. 21), not on VBAT"
+    }
+   },
+   "pins": [
+    {
+     "name": "VBAT",
+     "signal": "supply",
+     "note": "pins 1 and 42; 3.4–4.4 V, bursts up to 2 A (p. 20)"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "RXD",
+     "signal": "uart_rx",
+     "note": "pin 31, receive data (module input, 2.8 V domain)"
+    },
+    {
+     "name": "TXD",
+     "signal": "uart_tx",
+     "note": "pin 32, transmit data (module output, VOH 2.4–2.8 V)"
+    },
+    {
+     "name": "RESET",
+     "signal": "reset_in",
+     "active_low": true,
+     "internal_pull": "up",
+     "note": "pin 49, active low; high level 1.8 V typ, VIH max 2.0 V (p. 25): pull low via open drain"
+    },
+    {
+     "name": "PWRKEY",
+     "signal": "enable_in",
+     "active_low": true,
+     "internal_pull": "up",
+     "note": "pin 48; pull low ≥ 1 s to power on/off; internally pulled up to VBAT (p. 16)"
+    },
+    {
+     "name": "VDD_EXT",
+     "signal": "power_out",
+     "note": "pin 18, 2.8 V output of the I/O domain, max 50 mA (p. 54)"
+    },
+    {
+     "name": "NETLIGHT",
+     "signal": "digital_out",
+     "note": "pin 64, network status"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "uart",
+     "baud_default": 115200,
+     "note": "autobauding by default (1200–115200 bps, p. 28/29); fixed rates up to 460800 bps via AT+IPR"
+    }
+   ],
+   "current": {
+    "supply": "VBAT",
+    "typ": {
+     "value": 0.01342,
+     "unit": "A",
+     "page": 55,
+     "evidence": [
+      "Idle mode (AT+CFUN=1)",
+      "13.42"
+     ],
+     "conditions": "idle, EGSM900, measured at 3.8 V"
+    },
+    "max": {
+     "value": 2.0,
+     "unit": "A",
+     "page": 55,
+     "evidence": "IMAX Peak current During Tx burst   2.0 A",
+     "conditions": "peak during a transmit burst"
+    },
+    "peak": {
+     "value": 2.0,
+     "unit": "A",
+     "page": 55,
+     "evidence": "IMAX Peak current During Tx burst   2.0 A",
+     "conditions": "transmit burst"
+    },
+    "sleep": {
+     "value": 0.0002,
+     "unit": "A",
+     "page": 55,
+     "evidence": "Power down mode  144.3 200 uA",
+     "conditions": "power down mode, max"
+    },
+    "note": "transmit bursts up to 2 A (p. 20, p. 55); voice call about 220 mA average"
+   },
+   "requires": [
+    {
+     "code": "bulk_cap",
+     "kind": "capacitor",
+     "value": "100 µF low ESR",
+     "pins": [
+      "VBAT"
+     ],
+     "to": "GND",
+     "page": 20,
+     "evidence": "input, a bypass capacitor (low ESR) such as a 100 uF is strongly recommended.",
+     "note": "close to the VBAT pins; SIMCom adds 1 µF, 33 pF/10 pF and a 5.1 V/500 mW Zener (p. 20)"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "VBAT 3.4–4.4 V (recommended 4.0 V), abs max 4.5 V: neither the 3.3 V nor the 5 V rail fits (mod.net.sim800_vbat).",
+     "verified": true,
+     "page": 53,
+     "evidence": "VBAT Power supply voltage 3.4 4.0 4.4 V"
+    },
+    {
+     "text": "Transmit bursts draw up to 2 A; the supply must deliver that without dropping below 3.0 V, else the module may shut down.",
+     "verified": true,
+     "page": 21,
+     "evidence": "power voltage drops below 3.0V , the module may be shut down automatically."
+    },
+    {
+     "text": "A single 3.7 V Li-ion cell can feed VBAT directly.",
+     "verified": true,
+     "page": 21,
+     "evidence": "The single 3.7V Li-ion cell battery can be connected to SIM800L VBAT pins directly."
+    },
+    {
+     "text": "The UART runs in the module's 2.8 V domain (VIH 2.1–3.1 V, VOH min 2.4 V); for a 3.3 V host SIMCom recommends a resistor matching circuit (mod.net.sim800_vih).",
+     "verified": true,
+     "page": 29,
+     "evidence": "If the voltage of UART is 3.3V , the following reference circuits are recommended."
+    },
+    {
+     "text": "RESET high level is 1.8 V typical (VIH 1.5–2.0 V): pull it low only (open drain / transistor), never drive it to 3.3 V.",
+     "verified": true,
+     "page": 25,
+     "evidence": "The typical value of RESET pin at High level is 1.8V"
+    },
+    {
+     "text": "Autobauding is the default; send 'AT' until 'OK' to synchronise.",
+     "verified": true,
+     "page": 29,
+     "evidence": "The default setting is autobauding."
+    },
+    {
+     "text": "2G (GSM) networks are being shut down in several countries; check that the network is still available before building on a SIM800L.",
+     "verified": false
+    }
+   ],
+   "variants": [
+    {
+     "id": "breakout",
+     "title": "SIM800L mini breakout (red/blue core board: VCC = VBAT, SIM holder, spring antenna)",
+     "overrides": {
+      "kind": "module",
+      "supplies": {
+       "VCC": {
+        "min": {
+         "value": 3.4,
+         "unit": "V",
+         "page": 53,
+         "evidence": "VBAT Power supply voltage 3.4 4.0 4.4 V",
+         "conditions": "SIM800L VBAT; reaches the module directly unless the board has a regulator"
+        },
+        "typ": {
+         "value": 4.0,
+         "unit": "V",
+         "page": 53,
+         "evidence": "VBAT Power supply voltage 3.4 4.0 4.4 V",
+         "conditions": "SIM800L VBAT; reaches the module directly unless the board has a regulator"
+        },
+        "max": {
+         "value": 4.4,
+         "unit": "V",
+         "page": 53,
+         "evidence": "VBAT Power supply voltage 3.4 4.0 4.4 V",
+         "conditions": "SIM800L VBAT; reaches the module directly unless the board has a regulator"
+        },
+        "abs_max": {
+         "value": 4.5,
+         "unit": "V",
+         "page": 53,
+         "evidence": "VBAT - - 4.5 V",
+         "conditions": "absolute maximum rating; SIM800L VBAT; reaches the module directly unless the board has a regulator"
+        }
+       }
+      },
+      "pins": [
+       {
+        "name": "NET",
+        "signal": "digital_out",
+        "note": "NETLIGHT LED output"
+       },
+       {
+        "name": "VCC",
+        "signal": "supply",
+        "note": "SIM800L VBAT: 3.4–4.4 V, bursts up to 2 A"
+       },
+       {
+        "name": "RST",
+        "signal": "reset_in",
+        "active_low": true,
+        "internal_pull": "up",
+        "note": "RESET, pull low only"
+       },
+       {
+        "name": "RXD",
+        "signal": "uart_rx"
+       },
+       {
+        "name": "TXD",
+        "signal": "uart_tx"
+       },
+       {
+        "name": "GND",
+        "signal": "gnd"
+       },
+       {
+        "name": "RING",
+        "signal": "digital_out",
+        "note": "RI ring indicator"
+       }
+      ],
+      "current": {
+       "supply": "VCC",
+       "typ": {
+        "value": 0.01342,
+        "unit": "A",
+        "page": 55,
+        "evidence": [
+         "Idle mode (AT+CFUN=1)",
+         "13.42"
+        ],
+        "conditions": "idle, EGSM900, measured at 3.8 V"
+       },
+       "max": {
+        "value": 2.0,
+        "unit": "A",
+        "page": 55,
+        "evidence": "IMAX Peak current During Tx burst   2.0 A",
+        "conditions": "peak during a transmit burst"
+       },
+       "peak": {
+        "value": 2.0,
+        "unit": "A",
+        "page": 55,
+        "evidence": "IMAX Peak current During Tx burst   2.0 A",
+        "conditions": "transmit burst"
+       },
+       "sleep": {
+        "value": 0.0002,
+        "unit": "A",
+        "page": 55,
+        "evidence": "Power down mode  144.3 200 uA",
+        "conditions": "power down mode, max"
+       },
+       "note": "transmit bursts up to 2 A (p. 20, p. 55); voice call about 220 mA average"
+      },
+      "requires": [
+       {
+        "code": "bulk_cap",
+        "kind": "capacitor",
+        "value": "100 µF low ESR",
+        "pins": [
+         "VCC"
+        ],
+        "to": "GND",
+        "page": 20,
+        "evidence": "input, a bypass capacitor (low ESR) such as a 100 uF is strongly recommended.",
+        "note": "close to the VBAT pins; SIMCom adds 1 µF, 33 pF/10 pF and a 5.1 V/500 mW Zener (p. 20)"
+       }
+      ],
+      "notes": [
+       {
+        "text": "The common SIM800L mini boards connect VCC straight to VBAT (no regulator) and carry only a small capacitor; PWRKEY is reported to be tied low so the module starts on power-up. Record facts.regulator = 'none' for them.",
+        "verified": false
+       },
+       {
+        "text": "'5V' SIM800L boards with a regulator and level shifting exist; their input range comes from the board maker, not from SIMCom.",
+        "verified": false
+       },
+       {
+        "text": "VBAT 3.4–4.4 V (recommended 4.0 V), abs max 4.5 V: neither the 3.3 V nor the 5 V rail fits (mod.net.sim800_vbat).",
+        "verified": true,
+        "page": 53,
+        "evidence": "VBAT Power supply voltage 3.4 4.0 4.4 V"
+       },
+       {
+        "text": "Transmit bursts draw up to 2 A; the supply must deliver that without dropping below 3.0 V, else the module may shut down.",
+        "verified": true,
+        "page": 21,
+        "evidence": "power voltage drops below 3.0V , the module may be shut down automatically."
+       },
+       {
+        "text": "A single 3.7 V Li-ion cell can feed VBAT directly.",
+        "verified": true,
+        "page": 21,
+        "evidence": "The single 3.7V Li-ion cell battery can be connected to SIM800L VBAT pins directly."
+       },
+       {
+        "text": "The UART runs in the module's 2.8 V domain (VIH 2.1–3.1 V, VOH min 2.4 V); for a 3.3 V host SIMCom recommends a resistor matching circuit (mod.net.sim800_vih).",
+        "verified": true,
+        "page": 29,
+        "evidence": "If the voltage of UART is 3.3V , the following reference circuits are recommended."
+       },
+       {
+        "text": "RESET high level is 1.8 V typical (VIH 1.5–2.0 V): pull it low only (open drain / transistor), never drive it to 3.3 V.",
+        "verified": true,
+        "page": 25,
+        "evidence": "The typical value of RESET pin at High level is 1.8V"
+       }
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}

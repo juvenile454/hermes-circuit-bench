@@ -1,0 +1,93 @@
+{
+ "ok": true,
+ "action": "pins.info",
+ "summary": "GPIO35 on ESP32-S3 (J3-13): FSPID, SUBSPID, SPIIO6; blocked: octal PSRAM (N16R8).",
+ "result": {
+  "chip": "esp32s3",
+  "title": "ESP32-S3",
+  "variant": "n16r8",
+  "devkit": "esp32-s3-devkitc-1",
+  "gpio": 35,
+  "name": "GPIO35",
+  "header": "J3-13",
+  "broken_out": true,
+  "functions": [
+   "GPIO35",
+   "FSPID",
+   "SUBSPID",
+   "SPIIO6"
+  ],
+  "rtc": false,
+  "adc": null,
+  "touch": null,
+  "input_only": false,
+  "internal_pulls": true,
+  "rules": [
+   {
+    "rule_id": "s3.octal_psram",
+    "title": "octal PSRAM",
+    "severity": "blocked",
+    "message": "Wired to the octal PSRAM bus (SPIIO4–7, SPIDQS). Espressif: not recommended for other uses.",
+    "source_id": "idf-v6.1-gpio-esp32s3",
+    "when": {
+     "psram": "octal"
+    },
+    "modes": [
+     "*"
+    ],
+    "applies": true
+   }
+  ],
+  "onboard": [],
+  "modes": {
+   "out": "blocked",
+   "in": "blocked",
+   "in_pullup": "blocked",
+   "in_pulldown": "blocked",
+   "adc": "blocked",
+   "pwm": "blocked",
+   "i2c_sda": "blocked",
+   "i2c_scl": "blocked",
+   "spi_sck": "blocked",
+   "spi_mosi": "blocked",
+   "spi_miso": "blocked",
+   "spi_cs": "blocked",
+   "uart_tx": "blocked",
+   "uart_rx": "blocked",
+   "touch": "blocked"
+  }
+ },
+ "checks": [],
+ "warnings": [],
+ "assumptions": [
+  {
+   "key": "wifi",
+   "value": "unknown",
+   "reason": "rules that depend on Wi-Fi show applies=null"
+  }
+ ],
+ "sources": [
+  {
+   "id": "idf-v6.1-gpio-esp32s3",
+   "title": "ESP-IDF v6.1, GPIO & RTC GPIO (ESP32-S3)",
+   "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/gpio/esp32s3.inc",
+   "retrieved": "2026-11-05",
+   "note": "Tag v6.1 = commit fff9895c (tag object 4dc1c655). Rendered: https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-reference/peripherals/gpio.html (stable = v6.1 at retrieval)"
+  },
+  {
+   "id": "idf-v6.1-iomux-esp32s3",
+   "title": "ESP-IDF v6.1, io_mux_reg.h (ESP32-S3): IO MUX pin functions",
+   "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/components/soc/esp32s3/register/soc/io_mux_reg.h",
+   "retrieved": "2026-11-06",
+   "note": "ESP-IDF tag v6.1 (tag object 4dc1c65503e98e9a6b4c3c5646237280ba79829b, commit fff9895c82d744c7237be8847347bdd1b07c6643)"
+  },
+  {
+   "id": "devkitc1-s3-v1.1",
+   "title": "ESP32-S3-DevKitC-1 v1.1 User Guide, Header Block (J1, J3)",
+   "url": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html",
+   "retrieved": "2026-11-05"
+  }
+ ],
+ "simulated": false,
+ "error": null
+}

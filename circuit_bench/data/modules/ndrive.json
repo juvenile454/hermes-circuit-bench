@@ -1,0 +1,1242 @@
+{
+  "schema": 1,
+  "wp": "ndrive",
+  "note": "Values only from manufacturer documents; 'evidence' quotes lines of tests/corpus/excerpts/mod-ndrive-*.txt (pypdf).",
+  "modules": [
+    {
+      "id": "tpl7407l",
+      "aliases": [
+        "tpl7407",
+        "tpl7407ld",
+        "tpl7407lpw",
+        "tpl7407ldr",
+        "tpl7407lpwr"
+      ],
+      "title": "TPL7407L 7-channel 40 V low-side MOSFET driver (ULN2003A pin-compatible)",
+      "category": "driver.array",
+      "manufacturer": "Texas Instruments",
+      "kind": "ic",
+      "source_ids": [
+        "mod-ndrive-tpl7407l-ds"
+      ],
+      "supplies": {
+        "COM": {
+          "min": {
+            "value": 8.5,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VCOM COM pin voltage range for full output drive 8.5 40 V",
+            "conditions": "for full output drive (recommended operating conditions)"
+          },
+          "max": {
+            "value": 40.0,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VCOM COM pin voltage range for full output drive 8.5 40 V"
+          },
+          "abs_max": {
+            "value": 42.0,
+            "unit": "V",
+            "page": 3,
+            "evidence": "VCOM COM pin voltage (2) –0.3 42 V",
+            "conditions": "absolute maximum"
+          }
+        }
+      },
+      "io": {
+        "vih": {
+          "value": 1.5,
+          "unit": "V",
+          "page": 4,
+          "evidence": "VIH IN1- IN7 input high voltage (\"Full Drive\" low impedance output) 1.5 V",
+          "conditions": "min, 'Full Drive' (low impedance output)"
+        },
+        "vil": {
+          "value": 0.9,
+          "unit": "V",
+          "page": 4,
+          "evidence": "VIL IN1- IN7 input low voltage (\"Off\" high impedance output) 0.9 V",
+          "conditions": "max, 'Off' (high impedance output)"
+        },
+        "v_in_max": {
+          "value": 30.0,
+          "unit": "V",
+          "page": 3,
+          "evidence": "VIN Pins IN1-IN7 to GND voltage (2) –0.3 30 V",
+          "conditions": "absolute maximum"
+        }
+      },
+      "pins": [
+        {
+          "name": "IN1",
+          "signal": "digital_in",
+          "internal_pull": {
+            "down": {
+              "value": 1000000.0,
+              "unit": "Ω",
+              "page": 7,
+              "evidence": "1MΩ pull-down resistor exists on each channel",
+              "conditions": "typ, per input"
+            }
+          }
+        },
+        {
+          "name": "IN2",
+          "signal": "digital_in",
+          "internal_pull": {
+            "down": {
+              "value": 1000000.0,
+              "unit": "Ω",
+              "page": 7,
+              "evidence": "1MΩ pull-down resistor exists on each channel",
+              "conditions": "typ, per input"
+            }
+          }
+        },
+        {
+          "name": "IN3",
+          "signal": "digital_in",
+          "internal_pull": {
+            "down": {
+              "value": 1000000.0,
+              "unit": "Ω",
+              "page": 7,
+              "evidence": "1MΩ pull-down resistor exists on each channel",
+              "conditions": "typ, per input"
+            }
+          }
+        },
+        {
+          "name": "IN4",
+          "signal": "digital_in",
+          "internal_pull": {
+            "down": {
+              "value": 1000000.0,
+              "unit": "Ω",
+              "page": 7,
+              "evidence": "1MΩ pull-down resistor exists on each channel",
+              "conditions": "typ, per input"
+            }
+          }
+        },
+        {
+          "name": "IN5",
+          "signal": "digital_in",
+          "internal_pull": {
+            "down": {
+              "value": 1000000.0,
+              "unit": "Ω",
+              "page": 7,
+              "evidence": "1MΩ pull-down resistor exists on each channel",
+              "conditions": "typ, per input"
+            }
+          }
+        },
+        {
+          "name": "IN6",
+          "signal": "digital_in",
+          "internal_pull": {
+            "down": {
+              "value": 1000000.0,
+              "unit": "Ω",
+              "page": 7,
+              "evidence": "1MΩ pull-down resistor exists on each channel",
+              "conditions": "typ, per input"
+            }
+          }
+        },
+        {
+          "name": "IN7",
+          "signal": "digital_in",
+          "internal_pull": {
+            "down": {
+              "value": 1000000.0,
+              "unit": "Ω",
+              "page": 7,
+              "evidence": "1MΩ pull-down resistor exists on each channel",
+              "conditions": "typ, per input"
+            }
+          }
+        },
+        {
+          "name": "OUT1",
+          "signal": "power_out",
+          "note": "open-drain low-side (sink) output"
+        },
+        {
+          "name": "OUT2",
+          "signal": "power_out",
+          "note": "open-drain low-side (sink) output"
+        },
+        {
+          "name": "OUT3",
+          "signal": "power_out",
+          "note": "open-drain low-side (sink) output"
+        },
+        {
+          "name": "OUT4",
+          "signal": "power_out",
+          "note": "open-drain low-side (sink) output"
+        },
+        {
+          "name": "OUT5",
+          "signal": "power_out",
+          "note": "open-drain low-side (sink) output"
+        },
+        {
+          "name": "OUT6",
+          "signal": "power_out",
+          "note": "open-drain low-side (sink) output"
+        },
+        {
+          "name": "OUT7",
+          "signal": "power_out",
+          "note": "open-drain low-side (sink) output; an inductive load here needs an external Schottky diode (datasheet p. 8)"
+        },
+        {
+          "name": "GND",
+          "signal": "gnd"
+        },
+        {
+          "name": "COM",
+          "signal": "supply",
+          "note": "gate-drive supply and common cathode of the free-wheeling diodes: tie to the highest load (coil) voltage, 8.5 V or more for full drive"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "digital",
+          "note": "one input per channel, active high (1.8–5 V logic); the output sinks current"
+        }
+      ],
+      "current": {
+        "supply": "COM",
+        "typ": {
+          "value": 1.5e-05,
+          "unit": "A",
+          "page": 4,
+          "evidence": "VCOM = 8.5 V - 40 V 15 25 μA",
+          "conditions": "static, VCOM 8.5–40 V"
+        },
+        "max": {
+          "value": 2.5e-05,
+          "unit": "A",
+          "page": 4,
+          "evidence": "VCOM = 8.5 V - 40 V 15 25 μA",
+          "conditions": "static, VCOM 8.5–40 V"
+        },
+        "note": "Gate-drive current only; the load current flows from the load supply through OUTx into GND."
+      },
+      "requires": [
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "100nF",
+          "pins": [
+            "COM"
+          ],
+          "to": "GND",
+          "note": "0.1 µF in the TI design example (p. 9); limits the COM slew rate to below 0.5 V/µs",
+          "page": 13,
+          "evidence": "loaded by capacitors > 10 μF, this should not be of any concern. It is recommended to use a bypass capacitor"
+        }
+      ],
+      "hazards": [
+        {
+          "code": "motor_supply",
+          "text": "Motor supply: use a separate supply rated for the motor current; never power the motor from the ESP's 3.3 V rail or USB. Switch it off before you plug or unplug the motor. COM goes to that motor/coil supply (the highest load voltage), not to the ESP.",
+          "page": 12,
+          "evidence": "dissipation. COM must be tied to highest load voltage, which may or may not be same as inductive load supply."
+        },
+        {
+          "code": "high_current",
+          "text": "600 mA absolute maximum and 500 mA continuous per channel; all channels together at most 2 A through GND.",
+          "page": 3,
+          "evidence": [
+            "IDS Continuous drain current per channel (3) (4) 600 mA",
+            "IGND Total continuous GND-pin current –2 A"
+          ]
+        },
+        {
+          "code": "heat",
+          "text": "Each output drops up to 0.65 V at 200 mA (VDS); with θJA 91.9 °C/W (SOIC) several channels on at once heat the package. Check the dissipation for your duty cycle.",
+          "page": 4,
+          "evidence": [
+            "θJA Junction-to-ambient thermal resistance 91.9 115.2 °C/W",
+            "VOL (VDS) OUT1- OUT7 low-level outputvoltage VIN ≥ 1.5 V ID = 100 mA 200 320 mVID = 200 mA 420 650"
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "text": "Pin-compatible MOSFET replacement for the ULN2003A Darlington array.",
+          "verified": true,
+          "page": 1,
+          "evidence": [
+            "• CMOS Pin-to-Pin Improvement of 7-channel",
+            "Darlington Array (e.g. ULN2003A)"
+          ]
+        },
+        {
+          "text": "Internal free-wheeling diodes: tie COM to the coil supply for motors and relays (rule mod.ndrive.tpl7407l_com).",
+          "verified": true,
+          "page": 7,
+          "evidence": [
+            "When the COM pin is tied to the coil supply voltage, TPL7407L is able to drive inductive loads and supress the",
+            "kick-back voltage via the internal free wheeling diodes."
+          ]
+        },
+        {
+          "text": "COM below 8.5 V still works, with reduced gate drive and a higher RDS(on); the rated VOL needs COM ≥ 8.5 V. A 5 V 28BYJ-48 supply on COM is such a case.",
+          "verified": true,
+          "page": 13,
+          "evidence": [
+            "regulated voltage of 7 V. Though 8.5 V minimum is recommended for Vcom, the part will still function with a",
+            "reduced COM voltage that has a reduced gate drive voltage and a resulting higher Rdson."
+          ]
+        },
+        {
+          "text": "Inputs accept 1.8–5 V logic and tolerate up to 30 V; full drive from 1.5 V on.",
+          "verified": true,
+          "page": 9,
+          "evidence": "TPL7407L input interface is specified for standard 1.8 V through 5 V CMOS logic interface and can tolerate up to"
+        },
+        {
+          "text": "OUT7 with an inductive load: add an external Schottky diode against negative transients.",
+          "verified": true,
+          "page": 8,
+          "evidence": [
+            "If the application has an inductive load connected to OUT7, it is recommended to use an external Schottky diode",
+            "to protect the OUT7 pin from negative transients larger than those listed in the Absolute Maximum Ratings table,"
+          ]
+        },
+        {
+          "text": "COM must slew slower than 0.5 V/µs (hot-plug, a Zener between COM and the coil supply): fit a capacitor on COM.",
+          "verified": true,
+          "page": 13,
+          "evidence": [
+            "The COM pin must be limited to below 0.5 V/μsTo prevent overvoltage on the internal LDO output due to a line",
+            "In summary, whenever the COM pin may experience a slew rate greater than 0.5 V/µs a capacitor must be"
+          ]
+        },
+        {
+          "text": "Resistive loads need a pull-up for a logic high.",
+          "verified": true,
+          "page": 7,
+          "evidence": "When driving a resistive load, a pull-up resistor is needed in order for TPL7407L to sink current and for there to"
+        },
+        {
+          "text": "Each input has a 1 MΩ pull-down: open inputs stay off.",
+          "verified": true,
+          "page": 7,
+          "evidence": "In order to enable floating inputs a 1MΩ pull-down resistor exists on each channel. Another 50-kΩ resistor exists"
+        },
+        {
+          "text": "Some ULN2003 stepper boards are sold with a TPL7407L; board LEDs and headers are not from TI.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "drv8871",
+      "aliases": [
+        "drv8871ddar",
+        "drv8871dda",
+        "adafruit-drv8871"
+      ],
+      "title": "DRV8871 3.6 A brushed DC motor H-bridge with current limit (ILIM)",
+      "category": "driver.motor",
+      "manufacturer": "Texas Instruments",
+      "kind": "ic",
+      "source_ids": [
+        "mod-ndrive-drv8871-ds"
+      ],
+      "supplies": {
+        "VM": {
+          "min": {
+            "value": 6.5,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VM Power supply voltage 6.5 45 V"
+          },
+          "max": {
+            "value": 45.0,
+            "unit": "V",
+            "page": 4,
+            "evidence": "VM Power supply voltage 6.5 45 V"
+          },
+          "abs_max": {
+            "value": 50.0,
+            "unit": "V",
+            "page": 3,
+            "evidence": "Power supply voltage (VM) –0.3 50 V",
+            "conditions": "absolute maximum"
+          }
+        }
+      },
+      "io": {
+        "vih": {
+          "value": 1.5,
+          "unit": "V",
+          "page": 5,
+          "evidence": "VIH Input logic high voltage 1.5 V",
+          "conditions": "min"
+        },
+        "vil": {
+          "value": 0.5,
+          "unit": "V",
+          "page": 5,
+          "evidence": "VIL Input logic low voltage 0.5 V",
+          "conditions": "max"
+        },
+        "v_in_max": {
+          "value": 7.0,
+          "unit": "V",
+          "page": 3,
+          "evidence": "Logic input voltage (IN1, IN2) –0.3 7 V",
+          "conditions": "absolute maximum (5.5 V recommended, p. 4)"
+        }
+      },
+      "pins": [
+        {
+          "name": "IN1",
+          "signal": "pwm_in",
+          "internal_pull": {
+            "down": {
+              "value": 100000.0,
+              "unit": "Ω",
+              "page": 5,
+              "evidence": "RPD Pulldown resistance To GND 100 kΩ",
+              "conditions": "typ, to GND"
+            }
+          }
+        },
+        {
+          "name": "IN2",
+          "signal": "pwm_in",
+          "internal_pull": {
+            "down": {
+              "value": 100000.0,
+              "unit": "Ω",
+              "page": 5,
+              "evidence": "RPD Pulldown resistance To GND 100 kΩ",
+              "conditions": "typ, to GND"
+            }
+          }
+        },
+        {
+          "name": "ILIM",
+          "signal": "analog_in",
+          "note": "resistor to GND sets the current limit: I_TRIP = 64 kV / R_ILIM, R_ILIM ≥ 15 kΩ (rule mod.ndrive.drv8871_ilim)"
+        },
+        {
+          "name": "OUT1",
+          "signal": "power_out"
+        },
+        {
+          "name": "OUT2",
+          "signal": "power_out"
+        },
+        {
+          "name": "VM",
+          "signal": "supply"
+        },
+        {
+          "name": "GND",
+          "signal": "gnd",
+          "note": "logic ground"
+        },
+        {
+          "name": "PGND",
+          "signal": "gnd",
+          "note": "high-current ground path; also the PowerPAD"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "pwm",
+          "note": "IN1/IN2: 10 forward, 01 reverse, 11 brake, 00 coast (sleep after 1 ms); PWM one input up to 100 kHz"
+        }
+      ],
+      "current": {
+        "supply": "VM",
+        "typ": {
+          "value": 0.003,
+          "unit": "A",
+          "page": 5,
+          "evidence": "IVM VM operating supplycurrent VM = 12 V 3 10 mA",
+          "conditions": "VM = 12 V"
+        },
+        "max": {
+          "value": 0.01,
+          "unit": "A",
+          "page": 5,
+          "evidence": "IVM VM operating supplycurrent VM = 12 V 3 10 mA",
+          "conditions": "VM = 12 V"
+        },
+        "sleep": {
+          "value": 1e-05,
+          "unit": "A",
+          "page": 5,
+          "evidence": "IVMSLEEP VM sleep current VM = 12 V 10 µA",
+          "conditions": "max, VM = 12 V"
+        },
+        "note": "Quiescent current only; the motor current comes on top."
+      },
+      "requires": [
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "100nF",
+          "pins": [
+            "VM"
+          ],
+          "to": "GND",
+          "page": 3,
+          "evidence": "VM 5 PWR 6.5-V to 45-V powersupply Connect a 0.1-µF bypass capacitor to ground, as well as sufficientbulk capacitance, rated for the VM voltage."
+        },
+        {
+          "code": "bulk_cap",
+          "kind": "electrolytic",
+          "pins": [
+            "VM"
+          ],
+          "to": "GND",
+          "note": "size depends on the motor and the supply (p. 14); rated above VM",
+          "page": 3,
+          "evidence": "VM 5 PWR 6.5-V to 45-V powersupply Connect a 0.1-µF bypass capacitor to ground, as well as sufficientbulk capacitance, rated for the VM voltage."
+        }
+      ],
+      "hazards": [
+        {
+          "code": "motor_supply",
+          "text": "Motor supply: use a separate supply rated for the motor current; never power the motor from the ESP's 3.3 V rail or USB. Switch it off before you plug or unplug the motor. VM above 50 V destroys the bridge.",
+          "page": 3,
+          "evidence": "Power supply voltage (VM) –0.3 50 V"
+        },
+        {
+          "code": "high_current",
+          "text": "Up to 3.6 A peak; about 2 A RMS on a standard FR-4 board at 25 °C. Overcurrent protection trips at 3.7–6.4 A; set R_ILIM for your motor.",
+          "page": 4,
+          "evidence": "Ipeak Peak output current (2) 0 3.6 A"
+        },
+        {
+          "code": "heat",
+          "text": "The PowerPAD carries the heat into the ground plane (large planes, many vias); thermal shutdown from 150 °C.",
+          "page": 3,
+          "evidence": [
+            "Connect to board ground. For good thermal dissipation, use large",
+            "ground planes on multiple layers, and multiple nearby vias"
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "text": "Current limit: I_TRIP (A) = V_ILIM (kV) / R_ILIM (kΩ), V_ILIM 64 kV typ (59–69 kV). Example: R_ILIM = 32 kΩ limits the motor current to 2 A.",
+          "verified": true,
+          "page": 5,
+          "evidence": [
+            "Constant for calculating",
+            "current regulation (see",
+            "IOUT = 1 A 59 64 69 kV"
+          ]
+        },
+        {
+          "text": "The minimum allowed R_ILIM is 15 kΩ; mind the resistor tolerance and the V_ILIM spread.",
+          "verified": true,
+          "page": 9,
+          "evidence": "applied. The minimum allowed RILIM is 15 kΩ. System designers should always understand the min and max"
+        },
+        {
+          "text": "Without current regulation use 15–18 kΩ on ILIM: up to 3.6 A for a few hundred milliseconds, then OCP or thermal shutdown (about 3 ms retry).",
+          "verified": true,
+          "page": 10,
+          "evidence": "highest possible peak current: up to 3.6 A for a few hundred milliseconds (depending on PCB characteristics and"
+        },
+        {
+          "text": "Undervoltage lockout: VM falling below 6.1–6.4 V disables the outputs.",
+          "verified": true,
+          "page": 5,
+          "evidence": "VM falls until UVLO triggers 6.1 6.4"
+        },
+        {
+          "text": "Truth table: IN1=1/IN2=0 forward, 0/1 reverse, 1/1 brake, 0/0 coast; both low for about 1 ms enters sleep.",
+          "verified": true,
+          "page": 8,
+          "evidence": [
+            "1 0 H L Forward (Current OUT1 → OUT2)",
+            "1 1 L L Brake; low-side slow decay"
+          ]
+        },
+        {
+          "text": "Inputs have 100 kΩ pull-downs; logic input up to 5.5 V recommended (7 V absolute), so 3.3 V GPIOs drive them directly.",
+          "verified": true,
+          "page": 4,
+          "evidence": "VI Logic input voltage (IN1, IN2) 0 5.5 V"
+        },
+        {
+          "text": "Breakout boards (e.g. Adafruit DRV8871) fit an R_ILIM (often 30 kΩ, about 2 A) and a bulk capacitor; read the resistor on your board.",
+          "verified": false
+        }
+      ],
+      "variants": [
+        {
+          "id": "board",
+          "title": "breakout board (R_ILIM and capacitors on the board)",
+          "overrides": {
+            "kind": "module",
+            "requires": [
+              {
+                "code": "bulk_cap",
+                "kind": "electrolytic",
+                "pins": [
+                  "VM"
+                ],
+                "to": "GND",
+                "note": "size depends on the motor and the supply (p. 14); rated above VM",
+                "page": 3,
+                "evidence": "VM 5 PWR 6.5-V to 45-V powersupply Connect a 0.1-µF bypass capacitor to ground, as well as sufficientbulk capacitance, rated for the VM voltage."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "tmc2208",
+      "aliases": [
+        "tmc2208-la",
+        "tmc2208-stepstick",
+        "silentstepstick-tmc2208"
+      ],
+      "title": "TMC2208 stepper driver (STEP/DIR, single-wire UART)",
+      "category": "driver.stepper",
+      "manufacturer": "Trinamic (Analog Devices)",
+      "kind": "ic",
+      "source_ids": [
+        "mod-ndrive-tmc2208-ds"
+      ],
+      "supplies": {
+        "VS": {
+          "min": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 68,
+            "evidence": "Supply voltage (using internal +5V regulator) VVS 5.5 36 V",
+            "conditions": "using the internal 5 V regulator (4.7–5.4 V only with 5VOUT bridged to VS)"
+          },
+          "max": {
+            "value": 36.0,
+            "unit": "V",
+            "page": 68,
+            "evidence": "Supply voltage (using internal +5V regulator) VVS 5.5 36 V"
+          },
+          "abs_max": {
+            "value": 39.0,
+            "unit": "V",
+            "page": 68,
+            "evidence": "Supply voltage operating with inductive load  VVS -0.5 39 V",
+            "conditions": "absolute maximum with inductive load"
+          }
+        },
+        "VCC_IO": {
+          "min": {
+            "value": 3.0,
+            "unit": "V",
+            "page": 68,
+            "evidence": "I/O supply voltage VVIO 3.00 5.25 V"
+          },
+          "max": {
+            "value": 5.25,
+            "unit": "V",
+            "page": 68,
+            "evidence": "I/O supply voltage VVIO 3.00 5.25 V"
+          },
+          "abs_max": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 68,
+            "evidence": "I/O supply voltage VVIO -0.5 5.5 V"
+          }
+        }
+      },
+      "io": {
+        "domain": "VCC_IO",
+        "vih": {
+          "rel": 0.7,
+          "of": "VCC_IO",
+          "unit": "V",
+          "page": 72,
+          "evidence": "Input voltage high level VINHI  0.7 VVIO  VVIO+0.3 V",
+          "conditions": "min"
+        },
+        "vil": {
+          "rel": 0.3,
+          "of": "VCC_IO",
+          "unit": "V",
+          "page": 72,
+          "evidence": "Input voltage low level VINLO  -0.3  0.3 VVIO V",
+          "conditions": "max"
+        },
+        "voh": {
+          "rel_offset": -0.2,
+          "of": "VCC_IO",
+          "unit": "V",
+          "page": 72,
+          "evidence": "Output voltage high level VOUTHI IOUTHI = -2mA VVIO-0.2   V",
+          "conditions": "IOUT = -2 mA"
+        },
+        "vol": {
+          "value": 0.2,
+          "unit": "V",
+          "page": 72,
+          "evidence": "Output voltage low level VOUTLO IOUTLO = 2mA   0.2 V",
+          "conditions": "IOUT = 2 mA"
+        },
+        "v_in_max": {
+          "rel_offset": 0.5,
+          "of": "VCC_IO",
+          "unit": "V",
+          "page": 68,
+          "evidence": "Logic input voltage VI -0.5 VVIO+0.5 V",
+          "conditions": "absolute maximum rating, logic inputs: VCC_IO + 0.5 V"
+        }
+      },
+      "pins": [
+        {
+          "name": "STEP",
+          "signal": "digital_in"
+        },
+        {
+          "name": "DIR",
+          "signal": "digital_in",
+          "internal_pull": {
+            "down": {
+              "value": 166000.0,
+              "unit": "Ω",
+              "page": 72,
+              "evidence": "Pullup / pull-down resistors RPU/RPD  132 166 200 kΩ",
+              "conditions": "typ (132–200 kΩ)"
+            }
+          }
+        },
+        {
+          "name": "ENN",
+          "signal": "enable_in",
+          "active_low": true,
+          "note": "high switches the power stage off (outputs floating)"
+        },
+        {
+          "name": "MS1",
+          "signal": "mode_select",
+          "tie": "GND",
+          "internal_pull": {
+            "down": {
+              "value": 166000.0,
+              "unit": "Ω",
+              "page": 72,
+              "evidence": "Pullup / pull-down resistors RPU/RPD  132 166 200 kΩ",
+              "conditions": "typ (132–200 kΩ)"
+            }
+          },
+          "note": "internal pull-down: open reads low"
+        },
+        {
+          "name": "MS2",
+          "signal": "mode_select",
+          "tie": "GND",
+          "internal_pull": {
+            "down": {
+              "value": 166000.0,
+              "unit": "Ω",
+              "page": 72,
+              "evidence": "Pullup / pull-down resistors RPU/RPD  132 166 200 kΩ",
+              "conditions": "typ (132–200 kΩ)"
+            }
+          },
+          "note": "MS2, MS1: 00 = 1/8, 01 = 1/2, 10 = 1/4, 11 = 1/16 step (differs from the TMC2209); internal pull-down: open reads low"
+        },
+        {
+          "name": "PDN_UART",
+          "signal": "uart_rx",
+          "note": "low = automatic standstill current reduction; optional single-wire UART"
+        },
+        {
+          "name": "DIAG",
+          "signal": "digital_out",
+          "note": "high on a driver error; reset by ENN high"
+        },
+        {
+          "name": "INDEX",
+          "signal": "digital_out"
+        },
+        {
+          "name": "CLK",
+          "signal": "mode_select",
+          "tie": "GND",
+          "note": "GND = internal clock"
+        },
+        {
+          "name": "VREF",
+          "signal": "analog_in",
+          "note": "current scaling: > 2.5 V or open = 100 %"
+        },
+        {
+          "name": "OA1",
+          "signal": "power_out"
+        },
+        {
+          "name": "OA2",
+          "signal": "power_out"
+        },
+        {
+          "name": "OB1",
+          "signal": "power_out"
+        },
+        {
+          "name": "OB2",
+          "signal": "power_out"
+        },
+        {
+          "name": "BRA",
+          "signal": "power_out",
+          "note": "sense resistor coil A to GND"
+        },
+        {
+          "name": "BRB",
+          "signal": "power_out",
+          "note": "sense resistor coil B to GND"
+        },
+        {
+          "name": "CPI",
+          "signal": "power_out"
+        },
+        {
+          "name": "CPO",
+          "signal": "power_out"
+        },
+        {
+          "name": "VCP",
+          "signal": "power_out"
+        },
+        {
+          "name": "5VOUT",
+          "signal": "power_out"
+        },
+        {
+          "name": "VCC_IO",
+          "signal": "supply"
+        },
+        {
+          "name": "VS",
+          "signal": "supply"
+        },
+        {
+          "name": "GND",
+          "signal": "gnd"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "digital",
+          "note": "STEP/DIR; MS1/MS2 select 1/2, 1/4, 1/8 or 1/16 step (256 µsteps interpolated)"
+        },
+        {
+          "type": "uart",
+          "note": "single-wire UART on PDN_UART (no address pins)"
+        }
+      ],
+      "current": {
+        "supply": "VS",
+        "typ": {
+          "value": 0.0075,
+          "unit": "A",
+          "page": 69,
+          "evidence": [
+            "Total supply current, operating,",
+            "IS fCLK=12MHz, 35kHz",
+            "7.5  mA"
+          ],
+          "conditions": "VS = 24 V, fCLK = 12 MHz, 35 kHz chopper, no load"
+        },
+        "max": {
+          "value": 0.01,
+          "unit": "A",
+          "page": 69,
+          "evidence": [
+            "Total supply current, driver",
+            "IS fCLK=12MHz  7 10 mA"
+          ],
+          "conditions": "driver disabled, VS = 24 V, fCLK = 12 MHz"
+        },
+        "note": "Quiescent current only; the motor current comes on top."
+      },
+      "requires": [
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "22nF",
+          "pins": [
+            "CPI",
+            "CPO"
+          ],
+          "note": "50 V",
+          "page": 9,
+          "evidence": "CPI 5  Charge pump capacitor input. Tie to CPO using 22nF 50V capacitor."
+        },
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "100nF",
+          "pins": [
+            "VCP"
+          ],
+          "to": "VS",
+          "page": 9,
+          "evidence": "VCP 6  Charge pump voltage. Tie to VS using 100nF capacitor."
+        },
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "2.2uF",
+          "pins": [
+            "5VOUT"
+          ],
+          "to": "GND",
+          "note": "2.2–4.7 µF",
+          "page": 9,
+          "evidence": "Output of internal 5V regulator. Attach 2.2µF to 4.7µF ceramic"
+        },
+        {
+          "code": "bulk_cap",
+          "kind": "electrolytic",
+          "pins": [
+            "VS"
+          ],
+          "to": "GND",
+          "page": 10,
+          "evidence": "VS 22, 28  Motor supply voltage. Provide filtering capacity near pin with shortest possible loop to GND pad."
+        }
+      ],
+      "hazards": [
+        {
+          "code": "motor_supply",
+          "text": "Motor supply: use a separate supply rated for the motor current; never power the motor from the ESP's 3.3 V rail or USB. Switch it off before you plug or unplug the motor. Supply ringing from the fast output slopes can exceed the rating near 36 V.",
+          "page": 68,
+          "evidence": "*) Stray inductivity of GND and VS connections will lead to ringing of the supply voltage when driving"
+        },
+        {
+          "code": "high_current",
+          "text": "Up to 2 A peak per coil (1.2 A RMS design guideline, 1.4 A RMS with a duty cycle limit).",
+          "page": 68,
+          "evidence": [
+            "RMS motor coil current per coil (value for design guideline) IRMS  1.2 A",
+            "IRMS  1.4 A"
+          ]
+        },
+        {
+          "code": "heat",
+          "text": "The exposed pad carries the heat into the ground plane; stepstick boards need a heatsink. Overtemperature shutdown at 143 °C typ.",
+          "page": 10,
+          "evidence": "possible vias for heat transfer to GND plane. Serves as GND pin for"
+        }
+      ],
+      "notes": [
+        {
+          "text": "RMS current in standalone mode: I_RMS = 325 mV / (R_SENSE + 30 mΩ) · 1/√2 · V_VREF / 2.5 V (note: + 30 mΩ, the TMC2209 uses + 20 mΩ).",
+          "verified": true,
+          "page": 52,
+          "evidence": [
+            "STANDALONE MODE RMS RUN CURRENT CALCULATION:",
+            "𝐼𝑅𝑀𝑆 = 325𝑚𝑉𝑅𝑆𝐸𝑁𝑆𝐸 + 30𝑚Ω ∗ 1√2 ∗ 𝑉𝑉𝑅𝐸𝐹2.5𝑉"
+          ]
+        },
+        {
+          "text": "VREF above 2.5 V or open gives 100 % current scale.",
+          "verified": true,
+          "page": 52,
+          "evidence": ">2.5V or open: 100%"
+        },
+        {
+          "text": "RMS coil current design guideline 1.2 A (1.4 A with 1 s on / 1 s standby).",
+          "verified": true,
+          "page": 68,
+          "evidence": "RMS motor coil current per coil (value for design guideline) IRMS  1.2 A"
+        },
+        {
+          "text": "Microstep pins: MS2, MS1 = 00 1/8, 01 1/2, 10 1/4, 11 1/16 (not the TMC2209 table).",
+          "verified": true,
+          "page": 9,
+          "evidence": "MS2, MS1: 00: 1/8, 01: 1/2, 10: 1/4 11: 1/16 MS2 10 DI (pd)"
+        },
+        {
+          "text": "Single-wire UART: TX through 1 kΩ to PDN_UART, RX direct; check your board.",
+          "verified": false
+        },
+        {
+          "text": "Stepstick carriers (SilentStepStick, BIGTREETECH, FYSETC …) fit sense resistors (often 0.11 Ω), a VREF trimmer and pull the PDN_UART/MS pins differently; read R_SENSE on your board before you compute the current.",
+          "verified": false
+        }
+      ],
+      "variants": [
+        {
+          "id": "carrier",
+          "title": "stepstick carrier board",
+          "overrides": {
+            "kind": "module",
+            "requires": [
+              {
+                "code": "bulk_cap",
+                "kind": "electrolytic",
+                "pins": [
+                  "VS"
+                ],
+                "to": "GND",
+                "page": 10,
+                "evidence": "VS 22, 28  Motor supply voltage. Provide filtering capacity near pin with shortest possible loop to GND pad."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ss14",
+      "aliases": [
+        "ss14-e3",
+        "ss14-m3",
+        "ss14he3",
+        "sma-ss14"
+      ],
+      "title": "SS14 1 A 40 V Schottky rectifier (SMA / DO-214AC)",
+      "category": "discrete.diode",
+      "manufacturer": "Vishay",
+      "kind": "ic",
+      "source_ids": [
+        "mod-ndrive-ss14-ds"
+      ],
+      "pins": [
+        {
+          "name": "A",
+          "signal": "power_out",
+          "note": "anode"
+        },
+        {
+          "name": "K",
+          "signal": "power_out",
+          "note": "cathode (band); as a flyback diode: to the coil supply"
+        }
+      ],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "VRRM 40 V and DC blocking voltage 40 V (SS14 column, marking S4).",
+          "verified": true,
+          "page": 1,
+          "evidence": [
+            "PARAMETER SYMBOL SS12 SS13 SS14 SS15 SS16 UNIT",
+            "Maximum repetitive peak reverse voltage V RRM 20 30 40 50 60 V"
+          ]
+        },
+        {
+          "text": "Average forward current IF(AV) 1.0 A; surge IFSM 40 A (8.3 ms half sine).",
+          "verified": true,
+          "page": 1,
+          "evidence": [
+            "Maximum average forward rectified current at TL (fig. 1) I F(AV) 1.0 A",
+            "superimposed on rated load IFSM 40 A"
+          ]
+        },
+        {
+          "text": "VF max 0.50 V at 1.0 A (shared by SS12–SS14; SS15/SS16 0.75 V).",
+          "verified": true,
+          "page": 2,
+          "evidence": "voltage 1.0 A V F (1) 0.50 0.75 V"
+        },
+        {
+          "text": "Reverse current up to 0.2 mA at 25 °C and several mA at 100 °C at the rated voltage: mind it in battery and backup paths.",
+          "verified": true,
+          "page": 2,
+          "evidence": "TA = 25 °C IR (2) 0.2 mATA = 100 °C 6.0 5.0"
+        },
+        {
+          "text": "Typical RθJA 88 °C/W on 5 × 5 mm copper pads.",
+          "verified": true,
+          "page": 2,
+          "evidence": "Typical thermal resistance (1) RθJA 88 °C/WRθJL 28"
+        },
+        {
+          "text": "Rated for freewheeling and polarity protection; the color band marks the cathode.",
+          "verified": true,
+          "page": 1,
+          "evidence": [
+            "freewheeling, DC/DC converte rs, and polarity protection",
+            "Polarity: color band denotes the cathode end"
+          ]
+        },
+        {
+          "text": "Many vendors sell 'SS14' (onsemi, Diodes, MDD …); values can differ slightly from Vishay's.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "bat54",
+      "aliases": [
+        "bat54-215",
+        "bat54lt1g",
+        "bat54-sot23"
+      ],
+      "title": "BAT54 30 V 200 mA small-signal Schottky diode (SOT23)",
+      "category": "discrete.diode",
+      "manufacturer": "Nexperia",
+      "kind": "ic",
+      "source_ids": [
+        "mod-ndrive-bat54-ds"
+      ],
+      "pins": [
+        {
+          "name": "A",
+          "signal": "power_out",
+          "note": "anode (pin 1)"
+        },
+        {
+          "name": "NC",
+          "signal": "nc",
+          "note": "pin 2, not connected"
+        },
+        {
+          "name": "K",
+          "signal": "power_out",
+          "note": "cathode (pin 3)"
+        }
+      ],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "VR 30 V; IF 200 mA continuous, IFRM 300 mA, IFSM 600 mA (tp < 10 ms).",
+          "verified": true,
+          "page": 3,
+          "evidence": [
+            "VR reverse voltage - 30 V",
+            "IF forward current Tamb =2 5 C- 2 00 m A",
+            "IFSM non-repetitive peak"
+          ]
+        },
+        {
+          "text": "VF max 240 mV at 0.1 mA, 320 mV at 1 mA, 400 mV at 10 mA, 800 mV at 100 mA.",
+          "verified": true,
+          "page": 4,
+          "evidence": [
+            "IF = 1 mA - - 320 mV",
+            "IF = 100 mA - - 800 mV"
+          ]
+        },
+        {
+          "text": "IR max 2 µA at VR = 25 V; Cd max 10 pF; trr max 5 ns: a signal and clamp diode, not a power rectifier.",
+          "verified": true,
+          "page": 4,
+          "evidence": [
+            "IR reverse current V R =2 5V [1] --2 A",
+            "Cd diode capacitance f = 1 MHz; V R = 1 V --1 0 p F",
+            "trr reverse recovery time [2] --5 n s"
+          ]
+        },
+        {
+          "text": "Ptot 250 mW, Rth(j-a) 500 K/W; reverse losses can cause thermal runaway.",
+          "verified": true,
+          "page": 3,
+          "evidence": [
+            "[1] For Schottky barrier diodes thermal runaway",
+            "Ptot total power dissipation"
+          ]
+        },
+        {
+          "text": "BAT54A/C/S share the package with two diodes and other pinouts: choose the variant.",
+          "verified": true,
+          "page": 2,
+          "evidence": [
+            "BAT54A",
+            "BAT54C",
+            "BAT54S"
+          ]
+        },
+        {
+          "text": "onsemi, Diodes and others make BAT54 parts with the same pinout and similar ratings (not checked against their data sheets).",
+          "verified": false
+        }
+      ],
+      "variants": [
+        {
+          "id": "a",
+          "title": "BAT54A, common anode",
+          "overrides": {
+            "pins": [
+              {
+                "name": "K1",
+                "signal": "power_out",
+                "note": "cathode diode 1 (pin 1)"
+              },
+              {
+                "name": "K2",
+                "signal": "power_out",
+                "note": "cathode diode 2 (pin 2)"
+              },
+              {
+                "name": "A",
+                "signal": "power_out",
+                "note": "common anode (pin 3)"
+              }
+            ]
+          }
+        },
+        {
+          "id": "c",
+          "title": "BAT54C, common cathode",
+          "overrides": {
+            "pins": [
+              {
+                "name": "A1",
+                "signal": "power_out",
+                "note": "anode diode 1 (pin 1)"
+              },
+              {
+                "name": "A2",
+                "signal": "power_out",
+                "note": "anode diode 2 (pin 2)"
+              },
+              {
+                "name": "K",
+                "signal": "power_out",
+                "note": "common cathode (pin 3)"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s",
+          "title": "BAT54S, series pair",
+          "overrides": {
+            "pins": [
+              {
+                "name": "A1",
+                "signal": "power_out",
+                "note": "anode diode 1 (pin 1)"
+              },
+              {
+                "name": "K2",
+                "signal": "power_out",
+                "note": "cathode diode 2 (pin 2)"
+              },
+              {
+                "name": "CT",
+                "signal": "power_out",
+                "note": "cathode diode 1 and anode diode 2 (pin 3)"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "mod-ncomm-sp3485-ds",
+    "title": "MaxLinear SP3485 3.3V Low Power Half-Duplex RS-485 Transceiver with 10Mbps Data Rate, data sheet",
+    "url": "https://www.maxlinear.com/ds/sp3485.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Document 216DSR00 Rev. 2.0.2 (August 5, 2021); pages 1, 2, 3, 7; sha256 e3f71227b89ae4ba0a925dec9138f2ea2746c5651ec593b52bce275cb67dbc70"
+  },
+  {
+    "id": "mod-ncomm-thvd1450-ds",
+    "title": "Texas Instruments THVD14xx 3.3-V to 5-V RS-485 Transceivers with ±18-kV IEC ESD Protection, data sheet SLLSEY3E",
+    "url": "https://www.ti.com/lit/ds/symlink/thvd1450.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Document SLLSEY3E (May 2018, revised May 2019); pages 1, 8, 9, 10, 19, 22; sha256 58ecc4cc07dd1d3206c2e67ffa734ad21a6d3a9e3c8c307068e6385bd79ee897"
+  },
+  {
+    "id": "mod-ncomm-tja1051-ds",
+    "title": "NXP TJA1051 High-speed CAN transceiver, product data sheet Rev. 9",
+    "url": "https://cache.nxp.com/docs/en/data-sheet/TJA1051.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Product data sheet Rev. 9 (28 November 2017); cache.nxp.com is NXP's download CDN; pypdf renders this file's minus signs as U+F02D; pages 4, 5, 6, 7, 8, 10; sha256 6637cd500dda3c1c951ce29bed7fe909f11f9a3bef64b096dbb486827add9f11"
+  },
+  {
+    "id": "mod-ncomm-mcp2562-ds",
+    "title": "Microchip MCP2561/2 High-Speed CAN Transceiver, data sheet DS20005167C",
+    "url": "https://ww1.microchip.com/downloads/en/DeviceDoc/20005167C.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Document DS20005167C (2013-2014); Microchip has later revisions of DS20005167, this pinned file is revision C; pages 2, 3, 4, 5, 8, 9, 11; sha256 c36b24e45446d8a1b7d90c0618a924cac0f117994390e60169287e6ba488c53e"
+  },
+  {
+    "id": "mod-ncomm-sx1262-ds",
+    "title": "Semtech SX1261/2 Long Range, Low Power, sub-GHz RF Transceiver, data sheet Rev. 1.1",
+    "url": "https://web.archive.org/web/20190827062215id_/https://www.semtech.com/uploads/documents/DS_SX1261-2_V1.1.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A1",
+    "note": "Data sheet Rev. 1.1 DS.SX1261-2.W.APP (December 2017); web.archive.org snapshot 2019-08-27 of the official semtech.com file (semtech.com answers scripts with 403 and redirects old documents; the current revision 2.x is not scriptable); pages 12, 14, 16, 17, 21, 49, 53; sha256 a0fd29d13e779c1d49130d71442c91260448ab2c453ce9b9d9ff630184830606"
+  },
+  {
+    "id": "mod-ncomm-cc1101-ds",
+    "title": "Texas Instruments CC1101 Low-Power Sub-1 GHz RF Transceiver, data sheet SWRS061I",
+    "url": "https://www.ti.com/lit/ds/symlink/cc1101.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Document SWRS061I (Rev. I); pages 8, 9, 10, 20, 21, 29, 30; sha256 daa14cd9b83adf92545ab072939f85f6a8fef9ce654e3f37366087db714ea639"
+  },
+  {
+    "id": "mod-ncomm-rfm69hcw-ds",
+    "title": "HopeRF RFM69HCW ISM Transceiver Module v1.1, data sheet",
+    "url": "https://www.hoperf.com/uploads/RFM69HCW-V1.1datasheet_1695352208.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Data sheet v1.1 (linked from hoperf.com/modules/rf_transceiver/RFM69HCW.html); pages 11, 12, 15, 75, 76; sha256 ff8efc4e1fe4135400760b9da1cfcabd52fe929e1be5ecee8bc03d1512f3c45c"
+  }
+]

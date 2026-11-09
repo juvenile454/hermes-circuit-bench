@@ -1,0 +1,50 @@
+# source_id: mod-power-mp1584-ds
+# document: Monolithic Power Systems MP1584 3A, 1.5MHz, 28V Step-Down Converter, Rev. 1.0 (8/8/2011)
+# url: https://web.archive.org/web/20251211034929id_/https://www.monolithicpower.com/en/documentview/productdocument/index/version/2/document_type/Datasheet/lang/en/sku/MP1584EN-LF-Z/document_id/204/
+# corpus: mod/power/MP1584.pdf sha256 cb05a76bddd95198c976a41c01e72a2460538049987bc9fcc3247cd53d677383
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+MP1584 Rev. 1.0 www.MonolithicPower.com 1 
+provides 3A output with current mode control for 
+ Wide 4.5V to 28V Operating Input Range 
+NOT RECOMMENDED FOR
+REFER TO MP2338
+@@ page 2
+Supply Voltage (VIN) ..................... –0.3V to +30V 
+All Other Pins ................................. –0.3V to +6V 
+Junction Temperature ............................... 150C 
+Supply Voltage VIN ........................... 4.5V to 28V 
+Output Voltage VOUT ......................... 0.8V to 25V 
+Operating Junct. Temp (TJ) ..... –20C to +125C 
+Thermal Resistance (4) θJA θJC 
+SOIC8E .................................. 50 ...... 10 ... C/W 
+4) Measured on JESD51-7, 4-layer PCB. 
+@@ page 3
+Feedback Voltage  VFB 4.5V < V IN < 28V 0.776 0.8 0.824 V 
+Current Limit   4.0 4.7  A 
+Shutdown Supply Current  V EN = 0V  12 20 µA 
+Quiescent Supply Current  No load, V FB = 0.9V  100 125 µA 
+Thermal Shutdown    150  C 
+EN Up Threshold   1.35 1.5 1.65 V 
+@@ page 4
+1 SW Switch Node. This is the output from the high-side switch. A low forward drop Schottky diode to ground is required. The diode must be close to the SW pins to reduce switching spikes. 
+2 EN Enable Input. Pulling this pin below the specified threshold shuts the chip down. Pulling it up above the specified threshold or leaving it floating enables the chip. 
+3 COMP Compensation. This node is the output of the error amplifier. Control loop frequency compensation is applied to this pin. 
+4 FB 
+connected between the output and GND which scales down VOUT equal to the internal +0.8V 
+6 FREQ Switching Frequency Program Input. Connect a resistor from this pin to ground to set the switching frequency.  
+7 VIN 
+high-side switch. A decoupling capacitor to ground must be placed close to this pin to minimize 
+8 BST Bootstrap. This is the positive power supply for the internal floating high-side MOSFET driver. Connect a bypass capacitor between this pin and SW pin. 
+@@ page 8
+positive logic. Its falling threshold is a precision 
+1.2V, and its rising threshold is 1.5V (300mV 
+When floating, EN is pulled up to about 3.0V by 
+an internal 1µA current source so it is enabled. 
+@@ page 10
+Thus the output voltage is: 
+of current, keep R2 under 40K Ω.  A typical 
+value for R2 can be 40.2k Ω. With this value, R1 
+For example, for a 3.3V output voltage, R2 is 
+40.2kΩ, and R1 is 127kΩ. 

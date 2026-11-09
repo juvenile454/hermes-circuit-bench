@@ -1,0 +1,46 @@
+{
+ "files": [
+  {
+   "url": "https://web.archive.org/web/20261012120012id_/https://www.analog.com/media/en/technical-documentation/data-sheets/ds18b20.pdf",
+   "path": "mod/ambient/ds18b20.pdf",
+   "source_id": "mod-ambient-ds18b20-ds",
+   "excerpt": "excerpts/mod-ambient-ds18b20.txt",
+   "sha256": "066c8a3c7e9222c49e84488840d5cfe9dd109cf0da6ab4a55480cebac8f97f76"
+  },
+  {
+   "url": "https://web.archive.org/web/20160804053938id_/http://rohmfs.rohm.com/en/products/databook/datasheet/ic/sensor/light/bh1750fvi-e.pdf",
+   "path": "mod/ambient/bh1750fvi-e.pdf",
+   "source_id": "mod-ambient-bh1750fvi-ds",
+   "excerpt": "excerpts/mod-ambient-bh1750fvi.txt",
+   "sha256": "a24bbf9d71afa6f66d88cbb6da6ce418d7d8762d17c3caca1137d9161936e8db"
+  },
+  {
+   "url": "https://www.vishay.com/docs/84286/veml7700.pdf",
+   "path": "mod/ambient/veml7700.pdf",
+   "source_id": "mod-ambient-veml7700-ds",
+   "excerpt": "excerpts/mod-ambient-veml7700.txt",
+   "sha256": "f338cf7d5911828a2f2ac8ae8324049380c852e34aa5afa43ac92c98ffe827d1"
+  },
+  {
+   "url": "https://look.ams-osram.com/m/c901de8e97608f8/original/TSL2591-DS000338.pdf",
+   "path": "mod/ambient/TSL2591-DS000338.pdf",
+   "source_id": "mod-ambient-tsl2591-ds",
+   "excerpt": "excerpts/mod-ambient-tsl2591.txt",
+   "sha256": "0bf334ce6497dcd1afac2fdc86e6ffbd098a0c1044a92db39ecc7d321b226667"
+  },
+  {
+   "url": "https://sensirion.com/media/documents/E0F04247/631EF271/CD_DS_SCD40_SCD41_Datasheet_D1.pdf",
+   "path": "mod/ambient/CD_DS_SCD40_SCD41_Datasheet_D1.pdf",
+   "source_id": "mod-ambient-scd4x-ds",
+   "excerpt": "excerpts/mod-ambient-scd4x.txt",
+   "sha256": "ac1ba13f64a5d51a96ad0e11a5295623f9ae6cee7465c361513340274c4e90db"
+  },
+  {
+   "url": "https://sensirion.com/media/documents/296373BB/6203C5DF/Sensirion_Gas_Sensors_Datasheet_SGP40.pdf",
+   "path": "mod/ambient/Sensirion_Gas_Sensors_Datasheet_SGP40.pdf",
+   "source_id": "mod-ambient-sgp40-ds",
+   "excerpt": "excerpts/mod-ambient-sgp40.txt",
+   "sha256": "884db88ab45ae4824474c919e2e6bf940122df19c610ee2493d0b23caac4effb"
+  }
+ ]
+}

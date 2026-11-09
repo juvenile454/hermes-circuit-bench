@@ -1,0 +1,40 @@
+# source_id: mod-powermon-ina226-ds
+# document: Texas Instruments INA226 36V, 16-Bit, Ultra-Precise I2C Output Current, Voltage, and Power Monitor With Alert, SBOS547C (June 2011, revised August 2026)
+# url: https://www.ti.com/lit/ds/symlink/ina226.pdf
+# corpus: mod/powermon/ina226.pdf sha256 c9b67f886d4a5241a5e070723f7b61867409eeb27eed768b9cdd9cb17e03ca2d
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 4
+VVS Supply voltage 6 V
+VVBUS –0.3 40 V
+VSCL GND – 0.3 VVS + 0.3 V
+@@ page 5
+Shunt voltage input range –81.9175 81.92 mV
+Bus voltage input range(1) 0 36 V
+Shunt voltage 2.5 μV
+VIH High-level input voltage 0.7×VVS 6 V
+@@ page 6
+VIL Low-level input voltage –0.5 0.3×VVS V
+VOL Low-level output voltage, SDA, Alert IOL = 3 mA 0 0.4 V
+Operating supply range 2.7 5.5 V
+IQ Quiescent current 330 420 μA
+Quiescent current, power-down
+(shutdown) mode 0.5 2 μA
+(1) While the input range is 36 V, the full-scale range of the ADC scaling is 40.96 V. See the Section 6.3.1. Do not apply more than 36 V.
+@@ page 15
+differential voltage applied between the input pins. The Power Register (03h) is internally set to be 25 times the
+• 0.00512 is an internal fixed value used to verify scaling is maintained properly
+Current_LSB = Maximum Expected Current
+215 (2)
+of 2560, or A00h.
+@@ page 18
+Table 6-2. Address Pins and Target Addresses
+GND GND 1000000
+SCL SCL 1001111
+The INA226 supports the transmission protocol for fast mode (1kHz to 400kHz) and high-speed mode (1kHz to
+@@ page 20
+When the bus is idle, both the SDA and SCL lines are pulled high by the pullup resistors. The controller
+@@ page 26
+NAME — FS14 FS13 FS12 FS11 FS10 FS9 FS8 FS7 FS6 FS5 FS4 FS3 FS2 FS1 FS0
+@@ page 31
+the device to provide stability. A typical value for this supply bypass capacitor is 0.1 μF. Applications with noisy or

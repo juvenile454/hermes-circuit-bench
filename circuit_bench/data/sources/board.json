@@ -1,0 +1,100 @@
+[
+ {
+  "id": "board-usb-ids-2026.06.26",
+  "title": "The USB ID Repository (usb.ids), version 2026.06.26",
+  "url": "http://www.linux-usb.org/usb.ids",
+  "retrieved": "2026-11-06",
+  "note": "sha256 f5a48b0cc8dae1607c2f0bae6b8dc13f2ecef69dbeaeaf34b4be8e280d34dba4. 10c4 Silicon Labs: ea60/ea61/ea63 CP210x UART Bridge, ea70 CP2105 Dual UART Bridge, ea71 CP2108 Quad UART Bridge. 1a86 QinHeng: 7522/7523 CH340 serial converter, 5523 CH341 in serial mode. 0403 FTDI: 6001 FT232 Serial (UART) IC, 6010 FT2232C/D/H, 6011 FT4232H, 6014 FT232H, 6015 Bridge(I2C/SPI/UART/FIFO). VID 303a (Espressif) and 1a86:55d3/55d4 are not listed."
+ },
+ {
+  "id": "board-wch-ch343ser-linux",
+  "title": "WCH CH343 Linux driver, USB id table (driver/ch343.c)",
+  "url": "https://github.com/WCHSoftGroup/ch343ser_linux/blob/b5515b91110f30b8c1a7423674c2dc88f1069a29/driver/ch343.c",
+  "retrieved": "2026-11-06",
+  "note": "Lines 2428-2453: '/* CH342 chip */ 0x1a86, 0x55d2', '/* CH343 chip */ 0x1a86, 0x55d3', '/* CH9102 chip */ 0x1a86, 0x55d4'."
+ },
+ {
+  "id": "board-esp-pylib-1.2.0-usb",
+  "title": "esp-pylib 1.2.0 constants (used by esptool 5.6.0): Espressif VID and USB-Serial/JTAG PID",
+  "url": "https://github.com/espressif/esp-pylib/blob/v1.2.0/esp_pylib/constants.py",
+  "retrieved": "2026-11-06",
+  "note": "'ESPRESSIF_VID = 0x303A' and 'USB_JTAG_SERIAL_PID = 0x1001' ('Known Espressif Product ID for JTAG serial ports')."
+ },
+ {
+  "id": "board-esptool-5.6.0-usb-reset",
+  "title": "esptool 5.6.0 loader.py: reset strategy for the USB-Serial/JTAG PID",
+  "url": "https://github.com/espressif/esptool/blob/v5.6.0/esptool/loader.py",
+  "retrieved": "2026-11-06",
+  "note": "Line 850: 'if mode == \"usb-reset\" or self.get_usb_vid_pid()[1] == self.USB_JTAG_SERIAL_PID: return (USBJTAGSerialReset(self._port),)' - esptool resets 303a:1001 boards into the bootloader over USB."
+ },
+ {
+  "id": "board-esp-usb-tinyusb-pid",
+  "title": "espressif/esp-usb esp_tinyusb usb_descriptors.c: default PID of the TinyUSB device stack",
+  "url": "https://github.com/espressif/esp-usb/blob/98c9108b9b5f4937b9b15571c410827a0d752d0b/device/esp_tinyusb/usb_descriptors.c",
+  "retrieved": "2026-11-06",
+  "note": "Lines 20-22: '#define USB_TUSB_PID (0x4000 | _PID_MAP(CDC, 0) | _PID_MAP(MSC, 1) | _PID_MAP(HID, 2) | _PID_MAP(MIDI, 3) | _PID_MAP(AUDIO, 4) | _PID_MAP(VENDOR, 5) | _PID_MAP(MTP, 6) )', used with the Espressif VID (lines 46-53). One CDC interface only gives 303a:4001; the range 0x4000-0x407f is this default scheme. The application, not the ROM, owns such a USB device."
+ },
+ {
+  "id": "board-observed-2026-11-06-usb-cdc-app",
+  "title": "Observed on a test board: ESP32-S3 running firmware with its own TinyUSB CDC stack (303a:4001)",
+  "url": null,
+  "retrieved": "2026-11-06",
+  "note": "observed, not a published source. A fresh ESP32-S3 enumerated as 303a:4001; 'esptool --before default-reset --after hard-reset flash-id' failed with 'Failed to connect to Espressif device: No serial data received.'; a 1200-bps touch did not restart it. Treated as: no automatic reset into the bootloader on usb_cdc_app ports."
+ },
+ {
+  "id": "board-esptool-boot-mode",
+  "title": "esptool documentation: Boot Mode Selection (ESP32-S3)",
+  "url": "https://docs.espressif.com/projects/esptool/en/latest/esp32s3/advanced-topics/boot-mode-selection.html",
+  "retrieved": "2026-11-06",
+  "note": "'The ESP32-S3 will enter the serial bootloader when GPIO0 is held low on reset.' 'Many boards use a button marked \"Flash\" (or \"BOOT\" on some Espressif development boards) that pulls GPIO0 low when pressed.' DTR/RTS are active low; 'if both RTS and DTR are asserted together, this doesn't reset the chip'."
+ },
+ {
+  "id": "board-esptool-5.6.0-output",
+  "title": "esptool 5.6.0 output format (chip info, read_mac, flash-id)",
+  "url": "https://github.com/espressif/esptool/blob/v5.6.0/esptool/__init__.py",
+  "retrieved": "2026-11-06",
+  "note": "__init__.py:572-581 labels 'Chip type:', 'Features:', 'Crystal frequency:', 'USB mode:' padded to 20 characters; cmds.py read_mac 'MAC:' (EUI64: 'BASE MAC:', 'MAC_EXT:'); cmds.py print_flash_id 'Detected flash size:', flash_id 'Flash type set in eFuse: quad|octal' (flash only); targets/esp32s3.py get_chip_features 'Embedded PSRAM 8MB|2MB|16MB|4MB (<vendor>)' without octal/quad."
+ },
+ {
+  "id": "board-pio-espressif32-6.9.0-nobuild",
+  "title": "platform-espressif32 v6.9.0 builder/main.py: target nobuild",
+  "url": "https://github.com/platformio/platform-espressif32/blob/v6.9.0/builder/main.py",
+  "retrieved": "2026-11-06",
+  "note": "Lines 360-381: 'if \"nobuild\" in COMMAND_LINE_TARGETS: target_elf = join(\"$BUILD_DIR\", \"${PROGNAME}.elf\") ... target_firm = join(\"$BUILD_DIR\", \"${PROGNAME}.bin\")' - with -t nobuild the existing firmware is uploaded without a new build."
+ },
+ {
+  "id": "board-pio-6.2.0-flash-images",
+  "title": "PlatformIO Core 6.2.0 builder/tools/piointegration.py: extra.flash_images of pio project metadata",
+  "url": "https://github.com/platformio/platformio-core/blob/v6.2.0/platformio/builder/tools/piointegration.py",
+  "retrieved": "2026-11-07",
+  "note": "'\"extra\": dict(flash_images=[{\"offset\": item[0], \"path\": globalenv.subst(item[1])} for item in globalenv.get(\"FLASH_EXTRA_IMAGES\", [])])', then IDE_EXTRA_DATA/INTEGRATION_EXTRA_DATA are merged in; platform-espressif32 v6.9.0 builder/frameworks/arduino.py line 39 adds application_offset ($ESP32_APP_OFFSET). Observed offline 2026-11-07 (6.9.0 and 8.0.0, Arduino): bootloader.bin at 0x1000 (ESP32) or 0x0000 (S3, C6), partitions.bin 0x8000, boot_app0.bin 0xe000, application_offset 0x10000."
+ },
+ {
+  "id": "board-pio-espressif32-6.9.0-upload-args",
+  "title": "platform-espressif32 v6.9.0 builder/main.py: esptool upload command and nobuild",
+  "url": "https://github.com/platformio/platform-espressif32/blob/v6.9.0/builder/main.py",
+  "retrieved": "2026-11-07",
+  "note": "Upload (esptool protocol): '--chip', mcu, '--port', '--baud', '--before', '--after', 'write_flash', '-z', '--flash_mode', '${__get_board_flash_mode(__env__)}', '--flash_freq', '${__get_board_f_image(__env__)}', '--flash_size', board.get('upload.flash_size', 'detect') ... $ESP32_APP_OFFSET $SOURCE; then 'for image in env.get(\"FLASH_EXTRA_IMAGES\", []): env.Append(UPLOADERFLAGS=[image[0], env.subst(image[1])])' (lines 445-463). elf2image uses the same --flash_mode/--flash_freq (lines 319-322). Lines 360-381: with 'nobuild' BuildProgram() is not called, so the framework script that sets FLASH_EXTRA_IMAGES does not run and only the app is uploaded (observed on a test board, 2026-11-07)."
+ },
+ {
+  "id": "board-esptool-5.6.0-write-flash",
+  "title": "esptool v5.6.0: write-flash, image-info and the chip check",
+  "url": "https://github.com/espressif/esptool/blob/v5.6.0/esptool/loader.py",
+  "retrieved": "2026-11-07",
+  "note": "write-flash takes <address> <filename> pairs and --flash-mode [keep|qio|qout|dio|dout], --flash-freq, --flash-size [detect|keep|...], -z/--compress (esptool write-flash --help, v5.6.0). image-info prints 'Detected image type: ESP32-S3', 'Flash freq: 80m', 'Flash mode: DIO' (observed 2026-11-07). loader.py connect: 'raise FatalError(f\"This chip is {chip_type}, not {self.CHIP_NAME}. Wrong chip argument?\")' before anything is written."
+ },
+ {
+  "id": "board-observed-2026-11-07-app-only",
+  "title": "Observed on a test board: WT32-ETH01 V1.4 after an app-only upload (2026-11-07)",
+  "url": null,
+  "retrieved": "2026-11-07",
+  "note": "observed, not a published source. pio run -t nobuild -t upload wrote 769472 bytes at 0x00010000 only; the factory partition table of the WT32 has its factory app at 0x20000, so the bootloader reported 'image at 0x20000 has invalid magic byte' and 'No bootable app partitions in the partition table' in a reboot loop. Board-observed; the flash must write bootloader, partition table and boot_app0 with the app."
+ },
+ {
+  "id": "board-pio-6.2.0-metadata",
+  "title": "PlatformIO Core 6.2.0: pio project metadata --json-output (observed field names)",
+  "url": "https://docs.platformio.org/en/latest/core/userguide/project/cmd_metadata.html",
+  "retrieved": "2026-11-06",
+  "note": "observed offline on PlatformIO Core 6.2.0 + espressif32 6.9.0: top-level object keyed by env name with build_type, cc_flags, cc_path, compiler_type, cxx_flags, cxx_path, defines, env_name, extra, gdb_path, includes, libsource_dirs, prog_path, svd_path, targets. prog_path is the ELF; there is no toolchain field, the prefix is cc_path without 'gcc'."
+ }
+]

@@ -1,0 +1,38 @@
+# source_id: mod-pixel-sk6812-ds
+# document: Dongguan Opsco Optoelectronics SK6812 specification SPC/SK6812, Rev. No. 02, 2015-07-08 (copy hosted by Pololu)
+# url: https://www.pololu.com/file/0J1233/sk6812_datasheet.pdf
+# corpus: mod/pixel/sk6812_datasheet.pdf sha256 612d5b7704f0498bf10db1ddd07b7d68254de85e7bbeca01c6f47e629d07b1f0
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Description: 5.5x5.0x1.6mm Top SMD Type 0.2Watt Power tegrated 
+Rev. No.:           02
+Date:                 2015-07-08
+@@ page 2
+The data protocol being used is unipolar NRZ communication mode.  The 24-bit data is transmitted 
+@@ page 3
+1 VDD Power supply LED
+2 DOUT Control data signal output
+3 VSS Ground
+4 DIN Control data signal input
+@@ page 4
+7. Absolute Maximum Ratings（Ta=25℃,VSS=0V） :
+Power supply voltage VDD +3.5～+5.5 V
+Logic input voltage V IN -0.5～VDD+0.5 V
+8. The electrical parameters (unless otherwise specified, TA=-20 ~ +70 ℃, VDD=4.5 ~ 5.5V,   
+supply voltage VDD --- 5.2 --- V ---
+The signal 
+VIH 3.4 --- --- V
+VDD=5.0V
+VIL --- --- 1.6 V
+Static power 
+consumption IDD --- 1 --- mA ---
+transmission fDIN --- 800 --- KHZ The duty ratio of 67% (data 1)
+IOUT Rise/Drop 
+Tr --- 100 --- ns VDS=1.5
+IOUT=13mATf --- 100 --- ns
+@@ page 5
+10. The data transmission time (TH+TL=1.25µs±600ns):
+T0H 0 code, high level time 0.3µs ±0.15µs
+T1H 1 code, high level time 0.6µs ±0.15µs
+Trst Reset code，low level time 80µs

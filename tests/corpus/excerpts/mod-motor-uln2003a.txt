@@ -1,0 +1,42 @@
+# source_id: mod-motor-uln2003a-ds
+# document: Texas Instruments ULN2002A, ULN2003A, ULN2003AI, ULQ2003A, ULN2004A, ULQ2004A data sheet, SLRS027T (revised March 2025)
+# url: https://www.ti.com/lit/ds/symlink/uln2003a.pdf
+# corpus: mod/motor/uln2003a.pdf sha256 ba83a908675b45c41e84fb06ea390efb10f4b7a358edfee656f87a968dd1d62f
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 3
+COM 9 — Common cathode node for flyback diodes (required for inductive loads)
+E 8 — Common emitter shared by all channels (typically tied to ground)
+@@ page 4
+VCC Collector-emitter voltage 50 V
+Clamp diode reverse voltage(2) 50 V
+VI Input voltage(2) 30 V
+Peak collector current, See Figure 5-4 and Figure 5-5 500 mA
+IOK Output clamp current 500 mA
+Total emitter-terminal current –2.5 A
+@@ page 5
+VI(on) ON-state input voltage Figure 6-6 VCE = 2 V, IC = 300 mA 13 V
+VII = 350 μA, IC = 200 mA 1 1.3
+5.6 Electrical Characteristics: ULN2003A and ULN2004A
+VI(on) ON-state input voltage Figure 6-6 VCE = 2 V
+IC = 200 mA 2.4 6
+IC = 250 mA 2.7
+IC = 300 mA 3
+VII = 350 μA, IC = 200 mA 1 1.3 1 1.3
+@@ page 6
+VF Clamp forward voltage Figure 6-8 IF = 350 mA 1.7 2 1.7 2 V
+VI = 3.85 V 0.93 1.35
+II Input current Figure 6-4 VI = 3.85 V 0.93 1.35 mA
+@@ page 14
+thus allowing operation directly with TTL or CMOS operating at supply voltages of 5 V or 3.3 V. The ULN2003A
+@@ page 15
+When the COM pin is tied to the coil supply voltage, ULN2003A device is able to drive inductive loads and
+suppress the kick-back voltage through the internal free-wheeling diodes.
+When driving a resistive load, a pullup resistor is needed in order for ULN2003A device to sink current and for
+there to be a logic high level. The COM pin can be left floating for these applications.
+@@ page 15
+The GPIO voltage is converted to base current through the 2.7-k Ω resistor connected between the input and
+base of the predriver Darlington NPN. The 7.2-kΩ and 3-kΩ resistors connected between the base and emitter of
+each respective NPN act as pulldowns and suppress the amount of leakage that may occur from the input.
+@@ page 19
+This device does not need a power supply. However, the COM pin is typically tied to the system power supply.

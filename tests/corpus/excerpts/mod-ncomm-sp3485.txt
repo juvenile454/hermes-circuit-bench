@@ -1,0 +1,25 @@
+# source_id: mod-ncomm-sp3485-ds
+# document: MaxLinear SP3485 data sheet 216DSR00 Rev. 2.0.2 (August 5, 2021)
+# url: https://www.maxlinear.com/ds/sp3485.pdf
+# corpus: mod/ncomm/sp3485.pdf sha256 e3f71227b89ae4ba0a925dec9138f2ea2746c5651ec593b52bce275cb67dbc70
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+■■ Operates from a single 3.3V supply
+■■ Interoperable with 5.0V logic
+■■ Allows up to 32 transceivers on the serial
+@@ page 2
+VCC ...............................................................................6.0V
+Input Voltages
+Logic ..................................... -0.3V to 6.0V
+Unless otherwise noted: TAMB = TMIN to TMAX  and VCC = 3.3V ±5%.
+Input high voltage 2.0 Volts Applies to DE, DI, RE
+Input low voltage 0.8 Volts Applies to DE, DI, RE
+@@ page 3
+Output voltage HIGH Vcc-0.4 Volts VID = 200mV, -1.5mA
+Output voltage LOW 0.4 Volts VID = -200mV, 2.5mA
+Supply current , no load 425 2000 µA
+@@ page 7
+Low-power shutdown mode is initiated by bringing both 
+RE high and DE low. In shutdown, the devices typically 
+draw only 50nA of supply current. RE and DE can be 

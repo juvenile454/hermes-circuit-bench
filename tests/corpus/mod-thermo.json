@@ -1,0 +1,32 @@
+{
+ "files": [
+  {
+   "url": "https://web.archive.org/web/20250118052800id_/https://www.analog.com/media/en/technical-documentation/data-sheets/MAX31855.pdf",
+   "path": "mod/thermo/MAX31855.pdf",
+   "source_id": "mod-thermo-max31855-ds",
+   "excerpt": "excerpts/mod-thermo-max31855.txt",
+   "sha256": "0da8c21e66d26950f16b5dee20d09e9aff3b017d5d34156808deccd0ad6567ec"
+  },
+  {
+   "url": "https://cdn-shop.adafruit.com/datasheets/MAX6675.pdf",
+   "path": "mod/thermo/MAX6675.pdf",
+   "source_id": "mod-thermo-max6675-ds",
+   "excerpt": "excerpts/mod-thermo-max6675.txt",
+   "sha256": "f354adbf8b44b2b4d90840bf67c810386c717d80e943d828404f1add0c286bf9"
+  },
+  {
+   "url": "https://web.archive.org/web/20250124124921id_/https://www.analog.com/media/en/technical-documentation/data-sheets/MAX31865.pdf",
+   "path": "mod/thermo/MAX31865.pdf",
+   "source_id": "mod-thermo-max31865-ds",
+   "excerpt": "excerpts/mod-thermo-max31865.txt",
+   "sha256": "88f540410eb8c2ac4c051594c92927fc8c5876446bec1c2448934fc2605395f7"
+  },
+  {
+   "url": "https://www.vishay.com/docs/29049/ntcle100.pdf",
+   "path": "mod/thermo/ntcle100.pdf",
+   "source_id": "mod-thermo-ntcle100e3-ds",
+   "excerpt": "excerpts/mod-thermo-ntcle100e3.txt",
+   "sha256": "f9d6153738198dc705ed681c3b55e70a6571f8fee13a4ed7b2b41e49973cb9c9"
+  }
+ ]
+}

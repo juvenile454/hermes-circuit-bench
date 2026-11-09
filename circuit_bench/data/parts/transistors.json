@@ -1,0 +1,26 @@
+{
+ "schema": 1,
+ "note": "Values only from manufacturer datasheets (source_id, table row as 'evidence', verbatim from tests/corpus/excerpts/). Rows without a minimum are not used.",
+ "parts": [
+  {
+   "id": "2N2222A",
+   "kind": "npn",
+   "title": "2N2222A small-signal switching transistor (onsemi, TO-18, JAN/JANTX/JANTXV)",
+   "source_id": "onsemi-2n2222a",
+   "conditions": "T_A = 25 °C; ON characteristics measured as pulse test (Note 1)",
+   "ratings": {
+    "i_c_max": {"value": 0.8, "unit": "A", "evidence": "Collector Current − Continuous IC 800 mAdc"}
+   },
+   "hfe": {
+    "evidence": "DC Current Gain",
+    "rows": [
+     {"i_c": 0.0001, "v_ce": 10.0, "min": 50, "max": null, "evidence": "(IC = 0.1 mAdc, VCE = 10 Vdc)"},
+     {"i_c": 0.001, "v_ce": 10.0, "min": 75, "max": 325, "evidence": "(IC = 1.0 mAdc, VCE = 10 Vdc)"},
+     {"i_c": 0.01, "v_ce": 10.0, "min": 100, "max": null, "evidence": "(IC = 10 mAdc, VCE = 10 Vdc)"},
+     {"i_c": 0.15, "v_ce": 10.0, "min": 100, "max": 300, "evidence": "(IC = 150 mAdc, VCE = 10 Vdc)"},
+     {"i_c": 0.5, "v_ce": 10.0, "min": 30, "max": null, "evidence": "(IC = 500 mAdc, VCE = 10 Vdc)"}
+    ]
+   }
+  }
+ ]
+}

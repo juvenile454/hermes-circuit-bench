@@ -1,0 +1,39 @@
+{
+ "files": [
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/tpl7407l.pdf",
+   "path": "mod/ndrive/tpl7407l.pdf",
+   "source_id": "mod-ndrive-tpl7407l-ds",
+   "excerpt": "excerpts/mod-ndrive-tpl7407l.txt",
+   "sha256": "8d610edc083388a90d99b0cc07ab5c7be18ea51e49502d6fdf9f119df03bd1ec"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/drv8871.pdf",
+   "path": "mod/ndrive/drv8871.pdf",
+   "source_id": "mod-ndrive-drv8871-ds",
+   "excerpt": "excerpts/mod-ndrive-drv8871.txt",
+   "sha256": "09de551aa0c6d090fd14b000634cfd894d782a050eed13110fe2eb10f1b548bf"
+  },
+  {
+   "url": "https://web.archive.org/web/20261021182227id_/https://www.analog.com/media/en/technical-documentation/data-sheets/TMC2202_TMC2208_TMC2224_datasheet_rev1.14.pdf",
+   "path": "mod/ndrive/TMC2202_TMC2208_TMC2224_datasheet_rev1.14.pdf",
+   "source_id": "mod-ndrive-tmc2208-ds",
+   "excerpt": "excerpts/mod-ndrive-tmc2208.txt",
+   "sha256": "7b775bfd248de8b76991956c664c211d7e0c20ce098b2ebd1dd5e6a75f2ee1fd"
+  },
+  {
+   "url": "https://www.vishay.com/docs/88746/ss12.pdf",
+   "path": "mod/ndrive/vishay-ss12-ss16.pdf",
+   "source_id": "mod-ndrive-ss14-ds",
+   "excerpt": "excerpts/mod-ndrive-ss14.txt",
+   "sha256": "b32a2d93d2d2cf9f48d6cf678ab03713956b7501029c0424c6a554425df562da"
+  },
+  {
+   "url": "https://web.archive.org/web/20210614191404id_/https://assets.nexperia.com/documents/data-sheet/BAT54_SER.pdf",
+   "path": "mod/ndrive/BAT54_SER.pdf",
+   "source_id": "mod-ndrive-bat54-ds",
+   "excerpt": "excerpts/mod-ndrive-bat54.txt",
+   "sha256": "63bb4caf94eb911a91b82d889e7d3840d5fd8a3172fecf2748152178fe08a731"
+  }
+ ]
+}

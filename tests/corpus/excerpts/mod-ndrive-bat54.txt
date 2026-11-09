@@ -1,0 +1,52 @@
+# source_id: mod-ndrive-bat54-ds
+# document: Nexperia BAT54 series Schottky barrier diodes, Product data sheet Rev. 5 (5 October 2012)
+# url: https://web.archive.org/web/20210614191404id_/https://assets.nexperia.com/documents/data-sheet/BAT54_SER.pdf
+# corpus: mod/ndrive/BAT54_SER.pdf sha256 63bb4caf94eb911a91b82d889e7d3840d5fd8a3172fecf2748152178fe08a731
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Planar Schottky barrier diodes with an integrated guard ring for stress protection, 
+Rev. 5 — 5 October 2012 Product data sheet
+Table 2. Pinning
+1 anode
+2 not connected
+3 cathode
+@@ page 2
+BAT54A
+1 cathode (diode 1)
+2 cathode (diode 2)
+3 common anode
+BAT54C
+1 anode (diode 1)
+2 anode (diode 2)
+3 common cathode
+BAT54S
+1 anode (diode 1)
+2 cathode (diode 2)
+3 cathode (diode 1), 
+anode (diode 2)
+BAT54A *V3
+BAT54C *W1
+BAT54S *V4
+@@ page 3
+[1] For Schottky barrier diodes thermal runaway has to be considered, as in some applications the reverse 
+power losses PR are a significant part of the total power losses.
+Table 5. Limiting values
+VR reverse voltage - 30 V
+IF forward current Tamb =2 5 C- 2 00 m A
+IFRM repetitive peak forward 
+-3 0 0 m A
+IFSM non-repetitive peak 
+[1] -6 0 0 m A
+Ptot total power dissipation T amb  25 C [2] -2 5 0 m W
+Tj junction temperature - 150 C
+@@ page 4
+Table 7. Characteristics
+IF = 0.1 mA - - 240 mV
+IF = 1 mA - - 320 mV
+IF = 10 mA - - 400 mV
+IF = 30 mA - - 500 mV
+IF = 100 mA - - 800 mV
+IR reverse current V R =2 5V [1] --2 A
+Cd diode capacitance f = 1 MHz; V R = 1 V --1 0 p F
+trr reverse recovery time [2] --5 n s

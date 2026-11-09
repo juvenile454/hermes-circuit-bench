@@ -1,0 +1,399 @@
+{
+ "schema": 1,
+ "id": "esp32-s3-devkitc-1",
+ "title": "ESP32-S3-DevKitC-1",
+ "revision": "v1.1",
+ "chip": "esp32s3",
+ "source_id": "devkitc1-s3-v1.1",
+ "headers": [
+  {
+   "id": "J1",
+   "side": "left",
+   "pins": [
+    {
+     "n": 1,
+     "label": "3V3",
+     "kind": "power"
+    },
+    {
+     "n": 2,
+     "label": "3V3",
+     "kind": "power"
+    },
+    {
+     "n": 3,
+     "label": "RST",
+     "kind": "reset"
+    },
+    {
+     "n": 4,
+     "label": "4",
+     "kind": "gpio",
+     "gpio": 4
+    },
+    {
+     "n": 5,
+     "label": "5",
+     "kind": "gpio",
+     "gpio": 5
+    },
+    {
+     "n": 6,
+     "label": "6",
+     "kind": "gpio",
+     "gpio": 6
+    },
+    {
+     "n": 7,
+     "label": "7",
+     "kind": "gpio",
+     "gpio": 7
+    },
+    {
+     "n": 8,
+     "label": "15",
+     "kind": "gpio",
+     "gpio": 15
+    },
+    {
+     "n": 9,
+     "label": "16",
+     "kind": "gpio",
+     "gpio": 16
+    },
+    {
+     "n": 10,
+     "label": "17",
+     "kind": "gpio",
+     "gpio": 17
+    },
+    {
+     "n": 11,
+     "label": "18",
+     "kind": "gpio",
+     "gpio": 18
+    },
+    {
+     "n": 12,
+     "label": "8",
+     "kind": "gpio",
+     "gpio": 8
+    },
+    {
+     "n": 13,
+     "label": "3",
+     "kind": "gpio",
+     "gpio": 3
+    },
+    {
+     "n": 14,
+     "label": "46",
+     "kind": "gpio",
+     "gpio": 46
+    },
+    {
+     "n": 15,
+     "label": "9",
+     "kind": "gpio",
+     "gpio": 9
+    },
+    {
+     "n": 16,
+     "label": "10",
+     "kind": "gpio",
+     "gpio": 10
+    },
+    {
+     "n": 17,
+     "label": "11",
+     "kind": "gpio",
+     "gpio": 11
+    },
+    {
+     "n": 18,
+     "label": "12",
+     "kind": "gpio",
+     "gpio": 12
+    },
+    {
+     "n": 19,
+     "label": "13",
+     "kind": "gpio",
+     "gpio": 13
+    },
+    {
+     "n": 20,
+     "label": "14",
+     "kind": "gpio",
+     "gpio": 14
+    },
+    {
+     "n": 21,
+     "label": "5V",
+     "kind": "power"
+    },
+    {
+     "n": 22,
+     "label": "G",
+     "kind": "ground"
+    }
+   ]
+  },
+  {
+   "id": "J3",
+   "side": "right",
+   "pins": [
+    {
+     "n": 1,
+     "label": "G",
+     "kind": "ground"
+    },
+    {
+     "n": 2,
+     "label": "TX",
+     "kind": "gpio",
+     "gpio": 43
+    },
+    {
+     "n": 3,
+     "label": "RX",
+     "kind": "gpio",
+     "gpio": 44
+    },
+    {
+     "n": 4,
+     "label": "1",
+     "kind": "gpio",
+     "gpio": 1
+    },
+    {
+     "n": 5,
+     "label": "2",
+     "kind": "gpio",
+     "gpio": 2
+    },
+    {
+     "n": 6,
+     "label": "42",
+     "kind": "gpio",
+     "gpio": 42
+    },
+    {
+     "n": 7,
+     "label": "41",
+     "kind": "gpio",
+     "gpio": 41
+    },
+    {
+     "n": 8,
+     "label": "40",
+     "kind": "gpio",
+     "gpio": 40
+    },
+    {
+     "n": 9,
+     "label": "39",
+     "kind": "gpio",
+     "gpio": 39
+    },
+    {
+     "n": 10,
+     "label": "38",
+     "kind": "gpio",
+     "gpio": 38
+    },
+    {
+     "n": 11,
+     "label": "37",
+     "kind": "gpio",
+     "gpio": 37
+    },
+    {
+     "n": 12,
+     "label": "36",
+     "kind": "gpio",
+     "gpio": 36
+    },
+    {
+     "n": 13,
+     "label": "35",
+     "kind": "gpio",
+     "gpio": 35
+    },
+    {
+     "n": 14,
+     "label": "0",
+     "kind": "gpio",
+     "gpio": 0
+    },
+    {
+     "n": 15,
+     "label": "45",
+     "kind": "gpio",
+     "gpio": 45
+    },
+    {
+     "n": 16,
+     "label": "48",
+     "kind": "gpio",
+     "gpio": 48
+    },
+    {
+     "n": 17,
+     "label": "47",
+     "kind": "gpio",
+     "gpio": 47
+    },
+    {
+     "n": 18,
+     "label": "21",
+     "kind": "gpio",
+     "gpio": 21
+    },
+    {
+     "n": 19,
+     "label": "20",
+     "kind": "gpio",
+     "gpio": 20
+    },
+    {
+     "n": 20,
+     "label": "19",
+     "kind": "gpio",
+     "gpio": 19
+    },
+    {
+     "n": 21,
+     "label": "G",
+     "kind": "ground"
+    },
+    {
+     "n": 22,
+     "label": "G",
+     "kind": "ground"
+    }
+   ]
+  }
+ ],
+ "onboard": [
+  {
+   "gpio": 38,
+   "what": "RGB LED (v1.1)",
+   "severity": "caution",
+   "source_id": "devkitc1-s3-v1.1"
+  }
+ ],
+ "usb": [
+  {
+   "label": "USB",
+   "kind": "usb_serial_jtag",
+   "gpios": [
+    19,
+    20
+   ],
+   "source_id": "devkitc1-s3-v1.1"
+  },
+  {
+   "label": "UART",
+   "kind": "usb_uart_bridge",
+   "gpios": [
+    43,
+    44
+   ],
+   "source_id": "devkitc1-s3-v1.1"
+  }
+ ],
+ "notes": [
+  "GPIO26-32 (SPI flash) are not broken out.",
+  "GPIO43/44 are U0TXD/U0RXD (console and flashing over the UART bridge)."
+ ],
+ "drawing": {
+  "schema": 1,
+  "orientation": "module_top",
+  "parts": [
+   {
+    "kind": "usb_port",
+    "ref": "UART",
+    "connector": "micro_usb",
+    "edge": "bottom",
+    "order": 1,
+    "source_id": "devkitc1-s3-v1.1",
+    "quote": "A Micro-USB port used for power supply to the board, for flashing applications to the chip, as well as for communication with the chip via the on-board USB-to-UART bridge.",
+    "figure": "ESP32-S3-DevKitC-1_v2-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "usb_port",
+    "ref": "USB",
+    "connector": null,
+    "edge": "bottom",
+    "order": 2,
+    "source_id": "devkitc1-s3-v1.1",
+    "quote": "ESP32-S3 full-speed USB OTG interface, compliant with the USB 1.1 specification.",
+    "figure": "ESP32-S3-DevKitC-1_v2-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable; the guide names no connector type for this port"
+   },
+   {
+    "kind": "button",
+    "label": "Boot",
+    "zone": "lower",
+    "side": "left",
+    "source_id": "devkitc1-s3-v1.1",
+    "quote": "Holding down **Boot** and then pressing **Reset** initiates Firmware Download mode for downloading firmware through the serial port.",
+    "figure": "ESP32-S3-DevKitC-1_v2-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "button",
+    "label": "Reset",
+    "zone": "lower",
+    "side": "right",
+    "source_id": "devkitc1-s3-v1.1",
+    "quote": "Press this button to restart the system.",
+    "figure": "ESP32-S3-DevKitC-1_v2-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "bridge_ic",
+    "label": "USB-UART",
+    "zone": "middle",
+    "side": "center",
+    "source_id": "devkitc1-s3-v1.1",
+    "quote": "Single USB-to-UART bridge chip provides transfer rates up to 3 Mbps.",
+    "figure": "ESP32-S3-DevKitC-1_v2-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "led",
+    "label": "RGB",
+    "gpio": 38,
+    "zone": "middle",
+    "side": "left",
+    "source_id": "devkitc1-s3-v1.1",
+    "quote": "Addressable RGB LED, driven by GPIO38.",
+    "figure": "ESP32-S3-DevKitC-1_v2-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable; borderline between left and center"
+   },
+   {
+    "kind": "ldo",
+    "label": "LDO 3V3",
+    "zone": "below_module",
+    "side": "center",
+    "source_id": "devkitc1-s3-v1.1",
+    "quote": "Power regulator that converts a 5 V supply into a 3.3 V output.",
+    "figure": "ESP32-S3-DevKitC-1_v2-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "power_led",
+    "label": "PWR",
+    "zone": "below_module",
+    "side": "right",
+    "source_id": "devkitc1-s3-v1.1",
+    "quote": "Turns on when the USB power is connected to the board.",
+    "figure": "ESP32-S3-DevKitC-1_v2-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   }
+  ]
+ }
+}

@@ -1,0 +1,49 @@
+# source_id: mod-prox-vl53l1x-ds
+# document: VL53L1X Time-of-Flight long-distance ranging sensor, datasheet DS12385 Rev 8
+# url: https://web.archive.org/web/20260210224308id_/https://www.st.com/resource/en/datasheet/vl53l1x.pdf
+# corpus: mod/prox/vl53l1x.pdf sha256 b7f4174afaff82a82b5af68746e2df6f946a0de6733608e376b320a8cee6034a
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+• Class 1 laser device compliant with latest standard IEC 60825-1:2014 - 3rd
+@@ page 5
+1 AVDDVCSEL Supply VCSEL supply, connect to main supply
+5 XSHUT Digital input Xshutdown pin, active low
+7 GPIO1 Digital output Interrupt output. Open drain output
+8 DNC Digital input Do not connect, must be left floating
+9 SDA Digital input/output I²C serial data
+10 SCL Digital input I²C serial clock input
+11 AVDD Supply Supply, connect to the main supply
+@@ page 6
+100nF 4.7µF
+once per bus, near the host. See Table 4. Suggested pull-up and series resistors for I2C fast mode for
+Note: The XSHUT pin must always be driven to avoid leakage current. A pull-up is needed if the host state is not
+Note: The recommended value of the XSHUT and GPIO1 pull-ups is 10 kOhms.
+CL ≤ 90 pF 3.6 k
+90 pF < CL ≤ 140 pF 2.4 k
+140 pF < CL ≤ 270 pF 1.2 k
+270 pF < CL ≤ 400 pF 0.8 k
+@@ page 13
+Both SDA and SCL lines are connected to a positive supply voltage using pull-up resistors located on the host.
+bus on the VL53L1X has a maximum speed of 400 kbits/s and uses a default device address of 0x52.
+0x52) the message is a controller write-to-the-target. If the LSB is set (that is, 0x53) then the message is a
+@@ page 18
+AVDD
+-0.5 — 3.6 V
+SCL, SDA, XSHUT, and GPIO1
+are internally failsafe with no diode connecting them to AVDD.
+Voltage (AVDD) 2.6 2.8 3.5
+2. SDA, SCL, XSHUT, and GPIO1 high levels have to be equal to AVDD in 2V8 mode.
+3. The default driver mode is 1V8. 2V8 mode is programmable using the device settings loaded by the driver. For more details,
+@@ page 19
+HW STANDBY 3 5 7
+μASW STANDBY (2V8 mode) (1) 4 6 9
+Ranging average (AVDD +
+AVDDVCSEL) (2) (3) — 16 18 mA
+3. Peak current (including VCSEL) can reach 40 mA.
+Interrupt pin (GPIO1)
+VOL Low level output voltage (IOUT = 4 mA) — 0.4
+I²C interface (SDA/SCL)
+VIL Low level input voltage -0.5
+0.6
+VVIH High level input voltage 1.12 3.5

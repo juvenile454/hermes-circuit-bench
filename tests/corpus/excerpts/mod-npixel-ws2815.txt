@@ -1,0 +1,36 @@
+# source_id: mod-npixel-ws2815-ds
+# document: Worldsemi WS2815B-V1 Intelligent control LED integrated light source, datasheet V2.2 (2023/03/15)
+# url: https://www.world-semi.com/downloads/datasheets/en/ws2815b-v1-v1.pdf
+# corpus: mod/npixel/ws2815b-v1-v1.pdf sha256 5abda6670b053011fa6d2043c3c6d681077268be35590c603b0e9d28413dde6c
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+ 12Vpowersupplyvoltagecaneffectivelyreducetheworkingcurrentofthewholepixel,reducethevoltagedropof
+ Senddataatspeedsof800Kbps.
+ensuring the pixel point light color height consistent.Realize two-way signal transmission, in the case of damage to a
+RESETtime>280μs,itwon'tcausewrongresetwhileinterruption,itsupportsthelowerfrequencyandinexpensive
+@@ page 2
+1 NC NC SuspendedPIN
+2 VDD LEDPOWERSUPPLY LEDPOWERSUPPLY,connectto“+12V”
+3 DO DataOutput Controldatasignaloutput
+4 DIN1 Data-1Input Controldata-1signalinput
+5 GND GROUND Ground,data&powergrounding
+6 DIN2 Data-2Input Controldata-2signalinput
+Powersupplyvoltage VDD +9.5~+13.5 V
+PowerConsumption P 0.1~0.18 W
+LogicalInputVoltage VI -0.3~5.7 V
+@@ page 3
+Electrical Characteristics（TA=25℃,VDD=12V,VSS=0V,unlessotherwisespecified）
+Quiescent Current＜2mA Testing Condition
+mcd 12mAGreen 600 800 1000
+T0H 0code,highvoltagetime 220ns~380ns
+T1H 1code,highvoltagetime 580ns~840ns
+T0L 0code,lowvoltagetime 900ns~5000ns
+T1L 1code,lowvoltagetime 600ns~5000ns
+RES Frameunit,lowvoltagetime >280µs
+HighVoltageInput VIH 2.7 —— 5.7 V DIN，SET
+LowVoltageInput VIL -0.3 —— 1.5 V DIN，SET
+@@ page 4
+Note:DatatransmitinorderofGRB,highbitdataatfirst.
+@@ page 8
+V2.2 M Timingsequencemodified 20230315 HuJin YuXingHui

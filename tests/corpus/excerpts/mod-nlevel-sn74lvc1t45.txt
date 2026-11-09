@@ -1,0 +1,48 @@
+# source_id: mod-nlevel-sn74lvc1t45-ds
+# document: TI SN74LVC1T45 Single-Bit Dual-Supply Bus Transceiver With Configurable Voltage Translation and 3-State Outputs, data sheet SCES515N
+# url: https://www.ti.com/lit/ds/symlink/sn74lvc1t45.pdf
+# corpus: mod/nlevel/sn74lvc1t45.pdf sha256 e6fbd8400161399554fe905326e73236e74bb3af0b546ea1942deed14310536e
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 3
+A1 VCCA P SYSTEM-1 supply voltage (1.65V to 5.5V)
+A2 VCCB P SYSTEM-2 supply voltage (1.65V to 5.5V)
+B1 GND G Device GND
+B2 DIR I GND (low level) determines B-port to A-port direction.
+C1 A I/O Output level depends on VCC1 voltage.
+C2 B I/O Input threshold value depends on VCC2 voltage.
+@@ page 4
+Supply voltage –0.5 6.5 V
+VI Input voltage(2) –0.5 6.5 V
+A port –0.5 VCCA + 0.5 V
+B port –0.5 VCCB + 0.5
+1.65 5.5
+VCCB 1.65 5.5
+VIH
+input voltage Data inputs(4)
+3 to 3.6V 2
+VIL
+input voltage Data inputs(4)
+3 to 3.6V 0.8
+3 to 3.6V 2
+@@ page 5
+3 to 3.6V 0.8
+VI Input voltage 0 5.5 V
+VO Output voltage 0 VCCO V
+(1) VCCI is the VCC associated with the input port.
+(3) All unused data inputs of the device must be held at VCCI or GND to ensure proper device operation. See the TI application report, 
+@@ page 6
+VOH
+IOH = –100μA
+1.65 to 4.5V 1.65 to 4.5V VCCO – 0.1
+VOL
+IOL = 100μA
+1.65 to 4.5V 1.65 to 4.5V 0.1
+ICCA + ICCB
+(see Table 7-1) VI = VCCI or GND, IO = 0 1.65 to 5.5V 1.65 to 5.5V 4 μA
+@@ page 14
+DIR OPERATION
+L B data to A bus
+H A data to B bus
+@@ page 17
+• Bypass capacitors should be used on power supplies.

@@ -1,0 +1,302 @@
+{
+ "ok": true,
+ "action": "board.layout",
+ "summary": "WT32-ETH01 V1.4: 26 header pins, 5 onboard parts, 0 USB ports.",
+ "result": {
+  "id": "wt32-eth01",
+  "title": "WT32-ETH01",
+  "revision": "V1.4",
+  "chip": "esp32",
+  "source_id": "ds-wt32-eth01-v1.4",
+  "left": [
+   {
+    "header": "PROG",
+    "n": 1,
+    "label": "EN",
+    "kind": "reset"
+   },
+   {
+    "header": "PROG",
+    "n": 2,
+    "label": "GND",
+    "kind": "ground"
+   },
+   {
+    "header": "PROG",
+    "n": 3,
+    "label": "3V3",
+    "kind": "power"
+   },
+   {
+    "header": "IO",
+    "n": 1,
+    "label": "EN",
+    "kind": "reset"
+   },
+   {
+    "header": "IO",
+    "n": 2,
+    "label": "CFG",
+    "kind": "gpio",
+    "gpio": 32
+   },
+   {
+    "header": "IO",
+    "n": 3,
+    "label": "485_EN",
+    "kind": "gpio",
+    "gpio": 33
+   },
+   {
+    "header": "IO",
+    "n": 4,
+    "label": "RXD",
+    "kind": "gpio",
+    "gpio": 5
+   },
+   {
+    "header": "IO",
+    "n": 5,
+    "label": "TXD",
+    "kind": "gpio",
+    "gpio": 17
+   },
+   {
+    "header": "IO",
+    "n": 6,
+    "label": "GND",
+    "kind": "ground"
+   },
+   {
+    "header": "IO",
+    "n": 7,
+    "label": "3V3",
+    "kind": "power"
+   },
+   {
+    "header": "IO",
+    "n": 8,
+    "label": "GND",
+    "kind": "ground"
+   },
+   {
+    "header": "IO",
+    "n": 9,
+    "label": "5V",
+    "kind": "power"
+   },
+   {
+    "header": "IO",
+    "n": 10,
+    "label": "LINK",
+    "kind": "signal"
+   }
+  ],
+  "right": [
+   {
+    "header": "PROG",
+    "n": 4,
+    "label": "TXD",
+    "kind": "gpio",
+    "gpio": 1
+   },
+   {
+    "header": "PROG",
+    "n": 5,
+    "label": "RXD",
+    "kind": "gpio",
+    "gpio": 3
+   },
+   {
+    "header": "PROG",
+    "n": 6,
+    "label": "IO0",
+    "kind": "gpio",
+    "gpio": 0
+   },
+   {
+    "header": "IO",
+    "n": 11,
+    "label": "GND",
+    "kind": "ground"
+   },
+   {
+    "header": "IO",
+    "n": 12,
+    "label": "IO39",
+    "kind": "gpio",
+    "gpio": 39
+   },
+   {
+    "header": "IO",
+    "n": 13,
+    "label": "IO36",
+    "kind": "gpio",
+    "gpio": 36
+   },
+   {
+    "header": "IO",
+    "n": 14,
+    "label": "IO15",
+    "kind": "gpio",
+    "gpio": 15
+   },
+   {
+    "header": "IO",
+    "n": 15,
+    "label": "IO14",
+    "kind": "gpio",
+    "gpio": 14
+   },
+   {
+    "header": "IO",
+    "n": 16,
+    "label": "IO12",
+    "kind": "gpio",
+    "gpio": 12
+   },
+   {
+    "header": "IO",
+    "n": 17,
+    "label": "IO35",
+    "kind": "gpio",
+    "gpio": 35
+   },
+   {
+    "header": "IO",
+    "n": 18,
+    "label": "IO4",
+    "kind": "gpio",
+    "gpio": 4
+   },
+   {
+    "header": "IO",
+    "n": 19,
+    "label": "IO2",
+    "kind": "gpio",
+    "gpio": 2
+   },
+   {
+    "header": "IO",
+    "n": 20,
+    "label": "GND",
+    "kind": "ground"
+   }
+  ],
+  "onboard": [
+   {
+    "gpio": 0,
+    "what": "Ethernet REF_CLK input from the 50 MHz oscillator",
+    "severity": "blocked",
+    "source_id": "sch-wt32-eth01-v1.4"
+   },
+   {
+    "gpio": 5,
+    "what": "LED3 serial activity LED (RXD2)",
+    "severity": "caution",
+    "source_id": "ds-wt32-eth01-v1.4"
+   },
+   {
+    "gpio": 17,
+    "what": "LED4 serial activity LED (TXD2)",
+    "severity": "caution",
+    "source_id": "ds-wt32-eth01-v1.4"
+   },
+   {
+    "gpio": 32,
+    "what": "CFG pin, used for hardware factory reset",
+    "severity": "info",
+    "source_id": "wiki-wt32-eth01-features"
+   },
+   {
+    "gpio": 33,
+    "what": "485_EN, the RS485 enable pin",
+    "severity": "info",
+    "source_id": "wiki-wt32-eth01-features"
+   }
+  ],
+  "usb": [],
+  "module": {
+   "name": "WT32-S1",
+   "part_numbers": [],
+   "variant": null,
+   "flash_mb": 4,
+   "psram_mb": null,
+   "antenna": null,
+   "source_id": "ds-wt32-eth01-v1.4"
+  },
+  "buttons": [],
+  "warnings": [
+   {
+    "id": "wt32.power_exclusive",
+    "severity": "danger",
+    "message": "Feed either 3V3 or 5V, never both.",
+    "source_id": "ds-wt32-eth01-v1.4"
+   },
+   {
+    "id": "wt32.supply_current",
+    "severity": "caution",
+    "message": "Use a supply that delivers at least 500 mA.",
+    "source_id": "ds-wt32-eth01-v1.4"
+   }
+  ],
+  "connectors": [
+   {
+    "kind": "rj45",
+    "label": "LAN",
+    "source_id": "ds-wt32-eth01-v1.4"
+   }
+  ],
+  "ethernet": {
+   "phy": "LAN8720A",
+   "mdc": 23,
+   "mdio": 18,
+   "power_gpio": 16,
+   "ref_clk": {
+    "gpio": 0,
+    "mode": "ext_in"
+   },
+   "source_ids": [
+    "sch-wt32-eth01-v1.4",
+    "idf-v6.1-esp-eth"
+   ]
+  },
+  "flash_hint": "No USB port and no buttons: wire a 3.3 V USB-to-UART adapter to the PROG pins (adapter RX to TXD, adapter TX to RXD, GND to GND; keep the adapter at 3.3 V logic and power the board from a supply with at least 500 mA on 3V3 or on 5V, never both). Hold IO0 at GND while you pull EN low and release it, so the ESP32 starts the serial bootloader; flash, then free IO0 and reset again to run the firmware.",
+  "drawing": {
+   "schema": 1,
+   "orientation": "module_top",
+   "parts": [
+    {
+     "kind": "rj45",
+     "label": "LAN",
+     "edge": "bottom",
+     "order": 1,
+     "source_id": "ds-wt32-eth01-v1.4",
+     "quote": "网口规格 RJ45、10/100Mbps、交叉直连自适应"
+    },
+    {
+     "kind": "phy_ic",
+     "label": "LAN8720A",
+     "zone": "middle",
+     "side": "center",
+     "source_id": "sch-wt32-eth01-v1.4",
+     "quote": "PHY-10-100M LAN8720A 8P8C-RJ45网口+带滤波器"
+    }
+   ]
+  }
+ },
+ "checks": [],
+ "warnings": [],
+ "assumptions": [],
+ "sources": [
+  {
+   "id": "ds-wt32-eth01-v1.4",
+   "title": "Wireless-Tag WT32-ETH01 datasheet (规格书) V1.4, Chinese",
+   "url": "https://res.8ms.xyz/wiki_assets/WT32-ETH01/WT32-ETH01_V1.4%E8%A7%84%E6%A0%BC%E4%B9%A6.pdf",
+   "retrieved": "2026-11-06",
+   "note": "PDF linked from the wireless-tag wiki; pinned by SHA-256; excerpt tests/corpus/excerpts/wt32-eth01-datasheet-v1.4.txt; sha256 c09c58b0d69405d6aa4f2332d89126b0aca9df9c13723bde1dc42e1ef174d5e7"
+  }
+ ],
+ "simulated": false,
+ "error": null
+}

@@ -1,0 +1,871 @@
+{
+ "ok": true,
+ "action": "calc.list",
+ "summary": "16 calculators: led, npn, divider, i2c_pullup, mosfet, ldo, adc_ext, buck, charger, current_limit, current_sense, ina_shunt, led_strip, ntc, opto, rtd. Call bench_calc with action=<kind> and inputs (text with units or SI).",
+ "result": {
+  "calculators": [
+   {
+    "kind": "led",
+    "title": "LED series resistor",
+    "group": "basics",
+    "summary": "Series resistor for an LED: exact and next E-series value, current and resistor power.",
+    "params": [
+     {
+      "name": "v_supply",
+      "unit": "V",
+      "required": true,
+      "default": null
+     },
+     {
+      "name": "v_f",
+      "unit": "V",
+      "required": true,
+      "default": null
+     },
+     {
+      "name": "i_f",
+      "unit": "A",
+      "required": true,
+      "default": null
+     },
+     {
+      "name": "series",
+      "unit": "str",
+      "required": false,
+      "default": "E12"
+     }
+    ]
+   },
+   {
+    "kind": "npn",
+    "title": "NPN low-side switch",
+    "group": "basics",
+    "summary": "Base resistor of an NPN switch at a GPIO (sized when r_base is missing), saturation, power.",
+    "params": [
+     {
+      "name": "v_drive",
+      "unit": "V",
+      "required": true,
+      "default": null
+     },
+     {
+      "name": "r_base",
+      "unit": "Ω",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "i_load",
+      "unit": "A",
+      "required": true,
+      "default": null
+     },
+     {
+      "name": "v_be",
+      "unit": "V",
+      "required": false,
+      "default": 0.7
+     },
+     {
+      "name": "r_pulldown",
+      "unit": "Ω",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "hfe_min",
+      "unit": "",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "part",
+      "unit": "str",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "load",
+      "unit": "str",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "forced_beta",
+      "unit": "",
+      "required": false,
+      "default": null
+     }
+    ]
+   },
+   {
+    "kind": "divider",
+    "title": "Voltage divider",
+    "group": "basics",
+    "summary": "Unloaded divider R1/R2: V_out, current, power, source impedance; adc_range [min, max] in V, e.g. [0, 2.9].",
+    "params": [
+     {
+      "name": "v_in_max",
+      "unit": "V",
+      "required": true,
+      "default": null
+     },
+     {
+      "name": "r1",
+      "unit": "Ω",
+      "required": true,
+      "default": null
+     },
+     {
+      "name": "r2",
+      "unit": "Ω",
+      "required": true,
+      "default": null
+     },
+     {
+      "name": "adc_range",
+      "unit": "range",
+      "required": false,
+      "default": null
+     }
+    ]
+   },
+   {
+    "kind": "i2c_pullup",
+    "title": "I²C pull-up resistors",
+    "group": "basics",
+    "summary": "Pull-up window of an I²C bus from sink current and rise time (NXP UM10204).",
+    "params": [
+     {
+      "name": "v_dd",
+      "unit": "V",
+      "required": true,
+      "default": null
+     },
+     {
+      "name": "c_bus",
+      "unit": "F",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "mode",
+      "unit": "str",
+      "required": false,
+      "default": "standard"
+     },
+     {
+      "name": "v_ol",
+      "unit": "V",
+      "required": false,
+      "default": 0.4
+     },
+     {
+      "name": "i_ol",
+      "unit": "A",
+      "required": false,
+      "default": 0.003
+     },
+     {
+      "name": "r_pullup",
+      "unit": "Ω",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "devices",
+      "unit": "int",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "project",
+      "unit": "str",
+      "required": false,
+      "default": null
+     }
+    ]
+   },
+   {
+    "kind": "mosfet",
+    "title": "N-MOSFET low-side switch",
+    "group": "basics",
+    "summary": "N-channel MOSFET at a GPIO: gate voltage, R_DS(on) from the datasheet, loss, junction temperature.",
+    "params": [
+     {
+      "name": "i_load",
+      "unit": "A",
+      "required": true,
+      "default": null
+     },
+     {
+      "name": "v_supply",
+      "unit": "V",
+      "required": true,
+      "default": null
+     },
+     {
+      "name": "gate_v",
+      "unit": "V",
+      "required": false,
+      "default": 3.3
+     },
+     {
+      "name": "part",
+      "unit": "str",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "r_gate",
+      "unit": "Ω",
+      "required": false,
+      "default": 100.0
+     },
+     {
+      "name": "r_pulldown",
+      "unit": "Ω",
+      "required": false,
+      "default": 100000.0
+     },
+     {
+      "name": "r_ds_on",
+      "unit": "Ω",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "t_ambient",
+      "unit": "°C",
+      "required": false,
+      "default": 25.0
+     },
+     {
+      "name": "chip",
+      "unit": "str",
+      "required": false,
+      "default": null
+     }
+    ]
+   },
+   {
+    "kind": "ldo",
+    "title": "Linear regulator (LDO)",
+    "group": "basics",
+    "summary": "Linear regulator: dissipation, efficiency, dropout and junction temperature from the datasheet.",
+    "params": [
+     {
+      "name": "v_in",
+      "unit": "V",
+      "required": true,
+      "default": null
+     },
+     {
+      "name": "v_out",
+      "unit": "V",
+      "required": true,
+      "default": null
+     },
+     {
+      "name": "i_load",
+      "unit": "A",
+      "required": true,
+      "default": null
+     },
+     {
+      "name": "part",
+      "unit": "str",
+      "required": false,
+      "default": null,
+      "choices": [
+       "AMS1117-3.3",
+       "AMS1117CD-3.3",
+       "AMS1117CS-3.3",
+       "AP2112K-3.3",
+       "MCP1700-3302E/TT",
+       "TLV75533PDBVR"
+      ]
+     },
+     {
+      "name": "t_ambient",
+      "unit": "°C",
+      "required": false,
+      "default": 25.0
+     },
+     {
+      "name": "chip",
+      "unit": "str",
+      "required": false,
+      "default": null
+     }
+    ]
+   },
+   {
+    "kind": "adc_ext",
+    "title": "External ADC range, PGA and LSB",
+    "group": "sensing",
+    "summary": "ADS1115/ADS1015 PGA and LSB, MCP3008/PCF8591 code; input checked against VDD + 0.3 V and similar.",
+    "params": [
+     {
+      "name": "v_in_max",
+      "unit": "V",
+      "required": true,
+      "default": null
+     },
+     {
+      "name": "vdd",
+      "unit": "V",
+      "required": true,
+      "default": null
+     },
+     {
+      "name": "part",
+      "unit": "str",
+      "required": false,
+      "default": "ads1115"
+     },
+     {
+      "name": "pga",
+      "unit": "str",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "vref",
+      "unit": "V",
+      "required": false,
+      "default": null
+     }
+    ]
+   },
+   {
+    "kind": "buck",
+    "title": "Buck converter feedback divider",
+    "group": "power",
+    "summary": "LM2596-ADJ / MP1584 divider for a target V_OUT (E series) or V_OUT of a divider; V_IN and I_OUT checked.",
+    "params": [
+     {
+      "name": "v_out",
+      "unit": "V",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "chip",
+      "unit": "str",
+      "required": false,
+      "default": "lm2596",
+      "choices": [
+       "lm2596",
+       "mp1584"
+      ]
+     },
+     {
+      "name": "r_top",
+      "unit": "Ω",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "r_bottom",
+      "unit": "Ω",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "v_in",
+      "unit": "V",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "i_out",
+      "unit": "A",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "series",
+      "unit": "str",
+      "required": false,
+      "default": "E24"
+     }
+    ],
+    "one_of": [
+     [
+      "v_out"
+     ],
+     [
+      "r_top",
+      "r_bottom"
+     ]
+    ]
+   },
+   {
+    "kind": "charger",
+    "title": "Li-Ion charger programming resistor",
+    "group": "power",
+    "summary": "MCP73831 / TP4056: charge current from R_PROG or R_PROG for a current; dissipation; Li-Ion warning.",
+    "params": [
+     {
+      "name": "r_prog",
+      "unit": "Ω",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "chip",
+      "unit": "str",
+      "required": false,
+      "default": "tp4056",
+      "choices": [
+       "mcp73831",
+       "tp4056"
+      ]
+     },
+     {
+      "name": "i_charge",
+      "unit": "A",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "v_in",
+      "unit": "V",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "series",
+      "unit": "str",
+      "required": false,
+      "default": "E24"
+     },
+     {
+      "name": "t_ambient",
+      "unit": "°C",
+      "required": false,
+      "default": 25.0
+     }
+    ],
+    "one_of": [
+     [
+      "r_prog"
+     ],
+     [
+      "i_charge"
+     ]
+    ]
+   },
+   {
+    "kind": "current_limit",
+    "title": "Stepper/motor driver current limit",
+    "group": "drive",
+    "summary": "A4988, DRV8825, DRV8833, TMC2209: current limit from R_SENSE and VREF, or the VREF to set.",
+    "params": [
+     {
+      "name": "driver",
+      "unit": "str",
+      "required": true,
+      "default": null,
+      "choices": [
+       "a4988",
+       "drv8825",
+       "drv8833",
+       "tmc2209"
+      ]
+     },
+     {
+      "name": "r_sense",
+      "unit": "Ω",
+      "required": true,
+      "default": null
+     },
+     {
+      "name": "v_ref",
+      "unit": "V",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "i_target",
+      "unit": "A",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "vsense",
+      "unit": "str",
+      "required": false,
+      "default": "0",
+      "choices": [
+       "0",
+       "1"
+      ]
+     }
+    ]
+   },
+   {
+    "kind": "current_sense",
+    "title": "ACS712 current sensor at the ADC",
+    "group": "sensing",
+    "summary": "ACS712 05B/20A/30A: output range VCC/2 ± Sens·I, divider for the ESP ADC, minimum output load.",
+    "params": [
+     {
+      "name": "variant",
+      "unit": "str",
+      "required": true,
+      "default": null,
+      "choices": [
+       "05b",
+       "20a",
+       "30a"
+      ]
+     },
+     {
+      "name": "i_max",
+      "unit": "A",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "v_cc",
+      "unit": "V",
+      "required": false,
+      "default": 5.0
+     },
+     {
+      "name": "r1",
+      "unit": "Ω",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "r2",
+      "unit": "Ω",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "v_adc_max",
+      "unit": "V",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "chip",
+      "unit": "str",
+      "required": false,
+      "default": "esp32s3"
+     }
+    ]
+   },
+   {
+    "kind": "ina_shunt",
+    "title": "INA219/226/260/3221 shunt and CAL",
+    "group": "sensing",
+    "summary": "INA current monitors: Current_LSB, CAL, Power_LSB, shunt voltage vs range, shunt loss, bus voltage.",
+    "params": [
+     {
+      "name": "part",
+      "unit": "str",
+      "required": true,
+      "default": null,
+      "choices": [
+       "ina219",
+       "ina226",
+       "ina260",
+       "ina3221"
+      ]
+     },
+     {
+      "name": "i_max",
+      "unit": "A",
+      "required": true,
+      "default": null
+     },
+     {
+      "name": "r_shunt",
+      "unit": "Ω",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "current_lsb",
+      "unit": "A",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "pga",
+      "unit": "str",
+      "required": false,
+      "default": "auto",
+      "choices": [
+       "auto",
+       "1",
+       "2",
+       "4",
+       "8"
+      ]
+     },
+     {
+      "name": "v_bus",
+      "unit": "V",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "p_rating",
+      "unit": "W",
+      "required": false,
+      "default": null
+     }
+    ]
+   },
+   {
+    "kind": "led_strip",
+    "title": "Addressable LED strip current and level",
+    "group": "light",
+    "summary": "Current and power of n WS2812B/SK6812/APA102C LEDs at a brightness, and whether a 3.3 V GPIO needs a level shifter.",
+    "params": [
+     {
+      "name": "count",
+      "unit": "int",
+      "required": true,
+      "default": null
+     },
+     {
+      "name": "part",
+      "unit": "str",
+      "required": false,
+      "default": "ws2812b"
+     },
+     {
+      "name": "brightness",
+      "unit": "",
+      "required": false,
+      "default": 1.0
+     },
+     {
+      "name": "v_supply",
+      "unit": "V",
+      "required": false,
+      "default": 5.0
+     },
+     {
+      "name": "chip",
+      "unit": "str",
+      "required": false,
+      "default": "esp32s3"
+     }
+    ]
+   },
+   {
+    "kind": "ntc",
+    "title": "NTC thermistor divider (NTCLE100E3)",
+    "group": "sensing",
+    "summary": "NTCLE100E3 divider voltage over temperature (Steinhart-Hart), ESP input/ADC range, self-heating.",
+    "params": [
+     {
+      "name": "part",
+      "unit": "str",
+      "required": false,
+      "default": "NTCLE100E3103"
+     },
+     {
+      "name": "r_fixed",
+      "unit": "Ω",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "v_supply",
+      "unit": "V",
+      "required": false,
+      "default": "3.3V"
+     },
+     {
+      "name": "position",
+      "unit": "str",
+      "required": false,
+      "default": "low"
+     },
+     {
+      "name": "t_min",
+      "unit": "°C",
+      "required": false,
+      "default": 0
+     },
+     {
+      "name": "t_max",
+      "unit": "°C",
+      "required": false,
+      "default": 100
+     },
+     {
+      "name": "t",
+      "unit": "°C",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "r_ntc",
+      "unit": "Ω",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "v_adc",
+      "unit": "V",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "chip",
+      "unit": "str",
+      "required": false,
+      "default": "esp32s3"
+     },
+     {
+      "name": "adc_range",
+      "unit": "range",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "adc_bits",
+      "unit": "int",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "series",
+      "unit": "str",
+      "required": false,
+      "default": "E24"
+     }
+    ]
+   },
+   {
+    "kind": "opto",
+    "title": "Optocoupler LED and pull-up resistors",
+    "group": "drive",
+    "summary": "PC817/6N137: LED series resistor from VF and I_F, CTR-checked or datasheet-range output pull-up.",
+    "params": [
+     {
+      "name": "part",
+      "unit": "str",
+      "required": true,
+      "default": null
+     },
+     {
+      "name": "v_drive",
+      "unit": "V",
+      "required": true,
+      "default": null
+     },
+     {
+      "name": "v_pullup",
+      "unit": "V",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "i_f",
+      "unit": "A",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "r_led",
+      "unit": "Ω",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "r_pullup",
+      "unit": "Ω",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "series",
+      "unit": "str",
+      "required": false,
+      "default": "E12"
+     },
+     {
+      "name": "chip",
+      "unit": "str",
+      "required": false,
+      "default": null
+     }
+    ]
+   },
+   {
+    "kind": "rtd",
+    "title": "MAX31865 RTD reference and temperature",
+    "group": "sensing",
+    "summary": "PT100/PT1000 on a MAX31865: RREF = 4·R0, LSB, code ↔ resistance ↔ temperature (Callendar-Van Dusen).",
+    "params": [
+     {
+      "name": "r0",
+      "unit": "Ω",
+      "required": false,
+      "default": 100
+     },
+     {
+      "name": "r_ref",
+      "unit": "Ω",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "code",
+      "unit": "int",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "t",
+      "unit": "°C",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "r_rtd",
+      "unit": "Ω",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "r_lead",
+      "unit": "Ω",
+      "required": false,
+      "default": null
+     },
+     {
+      "name": "wires",
+      "unit": "int",
+      "required": false,
+      "default": null
+     }
+    ]
+   }
+  ],
+  "groups": [
+   "basics",
+   "power",
+   "sensing",
+   "drive",
+   "light"
+  ]
+ },
+ "checks": [],
+ "warnings": [],
+ "assumptions": [],
+ "sources": [],
+ "simulated": false,
+ "error": null
+}

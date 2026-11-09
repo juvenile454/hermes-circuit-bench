@@ -1,0 +1,65 @@
+# Citation excerpt. '#' lines are metadata; '@@ page N' starts a segment of whole lines copied
+# verbatim from pypdf's text of that PDF page. tests/test_calc_sources.py checks code and data against it and,
+# with the corpus present, the segments against the pinned PDF.
+# source_id: nxp-um10204
+# document: NXP UM10204, I2C-bus specification and user manual, Rev. 7.0 — 1 October 2021
+# url: https://www.nxp.com/docs/en/user-guide/UM10204.pdf (same bytes: https://cache.nxp.com/docs/en/user-guide/UM10204.pdf)
+# corpus: calc/nxp-um10204-rev7.pdf sha256 dc91f00f65584e06ef36e26c93bf9d91a95fb3c8a1830a9223e53caf678b36af
+# retrieved: 2026-11-06
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+# Equations (1) and (2) on page 50 are drawings without a text layer; transcribed from the rendered page:
+# eq1: Rp(max) = tr / (0.8473 × Cb)
+# eq2: Rp(min) = (VDD − VOL(max)) / IOL
+# Note: section 7.1 says 'tr from Table 10'; in Rev. 7.0 tr and Cb are listed in Table 11 (bus lines).
+# Pages 3 and 4 (section 1, features) source the shared-bus rule of the pin check (Runde HARDEN, pins.shared_bus).
+@@ page 3
+• Each device connected to the bus is software addressable by a unique address and
+simple controller/target relationships exist at all times; controllers can operate as
+@@ page 4
+• The number of ICs that can be connected to the same bus is limited only by a
+maximum bus capacitance. More capacitance may be allowed under some conditions.
+@@ page 43
+VOL1 LOW-level output voltage 1 (open-drain or open-
+collector) at 3 mA sink
+current; VDD > 2 V
+0 0.4 0 0.4 0 0.4 V
+VOL2 LOW-level output voltage 2 (open-drain or open-
+collector) at 2 mA sink
+current [3] ; VDD ≤ 2 V
+- - 0 0.2VDD 0 0.2VDD V
+VOL = 0.4 V 3 - 3 - 20 - mAIOL LOW-level output current
+VOL = 0.6 V [4] - - 6 - - - mA
+Ci capacitance for each I/O pin[10] - 10 - 10 - 10 pF
+Table 10. Characteristics of the SDA and SCL I/O stages
+[4] In order to drive full bus load at 400 kHz, 6 mA IOL is required at 0.6 V VOL. Parts not meeting this specification can still function, but not at 400 kHz and
+400 pF.
+@@ page 44
+tr rise time of both SDA and SCL
+signals
+- 1000 20 300 - 120 ns
+Cb capacitive load for each bus line[9] - 400 - 400 - 550 pF
+Table 11. Characteristics of the SDA and SCL bus lines for Standard, Fast, and Fast-mode Plus I2C-bus
+devices
+@@ page 50
+7 Electrical connections of I2C-bus devices to the bus lines
+7.1 Pull-up resistor sizing
+The bus capacitance is the total capacitance of wire, connections and pins. This
+capacitance limits the maximum value of Rp due to the specified rise time. Figure 41
+shows Rp(max) as a function of bus capacitance.
+Consider the VDD related input threshold of VIH = 0.7VDD and VIL = 0.3VDD for the
+purposes of RC time constant calculation. Then V(t) = VDD (1 - e-t / RC), where t is the
+time since the charging started and RC is the time constant.
+V(t1) = 0.3 × VDD = VDD (1 - e-t1 / RC); then t1 = 0.3566749 × RC
+V(t2) = 0.7 × VDD = VDD (1 - e-t2 / RC); then t2 = 1.2039729 × RC
+T = t2 - t1 = 0.8473 × RC
+Figure 41 and Equation 1 shows maximum Rp as a function of bus capacitance for
+Standard-, Fast- and Fast-mode Plus. For each mode, the Rp(max) is a function of the rise
+time maximum (tr) from Table 10 and the estimated bus capacitance (Cb):
+The supply voltage limits the minimum value of resistor Rp due to the specified minimum
+sink current of 3 mA for Standard-mode and Fast-mode, or 20 mA for Fast-mode Plus.
+Rp(min) as a function of VDD is shown in Figure 42. The traces are calculated using
+Equation 2:
+ (2)
+The designer now has the minimum and maximum value of Rp that is required to meet
+the timing specification. Portable designs with sensitivity to supply current consumption
+can use a value toward the higher end of the range in order to limit IDD.

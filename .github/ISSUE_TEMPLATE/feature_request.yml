@@ -1,0 +1,40 @@
+name: Feature, board or module request
+description: Suggest a feature, ask for a board or module, or ask a question about Circuit Bench.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea. Bugs go to the bug report form; security problems to SECURITY.md (private reporting).
+        Circuit Bench covers low-voltage circuits only: requests for mains-voltage (230 V/120 V) projects are closed.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of request?
+      options:
+        - Feature
+        - Board
+        - Module or chip
+        - Question
+    validations:
+      required: true
+  - type: textarea
+    id: request
+    attributes:
+      label: What would you like?
+      description: What you want to do with Circuit Bench, and what is missing or unclear today.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Datasheet or documentation link
+      description: >-
+        Required for board, module and chip requests: a link to the maker's datasheet or user guide. Every value in
+        Circuit Bench is cited from such a document.
+      placeholder: "https://…"
+  - type: textarea
+    id: context
+    attributes:
+      label: Anything else?
+      description: Your board and chip, an example project, screenshots (please remove MAC addresses and serial numbers).

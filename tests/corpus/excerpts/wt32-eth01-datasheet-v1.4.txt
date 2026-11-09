@@ -1,0 +1,80 @@
+# Citation excerpt (chip and board data). '#' lines are metadata; '@@ page N'
+# starts a segment of whole lines copied from pypdf's text of that PDF page, '@@ html' a segment of lines of
+# the page's visible text (script/style dropped). tests/test_c0_corpus.py checks every segment line, in order
+# and whitespace-insensitive, against the pinned file.
+# source_id: ds-wt32-eth01-v1.4
+# document: Wireless-Tag (深圳市启明云端科技有限公司) WT32-ETH01 规格书 V1.4, 13 pages (pages 6-9). Quoted for citation only.
+# url: https://res.8ms.xyz/wiki_assets/WT32-ETH01/WT32-ETH01_V1.4%E8%A7%84%E6%A0%BC%E4%B9%A6.pdf
+# corpus: wireless-tag/WT32-ETH01_V1.4_datasheet.pdf sha256 c09c58b0d69405d6aa4f2332d89126b0aca9df9c13723bde1dc42e1ef174d5e7
+# retrieved: 2026-11-06
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+# Translations (lead): 板载 Flash 32Mbit = on-board flash 32 Mbit (4 MB); 工作电压 5V 或 3.3V 供电（任选其一）=
+# supply 5 V or 3.3 V (choose one); 供电电流 最小：500 mA = supply current min. 500 mA; 表-1 调试烧录接口 = Table 1
+# debug/programming interface; 预留调试烧录接口 = reserved debug/programming interface; 使能，高电平有效 = enable,
+# active high; 表-2 模块 IO 描述 = Table 2 module IO; 仅支持输入 = input only; 网络连接指示灯引脚 = network link LED pin;
+# 注 2：3V3 电源供电和 5V 电源供电，二者只能选择其一！！！ = note 2: 3V3 supply and 5V supply, only one of the two!
+# LED3/LED4：串口指示灯，RXD2(IO5)/TXD2(IO17)有数据流时，灯亮 = serial LEDs, lit while data flows on RXD2(IO5)/TXD2(IO17).
+# Label footnote digits in pypdf's text: 'EN1' = EN + note 1, '5V2' = 5V + note 2, 'IO393'/'IO363' = IO39/IO36 + note 3;
+# table 2 pin 7 extracts as '7', '2', '3V3 3V3 电源供电' (3V3 + note 2). '15 I014 IO14' is printed so (I014 = IO14).
+# Header sides (not machine-checkable): the back-side photo on page 7 (3.2 实物图, image 2 of the page) shows
+# one edge row TX0, RX0, IO0, GND, IO39, IO36, IO15, IO14, IO12, IO35, IO4, IO2, GND (13 pads, read twice by hand
+# from the extracted image) and the other edge row with the other 13 pins (EN, GND, 3V3 of table 1 and pins 1-10
+# of table 2), RJ45 at the far end from EN. The photo is the back side: seen from the component side the rows swap.
+@@ page 6
+表-1. 产品规格
+网口规格 RJ45、10/100Mbps、交叉直连自适应
+板载 Flash 32Mbit
+工作电压 5V 或 3.3V 供电（任选其一）
+工作电流 平均：80mA
+供电电流 最小：500 mA
+@@ page 7
+LAN8720A RMII WT32-S1 IO
+50MHz
+@@ page 8
+3.3 引脚描述
+表-1 调试烧录接口
+引脚 名称 描述
+1 EN1 预留调试烧录接口；使能，高电平有效
+2 GND 预留调试烧录接口；GND
+3 3V3 预留调试烧录接口；3V3
+4 TXD 预留调试烧录接口；IO1, TXD0
+5 RXD 预留调试烧录接口；IO3, RXD0
+6 IO0 预留调试烧录接口；IO0
+表-2 模块 IO 描述
+引脚 名称 描述
+1 EN1 使能，高电平有效
+2 CFG IO32, CFG
+3 485_EN IO33, RS485 的使能引脚
+4 RXD IO5, RXD2
+5 TXD IO17, TXD2
+6 GND GND
+7
+2
+3V3 3V3 电源供电
+8 GND GND
+@@ page 9
+9 5V2 5V 电源供电
+10 LINK 网络连接指示灯引脚
+11 GND GND
+12 IO393 IO39, 仅支持输入
+13 IO363 IO36, 仅支持输入
+14 IO15 IO15
+15 I014 IO14
+16 IO12 IO12
+17 IO35 IO35 仅支持输入
+18 IO4 IO4
+19 IO2 IO2
+20 GND GND
+注 1：模块默认使能高电平。
+注 2：3V3 电源供电和 5V 电源供电，二者只能选择其一！！！
+注 3：IO39、IO35 和 IO36 仅支持输入。
+3.4 电源特性
+3.4.1 供电电压
+模块的供电电压可选用 5V 或 3V3，二者只能选择其一。
+3.4.2 供电模式
+用户可根据需求自由选择：
+1) 通孔（焊接排针）：
+⚫ 采用杜邦线连接的方式供电；
+⚫ LED1：电源指示灯，上电正常，灯亮；
+⚫ LED3：串口指示灯，RXD2(IO5)有数据流时，灯亮；
+⚫ LED4：串口指示灯，TXD2(IO17)有数据流时，灯亮；；

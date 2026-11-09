@@ -1,0 +1,345 @@
+{
+ "schema": 1,
+ "note": "Regulators. Values only from manufacturer datasheets (source_id; 'evidence' quotes a line of tests/corpus/excerpts/mod-power-*.txt on 'page'). SI units. kind ldo: complete for calc.ldo; kind ldo_partial: the datasheet lacks a value calc.ldo needs ('missing'), used by modrules/power.py only; 'module' = catalog id in data/modules/power.json.",
+ "parts": [
+  {
+   "id": "AP2112K-3.3",
+   "kind": "ldo",
+   "aliases": [
+    "AP2112K-3.3TRG1",
+    "ap2112k_33"
+   ],
+   "title": "AP2112K-3.3 fixed 3.3 V 600 mA CMOS LDO (Diodes Incorporated, SOT25)",
+   "package": "SOT25",
+   "source_id": "mod-power-ap2112-ds",
+   "module": "ap2112k_33",
+   "conditions": "AP2112-3.3 electrical characteristics at V_IN = 4.3 V, C_IN = C_OUT = 1.0 µF ceramic, T_A = 25 °C",
+   "v_out": {
+    "value": 3.3,
+    "unit": "V",
+    "conditions": "typical at V_IN = 4.3 V, 1 mA ≤ I_OUT ≤ 30 mA, ±1.5 %",
+    "page": 8,
+    "evidence": "*98.5% 3.3 VOUT  *101.5% V"
+   },
+   "dropout": {
+    "value": 0.4,
+    "unit": "V",
+    "conditions": "max at I_OUT = 600 mA (200 mV max at 300 mA)",
+    "page": 8,
+    "evidence": "IOUT = 600mA — 250 400",
+    "typ": 0.25,
+    "i_out": 0.6
+   },
+   "i_q": {
+    "value": 8e-05,
+    "unit": "A",
+    "conditions": "maximum at V_IN = 4.3 V, I_OUT = 0",
+    "page": 8,
+    "evidence": "IQ Quiescent Current VIN = 4.3V, IOUT = 0mA — 55 80 µA",
+    "typ": 5.5e-05
+   },
+   "ratings": {
+    "v_in_max": {
+     "value": 6.5,
+     "unit": "V",
+     "conditions": "Absolute Maximum Ratings (operating 2.5–6.0 V)",
+     "page": 3,
+     "evidence": "VCC Power Supply Voltage 6.5 V"
+    },
+    "i_limit_min": {
+     "value": 0.6,
+     "unit": "A",
+     "conditions": "guaranteed maximum output current (min 600 mA); short-circuit foldback 50 mA",
+     "page": 8,
+     "evidence": "IOUT(MAX) Maximum Output Current VIN = 4.3V, VOUT = 3.251V to 3.350V 600 — — mA"
+    },
+    "t_j_max": {
+     "value": 150.0,
+     "unit": "°C",
+     "conditions": "absolute maximum rating",
+     "page": 3,
+     "evidence": "TJ Operating Junction Temperature Range +150 °C"
+    },
+    "r_th_ja": {
+     "value": 184.0,
+     "unit": "°C/W",
+     "conditions": "SOT25, junction to ambient, no heat sink",
+     "page": 3,
+     "evidence": "SOT25 184"
+    },
+    "t_shutdown": {
+     "value": 160.0,
+     "unit": "°C",
+     "conditions": "typical",
+     "page": 8,
+     "evidence": "TOTSD Thermal Shutdown Temperature — — +160 —"
+    }
+   }
+  },
+  {
+   "id": "MCP1700-3302E/TT",
+   "kind": "ldo",
+   "aliases": [
+    "MCP1700T-3302E/TT",
+    "MCP1700-3302",
+    "mcp1700"
+   ],
+   "title": "MCP1700-3302E/TT fixed 3.3 V 250 mA low quiescent current LDO (Microchip, SOT-23)",
+   "package": "SOT-23",
+   "source_id": "mod-power-mcp1700-ds",
+   "module": "mcp1700",
+   "conditions": "DC characteristics at V_IN = V_R + 1 V, C_OUT = C_IN = 1 µF X7R, T_A = 25 °C; bold over T_J −40…+125 °C",
+   "v_out": {
+    "value": 3.3,
+    "unit": "V",
+    "conditions": "nominal V_R of the -33 code (3.3 V V_OUT), tolerance ±0.4 % typ",
+    "page": 29,
+    "evidence": "MCP1700T-3302E/TT:"
+   },
+   "dropout": {
+    "value": 0.35,
+    "unit": "V",
+    "conditions": "max at I_L = 250 mA, V_R ≥ 2.5 V",
+    "page": 3,
+    "evidence": "VIN -V OUT —1 7 8 350 mV I L = 250 mA",
+    "typ": 0.178,
+    "i_out": 0.25
+   },
+   "i_q": {
+    "value": 4e-06,
+    "unit": "A",
+    "conditions": "maximum at I_L = 0, V_IN = V_R + 1 V",
+    "page": 3,
+    "evidence": "Iq —1 . 6 4 µA I L =0m A",
+    "typ": 1.6e-06
+   },
+   "ratings": {
+    "v_in_max": {
+     "value": 6.5,
+     "unit": "V",
+     "conditions": "Absolute Maximum Ratings (+6.5 V; operating 2.3–6.0 V)",
+     "page": 3,
+     "evidence": [
+      "VDD....",
+      "+ 6.5V"
+     ]
+    },
+    "i_limit_min": {
+     "value": 0.25,
+     "unit": "A",
+     "conditions": "maximum output current for V_R ≥ 2.5 V",
+     "page": 3,
+     "evidence": "IOUT_mA 250"
+    },
+    "t_j_max": {
+     "value": 125.0,
+     "unit": "°C",
+     "conditions": "operating junction temperature",
+     "page": 3,
+     "evidence": "Operating Junction Temperature...................-40°C to +125°C"
+    },
+    "r_th_ja": {
+     "value": 212.0,
+     "unit": "°C/W",
+     "conditions": "SOT-23, EIA/JEDEC JESD51-7 FR-4 4-layer board",
+     "page": 4,
+     "evidence": "Thermal Resistance, SOT-23"
+    },
+    "t_shutdown": {
+     "value": 140.0,
+     "unit": "°C",
+     "conditions": "typical",
+     "page": 4,
+     "evidence": "TSD —1 4 0—° C"
+    }
+   }
+  },
+  {
+   "id": "XC6206P332MR",
+   "kind": "ldo_partial",
+   "aliases": [
+    "XC6206P332",
+    "xc6206"
+   ],
+   "title": "XC6206P332MR fixed 3.3 V regulator (Torex, SOT-23)",
+   "package": "SOT-23",
+   "source_id": "mod-power-xc6206-ds",
+   "module": "xc6206",
+   "missing": [
+    "r_th_ja",
+    "t_j_max",
+    "t_shutdown"
+   ],
+   "v_out": {
+    "value": 3.3,
+    "unit": "V",
+    "conditions": "nominal V_OUT(T) of the 33 code (selectable 1.2–5.0 V in 0.1 V steps)",
+    "page": 1,
+    "evidence": ": 1.2V ~ 5.0V (0.1V increments)"
+   },
+   "dropout": {
+    "value": 0.68,
+    "unit": "V",
+    "conditions": "Vdif2 max at I_OUT = 100 mA, 3.0–3.9 V types (merged cell)",
+    "page": 5,
+    "evidence": "75 350 250 680 200",
+    "typ": 0.25,
+    "i_out": 0.1
+   },
+   "i_q": {
+    "value": 3e-06,
+    "unit": "A",
+    "conditions": "maximum, V_IN = V_OUT(T) + 1.0 V",
+    "page": 4,
+    "evidence": "Supply Current IDD  - 1.0 3.0 μA",
+    "typ": 1e-06
+   },
+   "ratings": {
+    "v_in_max": {
+     "value": 7.0,
+     "unit": "V",
+     "conditions": "absolute maximum rating",
+     "page": 3,
+     "evidence": "Input Voltage VIN -0.3 ~ 7.0 V"
+    },
+    "i_limit_min": {
+     "value": 0.2,
+     "unit": "A",
+     "conditions": "maximum output current min, 3.0–3.9 V types (merged cell)",
+     "page": 5,
+     "evidence": "75 350 250 680 200"
+    }
+   }
+  },
+  {
+   "id": "HT7333-A",
+   "kind": "ldo_partial",
+   "aliases": [
+    "HT7333"
+   ],
+   "title": "HT7333 fixed 3.3 V low quiescent current LDO (Holtek, SOT89)",
+   "package": "SOT89",
+   "source_id": "mod-power-ht7333-ds",
+   "module": "ht7333",
+   "missing": [
+    "r_th_ja",
+    "t_shutdown",
+    "dropout maximum"
+   ],
+   "v_out": {
+    "value": 3.3,
+    "unit": "V",
+    "conditions": "typical at V_IN = 4.3 V, I_OUT = 40 mA",
+    "page": 4,
+    "evidence": "VOUT Output Voltage 4.3V IOUT=40mA 3.201 3.300 3.399 V"
+   },
+   "dropout": {
+    "value": 0.09,
+    "unit": "V",
+    "conditions": "TYPICAL only at I_OUT = 40 mA (no maximum in the datasheet)",
+    "page": 4,
+    "evidence": "VDROP** Dropout Voltage — IOUT=40mA — 90 — mV",
+    "typ": 0.09,
+    "i_out": 0.04,
+    "typical_only": true
+   },
+   "i_q": {
+    "value": 7e-06,
+    "unit": "A",
+    "conditions": "maximum, no load, V_IN = 4.3 V",
+    "page": 4,
+    "evidence": "ISS Quiescent Current 4.3V No load — 3.5 7.0 µA",
+    "typ": 3.5e-06
+   },
+   "ratings": {
+    "v_in_max": {
+     "value": 14.0,
+     "unit": "V",
+     "conditions": "absolute maximum rating (operating up to 12 V)",
+     "page": 2,
+     "evidence": "VSS−0.3V to VSS+14V"
+    },
+    "i_limit_min": {
+     "value": 0.25,
+     "unit": "A",
+     "conditions": "maximum output current min at V_IN = 4.3 V",
+     "page": 4,
+     "evidence": "IOUT(MAX) Maximum Output Current 4.3V VOUT ≥ 2.97V 250"
+    },
+    "t_j_max": {
+     "value": 150.0,
+     "unit": "°C",
+     "conditions": "absolute maximum rating",
+     "page": 2,
+     "evidence": "Maximum Junction Temperature .......................150°C"
+    }
+   }
+  },
+  {
+   "id": "ME6211C33M5G-N",
+   "kind": "ldo_partial",
+   "aliases": [
+    "ME6211C33M5G",
+    "ME6211C33",
+    "me6211"
+   ],
+   "title": "ME6211C33M5G-N fixed 3.3 V 500 mA LDO with CE (Microne, SOT23-5)",
+   "package": "SOT23-5",
+   "source_id": "mod-power-me6211-ds",
+   "module": "me6211",
+   "missing": [
+    "t_shutdown",
+    "dropout maximum",
+    "guaranteed (minimum) output current"
+   ],
+   "v_out": {
+    "value": 3.3,
+    "unit": "V",
+    "conditions": "nominal, ±1 %",
+    "page": 3,
+    "evidence": "ME6211C33M5G-N Enable can be set  3.3V SOT23-5"
+   },
+   "dropout": {
+    "value": 0.26,
+    "unit": "V",
+    "conditions": "TYPICAL only at I_OUT = 200 mA (120 mV typ at 100 mA; no maximum)",
+    "page": 10,
+    "evidence": "VDIF2 IOUT =200mA  260  mV",
+    "typ": 0.26,
+    "i_out": 0.2,
+    "typical_only": true
+   },
+   "i_q": {
+    "value": 6e-05,
+    "unit": "A",
+    "conditions": "maximum, V_IN = V_OUT + 1 V",
+    "page": 10,
+    "evidence": "Supply Current ISS VIN= VOUT+1V  30 60 μA",
+    "typ": 3e-05
+   },
+   "ratings": {
+    "v_in_max": {
+     "value": 6.5,
+     "unit": "V",
+     "conditions": "absolute maximum rating",
+     "page": 5,
+     "evidence": "Input Voltage VIN 6.5 V"
+    },
+    "t_j_max": {
+     "value": 150.0,
+     "unit": "°C",
+     "conditions": "absolute maximum rating",
+     "page": 5,
+     "evidence": "Junction temperature TJ -40 ~ +150 ℃"
+    },
+    "r_th_ja": {
+     "value": 210.0,
+     "unit": "°C/W",
+     "conditions": "SOT23-5, junction to air",
+     "page": 5,
+     "evidence": "SOT23-5 210"
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,666 @@
+{
+ "schema": 1,
+ "id": "wt32-eth01",
+ "title": "WT32-ETH01",
+ "revision": "V1.4",
+ "chip": "esp32",
+ "source_id": "ds-wt32-eth01-v1.4",
+ "module": {
+  "name": "WT32-S1",
+  "part_numbers": [],
+  "variant": null,
+  "flash_mb": 4,
+  "psram_mb": null,
+  "antenna": null,
+  "source_id": "ds-wt32-eth01-v1.4"
+ },
+ "buttons": [],
+ "headers": [
+  {
+   "id": "PROG",
+   "side": "left",
+   "pins": [
+    {
+     "n": 1,
+     "label": "EN",
+     "kind": "reset"
+    },
+    {
+     "n": 2,
+     "label": "GND",
+     "kind": "ground"
+    },
+    {
+     "n": 3,
+     "label": "3V3",
+     "kind": "power"
+    }
+   ]
+  },
+  {
+   "id": "IO",
+   "side": "left",
+   "pins": [
+    {
+     "n": 1,
+     "label": "EN",
+     "kind": "reset"
+    },
+    {
+     "n": 2,
+     "label": "CFG",
+     "kind": "gpio",
+     "gpio": 32
+    },
+    {
+     "n": 3,
+     "label": "485_EN",
+     "kind": "gpio",
+     "gpio": 33
+    },
+    {
+     "n": 4,
+     "label": "RXD",
+     "kind": "gpio",
+     "gpio": 5
+    },
+    {
+     "n": 5,
+     "label": "TXD",
+     "kind": "gpio",
+     "gpio": 17
+    },
+    {
+     "n": 6,
+     "label": "GND",
+     "kind": "ground"
+    },
+    {
+     "n": 7,
+     "label": "3V3",
+     "kind": "power"
+    },
+    {
+     "n": 8,
+     "label": "GND",
+     "kind": "ground"
+    },
+    {
+     "n": 9,
+     "label": "5V",
+     "kind": "power"
+    },
+    {
+     "n": 10,
+     "label": "LINK",
+     "kind": "signal"
+    }
+   ]
+  },
+  {
+   "id": "PROG",
+   "side": "right",
+   "pins": [
+    {
+     "n": 4,
+     "label": "TXD",
+     "kind": "gpio",
+     "gpio": 1
+    },
+    {
+     "n": 5,
+     "label": "RXD",
+     "kind": "gpio",
+     "gpio": 3
+    },
+    {
+     "n": 6,
+     "label": "IO0",
+     "kind": "gpio",
+     "gpio": 0
+    }
+   ]
+  },
+  {
+   "id": "IO",
+   "side": "right",
+   "pins": [
+    {
+     "n": 11,
+     "label": "GND",
+     "kind": "ground"
+    },
+    {
+     "n": 12,
+     "label": "IO39",
+     "kind": "gpio",
+     "gpio": 39
+    },
+    {
+     "n": 13,
+     "label": "IO36",
+     "kind": "gpio",
+     "gpio": 36
+    },
+    {
+     "n": 14,
+     "label": "IO15",
+     "kind": "gpio",
+     "gpio": 15
+    },
+    {
+     "n": 15,
+     "label": "IO14",
+     "kind": "gpio",
+     "gpio": 14
+    },
+    {
+     "n": 16,
+     "label": "IO12",
+     "kind": "gpio",
+     "gpio": 12
+    },
+    {
+     "n": 17,
+     "label": "IO35",
+     "kind": "gpio",
+     "gpio": 35
+    },
+    {
+     "n": 18,
+     "label": "IO4",
+     "kind": "gpio",
+     "gpio": 4
+    },
+    {
+     "n": 19,
+     "label": "IO2",
+     "kind": "gpio",
+     "gpio": 2
+    },
+    {
+     "n": 20,
+     "label": "GND",
+     "kind": "ground"
+    }
+   ]
+  }
+ ],
+ "onboard": [
+  {
+   "gpio": 0,
+   "what": "Ethernet REF_CLK input from the 50 MHz oscillator",
+   "severity": "blocked",
+   "source_id": "sch-wt32-eth01-v1.4"
+  },
+  {
+   "gpio": 5,
+   "what": "LED3 serial activity LED (RXD2)",
+   "severity": "caution",
+   "source_id": "ds-wt32-eth01-v1.4"
+  },
+  {
+   "gpio": 17,
+   "what": "LED4 serial activity LED (TXD2)",
+   "severity": "caution",
+   "source_id": "ds-wt32-eth01-v1.4"
+  },
+  {
+   "gpio": 32,
+   "what": "CFG pin, used for hardware factory reset",
+   "severity": "info",
+   "source_id": "wiki-wt32-eth01-features"
+  },
+  {
+   "gpio": 33,
+   "what": "485_EN, the RS485 enable pin",
+   "severity": "info",
+   "source_id": "wiki-wt32-eth01-features"
+  }
+ ],
+ "usb": [],
+ "connectors": [
+  {
+   "kind": "rj45",
+   "label": "LAN",
+   "source_id": "ds-wt32-eth01-v1.4"
+  }
+ ],
+ "warnings": [
+  {
+   "id": "wt32.power_exclusive",
+   "severity": "danger",
+   "message": "Feed either 3V3 or 5V, never both.",
+   "source_id": "ds-wt32-eth01-v1.4"
+  },
+  {
+   "id": "wt32.supply_current",
+   "severity": "caution",
+   "message": "Use a supply that delivers at least 500 mA.",
+   "source_id": "ds-wt32-eth01-v1.4"
+  }
+ ],
+ "ethernet": {
+  "phy": "LAN8720A",
+  "mdc": 23,
+  "mdio": 18,
+  "power_gpio": 16,
+  "ref_clk": {
+   "gpio": 0,
+   "mode": "ext_in"
+  },
+  "source_ids": [
+   "sch-wt32-eth01-v1.4",
+   "idf-v6.1-esp-eth"
+  ]
+ },
+ "flash_hint": "No USB port and no buttons: wire a 3.3 V USB-to-UART adapter to the PROG pins (adapter RX to TXD, adapter TX to RXD, GND to GND; keep the adapter at 3.3 V logic and power the board from a supply with at least 500 mA on 3V3 or on 5V, never both). Hold IO0 at GND while you pull EN low and release it, so the ESP32 starts the serial bootloader; flash, then free IO0 and reset again to run the firmware.",
+ "notes": [
+  "Conflict: the schematic V1.4 names a net IO35_RXD2 next to EX_IO5. The datasheet V1.4 (table 2), the wiki and the schematic's own LED3 note (RXD2(IO5)) all say RXD = IO5 (RXD2), so IO-4 RXD is GPIO5 and IO-17 is GPIO35; the IO35_RXD2 net stays recorded as a conflict.",
+  "Header sides: read by eye from the manufacturer's photo (datasheet V1.4 p.7, back side) and drawn from the component side with the RJ45 at the bottom: left PROG 1-3 and IO 1-10, right PROG 4-6 and IO 11-20. Not machine-checkable.",
+  "Labels as printed in the datasheet tables, normalized: EN1 -> EN, 5V2 -> 5V, IO393 -> IO39, IO363 -> IO36 and 3V3 with note 2 on IO-7 (note digits), I014 -> IO14 (typo).",
+  "IO39, IO36 and IO35 are input only.",
+  "PROG (datasheet table 1) is the reserved debug and programming interface: TXD/RXD there are GPIO1/GPIO3 (TXD0/RXD0, UART0); TXD/RXD on IO-5/IO-4 are UART2 (GPIO17/GPIO5).",
+  "LINK (IO-10) is the PHY's network link LED line, not an ESP32 GPIO.",
+  "Ethernet (LAN8720A over RMII): MDC GPIO23, MDIO GPIO18, oscillator enable GPIO16, REF_CLK into GPIO0. GPIO0 is also a strapping pin: the oscillator must stay off while the ESP32 boots.",
+  "The pinned sources name no PSRAM for the WT32-S1 module; the module variant stays unknown, so the ESP32 rule for GPIO16/17 reports GPIO17 (IO-5 TXD) as caution.",
+  "The pinned sources state neither a USB port nor the antenna type; usb is empty and the module antenna unknown.",
+  "IO0 (PROG-6) goes to GND only for flashing (see flash_hint); in operation it carries the Ethernet REF_CLK and is not free for other uses."
+ ],
+ "citations": [
+  {
+   "about": "revision",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "document": "WT32-ETH01_V1.4"
+  },
+  {
+   "about": "revision",
+   "source_id": "sch-wt32-eth01-v1.4",
+   "document": "WT32-ETH01_V1.4"
+  },
+  {
+   "about": "headers.PROG",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "table": "表-1 调试烧录接口"
+  },
+  {
+   "about": "headers.IO",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "table": "表-2 模块 IO 描述"
+  },
+  {
+   "about": "headers.PROG",
+   "source_id": "wiki-wt32-eth01-features",
+   "quote": "2.1 Programming/Debugging Pins"
+  },
+  {
+   "about": "headers.IO",
+   "source_id": "wiki-wt32-eth01-features",
+   "quote": "2.2 O Pin Description"
+  },
+  {
+   "about": "headers.side",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "figure": "datasheet V1.4 p.7, 3.2 实物图 (image 2): back-side photo",
+   "note": "read by eye from the manufacturer photo, datasheet V1.4 p.7; not machine-checkable"
+  },
+  {
+   "about": "module",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "LAN8720A RMII WT32-S1 IO"
+  },
+  {
+   "about": "module",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "板载 Flash 32Mbit"
+  },
+  {
+   "about": "onboard[0]",
+   "source_id": "sch-wt32-eth01-v1.4",
+   "quote": "IO0_RMII_EMAC_REF_CLK GPIO0"
+  },
+  {
+   "about": "onboard[0]",
+   "source_id": "sch-wt32-eth01-v1.4",
+   "quote": "OSC50MHZ"
+  },
+  {
+   "about": "onboard[0]",
+   "source_id": "sch-wt32-eth01-v1.4",
+   "quote": "IO16_OSC_EN"
+  },
+  {
+   "about": "onboard[0]",
+   "source_id": "idf-v6.1-esp-eth",
+   "quote": "then ``GPIO0`` is the only choice to input the ``REF_CLK`` signal"
+  },
+  {
+   "about": "onboard[0]",
+   "source_id": "idf-v6.1-esp-eth",
+   "quote": "Please note that ``GPIO0`` is also an important strapping GPIO on ESP32."
+  },
+  {
+   "about": "onboard[1]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "LED3：串口指示灯，RXD2(IO5)有数据流时，灯亮"
+  },
+  {
+   "about": "onboard[1]",
+   "source_id": "sch-wt32-eth01-v1.4",
+   "quote": "LED3：串口指示灯，RXD2(IO5)有数据流时，灯亮"
+  },
+  {
+   "about": "onboard[2]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "LED4：串口指示灯，TXD2(IO17)有数据流时，灯亮"
+  },
+  {
+   "about": "onboard[2]",
+   "source_id": "sch-wt32-eth01-v1.4",
+   "quote": "LED4：串口指示灯，TXD2(IO17)有数据流时，灯亮"
+  },
+  {
+   "about": "onboard[3]",
+   "source_id": "wiki-wt32-eth01-features",
+   "quote": "CFG\nIO32 pin, used for hardware factory reset"
+  },
+  {
+   "about": "onboard[3]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "2 CFG IO32, CFG"
+  },
+  {
+   "about": "onboard[4]",
+   "source_id": "wiki-wt32-eth01-features",
+   "quote": "485_EN\nIO33, Enable pin for RS485"
+  },
+  {
+   "about": "onboard[4]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "3 485_EN IO33, RS485 的使能引脚"
+  },
+  {
+   "about": "connectors[0]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "网口规格 RJ45、10/100Mbps、交叉直连自适应"
+  },
+  {
+   "about": "connectors[0]",
+   "source_id": "wiki-wt32-eth01-features",
+   "quote": "Provides an RJ45 Ethernet port (10/100Mbps auto-negotiation)"
+  },
+  {
+   "about": "warnings[0]",
+   "source_id": "wiki-wt32-eth01-features",
+   "quote": "you must choose either the 3V3 power supply OR the 5V power supply"
+  },
+  {
+   "about": "warnings[0]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "注 2：3V3 电源供电和 5V 电源供电，二者只能选择其一！！！"
+  },
+  {
+   "about": "warnings[0]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "工作电压 5V 或 3.3V 供电（任选其一）"
+  },
+  {
+   "about": "warnings[1]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "供电电流 最小：500 mA"
+  },
+  {
+   "about": "ethernet.phy",
+   "source_id": "sch-wt32-eth01-v1.4",
+   "quote": "PHY-10-100M LAN8720A 8P8C-RJ45网口+带滤波器"
+  },
+  {
+   "about": "ethernet.phy",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "LAN8720A RMII WT32-S1 IO"
+  },
+  {
+   "about": "ethernet.mdc",
+   "source_id": "sch-wt32-eth01-v1.4",
+   "quote": "IO23_RMII_MDC"
+  },
+  {
+   "about": "ethernet.mdio",
+   "source_id": "sch-wt32-eth01-v1.4",
+   "quote": "IO18_RMII_MDIO"
+  },
+  {
+   "about": "ethernet.power_gpio",
+   "source_id": "sch-wt32-eth01-v1.4",
+   "quote": "IO16_OSC_EN"
+  },
+  {
+   "about": "ethernet.ref_clk",
+   "source_id": "sch-wt32-eth01-v1.4",
+   "quote": "IO0_RMII_EMAC_REF_CLK GPIO0"
+  },
+  {
+   "about": "ethernet.ref_clk",
+   "source_id": "idf-v6.1-esp-eth",
+   "quote": "Some PHY chip uses an externally connected 50 MHz crystal oscillator or other clock sources, which can also be used as the ``REF_CLK`` for the MAC side"
+  },
+  {
+   "about": "ethernet.ref_clk",
+   "source_id": "idf-v6.1-esp-eth",
+   "quote": "If the RMII clock mode is configured to :cpp:enumerator:`emac_rmii_clock_mode_t::EMAC_CLK_EXT_IN`, then ``GPIO0`` is the only choice to input the ``REF_CLK`` signal."
+  },
+  {
+   "about": "flash_hint",
+   "source_id": "board-esptool-boot-mode",
+   "quote": "will enter the serial bootloader when GPIO0 is held low on reset."
+  },
+  {
+   "about": "flash_hint",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "1 EN1 预留调试烧录接口；使能，高电平有效"
+  },
+  {
+   "about": "flash_hint",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "3 3V3 预留调试烧录接口；3V3"
+  },
+  {
+   "about": "flash_hint",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "4 TXD 预留调试烧录接口；IO1, TXD0"
+  },
+  {
+   "about": "flash_hint",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "5 RXD 预留调试烧录接口；IO3, RXD0"
+  },
+  {
+   "about": "flash_hint",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "6 IO0 预留调试烧录接口；IO0"
+  },
+  {
+   "about": "flash_hint",
+   "source_id": "wiki-wt32-eth01-features",
+   "quote": "IO0\nBoot mode pin for programming"
+  },
+  {
+   "about": "flash_hint",
+   "source_id": "wiki-wt32-eth01-features",
+   "quote": "you must choose either the 3V3 power supply OR the 5V power supply"
+  },
+  {
+   "about": "notes[0]",
+   "source_id": "sch-wt32-eth01-v1.4",
+   "quote": "IO35_RXD2\nEX_IO5"
+  },
+  {
+   "about": "notes[0]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "4 RXD IO5, RXD2"
+  },
+  {
+   "about": "notes[0]",
+   "source_id": "wiki-wt32-eth01-features",
+   "quote": "RXD\nIO5, Input pin for uart2"
+  },
+  {
+   "about": "notes[0]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "17 IO35 IO35 仅支持输入"
+  },
+  {
+   "about": "notes[1]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "figure": "datasheet V1.4 p.7, 3.2 实物图 (image 2): back-side photo",
+   "note": "read by eye from the manufacturer photo, datasheet V1.4 p.7; not machine-checkable"
+  },
+  {
+   "about": "notes[2]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "1 EN1 使能，高电平有效"
+  },
+  {
+   "about": "notes[2]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "9 5V2 5V 电源供电"
+  },
+  {
+   "about": "notes[2]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "12 IO393 IO39, 仅支持输入"
+  },
+  {
+   "about": "notes[2]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "13 IO363 IO36, 仅支持输入"
+  },
+  {
+   "about": "notes[2]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "15 I014 IO14"
+  },
+  {
+   "about": "notes[2]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "7\n2\n3V3 3V3 电源供电"
+  },
+  {
+   "about": "notes[3]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "注 3：IO39、IO35 和 IO36 仅支持输入。"
+  },
+  {
+   "about": "notes[3]",
+   "source_id": "idf-v6.1-gpio-esp32",
+   "quote": "GPIO34-39 can only be set as input mode"
+  },
+  {
+   "about": "notes[4]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "4 TXD 预留调试烧录接口；IO1, TXD0"
+  },
+  {
+   "about": "notes[4]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "5 RXD 预留调试烧录接口；IO3, RXD0"
+  },
+  {
+   "about": "notes[4]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "5 TXD IO17, TXD2"
+  },
+  {
+   "about": "notes[4]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "4 RXD IO5, RXD2"
+  },
+  {
+   "about": "notes[5]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "10 LINK 网络连接指示灯引脚"
+  },
+  {
+   "about": "notes[5]",
+   "source_id": "wiki-wt32-eth01-features",
+   "quote": "LINK\nNetwork link indicator LED pin"
+  },
+  {
+   "about": "notes[5]",
+   "source_id": "sch-wt32-eth01-v1.4",
+   "quote": "LED2-nINTSEL LINK"
+  },
+  {
+   "about": "notes[6]",
+   "source_id": "sch-wt32-eth01-v1.4",
+   "quote": "IO23_RMII_MDC\nIO18_RMII_MDIO\nIO16_OSC_EN\nIO0_RMII_EMAC_REF_CLK"
+  },
+  {
+   "about": "notes[6]",
+   "source_id": "idf-v6.1-esp-eth",
+   "quote": "The workaround for this issue is disabling the ``REF_CLK`` in hardware by default so that the strapping pin is not interfered by other signals in the boot stage."
+  },
+  {
+   "about": "notes[7]",
+   "source_id": "idf-v6.1-gpio-esp32",
+   "quote": "GPIO6-11 and GPIO16-17 are usually connected to the SPI flash and PSRAM integrated on the module and therefore should not be used for other purposes"
+  },
+  {
+   "about": "notes[7]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "板载 Flash 32Mbit"
+  },
+  {
+   "about": "notes[8]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "网口规格 RJ45、10/100Mbps、交叉直连自适应"
+  },
+  {
+   "about": "notes[9]",
+   "source_id": "board-esptool-boot-mode",
+   "quote": "will enter the serial bootloader when GPIO0 is held low on reset."
+  },
+  {
+   "about": "notes[9]",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "6 IO0 预留调试烧录接口；IO0"
+  },
+  {
+   "about": "notes[9]",
+   "source_id": "sch-wt32-eth01-v1.4",
+   "quote": "IO0_RMII_EMAC_REF_CLK GPIO0"
+  },
+  {
+   "about": "flash_hint",
+   "source_id": "ds-wt32-eth01-v1.4",
+   "quote": "供电电流 最小：500 mA"
+  },
+  {
+   "about": "notes[0]",
+   "source_id": "sch-wt32-eth01-v1.4",
+   "quote": "LED3：串口指示灯，RXD2(IO5)有数据流时，灯亮"
+  }
+ ],
+ "drawing": {
+  "schema": 1,
+  "orientation": "module_top",
+  "parts": [
+   {
+    "kind": "rj45",
+    "label": "LAN",
+    "edge": "bottom",
+    "order": 1,
+    "source_id": "ds-wt32-eth01-v1.4",
+    "quote": "网口规格 RJ45、10/100Mbps、交叉直连自适应"
+   },
+   {
+    "kind": "phy_ic",
+    "label": "LAN8720A",
+    "zone": "middle",
+    "side": "center",
+    "source_id": "sch-wt32-eth01-v1.4",
+    "quote": "PHY-10-100M LAN8720A 8P8C-RJ45网口+带滤波器"
+   }
+  ]
+ }
+}

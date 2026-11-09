@@ -1,0 +1,68 @@
+# source_id: mod-ndrive-drv8871-ds
+# document: Texas Instruments DRV8871 3.6-A Brushed DC Motor Driver With Internal Current Sense (PWM Control) data sheet, SLVSCY9B (revised July 2016)
+# url: https://www.ti.com/lit/ds/symlink/drv8871.pdf
+# corpus: mod/ndrive/drv8871.pdf sha256 09de551aa0c6d090fd14b000634cfd894d782a050eed13110fe2eb10f1b548bf
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+• Wide 6.5-V to 45-V Operating Voltage
+• 3.6-A Peak Current Drive
+• Current Regulation Without a Sense Resistor
+@@ page 3
+GND 1 PWR Logic ground Connect to board ground
+ILIM 4 I Current limit control Connect a resistor to ground to set the current chopping threshold
+IN1 3
+I Logic inputs Controls the H-bridge output. Has internal pulldowns (see Table 1).
+IN2 2
+OUT1 6
+O H-bridge output Connect directly to the motor or other inductive load.
+OUT2 8
+PGND 7 PWR High-current ground path Connect to board ground.
+VM 5 PWR 6.5-V to 45-V powersupply Connect a 0.1-µF bypass capacitor to ground, as well as sufficientbulk capacitance, rated for the VM voltage.
+Connect to board ground. For good thermal dissipation, use large
+ground planes on multiple layers, and multiple nearby vias
+Power supply voltage (VM) –0.3 50 V
+Logic input voltage (IN1, IN2) –0.3 7 V
+Output current (100% duty cycle) 0 3.5 A
+@@ page 4
+(2) Power dissipation and thermal limits must be observed
+VM Power supply voltage 6.5 45 V
+VI Logic input voltage (IN1, IN2) 0 5.5 V
+Ipeak Peak output current (2) 0 3.6 A
+RθJA Junction-to-ambient thermal resistance 41.1 °C/W
+@@ page 5
+IVM VM operating supplycurrent VM = 12 V 3 10 mA
+IVMSLEEP VM sleep current VM = 12 V 10 µA
+VIL Input logic low voltage 0.5 V
+VIH Input logic high voltage 1.5 V
+RPD Pulldown resistance To GND 100 kΩ
+VILIM
+Constant for calculating
+current regulation (see
+Equation 1)
+IOUT = 1 A 59 64 69 kV
+VUVLO VM undervoltage lockout
+VM falls until UVLO triggers 6.1 6.4
+VM rises until operation recovers 6.3 6.5
+IOCP Overcurrent protection triplevel 3.7 4.5 6.4 A
+TSD Thermal shutdowntemperature 150 175 °C
+@@ page 8
+IN1 IN2 OUT1 OUT2 DESCRIPTION
+0 0 High-Z High-Z Coast; H-bridge disabled to High-Z (sleep entered after 1 ms)
+0 1 L H Reverse (Current OUT2 → OUT1)
+1 0 H L Forward (Current OUT1 → OUT2)
+1 1 L L Brake; low-side slow decay
+When IN1 and IN2 are both low for time tSLEEP (typically 1 ms), the DRV8871 device enters a low-power sleep
+@@ page 9
+V (kV) 64 (kV)I (A) R (k ) R (k )  : : 
+For example, if RILIM = 32 kΩ, the DRV8871 device limits motor current to 2 A no matter how much load torque is
+applied. The minimum allowed RILIM is 15 kΩ. System designers should always understand the min and max
+ITRIP, based on the RILIM resistor component tolerance and the DRV8871 specified VILIM range.
+@@ page 10
+If current regulation is not needed, a 15-kΩ to 18-kΩ resistor should be used on pin ILIM. This mode provides the
+highest possible peak current: up to 3.6 A for a few hundred milliseconds (depending on PCB characteristics and
+@@ page 12
+The DRV8871 device has been measured to be capable of 2-A RMS current at 25°C on standard FR-4 PCBs.
+@@ page 14
+Having appropriate local bulk capacitance is an important factor in motor drive system design. In general, having
+The voltage rating for bulk capacitors should be higher than the operating voltage, to provide margin for cases

@@ -1,0 +1,31 @@
+# source_id: mod-ambient-sgp40-ds
+# document: Sensirion Datasheet SGP40 Indoor Air Quality Sensor for VOC Measurements, version 1.2, February 2022
+# url: https://sensirion.com/media/documents/296373BB/6203C5DF/Sensirion_Gas_Sensors_Datasheet_SGP40.pdf
+# corpus: mod/ambient/Sensirion_Gas_Sensors_Datasheet_SGP40.pdf sha256 884db88ab45ae4824474c919e2e6bf940122df19c610ee2493d0b23caac4effb
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 5
+Supply voltage, hotplate supply 
+1.7 3.3 3.6 V Minimal voltage must be guaranteed also for the 
+Idle current IDD – 34 105 A The idle mode is activated after power -up, after 
+is continuously operated at VDD, VDDH = 1.8 V. 
+– 2.6 3.0 mA Average current consumption while the sensor 
+is continuously operated at VDD, VDDH = 3.3 V. 
+SCL clock frequency fSCL – – – 400 kHz 
+9 Sending the sgp40_measure_raw_signal command enables continuous operation of the sensor. A 20  % higher current is drawn during 5  ms on V DDH after entering the 
+measurement mode. 
+@@ page 7
+Supply voltage VDD −0.3 to +3.6 V 
+Supply voltage VDDH −0.3 to +3.6 V 
+decoupled with an RC element. The required decoupling for V DDH depends on the power supply network connected to the 
+sensor, a capacitor of 1 F is recommended. VDD and VDDH must be connected to one single supply VDD. The external pull-
+up resistors (e.g., Rp = 10 k) are required to pull the SDA and SCL signal lines high. For dimensioning resistor sizes please 
+1 VDD Supply voltage 
+2 VSS Ground 
+3 SDA Serial data, bidirectional 
+4 n/a Connect to ground (no electrical function) 
+5 VDDH Supply voltage, hotplate 
+6 SCL Serial clock, bidirectional 
+@@ page 11
+The sensor’s I2C address is 89 (decimal; hex.: 0x59). The I 2C header is formed by the I 2C address followed by a read or write 
+is compatible with 1.7–3.6 V I2C bus voltage levels depending on the supply voltage level. 

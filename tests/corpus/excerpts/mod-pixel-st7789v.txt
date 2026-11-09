@@ -1,0 +1,48 @@
+# source_id: mod-pixel-st7789v-ds
+# document: Sitronix ST7789V 240RGB x 320 dot 262K Color with Frame Memory Single-Chip TFT Controller/Driver, Version 1.3, 2014/03 (copy hosted by Newhaven Display)
+# url: https://newhavendisplay.com/content/datasheets/ST7789V.pdf
+# corpus: mod/pixel/ST7789V.pdf sha256 8ecf0e438aa25554efc473a4cfe6e436f3fb33e68cd876b25041557235d04ca1
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+ST7789V 
+Version 1.3  
+@@ page 33
+RESX I 
+-Signal is active low. 
+CSX I 
+DCX I 
+-This pin is used to be serial interface clock. 
+@@ page 34
+- Display data/command selection pin in 4-line serial interface. 
+SDA I/O  
+-When IM3: High, SPI interface input pin. 
+SDO O 
+-If not used, let this pin open. 
+@@ page 37
+Supply Voltage VDD - 0.3 ~ +4.6 V 
+Supply Voltage (Logic) VDDI - 0.3 ~ +4.6 V 
+Logic Input Voltage Range VIN -0.3 ~ VDDI + 0.5 V 
+@@ page 38
+System Voltage VDD 
+2.4 2.75 3.3 V  
+Interface Operation Voltage VDDI 
+1.65 1.8 3.3 V  
+Logic-High Input Voltage VIH  0.7VDDI   VDDI V Note 1 
+Logic-Low Input Voltage VIL  VSS  0.3VDDI  V Note 1 
+Logic-High Output Voltage VOH IOH = -1.0mA 0.8VDDI   VDDI V Note 1 
+@@ page 40
+Ta=25 ℃, Frame rate = 60Hz, Registers setting are IC default setting. 
+Normal Mode Black 0.005 6.0 0.01 7.5 
+Sleep-in Mode N/A 0.005 0.015 0.01 0.03 
+2. Typical: VDDI=1.8V, VDD=2.75V; Maximum: VDDI=1.65 to 3.3V, VDD=2.4 to 3.3V  
+@@ page 44
+VDDI=1.65 to 3.3V, VDD=2.4 to 3.3V, AGND=DGND=0V, T a=-30 to 70 ℃ 
+TSCYCW  Serial clock cycle (Write) 66  ns 
+TSCYCR  Serial clock cycle (Read) 150  ns 
+@@ page 48
+TRW Reset pulse duration 10 - us 
+@@ page 49
+7. It is necessary to wait 5msec after releasing RESX before sending commands. Also Sleep Out command cannot be sent for 
+@@ page 50
+0 1 1 0 4-line 8bit serial I/F SDA: in/out 

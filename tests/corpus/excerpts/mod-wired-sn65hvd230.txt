@@ -1,0 +1,23 @@
+# source_id: mod-wired-sn65hvd230-ds
+# document: Texas Instruments SN65HVD23x 3.3-V CAN Bus Transceivers (SN65HVD230, SN65HVD231, SN65HVD232), data sheet SLOS346O, revised April 2018
+# url: https://www.ti.com/lit/ds/symlink/sn65hvd230.pdf
+# corpus: mod/wired/sn65hvd230.pdf sha256 e98fc0c59168c035d7958111924dae7e21e46ab45bdfd6400aef048299d6d716
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+1• Operates with a single 3.3 V Supply
+@@ page 5
+Supply voltage, VCC –0.3 6 V
+Digital Input and Output voltage, VI (D or R) –0.5 VCC + 0.5 V
+@@ page 6
+Supply voltage, VCC 3 3.6 V
+High-level input voltage, VIH D, R 2 V
+Low-level input voltage, VIL D, R 0.8 V
+Input voltage for standby or sleep, V(Rs) 0.75 VCC VCC V
+@@ page 7
+Standby SN65HVD230 V(Rs) = VCC 370 600 μA
+Dominant VI = 0 V, No load Dominant 10 17 mA
+VOH High-level output voltage –6 V ≤ VID ≤ 500 mV, IO = –8 mA, See Figure 22 2.4 V
+VOL Low-level output voltage 900 mV ≤ VID ≤ 6 V, IO = 8 mA, See Figure 22 0.4
+@@ page 27
+Termination is typically a 120 Ω resistor at each end of the bus. If filtering and stabilization of the common mode

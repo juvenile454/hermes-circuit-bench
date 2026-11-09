@@ -1,0 +1,39 @@
+# source_id: mod-iox-mcp23017-ds
+# document: MCP23017/MCP23S17 16-Bit I/O Expander with Serial Interface, DS20001952E
+# url: https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/MCP23017-MCP23S17-16-Bit-IO-Expander-with-Serial-Interface-DS20001952.pdf
+# corpus: mod/iox/mcp23017-ds20001952.pdf sha256 955825379d383249df4c1784f6598c252ccab121ef3aff6065ec6d8bf0cbc34b
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+GPB7 are output only for MCP23017):
+@@ page 3
+Voltage on VDD with respect to VSS ......................................................................................................... –0.3V to +5.5V
+Voltage on all other pins with respect to VSS (except VDD)............................................................ –0.6V to (VDD + 0.6V)
+Maximum current out of VSS pin ...........................................................................................................................150 mA
+Maximum current into VDD pin ..............................................................................................................................125 mA
+Maximum output current sunk by any output pin ....................................................................................................25 mA
+Maximum output current sourced by any output pin ...............................................................................................25 mA
+@@ page 4
+D001 Supply Voltage VDD 1.8 — 5.5 V
+D004 Supply Current IDD — — 1 mA SCL/SCK = 1 MHz
+D005 Standby current IDDS8 — — 1 µA –40°C  TA  +85°C
+D031 CS , GPIO, SCL/SCK, 
+VIL VSS — 0.2 V DD V
+D041 CS , GPIO, SCL/SCK, 
+VIH 0.8 VDD — V DD V For entire V DD range
+D080 GPIO VOL — — 0.6 V I OL = 8.0 mA
+D090 GPIO, INT, SO VOH VDD – 0.7 — — V I OH = –3.0 mA
+@@ page 6
+400 kHz mode 0.6 — — µs 2.7V – 5.5V
+1.7 MHz mode 0.12 — — µs 4.5V – 5.5V
+@@ page 11
+GPA7 24 28 I/O Bidirectional I/O pin. Can be enabled for interrupt-on-change and/or internal weak pull-up resistor./ 
+Output only (MCP23017).
+@@ page 15
+S 0 1 0 0 A2 A1 A0 R/W ACK
+@@ page 17
+IOCON 0A BANK MIRROR SEQOP DISSLW HAEN ODR INTPOL — 0000 0000
+@@ page 20
+must be externally biased, regardless of the HAEN bit
+@@ page 21
+0 = Active driver output (INTPOL bit sets the polarity.)

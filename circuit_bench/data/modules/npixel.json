@@ -1,0 +1,593 @@
+{
+ "schema": 1,
+ "wp": "npixel",
+ "note": "Values only from manufacturer documents; 'evidence' quotes a line of tests/corpus/excerpts/mod-npixel-*.txt.",
+ "modules": [
+  {
+   "id": "ws2813",
+   "aliases": [
+    "ws2813b",
+    "ws2813b-v5",
+    "ws2813b-v5w"
+   ],
+   "title": "WS2813B addressable RGB LED with backup data input (5050)",
+   "category": "led.addressable",
+   "manufacturer": "Worldsemi",
+   "kind": "ic",
+   "source_ids": [
+    "mod-npixel-ws2813-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 3.7,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Powersupplyvoltage VCC +3.7~+5.3 V",
+      "conditions": "the Absolute Maximum Ratings table lists the supply as a range +3.7 to +5.3 V"
+     },
+     "typ": {
+      "value": 5.0,
+      "unit": "V",
+      "page": 3,
+      "evidence": "Electrical Characteristics (TA=25℃,Vcc=5V",
+      "conditions": "condition of the characteristics tables"
+     },
+     "abs_max": {
+      "value": 5.3,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Powersupplyvoltage VCC +3.7~+5.3 V",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "rel": 0.7,
+     "of": "VCC",
+     "unit": "V",
+     "page": 3,
+     "evidence": "High-levelInput VIH 0.7VDD —— VDD+0.7V V DIN",
+     "conditions": "DIN; TA 25 °C, VCC 5 V (table condition; the table writes the supply as VDD)"
+    },
+    "vil": {
+     "value": 0.7,
+     "unit": "V",
+     "page": 3,
+     "evidence": "Low-levelInput VIL -0.3V —— 0.7V",
+     "conditions": "DIN; TA 25 °C, VCC 5 V"
+    },
+    "v_in_max": {
+     "rel_offset": 0.7,
+     "of": "VCC",
+     "unit": "V",
+     "page": 2,
+     "evidence": "LogicalInputVoltage VI -0.3V～VDD+0.7V V",
+     "conditions": "absolute maximum rating (written as VDD+0.7 V)"
+    }
+   },
+   "pins": [
+    {
+     "name": "BO",
+     "signal": "led_data_out",
+     "note": "pin 1, backup data output"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply",
+     "note": "pin 2"
+    },
+    {
+     "name": "DO",
+     "signal": "led_data_out",
+     "note": "pin 3, to DIN of the next LED"
+    },
+    {
+     "name": "DIN",
+     "signal": "led_data_in",
+     "note": "pin 4"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd",
+     "note": "pin 5"
+    },
+    {
+     "name": "BIN",
+     "signal": "led_data_in",
+     "note": "pin 6, backup data input; the cascade wiring is drawn only in the datasheet's image (p. 4)"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "led_serial",
+     "note": "single-wire NZR, 800 kbit/s, 24 bit per LED in GRB order, plus a backup input (pp. 1-4)"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "sleep": {
+     "value": 0.0006,
+     "unit": "A",
+     "page": 3,
+     "evidence": "QuiescentCurrent:<0.6mA Test DC=5VMin Tpy Max Unit Workingcurrent",
+     "conditions": "quiescent current per LED, upper bound (<0.6 mA), test DC 5 V"
+    },
+    "note": "LED current: 16 mA per colour is the test condition of the brightness table (p. 3), not a maximum."
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Data rate up to 800 kbit/s.",
+     "page": 1,
+     "evidence": "Datatransmittingatspeedsofupto800Kbps.",
+     "verified": true
+    },
+    {
+     "text": "Dual signal wires: a failed LED does not break the chain (backup input BIN).",
+     "page": 1,
+     "evidence": "Dual-signalwiresversion,signalbreak-pointcontinuoustransmission.",
+     "verified": true
+    },
+    {
+     "text": "Bit timing: T0H 220–380 ns, T1H/T0L/T1L 580 ns–1 µs; reset (frame) low time above 280 µs.",
+     "page": 3,
+     "evidence": [
+      "T0H 0-code,High-leveltime 220ns~380ns",
+      "T1H 1-code,High-leveltime 580ns~1µs",
+      "RES Frameunit,Low-leveltime >280µs"
+     ],
+     "verified": true
+    },
+    {
+     "text": "Data order GRB, high bit first.",
+     "page": 4,
+     "evidence": "Note:DatatransmitinorderofGRB,highbitdataisfirst.",
+     "verified": true
+    },
+    {
+     "text": "No external parts needed, not even a capacitor.",
+     "page": 1,
+     "evidence": "NOextracomponentsneeded,eventhecapacitor.",
+     "verified": true
+    },
+    {
+     "text": "Reverse-connection protection: a reversed 5 V supply does not damage the LED.",
+     "page": 1,
+     "evidence": [
+      "IntelligentReverse-connectionprotection.Thecomponentswillnotbedamagedwhenthe5Vpowersupplyis",
+      "reversed."
+     ],
+     "verified": true
+    },
+    {
+     "text": "VIH is 0.7·VDD: 3.5 V at VDD 5 V, above a 3.3 V GPIO high level.",
+     "page": 3,
+     "evidence": "High-levelInput VIH 0.7VDD —— VDD+0.7V V DIN",
+     "verified": true
+    },
+    {
+     "text": "Common practice for a 5 V strip on a 3.3 V ESP32: a 5 V-supplied buffer with TTL inputs (e.g. 74AHCT125) in the data line.",
+     "verified": false
+    },
+    {
+     "text": "Typical application (image only, p. 4): DO and BO of one LED feed DIN and BIN of the next; the first LED's BIN is often tied to GND or to DIN on strips (wiring not in the text layer).",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "ws2815",
+   "aliases": [
+    "ws2815b",
+    "ws2815b-v1"
+   ],
+   "title": "WS2815B addressable RGB LED, 12 V supply, dual data input (5050)",
+   "category": "led.addressable",
+   "manufacturer": "Worldsemi",
+   "kind": "ic",
+   "source_ids": [
+    "mod-npixel-ws2815-ds"
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 9.5,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Powersupplyvoltage VDD +9.5~+13.5 V",
+      "conditions": "the Absolute Maximum Ratings table lists the supply as a range +9.5 to +13.5 V"
+     },
+     "typ": {
+      "value": 12.0,
+      "unit": "V",
+      "page": 2,
+      "evidence": "2 VDD LEDPOWERSUPPLY LEDPOWERSUPPLY,connectto“+12V”",
+      "conditions": "pin description: connect to +12 V"
+     },
+     "abs_max": {
+      "value": 13.5,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Powersupplyvoltage VDD +9.5~+13.5 V",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "VDD",
+    "vih": {
+     "value": 2.7,
+     "unit": "V",
+     "page": 3,
+     "evidence": "HighVoltageInput VIH 2.7 —— 5.7 V DIN，SET",
+     "conditions": "DIN; TA 25 °C, VDD 12 V (table condition)"
+    },
+    "vil": {
+     "value": 1.5,
+     "unit": "V",
+     "page": 3,
+     "evidence": "LowVoltageInput VIL -0.3 —— 1.5 V",
+     "conditions": "DIN; TA 25 °C, VDD 12 V"
+    },
+    "v_in_max": {
+     "value": 5.7,
+     "unit": "V",
+     "page": 2,
+     "evidence": "LogicalInputVoltage VI -0.3~5.7 V",
+     "conditions": "absolute maximum rating of the data inputs (independent of the 12 V supply)"
+    }
+   },
+   "pins": [
+    {
+     "name": "NC",
+     "signal": "nc",
+     "note": "pin 1, not connected"
+    },
+    {
+     "name": "VDD",
+     "signal": "supply",
+     "note": "pin 2, +12 V"
+    },
+    {
+     "name": "DO",
+     "signal": "led_data_out",
+     "note": "pin 3"
+    },
+    {
+     "name": "DIN1",
+     "signal": "led_data_in",
+     "note": "pin 4, data input 1"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd",
+     "note": "pin 5"
+    },
+    {
+     "name": "DIN2",
+     "signal": "led_data_in",
+     "note": "pin 6, data input 2 (backup)"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "led_serial",
+     "note": "single-wire NZR, 800 kbit/s, 24 bit per LED in GRB order, two data inputs (pp. 1-4)"
+    }
+   ],
+   "current": {
+    "supply": "VDD",
+    "sleep": {
+     "value": 0.002,
+     "unit": "A",
+     "page": 3,
+     "evidence": "Quiescent Current＜2mA Testing Condition",
+     "conditions": "quiescent current per LED, upper bound (<2 mA)"
+    },
+    "note": "LED current: 12 mA per colour is the test condition of the brightness table (p. 3); the absolute maximum table gives a power consumption of 0.1–0.18 W per LED (p. 2)."
+   },
+   "requires": [],
+   "hazards": [
+    {
+     "code": "high_current",
+     "text": "12 V LED supply (strips draw several amperes): keep the 12 V rail away from the ESP32 and from the data inputs (max 5.7 V); power the ESP32 from its own regulator and share only GND.",
+     "page": 2,
+     "evidence": "LogicalInputVoltage VI -0.3~5.7 V"
+    }
+   ],
+   "notes": [
+    {
+     "text": "12 V supply reduces the current of the whole pixel and the voltage drop along the strip.",
+     "page": 1,
+     "evidence": "12Vpowersupplyvoltagecaneffectivelyreducetheworkingcurrentofthewholepixel",
+     "verified": true
+    },
+    {
+     "text": "Data rate 800 kbit/s.",
+     "page": 1,
+     "evidence": "Senddataatspeedsof800Kbps.",
+     "verified": true
+    },
+    {
+     "text": "Two-way signal transmission: a damaged pixel does not affect the rest of the chain.",
+     "page": 1,
+     "evidence": "Realize two-way signal transmission, in the case of damage to a",
+     "verified": true
+    },
+    {
+     "text": "Bit timing: T0H 220–380 ns, T1H 580–840 ns, T0L 900 ns–5 µs, T1L 600 ns–5 µs; reset low time above 280 µs.",
+     "page": 3,
+     "evidence": [
+      "T0H 0code,highvoltagetime 220ns~380ns",
+      "T1H 1code,highvoltagetime 580ns~840ns",
+      "T0L 0code,lowvoltagetime 900ns~5000ns",
+      "T1L 1code,lowvoltagetime 600ns~5000ns",
+      "RES Frameunit,lowvoltagetime >280µs"
+     ],
+     "verified": true
+    },
+    {
+     "text": "Data order GRB, high bit first.",
+     "page": 4,
+     "evidence": "Note:DatatransmitinorderofGRB,highbitdataatfirst.",
+     "verified": true
+    },
+    {
+     "text": "Power consumption 0.1–0.18 W per LED (absolute maximum table).",
+     "page": 2,
+     "evidence": "PowerConsumption P 0.1~0.18 W",
+     "verified": true
+    },
+    {
+     "text": "VIH is a fixed 2.7 V at VDD 12 V (not relative to the 12 V supply).",
+     "page": 3,
+     "evidence": "HighVoltageInput VIH 2.7 —— 5.7 V DIN，SET",
+     "verified": true
+    },
+    {
+     "text": "The data inputs tolerate at most 5.7 V (absolute maximum): never pull them up to the 12 V supply.",
+     "page": 2,
+     "evidence": "LogicalInputVoltage VI -0.3~5.7 V",
+     "verified": true
+    },
+    {
+     "text": "On WS2815 strips the second data input (DIN2/BIN) of the first LED is usually tied to GND or DIN1 (strip vendor practice, not in the datasheet text).",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "ltv817",
+   "aliases": [
+    "ltv-817",
+    "ltv-817s",
+    "ltv-817m"
+   ],
+   "title": "LTV-817 phototransistor optocoupler (DIP-4, PC817 type)",
+   "category": "isolation.opto",
+   "manufacturer": "Lite-On",
+   "kind": "ic",
+   "source_ids": [
+    "mod-npixel-ltv817-ds"
+   ],
+   "pins": [
+    {
+     "name": "ANODE",
+     "signal": "analog_in",
+     "note": "pin 1, LED anode: drive it through a series resistor (calc opto), never straight from a GPIO"
+    },
+    {
+     "name": "CATHODE",
+     "signal": "gnd",
+     "note": "pin 2, LED cathode (input side ground or a sinking GPIO)"
+    },
+    {
+     "name": "EMITTER",
+     "signal": "gnd",
+     "note": "pin 3, output side ground (isolated from the LED side)"
+    },
+    {
+     "name": "COLLECTOR",
+     "signal": "open_drain_out",
+     "output": "open_drain",
+     "note": "pin 4, open collector: needs a pull-up resistor (calc opto)"
+    }
+   ],
+   "io": {
+    "outputs": "open_drain"
+   },
+   "hazards": [],
+   "notes": [
+    {
+     "text": "CTR 50 % to 600 % at IF = 5 mA, VCE = 5 V (no rank); collector current IC 2.5 mA min, 30 mA max.",
+     "page": 10,
+     "evidence": [
+      "Collector Current I C 2.5 — 30 mA",
+      "IF=5mA, VCE =5V",
+      "1. Current Transfer Ratio  CTR 50 — 600  %"
+     ],
+     "verified": true
+    },
+    {
+     "text": "CTR ranks of the LTV-817: L 50–100 %, A 80–160 %, B 130–260 %, C 200–400 %, D 300–600 %; no bin or no mark 50–600 %.",
+     "page": 11,
+     "evidence": [
+      "L 50 100",
+      "A 80 160",
+      "B 130 260",
+      "C 200 400",
+      "D 300 600",
+      "(L or A or B or C or D or no mark)  50 600"
+     ],
+     "verified": true
+    },
+    {
+     "text": "LED forward voltage VF 1.2 V typ, 1.4 V max at IF = 20 mA.",
+     "page": 10,
+     "evidence": "Forward Voltage V F — 1.2 1.4  V I F=20mA",
+     "verified": true
+    },
+    {
+     "text": "Absolute maximum: LED forward current IF 50 mA, LED reverse voltage VR 6 V, collector current IC 50 mA, VCEO 35 V (Sharp PC817: 80 V).",
+     "page": 9,
+     "evidence": [
+      "Forward Current I F 50 mA",
+      "Reverse Voltage V R 6 V",
+      "Collector - Emitter Voltage  V CEO  35 V",
+      "Collector Current I C 50 mA"
+     ],
+     "verified": true
+    },
+    {
+     "text": "VCE(sat) 0.1 V typ, 0.2 V max at IF = 20 mA, IC = 1 mA.",
+     "page": 10,
+     "evidence": "VCE(sat)  — 0.1 0.2  V I F=20mA, IC=1mA",
+     "verified": true
+    },
+    {
+     "text": "Slow output: rise time 4 µs typ / 18 µs max, fall time 3 µs typ / 18 µs max at VCE = 2 V, IC = 2 mA, RL = 100 Ω; use it for slow signals only.",
+     "page": 10,
+     "evidence": [
+      "Response Time (Rise)  tr — 4 18 μs",
+      "VCE =2V, IC=2mA",
+      "Response Time (Fall) tf — 3 18 μs"
+     ],
+     "verified": true
+    },
+    {
+     "text": "Isolation voltage 5 kV rms is a component rating; Circuit Bench only covers low-voltage circuits on both sides.",
+     "verified": false
+    },
+    {
+     "text": "Pin order (1 anode, 2 cathode, 3 emitter, 4 collector) as on the PC817; the Lite-On drawing is image-only.",
+     "verified": false
+    },
+    {
+     "text": "This entry follows Lite-On spec DS-70-96-0016 revision Q (archived copy); the live file on optoelectronics.liteon.com is not loadable by script.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "el817",
+   "aliases": [
+    "el-817",
+    "el817c",
+    "el817s1"
+   ],
+   "title": "EL817 phototransistor optocoupler (DIP-4, PC817 type)",
+   "category": "isolation.opto",
+   "manufacturer": "Everlight",
+   "kind": "ic",
+   "source_ids": [
+    "mod-npixel-el817-ds"
+   ],
+   "pins": [
+    {
+     "name": "ANODE",
+     "signal": "analog_in",
+     "note": "pin 1, LED anode: drive it through a series resistor (calc opto), never straight from a GPIO"
+    },
+    {
+     "name": "CATHODE",
+     "signal": "gnd",
+     "note": "pin 2, LED cathode (input side ground or a sinking GPIO)"
+    },
+    {
+     "name": "EMITTER",
+     "signal": "gnd",
+     "note": "pin 3, output side ground (isolated from the LED side)"
+    },
+    {
+     "name": "COLLECTOR",
+     "signal": "open_drain_out",
+     "output": "open_drain",
+     "note": "pin 4, open collector: needs a pull-up resistor (calc opto)"
+    }
+   ],
+   "io": {
+    "outputs": "open_drain"
+   },
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Pin configuration: 1 anode, 2 cathode, 3 emitter, 4 collector.",
+     "page": 1,
+     "evidence": [
+      "1. Anode",
+      "2. Cathode",
+      "3. Emitter",
+      "4. Collector"
+     ],
+     "verified": true
+    },
+    {
+     "text": "CTR 50 % to 600 % at IF = 5 mA, VCE = 5 V (EL817 without rank).",
+     "page": 3,
+     "evidence": [
+      "50 - 600",
+      "% IF = 5mA ,VCE = 5V"
+     ],
+     "verified": true
+    },
+    {
+     "text": "CTR ranks: EL817A 80–160 %, B 130–260 %, C 200–400 %, D 300–600 %, X 100–200 %, Y 150–300 %.",
+     "page": 3,
+     "evidence": [
+      "EL817A 80 - 160",
+      "EL817B 130 - 260",
+      "EL817C 200 - 400",
+      "EL817D 300 - 600",
+      "EL817X 100 - 200",
+      "EL817Y 150 - 300"
+     ],
+     "verified": true
+    },
+    {
+     "text": "LED forward voltage VF 1.2 V typ, 1.4 V max at IF = 20 mA.",
+     "page": 3,
+     "evidence": "Forward Voltage VF - 1.2 1.4 V IF = 20mA",
+     "verified": true
+    },
+    {
+     "text": "Absolute maximum: LED forward current IF 60 mA, LED reverse voltage VR 6 V, collector current IC 50 mA, VCEO 35 V (Sharp PC817: 80 V).",
+     "page": 2,
+     "evidence": [
+      "Forward current IF 60 mA",
+      "Reverse voltage VR 6 V",
+      "Collector current IC 50 mA",
+      "Collector-Emitter voltage VCEO 35 V"
+     ],
+     "verified": true
+    },
+    {
+     "text": "VCE(sat) 0.1 V typ, 0.2 V max at IF = 20 mA, IC = 1 mA.",
+     "page": 3,
+     "evidence": "saturation voltage VCE(sat) - 0.1 0.2 V IF = 20mA ,IC = 1mA",
+     "verified": true
+    },
+    {
+     "text": "Slow output: rise and fall time up to 18 µs at VCE = 2 V, IC = 2 mA, RL = 100 Ω; use it for slow signals only.",
+     "page": 3,
+     "evidence": [
+      "Rise time tr - - 18 µs VCE = 2V, IC = 2mA,",
+      "Fall time tf - - 18 µs"
+     ],
+     "verified": true
+    },
+    {
+     "text": "No guaranteed minimum collector current is listed; the CTR minimum (50 % at IF = 5 mA) implies IC ≥ 2.5 mA at that point.",
+     "verified": false
+    },
+    {
+     "text": "Isolation voltage 5 kV rms is a component rating; Circuit Bench only covers low-voltage circuits on both sides.",
+     "verified": false
+    }
+   ]
+  }
+ ]
+}

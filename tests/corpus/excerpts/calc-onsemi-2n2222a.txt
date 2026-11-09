@@ -1,0 +1,48 @@
+# Citation excerpt. '#' lines are metadata; '@@ page N' starts a segment of whole lines copied
+# verbatim from pypdf's text of that PDF page. tests/test_calc_sources.py checks code and data against it and,
+# with the corpus present, the segments against the pinned PDF.
+# source_id: onsemi-2n2222a
+# document: onsemi 2N2222A/D, Small Signal Switching Transistor, NPN Silicon, Rev. 2 — November 2013 (TO-18, JAN)
+# url: https://www.onsemi.com/download/data-sheet/pdf/2n2222a-d.pdf (same bytes: https://www.onsemi.cn/download/data-sheet/pdf/2n2222a-d.pdf)
+# corpus: calc/onsemi-2n2222a-d-rev2.pdf sha256 b3181715862c6d3c145868d170f52fa7ff8ea99d89707699c01a53d108e587c7
+# retrieved: 2026-11-06
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text() (PDF page 1 is onsemi's cover page)
+# Table layout in the text: the five hFE test conditions, then 'hFE', then the Min column (5 values), then the
+# Max column (5 values, '−' = not specified). Checked against the rendered page 3. ON CHARACTERISTICS carry
+# Note 1: pulse test, pulse width 300 µs, duty cycle ≤ 2.0 % (the µ glyph does not extract, so not quoted).
+@@ page 2
+©  Semiconductor Components Industries, LLC, 2013
+November, 2013 − Rev. 2
+1 Publication Order Number:
+2N2222A/D
+2N2222A
+Small Signal Switching
+Transistor
+NPN Silicon
+MAXIMUM RATINGS (TA = 25°C unless otherwise noted)
+Characteristic Symbol Value Unit
+Collector−Emitter Voltage VCEO 50 Vdc
+Collector Current − Continuous IC 800 mAdc
+TO−18
+@@ page 3
+ELECTRICAL CHARACTERISTICS (TA = 25°C unless otherwise noted)
+Characteristic Symbol Min Max Unit
+ON CHARACTERISTICS (Note 1)
+DC Current Gain
+(IC = 0.1 mAdc, VCE = 10 Vdc)
+(IC = 1.0 mAdc, VCE = 10 Vdc)
+(IC = 10 mAdc, VCE = 10 Vdc)
+(IC = 150 mAdc, VCE = 10 Vdc)
+(IC = 500 mAdc, VCE = 10 Vdc)
+hFE
+50
+75
+100
+100
+30
+−
+325
+−
+300
+−
+−

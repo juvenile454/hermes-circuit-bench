@@ -1,0 +1,22 @@
+{
+ "_about": "Simulated board.build answer (sizes from a real offline build of data/examples/laser-trigger, env s3, espressif32@6.9.0, 2026-11-06).",
+ "ram_pct": 5.9,
+ "flash_pct": 8.5,
+ "ram_used": 19360,
+ "ram_total": 327680,
+ "flash_used": 283309,
+ "flash_total": 3342336,
+ "duration_s": 3.5,
+ "elf": ".pio/build/{env}/firmware.elf",
+ "log_tail": [
+  "Processing {env} (platform: espressif32@6.9.0; board: esp32-s3-devkitc-1; framework: arduino)",
+  "Compiling .pio/build/{env}/src/main.cpp.o",
+  "Linking .pio/build/{env}/firmware.elf",
+  "Retrieving maximum program size .pio/build/{env}/firmware.elf",
+  "Checking size .pio/build/{env}/firmware.elf",
+  "RAM:   [=         ]   5.9% (used 19360 bytes from 327680 bytes)",
+  "Flash: [=         ]   8.5% (used 283309 bytes from 3342336 bytes)",
+  "Building .pio/build/{env}/firmware.bin",
+  "========================= [SUCCESS] Took 3.48 seconds ========================= (simulated)"
+ ]
+}

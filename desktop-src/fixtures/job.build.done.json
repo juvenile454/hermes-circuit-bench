@@ -1,0 +1,91 @@
+{
+  "ok": true,
+  "action": "job.get",
+  "summary": "Build done: Build ok in 1.1 s: RAM 5.6 %, flash 7.9 %.",
+  "result": {
+    "job_id": "j-0001-8f38f3",
+    "kind": "build",
+    "state": "done",
+    "progress": 1.0,
+    "started": "2026-11-06T11:12:03Z",
+    "finished": "2026-11-06T11:12:04Z",
+    "log_tail": [
+      "Processing s3 (platform: espressif32@6.9.0; board: esp32-s3-devkitc-1; framework: arduino)",
+      "--------------------------------------------------------------------------------",
+      "Compiling .pio/build/s3/src/main.cpp.o",
+      "Linking .pio/build/s3/firmware.elf",
+      "Retrieving maximum program size .pio/build/s3/firmware.elf",
+      "Checking size .pio/build/s3/firmware.elf",
+      "Advanced Memory Usage is available via \"PlatformIO Home > Project Inspect\"",
+      "RAM:   [=         ]   5.6% (used 18432 bytes from 327680 bytes)",
+      "Flash: [=         ]   7.9% (used 263377 bytes from 3342336 bytes)",
+      "Building .pio/build/s3/firmware.bin",
+      "========================= [SUCCESS] Took 4.22 seconds ========================="
+    ],
+    "result": {
+      "ok": true,
+      "action": "board.build",
+      "summary": "Build ok in 1.1 s: RAM 5.6 %, flash 7.9 %.",
+      "result": {
+        "ok": true,
+        "duration_s": 1.068,
+        "ram_pct": 5.6,
+        "flash_pct": 7.9,
+        "log_ref": "build-20261106-111203.log",
+        "log_tail": [
+          "Processing s3 (platform: espressif32@6.9.0; board: esp32-s3-devkitc-1; framework: arduino)",
+          "--------------------------------------------------------------------------------",
+          "Compiling .pio/build/s3/src/main.cpp.o",
+          "Linking .pio/build/s3/firmware.elf",
+          "Retrieving maximum program size .pio/build/s3/firmware.elf",
+          "Checking size .pio/build/s3/firmware.elf",
+          "Advanced Memory Usage is available via \"PlatformIO Home > Project Inspect\"",
+          "RAM:   [=         ]   5.6% (used 18432 bytes from 327680 bytes)",
+          "Flash: [=         ]   7.9% (used 263377 bytes from 3342336 bytes)",
+          "Building .pio/build/s3/firmware.bin",
+          "========================= [SUCCESS] Took 4.22 seconds ========================="
+        ],
+        "elf": ".pio/build/s3/firmware.elf",
+        "elf_path": "/home/user/.hermes/plugin-data/circuit-bench/projects/laser-trigger/firmware/.pio/build/s3/firmware.elf",
+        "elf_sha256": "e4f1f4ec7245a30b1056b268f059a038039e50eeb31baa76d1658328867bf7f4",
+        "images": {
+          "firmware.bin": "ddf4139bcb85fff6487e6d78ef94230b4337d6bc21e2cd6e68193c93c8615192"
+        },
+        "ram_used": 18432,
+        "ram_total": 327680,
+        "flash_used": 263377,
+        "flash_total": 3342336,
+        "env": "s3",
+        "project_dir": "/home/user/.hermes/plugin-data/circuit-bench/projects/laser-trigger/firmware",
+        "addr2line": "/opt/cb-fake/toolchain-xtensa-esp32s3/bin/xtensa-esp32s3-elf-addr2line",
+        "toolchain_prefix": "/opt/cb-fake/toolchain-xtensa-esp32s3/bin/xtensa-esp32s3-elf-"
+      },
+      "checks": [
+        {
+          "id": "board.build",
+          "status": "passed",
+          "detail": "pio run -e s3 -t checkprogsize -t buildprog exit 0, ELF e4f1f4ec"
+        }
+      ],
+      "warnings": [],
+      "assumptions": [],
+      "sources": [
+        {
+          "id": "board-pio-6.2.0-metadata",
+          "title": "PlatformIO Core 6.2.0: pio project metadata --json-output (observed field names)",
+          "url": "https://docs.platformio.org/en/latest/core/userguide/project/cmd_metadata.html",
+          "retrieved": "2026-11-06",
+          "note": "observed offline on PlatformIO Core 6.2.0 + espressif32 6.9.0: top-level object keyed by env name with build_type, cc_flags, cc_path, compiler_type, cxx_flags, cxx_path, defines, env_name, extra, gdb_path, includes, libsource_dirs, prog_path, svd_path, targets. prog_path is the ELF; there is no toolchain field, the prefix is cc_path without 'gcc'."
+        }
+      ],
+      "simulated": false,
+      "error": null
+    }
+  },
+  "checks": [],
+  "warnings": [],
+  "assumptions": [],
+  "sources": [],
+  "simulated": false,
+  "error": null
+}

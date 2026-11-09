@@ -1,0 +1,9 @@
+{
+ "addresses": {
+  "0x42009e9a": "read_config at /p/main/config.c:12",
+  "0x42009ea6": "load_settings at /p/main/config.c:20",
+  "0x42009ec2": "app_main at /p/main/main.c:9",
+  "0x42024620": "main_task at /esp/esp-idf/components/freertos/app_startup.c:208",
+  "0x40387d7c": "vPortTaskWrapper at /esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:255"
+ }
+}

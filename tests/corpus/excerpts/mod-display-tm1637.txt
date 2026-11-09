@@ -1,0 +1,31 @@
+# source_id: mod-display-tm1637-ds
+# document: Titan Micro Electronics TM1637 LED drive control special circuit (Chinese), V2.6 (archived copy of the titanmec.com download)
+# url: https://web.archive.org/web/20250726211808id_/http://www.titanmec.com/index/article/download.html?file=aHR0cDovL3R3ZHotYXNzZXRzLmRqd2VpbGFpLmNvbS90d2R6X2NuLzIwMjMwNTA1LzIwMjMwNTA1MTUxODAwMjExLnBkZg%3D%3D&name=TM1637_V2.6
+# corpus: mod/display/tm1637-v2.6-zh.pdf sha256 700720276ce0b91b4dba94476c20675ddab141cb5ea7fac3cad6d28b61119b9e
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 2
+DIO 数据输入/输出 17 串行数据输入/输出，输入数据在SLCK的低电平变化，在 SCLK 的高电平被传输，每传输一个字节芯片内部都将在第八个时钟下降沿产生一个ACK 
+CLK 时钟输入 18 在上升沿输入/输出数据 
+VDD 逻辑电源 16 接电源正 
+@@ page 3
+微处理器的数据通过两线总线接口和TM1637通信，在输入数据时当CLK是高电平时，DIO上的信号必
+生一个应答信号ACK将DIO管脚拉低，在第九个时钟结束之后释放DIO口线。 
+@@ page 8
+V2.6 
+10 K10 K
+VCCVCC
+注：滤波电容与芯片的VDD，
+GND之间的回路尽可能短。
+@@ page 9
+©Titan Micro Electronics                                                                 www.titanmec.com 
+逻辑电源电压 VDD -0.5 ～+7.0 V 
+逻辑输入电压 VI1 -0.5 ～ VDD + 0.5 V 
+逻辑电源电压 VDD  5  V - 
+3、电气特性（Ta = -40～+85℃，VDD = 4.5 ～ 5.5 V， Vss = 0 V） 
+@@ page 10
+高电平输入电压 VIH 0.7 VDD -  V CLK，DIN 
+低电平输入电压 VIL - - 0.3 VDD V CLK，DIN 
+动态电流损耗 IDDdyn - - 5 mA 无负载，显示关 
+4、开关特性（Ta = -40～+85℃，VDD = 4.5 ～ 5.5 V） 
+最大时钟频率 Fmax - - 500 KHz 占空比50% 

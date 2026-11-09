@@ -1,0 +1,40 @@
+{
+ "files": [
+  {
+   "url": "https://cache.nxp.com/docs/en/user-guide/UM10204.pdf",
+   "path": "calc/nxp-um10204-rev7.pdf",
+   "note": "source nxp-um10204; NXP's CDN serves the same bytes as https://www.nxp.com/docs/en/user-guide/UM10204.pdf, which refuses scripted downloads",
+   "sha256": "dc91f00f65584e06ef36e26c93bf9d91a95fb3c8a1830a9223e53caf678b36af"
+  },
+  {
+   "url": "https://www.onsemi.cn/download/data-sheet/pdf/2n2222a-d.pdf",
+   "path": "calc/onsemi-2n2222a-d-rev2.pdf",
+   "note": "source onsemi-2n2222a; onsemi.cn serves the same bytes as https://www.onsemi.com/download/data-sheet/pdf/2n2222a-d.pdf, which refuses scripted downloads",
+   "sha256": "b3181715862c6d3c145868d170f52fa7ff8ea99d89707699c01a53d108e587c7"
+  },
+  {
+   "url": "https://en.wikipedia.org/w/index.php?title=E_series_of_preferred_numbers&oldid=1383955633&action=raw",
+   "path": "calc/wikipedia-e-series-1383955633.wiki",
+   "note": "source iec-60063; wikitext of the pinned revision",
+   "sha256": "bc92a9e701820310fb663d4c61b241a50089730e0c6a2105ce56d6336d223855"
+  },
+  {
+   "url": "https://www.aosmd.com/res/datasheets/AO3400A.pdf",
+   "path": "calc/aos-ao3400a-rev3.1.pdf",
+   "note": "source aos-ao3400a; Alpha & Omega AO3400A datasheet Rev 3.1 (July 2023)",
+   "sha256": "9c60d0b6c1ddc7609a4b788a91181468d8ffe6c3e9ba425c3d8ffc5ba88c5033"
+  },
+  {
+   "url": "https://www.infineon.com/assets/row/public/documents/24/49/infineon-irlz44n-datasheet-en.pdf",
+   "path": "calc/infineon-irlz44npbf-pd94831.pdf",
+   "note": "source infineon-irlz44n; International Rectifier PD-94831 (11/11/03); Infineon's permalink https://www.infineon.com/dgdl/irlz44npbf.pdf?fileId=5546d462533600a40153567217c32725 redirects here (same bytes)",
+   "sha256": "b4f1361a4486b8ec84206012a3e4a985111203d140fa6da8d4190b867c9ba077"
+  },
+  {
+   "url": "https://web.archive.org/web/20260102111411id_/http://www.advanced-monolithic.com/pdf/ds1117.pdf",
+   "path": "calc/ams-ds1117.pdf",
+   "note": "source ams-ams1117; Internet Archive copy over https of the manufacturer file http://www.advanced-monolithic.com/pdf/ds1117.pdf (its https host failed the TLS handshake on 2026-11-06), byte-identical",
+   "sha256": "189a2651878a87d590b768eaa9b44217a3fdf460352ce6ecaff127221282a3f0"
+  }
+ ]
+}

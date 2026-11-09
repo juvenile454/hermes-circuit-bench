@@ -1,0 +1,579 @@
+{
+ "schema": 1,
+ "id": "esp32-c3-devkitm-1",
+ "title": "ESP32-C3-DevKitM-1",
+ "revision": "v1",
+ "chip": "esp32c3",
+ "source_id": "devkitm1-c3-v1",
+ "module": {
+  "name": "ESP32-C3-MINI-1",
+  "part_numbers": [
+   "ESP32-C3-DevKitM-1-N4X",
+   "ESP32-C3-DevKitM-1"
+  ],
+  "variant": null,
+  "flash_mb": 4,
+  "psram_mb": 0,
+  "antenna": "pcb",
+  "source_id": "devkitm1-c3-ordering"
+ },
+ "buttons": [
+  "Boot",
+  "Reset"
+ ],
+ "headers": [
+  {
+   "id": "J1",
+   "side": "left",
+   "pins": [
+    {
+     "n": 1,
+     "label": "GND",
+     "kind": "ground"
+    },
+    {
+     "n": 2,
+     "label": "3V3",
+     "kind": "power"
+    },
+    {
+     "n": 3,
+     "label": "3V3",
+     "kind": "power"
+    },
+    {
+     "n": 4,
+     "label": "IO2",
+     "kind": "gpio",
+     "gpio": 2
+    },
+    {
+     "n": 5,
+     "label": "IO3",
+     "kind": "gpio",
+     "gpio": 3
+    },
+    {
+     "n": 6,
+     "label": "GND",
+     "kind": "ground"
+    },
+    {
+     "n": 7,
+     "label": "RST",
+     "kind": "reset"
+    },
+    {
+     "n": 8,
+     "label": "GND",
+     "kind": "ground"
+    },
+    {
+     "n": 9,
+     "label": "IO0",
+     "kind": "gpio",
+     "gpio": 0
+    },
+    {
+     "n": 10,
+     "label": "IO1",
+     "kind": "gpio",
+     "gpio": 1
+    },
+    {
+     "n": 11,
+     "label": "IO10",
+     "kind": "gpio",
+     "gpio": 10
+    },
+    {
+     "n": 12,
+     "label": "GND",
+     "kind": "ground"
+    },
+    {
+     "n": 13,
+     "label": "5V",
+     "kind": "power"
+    },
+    {
+     "n": 14,
+     "label": "5V",
+     "kind": "power"
+    },
+    {
+     "n": 15,
+     "label": "GND",
+     "kind": "ground"
+    }
+   ]
+  },
+  {
+   "id": "J3",
+   "side": "right",
+   "pins": [
+    {
+     "n": 1,
+     "label": "GND",
+     "kind": "ground"
+    },
+    {
+     "n": 2,
+     "label": "TX",
+     "kind": "gpio",
+     "gpio": 21
+    },
+    {
+     "n": 3,
+     "label": "RX",
+     "kind": "gpio",
+     "gpio": 20
+    },
+    {
+     "n": 4,
+     "label": "GND",
+     "kind": "ground"
+    },
+    {
+     "n": 5,
+     "label": "IO9",
+     "kind": "gpio",
+     "gpio": 9
+    },
+    {
+     "n": 6,
+     "label": "IO8",
+     "kind": "gpio",
+     "gpio": 8
+    },
+    {
+     "n": 7,
+     "label": "GND",
+     "kind": "ground"
+    },
+    {
+     "n": 8,
+     "label": "IO7",
+     "kind": "gpio",
+     "gpio": 7
+    },
+    {
+     "n": 9,
+     "label": "IO6",
+     "kind": "gpio",
+     "gpio": 6
+    },
+    {
+     "n": 10,
+     "label": "IO5",
+     "kind": "gpio",
+     "gpio": 5
+    },
+    {
+     "n": 11,
+     "label": "IO4",
+     "kind": "gpio",
+     "gpio": 4
+    },
+    {
+     "n": 12,
+     "label": "GND",
+     "kind": "ground"
+    },
+    {
+     "n": 13,
+     "label": "IO18",
+     "kind": "gpio",
+     "gpio": 18
+    },
+    {
+     "n": 14,
+     "label": "IO19",
+     "kind": "gpio",
+     "gpio": 19
+    },
+    {
+     "n": 15,
+     "label": "GND",
+     "kind": "ground"
+    }
+   ]
+  }
+ ],
+ "onboard": [
+  {
+   "gpio": 8,
+   "what": "RGB LED",
+   "severity": "caution",
+   "source_id": "devkitm1-c3-v1"
+  }
+ ],
+ "usb": [
+  {
+   "label": "UART",
+   "kind": "usb_uart_bridge",
+   "gpios": [
+    21,
+    20
+   ],
+   "source_id": "devkitm1-c3-v1"
+  }
+ ],
+ "notes": [
+  "Not broken out: GPIO11 and GPIO12-17 (GPIO12-17: SPI flash); all other GPIOs are on J1/J3.",
+  "GPIO2, GPIO8 and GPIO9 are strapping pins; GPIO8 also drives the on-board RGB LED.",
+  "TX/RX (GPIO21/GPIO20) are U0TXD/U0RXD.",
+  "GPIO18/19 are USB_D-/USB_D+ (USB-Serial/JTAG by default) on J3-13/J3-14.",
+  "GPIO5 is the only ADC2 pin (ADC2_CH0); ESP-IDF no longer supports ADC2 oneshot mode on the ESP32-C3, so use ADC1 on GPIO0-4.",
+  "GPIO4-7 carry MTMS, MTDI, MTCK and MTDO (pad JTAG).",
+  "Pins are checked for ESP32-C3-MINI-1 (ESP32-C3-DevKitM-1-N4X: 4 MB flash in the chip package, no PSRAM); the guide also names ESP32-C3-MINI-1U with an external antenna connector.",
+  "The user guide text does not name the USB-to-UART bridge chip; its pin layout figure shows a chip marked CP2102 (read from the figure, unverified)."
+ ],
+ "citations": [
+  {
+   "about": "revision",
+   "source_id": "devkitm1-c3-v1",
+   "quote": "`ESP32-C3-DevKitM-1 Schematic <https://dl.espressif.com/dl/schematics/SCH_ESP32-C3-DEVKITM-1_V1_20200915A.pdf>`_"
+  },
+  {
+   "about": "revision",
+   "source_id": "devkitm1-c3-v1",
+   "quote": "No previous versions available."
+  },
+  {
+   "about": "headers.J1",
+   "source_id": "devkitm1-c3-v1",
+   "table": "J1"
+  },
+  {
+   "about": "headers.J3",
+   "source_id": "devkitm1-c3-v1",
+   "table": "J3"
+  },
+  {
+   "about": "headers.side",
+   "source_id": "devkitm1-c3-v1",
+   "figure": "esp32-c3-devkitm-1-v1-pinout.png",
+   "quote": "The two tables below provide the **Name** and **Function** of the pin headers on both sides of the board (J1 and J3)."
+  },
+  {
+   "about": "module",
+   "source_id": "devkitm1-c3-ordering",
+   "row": [
+    "ESP32-C3-DevKitM-1-N4X",
+    "ESP32-C3-MINI-1",
+    "4 MB",
+    "---",
+    "PCB on-board antenna"
+   ]
+  },
+  {
+   "about": "module",
+   "source_id": "devkitm1-c3-v1",
+   "quote": "They both have a flash of 4 MB, integrated inside the chip's package."
+  },
+  {
+   "about": "module",
+   "source_id": "devkitm1-c3-ordering",
+   "row": [
+    "ESP32-C3-DevKitM-1 (EOL)",
+    "ESP32-C3-MINI-1",
+    "4 MB",
+    "---",
+    "PCB on-board antenna"
+   ]
+  },
+  {
+   "about": "buttons[0]",
+   "source_id": "devkitm1-c3-v1",
+   "row": [
+    "Boot Button",
+    "Download button. Holding down **Boot** and then pressing **Reset** initiates Firmware Download mode for downloading firmware through the serial port."
+   ]
+  },
+  {
+   "about": "buttons[1]",
+   "source_id": "devkitm1-c3-v1",
+   "row": [
+    "Reset Button",
+    "Press this button to restart the system."
+   ]
+  },
+  {
+   "about": "onboard[0]",
+   "source_id": "devkitm1-c3-v1",
+   "row": [
+    "RGB LED",
+    "Addressable RGB LED, driven by GPIO8."
+   ]
+  },
+  {
+   "about": "onboard[0]",
+   "source_id": "devkitm1-c3-v1",
+   "row": [
+    "6",
+    "IO8",
+    "I/O/T",
+    "GPIO8 [2]_, RGB LED"
+   ]
+  },
+  {
+   "about": "usb[0]",
+   "source_id": "devkitm1-c3-v1",
+   "row": [
+    "Micro-USB Port",
+    "USB interface. Power supply for the board as well as the communication interface between a computer and the ESP32-C3 series of chips."
+   ]
+  },
+  {
+   "about": "usb[0]",
+   "source_id": "devkitm1-c3-v1",
+   "row": [
+    "USB-to-UART Bridge",
+    "Single USB-UART bridge chip provides transfer rates up to 3 Mbps."
+   ]
+  },
+  {
+   "about": "usb[0]",
+   "source_id": "devkitm1-c3-v1",
+   "row": [
+    "2",
+    "TX",
+    "I/O/T",
+    "GPIO21, U0TXD"
+   ]
+  },
+  {
+   "about": "usb[0]",
+   "source_id": "devkitm1-c3-v1",
+   "row": [
+    "3",
+    "RX",
+    "I/O/T",
+    "GPIO20, U0RXD"
+   ]
+  },
+  {
+   "about": "notes[0]",
+   "source_id": "devkitm1-c3-v1",
+   "row": [
+    "Pin Headers",
+    "All available GPIO pins (except for the SPI bus for flash) are broken out to the pin headers on the board. For details, please see :ref:`user-guide-c3-devkitm-1-v1-header-blocks`."
+   ]
+  },
+  {
+   "about": "notes[0]",
+   "source_id": "idf-v6.1-gpio-esp32c3",
+   "quote": "GPIO12 ~ GPIO17 are usually used for SPI flash and are not recommended for other uses"
+  },
+  {
+   "about": "notes[1]",
+   "source_id": "devkitm1-c3-v1",
+   "quote": "GPIO2, GPIO8, and GPIO9 are strapping pins of the ESP32-C3 series of chips."
+  },
+  {
+   "about": "notes[1]",
+   "source_id": "devkitm1-c3-v1",
+   "quote": "Addressable RGB LED, driven by GPIO8."
+  },
+  {
+   "about": "notes[2]",
+   "source_id": "devkitm1-c3-v1",
+   "row": [
+    "2",
+    "TX",
+    "I/O/T",
+    "GPIO21, U0TXD"
+   ]
+  },
+  {
+   "about": "notes[2]",
+   "source_id": "devkitm1-c3-v1",
+   "row": [
+    "3",
+    "RX",
+    "I/O/T",
+    "GPIO20, U0RXD"
+   ]
+  },
+  {
+   "about": "notes[3]",
+   "source_id": "devkitm1-c3-v1",
+   "row": [
+    "13",
+    "IO18",
+    "I/O/T",
+    "GPIO18, USB_D-"
+   ]
+  },
+  {
+   "about": "notes[3]",
+   "source_id": "devkitm1-c3-v1",
+   "row": [
+    "14",
+    "IO19",
+    "I/O/T",
+    "GPIO19, USB_D+"
+   ]
+  },
+  {
+   "about": "notes[3]",
+   "source_id": "idf-v6.1-gpio-esp32c3",
+   "quote": "GPIO18 and GPIO19 are used by USB-JTAG by default"
+  },
+  {
+   "about": "notes[4]",
+   "source_id": "devkitm1-c3-v1",
+   "row": [
+    "10",
+    "IO5",
+    "I/O/T",
+    "GPIO5, ADC2_CH0, FSPIWP, MTDI"
+   ]
+  },
+  {
+   "about": "notes[4]",
+   "source_id": "idf-v6.1-adc-oneshot",
+   "quote": "ADC2 oneshot mode is no longer supported, due to hardware limitations"
+  },
+  {
+   "about": "notes[5]",
+   "source_id": "devkitm1-c3-v1",
+   "row": [
+    "8",
+    "IO7",
+    "I/O/T",
+    "GPIO7, FSPID, MTDO"
+   ]
+  },
+  {
+   "about": "notes[5]",
+   "source_id": "devkitm1-c3-v1",
+   "row": [
+    "9",
+    "IO6",
+    "I/O/T",
+    "GPIO6, FSPICLK, MTCK"
+   ]
+  },
+  {
+   "about": "notes[5]",
+   "source_id": "devkitm1-c3-v1",
+   "row": [
+    "10",
+    "IO5",
+    "I/O/T",
+    "GPIO5, ADC2_CH0, FSPIWP, MTDI"
+   ]
+  },
+  {
+   "about": "notes[5]",
+   "source_id": "devkitm1-c3-v1",
+   "row": [
+    "11",
+    "IO4",
+    "I/O/T",
+    "GPIO4, ADC1_CH4, FSPIHD, MTMS"
+   ]
+  },
+  {
+   "about": "notes[6]",
+   "source_id": "devkitm1-c3-ordering",
+   "row": [
+    "ESP32-C3-DevKitM-1-N4X",
+    "ESP32-C3-MINI-1",
+    "4 MB",
+    "---",
+    "PCB on-board antenna"
+   ]
+  },
+  {
+   "about": "notes[6]",
+   "source_id": "devkitm1-c3-v1",
+   "quote": "ESP32-C3-MINI-1 comes with an on-board PCB antenna, whereas ESP32-C3-MINI-1U comes with an external antenna connector."
+  },
+  {
+   "about": "notes[7]",
+   "source_id": "devkitm1-c3-v1",
+   "quote": "Single USB-UART bridge chip provides transfer rates up to 3 Mbps."
+  }
+ ],
+ "drawing": {
+  "schema": 1,
+  "orientation": "module_top",
+  "parts": [
+   {
+    "kind": "usb_port",
+    "ref": "UART",
+    "connector": "micro_usb",
+    "edge": "bottom",
+    "order": 1,
+    "source_id": "devkitm1-c3-v1",
+    "quote": "Micro-USB Port",
+    "figure": "esp32-c3-devkitm-1-v1-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "button",
+    "label": "Boot",
+    "zone": "lower",
+    "side": "left",
+    "source_id": "devkitm1-c3-v1",
+    "quote": "Holding down **Boot** and then pressing **Reset** initiates Firmware Download mode for downloading firmware through the serial port.",
+    "figure": "esp32-c3-devkitm-1-v1-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "button",
+    "label": "Reset",
+    "zone": "lower",
+    "side": "right",
+    "source_id": "devkitm1-c3-v1",
+    "quote": "Press this button to restart the system.",
+    "figure": "esp32-c3-devkitm-1-v1-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "bridge_ic",
+    "label": "USB-UART",
+    "zone": "middle",
+    "side": "center",
+    "source_id": "devkitm1-c3-v1",
+    "quote": "Single USB-UART bridge chip provides transfer rates up to 3 Mbps.",
+    "figure": "esp32-c3-devkitm-1-v1-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "led",
+    "label": "RGB",
+    "gpio": 8,
+    "zone": "below_module",
+    "side": "right",
+    "source_id": "devkitm1-c3-v1",
+    "quote": "Addressable RGB LED, driven by GPIO8.",
+    "figure": "esp32-c3-devkitm-1-v1-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "ldo",
+    "label": "LDO 3V3",
+    "zone": "below_module",
+    "side": "center",
+    "source_id": "devkitm1-c3-v1",
+    "quote": "Power regulator that converts a 5 V supply into a 3.3 V output.",
+    "figure": "esp32-c3-devkitm-1-v1-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "power_led",
+    "label": "PWR",
+    "zone": "middle",
+    "side": "left",
+    "source_id": "devkitm1-c3-v1",
+    "quote": "Turns on when the USB power is connected to the board.",
+    "figure": "esp32-c3-devkitm-1-v1-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   }
+  ]
+ }
+}

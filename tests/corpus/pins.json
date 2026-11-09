@@ -1,0 +1,212 @@
+{
+ "note": "Pin rule corpus. ESP-IDF tag v6.1 = annotated tag object 4dc1c65503e98e9a6b4c3c5646237280ba79829b -> commit fff9895c82d744c7237be8847347bdd1b07c6643; raw URLs need the commit. Read by scripts/gen_pins.py and tests/test_pins_*.py (marker corpus). 'source_id' maps a file to data/sources; 'excerpt' = committed text excerpt of a PDF (tests/corpus/excerpts/). The ESP32-DevKitC V4 guide, its ordering table and the ESP32-C3-DevKitM-1 guide (same files, URLs and SHA-256 as tests/corpus/boards.json) source the ESP32 module variants, esp32.psram_16_17 and c3.uart0.",
+ "files": [
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/gpio/esp32.inc",
+   "path": "esp-idf/v6.1/docs/en/api-reference/peripherals/gpio/esp32.inc",
+   "source_id": "idf-v6.1-gpio-esp32",
+   "sha256": "8355c2b476ccb510e434be2b408b2215069dedb53aa29d6f713148dc5eb1cc97"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/soc/esp32/include/soc/soc_caps.h",
+   "path": "esp-idf/v6.1/components/soc/esp32/include/soc/soc_caps.h",
+   "source_id": "idf-v6.1-soccaps-esp32",
+   "sha256": "cd01273b44fda2010a07dc3a6ccfca79942808eaec8b4c457549b43c0341b2d8"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/soc/esp32/include/soc/adc_channel.h",
+   "path": "esp-idf/v6.1/components/soc/esp32/include/soc/adc_channel.h",
+   "source_id": "idf-v6.1-adc-channel-esp32",
+   "sha256": "49ff0a392448cb91d01e6b30560c82828eaf3ead0e80fc4797caecc1353cd9d9"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/soc/esp32/register/soc/io_mux_reg.h",
+   "path": "esp-idf/v6.1/components/soc/esp32/register/soc/io_mux_reg.h",
+   "source_id": "idf-v6.1-iomux-esp32",
+   "sha256": "6cf91d0e6e54f4e0f20dc89e3ed2797d5af22bafdf14a530600d41067c014cb1"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/gpio/esp32s3.inc",
+   "path": "esp-idf/v6.1/docs/en/api-reference/peripherals/gpio/esp32s3.inc",
+   "source_id": "idf-v6.1-gpio-esp32s3",
+   "sha256": "f4ffd123b1b671c058d38cfdfe21fc45a2e18eab7aff66ac850c1310cd73145e"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/soc/esp32s3/include/soc/soc_caps.h",
+   "path": "esp-idf/v6.1/components/soc/esp32s3/include/soc/soc_caps.h",
+   "source_id": "idf-v6.1-soccaps-esp32s3",
+   "sha256": "843a2ae552eef850442bc748fcf3f807626b25d34eada462805bc24f827ba96e"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/soc/esp32s3/include/soc/adc_channel.h",
+   "path": "esp-idf/v6.1/components/soc/esp32s3/include/soc/adc_channel.h",
+   "source_id": "idf-v6.1-adc-channel-esp32s3",
+   "sha256": "f10562ae5525311a3e5178ca1b8a4aa19e022a3baaa8be0470e1d67c1dc77096"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/soc/esp32s3/register/soc/io_mux_reg.h",
+   "path": "esp-idf/v6.1/components/soc/esp32s3/register/soc/io_mux_reg.h",
+   "source_id": "idf-v6.1-iomux-esp32s3",
+   "sha256": "be80664117c532e67f516262ac0de4621a53b16d2139a4fea7b8acb0f7b45cf2"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/gpio/esp32c3.inc",
+   "path": "esp-idf/v6.1/docs/en/api-reference/peripherals/gpio/esp32c3.inc",
+   "source_id": "idf-v6.1-gpio-esp32c3",
+   "sha256": "c29bdf64f80d3cb4e78805ed54f561642d4044782819d969ee2661ef14d599e3"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/soc/esp32c3/include/soc/soc_caps.h",
+   "path": "esp-idf/v6.1/components/soc/esp32c3/include/soc/soc_caps.h",
+   "source_id": "idf-v6.1-soccaps-esp32c3",
+   "sha256": "98501450904a4a3a6d0eb3bc8916445d708da26dfd99b9146365b3c440dc4d28"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/soc/esp32c3/include/soc/adc_channel.h",
+   "path": "esp-idf/v6.1/components/soc/esp32c3/include/soc/adc_channel.h",
+   "source_id": "idf-v6.1-adc-channel-esp32c3",
+   "sha256": "ad7978d63111bb7d12764085155be0f35ea4a445c0af0949a54cb5ec42cbfa61"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/soc/esp32c3/register/soc/io_mux_reg.h",
+   "path": "esp-idf/v6.1/components/soc/esp32c3/register/soc/io_mux_reg.h",
+   "source_id": "idf-v6.1-iomux-esp32c3",
+   "sha256": "45fdba9cbb330380211b47506ec5de6afd729ca7ff74c00da2b0a712c4093b78"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/cap_touch_sens/esp32.inc",
+   "path": "esp-idf/v6.1/docs/en/api-reference/peripherals/cap_touch_sens/esp32.inc",
+   "source_id": "idf-v6.1-touch-esp32",
+   "sha256": "c54ccac447424426edc1192f3121c84ed860e8e07a6b10b05eb17057079e1879"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/cap_touch_sens/esp32s3.inc",
+   "path": "esp-idf/v6.1/docs/en/api-reference/peripherals/cap_touch_sens/esp32s3.inc",
+   "source_id": "idf-v6.1-touch-esp32s3",
+   "sha256": "931a53a018f0b8ff9c34cb9b2f3389753020237e2de7d9e2999fab352283e945"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/adc/adc_oneshot.rst",
+   "path": "esp-idf/v6.1/docs/en/api-reference/peripherals/adc/adc_oneshot.rst",
+   "source_id": "idf-v6.1-adc-oneshot",
+   "sha256": "907c2d5d0aaee607e2ec0f3657481c82ff9396692d01b8af013db0731e4ee838"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-s3-devkitc-1/user_guide_v1.1.rst",
+   "path": "esp-dev-kits/5c06bf183532/docs/en/esp32-s3-devkitc-1/user_guide_v1.1.rst",
+   "source_id": "devkitc1-s3-v1.1",
+   "sha256": "ee0b339051b013bdccbed9134335ee5d78e6564072d636c7127c3495936b116d"
+  },
+  {
+   "url": "https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+   "path": "espressif/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+   "source_id": "ds-esp32-s3-wroom-1",
+   "excerpt": "excerpts/esp32-s3-wroom-1-datasheet-v1.8-p3.txt",
+   "sha256": "27d71971da07c280c6068d08c74720d1a25b8f20cf8494dc1765bdd28d40d435"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-devkitc/user_guide.rst",
+   "path": "esp-dev-kits/5c06bf183532/docs/en/esp32-devkitc/user_guide.rst",
+   "source_id": "devkitc-esp32-v4",
+   "sha256": "a6e89080a3a5f9b99f33e63e7a0d9788fa858ad11cd25feffbb9e4df15229f1b"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-devkitc/ordering-info.inc",
+   "path": "esp-dev-kits/5c06bf183532/docs/en/esp32-devkitc/ordering-info.inc",
+   "source_id": "devkitc-esp32-v4-ordering",
+   "sha256": "673ce22fc37b60afe6286a28d3bd1bb617b0fb2812609e086ba3577f72987e8b"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-c3-devkitm-1/user_guide.rst",
+   "path": "esp-dev-kits/5c06bf183532/docs/en/esp32-c3-devkitm-1/user_guide.rst",
+   "source_id": "devkitm1-c3-v1",
+   "sha256": "6859d66ec8f3793845bc993e5993db4bbb0310c434f30a41c019a0c507f4ae2c"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/gpio/esp32s2.inc",
+   "path": "esp-idf/v6.1/docs/en/api-reference/peripherals/gpio/esp32s2.inc",
+   "source_id": "idf-v6.1-gpio-esp32s2",
+   "sha256": "604ab54585c66ba197d9bbb66c784ce42ec783c5a950cc9f89399531f987195d"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/soc/esp32s2/include/soc/soc_caps.h",
+   "path": "esp-idf/v6.1/components/soc/esp32s2/include/soc/soc_caps.h",
+   "source_id": "idf-v6.1-soccaps-esp32s2",
+   "sha256": "6130ea6732556274a1164ab4f72e3126fdda63c417ab122cec0e4305fae27cf9"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/soc/esp32s2/include/soc/adc_channel.h",
+   "path": "esp-idf/v6.1/components/soc/esp32s2/include/soc/adc_channel.h",
+   "source_id": "idf-v6.1-adc-channel-esp32s2",
+   "sha256": "f10562ae5525311a3e5178ca1b8a4aa19e022a3baaa8be0470e1d67c1dc77096"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/soc/esp32s2/register/soc/io_mux_reg.h",
+   "path": "esp-idf/v6.1/components/soc/esp32s2/register/soc/io_mux_reg.h",
+   "source_id": "idf-v6.1-iomux-esp32s2",
+   "sha256": "25c2cf960a0f2378bb2d54fa55facc8b46558f6b1478bbbdeddf527d1bc4384d"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/gpio/esp32c6.inc",
+   "path": "esp-idf/v6.1/docs/en/api-reference/peripherals/gpio/esp32c6.inc",
+   "source_id": "idf-v6.1-gpio-esp32c6",
+   "sha256": "bc6dbfbf11be2e5d728b7f1c470030540bdade492e2308a4d575d5dbdfa8ff85"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/soc/esp32c6/include/soc/soc_caps.h",
+   "path": "esp-idf/v6.1/components/soc/esp32c6/include/soc/soc_caps.h",
+   "source_id": "idf-v6.1-soccaps-esp32c6",
+   "sha256": "3fac01ec0fa52d68b1e8eafadaceeb93ed208bf74276565e944ee786d2202f2f"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/soc/esp32c6/include/soc/adc_channel.h",
+   "path": "esp-idf/v6.1/components/soc/esp32c6/include/soc/adc_channel.h",
+   "source_id": "idf-v6.1-adc-channel-esp32c6",
+   "sha256": "db06168289bbb76025d761e536a91c802940dc3eb4e227875282a3469ca0cb5d"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/components/soc/esp32c6/register/soc/io_mux_reg.h",
+   "path": "esp-idf/v6.1/components/soc/esp32c6/register/soc/io_mux_reg.h",
+   "source_id": "idf-v6.1-iomux-esp32c6",
+   "sha256": "a88d2e0363a57d9aa7cdb5d00738509f6be3c572c1834482defbf810d028ed46"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-idf/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/cap_touch_sens/esp32s2.inc",
+   "path": "esp-idf/v6.1/docs/en/api-reference/peripherals/cap_touch_sens/esp32s2.inc",
+   "source_id": "idf-v6.1-touch-esp32s2",
+   "sha256": "931a53a018f0b8ff9c34cb9b2f3389753020237e2de7d9e2999fab352283e945"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-s2-devkitc-1/user_guide.rst",
+   "path": "esp-dev-kits/5c06bf183532/docs/en/esp32-s2-devkitc-1/user_guide.rst",
+   "source_id": "devkitc1-s2",
+   "sha256": "76ba36747ba03db2fa96c4d9072640ae332c321d18257f5aaca189841a84f2e0"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-c6-devkitc-1/user_guide.rst",
+   "path": "esp-dev-kits/5c06bf183532/docs/en/esp32-c6-devkitc-1/user_guide.rst",
+   "source_id": "devkitc1-c6-v1.2",
+   "sha256": "0c5d5b143e380f9e34844f1782a38a23558eba04a36574d0a7679e184c8d607d"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-c6-devkitm-1/user_guide.rst",
+   "path": "esp-dev-kits/5c06bf183532/docs/en/esp32-c6-devkitm-1/user_guide.rst",
+   "source_id": "devkitm1-c6",
+   "sha256": "71e3ae7c4a88ec8f792d00e0b4c41f64c06a1d2b3c103309c2fb8c74af6b79b5"
+  },
+  {
+   "url": "https://www.espressif.com/sites/default/files/documentation/esp32-c6-wroom-1_wroom-1u_datasheet_en.pdf",
+   "path": "espressif/esp32-c6-wroom-1_wroom-1u_datasheet_en.pdf",
+   "source_id": "ds-esp32-c6-wroom-1",
+   "excerpt": "excerpts/esp32-c6-wroom-1-datasheet-v1.4.txt",
+   "sha256": "163020762fa6d499e0c611c5a13e78ad9d4720b421c6bc5e14e16fc748862b73"
+  },
+  {
+   "url": "https://www.espressif.com/sites/default/files/documentation/esp32-c6-mini-1_mini-1u_datasheet_en.pdf",
+   "path": "espressif/esp32-c6-mini-1_mini-1u_datasheet_en.pdf",
+   "source_id": "ds-esp32-c6-mini-1",
+   "excerpt": "excerpts/esp32-c6-mini-1-datasheet-v1.5.txt",
+   "sha256": "26691033f31cbebf623842c16624e61151b152533c13a850c091c8e858c510a2"
+  }
+ ]
+}

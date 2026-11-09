@@ -1,0 +1,43 @@
+# source_id: mod-rtc-ds3231-ds
+# document: DS3231 Extremely Accurate I2C-Integrated RTC/TCXO/Crystal, data sheet 19-5170 Rev 10 (3/15)
+# url: https://web.archive.org/web/20261011070711id_/https://www.analog.com/media/en/technical-documentation/data-sheets/DS3231.pdf
+# corpus: mod/rtc/DS3231.pdf sha256 dc81cd89bee82d0c57b654d6315e03dec913fb8fe753cc80b2a3f1cca71cbb34
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+• Fast (400kHz) I2C Interface
+19-5170; Rev 10; 3/15
+@@ page 2
+Voltage Range on Any Pin Relative to Ground ....-0.3V to +6.0V
+Supply Voltage VCC 2.3 3.3 5.5 VVBAT 2.3 3.0 5.5 V
+Logic 1 Input SDA, SCL VIH 0.7 x VCC VCC + 0.3 V
+Logic 0 Input SDA, SCL VIL -0.3 0.3 x VCC V
+Active Supply Current ICCA (Notes 4, 5) VCC = 3.63V 200 µAVCC = 5.5V 300
+Standby Supply Current ICCS
+VCC = 3.63V 110
+VCC = 5.5V 170
+Temperature Conversion Current ICCSCONV I2C bus inactive, 32kHz output on, SQW output off VCC = 3.63V 575 µAVCC = 5.5V 650
+Logic 0 Output, 32kHz, INT/SQW, 
+SDA VOL IOL = 3mA 0.4 V
+@@ page 3
+Timekeeping Battery Current IBATT
+VBAT = 3.63V 0.84 3.0
+@@ page 4
+SCL Clock Frequency fSCL
+Fast mode 100 400 kHzStandard mode 0 100
+@@ page 9
+1 32kHz 32kHz Output. This open-drain pin requires an external pullup resistor. When enabled, the output operates on either power supply. It may be left open if not used.
+2 VCC DC Power Pin for Primary Power Supply. This pin should be decoupled using a 0.1µF to 1.0µF capacitor.If not used, connect to ground.
+3 INT/SQW
+Active-Low Interrupt or Square-Wave Output. This open-drain pin requires an external pullup resistor connected 
+4 RST
+50kΩ nominal value pullup resistor to VCC. No external pullup resistors should be connected. If the oscillator is 
+5–12 N.C. No Connection. Must be connected to ground.
+13 GND Ground
+14 VBAT
+as the backup power source, the capacitor is not required. If VBAT is not used, connect to ground. The device is 
+UL recognized to ensure against reverse charging when used with a primary lithium battery.  
+15 SDA Serial Data Input/Output. This pin is the data input/output for the I2C serial interface. This open-drain pin requires an external pullup resistor. The pullup voltage can be up to 5.5V, regardless of the voltage on VCC.
+16 SCL Serial Clock Input. This pin is the clock input for the I2C serial interface and is used to synchronize data movement on the serial interface. Up to 5.5V can be used for this pin, regardless of the voltage on VCC.
+@@ page 17
+which is 1101000, followed by the direction bit (R/ W), 

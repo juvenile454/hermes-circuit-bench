@@ -1,0 +1,42 @@
+[
+  {
+    "id": "mod-nmeasure-mcp3208-ds",
+    "title": "Microchip MCP3204/3208 2.7V 4-Channel/8-Channel 12-Bit A/D Converters with SPI Serial Interface, DS21298E",
+    "url": "https://ww1.microchip.com/downloads/en/DeviceDoc/21298e.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Revision E (2008), 40 pages; the newer DS20001298 URL under aemDocuments answers 403 to scripts; pages 1, 2, 3, 17, 22, 23; sha256 89bc1e17c35e2bb1c7b8fbf0b775b3729ce9fe4d27f7e9c052a774757afc0c20"
+  },
+  {
+    "id": "mod-nmeasure-mcp4728-ds",
+    "title": "Microchip MCP4728 12-Bit, Quad Digital-to-Analog Converter with EEPROM Memory, DS22187E",
+    "url": "https://ww1.microchip.com/downloads/en/DeviceDoc/22187E.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Revision E (2010), 68 pages; the DS20002187 URL under aemDocuments answers 403 to scripts; pages 1, 3, 4, 6, 8, 21, 22, 30; sha256 7e6515c45a02ffe4ad7506f3347cce7714cdd56659ff2fb22b858fc0472f381e"
+  },
+  {
+    "id": "mod-nmeasure-ina228-ds",
+    "title": "Texas Instruments INA228 85-V, 20-Bit, Ultra-Precise Power/Energy/Charge Monitor With I2C Interface, Data sheet SLYS021A",
+    "url": "https://www.ti.com/lit/ds/symlink/ina228.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Revision A (January 2021, revised May 2022), 48 pages; pages 3, 5, 6, 7, 19, 20, 31, 39; sha256 a138d39eeee04f8388426fed204c2f4012e75d36e95b60b0751ef003cd277447"
+  },
+  {
+    "id": "mod-nmeasure-max31856-ds",
+    "title": "Maxim Integrated (Analog Devices) MAX31856 Precision Thermocouple to Digital Converter with Linearization, 19-7534",
+    "url": "https://web.archive.org/web/20251010155415id_/https://www.analog.com/media/en/technical-documentation/data-sheets/max31856.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A1",
+    "note": "Rev 0 (2/15, the only revision), 30 pages; Wayback id_ copy of the analog.com URL (capture 2025-10-10, same digest as the 2026-09-18 capture, served gzip, hash of the unpacked PDF; analog.com is not scriptable); pages 1, 2, 3, 4, 5, 10, 11, 15, 27; sha256 385702a94433d75e89ad4f04ab197fd73ab166a21fbd453fcedd9a9821acc662"
+  },
+  {
+    "id": "mod-nmeasure-ads1220-ds",
+    "title": "Texas Instruments ADS1220 4-Channel, 2kSPS, Low-Power, 24-Bit ADC With Integrated PGA and Reference, Data sheet SBAS501D",
+    "url": "https://www.ti.com/lit/ds/symlink/ads1220.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Revision D (May 2013, revised May 2026), 78 pages; pages 1, 4, 5, 6, 7, 8, 9, 36, 37; sha256 218e25810febc1d740287cebe0678d844817a5db9191cba59cb471647ace3ac4"
+  }
+]

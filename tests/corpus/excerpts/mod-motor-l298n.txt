@@ -1,0 +1,38 @@
+# source_id: mod-motor-l298n-ds
+# document: STMicroelectronics L298 Dual full-bridge driver datasheet, DS0218 Rev 5 (October 2023)
+# url: https://web.archive.org/web/20260710114354id_/https://www.st.com/resource/en/datasheet/l298.pdf
+# corpus: mod/motor/l298.pdf sha256 d0fab11686343b5db91f84bd4b1dcb7b0c99d940672bc8ddd6fff4e340843551
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+• Operating supply voltage up to 46 V.
+• Total dc current up to 4 A.
+@@ page 3
+VS Power supply 50 V
+VSS Logic supply voltage 7 V
+VI, Ven Input and enable voltage –0.3 to 7 V
+• Non repetitive (t = 100 ms) 3 A
+• DC operation 2 A
+Ptot Total power dissipation (tcase = 75 °C) 25 W
+@@ page 4
+Supply voltage for the power output stages.
+Anon-inductive 100nF capacitor must be connected between this pin and ground.
+9 12 VSS Supply voltage for the logic blocks. A 100nF capacitor must be connected between this pin and ground.
+@@ page 5
+VS Supply voltage (pin 4) Operative condition VIH +2.5 46 V
+VSS Logic supply voltage (pin 9) 4.5 5 7 V
+IS Quiescent supply current (pin 4)
+Ven = H; Vi = H; IL= 0 50 70 mA
+ISS Quiescent current from VSS (pin 9)
+Ven = H; Vi = L; IL= 0 24 36 mA
+ViL Input low voltage (pins 5, 7, 10, 12) –0.3 1.5 V
+ViH Input high voltage (pins 5, 7, 10, 12) 2.3 VSS V
+VCEsat Total drop
+IL = 2A (1) 4.9
+@@ page 9
+A non inductive capacitor, usually of 100 nF, is required between both VS and VSS to ground, as near as possible
+Before to Turn-ON the supply voltage and before to Turn it OFF, the enable inputs must be driven to the low state.
+The external bridge of diodes D1 to D4 is made by four fast recovery elements (trr ≤ 200 ns) that must be chosen
+An external bridge of diodes are required when inductive loads are driven and when the inputs of the IC are
+chopped; Schottky diodes would be preferred.
+The brake function (Fast motor stop) requires that the Absolute Maximum Rating of 2 A must never be exceeded.

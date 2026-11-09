@@ -1,0 +1,54 @@
+# source_id: mod-logic-sn74hc165-ds
+# document: Texas Instruments SNx4HC165 8-Bit Parallel-Load Shift Registers, SCLS116H
+# url: https://www.ti.com/lit/ds/symlink/sn74hc165.pdf
+# corpus: mod/logic/sn74hc165.pdf sha256 7ebf4358fa42dc1e0f50848e513a05fe0829a5d83eb4851c310532d2f0f3424e
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+SCLS116H – DECEMBER 1982 – REVISED DECEMBER 2015
+@@ page 3
+A 11 14 I Parallel Input
+B 12 15 I Parallel Input
+C 13 17 I Parallel Input
+CLK 2 3 I Clock input
+CLK INH 15 19 I Clock Inhibit, when High No change in output
+D 14 18 I Parallel Input
+E 3 4 I Parallel Input
+F 4 5 I Parallel Input
+G 5 7 I Parallel Input
+GND 8 10 — Ground Pin
+H 6 8 I Parallel Input
+QH 9 12 O Serial Output
+QH 7 9 O Complementary Serial Output
+SER 10 13 I Serial Input
+Shift or Load input, When High Data, shifted. When Low data isSH/LD 1 2 I loaded from parallel inputs
+VCC 16 20 — Power Pin
+@@ page 4
+VCC Supply voltage –0.5 7 V
+IO Continuous output current VO = 0 to VCC ±25 mA
+Continuous current through VCC or GND ±50 mA
+VCC Supply voltage 2 5 6 V
+VCC = 2 V 1.5
+VIH High-level input voltage VCC = 4.5 V 3.15 V
+VCC = 6 V 4.2
+VIL Low level input voltage VCC = 4.5 V 1.35 V
+VI Input voltage 0 VCC V
+VO Output voltage 0 VCC V
+(1) All unused inputs of the device must be held at VCC or GND to ensure proper device operation. Refer to the TI application report,
+@@ page 5
+IOH = –20 µA 4.5 V 4.4 4.499
+VOH VI = VIH or VIL 6 V 5.9 5.999 V
+IOL = 20 µA 4.5 V 0.001 0.1
+VOL VI = VIH or VIL 6 V 0.001 0.1 V
+ICC VI = VCC or 0, IO = 0 6 V 8 µA
+IOH = –20 µA 4.5 V 4.4
+@@ page 6
+TA = –40°C to 85°C 6 V 80ICC VI = VCC or 0, IO = 0 µATA = –40°C to 125°C 160
+6.8 Switching Characteristics, TA = 25°C
+fmax 4.5 V 31 50 MHz
+@@ page 7
+6.10 Switching Characteristics, SN74HC165
+4.5 V TA = –40°C to 85°C 25fmax MHzTA = –40°C to 125°C 21
+@@ page 15
+Each VCC pin must have a good bypass capacitor in order to prevent power disturbance. For devices with a
+single supply, a 0.1-μF capacitor is recommended and if there are multiple VCC pins then a 0.01-μF or 0.022-μF

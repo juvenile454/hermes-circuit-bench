@@ -1,0 +1,768 @@
+{
+ "schema": 1,
+ "id": "esp32-s2-devkitc-1",
+ "title": "ESP32-S2-DevKitC-1",
+ "revision": "v1",
+ "chip": "esp32s2",
+ "source_id": "devkitc1-s2",
+ "module": {
+  "name": "ESP32-S2-SOLO-2",
+  "part_numbers": [
+   "ESP32-S2-DevKitC-1-N8R2"
+  ],
+  "variant": null,
+  "flash_mb": 8,
+  "psram_mb": 2,
+  "antenna": "pcb",
+  "source_id": "devkitc1-s2-ordering"
+ },
+ "buttons": [
+  "Reset",
+  "Boot"
+ ],
+ "headers": [
+  {
+   "id": "J1",
+   "side": "left",
+   "pins": [
+    {
+     "n": 1,
+     "label": "3V3",
+     "kind": "power"
+    },
+    {
+     "n": 2,
+     "label": "3V3",
+     "kind": "power"
+    },
+    {
+     "n": 3,
+     "label": "RST",
+     "kind": "reset"
+    },
+    {
+     "n": 4,
+     "label": "4",
+     "kind": "gpio",
+     "gpio": 4
+    },
+    {
+     "n": 5,
+     "label": "5",
+     "kind": "gpio",
+     "gpio": 5
+    },
+    {
+     "n": 6,
+     "label": "6",
+     "kind": "gpio",
+     "gpio": 6
+    },
+    {
+     "n": 7,
+     "label": "7",
+     "kind": "gpio",
+     "gpio": 7
+    },
+    {
+     "n": 8,
+     "label": "15",
+     "kind": "gpio",
+     "gpio": 15
+    },
+    {
+     "n": 9,
+     "label": "16",
+     "kind": "gpio",
+     "gpio": 16
+    },
+    {
+     "n": 10,
+     "label": "17",
+     "kind": "gpio",
+     "gpio": 17
+    },
+    {
+     "n": 11,
+     "label": "18",
+     "kind": "gpio",
+     "gpio": 18
+    },
+    {
+     "n": 12,
+     "label": "8",
+     "kind": "gpio",
+     "gpio": 8
+    },
+    {
+     "n": 13,
+     "label": "3",
+     "kind": "gpio",
+     "gpio": 3
+    },
+    {
+     "n": 14,
+     "label": "46",
+     "kind": "gpio",
+     "gpio": 46
+    },
+    {
+     "n": 15,
+     "label": "9",
+     "kind": "gpio",
+     "gpio": 9
+    },
+    {
+     "n": 16,
+     "label": "10",
+     "kind": "gpio",
+     "gpio": 10
+    },
+    {
+     "n": 17,
+     "label": "11",
+     "kind": "gpio",
+     "gpio": 11
+    },
+    {
+     "n": 18,
+     "label": "12",
+     "kind": "gpio",
+     "gpio": 12
+    },
+    {
+     "n": 19,
+     "label": "13",
+     "kind": "gpio",
+     "gpio": 13
+    },
+    {
+     "n": 20,
+     "label": "14",
+     "kind": "gpio",
+     "gpio": 14
+    },
+    {
+     "n": 21,
+     "label": "5V",
+     "kind": "power"
+    },
+    {
+     "n": 22,
+     "label": "G",
+     "kind": "ground"
+    }
+   ]
+  },
+  {
+   "id": "J3",
+   "side": "right",
+   "pins": [
+    {
+     "n": 1,
+     "label": "G",
+     "kind": "ground"
+    },
+    {
+     "n": 2,
+     "label": "TX",
+     "kind": "gpio",
+     "gpio": 43
+    },
+    {
+     "n": 3,
+     "label": "RX",
+     "kind": "gpio",
+     "gpio": 44
+    },
+    {
+     "n": 4,
+     "label": "1",
+     "kind": "gpio",
+     "gpio": 1
+    },
+    {
+     "n": 5,
+     "label": "2",
+     "kind": "gpio",
+     "gpio": 2
+    },
+    {
+     "n": 6,
+     "label": "42",
+     "kind": "gpio",
+     "gpio": 42
+    },
+    {
+     "n": 7,
+     "label": "41",
+     "kind": "gpio",
+     "gpio": 41
+    },
+    {
+     "n": 8,
+     "label": "40",
+     "kind": "gpio",
+     "gpio": 40
+    },
+    {
+     "n": 9,
+     "label": "39",
+     "kind": "gpio",
+     "gpio": 39
+    },
+    {
+     "n": 10,
+     "label": "38",
+     "kind": "gpio",
+     "gpio": 38
+    },
+    {
+     "n": 11,
+     "label": "37",
+     "kind": "gpio",
+     "gpio": 37
+    },
+    {
+     "n": 12,
+     "label": "36",
+     "kind": "gpio",
+     "gpio": 36
+    },
+    {
+     "n": 13,
+     "label": "35",
+     "kind": "gpio",
+     "gpio": 35
+    },
+    {
+     "n": 14,
+     "label": "0",
+     "kind": "gpio",
+     "gpio": 0
+    },
+    {
+     "n": 15,
+     "label": "45",
+     "kind": "gpio",
+     "gpio": 45
+    },
+    {
+     "n": 16,
+     "label": "34",
+     "kind": "gpio",
+     "gpio": 34
+    },
+    {
+     "n": 17,
+     "label": "33",
+     "kind": "gpio",
+     "gpio": 33
+    },
+    {
+     "n": 18,
+     "label": "21",
+     "kind": "gpio",
+     "gpio": 21
+    },
+    {
+     "n": 19,
+     "label": "20",
+     "kind": "gpio",
+     "gpio": 20
+    },
+    {
+     "n": 20,
+     "label": "19",
+     "kind": "gpio",
+     "gpio": 19
+    },
+    {
+     "n": 21,
+     "label": "G",
+     "kind": "ground"
+    },
+    {
+     "n": 22,
+     "label": "G",
+     "kind": "ground"
+    }
+   ]
+  }
+ ],
+ "onboard": [
+  {
+   "gpio": 18,
+   "what": "RGB LED",
+   "severity": "caution",
+   "source_id": "devkitc1-s2"
+  }
+ ],
+ "usb": [
+  {
+   "label": "USB",
+   "kind": "usb_otg",
+   "gpios": [
+    19,
+    20
+   ],
+   "source_id": "devkitc1-s2"
+  },
+  {
+   "label": "UART",
+   "kind": "usb_uart_bridge",
+   "gpios": [
+    43,
+    44
+   ],
+   "source_id": "devkitc1-s2"
+  }
+ ],
+ "notes": [
+  "Not broken out: GPIO26-32 (SPI flash and PSRAM); all other GPIOs (GPIO0-21, GPIO33-46) are on J1/J3.",
+  "GPIO0, GPIO45 and GPIO46 are strapping pins; GPIO46 is input only with a fixed pull-down.",
+  "GPIO18 drives the on-board RGB LED and is not pulled up on boards with an ESP32-S2-SOLO-2 or -SOLO-2U module.",
+  "TX/RX (GPIO43/GPIO44) are U0TXD/U0RXD on the USB-to-UART bridge.",
+  "GPIO19/GPIO20 are USB_D-/USB_D+ of the ESP32-S2 USB OTG port (J3-20/J3-19).",
+  "GPIO39-42 carry the JTAG pads (MTCK, MTDO, MTDI, MTMS), usually used for inline debug.",
+  "Standard module: ESP32-S2-SOLO-2 (ESP32-S2-DevKitC-1-N8R2: 8 MB flash, 2 MB PSRAM). The ordering table also lists ESP32-S2-DevKitC-1U-N8R2 (ESP32-S2-SOLO-2U, external antenna connector); ESP32-S2-DevKitC-1R and -1RU (ESP32-S2-SOLO/-SOLO-U, 4 MB flash) are EOL.",
+  "Power the board one way only: the USB ports, or the 5V and G pins, or the 3V3 and G pins (the guide calls them mutually exclusive).",
+  "The other Espressif ESP32-S2 boards ESP32-S2-DevKitM-1 and ESP32-S2-Saola-1 are on Espressif's EOL list.",
+  "J1 is drawn on the left and J3 on the right (USB at the bottom) as on the other Espressif DevKits; the guide's pin layout figure is not in the pinned corpus, so the side is unverified."
+ ],
+ "citations": [
+  {
+   "about": "revision",
+   "source_id": "devkitc1-s2",
+   "quote": "This is the first revision of this board released."
+  },
+  {
+   "about": "revision",
+   "source_id": "devkitc1-s2",
+   "quote": ".. _user-guide-s2-devkitc-1-v1-header-blocks:"
+  },
+  {
+   "about": "headers.J1",
+   "source_id": "devkitc1-s2",
+   "table": "J1"
+  },
+  {
+   "about": "headers.J3",
+   "source_id": "devkitc1-s2",
+   "table": "J3"
+  },
+  {
+   "about": "headers.side",
+   "source_id": "devkitc1-s2",
+   "quote": "The two tables below provide the **Name** and **Function** of the pin headers on both sides of the board (J1 and J3)."
+  },
+  {
+   "about": "module",
+   "source_id": "devkitc1-s2-ordering",
+   "row": [
+    "ESP32-S2-DevKitC-1-N8R2",
+    "ESP32-S2-SOLO-2",
+    "8 MB",
+    "2 MB",
+    "PCB on-board antenna"
+   ]
+  },
+  {
+   "about": "module",
+   "source_id": "devkitc1-s2",
+   "quote": "ESP32-S2-SOLO series modules with an on-board PCB antenna or a connector for an external antenna."
+  },
+  {
+   "about": "buttons[0]",
+   "source_id": "devkitc1-s2",
+   "row": [
+    "Reset Button",
+    "Press this button to restart the system."
+   ]
+  },
+  {
+   "about": "buttons[1]",
+   "source_id": "devkitc1-s2",
+   "row": [
+    "Boot Button",
+    "Download button. Holding down **Boot** and then pressing **Reset** initiates Firmware Download mode for downloading firmware through the serial port."
+   ]
+  },
+  {
+   "about": "onboard[0]",
+   "source_id": "devkitc1-s2",
+   "row": [
+    "RGB LED",
+    "Addressable RGB LED, driven by GPIO18."
+   ]
+  },
+  {
+   "about": "onboard[0]",
+   "source_id": "devkitc1-s2",
+   "row": [
+    "11",
+    "18 [#]_",
+    "I/O/T",
+    "RTC_GPIO18, GPIO18, U1RXD, ADC2_CH7, DAC_2, CLK_OUT3, RGB LED"
+   ]
+  },
+  {
+   "about": "usb[0]",
+   "source_id": "devkitc1-s2",
+   "row": [
+    "ESP32-S2 USB Port",
+    "ESP32-S2 full-speed USB OTG interface, compliant with the USB 1.1 specifications. The interface is used for power supply to the board, for flashing applications to the chip, and for communication with the chip using USB 1.1 protocols."
+   ]
+  },
+  {
+   "about": "usb[0]",
+   "source_id": "devkitc1-s2",
+   "row": [
+    "20",
+    "19",
+    "I/O/T",
+    "RTC_GPIO19, GPIO19, U1RTS, ADC2_CH8, CLK_OUT2, USB_D-"
+   ]
+  },
+  {
+   "about": "usb[0]",
+   "source_id": "devkitc1-s2",
+   "row": [
+    "19",
+    "20",
+    "I/O/T",
+    "RTC_GPIO20, GPIO20, U1CTS, ADC2_CH9, CLK_OUT1, USB_D+"
+   ]
+  },
+  {
+   "about": "usb[1]",
+   "source_id": "devkitc1-s2",
+   "row": [
+    "USB-to-UART Bridge",
+    "Single USB-to-UART bridge chip provides transfer rates up to 3 Mbps."
+   ]
+  },
+  {
+   "about": "usb[1]",
+   "source_id": "devkitc1-s2",
+   "row": [
+    "USB-to-UART Port",
+    "A Micro-USB port used for power supply to the board, for flashing applications to the chip, as well as the communication with the chip via the on-board USB-to-UART bridge."
+   ]
+  },
+  {
+   "about": "usb[1]",
+   "source_id": "devkitc1-s2",
+   "row": [
+    "2",
+    "TX",
+    "I/O/T",
+    "U0TXD, GPIO43, CLK_OUT1"
+   ]
+  },
+  {
+   "about": "usb[1]",
+   "source_id": "devkitc1-s2",
+   "row": [
+    "3",
+    "RX",
+    "I/O/T",
+    "U0RXD, GPIO44, CLK_OUT2"
+   ]
+  },
+  {
+   "about": "notes[0]",
+   "source_id": "devkitc1-s2",
+   "row": [
+    "Pin Headers",
+    "All available GPIO pins (except for the SPI bus for flash) are broken out to the pin headers on the board. For details, please see :ref:`user-guide-s2-devkitc-1-v1-header-blocks`."
+   ]
+  },
+  {
+   "about": "notes[0]",
+   "source_id": "idf-v6.1-gpio-esp32s2",
+   "quote": "GPIO26-32 are usually used for SPI flash and PSRAM and not recommended for other uses"
+  },
+  {
+   "about": "notes[1]",
+   "source_id": "idf-v6.1-gpio-esp32s2",
+   "quote": "GPIO0, GPIO45 and GPIO46 are strapping pins"
+  },
+  {
+   "about": "notes[1]",
+   "source_id": "idf-v6.1-gpio-esp32s2",
+   "quote": "GPIO46 is fixed to pull-down and is input only"
+  },
+  {
+   "about": "notes[2]",
+   "source_id": "devkitc1-s2",
+   "quote": "GPIO18 is not pulled up on boards with an ESP32-S2-SOLO-2 or ESP32-S2-SOLO-2U module."
+  },
+  {
+   "about": "notes[2]",
+   "source_id": "devkitc1-s2",
+   "row": [
+    "RGB LED",
+    "Addressable RGB LED, driven by GPIO18."
+   ]
+  },
+  {
+   "about": "notes[3]",
+   "source_id": "devkitc1-s2",
+   "row": [
+    "2",
+    "TX",
+    "I/O/T",
+    "U0TXD, GPIO43, CLK_OUT1"
+   ]
+  },
+  {
+   "about": "notes[3]",
+   "source_id": "devkitc1-s2",
+   "row": [
+    "3",
+    "RX",
+    "I/O/T",
+    "U0RXD, GPIO44, CLK_OUT2"
+   ]
+  },
+  {
+   "about": "notes[4]",
+   "source_id": "devkitc1-s2",
+   "row": [
+    "20",
+    "19",
+    "I/O/T",
+    "RTC_GPIO19, GPIO19, U1RTS, ADC2_CH8, CLK_OUT2, USB_D-"
+   ]
+  },
+  {
+   "about": "notes[4]",
+   "source_id": "devkitc1-s2",
+   "row": [
+    "19",
+    "20",
+    "I/O/T",
+    "RTC_GPIO20, GPIO20, U1CTS, ADC2_CH9, CLK_OUT1, USB_D+"
+   ]
+  },
+  {
+   "about": "notes[4]",
+   "source_id": "idf-v6.1-soccaps-esp32s2",
+   "quote": "#define SOC_USB_OTG_SUPPORTED"
+  },
+  {
+   "about": "notes[5]",
+   "source_id": "idf-v6.1-gpio-esp32s2",
+   "quote": "GPIO39-42 are usually used for inline debug"
+  },
+  {
+   "about": "notes[5]",
+   "source_id": "devkitc1-s2",
+   "row": [
+    "6",
+    "42",
+    "I/O/T",
+    "MTMS, GPIO42"
+   ]
+  },
+  {
+   "about": "notes[5]",
+   "source_id": "devkitc1-s2",
+   "row": [
+    "7",
+    "41",
+    "I/O/T",
+    "MTDI, GPIO41, CLK_OUT1"
+   ]
+  },
+  {
+   "about": "notes[5]",
+   "source_id": "devkitc1-s2",
+   "row": [
+    "8",
+    "40",
+    "I/O/T",
+    "MTDO, GPIO40, CLK_OUT2"
+   ]
+  },
+  {
+   "about": "notes[5]",
+   "source_id": "devkitc1-s2",
+   "row": [
+    "9",
+    "39",
+    "I/O/T",
+    "MTCK, GPIO39, CLK_OUT3"
+   ]
+  },
+  {
+   "about": "notes[6]",
+   "source_id": "devkitc1-s2-ordering",
+   "row": [
+    "ESP32-S2-DevKitC-1-N8R2",
+    "ESP32-S2-SOLO-2",
+    "8 MB",
+    "2 MB",
+    "PCB on-board antenna"
+   ]
+  },
+  {
+   "about": "notes[6]",
+   "source_id": "devkitc1-s2-ordering",
+   "row": [
+    "ESP32-S2-DevKitC-1U-N8R2",
+    "ESP32-S2-SOLO-2U",
+    "8 MB",
+    "2 MB",
+    "External antenna connector"
+   ]
+  },
+  {
+   "about": "notes[6]",
+   "source_id": "devkitc1-s2-ordering",
+   "row": [
+    "ESP32-S2-DevKitC-1R (EOL)",
+    "ESP32-S2-SOLO",
+    "4 MB",
+    "2 MB",
+    "PCB on-board antenna"
+   ]
+  },
+  {
+   "about": "notes[6]",
+   "source_id": "devkitc1-s2-ordering",
+   "row": [
+    "ESP32-S2-DevKitC-1RU (EOL)",
+    "ESP32-S2-SOLO-U",
+    "4 MB",
+    "2 MB",
+    "External antenna connector"
+   ]
+  },
+  {
+   "about": "notes[7]",
+   "source_id": "devkitc1-s2",
+   "quote": "There are three mutually exclusive ways to provide power to the board:"
+  },
+  {
+   "about": "notes[7]",
+   "source_id": "devkitc1-s2",
+   "quote": "- 5V and G (GND) pins"
+  },
+  {
+   "about": "notes[7]",
+   "source_id": "devkitc1-s2",
+   "quote": "- 3V3 and G (GND) pins"
+  },
+  {
+   "about": "notes[8]",
+   "source_id": "devkits-eol",
+   "quote": "ESP32-S2-DevKitM-1 <../esp32-s2-devkitm-1/index>"
+  },
+  {
+   "about": "notes[8]",
+   "source_id": "devkits-eol",
+   "quote": "ESP32-S2-Saola-1 <../esp32-s2-saola-1/index>"
+  },
+  {
+   "about": "notes[9]",
+   "source_id": "devkitc1-s2",
+   "quote": "The two tables below provide the **Name** and **Function** of the pin headers on both sides of the board (J1 and J3)."
+  },
+  {
+   "about": "notes[9]",
+   "source_id": "devkitc1-s2",
+   "quote": "figure:: ../../_static/esp32-s2-devkitc-1/esp32-s2-devkitc-1-v1-pinout.png"
+  }
+ ],
+ "drawing": {
+  "schema": 1,
+  "orientation": "module_top",
+  "parts": [
+   {
+    "kind": "usb_port",
+    "ref": "UART",
+    "connector": "micro_usb",
+    "edge": "bottom",
+    "order": 1,
+    "source_id": "devkitc1-s2",
+    "quote": "A Micro-USB port used for power supply to the board, for flashing applications to the chip, as well as the communication with the chip via the on-board USB-to-UART bridge.",
+    "figure": "esp32-s2-devkitc-1-v1-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "usb_port",
+    "ref": "USB",
+    "connector": null,
+    "edge": "bottom",
+    "order": 2,
+    "source_id": "devkitc1-s2",
+    "quote": "ESP32-S2 full-speed USB OTG interface, compliant with the USB 1.1 specifications.",
+    "figure": "esp32-s2-devkitc-1-v1-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable; the guide names no connector type for this port"
+   },
+   {
+    "kind": "button",
+    "label": "Boot",
+    "zone": "lower",
+    "side": "left",
+    "source_id": "devkitc1-s2",
+    "quote": "Holding down **Boot** and then pressing **Reset** initiates Firmware Download mode for downloading firmware through the serial port.",
+    "figure": "esp32-s2-devkitc-1-v1-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "button",
+    "label": "Reset",
+    "zone": "lower",
+    "side": "right",
+    "source_id": "devkitc1-s2",
+    "quote": "Press this button to restart the system.",
+    "figure": "esp32-s2-devkitc-1-v1-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "bridge_ic",
+    "label": "USB-UART",
+    "zone": "middle",
+    "side": "center",
+    "source_id": "devkitc1-s2",
+    "quote": "Single USB-to-UART bridge chip provides transfer rates up to 3 Mbps.",
+    "figure": "esp32-s2-devkitc-1-v1-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "led",
+    "label": "RGB",
+    "gpio": 18,
+    "zone": "middle",
+    "side": "left",
+    "source_id": "devkitc1-s2",
+    "quote": "Addressable RGB LED, driven by GPIO18.",
+    "figure": "esp32-s2-devkitc-1-v1-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   },
+   {
+    "kind": "ldo",
+    "label": "LDO 3V3",
+    "zone": "below_module",
+    "side": "center",
+    "source_id": "devkitc1-s2",
+    "quote": "Power regulator that converts a 5 V supply into a 3.3 V output.",
+    "figure": "esp32-s2-devkitc-1-v1-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable; the photo callout reads '5V to 3.3V DC-DC', the kind follows the guide's table"
+   },
+   {
+    "kind": "power_led",
+    "label": "PWR",
+    "zone": "below_module",
+    "side": "right",
+    "source_id": "devkitc1-s2",
+    "quote": "Turns on when the USB power is connected to the board.",
+    "figure": "esp32-s2-devkitc-1-v1-annotated-photo.png",
+    "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+   }
+  ]
+ }
+}

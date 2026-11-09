@@ -1,0 +1,1499 @@
+{
+  "schema": 1,
+  "wp": "nenv",
+  "note": "Values only from manufacturer documents; 'evidence' quotes lines of tests/corpus/excerpts/mod-nenv-*.txt (pypdf).",
+  "modules": [
+    {
+      "id": "bmp388",
+      "aliases": [
+        "bmp-388",
+        "gy-bmp388"
+      ],
+      "title": "BMP388 pressure and temperature sensor",
+      "category": "sensor.environment",
+      "manufacturer": "Bosch Sensortec",
+      "kind": "ic",
+      "source_ids": [
+        "mod-nenv-bmp388-ds"
+      ],
+      "supplies": {
+        "VDD": {
+          "min": {
+            "value": 1.65,
+            "unit": "V",
+            "page": 7,
+            "evidence": [
+              "Sensor supply",
+              "voltage VDD ripple max. 50mVpp 1.65 1.8 3.6 V"
+            ],
+            "conditions": "ripple max. 50 mVpp"
+          },
+          "typ": {
+            "value": 1.8,
+            "unit": "V",
+            "page": 7,
+            "evidence": [
+              "Sensor supply",
+              "voltage VDD ripple max. 50mVpp 1.65 1.8 3.6 V"
+            ]
+          },
+          "max": {
+            "value": 3.6,
+            "unit": "V",
+            "page": 7,
+            "evidence": [
+              "Sensor supply",
+              "voltage VDD ripple max. 50mVpp 1.65 1.8 3.6 V"
+            ]
+          },
+          "abs_max": {
+            "value": 3.8,
+            "unit": "V",
+            "page": 9,
+            "evidence": "Voltage at any supply pin  VDD and VDDIO Pin -0.3 3.8 V"
+          }
+        },
+        "VDDIO": {
+          "min": {
+            "value": 1.2,
+            "unit": "V",
+            "page": 7,
+            "evidence": [
+              "Interface supply",
+              "voltage VDDIO  1.2 1.8 3.6 V"
+            ]
+          },
+          "typ": {
+            "value": 1.8,
+            "unit": "V",
+            "page": 7,
+            "evidence": [
+              "Interface supply",
+              "voltage VDDIO  1.2 1.8 3.6 V"
+            ]
+          },
+          "max": {
+            "value": 3.6,
+            "unit": "V",
+            "page": 7,
+            "evidence": [
+              "Interface supply",
+              "voltage VDDIO  1.2 1.8 3.6 V"
+            ]
+          },
+          "abs_max": {
+            "value": 3.8,
+            "unit": "V",
+            "page": 9,
+            "evidence": "Voltage at any supply pin  VDD and VDDIO Pin -0.3 3.8 V"
+          }
+        }
+      },
+      "io": {
+        "domain": "VDDIO",
+        "vih": {
+          "rel": 0.7,
+          "of": "VDDIO",
+          "unit": "V",
+          "page": 43,
+          "evidence": [
+            "Input – high level Vih SCK, SDI and CSB",
+            "0.7",
+            "VDDIO"
+          ],
+          "conditions": "SCK, SDI and CSB; min"
+        },
+        "vil": {
+          "rel": 0.25,
+          "of": "VDDIO",
+          "unit": "V",
+          "page": 43,
+          "evidence": [
+            "Input – low level Vil SCK, SDI and CSB",
+            "0.25",
+            "VDDIO"
+          ],
+          "conditions": "SCK, SDI and CSB; max"
+        },
+        "v_in_max": {
+          "rel_offset": 0.3,
+          "of": "VDDIO",
+          "unit": "V",
+          "page": 9,
+          "evidence": "Voltage at any interface pin   Vss -0.3 VDDIO + 0.3 V",
+          "conditions": "absolute maximum rating"
+        },
+        "outputs": "open_drain"
+      },
+      "pins": [
+        {
+          "name": "VDDIO",
+          "signal": "supply",
+          "tie": "VDD",
+          "note": "digital interface supply (pin 1)"
+        },
+        {
+          "name": "SCK",
+          "signal": "i2c_scl",
+          "note": "SCL in I²C mode (pin 2)"
+        },
+        {
+          "name": "VSS",
+          "signal": "gnd",
+          "note": "pins 3, 8 and 9"
+        },
+        {
+          "name": "SDI",
+          "signal": "i2c_sda",
+          "note": "SDA in I²C mode (pin 4)"
+        },
+        {
+          "name": "SDO",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "SA0 in I²C mode (pin 5)"
+        },
+        {
+          "name": "CSB",
+          "signal": "mode_select",
+          "tie": "VDDIO",
+          "note": "CSB on VDDIO selects I²C (p. 40)"
+        },
+        {
+          "name": "INT",
+          "signal": "digital_out",
+          "note": "interrupt output, optional (pin 7)"
+        },
+        {
+          "name": "VDD",
+          "signal": "supply",
+          "note": "analog supply (pin 10)"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {
+            "value": [
+              "0x76",
+              "0x77"
+            ],
+            "page": 40,
+            "evidence": [
+              "Connecting SDO to GND results in slave address 1110110 (0x76)",
+              "address 1110111 (0x77)"
+            ]
+          },
+          "default": "0x76",
+          "select": {
+            "pin": "SDO",
+            "map": {
+              "VSS": "0x76",
+              "VDDIO": "0x77"
+            }
+          },
+          "f_max_hz": {
+            "value": 3400000,
+            "unit": "Hz",
+            "page": 3,
+            "evidence": "Digital interface I²C (up to 3.4 MHz)",
+            "conditions": "I²C high-speed mode; SPI up to 10 MHz"
+          },
+          "note": "CSB connected to VDDIO selects I²C; once CSB is pulled low, I²C stays off until the next power-on reset (p. 40)"
+        }
+      ],
+      "current": {
+        "supply": "VDD",
+        "max": {
+          "value": 0.0008,
+          "unit": "A",
+          "page": 7,
+          "evidence": "Peak current Ipeak during pressure measurement  700 800 µA",
+          "conditions": "peak current during pressure measurement, max"
+        },
+        "peak": {
+          "value": 0.0008,
+          "unit": "A",
+          "page": 7,
+          "evidence": "Peak current Ipeak during pressure measurement  700 800 µA",
+          "conditions": "peak current during pressure measurement, max"
+        },
+        "sleep": {
+          "value": 2e-06,
+          "unit": "A",
+          "page": 7,
+          "evidence": "Sleep current IDD,sleep VDD = VDDIO 1.8-3.6 V  2  µA",
+          "conditions": "typ, VDD = VDDIO 1.8–3.6 V (no max given)"
+        },
+        "note": "temperature measurement: max 400 µA (p. 7)"
+      },
+      "requires": [
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "100nF",
+          "pins": [
+            "VDD",
+            "VDDIO"
+          ],
+          "to": "VSS",
+          "page": 48,
+          "evidence": "the recommended value for C1, C2 is 100 nF"
+        },
+        {
+          "code": "pullup",
+          "kind": "resistor",
+          "value": "4k7",
+          "pins": [
+            "SDI",
+            "SCK"
+          ],
+          "to": "VDDIO",
+          "page": 48,
+          "evidence": "for R1, R2 is 4.7 kΩ",
+          "note": "R1/R2 are the I²C pull-ups of the I²C connection diagram (Figure 25)"
+        }
+      ],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "CHIP_ID register 0x00 reads 0x50 on a BMP388.",
+          "page": 31,
+          "evidence": "0x00 CHIP_ID 0x50 chip_id_fixed chip_id_nvm",
+          "verified": true
+        },
+        {
+          "text": "SDO must not float: an open SDO leaves the I²C address undefined.",
+          "page": 40,
+          "evidence": "The SDO pin cannot be left floating; if left floating, the",
+          "verified": true
+        },
+        {
+          "text": "Holding SDI, SDO, SCK or CSB high while VDDIO is off can permanently damage the chip (current through the ESD diodes): do not power the sensor down while the bus pull-ups stay powered.",
+          "page": 11,
+          "evidence": "Holding any interface pin (SDI, SDO, SCK or CSB) at a logical high level when VDDIO is switched off can permanently damage",
+          "verified": true
+        },
+        {
+          "text": "0x77 is also the BMP180 address; a BME280/BMP280 at the same SDO level answers on the same address.",
+          "page": 40,
+          "evidence": "which is the same as BMP180’s I²C address",
+          "verified": true
+        },
+        {
+          "text": "Breakout boards often add a 3.3 V regulator, pull-ups and a fixed SDO level; Bosch documents the bare chip only.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "bmp390",
+      "aliases": [
+        "bmp-390",
+        "gy-bmp390",
+        "bmp390l"
+      ],
+      "title": "BMP390 barometric pressure and temperature sensor",
+      "category": "sensor.environment",
+      "manufacturer": "Bosch Sensortec",
+      "kind": "ic",
+      "source_ids": [
+        "mod-nenv-bmp390-ds"
+      ],
+      "supplies": {
+        "VDD": {
+          "min": {
+            "value": 1.65,
+            "unit": "V",
+            "page": 7,
+            "evidence": [
+              "Sensor supply",
+              "voltage VDD ripple max. 50mVpp 1.65 1.8 3.6 V"
+            ],
+            "conditions": "ripple max. 50 mVpp"
+          },
+          "typ": {
+            "value": 1.8,
+            "unit": "V",
+            "page": 7,
+            "evidence": [
+              "Sensor supply",
+              "voltage VDD ripple max. 50mVpp 1.65 1.8 3.6 V"
+            ]
+          },
+          "max": {
+            "value": 3.6,
+            "unit": "V",
+            "page": 7,
+            "evidence": [
+              "Sensor supply",
+              "voltage VDD ripple max. 50mVpp 1.65 1.8 3.6 V"
+            ]
+          },
+          "abs_max": {
+            "value": 3.6,
+            "unit": "V",
+            "page": 9,
+            "evidence": "Voltage at any supply pin  VDD and VDDIO Pin -0.3 3.6 V"
+          }
+        },
+        "VDDIO": {
+          "min": {
+            "value": 1.2,
+            "unit": "V",
+            "page": 7,
+            "evidence": [
+              "Interface supply",
+              "voltage VDDIO  1.2 1.8 3.6 V"
+            ]
+          },
+          "typ": {
+            "value": 1.8,
+            "unit": "V",
+            "page": 7,
+            "evidence": [
+              "Interface supply",
+              "voltage VDDIO  1.2 1.8 3.6 V"
+            ]
+          },
+          "max": {
+            "value": 3.6,
+            "unit": "V",
+            "page": 7,
+            "evidence": [
+              "Interface supply",
+              "voltage VDDIO  1.2 1.8 3.6 V"
+            ]
+          },
+          "abs_max": {
+            "value": 3.6,
+            "unit": "V",
+            "page": 9,
+            "evidence": "Voltage at any supply pin  VDD and VDDIO Pin -0.3 3.6 V"
+          }
+        }
+      },
+      "io": {
+        "domain": "VDDIO",
+        "vih": {
+          "rel": 0.7,
+          "of": "VDDIO",
+          "unit": "V",
+          "page": 43,
+          "evidence": [
+            "Input – high level Vih SCK, SDI and CSB",
+            "0.7",
+            "VDDIO"
+          ],
+          "conditions": "SCK, SDI and CSB; min"
+        },
+        "vil": {
+          "rel": 0.25,
+          "of": "VDDIO",
+          "unit": "V",
+          "page": 43,
+          "evidence": [
+            "Input – low level Vil SCK, SDI and CSB",
+            "0.25",
+            "VDDIO"
+          ],
+          "conditions": "SCK, SDI and CSB; max"
+        },
+        "v_in_max": {
+          "rel_offset": 0.3,
+          "of": "VDDIO",
+          "unit": "V",
+          "page": 9,
+          "evidence": "Voltage at any interface pin   Vss -0.3 VDDIO + 0.3 V",
+          "conditions": "absolute maximum rating"
+        },
+        "outputs": "open_drain"
+      },
+      "pins": [
+        {
+          "name": "VDDIO",
+          "signal": "supply",
+          "tie": "VDD",
+          "note": "digital interface supply (pin 1)"
+        },
+        {
+          "name": "SCK",
+          "signal": "i2c_scl",
+          "note": "SCL in I²C mode (pin 2)"
+        },
+        {
+          "name": "VSS",
+          "signal": "gnd",
+          "note": "pins 3, 8 and 9"
+        },
+        {
+          "name": "SDI",
+          "signal": "i2c_sda",
+          "note": "SDA in I²C mode (pin 4)"
+        },
+        {
+          "name": "SDO",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "SA0 in I²C mode (pin 5)"
+        },
+        {
+          "name": "CSB",
+          "signal": "mode_select",
+          "tie": "VDDIO",
+          "note": "CSB on VDDIO selects I²C (p. 40)"
+        },
+        {
+          "name": "INT",
+          "signal": "digital_out",
+          "note": "interrupt output, optional (pin 7)"
+        },
+        {
+          "name": "VDD",
+          "signal": "supply",
+          "note": "analog supply (pin 10)"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {
+            "value": [
+              "0x76",
+              "0x77"
+            ],
+            "page": 40,
+            "evidence": [
+              "Connecting SDO to GND results in slave address 1110110 (0x76)",
+              "address 1110111 (0x77)"
+            ]
+          },
+          "default": "0x76",
+          "select": {
+            "pin": "SDO",
+            "map": {
+              "VSS": "0x76",
+              "VDDIO": "0x77"
+            }
+          },
+          "f_max_hz": {
+            "value": 3400000,
+            "unit": "Hz",
+            "page": 3,
+            "evidence": "Digital interface I²C (up to 3.4 MHz)",
+            "conditions": "I²C high-speed mode; SPI up to 10 MHz"
+          },
+          "note": "CSB connected to VDDIO selects I²C; once CSB is pulled low, I²C stays off until the next power-on reset (p. 40)"
+        }
+      ],
+      "current": {
+        "supply": "VDD",
+        "max": {
+          "value": 0.00073,
+          "unit": "A",
+          "page": 7,
+          "evidence": "Peak current Ipeak during pressure measurement  660 730 µA",
+          "conditions": "peak current during pressure measurement, max"
+        },
+        "peak": {
+          "value": 0.00073,
+          "unit": "A",
+          "page": 7,
+          "evidence": "Peak current Ipeak during pressure measurement  660 730 µA",
+          "conditions": "peak current during pressure measurement, max"
+        },
+        "sleep": {
+          "value": 1.5e-06,
+          "unit": "A",
+          "page": 7,
+          "evidence": "IDDSL VDD = VDDIO = 3.6 V  1.5  µA",
+          "conditions": "typ, VDD = VDDIO = 3.6 V (no max given)"
+        },
+        "note": "temperature measurement: max 320 µA (p. 7)"
+      },
+      "requires": [
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "100nF",
+          "pins": [
+            "VDD",
+            "VDDIO"
+          ],
+          "to": "VSS",
+          "page": 48,
+          "evidence": "the recommended value for C1, C2 is 100 nF"
+        },
+        {
+          "code": "pullup",
+          "kind": "resistor",
+          "value": "4k7",
+          "pins": [
+            "SDI",
+            "SCK"
+          ],
+          "to": "VDDIO",
+          "page": 48,
+          "evidence": "for R1, R2 is 4.7 kΩ",
+          "note": "R1/R2 are the I²C pull-ups of the I²C connection diagram (Figure 25)"
+        }
+      ],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "CHIP_ID register 0x00 reads 0x60 on a BMP390.",
+          "page": 30,
+          "evidence": "0x00 CHIP_ID 0x60 chip_id_fixed chip_id_nvm",
+          "verified": true
+        },
+        {
+          "text": "CHIP_ID 0x60 is the same value a BME280 reads, but in register 0x00 (BME280: register 0xD0).",
+          "verified": false
+        },
+        {
+          "text": "The absolute maximum supply voltage (3.6 V) equals the top of the operating range: no headroom above 3.6 V.",
+          "page": 9,
+          "evidence": "Voltage at any supply pin  VDD and VDDIO Pin -0.3 3.6 V",
+          "verified": true
+        },
+        {
+          "text": "SDO must not float: an open SDO leaves the I²C address undefined.",
+          "page": 40,
+          "evidence": "The SDO pin cannot be left floating; if left floating, the",
+          "verified": true
+        },
+        {
+          "text": "Holding SDI, SDO, SCK or CSB high while VDDIO is off can permanently damage the chip (current through the ESD diodes): do not power the sensor down while the bus pull-ups stay powered.",
+          "page": 11,
+          "evidence": "Holding any interface pin (SDI, SDO, SCK or CSB) at a logical high level when VDDIO is switched off can permanently damage",
+          "verified": true
+        },
+        {
+          "text": "0x77 is also the BMP180 address; a BME280/BMP280 at the same SDO level answers on the same address.",
+          "page": 40,
+          "evidence": "which is the same as BMP180’s I²C address",
+          "verified": true
+        },
+        {
+          "text": "Breakout boards often add a 3.3 V regulator, pull-ups and a fixed SDO level; Bosch documents the bare chip only.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "shtc3",
+      "aliases": [
+        "sht-c3"
+      ],
+      "title": "SHTC3 humidity and temperature sensor",
+      "category": "sensor.environment",
+      "manufacturer": "Sensirion",
+      "kind": "ic",
+      "source_ids": [
+        "mod-nenv-shtc3-ds"
+      ],
+      "supplies": {
+        "VDD": {
+          "min": {
+            "value": 1.62,
+            "unit": "V",
+            "page": 3,
+            "evidence": "Supply voltage VDD  1.62 3.3 3.6 V"
+          },
+          "typ": {
+            "value": 3.3,
+            "unit": "V",
+            "page": 3,
+            "evidence": "Supply voltage VDD  1.62 3.3 3.6 V"
+          },
+          "max": {
+            "value": 3.6,
+            "unit": "V",
+            "page": 3,
+            "evidence": "Supply voltage VDD  1.62 3.3 3.6 V"
+          },
+          "abs_max": {
+            "value": 4.0,
+            "unit": "V",
+            "page": 4,
+            "evidence": "Supply voltage, VDD -0.3 to +4 V"
+          }
+        }
+      },
+      "io": {
+        "domain": "VDD",
+        "vih": {
+          "rel": 0.7,
+          "of": "VDD",
+          "unit": "V",
+          "page": 3,
+          "evidence": "High level input voltage VIH - 0.7 VDD - - V",
+          "conditions": "min"
+        },
+        "vil": {
+          "rel": 0.42,
+          "of": "VDD",
+          "unit": "V",
+          "page": 3,
+          "evidence": "Low level input voltage VIL - - - 0.42 VDD V",
+          "conditions": "max"
+        },
+        "vol": {
+          "rel": 0.2,
+          "of": "VDD",
+          "unit": "V",
+          "page": 3,
+          "evidence": "Low level output voltage VOL 3 mA sink current - - 0.2 VDD V",
+          "conditions": "3 mA sink, max"
+        },
+        "outputs": "open_drain"
+      },
+      "pins": [
+        {
+          "name": "VDD",
+          "signal": "supply"
+        },
+        {
+          "name": "SCL",
+          "signal": "i2c_scl"
+        },
+        {
+          "name": "SDA",
+          "signal": "i2c_sda"
+        },
+        {
+          "name": "VSS",
+          "signal": "gnd",
+          "note": "the center pad is internally connected to VSS (p. 6)"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {
+            "value": [
+              "0x70"
+            ],
+            "page": 6,
+            "evidence": "I2C address 0x70 111’0000"
+          },
+          "default": "0x70",
+          "f_max_hz": {
+            "value": 1000000,
+            "unit": "Hz",
+            "page": 5,
+            "evidence": "SCL clock frequency fSCL - 0 100 0 400 0 1000 kHz",
+            "conditions": "fast mode plus; 100 kHz standard, 400 kHz fast mode"
+          },
+          "note": "fixed address; shares 0x70 with a TCA9548A at A2..A0 low and the PCA9685 All-Call address"
+        }
+      ],
+      "current": {
+        "supply": "VDD",
+        "typ": {
+          "value": 0.00043,
+          "unit": "A",
+          "page": 3,
+          "evidence": "Measurement Normal Mode - 430 900 µA",
+          "conditions": "average while measuring, normal mode"
+        },
+        "max": {
+          "value": 0.0009,
+          "unit": "A",
+          "page": 3,
+          "evidence": "Measurement Normal Mode - 430 900 µA",
+          "conditions": "average while measuring, normal mode, max"
+        },
+        "note": "idle state (after power-up, before the sleep command): max 70 µA (p. 3)",
+        "sleep": {
+          "value": 6e-07,
+          "unit": "A",
+          "page": 3,
+          "evidence": "Sleep Mode - 0.3 0.6 µA",
+          "conditions": "sleep mode, max"
+        }
+      },
+      "requires": [
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "100nF",
+          "pins": [
+            "VDD"
+          ],
+          "to": "VSS",
+          "page": 6,
+          "evidence": "must be decoupled with a 10 0 nF capacitor that shall be"
+        },
+        {
+          "code": "pullup",
+          "kind": "resistor",
+          "value": "10k",
+          "pins": [
+            "SDA",
+            "SCL"
+          ],
+          "to": "VDD",
+          "page": 6,
+          "evidence": [
+            "drive SDA and SCL low. External pull -up resistors (e.g.",
+            "10 kΩ) are required to pull the signal high."
+          ]
+        }
+      ],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "After power-up the SHTC3 stays idle (up to 70 µA) until it receives the sleep command 0xB098.",
+          "page": 3,
+          "evidence": "Idle state - 45 70 µA",
+          "verified": true
+        },
+        {
+          "text": "The datasheet gives no absolute maximum for the SDA/SCL pins; levels follow VDD (VIH 0.7 × VDD).",
+          "verified": false
+        },
+        {
+          "text": "Breakout boards (Adafruit, Waveshare) often add a regulator and 10 kΩ pull-ups.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "tmp117",
+      "aliases": [
+        "tmp-117",
+        "tmp117aidrvr"
+      ],
+      "title": "TMP117 high-accuracy digital temperature sensor",
+      "category": "sensor.temperature",
+      "manufacturer": "Texas Instruments",
+      "kind": "ic",
+      "source_ids": [
+        "mod-nenv-tmp117-ds"
+      ],
+      "supplies": {
+        "V+": {
+          "min": {
+            "value": 1.7,
+            "unit": "V",
+            "page": 5,
+            "evidence": [
+              "V+ Supply voltage, TA = -55 °C to 70 °C 1.7 5.5 V"
+            ],
+            "conditions": "TA = -55 °C to 70 °C (1.8 V for TA up to 150 °C)"
+          },
+          "typ": {
+            "value": 3.3,
+            "unit": "V",
+            "page": 5,
+            "evidence": "V+ Supply voltage, TA = -55 °C to 150 °C 1.8 3.3 5.5 V"
+          },
+          "max": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 5,
+            "evidence": "V+ Supply voltage, TA = -55 °C to 150 °C 1.8 3.3 5.5 V"
+          },
+          "abs_max": {
+            "value": 6.0,
+            "unit": "V",
+            "page": 5,
+            "evidence": "Supply voltage V+ –0.3 6 V"
+          }
+        }
+      },
+      "io": {
+        "domain": "V+",
+        "vih": {
+          "rel": 0.7,
+          "of": "V+",
+          "unit": "V",
+          "page": 6,
+          "evidence": "VIH Input logic high level SCL, SDA 0.7 * (V+) V",
+          "conditions": "SCL, SDA; min"
+        },
+        "vil": {
+          "rel": 0.3,
+          "of": "V+",
+          "unit": "V",
+          "page": 6,
+          "evidence": "VIL Input logic low level SCL, SDA 0.3 * (V+) V",
+          "conditions": "SCL, SDA; max"
+        },
+        "vol": {
+          "value": 0.4,
+          "unit": "V",
+          "page": 6,
+          "evidence": "VOL SDA and ALERT output logic low level IOL = -3 mA 0 0.4 V",
+          "conditions": "SDA and ALERT, IOL = 3 mA, max"
+        },
+        "v_in_max": {
+          "value": 5.5,
+          "unit": "V",
+          "page": 5,
+          "evidence": "VI/O SCL, SDA, ALERT and ADD0 0 5.5 V",
+          "conditions": "recommended operating range (absolute maximum 6 V, p. 5)"
+        },
+        "outputs": "open_drain"
+      },
+      "pins": [
+        {
+          "name": "SCL",
+          "signal": "i2c_scl"
+        },
+        {
+          "name": "GND",
+          "signal": "gnd"
+        },
+        {
+          "name": "ALERT",
+          "signal": "open_drain_out",
+          "note": "open-drain alert / data-ready; needs a pull-up"
+        },
+        {
+          "name": "ADD0",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "connect to GND, V+, SDA or SCL (p. 4)"
+        },
+        {
+          "name": "V+",
+          "signal": "supply"
+        },
+        {
+          "name": "SDA",
+          "signal": "i2c_sda"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {
+            "value": [
+              "0x48",
+              "0x49",
+              "0x4a",
+              "0x4b"
+            ],
+            "page": 21,
+            "evidence": [
+              "1001000x Ground",
+              "1001001x V+",
+              "1001010x SDA",
+              "1001011x SCL"
+            ]
+          },
+          "default": "0x48",
+          "select": {
+            "pin": "ADD0",
+            "map": {
+              "GND": "0x48",
+              "V+": "0x49",
+              "SDA": "0x4a",
+              "SCL": "0x4b"
+            }
+          },
+          "f_max_hz": {
+            "value": 400000,
+            "unit": "Hz",
+            "page": 7,
+            "evidence": "fSCL SCL operating frequency 1 400 KHz"
+          },
+          "note": "same range as ADS1015/ADS1115 (0x48–0x4B with the same pin scheme)"
+        }
+      ],
+      "current": {
+        "supply": "V+",
+        "typ": {
+          "value": 3.5e-06,
+          "unit": "A",
+          "page": 6,
+          "evidence": [
+            "IQ Quiescent current",
+            "Duty cycle 1 Hz, averaging mode off, serial bus",
+            "inactive. TA = 25 °C 3.5 5"
+          ],
+          "conditions": "1 Hz duty cycle, averaging off, TA = 25 °C"
+        },
+        "max": {
+          "value": 0.00022,
+          "unit": "A",
+          "page": 6,
+          "evidence": [
+            "Quiescent current during active",
+            "conversion Active Conversion, serial bus inactive 135 220 μA"
+          ],
+          "conditions": "during active conversion, max"
+        },
+        "sleep": {
+          "value": 5e-07,
+          "unit": "A",
+          "page": 6,
+          "evidence": "Shutdown current Serial bus inactive, SCL, SDA, and ADD0 = V+. TA = 25 °C 0.15 0.5 μA",
+          "conditions": "shutdown, TA = 25 °C, max"
+        }
+      },
+      "requires": [
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "100nF",
+          "pins": [
+            "V+"
+          ],
+          "to": "GND",
+          "page": 35,
+          "evidence": "recommended value for this supply bypass capacitor is 100 nF"
+        },
+        {
+          "code": "pullup",
+          "kind": "resistor",
+          "pins": [
+            "SDA"
+          ],
+          "to": "V+",
+          "page": 4,
+          "evidence": "SDA 6 A1 I/O Serial data input and open-drain output. Requires a pullup resistor.",
+          "note": "SCL needs one as well on a shared bus; value from the I²C pull-up calculator"
+        },
+        {
+          "code": "pullup",
+          "kind": "resistor",
+          "pins": [
+            "ALERT"
+          ],
+          "to": "V+",
+          "page": 4,
+          "evidence": "This open-drain output requires a pullup resistor.",
+          "note": "only if ALERT is used"
+        }
+      ],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "Pins tolerate up to 5.5 V independent of V+ (recommended range), so a 5 V bus is allowed by the sensor; the ESP32 side still needs 3.3 V pull-ups.",
+          "page": 5,
+          "evidence": "VI/O SCL, SDA, ALERT and ADD0 0 5.5 V",
+          "verified": true
+        },
+        {
+          "text": "EEPROM writes draw 240 µA (typ); budget for it while registers are programmed.",
+          "page": 6,
+          "evidence": "IEE EEPROM write quiescent current ADC conversion off; serial bus inactive 240 μA",
+          "verified": true
+        },
+        {
+          "text": "Breakout boards (Adafruit, SparkFun) add pull-ups and an ADD0 jumper.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "ens160",
+      "aliases": [
+        "ens-160",
+        "ens160-bglm"
+      ],
+      "title": "ENS160 digital metal-oxide multi-gas sensor (TVOC, eCO2, AQI)",
+      "category": "sensor.gas",
+      "manufacturer": "ScioSense",
+      "kind": "ic",
+      "source_ids": [
+        "mod-nenv-ens160-ds"
+      ],
+      "supplies": {
+        "VDD": {
+          "min": {
+            "value": 1.71,
+            "unit": "V",
+            "page": 7,
+            "evidence": [
+              "VDD Positive supply  1.719 1.8 1.98 V",
+              "9 The minimum supply voltage VDD is 1.71V and must not drop below this value."
+            ],
+            "conditions": "the table cell reads 1.71 with footnote 9"
+          },
+          "typ": {
+            "value": 1.8,
+            "unit": "V",
+            "page": 7,
+            "evidence": "VDD Positive supply  1.719 1.8 1.98 V"
+          },
+          "max": {
+            "value": 1.98,
+            "unit": "V",
+            "page": 7,
+            "evidence": "VDD Positive supply  1.719 1.8 1.98 V"
+          },
+          "abs_max": {
+            "value": 1.98,
+            "unit": "V",
+            "page": 6,
+            "evidence": "VDD Supply Voltage  -0.3 1.98 V"
+          }
+        },
+        "VDDIO": {
+          "min": {
+            "value": 1.71,
+            "unit": "V",
+            "page": 7,
+            "evidence": "VDDIO IO Supply Voltage  1.71  3.6 V"
+          },
+          "max": {
+            "value": 3.6,
+            "unit": "V",
+            "page": 7,
+            "evidence": "VDDIO IO Supply Voltage  1.71  3.6 V"
+          },
+          "abs_max": {
+            "value": 3.6,
+            "unit": "V",
+            "page": 6,
+            "evidence": "VDDIO I/O Interface Supply -0.3 3.6 V"
+          }
+        }
+      },
+      "io": {
+        "domain": "VDDIO",
+        "vih": {
+          "rel": 0.7,
+          "of": "VDDIO",
+          "unit": "V",
+          "page": 7,
+          "evidence": "VIH High-level input voltage  0.7xVDDIO   V",
+          "conditions": "min"
+        },
+        "vil": {
+          "rel": 0.3,
+          "of": "VDDIO",
+          "unit": "V",
+          "page": 7,
+          "evidence": "VIL Low-level input voltage    0.3xVDDIO V",
+          "conditions": "max"
+        },
+        "vol": {
+          "rel": 0.2,
+          "of": "VDDIO",
+          "unit": "V",
+          "page": 7,
+          "evidence": "VOL Low-level output voltage MOSI/SDA, MISO [IOL=5mA]   0.2xVDDIO V",
+          "conditions": "MOSI/SDA, MISO at 5 mA, max"
+        },
+        "v_in_max": {
+          "value": 3.6,
+          "unit": "V",
+          "page": 6,
+          "evidence": "VIO1 MOSI/SDA, SCLK/SCL -0.3 3.6 V",
+          "conditions": "absolute maximum rating of SDA and SCL (VIO1); ADDR, INTn and CSn (VIO2) are rated only to VDDIO+0.3 (see notes)"
+        },
+        "outputs": "open_drain"
+      },
+      "pins": [
+        {
+          "name": "SDA",
+          "signal": "i2c_sda",
+          "note": "MOSI/SDA (pin 1), open drain"
+        },
+        {
+          "name": "SCL",
+          "signal": "i2c_scl",
+          "note": "SCLK/SCL (pin 2)"
+        },
+        {
+          "name": "ADDR",
+          "signal": "addr_select",
+          "must_connect": true,
+          "note": "MISO/ADDR (pin 3), sampled at power-up"
+        },
+        {
+          "name": "VDD",
+          "signal": "supply",
+          "note": "main supply, 1.8 V (pin 4)"
+        },
+        {
+          "name": "VDDIO",
+          "signal": "supply",
+          "note": "interface supply (pin 5)"
+        },
+        {
+          "name": "INTn",
+          "signal": "digital_out",
+          "active_low": true,
+          "note": "interrupt to host, optional"
+        },
+        {
+          "name": "CSn",
+          "signal": "mode_select",
+          "tie": "VDDIO",
+          "note": "CSn high selects I²C (p. 36)"
+        },
+        {
+          "name": "VSS",
+          "signal": "gnd",
+          "note": "pins 8 and 9"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {
+            "value": [
+              "0x52",
+              "0x53"
+            ],
+            "page": 17,
+            "evidence": [
+              "fixed 7 -bit address 0x52 if the MISO/ADDR line is held low",
+              "at power-up or 0x53 if the MISO/ADDR line is held high."
+            ]
+          },
+          "default": "0x52",
+          "select": {
+            "pin": "ADDR",
+            "map": {
+              "VSS": "0x52",
+              "VDDIO": "0x53"
+            }
+          },
+          "f_max_hz": {
+            "value": 1000000,
+            "unit": "Hz",
+            "page": 18,
+            "evidence": "SCLK clock frequency fSCLK 0 100 0 400 0 1000 kHz",
+            "conditions": "fast mode plus"
+          },
+          "note": "ADDR is read at power-up only; CSn must be pulled high (directly to VDDIO) for I²C (p. 36)"
+        }
+      ],
+      "current": {
+        "supply": "VDD",
+        "typ": {
+          "value": 0.029,
+          "unit": "A",
+          "page": 7,
+          "evidence": [
+            "STANDARD",
+            "(OP_MODE 0x02)",
+            " 29  mA"
+          ],
+          "conditions": "average, STANDARD gas sensing mode, typ (no max given)"
+        },
+        "peak": {
+          "value": 0.079,
+          "unit": "A",
+          "page": 7,
+          "evidence": [
+            "IDD_PK Peak Supply Current13 STANDARD",
+            " 79 ",
+            "(<5ms)"
+          ],
+          "conditions": "typ, < 5 ms after switching IDLE → STANDARD"
+        },
+        "sleep": {
+          "value": 1e-05,
+          "unit": "A",
+          "page": 7,
+          "evidence": [
+            "(OP_MODE 0x00)",
+            " 0.01  mA"
+          ],
+          "conditions": "DEEPSLEEP, typ"
+        },
+        "note": "all currents on the 1.8 V VDD pin (the hot plate), not VDDIO; IDLE max 2.5 mA (p. 7)"
+      },
+      "requires": [
+        {
+          "code": "decoupling",
+          "kind": "ceramic",
+          "value": "100nF",
+          "pins": [
+            "VDD",
+            "VDDIO"
+          ],
+          "to": "VSS",
+          "page": 36,
+          "evidence": [
+            "Decoupling capacitors must be placed close to the V DD (Pin 4) and V DDIO",
+            "100nF"
+          ],
+          "note": "Figure 14 also shows a 10 µF capacitor (the text layer reads '10mF')"
+        },
+        {
+          "code": "pullup",
+          "kind": "resistor",
+          "value": "4k7",
+          "pins": [
+            "SDA",
+            "SCL"
+          ],
+          "to": "VDDIO",
+          "page": 36,
+          "evidence": [
+            "4. Pull-up resistors.",
+            "The above recommendation for pull-up resistance values applies to I 2C standard mode only.",
+            "4k7"
+          ],
+          "note": "4.7 kΩ is for standard mode only"
+        }
+      ],
+      "hazards": [
+        {
+          "code": "heat",
+          "text": "Metal-oxide hot plate: the sensor heats itself in gas sensing modes; keep it away from the humidity/temperature sensor it is compensated with."
+        }
+      ],
+      "notes": [
+        {
+          "text": "VDD is a 1.8 V supply (1.71–1.98 V, absolute maximum 1.98 V): never connect it to 3.3 V; a 3.3 V system needs a 1.8 V regulator sized for the 79 mA start peak. VDDIO may be 3.3 V.",
+          "page": 7,
+          "evidence": "VDD Positive supply  1.719 1.8 1.98 V",
+          "verified": true
+        },
+        {
+          "text": "ADDR (MISO), INTn and CSn are rated to VDDIO+0.3 V only (VIO2); only SDA/SCL tolerate 3.6 V at any VDDIO. With VDDIO 1.8 V tie ADDR and CSn to VDDIO or GND, never to 3.3 V.",
+          "page": 6,
+          "evidence": "VIO2 MISO/ADDR, INTn, CSn -0.3 VDDIO+0.3 V",
+          "verified": true
+        },
+        {
+          "text": "Readings are usable after a 3 minute warm-up; the very first start-up needs 1 hour.",
+          "page": 15,
+          "evidence": [
+            "Initial Start-up 1 hour",
+            "Warm-up 3 minutes"
+          ],
+          "verified": true
+        },
+        {
+          "text": "PART_ID (register 0x00, 2 bytes, little endian) reads 0x60, 0x01 (0x0160).",
+          "page": 25,
+          "evidence": "0x00 PART_ID 2 Read Device Identity 0x60, 0x01",
+          "verified": true
+        },
+        {
+          "text": "ScioSense took the ENS160 over from ams; older documents carry the ams logo.",
+          "verified": false
+        },
+        {
+          "text": "Breakout boards (e.g. ENS160+AHT21 combos, SparkFun, DFRobot) add a 1.8 V LDO and level shifting for VDDIO = 3.3 V; check facts.regulator.",
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "sen55",
+      "aliases": [
+        "sen5x",
+        "sen55-sdn-t",
+        "sen54",
+        "sen50"
+      ],
+      "title": "SEN55 environmental sensor node (PM, RH/T, VOC, NOx)",
+      "category": "sensor.environment",
+      "manufacturer": "Sensirion",
+      "kind": "ic",
+      "source_ids": [
+        "mod-nenv-sen55-ds"
+      ],
+      "supplies": {
+        "VDD": {
+          "min": {
+            "value": 4.5,
+            "unit": "V",
+            "page": 11,
+            "evidence": "Supply voltage - 4.5 5.0 5.5 V"
+          },
+          "typ": {
+            "value": 5.0,
+            "unit": "V",
+            "page": 11,
+            "evidence": "Supply voltage - 4.5 5.0 5.5 V"
+          },
+          "max": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 11,
+            "evidence": "Supply voltage - 4.5 5.0 5.5 V"
+          },
+          "abs_max": {
+            "value": 5.5,
+            "unit": "V",
+            "page": 11,
+            "evidence": "Supply voltage VDD -0.3 5.5"
+          }
+        }
+      },
+      "io": {
+        "domain": "VDD",
+        "vih": {
+          "value": 2.31,
+          "unit": "V",
+          "page": 11,
+          "evidence": "Input high level voltage (VIH) - 2.31 - 5.5",
+          "conditions": "min, 25 °C"
+        },
+        "vil": {
+          "value": 0.99,
+          "unit": "V",
+          "page": 11,
+          "evidence": "Input low level voltage (VIL) - 0 - 0.99",
+          "conditions": "max, 25 °C"
+        },
+        "vol": {
+          "value": 0.4,
+          "unit": "V",
+          "page": 11,
+          "evidence": "Output low level voltage (VOL) Sink current <6mA 0 0 0.4",
+          "conditions": "sink current < 6 mA, max"
+        },
+        "v_in_max": {
+          "value": 5.5,
+          "unit": "V",
+          "page": 11,
+          "evidence": "I/O pins (RX/SDA, TX/SCL) -0.3 5.5",
+          "conditions": "absolute maximum rating"
+        },
+        "outputs": "open_drain"
+      },
+      "pins": [
+        {
+          "name": "VDD",
+          "signal": "supply",
+          "note": "5 V ± 10 % (pin 1)"
+        },
+        {
+          "name": "GND",
+          "signal": "gnd",
+          "note": "internally connected to the metal shielding (p. 13)"
+        },
+        {
+          "name": "SDA",
+          "signal": "i2c_sda",
+          "note": "LVTTL 3.3 V compatible (pin 3)"
+        },
+        {
+          "name": "SCL",
+          "signal": "i2c_scl",
+          "note": "LVTTL 3.3 V compatible (pin 4)"
+        },
+        {
+          "name": "SEL",
+          "signal": "mode_select",
+          "tie": "GND",
+          "must_connect": true,
+          "note": "interface select: GND before or at power-up selects I²C (p. 17)"
+        },
+        {
+          "name": "NC",
+          "signal": "nc",
+          "note": "do not connect (pin 6)"
+        }
+      ],
+      "interfaces": [
+        {
+          "type": "i2c",
+          "addresses": {
+            "value": [
+              "0x69"
+            ],
+            "page": 17,
+            "evidence": "I2C address: 0x69"
+          },
+          "default": "0x69",
+          "f_max_hz": {
+            "value": 100000,
+            "unit": "Hz",
+            "page": 17,
+            "evidence": "Max. speed: standard mode, 100 kbit/s",
+            "conditions": "standard mode only"
+          },
+          "note": "fixed address; 0x69 is also the MPU-6050 address with AD0 high"
+        }
+      ],
+      "current": {
+        "supply": "VDD",
+        "typ": {
+          "value": 0.063,
+          "unit": "A",
+          "page": 11,
+          "evidence": "SEN55 - 63 80",
+          "conditions": "Measurement-Mode after the first 60 s, typ"
+        },
+        "max": {
+          "value": 0.1,
+          "unit": "A",
+          "page": 11,
+          "evidence": "Measurement-Mode (first 60 seconds) SEN55 - 70 100",
+          "conditions": "Measurement-Mode, first 60 s (fan start-up), max"
+        },
+        "peak": {
+          "value": 0.11,
+          "unit": "A",
+          "page": 11,
+          "evidence": "Peak supply current Measurement mode (pulse width of 16µs) - 100  110 mA",
+          "conditions": "16 µs pulses in measurement mode, max"
+        },
+        "note": "fan and laser run in Measurement-Mode; idle max 3 mA, RHT/Gas-only mode max 8 mA (p. 11)"
+      },
+      "requires": [
+        {
+          "code": "pullup",
+          "kind": "resistor",
+          "value": "10k",
+          "pins": [
+            "SDA",
+            "SCL"
+          ],
+          "page": 17,
+          "evidence": [
+            "Both SCL and SDA lines are open drain I/Os. They should",
+            "be connected to external pull-up resistors (e.g. Rp = 10"
+          ],
+          "note": "pull up to the 3.3 V host rail: the pins are LVTTL 3.3 V compatible (p. 13) and the ESP32 is not 5 V tolerant"
+        }
+      ],
+      "hazards": [],
+      "notes": [
+        {
+          "text": "Supply is 5 V ± 10 % (4.5–5.5 V); a 3.3 V rail is out of range, while the I²C lines work at 3.3 V levels (VIH min 2.31 V).",
+          "page": 11,
+          "evidence": [
+            "Supply voltage - 4.5 5.0 5.5 V",
+            "Input high level voltage (VIH) - 2.31 - 5.5"
+          ],
+          "verified": true
+        },
+        {
+          "text": "SEL must be on GND before or at the same time as power-up, otherwise the module does not start in I²C mode.",
+          "page": 17,
+          "evidence": [
+            "interface select (SEL) pin must be pulled to",
+            "GND before or at the same time the sensor is powered up."
+          ],
+          "verified": true
+        },
+        {
+          "text": "GND is internally connected to the metal shielding; keep the shield floating or at GND potential.",
+          "page": 13,
+          "evidence": "internal electrical connection between GND pin (2) and metal shielding",
+          "verified": true
+        },
+        {
+          "text": "Peak supply current 110 mA (16 µs pulses), up to 100 mA average in the first 60 s: power it from the 5 V USB/VBUS rail, not through the ESP32 3.3 V regulator.",
+          "page": 11,
+          "evidence": "Peak supply current Measurement mode (pulse width of 16µs) - 100  110 mA",
+          "verified": true
+        },
+        {
+          "text": "SEN54 (no NOx) and SEN50 (PM only) share the connector and the address; their currents differ (p. 11), this entry carries the SEN55 values.",
+          "verified": false
+        },
+        {
+          "text": "Connector: ACES 51451-0060N-001 on the sensor; JST GHR-06V-S is compatible (p. 13).",
+          "verified": false
+        }
+      ]
+    }
+  ]
+}

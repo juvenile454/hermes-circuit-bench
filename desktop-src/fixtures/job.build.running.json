@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "action": "job.get",
+  "summary": "Build running (job j-0001-f074f5).",
+  "result": {
+    "job_id": "j-0001-f074f5",
+    "kind": "build",
+    "state": "running",
+    "progress": null,
+    "started": "2026-11-06T06:50:44Z",
+    "finished": null,
+    "log_tail": [],
+    "result": null
+  },
+  "checks": [],
+  "warnings": [],
+  "assumptions": [],
+  "sources": [],
+  "simulated": false,
+  "error": null
+}

@@ -1,0 +1,157 @@
+{
+  "ok": true,
+  "action": "crash.decode",
+  "summary": "StoreProhibited on core 1 in write_sensor_buffer (src/main.cpp:44): write through a NULL pointer at offset 12 bytes.",
+  "result": {
+    "kind": "cpu_exception",
+    "reason": "StoreProhibited",
+    "core": 1,
+    "arch": "xtensa",
+    "registers": {
+      "PC": "0x420019e4",
+      "PS": "0x00060030",
+      "A0": "0x82001a04",
+      "A1": "0x3fcebf20",
+      "A2": "0x00000000",
+      "A3": "0x000000c7",
+      "A4": "0x3fc95e14",
+      "A5": "0x00000000",
+      "A6": "0x00000001",
+      "A7": "0x00000000",
+      "A8": "0xcccccccd",
+      "A9": "0x3fcebf00",
+      "A10": "0x00000000",
+      "A11": "0x00000f8c",
+      "A12": "0x3fc95e14",
+      "A13": "0x00000000",
+      "A14": "0x00000000",
+      "A15": "0x00000000",
+      "SAR": "0x00000004",
+      "EXCCAUSE": "0x0000001d",
+      "EXCVADDR": "0x0000000c",
+      "LBEG": "0x400556d5",
+      "LEND": "0x400556e5",
+      "LCOUNT": "0xfffffffd"
+    },
+    "frames": [
+      {
+        "i": 0,
+        "pc": "0x420019e1",
+        "function": "write_sensor_buffer(unsigned char*, unsigned int)",
+        "file": "src/main.cpp",
+        "line": 44,
+        "inlined": false,
+        "source": "backtrace"
+      },
+      {
+        "i": 1,
+        "pc": "0x42001a01",
+        "function": "sample_sensor()",
+        "file": "src/main.cpp",
+        "line": 49,
+        "inlined": false,
+        "source": "backtrace"
+      },
+      {
+        "i": 2,
+        "pc": "0x42001a45",
+        "function": "setup()",
+        "file": "src/main.cpp",
+        "line": 74,
+        "inlined": false,
+        "source": "backtrace"
+      },
+      {
+        "i": 3,
+        "pc": "0x42003dc6",
+        "function": "loopTask(void*)",
+        "file": "~/.platformio/packages/framework-arduinoespressif32/cores/esp32/main.cpp",
+        "line": 42,
+        "inlined": false,
+        "source": "backtrace"
+      }
+    ],
+    "interpretation": [
+      {
+        "code": "store_prohibited",
+        "text": "The program wrote to an invalid memory location; the address is in EXCVADDR.",
+        "source_id": "idf-v6.1-fatal-errors"
+      },
+      {
+        "code": "null_pointer",
+        "text": "EXCVADDR 0x0000000c: write through a NULL pointer at offset 12 bytes.",
+        "source_id": "idf-v6.1-fatal-errors"
+      }
+    ],
+    "reset_reason": null,
+    "elf_sha256_log": "d1061609434f3978",
+    "elf_match": null
+  },
+  "checks": [
+    {
+      "id": "crash.parse",
+      "status": "passed",
+      "detail": "Guru Meditation header, register dump, backtrace (4 PC:SP pairs) found"
+    },
+    {
+      "id": "crash.addr2line",
+      "status": "passed",
+      "detail": "4 of 4 frames resolved"
+    },
+    {
+      "id": "crash.elf_match",
+      "status": "skipped",
+      "detail": "no ELF file to compare"
+    }
+  ],
+  "warnings": [],
+  "assumptions": [
+    {
+      "key": "near_zero_limit",
+      "value": "0x00001000",
+      "reason": "rule of thumb: the ESP-IDF docs say 'close to zero' without a number"
+    },
+    {
+      "key": "elf_sha256_line",
+      "value": "'ELF file SHA256: d1061609434f3978' (panic output)",
+      "reason": "unverified: line format taken from the ESP-IDF v6.1 sources, not yet checked against real logs"
+    },
+    {
+      "key": "addr2line",
+      "value": "simulated",
+      "reason": "simulated addr2line: answers from the Circuit Bench sim data, whose lines match the example firmware laser-trigger"
+    }
+  ],
+  "sources": [
+    {
+      "id": "idf-v6.1-fatal-errors",
+      "title": "ESP-IDF v6.1, Fatal Errors (ESP32-S3)",
+      "url": "https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-guides/fatal-errors.html",
+      "retrieved": "2026-11-05",
+      "note": "stable = v6.1 at retrieval"
+    },
+    {
+      "id": "rule-of-thumb",
+      "title": "Practice rule, not a standard",
+      "url": null,
+      "retrieved": "2026-11-05",
+      "note": "Shown for engineering judgement only; check the datasheet of your parts."
+    },
+    {
+      "id": "idf-v6.1-src-panic",
+      "title": "ESP-IDF v6.1 source, components/esp_system/panic.c (line 'ELF file SHA256: ')",
+      "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/components/esp_system/panic.c#L427-L431",
+      "retrieved": "2026-11-06",
+      "note": "Prints the first CONFIG_APP_RETRIEVE_LEN_ELF_SHA hex chars (default 9, range 8-64). Line format in real logs is unverified until checked against real device logs."
+    },
+    {
+      "id": "idf-v6.1-app-image-format",
+      "title": "ESP-IDF v6.1, App Image Format (ESP32-S3): app_elf_sha256",
+      "url": "https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-reference/system/app_image_format.html",
+      "retrieved": "2026-11-06",
+      "note": "stable = v6.1 at retrieval. 'app_elf_sha256: contains SHA256 hash for the application ELF file'. Text source: docs/en/api-reference/system/app_image_format.rst at tag v6.1"
+    }
+  ],
+  "simulated": true,
+  "error": null
+}

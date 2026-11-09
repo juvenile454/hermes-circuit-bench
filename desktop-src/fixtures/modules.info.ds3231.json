@@ -1,0 +1,259 @@
+{
+ "ok": true,
+ "action": "modules.info",
+ "summary": "DS3231 I²C real-time clock with integrated TCXO and crystal (ds3231): 8 pins, interfaces i2c; source class A1.",
+ "result": {
+  "module": {
+   "id": "ds3231",
+   "title": "DS3231 I²C real-time clock with integrated TCXO and crystal",
+   "category": "rtc",
+   "manufacturer": "Analog Devices (Maxim Integrated)",
+   "kind": "ic",
+   "aliases": [
+    "ds3231sn"
+   ],
+   "pins": [
+    {
+     "name": "32KHZ",
+     "signal": "open_drain_out",
+     "note": "32 kHz output, open drain, needs a pull-up; may be left open (p. 9)"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply"
+    },
+    {
+     "name": "INT/SQW",
+     "signal": "open_drain_out",
+     "active_low": true,
+     "note": "open drain, pull-up to ≤ 5.5 V; may be left unconnected (p. 9)"
+    },
+    {
+     "name": "RST",
+     "signal": "open_drain_out",
+     "active_low": true,
+     "internal_pull": {
+      "up": {
+       "value": 50000.0,
+       "unit": "Ω",
+       "page": 9,
+       "evidence": "50kΩ nominal value pullup resistor to VCC."
+      }
+     },
+     "note": "power-fail reset / push-button input; no external pull-up (p. 9)"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "VBAT",
+     "signal": "supply",
+     "tie": "GND",
+     "note": "backup cell 2.3–5.5 V; connect to ground if not used (p. 9); default tie GND"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda"
+    },
+    {
+     "name": "SCL",
+     "signal": "i2c_scl"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "value": [
+       "0x68"
+      ],
+      "page": 17,
+      "evidence": "which is 1101000, followed by the direction bit (R/ W),"
+     },
+     "default": "0x68",
+     "f_max_hz": {
+      "value": 400000.0,
+      "unit": "Hz",
+      "page": 4,
+      "evidence": [
+       "SCL Clock Frequency fSCL",
+       "Fast mode 100 400 kHz"
+      ]
+     },
+     "note": "fixed address 0x68 (MPU-6050 default 0x68, DS1307 0x68)"
+    }
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 2.3,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Supply Voltage VCC 2.3 3.3 5.5 VVBAT 2.3 3.0 5.5 V"
+     },
+     "typ": {
+      "value": 3.3,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Supply Voltage VCC 2.3 3.3 5.5 VVBAT 2.3 3.0 5.5 V"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Supply Voltage VCC 2.3 3.3 5.5 VVBAT 2.3 3.0 5.5 V"
+     },
+     "abs_max": {
+      "value": 6.0,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Voltage Range on Any Pin Relative to Ground ....-0.3V to +6.0V",
+      "conditions": "any pin, absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "rel": 0.7,
+     "of": "VCC",
+     "unit": "V",
+     "page": 2,
+     "evidence": "Logic 1 Input SDA, SCL VIH 0.7 x VCC VCC + 0.3 V",
+     "conditions": "SDA, SCL"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VCC",
+     "unit": "V",
+     "page": 2,
+     "evidence": "Logic 0 Input SDA, SCL VIL -0.3 0.3 x VCC V",
+     "conditions": "SDA, SCL"
+    },
+    "v_in_max": {
+     "value": 6.0,
+     "unit": "V",
+     "page": 2,
+     "evidence": "Voltage Range on Any Pin Relative to Ground ....-0.3V to +6.0V",
+     "conditions": "absolute maximum rating, any pin; in operation SDA/SCL pull-ups up to 5.5 V regardless of VCC (p. 9)"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 2,
+     "evidence": "SDA VOL IOL = 3mA 0.4 V",
+     "conditions": "32kHz, INT/SQW, SDA at IOL = 3 mA"
+    },
+    "five_v_tolerant": true,
+    "outputs": "open_drain"
+   },
+   "current": {
+    "supply": "VCC",
+    "max": {
+     "value": 0.0003,
+     "unit": "A",
+     "page": 2,
+     "evidence": "Active Supply Current ICCA (Notes 4, 5) VCC = 3.63V 200 µAVCC = 5.5V 300",
+     "conditions": "active, SCL 400 kHz; worst case at VCC 5.5 V (200 µA at 3.63 V)"
+    },
+    "peak": {
+     "value": 0.00065,
+     "unit": "A",
+     "page": 2,
+     "evidence": "Temperature Conversion Current ICCSCONV I2C bus inactive, 32kHz output on, SQW output off VCC = 3.63V 575 µAVCC = 5.5V 650",
+     "conditions": "temperature conversion; worst case at VCC 5.5 V (575 µA at 3.63 V)"
+    },
+    "sleep": {
+     "value": 0.00017,
+     "unit": "A",
+     "page": 2,
+     "evidence": [
+      "Standby Supply Current ICCS",
+      "VCC = 5.5V 170"
+     ],
+     "conditions": "standby, I²C inactive; worst case at VCC 5.5 V (110 µA at 3.63 V)"
+    }
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VCC"
+     ],
+     "to": "GND",
+     "page": 9,
+     "evidence": "This pin should be decoupled using a 0.1µF to 1.0µF capacitor.",
+     "note": "0.1–1.0 µF"
+    },
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "page": 9,
+     "evidence": "This open-drain pin requires an external pullup resistor. The pullup voltage can be up to 5.5V, regardless of the voltage on VCC.",
+     "note": "value from the I²C pull-up calculator"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Pins 5–12 (N.C.) of the SO16 package must be grounded.",
+     "verified": true,
+     "page": 9,
+     "evidence": "5–12 N.C. No Connection. Must be connected to ground."
+    },
+    {
+     "text": "Backup supply VBAT 2.3–5.5 V; timekeeping battery current max 3.0 µA at VBAT 3.63 V.",
+     "verified": true,
+     "page": 3,
+     "evidence": [
+      "Timekeeping Battery Current IBATT",
+      "VBAT = 3.63V 0.84 3.0"
+     ]
+    },
+    {
+     "text": "At VCC 5 V the SDA/SCL input high threshold is 0.7 × VCC = 3.5 V, above a 3.3 V bus: power the DS3231 from 3.3 V (rule mod.rtc.ds3231_vih).",
+     "verified": true,
+     "page": 2,
+     "evidence": "Logic 1 Input SDA, SCL VIH 0.7 x VCC VCC + 0.3 V"
+    },
+    {
+     "text": "DS3231 VBAT input: designed for a primary lithium cell.",
+     "verified": true,
+     "page": 9,
+     "evidence": "UL recognized to ensure against reverse charging when used with a primary lithium battery."
+    }
+   ],
+   "class": "A1",
+   "family": "rtc",
+   "variant": null,
+   "variants": [
+    {
+     "id": "zs042",
+     "title": "ZS-042 breakout (DS3231 + AT24C32 EEPROM + CR2032 holder)"
+    }
+   ]
+  }
+ },
+ "checks": [],
+ "warnings": [],
+ "assumptions": [],
+ "sources": [
+  {
+   "id": "mod-rtc-ds3231-ds",
+   "title": "Analog Devices (Maxim Integrated) DS3231 Extremely Accurate I2C-Integrated RTC/TCXO/Crystal, data sheet",
+   "url": "https://web.archive.org/web/20261011070711id_/https://www.analog.com/media/en/technical-documentation/data-sheets/DS3231.pdf",
+   "retrieved": "2026-11-08",
+   "class": "A1",
+   "note": "Document 19-5170 Rev 10 (3/15); web.archive.org copy of the official analog.com URL https://www.analog.com/media/en/technical-documentation/data-sheets/DS3231.pdf (analog.com refuses scripted downloads); pages 1, 2, 3, 4, 9, 17; sha256 dc81cd89bee82d0c57b654d6315e03dec913fb8fe753cc80b2a3f1cca71cbb34"
+  }
+ ],
+ "simulated": false,
+ "error": null
+}

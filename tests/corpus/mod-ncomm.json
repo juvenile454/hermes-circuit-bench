@@ -1,0 +1,53 @@
+{
+ "files": [
+  {
+   "url": "https://www.maxlinear.com/ds/sp3485.pdf",
+   "path": "mod/ncomm/sp3485.pdf",
+   "source_id": "mod-ncomm-sp3485-ds",
+   "excerpt": "excerpts/mod-ncomm-sp3485.txt",
+   "sha256": "e3f71227b89ae4ba0a925dec9138f2ea2746c5651ec593b52bce275cb67dbc70"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/thvd1450.pdf",
+   "path": "mod/ncomm/thvd1450.pdf",
+   "source_id": "mod-ncomm-thvd1450-ds",
+   "excerpt": "excerpts/mod-ncomm-thvd1450.txt",
+   "sha256": "58ecc4cc07dd1d3206c2e67ffa734ad21a6d3a9e3c8c307068e6385bd79ee897"
+  },
+  {
+   "url": "https://cache.nxp.com/docs/en/data-sheet/TJA1051.pdf",
+   "path": "mod/ncomm/TJA1051.pdf",
+   "source_id": "mod-ncomm-tja1051-ds",
+   "excerpt": "excerpts/mod-ncomm-tja1051.txt",
+   "sha256": "6637cd500dda3c1c951ce29bed7fe909f11f9a3bef64b096dbb486827add9f11"
+  },
+  {
+   "url": "https://ww1.microchip.com/downloads/en/DeviceDoc/20005167C.pdf",
+   "path": "mod/ncomm/20005167C.pdf",
+   "source_id": "mod-ncomm-mcp2562-ds",
+   "excerpt": "excerpts/mod-ncomm-mcp2562.txt",
+   "sha256": "c36b24e45446d8a1b7d90c0618a924cac0f117994390e60169287e6ba488c53e"
+  },
+  {
+   "url": "https://web.archive.org/web/20190827062215id_/https://www.semtech.com/uploads/documents/DS_SX1261-2_V1.1.pdf",
+   "path": "mod/ncomm/DS_SX1261-2_V1.1.pdf",
+   "source_id": "mod-ncomm-sx1262-ds",
+   "excerpt": "excerpts/mod-ncomm-sx1262.txt",
+   "sha256": "a0fd29d13e779c1d49130d71442c91260448ab2c453ce9b9d9ff630184830606"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/cc1101.pdf",
+   "path": "mod/ncomm/cc1101.pdf",
+   "source_id": "mod-ncomm-cc1101-ds",
+   "excerpt": "excerpts/mod-ncomm-cc1101.txt",
+   "sha256": "daa14cd9b83adf92545ab072939f85f6a8fef9ce654e3f37366087db714ea639"
+  },
+  {
+   "url": "https://www.hoperf.com/uploads/RFM69HCW-V1.1datasheet_1695352208.pdf",
+   "path": "mod/ncomm/RFM69HCW-V1.1.pdf",
+   "source_id": "mod-ncomm-rfm69hcw-ds",
+   "excerpt": "excerpts/mod-ncomm-rfm69hcw.txt",
+   "sha256": "ff8efc4e1fe4135400760b9da1cfcabd52fe929e1be5ecee8bc03d1512f3c45c"
+  }
+ ]
+}

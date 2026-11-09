@@ -1,0 +1,39 @@
+# source_id: mod-motion-qmc5883l-ds
+# document: QMC5883L 3-Axis Magnetic Sensor, Datasheet QST-PD-B002-22 Rev. B
+# url: https://www.qstcorp.com/upload/pdf/202512/13-52-04%20QMC5883L%20Datasheet%20Rev.%20B.pdf
+# corpus: mod/motion/QMC5883L-Datasheet-Rev-B.pdf sha256 b68aa5e3920f92d15177d6e9cb85283732de849b68bf81308929d7c9a4dc7f81
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 4
+Supply Voltage VDD 2.16  3.6 V
+I/O Voltage VDDIO 1.65  3.6 V
+Standby Current Total Current on VDD and VDDIO  3  μA
+ODR = 10Hz   75/100  μA
+ODR = 200Hz   450/850  μA
+Peak Current on VDD and
+ 2.6  mA
+@@ page 5
+VDDIO -0.3 5.4 V
+VDD -0.3 5.4 V
+VIH1 SDA, SCL  0.7*VD
+DIO
+ VDDIO+
+0.3
+VIL1 SDA, SCL  -0.3  0.3*VD
+DIO
+VOH INT Output Current
+0.8*VD
+VOL INT, SDA Output Current
+  0.2*VD
+@@ page 6
+2  VDD  Power Supply (2.16V to 3.6V)
+4  S1  Tie to VDDIO
+10  C1  Reservoir Capacitor (C1) Connection
+13  VDDIO  IO Power Supply (1.71V to VDD)
+@@ page 10
+not critical, but values less than 200 milli -ohms are recommended. Reservoir capacitor C1 is nominally 4.7
+@@ page 12
+speed modes, 100kHz and 400kHz, respectively. External pull -up resistors are required to support all these
+The default  I2C address is 0D: 0001101
+@@ page 20
+This register is chip identification register. It returns 0xFF.

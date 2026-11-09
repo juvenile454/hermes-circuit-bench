@@ -1,0 +1,6 @@
+{
+ "flash-id": {
+  "rc": 2,
+  "stdout": "esptool v5.6.0\n\nA fatal error occurred: Could not open {port}, the port is busy or doesn't exist.\n([Errno 16] could not open port {port}: [Errno 16] Device or resource busy: '{port}')\n"
+ }
+}

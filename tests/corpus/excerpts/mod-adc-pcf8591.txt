@@ -1,0 +1,63 @@
+# source_id: mod-adc-pcf8591-ds
+# document: PCF8591 8-bit A/D and D/A converter, Product data sheet Rev. 7 (27 June 2013)
+# url: https://cache.nxp.com/docs/en/data-sheet/PCF8591.pdf
+# corpus: mod/adc/PCF8591.pdf sha256 b89feb48ffdbebfe802065da8c56762760c54db06c26117be1bf3fcd50462aee
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 4
+AIN0 1 analog inputs (A/D converter)
+AIN1 2
+AIN2 3
+AIN3 4
+A0 5 hardware slave address
+A1 6
+A2 7
+VSS 8 ground supply voltage
+SDA 9 I 2C-bus serial data input and output
+SCL 10 I 2C-bus serial clock input
+OSC 11 oscillator input/output
+EXT 12 external/internal switch for oscillator input
+AGND 13 analog ground supply
+VREF 14 voltage reference input
+AOUT 15 analog output (D/A converter)
+VDD 16 supply voltage
+@@ page 9
+VREF − VAGND
+256
+Vlsb =
+@@ page 10
+for refreshing the auto-zeroed buffer amplifier. When using this oscillator the EXT pin must 
+be connected to VSS. The oscillator frequency is available at the OSC pin.
+@@ page 11
+be connected to a positive supply via a pull-up resistor. Data transfer may be initiated only 
+@@ page 13
+Bit 1 to bit 3 of the slave address are defined by connecting the input pins A0 to A2 to 
+either VSS (logic 0) or VDD (logic 1). Therefore, eight instances of PCF8591 can be 
+slave address 1 0 0 1 A2 A1 A0 R/W
+@@ page 14
+Inputs must be connected to VSS or VDD when not in use. Analog inputs may also be 
+loops should be avoided. Decoupling capacitors (>10 F) are recommended for power 
+supply and reference voltage inputs.
+@@ page 16
+VDD supply voltage 0.5 +8.0 V
+VI input voltage any input 0.5 V DD + 0.5 V
+IDD supply current - 50 mA
+@@ page 17
+VDD supply voltage 2.5 - 6.0 V
+IDD supply current
+standby; VI =V SS or VDD; no load - 1 15 A
+operating; fSCL =1 0 0k H z
+AOUT off - 125 250 A
+AOUT active - 0.45 1.0 mA
+Digital in- and outputs: SCL, SDA, A0, A1, A2
+VIL LOW-level input 
+0- 0 . 3  VDD V
+VIH HIGH-level input 
+0.7  VDD -V DD V
+Vref reference voltage V ref > VAGND [2] VSS +1 . 6 - V DD V
+@@ page 18
+Via analog input voltage VSS -V DD V
+Vi(se) single-ended input 
+measuring range V AGND -V REF V
+@@ page 20
+fSCL SCL clock frequency - - 100 kHz

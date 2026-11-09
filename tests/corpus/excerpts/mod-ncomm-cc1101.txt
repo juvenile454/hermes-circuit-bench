@@ -1,0 +1,30 @@
+# source_id: mod-ncomm-cc1101-ds
+# document: Texas Instruments CC1101 Low-Power Sub-1 GHz RF Transceiver data sheet SWRS061I (Rev. I)
+# url: https://www.ti.com/lit/ds/symlink/cc1101.pdf
+# corpus: mod/ncomm/cc1101.pdf sha256 daa14cd9b83adf92545ab072939f85f6a8fef9ce654e3f37366087db714ea639
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 8
+Supply voltage –0.3 3.9 V All supply pins must have the same voltage 
+Voltage on any digital pin –0.3 VDD + 0.3, 
+Operating supply voltage 1.8 3.6 V All supply pins must have the same voltage 
+@@ page 9
+ 0.2 1 A Voltage regulator to digital part off, register values retained 
+@@ page 10
+14.7  mA Receive mode, 1.2  kBaud, register settings optimized for 
+ 34.2  mA Transmit mode, +12 dBm output power, 868 MHz 
+@@ page 20
+Logic "0" input voltage 0 0.7 V  
+Logic "1" input voltage  VDD-0.7 VDD V  
+Logic "0" output voltage  0 0.5 V For up to 4 mA output current 
+Logic "1" output voltage  VDD-0.3 VDD V For up to 4 mA output current 
+@@ page 21
+NOTE: This pin is intended for use with the CC1101  only. It can not be used 
+to provide supply voltage to other devices 
+@@ page 29
+When CSn is pulled low, the MCU must wait 
+until CC1101 SO pin goes low before starting to 
+@@ page 30
+SCLK frequency, burst access 
+No delay between address and data byte, or between data bytes 
+- 6.5 

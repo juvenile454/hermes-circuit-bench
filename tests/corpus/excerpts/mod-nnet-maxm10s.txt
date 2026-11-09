@@ -1,0 +1,45 @@
+# source_id: mod-nnet-maxm10s-ds
+# document: u-blox MAX-M10S data sheet UBX-20035208 - R08
+# url: https://content.u-blox.com/sites/default/files/MAX-M10S_DataSheet_UBX-20035208.pdf
+# corpus: mod/nnet/MAX-M10S_DataSheet_UBX-20035208.pdf sha256 e36d9c8585809c0dc486804d2634c66cd1888ad71af0f28ce0b830ffa8df6bec
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 9
+15 VIO_SEL - I Voltage selector for V_IO supply. Connect to GND for 1.8 V supply, or leave
+open for 3.3 V supply.
+15 The receiver enters safeboot mode if this pin is low at start up. The SAFEBOOT_N pin is internally connected to
+@@ page 11
+This product is not protected against overvoltage or reversed voltages. Use appropriate
+VCC Main supply voltage –0.3 3.6 V
+IO supply voltage, VIO_SEL = open –0.3 VCC + 0.3
+(max 3.6)
+Voltage ramp on V_IO  16 25 35000 µs/V
+V_BCKP Backup supply voltage –0.3 3.6 V
+Input voltage on RESET_N and digital pins
+VIO_SEL = open
+–0.3 V_IO + 0.3
+(max 3.6)
+VCC Main supply voltage 1.76 1.8, 3.3 3.6 V
+16 Exceeding the voltage ramp speed may permanently damage the device.
+@@ page 12
+IO supply voltage, VIO_SEL = open 2.7 3.3 VCC (max
+3.6)
+V_BCKP Supply voltage, backup domain 1.65 3.6 V
+Vil Low-level input voltage 0.63 V
+Vih High-level input voltage 0.68 x V_IO V
+Vol Low-level output voltage, Iout = -2 mA  22 0.4 V
+Voh High-level output voltage, Iout = 2 mA 22 V_IO - 0.4 V
+Rpu, IO Pull-up resistance, Digital IO 23 . VIO_SEL = open 8 18 40 kΩ
+Rpu, SAFEBOOT_N Pull-up resistance, SAFEBOOT_N  24 6 17 72 kΩ
+Rpu, RESET_N Pull-up resistance, RESET_N 7 10 13 kΩ
+@@ page 13
+Tracking
+(Continuous mode) 7.5 8 9 9.5 8.5 10 mAIVCC   25,  26
+The inrush current can go up to 100 mA at startup. Ensure that the external power supply is
+IVCC VCC current in software standby mode VCC = 3.3 V 120 nA
+@@ page 14
+Backwards compatibility with the Standard-mode I2C bus operation is not supported. The interface
+@@ page 15
+fSCL SCL clock frequency 0 400 kHz
+@@ page 16
+I2C • 7-bit I2C address (0x42).

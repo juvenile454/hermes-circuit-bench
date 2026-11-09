@@ -1,0 +1,11 @@
+{
+ "_about": "addr2line -pfiaC answers for the code addresses in panic.log (synthetic-consistent: addresses and lines from a real offline build of data/examples/laser-trigger, env s3, espressif32@6.9.0, xtensa-esp32s3-elf-addr2line). {project} is the firmware folder, {framework} the PlatformIO Arduino framework folder. tests/test_sim_toolchain.py checks them with the real toolchain.",
+ "chip": "esp32s3",
+ "addresses": {
+  "0x420019e4": "write_sensor_buffer(unsigned char*, unsigned int) at {project}/src/main.cpp:44",
+  "0x420019e1": "write_sensor_buffer(unsigned char*, unsigned int) at {project}/src/main.cpp:44",
+  "0x42001a01": "sample_sensor() at {project}/src/main.cpp:49",
+  "0x42001a45": "setup() at {project}/src/main.cpp:74",
+  "0x42003dc6": "loopTask(void*) at {framework}/cores/esp32/main.cpp:42"
+ }
+}

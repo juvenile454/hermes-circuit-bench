@@ -1,0 +1,48 @@
+# source_id: mod-ambient-ds18b20-ds
+# document: DS18B20 Programmable Resolution 1-Wire Digital Thermometer, 19-7487; Rev 6; 7/19
+# url: https://web.archive.org/web/20261012120012id_/https://www.analog.com/media/en/technical-documentation/data-sheets/ds18b20.pdf
+# corpus: mod/ambient/ds18b20.pdf sha256 066c8a3c7e9222c49e84488840d5cfe9dd109cf0da6ab4a55480cebac8f97f76
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 2
+Voltage Range on Any Pin Relative to Ground ....-0.5V to +6.0V
+Supply Voltage VDD Local power (Note 1) +3.0 +5.5 V
+Pullup Supply Voltage VPU
+Parasite power 
+(Notes 1, 2)
++3.0 +5.5
+Local power +3.0 VDD
+Input Logic-Low VIL (Notes 1, 4, 5) -0.3 +0.8 V
+Input Logic-High VIH
+Local power
+(Notes 1,6)
++2.2 The lower  
+Parasite power +3.0
+Standby Current IDDS (Notes 7, 8) 750 1000 nA
+Active Current IDD VDD = 5V (Note 9) 1 1.5 mA
+@@ page 3
+Temperature Conversion Time tCONV
+12-bit resolution 750
+@@ page 4
+3 8 3 VDD Optional VDD. VDD must be grounded for operation in parasite power mode.
+4 1 2 DQ Data Input/Output. Open-drain 1-Wire interface pin. Also provides power to the device when used in parasite power mode (see the Powering the DS18B20 section.) 
+@@ page 6
+*The power-on reset value of the temperature register is +85°C.
+@@ page 7
+When the DS18B20 is used in parasite power mode, the 
+VDD pin must be connected to ground.
+current can be as high as 1.5mA. This current can cause 
+current, it is necessary to provide a strong pullup on the 
+EEPROM. This can be accomplished by using a MOSFET 
+1-Wire bus must be switched to the strong pullup within 
+10µs (max) after a Convert T [44h] or Copy Scratchpad 
+The use of parasite power is not recommended for tem-
+peratures above +100°C since the DS18B20 may not be 
+Figure 6. Supplying the Parasite-Powered DS18B20 During 
+Figure 7. Powering the DS18B20 with an External Supply
+4.7kΩ 
+4.7kΩ 
+@@ page 10
+The 1-Wire bus requires an external pullup resistor of 
+approximately 5kΩ; thus, the idle state for the 1-Wire 
+4.7kΩ 

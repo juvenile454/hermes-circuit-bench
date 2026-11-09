@@ -1,0 +1,1743 @@
+{
+ "schema": 1,
+ "wp": "ncomm",
+ "note": "Values only from manufacturer documents; 'evidence' quotes lines of tests/corpus/excerpts/mod-ncomm-*.txt (pypdf).",
+ "modules": [
+  {
+   "id": "sp3485",
+   "aliases": [
+    "sp3485en",
+    "sp3485cn",
+    "sp3485en-l",
+    "sp3485cn-l"
+   ],
+   "title": "SP3485 3.3 V RS-485/RS-422 half-duplex transceiver, 10 Mbps",
+   "category": "comm.rs485",
+   "manufacturer": "MaxLinear (Exar, Sipex)",
+   "kind": "ic",
+   "source_ids": [
+    "mod-ncomm-sp3485-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 3.135,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Unless otherwise noted: TAMB = TMIN to TMAX  and VCC = 3.3V ±5%.",
+      "conditions": "3.3 V −5 %: the electrical characteristics are specified at VCC = 3.3 V ±5 % (the data sheet names no other operating range)"
+     },
+     "typ": {
+      "value": 3.3,
+      "unit": "V",
+      "page": 1,
+      "evidence": "Operates from a single 3.3V supply"
+     },
+     "max": {
+      "value": 3.465,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Unless otherwise noted: TAMB = TMIN to TMAX  and VCC = 3.3V ±5%.",
+      "conditions": "3.3 V +5 %: the electrical characteristics are specified at VCC = 3.3 V ±5 %"
+     },
+     "abs_max": {
+      "value": 6.0,
+      "unit": "V",
+      "page": 2,
+      "evidence": "VCC ....",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "value": 2.0,
+     "unit": "V",
+     "page": 2,
+     "evidence": "Input high voltage 2.0 Volts Applies to DE, DI, RE",
+     "conditions": "VCC = 3.3 V ±5 %"
+    },
+    "vil": {
+     "value": 0.8,
+     "unit": "V",
+     "page": 2,
+     "evidence": "Input low voltage 0.8 Volts Applies to DE, DI, RE",
+     "conditions": "VCC = 3.3 V ±5 %"
+    },
+    "voh": {
+     "rel_offset": -0.4,
+     "of": "VCC",
+     "unit": "V",
+     "page": 3,
+     "evidence": "Output voltage HIGH Vcc-0.4 Volts VID = 200mV, -1.5mA",
+     "conditions": "RO at -1.5 mA"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 3,
+     "evidence": "Output voltage LOW 0.4 Volts VID = -200mV, 2.5mA",
+     "conditions": "RO at 2.5 mA"
+    },
+    "v_in_max": {
+     "value": 6.0,
+     "unit": "V",
+     "page": 2,
+     "evidence": [
+      "Input Voltages",
+      "Logic ..................................... -0.3V to 6.0V"
+     ],
+     "conditions": "absolute maximum rating, logic inputs DE, DI, RE"
+    },
+    "outputs": "tristate",
+    "five_v_tolerant": true
+   },
+   "pins": [
+    {
+     "name": "RO",
+     "signal": "uart_tx",
+     "output": "tristate",
+     "note": "receiver output to the ESP's RX; high impedance while RE is high"
+    },
+    {
+     "name": "RE",
+     "signal": "enable_in",
+     "active_low": true,
+     "note": "receiver output enable, active low"
+    },
+    {
+     "name": "DE",
+     "signal": "enable_in",
+     "note": "driver output enable, active high; RE high and DE low = shutdown"
+    },
+    {
+     "name": "DI",
+     "signal": "uart_rx",
+     "note": "driver input from the ESP's TX"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "A",
+     "signal": "analog_in",
+     "note": "RS-485 bus line A (non-inverting); wired to the bus, not to a GPIO"
+    },
+    {
+     "name": "B",
+     "signal": "analog_in",
+     "note": "RS-485 bus line B (inverting); wired to the bus, not to a GPIO"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "uart",
+     "note": "half duplex: DE/RE select transmit or receive; up to 10 Mbps (data sheet p. 2)"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "typ": {
+     "value": 0.000425,
+     "unit": "A",
+     "page": 3,
+     "evidence": "Supply current , no load 425 2000 µA",
+     "conditions": "no load, first row of the power requirements (driver enabled: RE, DI = 0 V or VCC, DE = VCC)"
+    },
+    "max": {
+     "value": 0.002,
+     "unit": "A",
+     "page": 3,
+     "evidence": "Supply current , no load 425 2000 µA",
+     "conditions": "no load, driver enabled"
+    },
+    "sleep": {
+     "value": 5e-08,
+     "unit": "A",
+     "page": 7,
+     "evidence": [
+      "In shutdown, the devices typically",
+      "draw only 50nA of supply current."
+     ],
+     "conditions": "shutdown (RE high, DE low), typical"
+    }
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Logic inputs accept 5 V logic (absolute maximum 6.0 V); RO drives at most VCC.",
+     "verified": true,
+     "page": 1,
+     "evidence": "Interoperable with 5.0V logic"
+    },
+    {
+     "text": "Up to 32 transceivers on one bus.",
+     "verified": true,
+     "page": 1,
+     "evidence": "Allows up to 32 transceivers on the serial"
+    },
+    {
+     "text": "RE high together with DE low for at least 600 ns puts the part into shutdown (about 50 nA).",
+     "verified": true,
+     "page": 7,
+     "evidence": [
+      "Low-power shutdown mode is initiated by bringing both",
+      "RE high and DE low."
+     ]
+    },
+    {
+     "text": "Terminate the two bus ends with the cable's characteristic impedance (typically 120 Ω), not the nodes in between (mod.ncomm.rs485_termination); the SP3485 data sheet itself shows no termination.",
+     "verified": false
+    },
+    {
+     "text": "Cheap 3.3 V RS-485 boards (often marked SP3485 or MAX3485) carry a 120 Ω termination resistor and bias resistors; declare them as resistor parts across A/B or remove them on middle nodes.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "thvd1450",
+   "aliases": [
+    "thvd1450d",
+    "thvd1450dr",
+    "thvd1450dgk",
+    "thvd1450drb"
+   ],
+   "title": "THVD1450 3.3 V to 5 V RS-485 half-duplex transceiver, 50 Mbps, ±18 kV IEC ESD",
+   "category": "comm.rs485",
+   "manufacturer": "Texas Instruments",
+   "kind": "ic",
+   "source_ids": [
+    "mod-ncomm-thvd1450-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 3.0,
+      "unit": "V",
+      "page": 9,
+      "evidence": "VCC Supply voltage 3 5.5 V",
+      "conditions": "recommended operating conditions"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 9,
+      "evidence": "VCC Supply voltage 3 5.5 V",
+      "conditions": "recommended operating conditions"
+     },
+     "abs_max": {
+      "value": 7.0,
+      "unit": "V",
+      "page": 8,
+      "evidence": "Supply voltage VCC -0.5 7 V",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "value": 2.0,
+     "unit": "V",
+     "page": 9,
+     "evidence": "VIH High-level input voltage (driver, driverenable, and receiver enable inputs) 2 VCC V",
+     "conditions": "VCC 3–5.5 V"
+    },
+    "vil": {
+     "value": 0.8,
+     "unit": "V",
+     "page": 9,
+     "evidence": "VIL Low-level input voltage (driver, driverenable, and receiver enable inputs) 0 0.8 V",
+     "conditions": "VCC 3–5.5 V"
+    },
+    "voh": {
+     "rel_offset": -0.4,
+     "of": "VCC",
+     "unit": "V",
+     "page": 10,
+     "evidence": "VOH Output high voltage IOH = -8 mA VCC –0.4 VCC –0.2 V",
+     "conditions": "R at -8 mA, minimum"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 10,
+     "evidence": "VOL Output low voltage IOL = 8 mA 0.2 0.4 V",
+     "conditions": "R at 8 mA, maximum"
+    },
+    "v_in_max": {
+     "value": 5.7,
+     "unit": "V",
+     "page": 8,
+     "evidence": "Input voltage Range at any logic pin (D, DE, or RE) -0.3 5.7 V",
+     "conditions": "absolute maximum rating, logic pins D, DE, RE"
+    },
+    "outputs": "tristate"
+   },
+   "pins": [
+    {
+     "name": "R",
+     "signal": "uart_tx",
+     "output": "tristate",
+     "note": "receive data output to the ESP's RX; high impedance while RE is high"
+    },
+    {
+     "name": "RE",
+     "signal": "enable_in",
+     "active_low": true,
+     "internal_pull": "up",
+     "note": "receiver enable, active low (2 MΩ internal pull-up)"
+    },
+    {
+     "name": "DE",
+     "signal": "enable_in",
+     "internal_pull": "down",
+     "note": "driver enable, active high (2 MΩ internal pull-down)"
+    },
+    {
+     "name": "D",
+     "signal": "uart_rx",
+     "internal_pull": "up",
+     "note": "driver data input from the ESP's TX (internal pull-up to VCC)"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "A",
+     "signal": "analog_in",
+     "note": "RS-485 bus line A; wired to the bus, not to a GPIO"
+    },
+    {
+     "name": "B",
+     "signal": "analog_in",
+     "note": "RS-485 bus line B; wired to the bus, not to a GPIO"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "uart",
+     "note": "half duplex: DE/RE select transmit or receive; THVD1450 up to 50 Mbps (data sheet p. 9)"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "typ": {
+     "value": 0.0024,
+     "unit": "A",
+     "page": 10,
+     "evidence": [
+      "ICC Supply current (quiescent)",
+      "Driver and receiver enabled",
+      "No load",
+      "2.4 3 mA"
+     ],
+     "conditions": "driver and receiver enabled, no load"
+    },
+    "max": {
+     "value": 0.003,
+     "unit": "A",
+     "page": 10,
+     "evidence": [
+      "ICC Supply current (quiescent)",
+      "Driver and receiver enabled",
+      "No load",
+      "2.4 3 mA"
+     ],
+     "conditions": "driver and receiver enabled, no load"
+    },
+    "sleep": {
+     "value": 1e-06,
+     "unit": "A",
+     "page": 10,
+     "evidence": [
+      "Driver and receiver disabled",
+      "load",
+      "0.1 1 µA"
+     ],
+     "conditions": "driver and receiver disabled (RE = VCC, DE = 0 V), maximum"
+    }
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "R drives up to VCC: at 5 V supply the receiver output exceeds the ESP's input maximum; run the THVD1450 at 3.3 V on an ESP.",
+     "verified": true,
+     "page": 10,
+     "evidence": "VOH Output high voltage IOH = -8 mA VCC –0.4 VCC –0.2 V"
+    },
+    {
+     "text": "Terminate both cable ends with the characteristic impedance (mod.ncomm.rs485_termination).",
+     "verified": true,
+     "page": 22,
+     "evidence": [
+      "each cable end is terminated with a termination resistor, RT, whose value matches the characteristic",
+      "impedance, Z0, of the cable."
+     ]
+    },
+    {
+     "text": "1/8 unit load: up to 256 nodes on one bus.",
+     "verified": true,
+     "page": 1,
+     "evidence": "1/8 Unit Load (Up to 256 Bus Nodes)"
+    },
+    {
+     "text": "Receiver fail-safe: R is high on an open, shorted or idle bus (no bias resistors needed).",
+     "verified": true,
+     "page": 1,
+     "evidence": "Open, Short, and Idle Bus Failsafe"
+    },
+    {
+     "text": "DE open = driver disabled (internal pull-down).",
+     "verified": true,
+     "page": 19,
+     "evidence": [
+      "has an internal pull-down resistor to ground, thus when left open the driver is disabled (high-impedance) by",
+      "default."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tja1051",
+   "aliases": [
+    "tja1051t-3",
+    "tja1051tk-3",
+    "tja1051-3",
+    "tja1051t"
+   ],
+   "title": "TJA1051T/3 high-speed CAN transceiver with VIO (3.3 V logic), 5 V supply",
+   "category": "comm.can",
+   "manufacturer": "NXP Semiconductors",
+   "kind": "ic",
+   "source_ids": [
+    "mod-ncomm-tja1051-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 4.5,
+      "unit": "V",
+      "page": 8,
+      "evidence": [
+       "Supply; pin VCC",
+       "VCC supply voltage 4.5 - 5.5 V"
+      ],
+      "conditions": "operating range"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 8,
+      "evidence": [
+       "Supply; pin VCC",
+       "VCC supply voltage 4.5 - 5.5 V"
+      ],
+      "conditions": "operating range"
+     },
+     "abs_max": {
+      "value": 7.0,
+      "unit": "V",
+      "page": 7,
+      "evidence": "on any other pin",
+      "conditions": "absolute maximum rating (any pin other than CANH/CANL: +7 V)"
+     }
+    },
+    "VIO": {
+     "min": {
+      "value": 2.8,
+      "unit": "V",
+      "page": 8,
+      "evidence": [
+       "I/O level adapter supply; pin VIO[1]",
+       "VIO supply voltage on pin VIO 2.8 - 5.5 V"
+      ],
+      "conditions": "operating range"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 8,
+      "evidence": [
+       "I/O level adapter supply; pin VIO[1]",
+       "VIO supply voltage on pin VIO 2.8 - 5.5 V"
+      ],
+      "conditions": "operating range"
+     },
+     "abs_max": {
+      "value": 7.0,
+      "unit": "V",
+      "page": 7,
+      "evidence": "on any other pin",
+      "conditions": "absolute maximum rating (+7 V)"
+     }
+    }
+   },
+   "io": {
+    "domain": "VIO",
+    "vih": {
+     "rel": 0.7,
+     "of": "VIO",
+     "unit": "V",
+     "page": 8,
+     "evidence": [
+      "CAN transmit data input; pin TXD",
+      "VIH HIGH-level input voltage [5] 0.7VIO[3]"
+     ],
+     "conditions": "TXD (S alike); VCC 4.5–5.5 V, VIO 2.8–5.5 V"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VIO",
+     "unit": "V",
+     "page": 8,
+     "evidence": [
+      "CAN transmit data input; pin TXD",
+      "VIH HIGH-level input voltage",
+      "VIL LOW-level input voltage",
+      "+0.3V IO[3] V"
+     ],
+     "conditions": "TXD; VCC 4.5–5.5 V, VIO 2.8–5.5 V"
+    },
+    "voh": {
+     "rel_offset": -0.4,
+     "of": "VIO",
+     "unit": "V",
+     "page": 8,
+     "evidence": "IOH HIGH-level output current V RXD =V IO  0.4 V[3]",
+     "conditions": "RXD: VIO − 0.4 V is the test point of IOH (1 mA minimum, 3 mA typical)"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 8,
+     "evidence": "IOL LOW-level output current V RXD = 0.4 V; bus dominant 2 5 12 mA",
+     "conditions": "RXD: 0.4 V is the test point of IOL (2 mA minimum)"
+    },
+    "v_in_max": {
+     "value": 7.0,
+     "unit": "V",
+     "page": 7,
+     "evidence": "on any other pin",
+     "conditions": "absolute maximum rating (-0.3 to +7 V on TXD, S, EN, VIO); the VIH range ends at VIO + 0.3 V, or VCC + 0.3 V when VCC > VIO (footnote [5], p. 10)"
+    },
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "TXD",
+     "signal": "digital_in",
+     "internal_pull": "up",
+     "note": "transmit data from the ESP's TWAI TX; internal pull-up to VIO"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply",
+     "note": "5 V transceiver supply (4.5–5.5 V)"
+    },
+    {
+     "name": "RXD",
+     "signal": "digital_out",
+     "note": "receive data to the ESP's TWAI RX; drives up to VIO"
+    },
+    {
+     "name": "VIO",
+     "signal": "supply",
+     "must_connect": true,
+     "note": "I/O level supply: connect to the ESP's 3.3 V rail (TJA1051T/3, TJA1051TK/3)"
+    },
+    {
+     "name": "CANL",
+     "signal": "analog_in",
+     "note": "CAN bus line CANL; wired to the bus, not to a GPIO"
+    },
+    {
+     "name": "CANH",
+     "signal": "analog_in",
+     "note": "CAN bus line CANH; wired to the bus, not to a GPIO"
+    },
+    {
+     "name": "S",
+     "signal": "enable_in",
+     "active_low": true,
+     "internal_pull": "down",
+     "note": "Silent mode control: LOW (GND or open, internal pull-down) = Normal mode, HIGH = Silent mode (transmitter off)"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "digital",
+     "note": "CAN (FD) transceiver for the ESP's TWAI controller (TXD, RXD); timing guaranteed up to 5 Mbit/s, minimum 20 kbit/s (TXD dominant time-out; data sheet pp. 1, 6)"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "typ": {
+     "value": 0.005,
+     "unit": "A",
+     "page": 8,
+     "evidence": "recessive; VTXD =VIO[3] -5 1 0 m A",
+     "conditions": "Normal mode, recessive, typical"
+    },
+    "peak": {
+     "value": 0.07,
+     "unit": "A",
+     "page": 8,
+     "evidence": "dominant; VTXD = 0 V - 50 70 mA",
+     "conditions": "Normal mode, dominant, maximum"
+    }
+   },
+   "requires": [],
+   "hazards": [],
+   "variants": [
+    {
+     "id": "t",
+     "title": "TJA1051T (SO8 without VIO: pin 5 not connected, I/O levels from VCC = 5 V)",
+     "overrides": {
+      "supplies": {
+       "VCC": {
+        "min": {
+         "value": 4.5,
+         "unit": "V",
+         "page": 8,
+         "evidence": [
+          "Supply; pin VCC",
+          "VCC supply voltage 4.5 - 5.5 V"
+         ],
+         "conditions": "operating range"
+        },
+        "max": {
+         "value": 5.5,
+         "unit": "V",
+         "page": 8,
+         "evidence": [
+          "Supply; pin VCC",
+          "VCC supply voltage 4.5 - 5.5 V"
+         ],
+         "conditions": "operating range"
+        },
+        "abs_max": {
+         "value": 7.0,
+         "unit": "V",
+         "page": 7,
+         "evidence": "on any other pin",
+         "conditions": "absolute maximum rating (any pin other than CANH/CANL: +7 V)"
+        }
+       }
+      },
+      "io": {
+       "domain": "VCC",
+       "vih": {
+        "rel": 0.7,
+        "of": "VCC",
+        "unit": "V",
+        "page": 8,
+        "evidence": [
+         "CAN transmit data input; pin TXD",
+         "VIH HIGH-level input voltage [5] 0.7VIO[3]"
+        ],
+        "conditions": "without VIO pin VIO is VCC (p. 3)"
+       },
+       "vil": {
+        "rel": 0.3,
+        "of": "VCC",
+        "unit": "V",
+        "page": 8,
+        "evidence": [
+         "CAN transmit data input; pin TXD",
+         "VIH HIGH-level input voltage",
+         "VIL LOW-level input voltage",
+         "+0.3V IO[3] V"
+        ],
+        "conditions": "without VIO pin VIO is VCC (p. 3)"
+       },
+       "voh": {
+        "rel_offset": -0.4,
+        "of": "VCC",
+        "unit": "V",
+        "page": 8,
+        "evidence": "IOH HIGH-level output current V RXD =V IO  0.4 V[3]",
+        "conditions": "RXD; without VIO pin VIO is VCC (p. 3)"
+       },
+       "vol": {
+        "value": 0.4,
+        "unit": "V",
+        "page": 8,
+        "evidence": "IOL LOW-level output current V RXD = 0.4 V; bus dominant 2 5 12 mA",
+        "conditions": "RXD, IOL 2 mA minimum"
+       },
+       "v_in_max": {
+        "value": 7.0,
+        "unit": "V",
+        "page": 7,
+        "evidence": "on any other pin",
+        "conditions": "absolute maximum rating"
+       },
+       "outputs": "push_pull"
+      },
+      "pins": [
+       {
+        "name": "TXD",
+        "signal": "digital_in",
+        "internal_pull": "up",
+        "note": "transmit data from the ESP's TWAI TX; internal pull-up to VIO"
+       },
+       {
+        "name": "GND",
+        "signal": "gnd"
+       },
+       {
+        "name": "VCC",
+        "signal": "supply",
+        "note": "5 V transceiver supply (4.5–5.5 V)"
+       },
+       {
+        "name": "RXD",
+        "signal": "digital_out",
+        "note": "receive data; drives up to VCC (5 V) on the TJA1051T"
+       },
+       {
+        "name": "n.c.",
+        "signal": "nc",
+        "note": "pin 5 not connected on the TJA1051T"
+       },
+       {
+        "name": "CANL",
+        "signal": "analog_in",
+        "note": "CAN bus line CANL; wired to the bus, not to a GPIO"
+       },
+       {
+        "name": "CANH",
+        "signal": "analog_in",
+        "note": "CAN bus line CANH; wired to the bus, not to a GPIO"
+       },
+       {
+        "name": "S",
+        "signal": "enable_in",
+        "active_low": true,
+        "internal_pull": "down",
+        "note": "Silent mode control: LOW (GND or open, internal pull-down) = Normal mode, HIGH = Silent mode (transmitter off)"
+       }
+      ]
+     }
+    }
+   ],
+   "notes": [
+    {
+     "text": "Connect VIO to the ESP's 3.3 V supply: TXD, RXD and S then use 3.3 V levels while VCC stays at 5 V.",
+     "verified": true,
+     "page": 6,
+     "evidence": [
+      "Pin VIO on the TJA1051T/3 and TJA1051TK/3 should be connected to the microcontroller",
+      "supply voltage (see Figure 6). This will adjust the signal levels of pins TXD, RXD and S to"
+     ]
+    },
+    {
+     "text": "The plain TJA1051T (no /3) has no VIO: its RXD drives 5 V (variant 't'); pick the /3 version for an ESP.",
+     "verified": true,
+     "page": 4,
+     "evidence": "n.c. 5 not connected; in TJA1051T version"
+    },
+    {
+     "text": "TXD is pulled up to VIO, S is pulled down (open S = Normal mode).",
+     "verified": true,
+     "page": 6,
+     "evidence": [
+      "Pin TXD has an internal pull-up to VIO and pins S and EN (TJA1051T/E) have internal",
+      "pull-downs to GND."
+     ]
+    },
+    {
+     "text": "S high = Silent mode: the transmitter is off, the node only listens.",
+     "verified": true,
+     "page": 5,
+     "evidence": "A HIGH level on pin S selects Silent mode. In Silent mode the transmitter is disabled,"
+    },
+    {
+     "text": "Terminate a CAN bus at both ends with 120 Ω (ISO 11898-2; mod.ncomm.can_termination); CAN boards often carry one already: declare it as a resistor part across CANH/CANL.",
+     "verified": false
+    },
+    {
+     "text": "The high level of TXD/S/EN may reach VIO + 0.3 V (operating range); if VCC is above VIO the maximum is VCC + 0.3 V (footnote [5] to the VIH rows, p. 8).",
+     "verified": true,
+     "page": 10,
+     "evidence": [
+      "[5] Maximum value assumes V CC <V IO; if VCC >V IO, the maximum value will be VCC + 0.3 V."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mcp2562",
+   "aliases": [
+    "mcp2562-e-sn",
+    "mcp2562-e-p",
+    "mcp2562-e-mf",
+    "mcp2562-h-sn"
+   ],
+   "title": "MCP2562 high-speed CAN transceiver with VIO (1.8–5.5 V logic), 5 V supply",
+   "category": "comm.can",
+   "manufacturer": "Microchip Technology",
+   "kind": "ic",
+   "source_ids": [
+    "mod-ncomm-mcp2562-ds"
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 4.5,
+      "unit": "V",
+      "page": 9,
+      "evidence": [
+       "VDD Pin",
+       "Voltage Range VDD 4.5 — 5.5"
+      ],
+      "conditions": "operating range"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 9,
+      "evidence": [
+       "VDD Pin",
+       "Voltage Range VDD 4.5 — 5.5"
+      ],
+      "conditions": "operating range"
+     },
+     "abs_max": {
+      "value": 7.0,
+      "unit": "V",
+      "page": 8,
+      "evidence": "VDD.....",
+      "conditions": "absolute maximum rating"
+     }
+    },
+    "VIO": {
+     "min": {
+      "value": 1.8,
+      "unit": "V",
+      "page": 9,
+      "evidence": "Digital Supply Voltage Range VIO 1.8 — 5.5 V",
+      "conditions": "operating range"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 9,
+      "evidence": "Digital Supply Voltage Range VIO 1.8 — 5.5 V",
+      "conditions": "operating range"
+     },
+     "abs_max": {
+      "value": 7.0,
+      "unit": "V",
+      "page": 8,
+      "evidence": "VIO.....",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "VIO",
+    "vih": {
+     "rel": 0.7,
+     "of": "VIO",
+     "unit": "V",
+     "page": 11,
+     "evidence": "High-Level Input Voltage VIH 0.7VIO — VIO + 0.3 V",
+     "conditions": "TXD, STBY"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VIO",
+     "unit": "V",
+     "page": 11,
+     "evidence": "Low-Level Input Voltage VIL -0.3 — 0.3VIO V",
+     "conditions": "TXD, STBY"
+    },
+    "voh": {
+     "rel_offset": -0.4,
+     "of": "VIO",
+     "unit": "V",
+     "page": 11,
+     "evidence": "VIO - 0.4 — — IOH = -1 mA (MCP2562); typical",
+     "conditions": "RXD at -1 mA (MCP2562)"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 11,
+     "evidence": "Low-Level Output Voltage VOL — — 0.4 V IOL = 4 mA; typical 8 mA",
+     "conditions": "RXD at 4 mA"
+    },
+    "v_in_max": {
+     "rel_offset": 0.3,
+     "of": "VIO",
+     "unit": "V",
+     "page": 8,
+     "evidence": "DC Voltage at TXD, RXD, STBY and VSS......",
+     "conditions": "absolute maximum rating: VIO + 0.3 V"
+    },
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "TXD",
+     "signal": "digital_in",
+     "internal_pull": "up",
+     "note": "transmit data from the ESP's TWAI TX; internal pull-up (33 kΩ nominal) to VIO"
+    },
+    {
+     "name": "VSS",
+     "signal": "gnd"
+    },
+    {
+     "name": "VDD",
+     "signal": "supply",
+     "note": "5 V transceiver supply (4.5–5.5 V)"
+    },
+    {
+     "name": "RXD",
+     "signal": "digital_out",
+     "note": "receive data to the ESP's TWAI RX; supplied by VIO"
+    },
+    {
+     "name": "VIO",
+     "signal": "supply",
+     "must_connect": true,
+     "note": "digital I/O supply: connect to the ESP's 3.3 V rail"
+    },
+    {
+     "name": "CANL",
+     "signal": "analog_in",
+     "note": "CAN bus line CANL; wired to the bus, not to a GPIO"
+    },
+    {
+     "name": "CANH",
+     "signal": "analog_in",
+     "note": "CAN bus line CANH; wired to the bus, not to a GPIO"
+    },
+    {
+     "name": "STBY",
+     "signal": "enable_in",
+     "active_low": true,
+     "internal_pull": "up",
+     "note": "LOW = Normal mode, HIGH or open (internal pull-up to VIO) = Standby: transmitter off"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "digital",
+     "note": "CAN transceiver for the ESP's TWAI controller (TXD, RXD); up to 1 Mb/s (data sheet p. 1)"
+    }
+   ],
+   "current": {
+    "supply": "VDD",
+    "typ": {
+     "value": 0.005,
+     "unit": "A",
+     "page": 9,
+     "evidence": "Supply Current IDD — 5 10 mA Recessive; VTXD = VDD",
+     "conditions": "recessive, typical"
+    },
+    "peak": {
+     "value": 0.07,
+     "unit": "A",
+     "page": 9,
+     "evidence": [
+      "Supply Current IDD — 5 10 mA Recessive; VTXD = VDD",
+      "— 45 70 Dominant; VTXD = 0V"
+     ],
+     "conditions": "dominant, maximum"
+    },
+    "sleep": {
+     "value": 1.5e-05,
+     "unit": "A",
+     "page": 9,
+     "evidence": [
+      "Standby Current IDDS — 5 15 µA MCP2561",
+      "— 5 15 MCP2562; Includes IIO"
+     ],
+     "conditions": "Standby, maximum, includes IIO"
+    }
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "STBY floats high (internal pull-up): an open STBY keeps the part in Standby with the transmitter off (mod.ncomm.mcp2562_stby). Tie STBY to GND or drive it low from a GPIO.",
+     "verified": true,
+     "page": 5,
+     "evidence": [
+      "STBY is connected to an",
+      "internal MOS pull-up resistor to V DD or V IO, in the"
+     ]
+    },
+    {
+     "text": "Standby mode: transmitter and high-speed receiver off; RXD shows a delayed copy of the bus (wake-up filter).",
+     "verified": true,
+     "page": 3,
+     "evidence": [
+      "mode, the transmitter and the high-speed part of the",
+      "receiver are switched off to minimize power"
+     ]
+    },
+    {
+     "text": "VIO from 1.8 V: the MCP2562 adapts TXD/RXD/STBY to 3.3 V logic while VDD stays at 5 V.",
+     "verified": true,
+     "page": 4,
+     "evidence": "data to the RXD pin down to 1.8V on the VIO supply."
+    },
+    {
+     "text": "The MCP2561 (same family) has no VIO pin: its RXD drives 5 V; use the MCP2562 on an ESP.",
+     "verified": true,
+     "page": 2,
+     "evidence": "3: Only MCP2562 has the VIO pin. In MCP2561, the supply for the digital I/O is internally connected to VDD."
+    },
+    {
+     "text": "Terminate a CAN bus at both ends with 120 Ω (ISO 11898-2; mod.ncomm.can_termination); the data sheet's application figure shows 120 Ω and 0.1 µF but pypdf does not extract it as text.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "sx1262",
+   "aliases": [
+    "sx1261",
+    "sx126x",
+    "sx1262imltrt"
+   ],
+   "title": "SX1262 sub-GHz LoRa/FSK transceiver, +22 dBm (SPI)",
+   "category": "comm.radio",
+   "manufacturer": "Semtech",
+   "kind": "ic",
+   "source_ids": [
+    "mod-ncomm-sx1262-ds"
+   ],
+   "supplies": {
+    "VBAT": {
+     "min": {
+      "value": 1.8,
+      "unit": "V",
+      "page": 14,
+      "evidence": "VDDop Supply voltage, applies to VBAT and VBAT_IO 1.8 - 3.7 V",
+      "conditions": "operating range"
+     },
+     "max": {
+      "value": 3.7,
+      "unit": "V",
+      "page": 14,
+      "evidence": "VDDop Supply voltage, applies to VBAT and VBAT_IO 1.8 - 3.7 V",
+      "conditions": "operating range"
+     },
+     "abs_max": {
+      "value": 3.9,
+      "unit": "V",
+      "page": 14,
+      "evidence": "VDDmr Supply voltage, applies to VBAT and VBAT_IO -0.5 - 3.9 V",
+      "conditions": "absolute maximum rating"
+     }
+    },
+    "VBAT_IO": {
+     "min": {
+      "value": 1.8,
+      "unit": "V",
+      "page": 14,
+      "evidence": "VDDop Supply voltage, applies to VBAT and VBAT_IO 1.8 - 3.7 V",
+      "conditions": "operating range"
+     },
+     "max": {
+      "value": 3.7,
+      "unit": "V",
+      "page": 14,
+      "evidence": "VDDop Supply voltage, applies to VBAT and VBAT_IO 1.8 - 3.7 V",
+      "conditions": "operating range"
+     },
+     "abs_max": {
+      "value": 3.9,
+      "unit": "V",
+      "page": 14,
+      "evidence": "VDDmr Supply voltage, applies to VBAT and VBAT_IO -0.5 - 3.9 V",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "VBAT_IO",
+    "vih": {
+     "rel": 0.7,
+     "of": "VBAT_IO",
+     "unit": "V",
+     "page": 21,
+     "evidence": "VIH Input High Voltage - 0.7*VBAT_IO 1",
+     "conditions": "digital I/O except DIO3"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VBAT_IO",
+     "unit": "V",
+     "page": 21,
+     "evidence": "VIL Input Low Voltage - -0.3 - 0.3*VBAT_IO 1 V",
+     "conditions": "digital I/O; NRESET: 0.2·VBAT"
+    },
+    "voh": {
+     "rel": 0.9,
+     "of": "VBAT_IO",
+     "unit": "V",
+     "page": 21,
+     "evidence": "VOH Output High Voltage Imax = -2.5 mA 0.9*VBAT_IO 1 - VBAT_IO 1 V",
+     "conditions": "at -2.5 mA"
+    },
+    "vol": {
+     "rel": 0.1,
+     "of": "VBAT_IO",
+     "unit": "V",
+     "page": 21,
+     "evidence": "VOL Output Low Voltage Imax = 2.5 mA 0- 0.1*VBAT_IO 1 V",
+     "conditions": "at 2.5 mA"
+    },
+    "v_in_max": {
+     "rel_offset": 0.3,
+     "of": "VBAT_IO",
+     "unit": "V",
+     "page": 21,
+     "evidence": [
+      "VIH Input High Voltage - 0.7*VBAT_IO 1",
+      "- VBAT_IO 1+0.3 V"
+     ],
+     "conditions": "operating max of the input high level, no absolute rating for the digital pins"
+    },
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "VBAT",
+     "signal": "supply",
+     "note": "pin 10, supply of the RFIC; on the SX1262 also the PA supply (VDD_IN)"
+    },
+    {
+     "name": "VBAT_IO",
+     "signal": "supply",
+     "note": "pin 11, supply of the digital I/O pins (except DIO3)"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "NSS",
+     "signal": "spi_cs",
+     "active_low": true
+    },
+    {
+     "name": "SCK",
+     "signal": "spi_sck"
+    },
+    {
+     "name": "MOSI",
+     "signal": "spi_sdi"
+    },
+    {
+     "name": "MISO",
+     "signal": "spi_sdo",
+     "output": "tristate"
+    },
+    {
+     "name": "NRESET",
+     "signal": "reset_in",
+     "active_low": true,
+     "internal_pull": "up",
+     "note": "reset, active low; internal pull-up (50 kΩ typical) in every mode after start-up"
+    },
+    {
+     "name": "BUSY",
+     "signal": "digital_out",
+     "note": "busy indicator: the host must wait for BUSY low before each SPI command (mod.ncomm.sx126x_busy)"
+    },
+    {
+     "name": "DIO1",
+     "signal": "digital_out",
+     "note": "interrupt output (IRQ) in most drivers"
+    },
+    {
+     "name": "DIO2",
+     "signal": "digital_out",
+     "note": "multipurpose I/O, often the RF switch control (SetDIO2AsRfSwitchCtrl)"
+    },
+    {
+     "name": "DIO3",
+     "signal": "digital_out",
+     "note": "multipurpose I/O, often the TCXO supply (SetDIO3AsTCXOCtrl); not supplied by VBAT_IO"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "spi",
+     "mode": 0,
+     "lsb_first": false,
+     "f_max_hz": {
+      "value": 16000000.0,
+      "unit": "Hz",
+      "page": 49,
+      "evidence": "The SPI runs on the external SCK clock to allow high speed up to 16 MHz.",
+      "source_id": "mod-ncomm-sx1262-ds"
+     },
+     "note": "CPOL = 0, CPHA = 0 (data sheet p. 49); command interface: check BUSY before every command"
+    }
+   ],
+   "current": {
+    "supply": "VBAT",
+    "typ": {
+     "value": 0.0046,
+     "unit": "A",
+     "page": 16,
+     "evidence": [
+      "IDDRX",
+      "Receive mode",
+      "DC-DC mode used",
+      "LoRa® 125 kHz",
+      "4.6"
+     ],
+     "conditions": "Rx, DC-DC mode, LoRa 125 kHz, typical"
+    },
+    "peak": {
+     "value": 0.118,
+     "unit": "A",
+     "page": 17,
+     "evidence": [
+      "IDDTX",
+      "SX1262 3",
+      "868/915 MHz",
+      "+22 dBm",
+      "118"
+     ],
+     "conditions": "Tx +22 dBm, 868/915 MHz, typical"
+    },
+    "sleep": {
+     "value": 6e-07,
+     "unit": "A",
+     "page": 16,
+     "evidence": [
+      "IDDSL",
+      "Configuration retained",
+      "600"
+     ],
+     "conditions": "Sleep, warm start (configuration retained), typical"
+    }
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Wire BUSY to an ESP input: every command waits for BUSY low (mod.ncomm.sx126x_busy).",
+     "verified": true,
+     "page": 49,
+     "evidence": [
+      "used as a busy signal indicating that the chip is ready for ne w command only if this signal is low. When BUSY is high, the",
+      "host controller must wait until it goes down again before sending another command."
+     ]
+    },
+    {
+     "text": "+22 dBm transmit draws about 118 mA from VBAT (868/915 MHz): plan the 3.3 V rail for it.",
+     "verified": true,
+     "page": 17,
+     "evidence": [
+      "IDDTX",
+      "SX1262 3",
+      "+22 dBm",
+      "118"
+     ]
+    },
+    {
+     "text": "NRESET has an internal pull-up (about 50 kΩ): it may stay open; drive it low to reset.",
+     "verified": true,
+     "page": 53,
+     "evidence": [
+      "PU = pull up with 50 k",
+      "Mode DIO3 DIO2 DIO1 BUSY MISO MOSI SCK NSS NRESET",
+      "STBY_RC OUT OUT OUT OUT OUT IN IN IN IN PU"
+     ]
+    },
+    {
+     "text": "DIO3 can supply an external TCXO (many modules use a TCXO); the driver must enable it.",
+     "verified": true,
+     "page": 12,
+     "evidence": "6 DIO3 I/O Multipurpose digital I/O - external TCXO supply voltage"
+    },
+    {
+     "text": "The SX1262 is a QFN-24 IC; ESP projects usually use a module or breakout (Ebyte E22-900M, Waveshare, Seeed Wio-SX1262, Adafruit) with its own RF switch, TCXO and sometimes a regulator; check the module's pinout.",
+     "verified": false
+    },
+    {
+     "text": "This entry rests on data sheet Rev. 1.1 (2017, archived copy); Semtech's current revision 2.x was not scriptable.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "cc1101",
+   "aliases": [
+    "cc1101rgpr",
+    "cc1101rgp",
+    "cc1101-module"
+   ],
+   "title": "CC1101 sub-1 GHz transceiver (315/433/868/915 MHz), SPI",
+   "category": "comm.radio",
+   "manufacturer": "Texas Instruments",
+   "kind": "ic",
+   "source_ids": [
+    "mod-ncomm-cc1101-ds"
+   ],
+   "supplies": {
+    "DVDD": {
+     "min": {
+      "value": 1.8,
+      "unit": "V",
+      "page": 8,
+      "evidence": "Operating supply voltage 1.8 3.6 V All supply pins must have the same voltage",
+      "conditions": "operating range"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 8,
+      "evidence": "Operating supply voltage 1.8 3.6 V All supply pins must have the same voltage",
+      "conditions": "operating range"
+     },
+     "abs_max": {
+      "value": 3.9,
+      "unit": "V",
+      "page": 8,
+      "evidence": "Supply voltage –0.3 3.9 V All supply pins must have the same voltage",
+      "conditions": "absolute maximum rating"
+     }
+    },
+    "AVDD": {
+     "min": {
+      "value": 1.8,
+      "unit": "V",
+      "page": 8,
+      "evidence": "Operating supply voltage 1.8 3.6 V All supply pins must have the same voltage",
+      "conditions": "operating range"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 8,
+      "evidence": "Operating supply voltage 1.8 3.6 V All supply pins must have the same voltage",
+      "conditions": "operating range"
+     },
+     "abs_max": {
+      "value": 3.9,
+      "unit": "V",
+      "page": 8,
+      "evidence": "Supply voltage –0.3 3.9 V All supply pins must have the same voltage",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "DVDD",
+    "vih": {
+     "rel_offset": -0.7,
+     "of": "DVDD",
+     "unit": "V",
+     "page": 20,
+     "evidence": "Logic \"1\" input voltage  VDD-0.7 VDD V"
+    },
+    "vil": {
+     "value": 0.7,
+     "unit": "V",
+     "page": 20,
+     "evidence": "Logic \"0\" input voltage 0 0.7 V"
+    },
+    "voh": {
+     "rel_offset": -0.3,
+     "of": "DVDD",
+     "unit": "V",
+     "page": 20,
+     "evidence": "Logic \"1\" output voltage  VDD-0.3 VDD V For up to 4 mA output current",
+     "conditions": "up to 4 mA"
+    },
+    "vol": {
+     "value": 0.5,
+     "unit": "V",
+     "page": 20,
+     "evidence": "Logic \"0\" output voltage  0 0.5 V For up to 4 mA output current",
+     "conditions": "up to 4 mA"
+    },
+    "v_in_max": {
+     "rel_offset": 0.3,
+     "of": "DVDD",
+     "unit": "V",
+     "page": 8,
+     "evidence": "Voltage on any digital pin –0.3 VDD + 0.3,",
+     "conditions": "absolute maximum rating: VDD + 0.3 V, max 3.9 V"
+    },
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "SCLK",
+     "signal": "spi_sck"
+    },
+    {
+     "name": "SO",
+     "signal": "spi_sdo",
+     "output": "tristate",
+     "note": "SO (GDO1): data output; also CHIP_RDYn (wait for low after CSn low)"
+    },
+    {
+     "name": "GDO2",
+     "signal": "digital_out",
+     "note": "general digital output (FIFO status, clock, serial RX data)"
+    },
+    {
+     "name": "DVDD",
+     "signal": "supply",
+     "note": "1.8–3.6 V digital supply; same voltage as AVDD"
+    },
+    {
+     "name": "DCOUPL",
+     "signal": "nc",
+     "note": "1.6–2.0 V regulator output for decoupling only; never supply other devices from it"
+    },
+    {
+     "name": "GDO0",
+     "signal": "digital_out",
+     "note": "general digital I/O (FIFO status, serial TX/RX data)"
+    },
+    {
+     "name": "CSn",
+     "signal": "spi_cs",
+     "active_low": true
+    },
+    {
+     "name": "AVDD",
+     "signal": "supply",
+     "note": "1.8–3.6 V analog supply (pins 9, 11, 14, 15); same voltage as DVDD"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "SI",
+     "signal": "spi_sdi"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "spi",
+     "f_max_hz": {
+      "value": 6500000.0,
+      "unit": "Hz",
+      "page": 30,
+      "evidence": [
+       "SCLK frequency, burst access",
+       "No delay between address and data byte, or between data bytes",
+       "- 6.5"
+      ],
+      "source_id": "mod-ncomm-cc1101-ds",
+      "conditions": "burst access without delays; 9 MHz single access, 10 MHz with 100 ns delays (Table 22)"
+     },
+     "note": "MSB first; data sampled on the positive SCLK edge (Table 22); after CSn low wait until SO goes low (CHIP_RDYn)"
+    }
+   ],
+   "current": {
+    "supply": "DVDD",
+    "typ": {
+     "value": 0.0147,
+     "unit": "A",
+     "page": 10,
+     "evidence": "14.7  mA Receive mode, 1.2  kBaud, register settings optimized for",
+     "conditions": "Rx 868/915 MHz, 1.2 kBaud, input well above sensitivity, typical (AVDD + DVDD)"
+    },
+    "peak": {
+     "value": 0.0342,
+     "unit": "A",
+     "page": 10,
+     "evidence": "34.2  mA Transmit mode, +12 dBm output power, 868 MHz",
+     "conditions": "Tx +12 dBm, 868 MHz, typical"
+    },
+    "sleep": {
+     "value": 1e-06,
+     "unit": "A",
+     "page": 9,
+     "evidence": " 0.2 1 A Voltage regulator to digital part off, register values retained",
+     "conditions": "SLEEP, register values retained, maximum"
+    }
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "All supply pins (AVDD, DVDD) on the same voltage (mod.ncomm.cc1101_supply); not 5 V tolerant (digital pins at most VDD + 0.3 V).",
+     "verified": true,
+     "page": 8,
+     "evidence": "Operating supply voltage 1.8 3.6 V All supply pins must have the same voltage"
+    },
+    {
+     "text": "DCOUPL is only for the CC1101's own decoupling capacitor.",
+     "verified": true,
+     "page": 21,
+     "evidence": [
+      "NOTE: This pin is intended for use with the CC1101  only. It can not be used",
+      "to provide supply voltage to other devices"
+     ]
+    },
+    {
+     "text": "After CSn low, wait for SO (CHIP_RDYn) low before clocking.",
+     "verified": true,
+     "page": 29,
+     "evidence": [
+      "When CSn is pulled low, the MCU must wait",
+      "until CC1101 SO pin goes low before starting to"
+     ]
+    },
+    {
+     "text": "CC1101 boards (e.g. Ebyte E07 series, generic green 433 MHz boards) bring out VCC, GND, SI, SO, SCLK, CSn, GDO0, GDO2 with VCC = AVDD = DVDD; most have no regulator: 3.3 V only.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "rfm69hcw",
+   "aliases": [
+    "rfm69hw",
+    "rfm69hcw-433",
+    "rfm69hcw-868",
+    "rfm69hcw-915"
+   ],
+   "title": "RFM69HCW ISM-band FSK/OOK transceiver module, +20 dBm (SPI)",
+   "category": "comm.radio",
+   "manufacturer": "HopeRF",
+   "kind": "module",
+   "module_datasheet": true,
+   "source_ids": [
+    "mod-ncomm-rfm69hcw-ds"
+   ],
+   "supplies": {
+    "3.3V": {
+     "min": {
+      "value": 1.8,
+      "unit": "V",
+      "page": 11,
+      "evidence": "VDDop Supply voltage(1.8V-2.4V 17dBm, 2.4V- 3.6V  20dBm) 1.8 3.6 V",
+      "conditions": "operating range (+17 dBm below 2.4 V)"
+     },
+     "typ": {
+      "value": 3.3,
+      "unit": "V",
+      "page": 12,
+      "evidence": "VBAT2=VDD=3.3 V, temperature = 25 °C"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 11,
+      "evidence": "VDDop Supply voltage(1.8V-2.4V 17dBm, 2.4V- 3.6V  20dBm) 1.8 3.6 V",
+      "conditions": "operating range"
+     },
+     "abs_max": {
+      "value": 3.9,
+      "unit": "V",
+      "page": 11,
+      "evidence": "VDDmr Supply Voltage -0.5 3.9 V",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "3.3V",
+    "vih": {
+     "rel": 0.8,
+     "of": "3.3V",
+     "unit": "V",
+     "page": 15,
+     "evidence": "VIH Digital input level high  0.8 - - VDD"
+    },
+    "vil": {
+     "rel": 0.2,
+     "of": "3.3V",
+     "unit": "V",
+     "page": 15,
+     "evidence": "VIL Digital input level low  - - 0.2 VDD"
+    },
+    "voh": {
+     "rel": 0.9,
+     "of": "3.3V",
+     "unit": "V",
+     "page": 15,
+     "evidence": "VOH Digital output level high Imax = 1 mA 0.9 - - VDD",
+     "conditions": "at 1 mA"
+    },
+    "vol": {
+     "rel": 0.1,
+     "of": "3.3V",
+     "unit": "V",
+     "page": 15,
+     "evidence": "VOL Digital output level low Imax = -1 mA - - 0.1 VDD",
+     "conditions": "at 1 mA"
+    },
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "MISO",
+     "signal": "spi_sdo",
+     "output": "tristate"
+    },
+    {
+     "name": "MOSI",
+     "signal": "spi_sdi"
+    },
+    {
+     "name": "SCK",
+     "signal": "spi_sck"
+    },
+    {
+     "name": "NSS",
+     "signal": "spi_cs",
+     "active_low": true
+    },
+    {
+     "name": "RESET",
+     "signal": "reset_in",
+     "note": "reset, active HIGH: leave open or drive low; high = reset (mod.ncomm.rfm69_reset)"
+    },
+    {
+     "name": "DIO5",
+     "signal": "digital_out"
+    },
+    {
+     "name": "ANT",
+     "signal": "nc",
+     "note": "RF antenna port (50 Ω); not a GPIO"
+    },
+    {
+     "name": "DIO3",
+     "signal": "digital_out"
+    },
+    {
+     "name": "DIO4",
+     "signal": "digital_out"
+    },
+    {
+     "name": "3.3V",
+     "signal": "supply",
+     "note": "module pin 13, supply voltage"
+    },
+    {
+     "name": "DIO0",
+     "signal": "digital_out",
+     "note": "usually the packet interrupt (PayloadReady/PacketSent)"
+    },
+    {
+     "name": "DIO1",
+     "signal": "digital_out"
+    },
+    {
+     "name": "DIO2",
+     "signal": "digital_out"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "spi",
+     "mode": 0,
+     "lsb_first": false,
+     "f_max_hz": {
+      "value": 10000000.0,
+      "unit": "Hz",
+      "page": 15,
+      "evidence": "FSCK SCK frequency  - - 10 MHz",
+      "source_id": "mod-ncomm-rfm69hcw-ds"
+     },
+     "note": "CPOL = 0, CPHA = 0 (data sheet p. 44), MSB first"
+    }
+   ],
+   "current": {
+    "supply": "3.3V",
+    "typ": {
+     "value": 0.016,
+     "unit": "A",
+     "page": 12,
+     "evidence": "IDDR Supply current in Receive mode  - 16 - mA",
+     "conditions": "Rx, typical"
+    },
+    "peak": {
+     "value": 0.13,
+     "unit": "A",
+     "page": 12,
+     "evidence": [
+      "IDDT Supply current in Transmit mode",
+      "RFOP = +20 dBm, on PA_BOOST",
+      "130"
+     ],
+     "conditions": "Tx +20 dBm on PA_BOOST, typical"
+    },
+    "sleep": {
+     "value": 1e-06,
+     "unit": "A",
+     "page": 12,
+     "evidence": "IDDSL Supply current in Sleep mode  - 0.1 1 uA",
+     "conditions": "Sleep, maximum"
+    }
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "+20 dBm on PA_BOOST: transmit duty cycle at most 1 %, VSWR at most 3:1 (mod.ncomm.rfm69_pa20).",
+     "verified": true,
+     "page": 11,
+     "evidence": "DC_20dBm Duty Cycle of transmission at +20dBm output - 1 %"
+    },
+    {
+     "text": "+20 dBm needs 2.4–3.6 V; from 1.8 to 2.4 V only +17 dBm.",
+     "verified": true,
+     "page": 11,
+     "evidence": "VDDop Supply voltage(1.8V-2.4V 17dBm, 2.4V- 3.6V  20dBm) 1.8 3.6 V"
+    },
+    {
+     "text": "RESET is active high: a 100 µs high pulse resets the module; then wait 5 ms.",
+     "verified": true,
+     "page": 76,
+     "evidence": "Pin RESET should be pulled high for a hundred microseconds, and then released. The user should then wait for 5 ms"
+    },
+    {
+     "text": "Leave RESET floating during power-on reset.",
+     "verified": true,
+     "page": 75,
+     "evidence": "6 (Reset) should be left floating during the POR sequence."
+    },
+    {
+     "text": "RFM69HCW and RFM69HW share the register set; RFM69CW/RFM69W are the +13 dBm versions without PA_BOOST. Adafruit/SparkFun breakouts add a 3.3 V regulator and level shifting; the bare module has neither.",
+     "verified": false
+    }
+   ]
+  }
+ ]
+}

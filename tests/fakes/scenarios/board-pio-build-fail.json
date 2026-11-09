@@ -1,0 +1,18 @@
+{
+ "run": {
+  "rc": 1,
+  "stdout": "Processing {env} (platform: espressif32@6.9.0; board: esp32-s3-devkitc-1; framework: arduino)\n--------------------------------------------------------------------------------\nCompiling .pio/build/{env}/src/main.cpp.o\nsrc/main.cpp:7:3: error: 'undefined_call' was not declared in this scope\n*** [.pio/build/{env}/src/main.cpp.o] Error 1\n========================= [FAILED] Took 1.10 seconds =========================\n"
+ },
+ "metadata": {
+  "rc": 0,
+  "json": {
+   "{env}": {
+    "env_name": "{env}",
+    "build_type": "release",
+    "cc_path": "/opt/cb-fake/toolchain-xtensa-esp32s3/bin/xtensa-esp32s3-elf-gcc",
+    "gdb_path": "/opt/cb-fake/toolchain-xtensa-esp32s3/bin/xtensa-esp32s3-elf-gdb",
+    "prog_path": "{project_dir}/.pio/build/{env}/firmware.elf"
+   }
+  }
+ }
+}

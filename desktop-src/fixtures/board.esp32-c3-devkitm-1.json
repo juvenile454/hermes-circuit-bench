@@ -1,0 +1,345 @@
+{
+ "ok": true,
+ "action": "board.layout",
+ "summary": "ESP32-C3-DevKitM-1 v1: 30 header pins, 1 onboard part, 1 USB port.",
+ "result": {
+  "id": "esp32-c3-devkitm-1",
+  "title": "ESP32-C3-DevKitM-1",
+  "revision": "v1",
+  "chip": "esp32c3",
+  "source_id": "devkitm1-c3-v1",
+  "left": [
+   {
+    "header": "J1",
+    "n": 1,
+    "label": "GND",
+    "kind": "ground"
+   },
+   {
+    "header": "J1",
+    "n": 2,
+    "label": "3V3",
+    "kind": "power"
+   },
+   {
+    "header": "J1",
+    "n": 3,
+    "label": "3V3",
+    "kind": "power"
+   },
+   {
+    "header": "J1",
+    "n": 4,
+    "label": "IO2",
+    "kind": "gpio",
+    "gpio": 2
+   },
+   {
+    "header": "J1",
+    "n": 5,
+    "label": "IO3",
+    "kind": "gpio",
+    "gpio": 3
+   },
+   {
+    "header": "J1",
+    "n": 6,
+    "label": "GND",
+    "kind": "ground"
+   },
+   {
+    "header": "J1",
+    "n": 7,
+    "label": "RST",
+    "kind": "reset"
+   },
+   {
+    "header": "J1",
+    "n": 8,
+    "label": "GND",
+    "kind": "ground"
+   },
+   {
+    "header": "J1",
+    "n": 9,
+    "label": "IO0",
+    "kind": "gpio",
+    "gpio": 0
+   },
+   {
+    "header": "J1",
+    "n": 10,
+    "label": "IO1",
+    "kind": "gpio",
+    "gpio": 1
+   },
+   {
+    "header": "J1",
+    "n": 11,
+    "label": "IO10",
+    "kind": "gpio",
+    "gpio": 10
+   },
+   {
+    "header": "J1",
+    "n": 12,
+    "label": "GND",
+    "kind": "ground"
+   },
+   {
+    "header": "J1",
+    "n": 13,
+    "label": "5V",
+    "kind": "power"
+   },
+   {
+    "header": "J1",
+    "n": 14,
+    "label": "5V",
+    "kind": "power"
+   },
+   {
+    "header": "J1",
+    "n": 15,
+    "label": "GND",
+    "kind": "ground"
+   }
+  ],
+  "right": [
+   {
+    "header": "J3",
+    "n": 1,
+    "label": "GND",
+    "kind": "ground"
+   },
+   {
+    "header": "J3",
+    "n": 2,
+    "label": "TX",
+    "kind": "gpio",
+    "gpio": 21
+   },
+   {
+    "header": "J3",
+    "n": 3,
+    "label": "RX",
+    "kind": "gpio",
+    "gpio": 20
+   },
+   {
+    "header": "J3",
+    "n": 4,
+    "label": "GND",
+    "kind": "ground"
+   },
+   {
+    "header": "J3",
+    "n": 5,
+    "label": "IO9",
+    "kind": "gpio",
+    "gpio": 9
+   },
+   {
+    "header": "J3",
+    "n": 6,
+    "label": "IO8",
+    "kind": "gpio",
+    "gpio": 8
+   },
+   {
+    "header": "J3",
+    "n": 7,
+    "label": "GND",
+    "kind": "ground"
+   },
+   {
+    "header": "J3",
+    "n": 8,
+    "label": "IO7",
+    "kind": "gpio",
+    "gpio": 7
+   },
+   {
+    "header": "J3",
+    "n": 9,
+    "label": "IO6",
+    "kind": "gpio",
+    "gpio": 6
+   },
+   {
+    "header": "J3",
+    "n": 10,
+    "label": "IO5",
+    "kind": "gpio",
+    "gpio": 5
+   },
+   {
+    "header": "J3",
+    "n": 11,
+    "label": "IO4",
+    "kind": "gpio",
+    "gpio": 4
+   },
+   {
+    "header": "J3",
+    "n": 12,
+    "label": "GND",
+    "kind": "ground"
+   },
+   {
+    "header": "J3",
+    "n": 13,
+    "label": "IO18",
+    "kind": "gpio",
+    "gpio": 18
+   },
+   {
+    "header": "J3",
+    "n": 14,
+    "label": "IO19",
+    "kind": "gpio",
+    "gpio": 19
+   },
+   {
+    "header": "J3",
+    "n": 15,
+    "label": "GND",
+    "kind": "ground"
+   }
+  ],
+  "onboard": [
+   {
+    "gpio": 8,
+    "what": "RGB LED",
+    "severity": "caution",
+    "source_id": "devkitm1-c3-v1"
+   }
+  ],
+  "usb": [
+   {
+    "label": "UART",
+    "kind": "usb_uart_bridge",
+    "gpios": [
+     21,
+     20
+    ],
+    "source_id": "devkitm1-c3-v1"
+   }
+  ],
+  "module": {
+   "name": "ESP32-C3-MINI-1",
+   "part_numbers": [
+    "ESP32-C3-DevKitM-1-N4X",
+    "ESP32-C3-DevKitM-1"
+   ],
+   "variant": null,
+   "flash_mb": 4,
+   "psram_mb": 0,
+   "antenna": "pcb",
+   "source_id": "devkitm1-c3-ordering"
+  },
+  "buttons": [
+   "Boot",
+   "Reset"
+  ],
+  "drawing": {
+   "schema": 1,
+   "orientation": "module_top",
+   "parts": [
+    {
+     "kind": "usb_port",
+     "ref": "UART",
+     "connector": "micro_usb",
+     "edge": "bottom",
+     "order": 1,
+     "source_id": "devkitm1-c3-v1",
+     "quote": "Micro-USB Port",
+     "figure": "esp32-c3-devkitm-1-v1-annotated-photo.png",
+     "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+    },
+    {
+     "kind": "button",
+     "label": "Boot",
+     "zone": "lower",
+     "side": "left",
+     "source_id": "devkitm1-c3-v1",
+     "quote": "Holding down **Boot** and then pressing **Reset** initiates Firmware Download mode for downloading firmware through the serial port.",
+     "figure": "esp32-c3-devkitm-1-v1-annotated-photo.png",
+     "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+    },
+    {
+     "kind": "button",
+     "label": "Reset",
+     "zone": "lower",
+     "side": "right",
+     "source_id": "devkitm1-c3-v1",
+     "quote": "Press this button to restart the system.",
+     "figure": "esp32-c3-devkitm-1-v1-annotated-photo.png",
+     "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+    },
+    {
+     "kind": "bridge_ic",
+     "label": "USB-UART",
+     "zone": "middle",
+     "side": "center",
+     "source_id": "devkitm1-c3-v1",
+     "quote": "Single USB-UART bridge chip provides transfer rates up to 3 Mbps.",
+     "figure": "esp32-c3-devkitm-1-v1-annotated-photo.png",
+     "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+    },
+    {
+     "kind": "led",
+     "label": "RGB",
+     "gpio": 8,
+     "zone": "below_module",
+     "side": "right",
+     "source_id": "devkitm1-c3-v1",
+     "quote": "Addressable RGB LED, driven by GPIO8.",
+     "figure": "esp32-c3-devkitm-1-v1-annotated-photo.png",
+     "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+    },
+    {
+     "kind": "ldo",
+     "label": "LDO 3V3",
+     "zone": "below_module",
+     "side": "center",
+     "source_id": "devkitm1-c3-v1",
+     "quote": "Power regulator that converts a 5 V supply into a 3.3 V output.",
+     "figure": "esp32-c3-devkitm-1-v1-annotated-photo.png",
+     "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+    },
+    {
+     "kind": "power_led",
+     "label": "PWR",
+     "zone": "middle",
+     "side": "left",
+     "source_id": "devkitm1-c3-v1",
+     "quote": "Turns on when the USB power is connected to the board.",
+     "figure": "esp32-c3-devkitm-1-v1-annotated-photo.png",
+     "note": "position read from the annotated front photo of the guide (module rotated to the top); not machine-checkable"
+    }
+   ]
+  }
+ },
+ "checks": [],
+ "warnings": [],
+ "assumptions": [],
+ "sources": [
+  {
+   "id": "devkitm1-c3-v1",
+   "title": "ESP32-C3-DevKitM-1 User Guide, Header Block (J1, J3) and Description of Components",
+   "url": "https://github.com/espressif/esp-dev-kits/blob/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-c3-devkitm-1/user_guide.rst",
+   "retrieved": "2026-11-06",
+   "note": "espressif/esp-dev-kits commit 5c06bf18 (2026-11-02), sha256 6859d66ec8f3793845bc993e5993db4bbb0310c434f30a41c019a0c507f4ae2c. Rendered: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c3/esp32-c3-devkitm-1/user_guide.html. J1 and J3 have 15 pins each, numbering as in the schematic SCH_ESP32-C3-DEVKITM-1_V1_20200915A; 'Addressable RGB LED, driven by GPIO8.'; 'No previous versions available.'"
+  },
+  {
+   "id": "devkitm1-c3-ordering",
+   "title": "ESP32-C3-DevKitM-1 Ordering Information (part number, module, flash, PSRAM)",
+   "url": "https://github.com/espressif/esp-dev-kits/blob/5c06bf1835329d6525f316475f7218aab6acfe79/docs/en/esp32-c3-devkitm-1/ordering-info.inc",
+   "retrieved": "2026-11-06",
+   "note": "espressif/esp-dev-kits commit 5c06bf18, sha256 d6ce9d95d89ddb9afe66aada226073c419617f0b4f5e34c4452ded22f40a464b, included by the user guide. ESP32-C3-DevKitM-1-N4X: ESP32-C3-MINI-1, 4 MB flash, no PSRAM."
+  }
+ ],
+ "simulated": false,
+ "error": null
+}

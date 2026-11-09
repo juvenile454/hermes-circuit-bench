@@ -1,0 +1,20 @@
+Guru Meditation Error: Core  1 panic'ed (StoreProhibited). Exception was unhandled.
+
+Core  1 register dump:
+PC      : 0x420019e4  PS      : 0x00060830  A0      : 0x82001a04  A1      : 0x3fcebc50  
+A2      : 0x00000000  A3      : 0x00000019  A4      : 0x00000001  A5      : 0x00000003  
+A6      : 0x00000124  A7      : 0x00000000  A8      : 0xcccccccd  A9      : 0x3fcebbe0  
+A10     : 0x000000fc  A11     : 0x3c03985c  A12     : 0x00000003  A13     : 0x000003fd  
+A14     : 0x3fcebc2c  A15     : 0x000f4240  SAR     : 0x00000012  EXCCAUSE: 0x0000001d  
+EXCVADDR: 0x0000000c  LBEG    : 0x400570e8  LEND    : 0x400570f3  LCOUNT  : 0x00000000  
+
+
+Backtrace: 0x420019e1:0x3fcebc50 0x42001a01:0x3fcebc70 0x42001a45:0x3fcebc90 0x42003dc6:0x3fcebcb0
+
+
+
+
+ELF file SHA256: cb8f614b016a44c5
+
+E (571) esp_core_dump_flash: Core dump flash config is corrupted! CRC=0x7bd5c66f instead of 0x0
+Rebooting...

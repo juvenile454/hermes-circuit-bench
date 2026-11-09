@@ -1,0 +1,228 @@
+{
+ "ok": true,
+ "action": "calc.npn",
+ "summary": "NPN low side at 3.30 V drive: base 2.53 mA net, forced beta 5.1; saturates by the hFE_min/2 rule of thumb (hFE_min 100, 2N2222A datasheet).",
+ "result": {
+  "inputs": {
+   "v_drive": {
+    "value": 3.3,
+    "unit": "V",
+    "display": "3.30 V"
+   },
+   "r_base": {
+    "value": 1000.0,
+    "unit": "Ω",
+    "display": "1.00 kΩ"
+   },
+   "i_load": {
+    "value": 0.013,
+    "unit": "A",
+    "display": "13.0 mA"
+   },
+   "v_be": {
+    "value": 0.7,
+    "unit": "V",
+    "display": "700 mV"
+   },
+   "r_pulldown": {
+    "value": 10000.0,
+    "unit": "Ω",
+    "display": "10.0 kΩ"
+   },
+   "part": "2N2222A",
+   "load": "laser"
+  },
+  "i_rb": {
+   "value": 0.0026,
+   "unit": "A",
+   "display": "2.60 mA"
+  },
+  "i_pd": {
+   "value": 7e-05,
+   "unit": "A",
+   "display": "70.0 µA"
+  },
+  "i_b": {
+   "value": 0.00253,
+   "unit": "A",
+   "display": "2.53 mA"
+  },
+  "forced_beta": {
+   "value": 5.13834,
+   "unit": "x",
+   "display": "5.1 x"
+  },
+  "p_rb": {
+   "value": 0.00676,
+   "unit": "W",
+   "display": "6.76 mW"
+  },
+  "hfe": {
+   "value": 100.0,
+   "from": "datasheet",
+   "part": "2N2222A",
+   "source_id": "onsemi-2n2222a",
+   "basis": "between_rows",
+   "conditions": "T_A = 25 °C; ON characteristics measured as pulse test (Note 1)",
+   "rows": [
+    {
+     "i_c": {
+      "value": 0.01,
+      "unit": "A",
+      "display": "10.0 mA"
+     },
+     "v_ce": {
+      "value": 10.0,
+      "unit": "V",
+      "display": "10.0 V"
+     },
+     "min": 100,
+     "evidence": "(IC = 10 mAdc, VCE = 10 Vdc)"
+    },
+    {
+     "i_c": {
+      "value": 0.15,
+      "unit": "A",
+      "display": "150 mA"
+     },
+     "v_ce": {
+      "value": 10.0,
+      "unit": "V",
+      "display": "10.0 V"
+     },
+     "min": 100,
+     "evidence": "(IC = 150 mAdc, VCE = 10 Vdc)"
+    }
+   ],
+   "i_b_needed": {
+    "value": 0.00026,
+    "unit": "A",
+    "display": "260 µA"
+   }
+  },
+  "formula": "I_RB = (V_drive − V_BE) / R_B; I_PD = V_BE / R_PD; I_B = I_RB − I_PD; β_forced = I_load / I_B; P_RB = I_RB² · R_B; saturated if β_forced ≤ hFE_min / 2 (rule of thumb)",
+  "steps": [
+   {
+    "name": "I_RB",
+    "expr": "(3.30 V − 700 mV) / 1.00 kΩ",
+    "value": {
+     "value": 0.0026,
+     "unit": "A",
+     "display": "2.60 mA"
+    }
+   },
+   {
+    "name": "I_PD",
+    "expr": "700 mV / 10.0 kΩ",
+    "value": {
+     "value": 7e-05,
+     "unit": "A",
+     "display": "70.0 µA"
+    }
+   },
+   {
+    "name": "I_B",
+    "expr": "2.60 mA − 70.0 µA",
+    "value": {
+     "value": 0.00253,
+     "unit": "A",
+     "display": "2.53 mA"
+    }
+   },
+   {
+    "name": "β_forced",
+    "expr": "13.0 mA / 2.53 mA",
+    "value": {
+     "value": 5.13834,
+     "unit": "x",
+     "display": "5.1 x"
+    }
+   },
+   {
+    "name": "P_RB",
+    "expr": "(2.60 mA)² · 1.00 kΩ",
+    "value": {
+     "value": 0.00676,
+     "unit": "W",
+     "display": "6.76 mW"
+    }
+   }
+  ]
+ },
+ "checks": [
+  {
+   "id": "calc.npn.base_drive",
+   "status": "passed",
+   "detail": "I_B 2.53 mA > 0"
+  },
+  {
+   "id": "calc.npn.saturation",
+   "status": "passed",
+   "detail": "β_forced 5.1 x ≤ hFE_min/2 = 50 x (hFE_min 100 from 2N2222A datasheet; rule of thumb)"
+  },
+  {
+   "id": "calc.npn.ic_max",
+   "status": "passed",
+   "detail": "I_load 13.0 mA ≤ I_C continuous 800 mA (2N2222A datasheet, maximum ratings)"
+  }
+ ],
+ "warnings": [
+  {
+   "code": "gpio_current",
+   "severity": "info",
+   "message": "The driving pin sources 2.60 mA. GPIO current limits are not checked here (unverified); see the chip datasheet.",
+   "source_ids": []
+  },
+  {
+   "code": "laser_safety",
+   "severity": "danger",
+   "message": "Laser modules can damage eyes. Never look into the beam; keep the output off during boot (pull-down).",
+   "source_ids": []
+  }
+ ],
+ "assumptions": [
+  {
+   "key": "v_be",
+   "value": "0.7 V",
+   "reason": "typical small-signal silicon BJT; check the datasheet"
+  },
+  {
+   "key": "v_rpd",
+   "value": "V_BE",
+   "reason": "while the transistor is on, R_PD sees V_BE"
+  },
+  {
+   "key": "hfe_min",
+   "value": "100",
+   "reason": "the datasheet lists I_C 10.0 mA (min 100) and 150 mA (min 100); the smaller minimum is used for I_load 13.0 mA"
+  },
+  {
+   "key": "hfe_conditions",
+   "value": "V_CE 10.0 V, T_A = 25 °C; ON characteristics measured as pulse test (Note 1)",
+   "reason": "datasheet hFE of 2N2222A (onsemi-2n2222a); other makers and packages differ, and the gain in saturation is lower"
+  },
+  {
+   "key": "saturation",
+   "value": "β_forced ≤ hFE_min / 2",
+   "reason": "rule of thumb, not from a datasheet"
+  }
+ ],
+ "sources": [
+  {
+   "id": "rule-of-thumb",
+   "title": "Practice rule, not a standard",
+   "url": null,
+   "retrieved": "2026-11-05",
+   "note": "Shown for engineering judgement only; check the datasheet of your parts."
+  },
+  {
+   "id": "onsemi-2n2222a",
+   "title": "onsemi 2N2222A/D, Small Signal Switching Transistor NPN Silicon, Rev. 2 (November 2013)",
+   "url": "https://www.onsemi.com/download/data-sheet/pdf/2n2222a-d.pdf",
+   "retrieved": "2026-11-06",
+   "note": "Electrical Characteristics, ON CHARACTERISTICS: DC Current Gain hFE at V_CE = 10 V; Maximum Ratings: I_C continuous. TO-18 (JAN) part; TO-92 parts such as P2N2222A or PN2222A have other values. PDF SHA-256 b3181715862c6d3c145868d170f52fa7ff8ea99d89707699c01a53d108e587c7."
+  }
+ ],
+ "simulated": false,
+ "error": null
+}

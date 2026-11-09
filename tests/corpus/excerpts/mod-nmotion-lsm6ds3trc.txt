@@ -1,0 +1,37 @@
+# source_id: mod-nmotion-lsm6ds3trc-ds
+# document: STMicroelectronics LSM6DS3TR-C iNEMO inertial module, Datasheet DocID030071 Rev 3 (May 2017)
+# url: https://web.archive.org/web/20260901085931id_/https://www.st.com/resource/en/datasheet/lsm6ds3tr-c.pdf
+# corpus: mod/nmotion/lsm6ds3tr-c.pdf sha256 251737db70e3b6cdc217a5681dd4634a05faffd5288aff6a576078a6464a1b2b
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+May 2017 DocID030071 Rev 3 1/115
+@@ page 24
+Vdd Supply voltage 1.71 1.8 3.6 V
+Vdd_IO Power supply for I/O 1.62  Vdd + 0.1 V
+Gyroscope and accelerometer
+ODR = 1.6 kHz 0.90 mA
+ODR = 208 Hz 0.45 mA
+power-down
+3 μA
+VIH Digital high-level input voltage 0.7 *VDD_IO V
+VIL Digital low-level input voltage 0.3 *VDD_IO V
+VOH High-level output voltage I OH = 4 mA (2)
+VDD_IO - 0.2 V
+VOL Low-level output voltage I OL = 4 mA (2) 0.2 V
+@@ page 27
+f(SCL) SCL clock frequency 0 100 0 400 kHz
+@@ page 29
+Note: Supply voltage on any pin should never exceed 4.8 V.
+Vdd Supply voltage -0.3 to 4.8 V
+Vin Input voltage on any control pin(including CS, SCL/SPC, SDA/SDI/SDO, SDO/SA0) 0.3 to Vdd_IO +0.3 V
+@@ page 38
+CS line must be tied high (i.e connected to Vdd_IO).
+@@ page 39
+to/from the interface. Both the lines must be connected to Vdd_IO through external pull-up
+is connected to the supply voltage, LSb is ‘1’ (address 1101011b); else if the SDO/SA0 pin is
+connected to ground, the LSb value is ‘0’ (address 1101010b). This solution permits to
+@@ page 45
+C2 = 100 nF ceramic) should be placed as near as possible to the supply pin of the device
+@@ page 60
+Who_AM_I register (r). This register is a read-only register. Its value is fixed at 6Ah.

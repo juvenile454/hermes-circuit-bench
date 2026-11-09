@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+"""Reference fake: prints the scenario output for its first argument and exits with its rc."""
+import json
+import os
+import sys
+import time
+
+argv = sys.argv[1:]
+log = os.environ.get("CB_FAKE_ARGV_LOG")
+if log:
+    with open(log, "a", encoding="utf-8") as f:
+        f.write(json.dumps([os.path.basename(sys.argv[0]), *argv]) + "\n")
+scenario = {}
+if os.environ.get("CB_FAKE_SCENARIO"):
+    with open(os.environ["CB_FAKE_SCENARIO"], encoding="utf-8") as f:
+        scenario = json.load(f)
+step = scenario.get(argv[0] if argv else "", scenario.get("*", {"rc": 0, "stdout": ""}))
+time.sleep(float(step.get("sleep", 0)))
+sys.stdout.write(step.get("stdout", ""))
+sys.stdout.flush()
+sys.exit(int(step.get("rc", 0)))

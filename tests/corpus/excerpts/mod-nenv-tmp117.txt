@@ -1,0 +1,42 @@
+# source_id: mod-nenv-tmp117-ds
+# document: TMP117 High-Accuracy, Low-Power, Digital Temperature Sensor With SMBus- and I2C-Compatible Interface, SNOSD82D (revised September 2022)
+# url: https://www.ti.com/lit/ds/symlink/tmp117.pdf
+# corpus: mod/nenv/tmp117.pdf sha256 78212e91e478035a91165397a8de8a90bfc776759dc445243c033537f0c4b789
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 4
+ADD0 4 C1 I Address select. Connect to GND, V+, SDA, or SCL.
+ALERT 3 C2 O Over temperature alert or data-ready signal. This open-drain output requires a pullup resistor.
+GND 2 B2 — Ground
+SCL 1 A2 I Serial clock
+SDA 6 A1 I/O Serial data input and open-drain output. Requires a pullup resistor.
+V+ 5 B1 I Supply voltage
+@@ page 5
+Supply voltage V+ –0.3 6 V
+Voltage at SCL, SDA, ALERT and ADD0 –0.3 6 V
+V+ Supply voltage, TA = -55 °C to 150 °C 1.8 3.3 5.5 V
+V+ Supply voltage, TA = -55 °C to 70 °C 1.7 5.5 V
+VI/O SCL, SDA, ALERT and ADD0 0 5.5 V
+@@ page 6
+VIH Input logic high level SCL, SDA 0.7 * (V+) V
+VIL Input logic low level SCL, SDA 0.3 * (V+) V
+VOL SDA and ALERT output logic low level IOL = -3 mA 0 0.4 V
+Quiescent current during active 
+conversion Active Conversion, serial bus inactive 135 220 μA
+IQ Quiescent current
+Duty cycle 1 Hz, averaging mode off, serial bus 
+inactive. TA = 25 °C 3.5 5
+Duty cycle 1 Hz, averaging mode off, serial bus 
+Shutdown current Serial bus inactive, SCL, SDA, and ADD0 = V+. TA = 25 °C 0.15 0.5 μA
+IEE EEPROM write quiescent current ADC conversion off; serial bus inactive 240 μA
+@@ page 7
+fSCL SCL operating frequency 1 400 KHz
+@@ page 21
+Table 7-2. Address Pin and Slave Addresses
+1001000x Ground
+1001001x V+
+1001010x SDA
+1001011x SCL
+@@ page 35
+The TMP117 operates on a power-supply range from 1.7 V to 5.5 V. A power-supply bypass capacitor 
+recommended value for this supply bypass capacitor is 100 nF. Applications with noisy or high-impedance power 

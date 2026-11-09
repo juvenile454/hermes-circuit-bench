@@ -1,0 +1,204 @@
+{
+ "ok": true,
+ "action": "pins.check",
+ "summary": "ESP32-S3 N16R8, Wi-Fi on: 4 ok, 0 caution, 1 blocked (GPIO35: octal PSRAM).",
+ "result": {
+  "chip": "esp32s3",
+  "title": "ESP32-S3",
+  "variant": "n16r8",
+  "wifi": true,
+  "devkit": "esp32-s3-devkitc-1",
+  "counts": {
+   "ok": 4,
+   "caution": 0,
+   "blocked": 1
+  },
+  "pins": [
+   {
+    "role": "LASER",
+    "mode": "out",
+    "pin": 14,
+    "name": "GPIO14",
+    "verdict": "ok",
+    "rule_ids": [],
+    "reasons": [],
+    "functions": [
+     "GPIO14",
+     "FSPIDQS",
+     "SUBSPIWP",
+     "FSPIWP",
+     "RTC_GPIO14",
+     "ADC2_CH3",
+     "TOUCH14"
+    ],
+    "header": "J1-20",
+    "alternatives": []
+   },
+   {
+    "role": "BUTTON",
+    "mode": "in_pullup",
+    "pin": 35,
+    "name": "GPIO35",
+    "verdict": "blocked",
+    "rule_ids": [
+     "s3.octal_psram"
+    ],
+    "reasons": [
+     {
+      "rule_id": "s3.octal_psram",
+      "severity": "blocked",
+      "message": "Wired to the octal PSRAM bus (SPIIO4–7, SPIDQS). Espressif: not recommended for other uses.",
+      "source_id": "idf-v6.1-gpio-esp32s3"
+     }
+    ],
+    "functions": [
+     "GPIO35",
+     "FSPID",
+     "SUBSPID",
+     "SPIIO6"
+    ],
+    "header": "J3-13",
+    "alternatives": [
+     2,
+     4,
+     5
+    ]
+   },
+   {
+    "role": "SDA",
+    "mode": "i2c_sda",
+    "pin": 8,
+    "name": "GPIO8",
+    "verdict": "ok",
+    "rule_ids": [],
+    "reasons": [],
+    "functions": [
+     "GPIO8",
+     "SUBSPICS1",
+     "RTC_GPIO8",
+     "ADC1_CH7",
+     "TOUCH8"
+    ],
+    "header": "J1-12",
+    "alternatives": []
+   },
+   {
+    "role": "SCL",
+    "mode": "i2c_scl",
+    "pin": 9,
+    "name": "GPIO9",
+    "verdict": "ok",
+    "rule_ids": [],
+    "reasons": [],
+    "functions": [
+     "GPIO9",
+     "SUBSPIHD",
+     "FSPIHD",
+     "RTC_GPIO9",
+     "ADC1_CH8",
+     "TOUCH9"
+    ],
+    "header": "J1-15",
+    "alternatives": []
+   },
+   {
+    "role": "VBAT",
+    "mode": "adc",
+    "pin": 1,
+    "name": "GPIO1",
+    "verdict": "ok",
+    "rule_ids": [],
+    "reasons": [],
+    "functions": [
+     "GPIO1",
+     "RTC_GPIO1",
+     "ADC1_CH0",
+     "TOUCH1"
+    ],
+    "header": "J3-4",
+    "alternatives": []
+   }
+  ]
+ },
+ "checks": [
+  {
+   "id": "pins.exists",
+   "status": "passed",
+   "detail": "all 5 pins exist on ESP32-S3"
+  },
+  {
+   "id": "pins.modes",
+   "status": "passed",
+   "detail": "every pin supports its mode"
+  },
+  {
+   "id": "pins.duplicates",
+   "status": "passed",
+   "detail": "no pin used twice"
+  },
+  {
+   "id": "pins.broken_out",
+   "status": "passed",
+   "detail": "all on the ESP32-S3-DevKitC-1 v1.1 headers"
+  },
+  {
+   "id": "pins.board",
+   "status": "passed",
+   "detail": "no on-board part affected"
+  },
+  {
+   "id": "pins.strapping",
+   "status": "passed",
+   "detail": "no assigned pin affected"
+  },
+  {
+   "id": "pins.spi_flash",
+   "status": "passed",
+   "detail": "no assigned pin affected"
+  },
+  {
+   "id": "pins.octal_psram",
+   "status": "failed",
+   "detail": "GPIO35: octal PSRAM (blocked)"
+  },
+  {
+   "id": "pins.usb_jtag",
+   "status": "passed",
+   "detail": "no assigned pin affected"
+  },
+  {
+   "id": "pins.uart0",
+   "status": "passed",
+   "detail": "no assigned pin affected"
+  },
+  {
+   "id": "pins.pad_jtag",
+   "status": "passed",
+   "detail": "no assigned pin affected"
+  },
+  {
+   "id": "pins.adc2_wifi",
+   "status": "passed",
+   "detail": "no assigned pin affected"
+  }
+ ],
+ "warnings": [],
+ "assumptions": [],
+ "sources": [
+  {
+   "id": "idf-v6.1-gpio-esp32s3",
+   "title": "ESP-IDF v6.1, GPIO & RTC GPIO (ESP32-S3)",
+   "url": "https://github.com/espressif/esp-idf/blob/fff9895c82d744c7237be8847347bdd1b07c6643/docs/en/api-reference/peripherals/gpio/esp32s3.inc",
+   "retrieved": "2026-11-05",
+   "note": "Tag v6.1 = commit fff9895c (tag object 4dc1c655). Rendered: https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-reference/peripherals/gpio.html (stable = v6.1 at retrieval)"
+  },
+  {
+   "id": "devkitc1-s3-v1.1",
+   "title": "ESP32-S3-DevKitC-1 v1.1 User Guide, Header Block (J1, J3)",
+   "url": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html",
+   "retrieved": "2026-11-05"
+  }
+ ],
+ "simulated": false,
+ "error": null
+}

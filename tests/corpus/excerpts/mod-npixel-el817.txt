@@ -1,0 +1,34 @@
+# source_id: mod-npixel-el817-ds
+# document: Everlight EL817 Series 4 PIN DIP Phototransistor Photocoupler, datasheet DPC-0000046 Rev. 20 (20 Jan 2025)
+# url: https://www.everlighteurope.com/custom/files/datasheets/DPC-0000046.pdf
+# corpus: mod/npixel/everlight-EL817-DPC-0000046.pdf sha256 d9b52e28759df28e6ce862ab5ab5f449136e9ef467c90755c8d90f80db279f69
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+1  Copyright © 2010, Everlight All Rights Reserved. Release Date : 20.Jan .2025. Issue No: DPC-0000046  Rev.20 www.everlight.com 
+(CTR: 50~600% at IF = 5mA, VCE = 5V) 
+and output (Viso = 5000Vrms) 
+1. Anode  
+2. Cathode 
+3. Emitter 
+4. Collector 
+@@ page 2
+2  Copyright © 2010, Everlight All Rights Reserved. Release Date : 20.Jan .2025. Issue No: DPC-0000046  Rev.20 www.everlight.com 
+Forward current IF 60 mA 
+Reverse voltage VR 6 V 
+Collector current IC 50 mA 
+Collector-Emitter voltage VCEO 35 V 
+@@ page 3
+3  Copyright © 2010, Everlight All Rights Reserved. Release Date : 20.Jan .2025. Issue No: DPC-0000046  Rev.20 www.everlight.com 
+Forward Voltage VF - 1.2 1.4 V IF = 20mA 
+50 - 600 
+% IF = 5mA ,VCE = 5V 
+EL817A 80 - 160 
+EL817B 130 - 260 
+EL817C 200 - 400 
+EL817D 300 - 600 
+EL817X 100 - 200 
+EL817Y 150 - 300 
+saturation voltage VCE(sat) - 0.1 0.2 V IF = 20mA ,IC = 1mA 
+Rise time tr - - 18 µs VCE = 2V, IC = 2mA, 
+RL = 100Ω Fall time tf - - 18 µs 

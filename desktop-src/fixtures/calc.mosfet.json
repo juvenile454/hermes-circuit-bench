@@ -1,0 +1,304 @@
+{
+ "ok": true,
+ "action": "calc.mosfet",
+ "summary": "N-MOSFET AO3400A low side, 3.30 V gate, 2.00 A: R_DS(on) 48.0 mΩ (at V_GS 2.50 V, datasheet) gives 192 mW loss and 96.0 mV drop, T_J ≈ 49.0 °C (within T_J max 150 °C).",
+ "result": {
+  "inputs": {
+   "i_load": {
+    "value": 2.0,
+    "unit": "A",
+    "display": "2.00 A"
+   },
+   "v_supply": {
+    "value": 12.0,
+    "unit": "V",
+    "display": "12.0 V"
+   },
+   "gate_v": {
+    "value": 3.3,
+    "unit": "V",
+    "display": "3.30 V"
+   },
+   "r_gate": {
+    "value": 100.0,
+    "unit": "Ω",
+    "display": "100 Ω"
+   },
+   "r_pulldown": {
+    "value": 100000.0,
+    "unit": "Ω",
+    "display": "100 kΩ"
+   },
+   "t_ambient": {
+    "value": 25.0,
+    "unit": "°C",
+    "display": "25.0 °C"
+   },
+   "part": "AO3400A"
+  },
+  "v_gs": {
+   "value": 3.2967,
+   "unit": "V",
+   "display": "3.297 V"
+  },
+  "r_ds_on": {
+   "value": 0.048,
+   "unit": "Ω",
+   "display": "48.0 mΩ"
+  },
+  "r_ds_on_basis": {
+   "from": "datasheet",
+   "part": "AO3400A",
+   "source_id": "aos-ao3400a",
+   "v_gs": {
+    "value": 2.5,
+    "unit": "V",
+    "display": "2.50 V"
+   },
+   "i_d": {
+    "value": 3.0,
+    "unit": "A",
+    "display": "3.00 A"
+   },
+   "evidence": "RDS(ON) (at VGS = 2.5V) < 48mW",
+   "conditions": "T_J = 25 °C, pulsed"
+  },
+  "p_loss": {
+   "value": 0.192,
+   "unit": "W",
+   "display": "192 mW"
+  },
+  "v_ds_on": {
+   "value": 0.096,
+   "unit": "V",
+   "display": "96.0 mV"
+  },
+  "t_j": {
+   "value": 49.0,
+   "unit": "°C",
+   "display": "49.0 °C"
+  },
+  "i_gate_peak": {
+   "value": 0.033,
+   "unit": "A",
+   "display": "33.0 mA"
+  },
+  "i_pulldown": {
+   "value": 3.2967e-05,
+   "unit": "A",
+   "display": "33.0 µA"
+  },
+  "part": {
+   "id": "AO3400A",
+   "package": "SOT-23",
+   "source_id": "aos-ao3400a",
+   "v_gs_th": {
+    "min": {
+     "value": 0.65,
+     "unit": "V",
+     "display": "650 mV"
+    },
+    "typ": {
+     "value": 1.05,
+     "unit": "V",
+     "display": "1.05 V"
+    },
+    "max": {
+     "value": 1.45,
+     "unit": "V",
+     "display": "1.45 V"
+    }
+   },
+   "v_ds_max": {
+    "value": 30.0,
+    "unit": "V",
+    "display": "30.0 V"
+   },
+   "i_d_max": {
+    "value": 5.7,
+    "unit": "A",
+    "display": "5.70 A",
+    "conditions": "continuous, T_A = 25 °C, V_GS = 10 V"
+   },
+   "v_gs_max": {
+    "value": 12.0,
+    "unit": "V",
+    "display": "12.0 V"
+   },
+   "t_j_max": {
+    "value": 150.0,
+    "unit": "°C",
+    "display": "150 °C"
+   },
+   "r_th_ja": {
+    "value": 125.0,
+    "unit": "°C/W",
+    "display": "125 °C/W",
+    "conditions": "maximum, steady state, on 1 in² FR-4 with 2 oz copper in still air (Notes A, D)"
+   }
+  },
+  "formula": "V_GS = V_gate · R_PD / (R_G + R_PD); R_DS(on) = datasheet maximum at the highest V_GS row ≤ V_GS; P = I_load² · R_DS(on); V_DS = I_load · R_DS(on); T_J = T_A + P · R_θJA; I_G,peak = V_gate / R_G",
+  "steps": [
+   {
+    "name": "V_GS",
+    "expr": "3.30 V · 100 kΩ / (100 Ω + 100 kΩ)",
+    "value": {
+     "value": 3.2967,
+     "unit": "V",
+     "display": "3.297 V"
+    }
+   },
+   {
+    "name": "R_DS(on)",
+    "expr": "AO3400A max at V_GS 2.50 V (datasheet)",
+    "value": {
+     "value": 0.048,
+     "unit": "Ω",
+     "display": "48.0 mΩ"
+    }
+   },
+   {
+    "name": "P",
+    "expr": "(2.00 A)² · 48.0 mΩ",
+    "value": {
+     "value": 0.192,
+     "unit": "W",
+     "display": "192 mW"
+    }
+   },
+   {
+    "name": "V_DS",
+    "expr": "2.00 A · 48.0 mΩ",
+    "value": {
+     "value": 0.096,
+     "unit": "V",
+     "display": "96.0 mV"
+    }
+   },
+   {
+    "name": "T_J",
+    "expr": "25.0 °C + 192 mW · 125 °C/W",
+    "value": {
+     "value": 49.0,
+     "unit": "°C",
+     "display": "49.0 °C"
+    }
+   },
+   {
+    "name": "I_G,peak",
+    "expr": "3.30 V / 100 Ω",
+    "value": {
+     "value": 0.033,
+     "unit": "A",
+     "display": "33.0 mA"
+    }
+   },
+   {
+    "name": "I_PD",
+    "expr": "3.297 V / 100 kΩ",
+    "value": {
+     "value": 3.2967e-05,
+     "unit": "A",
+     "display": "33.0 µA"
+    }
+   }
+  ]
+ },
+ "checks": [
+  {
+   "id": "calc.mosfet.logic_level",
+   "status": "passed",
+   "detail": "R_DS(on) max 48.0 mΩ specified at V_GS 2.50 V ≤ 3.30 V (AO3400A datasheet)"
+  },
+  {
+   "id": "calc.mosfet.v_ds_max",
+   "status": "passed",
+   "detail": "V_supply 12.0 V ≤ V_DS max 30.0 V (AO3400A datasheet)"
+  },
+  {
+   "id": "calc.mosfet.i_d_max",
+   "status": "passed",
+   "detail": "I_load 2.00 A ≤ I_D 5.70 A (AO3400A datasheet, continuous, T_A = 25 °C, V_GS = 10 V); the T_J check is the limit at your gate voltage"
+  },
+  {
+   "id": "calc.mosfet.t_j",
+   "status": "passed",
+   "detail": "T_J 49.0 °C ≤ T_J max 150 °C (R_θJA 125 °C/W, AO3400A datasheet)"
+  },
+  {
+   "id": "calc.mosfet.gate_network",
+   "status": "passed",
+   "detail": "R_G 100 Ω and R_PD 100 kΩ in the usual ranges (rule of thumb)"
+  }
+ ],
+ "warnings": [
+  {
+   "code": "gpio_current",
+   "severity": "info",
+   "message": "The gate draws up to 33.0 mA (V_gate / R_G) from the pin for a moment at each switching edge. GPIO current limits are not checked here (unverified); see the chip datasheet.",
+   "source_ids": []
+  }
+ ],
+ "assumptions": [
+  {
+   "key": "gate_v",
+   "value": "3.30 V",
+   "reason": "chip not given; ESP32-S3-WROOM-1 values: GPIO high at 3.3 V; the ESP32-S3 guarantees V_OH ≥ 0.8 × VDD = 2.64 V (WROOM-1 datasheet Table 6-3, no load): gate_v 2.64 is the worst case"
+  },
+  {
+   "key": "v_gs",
+   "value": "3.297 V",
+   "reason": "steady state, R_G and R_PD divide the pin voltage; selects the datasheet row"
+  },
+  {
+   "key": "r_ds_on",
+   "value": "48.0 mΩ max at V_GS 2.50 V, I_D 3.00 A",
+   "reason": "AO3400A datasheet, T_J = 25 °C, pulsed: highest row ≤ V_GS 3.30 V (R_DS(on) falls with V_GS, so an upper bound at 25 °C); it rises with T_J (datasheet curve), not included in P"
+  },
+  {
+   "key": "r_th_ja",
+   "value": "125 °C/W",
+   "reason": "AO3400A datasheet, maximum, steady state, on 1 in² FR-4 with 2 oz copper in still air (Notes A, D); your board decides"
+  },
+  {
+   "key": "gate_network",
+   "value": "R_G 10.0 Ω–1.00 kΩ, R_PD 10.0 kΩ–100 kΩ",
+   "reason": "rule of thumb: R_G limits the pin current into the gate and damps ringing; R_PD keeps the MOSFET off while the pin floats (boot, reset, flashing)"
+  },
+  {
+   "key": "load",
+   "value": "DC on/off (no PWM)",
+   "reason": "PWM adds switching losses (not included); coils and motors need a flyback diode (rule of thumb); low voltage only, never mains"
+  },
+  {
+   "key": "t_ambient",
+   "value": "25.0 °C",
+   "reason": "room temperature; inside a case it is warmer"
+  }
+ ],
+ "sources": [
+  {
+   "id": "rule-of-thumb",
+   "title": "Practice rule, not a standard",
+   "url": null,
+   "retrieved": "2026-11-05",
+   "note": "Shown for engineering judgement only; check the datasheet of your parts."
+  },
+  {
+   "id": "ds-esp32-s3-wroom-1-power",
+   "title": "ESP32-S3-WROOM-1 & WROOM-1U Datasheet v1.8, Tables 6-2, 6-3 and 6-4 (supply, V_OH, Wi-Fi current)",
+   "url": "https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+   "retrieved": "2026-11-06",
+   "note": "Page 27: VDD33 3.0 to 3.6 V, I_VDD min 0.5 A, V_OH min 0.8 x VDD. Page 28: Wi-Fi TX peak 355 mA. PDF SHA-256 27d71971da07c280c6068d08c74720d1a25b8f20cf8494dc1765bdd28d40d435 (tests/corpus/pins.json)."
+  },
+  {
+   "id": "aos-ao3400a",
+   "title": "Alpha and Omega Semiconductor AO3400A, 30V N-Channel MOSFET, Rev 3.1 (July 2023)",
+   "url": "https://www.aosmd.com/res/datasheets/AO3400A.pdf",
+   "retrieved": "2026-11-06",
+   "note": "Page 1: Product Summary (R_DS(on) max per V_GS), Absolute Maximum Ratings, Thermal Characteristics (R_thJA, Notes A, D). Page 2: Electrical Characteristics (V_GS(th), R_DS(on) test currents). PDF SHA-256 9c60d0b6c1ddc7609a4b788a91181468d8ffe6c3e9ba425c3d8ffc5ba88c5033."
+  }
+ ],
+ "simulated": false,
+ "error": null
+}

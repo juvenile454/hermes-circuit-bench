@@ -1,0 +1,88 @@
+{
+ "schema": 1,
+ "note": "Regulators. Values only from manufacturer datasheets (source_id; 'evidence' quotes a line of tests/corpus/excerpts/mod-npower-*.txt on 'page'). SI units. kind ldo: complete for calc.ldo; 'module' = catalog id in data/modules/npower.json.",
+ "parts": [
+  {
+   "id": "TLV75533PDBVR",
+   "kind": "ldo",
+   "aliases": [
+    "TLV75533P",
+    "TLV75533PDBV"
+   ],
+   "title": "TLV75533P fixed 3.3 V 500 mA low-IQ LDO (Texas Instruments, SOT-23-5 DBV)",
+   "package": "SOT-23-5 (DBV)",
+   "source_id": "mod-npower-tlv755p-ds",
+   "module": "tlv75533p",
+   "conditions": "EC table: T_J −40…125 °C, V_IN = V_OUT(NOM) + 0.5 V, I_OUT = 1 mA, C_IN = C_OUT = 1 µF",
+   "v_out": {
+    "value": 3.3,
+    "unit": "V",
+    "conditions": "nominal output of the '33' code; ±1.5 % over T_J −40…125 °C",
+    "page": 23,
+    "evidence": [
+     "xx(x) is the nominal output voltage",
+     "28 = 2.8V"
+    ]
+   },
+   "dropout": {
+    "value": 0.238,
+    "unit": "V",
+    "conditions": "max at I_OUT = 500 mA, 3.3 V ≤ V_OUT < 5.0 V, T_J −40…125 °C, DBV package (typ. 150 mV; max 215 mV at T_J −40…85 °C)",
+    "page": 6,
+    "evidence": [
+     "VDO Dropout voltage",
+     "500mA,",
+     "+125°C",
+     "3.3V ≤ VOUT < 5.0V 238"
+    ],
+    "typ": 0.15,
+    "i_out": 0.5
+   },
+   "i_q": {
+    "value": 4e-05,
+    "unit": "A",
+    "conditions": "ground current max at I_OUT = 0, T_J −40…125 °C",
+    "page": 5,
+    "evidence": "−40°C ≤ TJ ≤ +125°C, IOUT = 0mA 40",
+    "typ": 2.5e-05
+   },
+   "ratings": {
+    "v_in_max": {
+     "value": 6.0,
+     "unit": "V",
+     "conditions": "absolute maximum rating (operating 1.45–5.5 V)",
+     "page": 4,
+     "evidence": "Supply voltage, VIN −0.3 6.0 V"
+    },
+    "i_limit_min": {
+     "value": 0.56,
+     "unit": "A",
+     "conditions": "output current limit min at V_OUT = 0.9 × V_OUT(NOM), V_IN = V_OUT + V_DO(MAX) + 0.25 V (720 mA typ.); foldback 355 mA typ. at V_OUT = 0 V",
+     "page": 5,
+     "evidence": "VOUT = 0.9 x VOUT, 1.5V < VOUT ≤ 4.5V 560 720 865"
+    },
+    "t_j_max": {
+     "value": 125.0,
+     "unit": "°C",
+     "conditions": "recommended operating junction temperature (absolute maximum 150 °C)",
+     "page": 4,
+     "evidence": "TJ Junction temperature –40 125 °C"
+    },
+    "r_th_ja": {
+     "value": 231.1,
+     "unit": "°C/W",
+     "conditions": "DBV (SOT-23-5), JEDEC 2s2p board, junction to ambient (DYD with thermal pad: 92.5 °C/W)",
+     "page": 5,
+     "evidence": "RθJA Junction-to-ambient thermal resistance 92.5 168.4 231.1 100.2"
+    },
+    "t_shutdown": {
+     "value": 165.0,
+     "unit": "°C",
+     "conditions": "typical, temperature increasing (reset 155 °C)",
+     "page": 6,
+     "evidence": "Shutdown, temperature increasing 165"
+    }
+   }
+  }
+ ]
+}

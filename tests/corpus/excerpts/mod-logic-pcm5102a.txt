@@ -1,0 +1,69 @@
+# source_id: mod-logic-pcm5102a-ds
+# document: Texas Instruments PCM510xA 2.1 VRMS, 112/106/100 dB Audio Stereo DAC with PLL and 32-bit, 384 kHz PCM Interface, SLAS859C (May 2012, revised May 2015)
+# url: https://www.ti.com/lit/ds/symlink/pcm5102a.pdf
+# corpus: mod/logic/pcm5102a.pdf sha256 a522083606b8e994875883215046fbdb92fd362996ca97719d259fbe9df07a85
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+SLAS859C – MAY 2012 – REVISED MAY 2015
+@@ page 5
+AGND 9 — Analog ground
+AVDD 8 P Analog power supply, 3.3 V
+BCK 13 I Audio data bit clock input (1)
+CAPM 4 O Charge pump flying capacitor terminal for negative rail
+CAPP 2 O Charge pump flying capacitor terminal for positive rail
+CPGND 3 — Charge pump ground
+CPVDD 1 P Charge pump power supply, 3.3 V
+DEMP 10 I De-emphasis control for 44.1-kHz sampling rate (1): Off (Low) / On (High)
+DGND 19 — Digital ground
+DIN 14 I Audio data input (1)
+DVDD 20 P Digital power supply, 1.8 V or 3.3 V
+FLT 11 I Filter select : Normal latency (Low) / Low latency (High)
+FMT 16 I Audio format selection : I2S (Low) / Left-justified (High)
+LDOO 18 P Internal logic supply rail terminal for decoupling, or external 1.8 V supply terminal
+LRCK 15 I Audio data word clock input (1)
+OUTL 6 O Analog output from DAC left channel
+OUTR 7 O Analog output from DAC right channel
+SCK 12 I System clock input (1)
+VNEG 5 O Negative charge pump rail terminal for decoupling, –3.3 V
+XSMT 17 I Soft mute control (1): Soft mute (Low) / soft un-mute (High)
+(1) Failsafe LVCMOS Schmitt trigger input
+@@ page 6
+AVDD, CPVDD, DVDD –0.3 3.9
+LDO with DVDD at 1.8 V –0.3 2.25
+DVDD at 1.8 V –0.3 2.25 V
+Digital input voltage
+DVDD at 3.3 V –0.3 3.9
+VCOM mode 3 3.3 3.46Referenced toAVDD Analog power supply voltage range VAGND (1) VREF mode 3.2 3.3 3.46
+1.8 V DVDD 1.65 1.8 1.95Referenced toDVDD Digital power supply voltage range VDGND (1) 3.3 V DVDD 3.1 3.3 3.46
+CPVDD Charge pump supply voltage range Referenced to CPGND (1) 3.1 3.3 3.46 V
+@@ page 7
+fS (1) Sampling frequency 8 384 kHz
+Logic family: 3.3 V LVCMOS compatible
+VIH 0.7×DVDD
+VIL 0.3×DVDD
+VIH 0.7×DVDD
+VIL 0.3×DVDD
+Logic family: 3.3 V LVCMOS compatible
+VIH 0.7×DVDD
+VIL 0.3×DVDD
+VIH 0.7×DVDD
+VIL 0.3×DVDD
+@@ page 9
+fS = 48 kHz 8 13
+IDD DVDD supply current at 3.3 V (6) fS = 96 kHz 9 mA
+(6) Input is 1 kHz –1 dBFS data.
+@@ page 10
+fS = 48 kHz 22 32
+IDD AVDD / CPVDD supply current (6) fS = 96 kHz 22 mA
+@@ page 16
+In systems where XSMT is not required, it can be directly connected to AVDD.
+@@ page 25
+The device starts up expecting an external SCK input, but if BCK and LRCK start correctly while SCK remains at
+ground level for 16 successive LRCK periods, then the internal PLL starts, automatically generating an internal
+@@ page 28
+AVDD Analog voltage supply; must be 3.3 V. This powers all analog circuitry that the DAC runs on.
+CPVDD Charge Pump Voltage Supply - must be 3.3 V
+Output from the onchip LDO. Should be used with a 0.1-µF decoupling cap. Can be driven (used as powerLDOO input) with a 1.8-V supply to bypass the onchip LDO for lower power consumption.
+@@ page 33
+When setting I/O voltage to be 1.8 V, both DVDD and LDOO must be provided with an external 1.8-V supply.

@@ -1,0 +1,57 @@
+# source_id: mod-nenv-bmp390-ds
+# document: BMP390 High-Performance Barometric Pressure Sensor, Datasheet BST-BMP390-DS002-07 (revision 1.7, 03/2021)
+# url: https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp390-ds002.pdf
+# corpus: mod/nenv/bst-bmp390-ds002.pdf sha256 8dcf0f74449cb1627e865c7f24d328b76c204d8b9621091ede8c6869fb393e48
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 3
+Digital interface I²C (up to 3.4 MHz) and SPI (3 and 4 wire, up to 10 MHz) 
+VDD main supply voltage range: 1.65 V to 3.6 V 
+VDDIO interface voltage range: 1.2 V to 3.6 V 
+@@ page 7
+Sensor supply 
+voltage VDD ripple max. 50mVpp 1.65 1.8 3.6 V 
+Interface supply 
+voltage VDDIO  1.2 1.8 3.6 V 
+Sleep current 
+IDDSL VDD = VDDIO = 1.8 V  1.4  µA 
+IDDSL VDD = VDDIO = 3.6 V  1.5  µA 
+Peak current Ipeak during pressure measurement  660 730 µA 
+Peak current  IDDT during temperature measurement  240 320 µA 
+@@ page 9
+Voltage at any supply pin  VDD and VDDIO Pin -0.3 3.6 V 
+Voltage at any interface pin   Vss -0.3 VDDIO + 0.3 V 
+@@ page 11
+Holding any interface pin (SDI, SDO, SCK or CSB) at a logical high level when VDDIO is switched off can permanently damage 
+the device due caused by excessive current flow through the ESD protection diodes.  
+@@ page 30
+0x00 CHIP_ID 0x60 chip_id_fixed chip_id_nvm 
+@@ page 40
+Interface selection is done automatically based on CSB (chip select) status. If CSB is connected to VDDIO, the I²C interface is 
+The 7-bit device address is 111011x. The 6 MSB bits are fixed. The last bit is changeable by SDO value and can be changed 
+during operation. Connecting SDO to GND results in slave address 1110110 (0x76); connection it to V DDIO results in slave 
+address 1110111 (0x77), which is the same as BMP180’s I²C address. The SDO pin cannot be left floating; if left floating, the 
+I²C address will be undefined.  
+@@ page 43
+Input – low level Vil SCK, SDI and CSB   
+0.25 
+VDDIO 
+Input – high level Vih SCK, SDI and CSB 
+0.7 
+VDDIO 
+VDDIO 
+VDDIO 
+@@ page 46
+1 VDDIO Supply Digital interface supply VDDIO 
+2 SCK In Serial clock input SCK SCK SCL 
+3 VSS Supply Ground GND 
+4 SDI In/Out Serial data input SDI SDI/SDO SDA 
+5 SDO In/Out Serial data output SDO DNC SA0 
+6 CSB In Chip select CSB CSB CSB 
+7 INT Out INT output host INT input or DNC 
+8 VSS Supply Ground GND 
+9 VSS Supply Ground GND 
+10 VDD Supply Analog supply VDD 
+@@ page 48
+• the recommended value for C1, C2 is 100 nF and for R1, R2 is 4.7 kΩ. 
+• *: It is recommended to connect the BMP390 CSB pin to programmable pin which drives V DDIO at POR of device 

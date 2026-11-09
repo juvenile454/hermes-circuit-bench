@@ -1,0 +1,20 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x420243c2
+SPIWP:0xee
+mode:DIO, clock div:2
+load:0x3fcd0108,len:0xf24
+load:0x403b6000,len:0xc2c
+load:0x403ba000,len:0x2d60
+SHA-256 comparison failed:
+Calculated: cbd95a816bf0b42be96621cc70ea54ca844ad51f007c6baddbfea1444d8f0913
+Expected: 48304bcd6dd6bd250bc1ad011a0549e9b13e819f8aa98e34f1df27c016a39ae9
+Attempting to boot anyway...
+entry 0x403b61f4
+E (114) esp_core_dump_flash: No core dump partition found!
+E (114) esp_core_dump_flash: No core dump partition found!
+[laser-trigger] boot, laser off
+[laser-trigger] vbat 0.54 V
+[laser-trigger] boot ok
+[laser-trigger] vbat 0.11 V, laser off

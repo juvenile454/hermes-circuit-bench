@@ -1,0 +1,19 @@
+{
+ "ok": true,
+ "action": "board.flash_check",
+ "summary": "Flashing project laser-trigger would be refused: the detected board is an esp32s3 (ESP32-S3 (QFN56) (revision v0.2)), but project laser-trigger is set to esp32s2: nothing is flashed",
+ "result": {
+  "ready": false,
+  "refusal": {
+   "code": "chip_mismatch",
+   "message": "the detected board is an esp32s3 (ESP32-S3 (QFN56) (revision v0.2)), but project laser-trigger is set to esp32s2: nothing is flashed",
+   "hint": "connect the esp32s2 board and detect again, or set the project chip to esp32s3 (set_board)"
+  }
+ },
+ "checks": [],
+ "warnings": [],
+ "assumptions": [],
+ "sources": [],
+ "simulated": false,
+ "error": null
+}

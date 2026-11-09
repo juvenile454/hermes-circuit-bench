@@ -1,0 +1,59 @@
+# source_id: mod-adc-mcp4725-ds
+# document: MCP4725 12-Bit Digital-to-Analog Converter with EEPROM Memory in SOT-23-6, DS22039D
+# url: https://ww1.microchip.com/downloads/en/devicedoc/22039d.pdf
+# corpus: mod/adc/22039d.pdf sha256 746d95dfdaaf0a9da4698e2c0a201ac2736d8589a752ab0dcd903f4a1603077d
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 3
+VDD...................................................................................6.5V
+All inputs and outputs w.r.t VSS .................–0.3V to VDD+0.3V
+Operating Voltage V DD 2.7 5.5 V 
+Supply Current I DD — 210 400 µA Digital input pins are 
+Power-Down Current I DDP —0 . 0 6 2 . 0  µ A  V DD = 5.5V
+Resolution n 12 — — Bits Code Range = 000h to FFFh
+Short Circuit Current I SC —1 5 2 4 m A  V DD = 5V, VOUT = Grounded
+@@ page 4
+Output Low Voltage V OL — — 0.4 V I OL = 3 mA 
+Input High Voltage
+(SDA and SCL Pins)
+VIH 0.7V DD —— V  
+(SDA and SCL Pins)
+VIL —  —0 . 3 V DD V 
+Input High Voltage
+(A0 Pin)
+VA0-Hi 0.8VDD —— Note 4
+(A0 Pin)
+VA0-IL — — 0.2V DD Note 4
+@@ page 13
+DAC output amplifier drives this pin with a range of VSS
+This pin requires an appropriate bypass capacitor of
+about 0.1 µF (ceramic) to ground. An additional 10 µF
+nel driver. Therefore, it needs a pull-up resistor from the
+VDD line to the SDA pin. Except for START and STOP
+1V OUT Analog Output Voltage 
+2V SS Ground Reference 
+3V DD Supply Voltage
+4S D A I 2C Serial Data
+5S C L I 2C Serial Clock Input
+6A 0 I 2C Address Bit Selection pin (A0 bit). This pin can be tied to VSS or VDD, or can be 
+@@ page 19
+VOUT
+VREF Dn×()
+4096-------------------------------=
+VREF =V DD
+@@ page 27
+is 1100. 
+• Standard Mode: bit rates up to 100 kbit/s
+• Fast Mode: bit rates up to 400 kbit/s
+• High Speed Mode (HS mode): bit rates up to 
+3.4 Mbit/s
+which is set to 1100 for the MCP4725. The device code
+is followed by three address bits (A2, A1, A0) which are
+• The A2 and A1 are programmed to ‘ 00’ (default), 
+• A0 bit is determined by the logic state of A0 pin. 
+@@ page 47
+Address Options: XX A2 A1 A0
+A0 * = 0 0 External
+A1 = 0 1 External
+A2 = 1 0 External
+A3 = 1 1 External

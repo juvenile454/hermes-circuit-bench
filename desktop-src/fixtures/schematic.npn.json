@@ -1,0 +1,171 @@
+{
+ "ok": true,
+ "action": "schematic.render",
+ "summary": "NPN low-side driver (LASER_EN) on IO14 (J1-20): 4 parts, 7 wires.",
+ "result": {
+  "block": "npn_low_side",
+  "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='-101 -178 414 314' preserveAspectRatio='xMidYMid meet' role='img' aria-label='NPN low-side driver (LASER_EN) on IO14 (J1-20): 4 parts, 7 wires.' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' font-family='monospace'><rect data-kind='body' data-ref='R1' x='-3.6' y='-12.6' width='115.2' height='25.2' fill='none' stroke='none' pointer-events='all'/><rect data-kind='body' data-ref='R2' x='95.4' y='-3.6' width='25.2' height='115.2' fill='none' stroke='none' pointer-events='all'/><rect data-kind='body' data-ref='Q1' x='140.4' y='-28.68' width='46.8' height='57.96' fill='none' stroke='none' pointer-events='all'/><rect data-kind='body' data-ref='J2' x='145.86' y='-122.4' width='50.4' height='43.2' fill='none' stroke='none' pointer-events='all'/><path d='M0,0 L36,0' data-kind='wire' data-net='LASER_EN'/><path d='M72,0 L157.2,0 M108,0 L108,36' data-kind='wire' data-net='LASER_BASE'/><path d='M171.06,-18.48 L171.06,-82.8' data-kind='wire' data-net='LASER_LOW'/><path d='M171.06,18.48 L171.06,108 M108,72 L108,108' data-kind='wire' data-net='GND'/><path d='M171.06,-118.8 L171.06,-136.8' data-kind='wire' data-net='5V'/><path d='M108,108 L108,122.4 L99,122.4 L117,122.4 M101.7,126.72 L114.3,126.72 M106.2,131.04 L109.8,131.04 M171.06,108 L171.06,122.4 L162.06,122.4 L180.06,122.4 M164.76,126.72 L177.36,126.72 M169.26,131.04 L172.86,131.04' data-kind='port' data-net='GND'/><path d='M171.06,-136.8 L171.06,-151.2 L164.31,-151.2 M171.06,-151.2 L177.81,-151.2' data-kind='port' data-net='5V'/><circle cx='0' cy='0' r='2.7' data-kind='port' data-net='LASER_EN'/><path d='M149.46,-82.8 L149.46,-118.8 L192.66,-118.8 L192.66,-82.8 L149.46,-82.8' data-kind='body' data-ref='J2'/><circle cx='163.8' cy='0' r='19.8' data-kind='body' data-ref='Q1'/><path d='M36,0 L39,-9 L45,9 L51,-9 L57,9 L63,-9 L69,9 L72,0' data-kind='body' data-ref='R1'/><path d='M157.2,-13.2 L157.2,13.2 M157.2,-6.6 L171.06,-18.48 M157.2,6.6 L171.06,18.48 M157.2,6.6 L164.23,12.62' data-kind='body' data-ref='Q1'/><path d='M169.54,17.18 L161.88,15.36 L166.57,9.89 Z' fill='currentColor' stroke-linecap='butt' stroke-linejoin='miter' data-kind='body' data-ref='Q1'/><path d='M108,36 L117,39 L99,45 L117,51 L99,57 L117,63 L99,69 L108,72' data-kind='body' data-ref='R2'/><circle cx='108' cy='0' r='2.7' fill='currentColor' data-kind='junction' data-net='LASER_BASE'/><text x='-10.45' y='0' dominant-baseline='central' text-anchor='end' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-node='J1-20' data-net='LASER_EN'>J1-20 · IO14</text><text x='-10.45' y='-15.4' dominant-baseline='central' text-anchor='end' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-net='LASER_EN'>LASER_EN</text><text x='54' y='-23.95' dominant-baseline='central' text-anchor='middle' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-ref='R1'>R1 1 kΩ</text><text x='91.25' y='54' dominant-baseline='central' text-anchor='end' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-ref='R2'>R2 10 kΩ</text><text x='187.81' y='122.4' dominant-baseline='central' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-node='J1-22' data-net='GND'>J1-22 · G</text><text x='191.35' y='0' dominant-baseline='central' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-ref='Q1'>Q1 2N2222A</text><text x='133.2' y='-13.75' dominant-baseline='central' text-anchor='middle' font-family='monospace' font-size='10' fill='currentColor' stroke='none' data-kind='pin' data-pin='Q1.B'>B</text><text x='163.31' y='-37.8' dominant-baseline='central' text-anchor='end' font-family='monospace' font-size='10' fill='currentColor' stroke='none' data-kind='pin' data-pin='Q1.C'>C</text><text x='163.31' y='39.6' dominant-baseline='central' text-anchor='end' font-family='monospace' font-size='10' fill='currentColor' stroke='none' data-kind='pin' data-pin='Q1.E'>E</text><text x='171.06' y='-166.15' dominant-baseline='central' text-anchor='middle' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-node='J1-21' data-net='5V'>+5 V</text><text x='185.56' y='-151.2' dominant-baseline='central' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-node='J1-21' data-net='5V'>J1-21 · 5V</text><text x='200.41' y='-100.8' dominant-baseline='central' font-family='monospace' font-size='12' fill='currentColor' stroke='none' data-kind='label' data-ref='J2'>J2 laser module</text><text x='163.31' y='-132.55' dominant-baseline='central' text-anchor='end' font-family='monospace' font-size='10' fill='currentColor' stroke='none' data-kind='pin' data-pin='J2.1'>1</text><text x='163.31' y='-69.05' dominant-baseline='central' text-anchor='end' font-family='monospace' font-size='10' fill='currentColor' stroke='none' data-kind='pin' data-pin='J2.2'>2</text></svg>",
+  "nets": [
+   {
+    "name": "LASER_EN",
+    "nodes": [
+     "J1-20",
+     "R1.1"
+    ]
+   },
+   {
+    "name": "LASER_BASE",
+    "nodes": [
+     "R1.2",
+     "Q1.B",
+     "R2.1"
+    ]
+   },
+   {
+    "name": "LASER_LOW",
+    "nodes": [
+     "Q1.C",
+     "J2.2"
+    ]
+   },
+   {
+    "name": "5V",
+    "nodes": [
+     "J1-21",
+     "J2.1"
+    ]
+   },
+   {
+    "name": "GND",
+    "nodes": [
+     "R2.2",
+     "Q1.E",
+     "J1-22"
+    ]
+   }
+  ],
+  "parts": [
+   {
+    "ref": "R1",
+    "kind": "resistor",
+    "value": "1 kΩ"
+   },
+   {
+    "ref": "R2",
+    "kind": "resistor",
+    "value": "10 kΩ"
+   },
+   {
+    "ref": "Q1",
+    "kind": "transistor",
+    "value": "2N2222A"
+   },
+   {
+    "ref": "J2",
+    "kind": "connector",
+    "value": "laser module"
+   }
+  ],
+  "wiring": [
+   {
+    "from": "J1-20 · IO14",
+    "to": "R1.1",
+    "net": "LASER_EN"
+   },
+   {
+    "from": "R1.2",
+    "to": "Q1.B",
+    "net": "LASER_BASE"
+   },
+   {
+    "from": "R2.1",
+    "to": "Q1.B",
+    "net": "LASER_BASE"
+   },
+   {
+    "from": "Q1.C",
+    "to": "J2.2",
+    "net": "LASER_LOW"
+   },
+   {
+    "from": "J1-21 · 5V",
+    "to": "J2.1",
+    "net": "5V"
+   },
+   {
+    "from": "R2.2",
+    "to": "Q1.E",
+    "net": "GND"
+   },
+   {
+    "from": "Q1.E",
+    "to": "J1-22 · G",
+    "net": "GND"
+   }
+  ],
+  "labels": [
+   "J1-20 · IO14",
+   "LASER_EN",
+   "R1 1 kΩ",
+   "R2 10 kΩ",
+   "J1-22 · G",
+   "Q1 2N2222A",
+   "+5 V",
+   "J1-21 · 5V",
+   "J2 laser module"
+  ]
+ },
+ "checks": [
+  {
+   "id": "schematic.netlist",
+   "status": "passed",
+   "detail": "every part pin is on one net; wires connect each net"
+  },
+  {
+   "id": "schematic.header_pin",
+   "status": "passed",
+   "detail": "GPIO14 is J1-20 on esp32-s3-devkitc-1"
+  },
+  {
+   "id": "schematic.labels_overlap",
+   "status": "passed",
+   "detail": "no overlapping labels"
+  },
+  {
+   "id": "schematic.labels_clear",
+   "status": "passed",
+   "detail": "every label keeps at least 6 px from the lines"
+  }
+ ],
+ "warnings": [
+  {
+   "code": "laser_safety",
+   "severity": "danger",
+   "message": "Laser modules can damage eyes. Never look into the beam.",
+   "source_ids": []
+  },
+  {
+   "code": "transistor_pinout",
+   "severity": "info",
+   "message": "Q1 B/C/E follow the symbol only. Take the pinout from the transistor datasheet, do not guess.",
+   "source_ids": []
+  }
+ ],
+ "assumptions": [
+  {
+   "key": "pin_check",
+   "value": "not checked",
+   "reason": "the schematic does not judge the GPIO; run pins.check"
+  }
+ ],
+ "sources": [
+  {
+   "id": "devkitc1-s3-v1.1",
+   "title": "ESP32-S3-DevKitC-1 v1.1 User Guide, Header Block (J1, J3)",
+   "url": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html",
+   "retrieved": "2026-11-05"
+  }
+ ],
+ "simulated": false,
+ "error": null
+}

@@ -1,0 +1,36 @@
+# source_id: mod-niox-pca9548a-ds
+# document: PCA9548A 8-channel I2C-bus switch with reset, Rev. 5.1 (1 October 2015)
+# url: https://cache.nxp.com/docs/en/data-sheet/PCA9548A.pdf
+# corpus: mod/niox/PCA9548A.pdf sha256 a090b5ec78996babb32d283bbb2a7136ff789e450abd8394fff9f0bf53ddcc92
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+with 5 V parts without any additional protection. External pull-up resistors pull the bus up
+to the desired voltage level for each channel. All I/O pins are 6 V tolerant.
+ Power-up with all switch channels deselected
+ Operating power supply voltage range of 2.3 V to 5.5 V
+@@ page 6
+1 1 1 0 A2 A1 A0 R/W
+@@ page 7
+Remark: Multiple channels can be enabled at the same time. Example: B7 = 0, B6 = 1,
+must be connected to VDD through a pull-up resistor.
+@@ page 8
+voltage should be equal to, or lower than the lowest bus voltage. For example, if the main
+@@ page 9
+connected to a positive supply via a pull-up resistor when connected to the output stages
+@@ page 13
+VDD supply voltage 0.5 +7.0 V
+VI input voltage 0.5 +7.0 V
+@@ page 14
+[2] V DD must be lowered to 0.2 V for at least 5 s in order to reset part.
+VIL LOW-level input voltage 0.5 - +0.3V DD V
+VIH HIGH-level input voltage 0.7VDD -6 V
+IOL LOW-level output current V OL =0 . 4V 3 6 - m A
+@@ page 15
+IDD supply current operating mode; VDD =5 . 5V ;
+fSCL = 100 kHz
+- 65 100 A
+Istb standby current standby mode; VDD =5 . 5V ;
+-0 . 2 1 A
+@@ page 16
+fSCL SCL clock frequency 0 100 0 400 kHz

@@ -1,0 +1,149 @@
+{
+ "ok": true,
+ "action": "project.get",
+ "summary": "Module stress (shots) (ESP32-S3 N16R8): 4 pins ok.",
+ "result": {
+  "project": {
+   "schema": 1,
+   "id": "modules-stress",
+   "rev": 2,
+   "title": "Module stress (shots)",
+   "simulated": false,
+   "created": "2026-11-08T14:45:29Z",
+   "updated": "2026-11-08T14:45:29Z",
+   "board": {
+    "chip": "esp32s3",
+    "module": "wroom-1",
+    "variant": "n16r8",
+    "devkit": "esp32-s3-devkitc-1",
+    "detected": null
+   },
+   "options": {
+    "wifi": true,
+    "framework": "arduino",
+    "logic_v": 3.3,
+    "rail_limits": {
+     "3V3": 0.4
+    }
+   },
+   "assignments": [
+    {
+     "role": "SDA",
+     "mode": "i2c_sda",
+     "pin": 8,
+     "net": "SDA0",
+     "verdict": "ok",
+     "rule_ids": [],
+     "updated_by": "ui"
+    },
+    {
+     "role": "SCL",
+     "mode": "i2c_scl",
+     "pin": 9,
+     "net": "SCL0",
+     "verdict": "ok",
+     "rule_ids": [],
+     "updated_by": "ui"
+    },
+    {
+     "role": "SCK",
+     "mode": "spi_sck",
+     "pin": 12,
+     "net": "SPI0",
+     "verdict": "ok",
+     "rule_ids": [],
+     "updated_by": "ui"
+    },
+    {
+     "role": "MOSI",
+     "mode": "spi_mosi",
+     "pin": 11,
+     "net": "SPI0",
+     "verdict": "ok",
+     "rule_ids": [],
+     "updated_by": "ui"
+    }
+   ],
+   "parts": [
+    {
+     "ref": "U1",
+     "kind": "ic",
+     "value": "TCA9548A",
+     "module": "tca9548a",
+     "conn": {
+      "SDA": "SDA0",
+      "SCL": "SCL0",
+      "VCC": "3V3",
+      "GND": "GND",
+      "A0": "GND",
+      "A1": "GND",
+      "A2": "GND",
+      "SD0": "SDA1",
+      "SC0": "SCL1"
+     }
+    },
+    {
+     "ref": "U2",
+     "kind": "ic",
+     "value": "BME280",
+     "module": "bme280",
+     "conn": {
+      "SDI": "SDA1",
+      "SCK": "SCL1",
+      "SDO": "GND",
+      "VDD": "3V3",
+      "GND": "GND"
+     }
+    },
+    {
+     "ref": "U3",
+     "kind": "ic",
+     "value": "BME280",
+     "module": "bme280",
+     "conn": {
+      "SDI": "SDA1",
+      "SCK": "SCL1",
+      "SDO": "GND",
+      "VDD": "3V3",
+      "GND": "GND"
+     }
+    },
+    {
+     "ref": "U4",
+     "kind": "ic",
+     "value": "MAX7219",
+     "module": "max7219",
+     "conn": {
+      "DIN": "SPI0",
+      "CLK": "SPI0",
+      "V+": "3V3",
+      "GND": "GND"
+     }
+    }
+   ],
+   "calcs": [],
+   "circuits": [],
+   "solder": {
+    "steps": [],
+    "done": []
+   },
+   "firmware": {
+    "dir": null,
+    "env": null,
+    "last_build": null,
+    "last_flash": null
+   },
+   "debug": {
+    "last_panic": null
+   },
+   "notes": []
+  },
+  "rev": 2
+ },
+ "checks": [],
+ "warnings": [],
+ "assumptions": [],
+ "sources": [],
+ "simulated": false,
+ "error": null
+}

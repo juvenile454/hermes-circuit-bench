@@ -1,0 +1,9 @@
+Guru Meditation Error: Core  0 panic'ed (Breakpoint). Exception was unhandled.
+
+Core  0 register dump:
+MEPC    : 0x4200a1c4  RA      : 0x4200a1f0  SP      : 0x3fc95e00  GP      : 0x3fc8a600
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000003  MTVAL   : 0x00000000
+MHARTID : 0x00000000
+
+Stack memory:
+3fc95e00: 0xa5a5a5a5 0xa5a5a5a5 0x3fc95e40 0x4200a1f0 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5

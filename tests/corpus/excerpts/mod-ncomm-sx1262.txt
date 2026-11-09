@@ -1,0 +1,40 @@
+# source_id: mod-ncomm-sx1262-ds
+# document: Semtech SX1261/2 data sheet Rev. 1.1 DS.SX1261-2.W.APP (December 2017)
+# url: https://web.archive.org/web/20190827062215id_/https://www.semtech.com/uploads/documents/DS_SX1261-2_V1.1.pdf
+# corpus: mod/ncomm/DS_SX1261-2_V1.1.pdf sha256 a0fd29d13e779c1d49130d71442c91260448ab2c453ce9b9d9ff630184830606
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 12
+6 DIO3 I/O Multipurpose digital I/O - external TCXO supply voltage
+@@ page 14
+VDDmr Supply voltage, applies to VBAT and VBAT_IO -0.5 - 3.9 V
+VDDop Supply voltage, applies to VBAT and VBAT_IO 1.8 - 3.7 V
+@@ page 16
+IDDSL
+Configuration retained 
+600
+IDDRX
+Receive mode
+DC-DC mode used
+LoRa® 125 kHz
+4.6
+@@ page 17
+IDDTX
+SX1262 3
+868/915 MHz
++22 dBm
+118
+@@ page 21
+VIH Input High Voltage - 0.7*VBAT_IO 1
+- VBAT_IO 1+0.3 V
+VIL Input Low Voltage - -0.3 - 0.3*VBAT_IO 1 V
+VOH Output High Voltage Imax = -2.5 mA 0.9*VBAT_IO 1 - VBAT_IO 1 V
+VOL Output Low Voltage Imax = 2.5 mA 0- 0.1*VBAT_IO 1 V
+@@ page 49
+used as a busy signal indicating that the chip is ready for ne w command only if this signal is low. When BUSY is high, the 
+host controller must wait until it goes down again before sending another command. Through SPI the application sends 
+The SPI runs on the external SCK clock to allow high speed up to 16 MHz.
+@@ page 53
+• PU = pull up with 50 kat typical conditions
+Mode DIO3 DIO2 DIO1 BUSY MISO MOSI SCK NSS NRESET
+STBY_RC OUT OUT OUT OUT OUT IN IN IN IN PU

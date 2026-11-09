@@ -1,0 +1,35 @@
+# source_id: mod-prox-ttp223-ds
+# document: TTP223-BA6 / TTP223N-BA6 TonTouch 1 Key Touch Pad Detector IC, Ver 2.1 (Preliminary)
+# url: https://www.tontek.com.tw/uploads/product/243/TTP223-BA6_V2.1_EN.pdf
+# corpus: mod/prox/TTP223-BA6_V2.1_EN.pdf sha256 9b3adc3dcc42b9f5ce7bc36e406892c9a0134b88919d3e6fc1b8e1eb583ed9b8
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Preliminary
+TTP223-BA6
+ The response time max 220mS at low power mode @VDD=3V
+ Sensitivity can adjust by the capacitance(0~50pF) outside
+ After power-on have about 0.5sec stable-time, during the time do not touch the key pad,
+@@ page 2
+1 Q O CMOS output pin
+2 VSS P Negative power supply, ground
+3 I I/O Input sensor port
+4 AHLB I-PL Output active high or low selection,
+1=>Active low; 0(Default)=>Active high
+5 VDD P Positive power supply
+6 TOG I-PL Output type option pin,
+1=>Toggle mode; 0(Default)=>Direct mode
+@@ page 3
+Power Supply Voltage VDD Ta=25°C VSS-0.3 ~ VSS+5.5 V
+Input Voltage V IN Ta=25°C VSS-0.3 ~ VDD+0.3 V
+Operating V oltage VDD  2.0 3 5.5 V
+Operating Current IOP VDD=3V
+- 1.5 3.0
+Input Ports VIL Input Low V oltage 0 - 0.2 VDD
+Input Ports VIH Input High V oltage 0.8 - 1.0 VDD
+Input Pin Pull-low Resistor RPL VDD=3V ,
+(TOG , AHLB)
+ 28K  ohm
+@@ page 6
+104
+     5. The C1 capacitor must be used between VDD and VSS; and should be routed with very short

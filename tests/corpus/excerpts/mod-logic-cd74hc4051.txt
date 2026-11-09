@@ -1,0 +1,66 @@
+# source_id: mod-logic-cd74hc4051-ds
+# document: Texas Instruments CDx4HC405x, CD4HCT405x High-Speed CMOS Logic Analog Multiplexer and Demultiplexer, SCHS122O (November 1997, revised January 2026)
+# url: https://www.ti.com/lit/ds/symlink/cd74hc4051.pdf
+# corpus: mod/logic/cd74hc4051.pdf sha256 88356c377dcb0afa0bbde9259a3fc68193ea6ce6745fcd38e284bbb23425bb7a
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+SCHS122O – NOVEMBER 1997 – REVISED JANUARY 2026
+@@ page 3
+Table 4-1. Pin Functions for CDxHCx4051B
+CH A4 
+IN/OUT 1 I/O Channel 4 in/out
+CH A6 
+IN/OUT 2 I/O Channel 6 in/out
+COM 
+OUT/IN 3 I/O Common out/in
+CH A7 
+IN/OUT 4 I/O Channel 7 in/out
+CH A5 
+IN/OUT 5 I/O Channel 5 in/out
+!E 6 I Enable Channels (Active Low)
+VEE 7 — Negative power input
+GND 8 — Ground
+S2 9 I Channel select 2
+S1 10 I Channel select 1
+S0 11 I Channel select 0
+CH A3 
+IN/OUT 12 I/O Channel 3 in/out
+CH A0 
+IN/OUT 13 I/O Channel 0 in/out
+CH A1 
+IN/OUT 14 I/O Channel 1 in/out
+CH A2 
+IN/OUT 15 I/O Channel 2 in/out
+VCC 16 — Positive power input
+@@ page 6
+VCC –0.5 7 V
+DC switch diode current VI < VEE – 0.5V or VI > VCC + 0.5V –20 20 mA
+@@ page 7
+CD54 and 74HC 
+types 2 6 V
+CD54 and 74HC 
+VEE
+CD54 and 74HC 
+0 –6 V
+VI DC input control voltage 0 VCC V
+VIS Analog switch I/O voltage VEE VCC V
+@@ page 8
+Input High Voltage, VIH, Min
+2
+25°C 1.5
+4.5
+25°C 3.15
+6
+25°C 4.2
+Input Low Voltage, VIL, Max
+2
+4.5
+25°C 1.35
+6
+@@ page 10
+Quiescent Device Current, 
+ICC Max
+–55°C to 85°C 80
+@@ page 27
+single supply, a 0.1 μF bypass capacitor is recommended. If there are multiple pins labeled V CC, then a 0.01 μF 

@@ -1,0 +1,1601 @@
+{
+ "schema": 1,
+ "wp": "wired",
+ "note": "Values only from manufacturer documents; 'evidence' quotes lines of tests/corpus/excerpts/mod-wired-*.txt (pypdf).",
+ "modules": [
+  {
+   "id": "max485",
+   "aliases": [
+    "max485-module",
+    "max485cpa",
+    "max485esa"
+   ],
+   "title": "MAX485 5 V RS-485/RS-422 half-duplex transceiver",
+   "category": "comm.rs485",
+   "manufacturer": "Analog Devices (Maxim Integrated)",
+   "kind": "ic",
+   "source_ids": [
+    "mod-wired-max485-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 4.75,
+      "unit": "V",
+      "page": 7,
+      "evidence": "VCC Positive Supply: 4.75V ≤ VCC ≤ 5.25V",
+      "conditions": "operating range (pin description)"
+     },
+     "typ": {
+      "value": 5.0,
+      "unit": "V",
+      "page": 2,
+      "evidence": "(VCC = 5V ±5%, TA = TMIN to TMAX, unless otherwise noted.)"
+     },
+     "max": {
+      "value": 5.25,
+      "unit": "V",
+      "page": 7,
+      "evidence": "VCC Positive Supply: 4.75V ≤ VCC ≤ 5.25V",
+      "conditions": "operating range (pin description)"
+     },
+     "abs_max": {
+      "value": 12.0,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Supply Voltage (VCC)....",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "value": 2.0,
+     "unit": "V",
+     "page": 2,
+     "evidence": [
+      "DE, DI, RE",
+      "V2.0VIHInput High Voltage"
+     ],
+     "conditions": "DE, DI, RE; VCC 4.75–5.25 V"
+    },
+    "vil": {
+     "value": 0.8,
+     "unit": "V",
+     "page": 2,
+     "evidence": [
+      "DE, DI, RE",
+      "V0.8VILInput Low Voltage"
+     ],
+     "conditions": "DE, DI, RE; VCC 4.75–5.25 V"
+    },
+    "voh": {
+     "value": 3.5,
+     "unit": "V",
+     "page": 2,
+     "evidence": [
+      "IO = -4mA, VID = 200mV",
+      "3.5VOHReceiver Output High Voltage"
+     ],
+     "conditions": "RO at IO = -4 mA; VCC 4.75–5.25 V"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 2,
+     "evidence": [
+      "IO = 4mA, VID = -200mV",
+      "0.4VOLReceiver Output Low Voltage"
+     ],
+     "conditions": "RO at IO = 4 mA; VCC 4.75–5.25 V"
+    },
+    "v_in_max": {
+     "rel_offset": 0.5,
+     "of": "VCC",
+     "unit": "V",
+     "page": 2,
+     "evidence": "Driver Input Voltage (DI)....",
+     "conditions": "absolute maximum rating (DI; RE, DE alike)"
+    },
+    "outputs": "tristate"
+   },
+   "pins": [
+    {
+     "name": "RO",
+     "signal": "uart_tx",
+     "output": "tristate",
+     "note": "receiver output to the ESP's RX; high impedance while RE is high"
+    },
+    {
+     "name": "RE",
+     "signal": "enable_in",
+     "active_low": true,
+     "note": "receiver enable, active low"
+    },
+    {
+     "name": "DE",
+     "signal": "enable_in",
+     "note": "driver enable, active high; often tied to RE and one GPIO"
+    },
+    {
+     "name": "DI",
+     "signal": "uart_rx",
+     "note": "driver input from the ESP's TX"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "A",
+     "signal": "analog_in",
+     "note": "RS-485 bus line A (noninverting); wired to the bus, not to a GPIO"
+    },
+    {
+     "name": "B",
+     "signal": "analog_in",
+     "note": "RS-485 bus line B (inverting); wired to the bus, not to a GPIO"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "uart",
+     "note": "half duplex: DE/RE select transmit or receive; up to 2.5 Mbps (data sheet p. 1)"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "typ": {
+     "value": 0.0005,
+     "unit": "A",
+     "page": 3,
+     "evidence": [
+      "MAX481/MAX485,",
+      "RE = 0V or VCC",
+      "500 900"
+     ],
+     "conditions": "no load, DE = VCC (column order checked against the page layout)"
+    },
+    "max": {
+     "value": 0.0009,
+     "unit": "A",
+     "page": 3,
+     "evidence": [
+      "MAX481/MAX485,",
+      "RE = 0V or VCC",
+      "500 900"
+     ],
+     "conditions": "no load, DE = VCC; a driven, terminated bus draws far more"
+    }
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Terminate the bus at both ends with its characteristic impedance (typically 120 Ω), not at the nodes in between (mod.wired.rs485_termination).",
+     "verified": true,
+     "page": 13,
+     "evidence": [
+      "To minimize reflections, the line should be terminated at",
+      "both ends in its characteristic impedance"
+     ]
+    },
+    {
+     "text": "RO drives up to VCC: at 5 V its high level exceeds the ESP's 3.6 V input maximum; use the MAX3485 at 3.3 V or a divider on RO.",
+     "verified": true,
+     "page": 2,
+     "evidence": "Receiver Output Voltage (RO)...."
+    },
+    {
+     "text": "Fail-safe: RO is high when the receiver inputs are open; an idle terminated bus is not covered.",
+     "verified": true,
+     "page": 1,
+     "evidence": "guarantees a logic-high output if the input is open circuit."
+    },
+    {
+     "text": "Blue 'MAX485 TTL to RS-485' boards usually carry a 120 Ω termination resistor (often R7) and 10 kΩ bias resistors; declare the 120 Ω as a resistor part across A/B or remove it on middle nodes.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "max3485",
+   "aliases": [
+    "max3485-module",
+    "max3485esa",
+    "max3485cpa"
+   ],
+   "title": "MAX3485 3.3 V RS-485/RS-422 half-duplex transceiver",
+   "category": "comm.rs485",
+   "manufacturer": "Analog Devices (Maxim Integrated)",
+   "kind": "ic",
+   "source_ids": [
+    "mod-wired-max3485-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 3.0,
+      "unit": "V",
+      "page": 7,
+      "evidence": "VCC Positive Supply: 3.0V ≤ VCC ≤ 3.6V",
+      "conditions": "operating range (pin description)"
+     },
+     "typ": {
+      "value": 3.3,
+      "unit": "V",
+      "page": 3,
+      "evidence": "(VCC = 3.3V ±0.3V, TA = TMIN to TMAX"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 7,
+      "evidence": "VCC Positive Supply: 3.0V ≤ VCC ≤ 3.6V",
+      "conditions": "operating range (pin description)"
+     },
+     "abs_max": {
+      "value": 7.0,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Supply Voltage (VCC) ....",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "value": 2.0,
+     "unit": "V",
+     "page": 3,
+     "evidence": "Input High Voltage VIH DE, DI, RE 2.0 V",
+     "conditions": "VCC 3.0–3.6 V"
+    },
+    "vil": {
+     "value": 0.8,
+     "unit": "V",
+     "page": 3,
+     "evidence": "Input Low Voltage VIL DE, DI, RE 0.8 V",
+     "conditions": "VCC 3.0–3.6 V"
+    },
+    "voh": {
+     "rel_offset": -0.4,
+     "of": "VCC",
+     "unit": "V",
+     "page": 3,
+     "evidence": "Receiver Output High Voltage VOH IOUT = -1.5mA, VID = 200mV, Figure 6 VCC - 0.4 V",
+     "conditions": "RO at IOUT = -1.5 mA; VCC 3.0–3.6 V"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 3,
+     "evidence": "Receiver Output Low Voltage VOL IOUT = 2.5mA, VID = 200mV, Figure 6 0.4 V",
+     "conditions": "RO at IOUT = 2.5 mA; VCC 3.0–3.6 V"
+    },
+    "v_in_max": {
+     "value": 7.0,
+     "unit": "V",
+     "page": 2,
+     "evidence": "Driver Input Voltage (DI) ....",
+     "conditions": "absolute maximum rating (DI; RE, DE alike)"
+    },
+    "outputs": "tristate",
+    "five_v_tolerant": true
+   },
+   "pins": [
+    {
+     "name": "RO",
+     "signal": "uart_tx",
+     "output": "tristate",
+     "note": "receiver output to the ESP's RX; high impedance while RE is high"
+    },
+    {
+     "name": "RE",
+     "signal": "enable_in",
+     "active_low": true,
+     "note": "receiver enable, active low"
+    },
+    {
+     "name": "DE",
+     "signal": "enable_in",
+     "note": "driver enable, active high; RE high and DE low = shutdown"
+    },
+    {
+     "name": "DI",
+     "signal": "uart_rx",
+     "note": "driver input from the ESP's TX"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "A",
+     "signal": "analog_in",
+     "note": "RS-485 bus line A (noninverting); wired to the bus, not to a GPIO"
+    },
+    {
+     "name": "B",
+     "signal": "analog_in",
+     "note": "RS-485 bus line B (inverting); wired to the bus, not to a GPIO"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "uart",
+     "note": "half duplex: DE/RE select transmit or receive; MAX3485 up to 10 Mbps (data sheet p. 1)"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "typ": {
+     "value": 0.0011,
+     "unit": "A",
+     "page": 3,
+     "evidence": [
+      "Supply Current ICC No load,DI = 0V or VCC",
+      "DE = VCC,",
+      "RE = 0V or VCC 1.1 2.2 mA"
+     ],
+     "conditions": "no load, DE = VCC"
+    },
+    "max": {
+     "value": 0.0022,
+     "unit": "A",
+     "page": 3,
+     "evidence": [
+      "Supply Current ICC No load,DI = 0V or VCC",
+      "DE = VCC,",
+      "RE = 0V or VCC 1.1 2.2 mA"
+     ],
+     "conditions": "no load, DE = VCC"
+    },
+    "sleep": {
+     "value": 1e-06,
+     "unit": "A",
+     "page": 3,
+     "evidence": "Mode ISHDN DE = 0V, RE = VCC, DI = VCC or 0V 0.002 1",
+     "conditions": "shutdown (RE high, DE low), max"
+    }
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Logic inputs accept 5 V logic (absolute maximum 7 V); RO drives at most VCC.",
+     "verified": true,
+     "page": 1,
+     "evidence": "Interoperable with +5V Logic"
+    },
+    {
+     "text": "Terminate the bus at both ends with its characteristic impedance (typically 120 Ω), not at the nodes in between (mod.wired.rs485_termination).",
+     "verified": true,
+     "page": 14,
+     "evidence": [
+      "To minimize reflections, the line should be terminated",
+      "at both ends in its characteristic impedance"
+     ]
+    },
+    {
+     "text": "Up to 32 transceivers on one bus.",
+     "verified": true,
+     "page": 1,
+     "evidence": "Allows up to 32 Transceivers on the Bus"
+    },
+    {
+     "text": "3.3 V RS-485 boards (MAX3485 / SP3485) often carry a 120 Ω termination resistor; declare it as a resistor part across A/B or remove it on middle nodes.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "sn65hvd230",
+   "aliases": [
+    "vp230",
+    "sn65hvd230d",
+    "sn65hvd230-module"
+   ],
+   "title": "SN65HVD230 3.3 V CAN bus transceiver",
+   "category": "comm.can",
+   "manufacturer": "Texas Instruments",
+   "kind": "ic",
+   "source_ids": [
+    "mod-wired-sn65hvd230-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 3.0,
+      "unit": "V",
+      "page": 6,
+      "evidence": "Supply voltage, VCC 3 3.6 V",
+      "conditions": "recommended operating conditions"
+     },
+     "typ": {
+      "value": 3.3,
+      "unit": "V",
+      "page": 1,
+      "evidence": "Operates with a single 3.3 V Supply"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 6,
+      "evidence": "Supply voltage, VCC 3 3.6 V",
+      "conditions": "recommended operating conditions"
+     },
+     "abs_max": {
+      "value": 6.0,
+      "unit": "V",
+      "page": 5,
+      "evidence": "Supply voltage, VCC –0.3 6 V",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "value": 2.0,
+     "unit": "V",
+     "page": 6,
+     "evidence": "High-level input voltage, VIH D, R 2 V",
+     "conditions": "D input; VCC 3.0–3.6 V"
+    },
+    "vil": {
+     "value": 0.8,
+     "unit": "V",
+     "page": 6,
+     "evidence": "Low-level input voltage, VIL D, R 0.8 V",
+     "conditions": "D input; VCC 3.0–3.6 V"
+    },
+    "voh": {
+     "value": 2.4,
+     "unit": "V",
+     "page": 7,
+     "evidence": "VOH High-level output voltage –6 V ≤ VID ≤ 500 mV, IO = –8 mA, See Figure 22 2.4",
+     "conditions": "R output at IO = -8 mA; VCC 3.0–3.6 V"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 7,
+     "evidence": "VOL Low-level output voltage 900 mV ≤ VID ≤ 6 V, IO = 8 mA, See Figure 22 0.4",
+     "conditions": "R output at IO = 8 mA; VCC 3.0–3.6 V"
+    },
+    "v_in_max": {
+     "rel_offset": 0.5,
+     "of": "VCC",
+     "unit": "V",
+     "page": 5,
+     "evidence": "Digital Input and Output voltage, VI (D or R) –0.5 VCC + 0.5 V",
+     "conditions": "absolute maximum rating"
+    },
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "D",
+     "signal": "digital_in",
+     "note": "transmit data (TXD) from the ESP's TWAI TX; low = dominant"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply"
+    },
+    {
+     "name": "R",
+     "signal": "digital_out",
+     "note": "receive data (RXD) to the ESP's TWAI RX"
+    },
+    {
+     "name": "Vref",
+     "signal": "nc",
+     "note": "VCC/2 reference output; leave open unless the design uses it"
+    },
+    {
+     "name": "CANL",
+     "signal": "analog_in",
+     "note": "CAN bus line CANL; wired to the bus, not to a GPIO"
+    },
+    {
+     "name": "CANH",
+     "signal": "analog_in",
+     "note": "CAN bus line CANH; wired to the bus, not to a GPIO"
+    },
+    {
+     "name": "Rs",
+     "signal": "mode_select",
+     "note": "GND = high speed, 10–100 kΩ to GND = slope control, high (≥ 0.75·VCC) = standby (listen only)"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "digital",
+     "note": "CAN transceiver for the ESP's TWAI controller (D = TX, R = RX); designed for up to 1 Mbps (data sheet p. 1)"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "typ": {
+     "value": 0.01,
+     "unit": "A",
+     "page": 7,
+     "evidence": "Dominant VI = 0 V, No load Dominant 10 17 mA",
+     "conditions": "dominant, no load"
+    },
+    "max": {
+     "value": 0.017,
+     "unit": "A",
+     "page": 7,
+     "evidence": "Dominant VI = 0 V, No load Dominant 10 17 mA",
+     "conditions": "dominant, no load"
+    },
+    "sleep": {
+     "value": 0.0006,
+     "unit": "A",
+     "page": 7,
+     "evidence": "Standby SN65HVD230 V(Rs) = VCC 370 600",
+     "conditions": "standby (Rs at VCC), max"
+    }
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Rs at 0.75·VCC or above puts the SN65HVD230 into standby: the driver is off, the node only listens (mod.wired.hvd230_rs_standby).",
+     "verified": true,
+     "page": 6,
+     "evidence": "Input voltage for standby or sleep, V(Rs) 0.75 VCC VCC V"
+    },
+    {
+     "text": "Terminate the CAN bus with a 120 Ω resistor at each end.",
+     "verified": true,
+     "page": 27,
+     "evidence": "Termination is typically a 120"
+    },
+    {
+     "text": "Common SN65HVD230 boards (e.g. 'VP230' modules) carry a 120 Ω resistor across CANH/CANL; declare it as a resistor part or remove it on middle nodes.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "tja1050",
+   "aliases": [
+    "tja1050t",
+    "tja1050-module"
+   ],
+   "title": "TJA1050 5 V high-speed CAN transceiver",
+   "category": "comm.can",
+   "manufacturer": "NXP Semiconductors (Philips)",
+   "kind": "ic",
+   "source_ids": [
+    "mod-wired-tja1050-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 4.75,
+      "unit": "V",
+      "page": 2,
+      "evidence": "VCC supply voltage 4.75 5.25 V",
+      "conditions": "quick reference data"
+     },
+     "max": {
+      "value": 5.25,
+      "unit": "V",
+      "page": 2,
+      "evidence": "VCC supply voltage 4.75 5.25 V",
+      "conditions": "quick reference data"
+     },
+     "abs_max": {
+      "value": 6.0,
+      "unit": "V",
+      "page": 5,
+      "evidence": "VCC supply voltage −0.3 +6 V",
+      "conditions": "limiting value"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "value": 2.0,
+     "unit": "V",
+     "page": 6,
+     "evidence": "VIH HIGH-level input voltage output recessive 2.0 − VCC + 0.3 V",
+     "conditions": "TXD; VCC 4.75–5.25 V"
+    },
+    "vil": {
+     "value": 0.8,
+     "unit": "V",
+     "page": 6,
+     "evidence": "VIL LOW-level input voltage output dominant −0.3 − +0.8 V",
+     "conditions": "TXD; VCC 4.75–5.25 V"
+    },
+    "v_in_max": {
+     "rel_offset": 0.3,
+     "of": "VCC",
+     "unit": "V",
+     "page": 5,
+     "evidence": "VTXD DC voltage at pin TXD −0.3 V CC + 0.3 V",
+     "conditions": "limiting value"
+    },
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "TXD",
+     "signal": "digital_in",
+     "internal_pull": "up",
+     "note": "transmit data from the ESP's TWAI TX; pulled up to VCC inside (IIL about -200 µA at 0 V)"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply"
+    },
+    {
+     "name": "RXD",
+     "signal": "digital_out",
+     "note": "receive data to the ESP's TWAI RX; drives up to VCC (5 V)"
+    },
+    {
+     "name": "Vref",
+     "signal": "nc",
+     "note": "reference voltage output (about VCC/2); leave open unless used"
+    },
+    {
+     "name": "CANL",
+     "signal": "analog_in",
+     "note": "CAN bus line CANL; wired to the bus, not to a GPIO"
+    },
+    {
+     "name": "CANH",
+     "signal": "analog_in",
+     "note": "CAN bus line CANH; wired to the bus, not to a GPIO"
+    },
+    {
+     "name": "S",
+     "signal": "mode_select",
+     "tie": "GND",
+     "note": "GND (recommended) = high-speed mode, VCC = silent mode; open = high speed"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "digital",
+     "note": "CAN transceiver for the ESP's TWAI controller (TXD, RXD); 60 kbaud up to 1 Mbaud (data sheet p. 4)"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "typ": {
+     "value": 0.005,
+     "unit": "A",
+     "page": 6,
+     "evidence": "recessive; VTXD =V CC 2.5 5 10 mA",
+     "conditions": "recessive"
+    },
+    "max": {
+     "value": 0.075,
+     "unit": "A",
+     "page": 6,
+     "evidence": "ICC supply current dominant; V TXD = 0 V 2 55 07 5m A",
+     "conditions": "dominant; pypdf splits '25 50 75 mA' into '2 55 07 5m A' (min 25, typ 50, max 75 mA)"
+    }
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "TXD has an internal pull-up to VCC (5 V): an ESP pin in high impedance (boot, reset) is pulled towards 5 V through it.",
+     "verified": true,
+     "page": 6,
+     "evidence": "IIL LOW-level input current V TXD =0V −100 −200 −300"
+    },
+    {
+     "text": "RXD drives actively high towards VCC: at 5 V it exceeds the ESP's 3.6 V input maximum (mod.wired.tja1050_rxd_5v); the SN65HVD230 runs at 3.3 V.",
+     "verified": true,
+     "page": 6,
+     "evidence": "IOH HIGH-level output current V RXD = 0.7VCC −2 −6 −15 mA"
+    },
+    {
+     "text": "Inputs accept 3.3 V logic levels.",
+     "verified": true,
+     "page": 2,
+     "evidence": "Input levels compatible with 3.3 V and 5 V devices"
+    },
+    {
+     "text": "Silent mode (S at VCC) disables the transmitter.",
+     "verified": true,
+     "page": 4,
+     "evidence": "selected by connecting pin S to VCC and can be used to"
+    },
+    {
+     "text": "'MCP2515 CAN bus modules' combine an MCP2515 with a TJA1050 at 5 V and usually a 120 Ω termination (jumper J1); declare it as a resistor part across CANH/CANL.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "mcp2515",
+   "aliases": [
+    "mcp2515-i-so",
+    "mcp2515-i-p",
+    "mcp2515-e-so"
+   ],
+   "title": "MCP2515 stand-alone CAN controller with SPI",
+   "category": "comm.can",
+   "manufacturer": "Microchip Technology",
+   "kind": "ic",
+   "source_ids": [
+    "mod-wired-mcp2515-ds"
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 2.7,
+      "unit": "V",
+      "page": 74,
+      "evidence": "VDD Supply Voltage 2.7 5.5 V",
+      "conditions": "DC characteristics"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 74,
+      "evidence": "VDD Supply Voltage 2.7 5.5 V",
+      "conditions": "DC characteristics"
+     },
+     "abs_max": {
+      "value": 7.0,
+      "unit": "V",
+      "page": 73,
+      "evidence": "VDD........",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "VDD",
+    "vih": {
+     "rel": 0.7,
+     "of": "VDD",
+     "unit": "V",
+     "page": 74,
+     "evidence": "SCK, CS, SI, TXnRTS Pins 0.7 V DD VDD + 1 V",
+     "conditions": "SCK, CS, SI, TXnRTS; VDD 2.7–5.5 V"
+    },
+    "vil": {
+     "rel": 0.4,
+     "of": "VDD",
+     "unit": "V",
+     "page": 74,
+     "evidence": "SCK, CS, SI Pins -0.3 0.4 * V DD V",
+     "conditions": "SCK, CS, SI; VDD 2.7–5.5 V"
+    },
+    "voh": {
+     "rel_offset": -0.5,
+     "of": "VDD",
+     "unit": "V",
+     "page": 74,
+     "evidence": "SO, CLKOUT Pins V DD – 0.5 — V I OH = -400",
+     "conditions": "SO, IOH = -400 µA, VDD = 4.5 V (no value at 3.3 V)"
+    },
+    "vol": {
+     "value": 0.6,
+     "unit": "V",
+     "page": 74,
+     "evidence": "SO, CLKOUT Pins — 0.6 V I OL = +2.1 mA, VDD = 4.5V",
+     "conditions": "SO, IOL = 2.1 mA, VDD = 4.5 V (no value at 3.3 V)"
+    },
+    "v_in_max": {
+     "rel_offset": 1.0,
+     "of": "VDD",
+     "unit": "V",
+     "page": 73,
+     "evidence": "All Inputs and Outputs w.r.t. VSS .....",
+     "conditions": "absolute maximum rating"
+    },
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "TXCAN",
+     "signal": "digital_out",
+     "note": "to the transceiver's TXD"
+    },
+    {
+     "name": "RXCAN",
+     "signal": "digital_in",
+     "note": "from the transceiver's RXD"
+    },
+    {
+     "name": "CLKOUT",
+     "signal": "digital_out",
+     "note": "clock output / start-of-frame"
+    },
+    {
+     "name": "TX0RTS",
+     "signal": "digital_in",
+     "active_low": true,
+     "internal_pull": {
+      "up": {
+       "value": 100000.0,
+       "unit": "Ω",
+       "page": 4,
+       "evidence": [
+        "100 k",
+        "internal pull-up to VDD"
+       ],
+       "conditions": "pypdf renders the Ω sign as a private-use glyph ('100 kΩ internal pull-up to VDD')"
+      }
+     }
+    },
+    {
+     "name": "TX1RTS",
+     "signal": "digital_in",
+     "active_low": true,
+     "internal_pull": {
+      "up": {
+       "value": 100000.0,
+       "unit": "Ω",
+       "page": 4,
+       "evidence": [
+        "100 k",
+        "internal pull-up to VDD"
+       ],
+       "conditions": "pypdf renders the Ω sign as a private-use glyph ('100 kΩ internal pull-up to VDD')"
+      }
+     }
+    },
+    {
+     "name": "TX2RTS",
+     "signal": "digital_in",
+     "active_low": true,
+     "internal_pull": {
+      "up": {
+       "value": 100000.0,
+       "unit": "Ω",
+       "page": 4,
+       "evidence": [
+        "100 k",
+        "internal pull-up to VDD"
+       ],
+       "conditions": "pypdf renders the Ω sign as a private-use glyph ('100 kΩ internal pull-up to VDD')"
+      }
+     }
+    },
+    {
+     "name": "OSC2",
+     "signal": "analog_in",
+     "note": "crystal"
+    },
+    {
+     "name": "OSC1",
+     "signal": "analog_in",
+     "note": "crystal or external clock input"
+    },
+    {
+     "name": "VSS",
+     "signal": "gnd"
+    },
+    {
+     "name": "RX1BF",
+     "signal": "digital_out"
+    },
+    {
+     "name": "RX0BF",
+     "signal": "digital_out"
+    },
+    {
+     "name": "INT",
+     "signal": "digital_out",
+     "active_low": true,
+     "note": "interrupt output to an ESP input"
+    },
+    {
+     "name": "SCK",
+     "signal": "spi_sck"
+    },
+    {
+     "name": "SI",
+     "signal": "spi_sdi"
+    },
+    {
+     "name": "SO",
+     "signal": "spi_sdo"
+    },
+    {
+     "name": "CS",
+     "signal": "spi_cs",
+     "active_low": true
+    },
+    {
+     "name": "RESET",
+     "signal": "reset_in",
+     "active_low": true,
+     "note": "no internal pull-up in the data sheet"
+    },
+    {
+     "name": "VDD",
+     "signal": "supply"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "spi",
+     "mode": 0,
+     "f_max_hz": {
+      "value": 10000000.0,
+      "unit": "Hz",
+      "page": 77,
+      "evidence": "FCLK Clock Frequency — 10 MHz",
+      "conditions": "SPI clock, VDD 2.7–5.5 V"
+     },
+     "note": "SPI modes 0,0 and 1,1 (data sheet p. 1)"
+    }
+   ],
+   "current": {
+    "supply": "VDD",
+    "max": {
+     "value": 0.01,
+     "unit": "A",
+     "page": 74,
+     "evidence": "IDD Operating Current — 10 mA V DD = 5.5V, FOSC = 25 MHz,",
+     "conditions": "VDD = 5.5 V, FOSC = 25 MHz, SO open"
+    },
+    "sleep": {
+     "value": 5e-06,
+     "unit": "A",
+     "page": 74,
+     "evidence": "—5 μA CS, TXnRTS = VDD, inputs tied",
+     "conditions": "sleep mode, -40 to +85 °C"
+    }
+   },
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Needs a crystal or an external clock on OSC1/OSC2; the CAN bit timing depends on its frequency (modules often carry 8 MHz).",
+     "verified": true,
+     "page": 4,
+     "evidence": "OSC1 8 9 7 I Oscillator input External clock input"
+    },
+    {
+     "text": "At VDD = 5 V the SPI inputs need 0.7·VDD = 3.5 V (above a 3.3 V ESP's high level) and SO drives up to 5 V: run the MCP2515 at 3.3 V or level-shift.",
+     "verified": true,
+     "page": 74,
+     "evidence": "SCK, CS, SI, TXnRTS Pins 0.7 V DD VDD + 1 V"
+    },
+    {
+     "text": "RESET is active low; send the RESET command or pulse RESET after power-up.",
+     "verified": true,
+     "page": 4,
+     "evidence": "RESET 17 19 17 I Active-low device Reset input"
+    },
+    {
+     "text": "Common 'MCP2515 CAN bus modules' run the MCP2515 and a TJA1050 from 5 V with an 8 MHz crystal and a 120 Ω termination jumper; their SO and RXD lines then carry 5 V.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "cp2102n",
+   "aliases": [
+    "cp2102n-a02-gqfn28",
+    "cp2102n-a02-gqfn24",
+    "cp2102n-a02-gqfn20"
+   ],
+   "title": "CP2102N USB-to-UART bridge",
+   "category": "comm.usb_uart",
+   "manufacturer": "Silicon Labs",
+   "kind": "ic",
+   "source_ids": [
+    "mod-wired-cp2102n-ds"
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 3.0,
+      "unit": "V",
+      "page": 10,
+      "evidence": [
+       "Operating Supply Voltage on VDD",
+       "VDD 3.0 — 3.6 V"
+      ],
+      "conditions": "recommended operating conditions"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 10,
+      "evidence": [
+       "Operating Supply Voltage on VDD",
+       "VDD 3.0 — 3.6 V"
+      ],
+      "conditions": "recommended operating conditions"
+     },
+     "abs_max": {
+      "value": 4.2,
+      "unit": "V",
+      "page": 15,
+      "evidence": "Voltage on VDD VDD GND-0.3 4.2 V",
+      "conditions": "absolute maximum rating"
+     }
+    },
+    "VIO": {
+     "min": {
+      "value": 1.71,
+      "unit": "V",
+      "page": 10,
+      "evidence": "Operating Supply Voltage on VIO 3 VIO 1.71 — VDD V",
+      "conditions": "recommended operating conditions; max is VDD"
+     },
+     "abs_max": {
+      "value": 4.2,
+      "unit": "V",
+      "page": 15,
+      "evidence": "Voltage on VIO2 VIO GND-0.3 4.2 V",
+      "conditions": "absolute maximum rating"
+     }
+    },
+    "VREGIN": {
+     "min": {
+      "value": 3.0,
+      "unit": "V",
+      "page": 10,
+      "evidence": "VREGIN 3.0 — 5.25 V",
+      "conditions": "recommended operating conditions"
+     },
+     "max": {
+      "value": 5.25,
+      "unit": "V",
+      "page": 10,
+      "evidence": "VREGIN 3.0 — 5.25 V",
+      "conditions": "recommended operating conditions"
+     },
+     "abs_max": {
+      "value": 5.8,
+      "unit": "V",
+      "page": 15,
+      "evidence": "Voltage on VREGIN VREGIN GND-0.3 5.8 V",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "VIO",
+    "vih": {
+     "rel_offset": -0.6,
+     "of": "VIO",
+     "unit": "V",
+     "page": 13,
+     "evidence": "VIH VIO - 0.6 — — V",
+     "conditions": "GPIO and UART inputs"
+    },
+    "vil": {
+     "value": 0.6,
+     "unit": "V",
+     "page": 13,
+     "evidence": "VIL — — 0.6 V",
+     "conditions": "GPIO and UART inputs"
+    },
+    "voh": {
+     "rel_offset": -0.7,
+     "of": "VIO",
+     "unit": "V",
+     "page": 13,
+     "evidence": "Output High Voltage (High Drive) VOH IOH = -7 mA, VIO ≥ 3.0 V VIO - 0.7 — — V",
+     "conditions": "IOH = -7 mA, VIO 3.0–3.6 V"
+    },
+    "vol": {
+     "value": 0.6,
+     "unit": "V",
+     "page": 13,
+     "evidence": "Output Low Voltage (High Drive) VOL IOL = 13.5 mA, VIO ≥ 3.0 V — — 0.6 V",
+     "conditions": "IOL = 13.5 mA, VIO 3.0–3.6 V"
+    },
+    "v_in_max": {
+     "rel_offset": 2.5,
+     "of": "VIO",
+     "unit": "V",
+     "page": 15,
+     "evidence": [
+      "VIN VIO > 3.3 V GND-0.3 5.8 V",
+      "VIO < 3.3 V GND-0.3 VIO+2.5 V"
+     ],
+     "conditions": "absolute maximum rating of UART/GPIO pins: min(VIO + 2.5 V, 5.8 V); 5.8 V once VIO is above 3.3 V"
+    },
+    "outputs": "push_pull",
+    "five_v_tolerant": true
+   },
+   "pins": [
+    {
+     "name": "VDD",
+     "signal": "supply",
+     "note": "3.3 V regulator output when VREGIN is powered, else the supply"
+    },
+    {
+     "name": "VIO",
+     "signal": "supply",
+     "tie": "VDD",
+     "note": "I/O supply; tied to VDD on most boards"
+    },
+    {
+     "name": "VREGIN",
+     "signal": "supply",
+     "note": "regulator input (USB 5 V); tie to VDD if the regulator is unused"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "VBUS",
+     "signal": "analog_in",
+     "note": "USB VBUS sense; needs a divider when VBUS exceeds VIO + 2.5 V"
+    },
+    {
+     "name": "D+",
+     "signal": "analog_in",
+     "note": "USB data line, to the USB connector"
+    },
+    {
+     "name": "D-",
+     "signal": "analog_in",
+     "note": "USB data line, to the USB connector"
+    },
+    {
+     "name": "RSTb",
+     "signal": "reset_in",
+     "active_low": true,
+     "note": "reset, active low; 1 kΩ pull-up to VIO recommended"
+    },
+    {
+     "name": "TXD",
+     "signal": "uart_tx",
+     "note": "UART transmit, to the ESP's RX"
+    },
+    {
+     "name": "RXD",
+     "signal": "uart_rx",
+     "note": "UART receive, from the ESP's TX"
+    },
+    {
+     "name": "RTS",
+     "signal": "digital_out",
+     "active_low": true,
+     "note": "modem output; on ESP boards it drives EN/IO0 through the auto-reset transistors"
+    },
+    {
+     "name": "DTR",
+     "signal": "digital_out",
+     "active_low": true,
+     "note": "modem output; on ESP boards it drives EN/IO0 through the auto-reset transistors"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "uart",
+     "baud_default": 115200,
+     "note": "300 baud to 3 Mbaud (data sheet p. 1)"
+    }
+   ],
+   "current": {
+    "supply": "VREGIN",
+    "typ": {
+     "value": 0.0095,
+     "unit": "A",
+     "page": 10,
+     "evidence": [
+      "Normal Operation1, 2 IDD 115200 baud transmitting continu-",
+      "— 9.5 — mA"
+     ],
+     "conditions": "115200 baud, continuous bidirectional data"
+    },
+    "sleep": {
+     "value": 0.000195,
+     "unit": "A",
+     "page": 10,
+     "evidence": "USB Suspend1, 2 IDD — 195 — ",
+     "conditions": "USB suspend, typical"
+    }
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "4.7uF+100nF",
+     "pins": [
+      "VDD",
+      "VREGIN"
+     ],
+     "to": "GND",
+     "note": "4.7 µF and 0.1 µF at each power pin",
+     "page": 5,
+     "evidence": [
+      "4.7 µF and 0.1 µF bypass",
+      "capacitors required for"
+     ]
+    },
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "value": "1k",
+     "pins": [
+      "RSTb"
+     ],
+     "to": "VIO",
+     "note": "recommended",
+     "page": 5,
+     "evidence": "In all cases, a 1 k Ω pull-up on the RSTb pin is recommended."
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "The UART pins tolerate 5 V only while VIO is at least 3.3 V (VIO + 2.5 V below); RXD of a 3.3 V ESP is always within range.",
+     "verified": true,
+     "page": 15,
+     "evidence": "VIO < 3.3 V GND-0.3 VIO+2.5 V"
+    },
+    {
+     "text": "Only the pins an ESP project wires are modelled (power, USB, RSTb, TXD, RXD, RTS, DTR); the other modem and GPIO pins are left out.",
+     "verified": false
+    },
+    {
+     "text": "On ESP32 dev kits the CP2102N's DTR/RTS drive EN and IO0 through two transistors (auto-reset); opening the port can reset the board.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "ch340c",
+   "aliases": [
+    "ch340c-sop16"
+   ],
+   "title": "CH340C USB-to-serial bridge (internal clock)",
+   "category": "comm.usb_uart",
+   "manufacturer": "WCH (Nanjing Qinheng Microelectronics)",
+   "kind": "ic",
+   "source_ids": [
+    "mod-wired-ch340c-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 3.1,
+      "unit": "V",
+      "page": 9,
+      "evidence": "VCC Power voltage V3 pin connected to VCC pin CH340G/T/R 2.9 3.3 3.6 V CH340C/N/K/E/X/B 3.1 3.3 3.6",
+      "conditions": "3.3 V mode: V3 connected to VCC, CH340C 3.1–3.6 V"
+     },
+     "max": {
+      "value": 5.3,
+      "unit": "V",
+      "page": 8,
+      "evidence": "VCC Power voltage The V3 pin is only connected to an external capacitor and is not connected to VCC. 4.0 5 5.3 V",
+      "conditions": "5 V mode: V3 only to a capacitor, 4.0–5.3 V"
+     },
+     "abs_max": {
+      "value": 6.0,
+      "unit": "V",
+      "page": 8,
+      "evidence": "VCC Power supply voltage (VCC is connected to the power supply, GND is connected to the ground) -0.5 6.0 V",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "value": 2.3,
+     "unit": "V",
+     "page": 8,
+     "evidence": "VIH High level input voltage 2.3  VCC V",
+     "conditions": "VCC = 5 V"
+    },
+    "vil": {
+     "value": 0.9,
+     "unit": "V",
+     "page": 8,
+     "evidence": "VIL low level input voltage 0  0.9 V",
+     "conditions": "VCC = 5 V"
+    },
+    "voh": {
+     "rel_offset": -0.6,
+     "of": "VCC",
+     "unit": "V",
+     "page": 8,
+     "evidence": [
+      "High-level output voltage (2mA output",
+      "VCC-0.6   V"
+     ],
+     "conditions": "2 mA output current, VCC = 5 V"
+    },
+    "vol": {
+     "value": 0.5,
+     "unit": "V",
+     "page": 8,
+     "evidence": "VOL Low level output voltage (6mA sink current)   0.5 V",
+     "conditions": "6 mA sink, VCC = 5 V"
+    },
+    "v_in_max": {
+     "rel_offset": 0.5,
+     "of": "VCC",
+     "unit": "V",
+     "page": 8,
+     "evidence": "VIO The voltage on the input or output pin -0.5 VCC+0.5 V",
+     "conditions": "absolute maximum rating"
+    },
+    "outputs": "push_pull",
+    "five_v_tolerant": false
+   },
+   "pins": [
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "TXD",
+     "signal": "uart_tx",
+     "note": "serial data output, to the ESP's RX; idles high"
+    },
+    {
+     "name": "RXD",
+     "signal": "uart_rx",
+     "note": "serial data input, from the ESP's TX; built-in pull-up/pull-down"
+    },
+    {
+     "name": "V3",
+     "signal": "power_out",
+     "note": "3.3 V mode: connect to VCC; 5 V mode: only 0.1 µF to GND (mod.wired.ch340_vcc)"
+    },
+    {
+     "name": "UD+",
+     "signal": "analog_in",
+     "note": "USB D+, directly to the connector (no series resistor)"
+    },
+    {
+     "name": "UD-",
+     "signal": "analog_in",
+     "note": "USB D-, directly to the connector (no series resistor)"
+    },
+    {
+     "name": "NC",
+     "signal": "nc",
+     "note": "pin 7 of the CH340C: leave open"
+    },
+    {
+     "name": "OUT#",
+     "signal": "digital_out",
+     "active_low": true,
+     "note": "modem output (lot-dependent: second DTR#)"
+    },
+    {
+     "name": "DTR#",
+     "signal": "digital_out",
+     "active_low": true,
+     "note": "modem output; on ESP boards it drives EN/IO0 through the auto-reset transistors"
+    },
+    {
+     "name": "RTS#",
+     "signal": "digital_out",
+     "active_low": true,
+     "note": "modem output; on ESP boards it drives EN/IO0 through the auto-reset transistors"
+    },
+    {
+     "name": "R232",
+     "signal": "digital_in",
+     "internal_pull": "down",
+     "note": "auxiliary RS-232 enable; leave low"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "uart",
+     "baud_default": 115200,
+     "note": "50 bps to 2 Mbps (data sheet p. 1)"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "typ": {
+     "value": 0.007,
+     "unit": "A",
+     "page": 8,
+     "evidence": "CH340G/C/N/K/E/X/T/R  7 20 mA",
+     "conditions": "operating, VCC = 5 V"
+    },
+    "max": {
+     "value": 0.02,
+     "unit": "A",
+     "page": 8,
+     "evidence": "CH340G/C/N/K/E/X/T/R  7 20 mA",
+     "conditions": "operating, VCC = 5 V"
+    },
+    "sleep": {
+     "value": 0.00015,
+     "unit": "A",
+     "page": 8,
+     "evidence": "CH340C/N/E/X  0.05 0.15 mA",
+     "conditions": "USB suspend, VCC = 5 V, max"
+    }
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VCC"
+     ],
+     "to": "GND",
+     "page": 3,
+     "evidence": "Positive power input terminal, requires an external 0.1uF power decoupling capacitor."
+    }
+   ],
+   "hazards": [],
+   "variants": [
+    {
+     "id": "3v3",
+     "title": "CH340C at 3.3 V (V3 connected to VCC)",
+     "overrides": {
+      "io": {
+       "domain": "VCC",
+       "vih": {
+        "value": 1.9,
+        "unit": "V",
+        "page": 9,
+        "evidence": "VIH High level input voltage 1.9  VCC V",
+        "conditions": "VCC = 3.3 V"
+       },
+       "vil": {
+        "value": 0.8,
+        "unit": "V",
+        "page": 9,
+        "evidence": "VIL low level input voltage 0  0.8 V",
+        "conditions": "VCC = 3.3 V"
+       },
+       "voh": {
+        "rel_offset": -0.6,
+        "of": "VCC",
+        "unit": "V",
+        "page": 9,
+        "evidence": [
+         "High-level output voltage (2mA output",
+         "VCC-0.6   V"
+        ],
+        "conditions": "2 mA output current, VCC = 3.3 V"
+       },
+       "vol": {
+        "value": 0.5,
+        "unit": "V",
+        "page": 9,
+        "evidence": "VOL Low level output voltage (4mA sink current)   0.5 V",
+        "conditions": "4 mA sink, VCC = 3.3 V"
+       },
+       "v_in_max": {
+        "rel_offset": 0.5,
+        "of": "VCC",
+        "unit": "V",
+        "page": 8,
+        "evidence": "VIO The voltage on the input or output pin -0.5 VCC+0.5 V",
+        "conditions": "absolute maximum rating"
+       },
+       "outputs": "push_pull",
+       "five_v_tolerant": false
+      },
+      "supplies": {
+       "VCC": {
+        "min": {
+         "value": 3.1,
+         "unit": "V",
+         "page": 9,
+         "evidence": "VCC Power voltage V3 pin connected to VCC pin CH340G/T/R 2.9 3.3 3.6 V CH340C/N/K/E/X/B 3.1 3.3 3.6",
+         "conditions": "3.3 V mode, CH340C"
+        },
+        "typ": {
+         "value": 3.3,
+         "unit": "V",
+         "page": 9,
+         "evidence": "VCC Power voltage V3 pin connected to VCC pin CH340G/T/R 2.9 3.3 3.6 V CH340C/N/K/E/X/B 3.1 3.3 3.6",
+         "conditions": "3.3 V mode, CH340C"
+        },
+        "max": {
+         "value": 3.6,
+         "unit": "V",
+         "page": 9,
+         "evidence": "VCC Power voltage V3 pin connected to VCC pin CH340G/T/R 2.9 3.3 3.6 V CH340C/N/K/E/X/B 3.1 3.3 3.6",
+         "conditions": "3.3 V mode, CH340C"
+        },
+        "abs_max": {
+         "value": 6.0,
+         "unit": "V",
+         "page": 8,
+         "evidence": "VCC Power supply voltage (VCC is connected to the power supply, GND is connected to the ground) -0.5 6.0 V",
+         "conditions": "absolute maximum rating"
+        }
+       }
+      },
+      "current": {
+       "supply": "VCC",
+       "typ": {
+        "value": 0.004,
+        "unit": "A",
+        "page": 9,
+        "evidence": "CH340G/C/N/K/E/X/T/R  4 12 mA",
+        "conditions": "operating, VCC = 3.3 V"
+       },
+       "max": {
+        "value": 0.012,
+        "unit": "A",
+        "page": 9,
+        "evidence": "CH340G/C/N/K/E/X/T/R  4 12 mA",
+        "conditions": "operating, VCC = 3.3 V"
+       }
+      }
+     }
+    }
+   ],
+   "notes": [
+    {
+     "text": "5 V mode: VCC 4.0–5.3 V with only a 0.1 µF capacitor on V3; 3.3 V mode: V3 connected to VCC at 3.1–3.6 V, and the circuits on its pins must stay at or below 3.3 V.",
+     "verified": true,
+     "page": 5,
+     "evidence": [
+      "When using a 3.3V working voltage, the",
+      "V3 pin of the CH340 chip should be connected to the VCC pin"
+     ]
+    },
+    {
+     "text": "At VCC = 5 V TXD drives about 5 V into the ESP's RX: power the CH340C from 3.3 V or divide TXD.",
+     "verified": true,
+     "page": 8,
+     "evidence": "VIO The voltage on the input or output pin -0.5 VCC+0.5 V"
+    },
+    {
+     "text": "Only CH340C parts from lot 4 onwards have 5 V tolerant I/O at 3.3 V; the lot is not visible in a project, so the I/O counts as not 5 V tolerant.",
+     "verified": true,
+     "page": 5,
+     "evidence": "The IO of CH340X and CH340C/N starting with lot number 4 support 5V withstand voltage to prevent inward"
+    },
+    {
+     "text": "The CH340C has a built-in clock: no crystal.",
+     "verified": true,
+     "page": 1,
+     "evidence": "CH340C/N/K/E/X/B has a built-in clock, requires no external crystal."
+    },
+    {
+     "text": "The modem inputs CTS#, DSR#, RI# and DCD# (SOP-16 pins 9-12) are not modelled; the data sheet does not state internal pull-ups for them, so tie them inactive on an own board.",
+     "verified": false
+    }
+   ]
+  }
+ ]
+}

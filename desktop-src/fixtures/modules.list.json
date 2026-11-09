@@ -1,0 +1,2519 @@
+{
+ "ok": true,
+ "action": "modules.list",
+ "summary": "180 modules match; showing 1–180.",
+ "result": {
+  "total": 180,
+  "offset": 0,
+  "limit": 200,
+  "items": [
+   {
+    "id": "ads1015",
+    "title": "ADS1015 12-bit 4-channel I²C ADC with PGA",
+    "category": "adc",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x48",
+     "0x49",
+     "0x4a",
+     "0x4b"
+    ],
+    "supply": "2–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "ads1115",
+    "title": "ADS1115 16-bit 4-channel I²C ADC with PGA",
+    "category": "adc",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x48",
+     "0x49",
+     "0x4a",
+     "0x4b"
+    ],
+    "supply": "2–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "ads1220",
+    "title": "ADS1220 24-bit 4-channel SPI ADC with PGA and reference",
+    "category": "adc",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "2.3–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "hx711",
+    "title": "HX711 24-bit bridge ADC for load cells",
+    "category": "adc",
+    "kind": "ic",
+    "interfaces": [
+     "digital"
+    ],
+    "addresses": [],
+    "supply": "2.6–5.5 V",
+    "class": "A2"
+   },
+   {
+    "id": "mcp3008",
+    "title": "MCP3008 10-bit 8-channel SPI ADC",
+    "category": "adc",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "2.7–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "mcp3208",
+    "title": "MCP3208 12-bit 8-channel SPI ADC",
+    "category": "adc",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "2.7–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "pcf8591",
+    "title": "PCF8591 8-bit 4-channel I²C ADC with one DAC output",
+    "category": "adc",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x48",
+     "0x49",
+     "0x4a",
+     "0x4b",
+     "0x4c",
+     "0x4d",
+     "0x4e",
+     "0x4f"
+    ],
+    "supply": "2.5–6 V",
+    "class": "A"
+   },
+   {
+    "id": "max98357a",
+    "title": "MAX98357A I²S input class-D mono amplifier, 3.2 W",
+    "category": "audio.amp",
+    "kind": "ic",
+    "interfaces": [
+     "i2s"
+    ],
+    "addresses": [],
+    "supply": "2.5–5.5 V",
+    "class": "A1"
+   },
+   {
+    "id": "pcm5102a",
+    "title": "PCM5102A stereo audio DAC, I²S input, 2.1 VRMS line out, internal PLL",
+    "category": "audio.dac",
+    "kind": "ic",
+    "interfaces": [
+     "i2s"
+    ],
+    "addresses": [],
+    "supply": "3.2–3.46 V",
+    "class": "A"
+   },
+   {
+    "id": "inmp441",
+    "title": "INMP441 omnidirectional MEMS microphone with I²S output",
+    "category": "audio.mic",
+    "kind": "ic",
+    "interfaces": [
+     "i2s"
+    ],
+    "addresses": [],
+    "supply": "1.62–3.63 V",
+    "class": "A1"
+   },
+   {
+    "id": "mcp2515",
+    "title": "MCP2515 stand-alone CAN controller with SPI",
+    "category": "comm.can",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "2.7–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "mcp2562",
+    "title": "MCP2562 high-speed CAN transceiver with VIO (1.8–5.5 V logic), 5 V supply",
+    "category": "comm.can",
+    "kind": "ic",
+    "interfaces": [
+     "digital"
+    ],
+    "addresses": [],
+    "supply": "4.5–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "sn65hvd230",
+    "title": "SN65HVD230 3.3 V CAN bus transceiver",
+    "category": "comm.can",
+    "kind": "ic",
+    "interfaces": [
+     "digital"
+    ],
+    "addresses": [],
+    "supply": "3–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "tja1050",
+    "title": "TJA1050 5 V high-speed CAN transceiver",
+    "category": "comm.can",
+    "kind": "ic",
+    "interfaces": [
+     "digital"
+    ],
+    "addresses": [],
+    "supply": "4.75–5.25 V",
+    "class": "A"
+   },
+   {
+    "id": "tja1051",
+    "title": "TJA1051T/3 high-speed CAN transceiver with VIO (3.3 V logic), 5 V supply",
+    "category": "comm.can",
+    "kind": "ic",
+    "interfaces": [
+     "digital"
+    ],
+    "addresses": [],
+    "supply": "4.5–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "sim800l",
+    "title": "SIM800L quad-band GSM/GPRS module (UART, 2.8 V I/O)",
+    "category": "comm.cellular",
+    "kind": "ic",
+    "interfaces": [
+     "uart"
+    ],
+    "addresses": [],
+    "supply": "3.4–4.4 V",
+    "class": "A2"
+   },
+   {
+    "id": "enc28j60",
+    "title": "ENC28J60 10BASE-T Ethernet controller (SPI)",
+    "category": "comm.ethernet",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "3.1–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "lan8720a",
+    "title": "LAN8720A 10/100 Ethernet PHY (RMII)",
+    "category": "comm.ethernet",
+    "kind": "ic",
+    "interfaces": [
+     "digital"
+    ],
+    "addresses": [],
+    "supply": "3–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "w5500",
+    "title": "W5500 hardwired TCP/IP Ethernet controller (SPI, 10/100 PHY)",
+    "category": "comm.ethernet",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "2.97–3.63 V",
+    "class": "A"
+   },
+   {
+    "id": "max_m10s",
+    "title": "MAX-M10S GNSS receiver module (UART, I²C)",
+    "category": "comm.gnss",
+    "kind": "ic",
+    "interfaces": [
+     "uart",
+     "i2c"
+    ],
+    "addresses": [
+     "0x42"
+    ],
+    "supply": "1.76–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "neo6m",
+    "title": "NEO-6M u-blox 6 GPS receiver module (UART)",
+    "category": "comm.gnss",
+    "kind": "ic",
+    "interfaces": [
+     "uart"
+    ],
+    "addresses": [],
+    "supply": "2.7–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "neom8n",
+    "title": "NEO-M8N u-blox M8 concurrent GNSS receiver module (UART/I²C/SPI)",
+    "category": "comm.gnss",
+    "kind": "ic",
+    "interfaces": [
+     "uart"
+    ],
+    "addresses": [],
+    "supply": "2.7–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "cc1101",
+    "title": "CC1101 sub-1 GHz transceiver (315/433/868/915 MHz), SPI",
+    "category": "comm.radio",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "1.8–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "nrf24l01p",
+    "title": "nRF24L01+ 2.4 GHz transceiver module",
+    "category": "comm.radio",
+    "kind": "module",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "1.9–3.6 V",
+    "class": "A2"
+   },
+   {
+    "id": "rfm69hcw",
+    "title": "RFM69HCW ISM-band FSK/OOK transceiver module, +20 dBm (SPI)",
+    "category": "comm.radio",
+    "kind": "module",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "1.8–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "rfm95w",
+    "title": "RFM95W LoRa transceiver module (SX1276 based)",
+    "category": "comm.radio",
+    "kind": "module",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "1.8–3.7 V",
+    "class": "A"
+   },
+   {
+    "id": "sx1262",
+    "title": "SX1262 sub-GHz LoRa/FSK transceiver, +22 dBm (SPI)",
+    "category": "comm.radio",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "1.8–3.7 V",
+    "class": "A1"
+   },
+   {
+    "id": "sx1276",
+    "title": "SX1276/77/78/79 LoRa transceiver",
+    "category": "comm.radio",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "1.8–3.7 V",
+    "class": "A2"
+   },
+   {
+    "id": "mfrc522",
+    "title": "MFRC522 13.56 MHz RFID reader module (RC522)",
+    "category": "comm.rfid",
+    "kind": "module",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "2.5–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "pn5180",
+    "title": "PN5180 NFC frontend (SPI)",
+    "category": "comm.rfid",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "2.7–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "pn532",
+    "title": "PN532 NFC controller (SPI, I²C or HSU)",
+    "category": "comm.rfid",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "2.7–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "max3485",
+    "title": "MAX3485 3.3 V RS-485/RS-422 half-duplex transceiver",
+    "category": "comm.rs485",
+    "kind": "ic",
+    "interfaces": [
+     "uart"
+    ],
+    "addresses": [],
+    "supply": "3–3.6 V",
+    "class": "A1"
+   },
+   {
+    "id": "max485",
+    "title": "MAX485 5 V RS-485/RS-422 half-duplex transceiver",
+    "category": "comm.rs485",
+    "kind": "ic",
+    "interfaces": [
+     "uart"
+    ],
+    "addresses": [],
+    "supply": "4.75–5.25 V",
+    "class": "A1"
+   },
+   {
+    "id": "sp3485",
+    "title": "SP3485 3.3 V RS-485/RS-422 half-duplex transceiver, 10 Mbps",
+    "category": "comm.rs485",
+    "kind": "ic",
+    "interfaces": [
+     "uart"
+    ],
+    "addresses": [],
+    "supply": "3.135–3.465 V",
+    "class": "A"
+   },
+   {
+    "id": "thvd1450",
+    "title": "THVD1450 3.3 V to 5 V RS-485 half-duplex transceiver, 50 Mbps, ±18 kV IEC ESD",
+    "category": "comm.rs485",
+    "kind": "ic",
+    "interfaces": [
+     "uart"
+    ],
+    "addresses": [],
+    "supply": "3–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "ch340c",
+    "title": "CH340C USB-to-serial bridge (internal clock)",
+    "category": "comm.usb_uart",
+    "kind": "ic",
+    "interfaces": [
+     "uart"
+    ],
+    "addresses": [],
+    "supply": "3.1–5.3 V",
+    "class": "A1"
+   },
+   {
+    "id": "ch9102f",
+    "title": "CH9102F USB-to-UART bridge",
+    "category": "comm.usb_uart",
+    "kind": "ic",
+    "interfaces": [
+     "uart"
+    ],
+    "addresses": [],
+    "supply": "4–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "cp2102n",
+    "title": "CP2102N USB-to-UART bridge",
+    "category": "comm.usb_uart",
+    "kind": "ic",
+    "interfaces": [
+     "uart"
+    ],
+    "addresses": [],
+    "supply": "3–5.25 V",
+    "class": "A1"
+   },
+   {
+    "id": "cp2104",
+    "title": "CP2104 USB-to-UART bridge",
+    "category": "comm.usb_uart",
+    "kind": "ic",
+    "interfaces": [
+     "uart"
+    ],
+    "addresses": [],
+    "supply": "3–5.25 V",
+    "class": "A1"
+   },
+   {
+    "id": "ft232rl",
+    "title": "FT232RL USB-to-UART bridge",
+    "category": "comm.usb_uart",
+    "kind": "ic",
+    "interfaces": [
+     "uart"
+    ],
+    "addresses": [],
+    "supply": "4–5.25 V",
+    "class": "A1"
+   },
+   {
+    "id": "mcp4725",
+    "title": "MCP4725 12-bit I²C DAC with EEPROM",
+    "category": "dac",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x60",
+     "0x61"
+    ],
+    "supply": "2.7–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "mcp4728",
+    "title": "MCP4728 quad 12-bit I²C DAC with EEPROM",
+    "category": "dac",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x60",
+     "0x61",
+     "0x62",
+     "0x63",
+     "0x64",
+     "0x65",
+     "0x66",
+     "0x67"
+    ],
+    "supply": "2.7–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "1n4007",
+    "title": "1N4007 1 A general purpose rectifier, 1000 V (DO-41)",
+    "category": "discrete.diode",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": null,
+    "class": "A"
+   },
+   {
+    "id": "1n4148",
+    "title": "1N4148 small-signal fast switching diode (DO-35)",
+    "category": "discrete.diode",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": null,
+    "class": "A"
+   },
+   {
+    "id": "1n5819",
+    "title": "1N5819 1 A 40 V Schottky rectifier (DO-41)",
+    "category": "discrete.diode",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": null,
+    "class": "A"
+   },
+   {
+    "id": "bat54",
+    "title": "BAT54 30 V 200 mA small-signal Schottky diode (SOT23)",
+    "category": "discrete.diode",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": null,
+    "class": "A1"
+   },
+   {
+    "id": "ss14",
+    "title": "SS14 1 A 40 V Schottky rectifier (SMA / DO-214AC)",
+    "category": "discrete.diode",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": null,
+    "class": "A"
+   },
+   {
+    "id": "hd44780",
+    "title": "HD44780U character LCD controller (4/8-bit parallel)",
+    "category": "display.lcd",
+    "kind": "ic",
+    "interfaces": [
+     "parallel"
+    ],
+    "addresses": [],
+    "supply": "4.5–5.5 V",
+    "class": "A2"
+   },
+   {
+    "id": "ht16k33",
+    "title": "HT16K33 16x8 LED matrix driver with key scan (I²C, 0x70–0x77)",
+    "category": "display.led",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x70",
+     "0x71",
+     "0x72",
+     "0x73",
+     "0x74",
+     "0x75",
+     "0x76",
+     "0x77"
+    ],
+    "supply": "4.5–5.5 V",
+    "class": "A1"
+   },
+   {
+    "id": "is31fl3731",
+    "title": "IS31FL3731 144-LED charlieplex matrix driver (I²C, 0x74–0x77)",
+    "category": "display.led",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x74",
+     "0x75",
+     "0x76",
+     "0x77"
+    ],
+    "supply": "2.7–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "max7219",
+    "title": "MAX7219 8-digit LED display driver (SPI-like serial)",
+    "category": "display.led",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "4–5.5 V",
+    "class": "A1"
+   },
+   {
+    "id": "tm1637",
+    "title": "TM1637 LED driver with key scan (2-wire CLK/DIO, not I²C)",
+    "category": "display.led",
+    "kind": "ic",
+    "interfaces": [
+     "digital"
+    ],
+    "addresses": [],
+    "supply": "4.5–5.5 V",
+    "class": "A1"
+   },
+   {
+    "id": "tm1638",
+    "title": "TM1638 LED driver with key scan (3-wire STB/CLK/DIO, not SPI or I²C)",
+    "category": "display.led",
+    "kind": "ic",
+    "interfaces": [
+     "digital"
+    ],
+    "addresses": [],
+    "supply": "3–6 V",
+    "class": "A1"
+   },
+   {
+    "id": "sh1106",
+    "title": "SH1106 132x64 OLED controller (I²C; SPI variant)",
+    "category": "display.oled",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x3c",
+     "0x3d"
+    ],
+    "supply": "1.65–3.5 V",
+    "class": "A2"
+   },
+   {
+    "id": "ssd1306",
+    "title": "SSD1306 128x64 OLED controller (I²C; SPI variant)",
+    "category": "display.oled",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x3c",
+     "0x3d"
+    ],
+    "supply": "1.65–3.3 V",
+    "class": "A2"
+   },
+   {
+    "id": "ssd1309",
+    "title": "SSD1309 128x64 OLED controller (I²C; SPI variant)",
+    "category": "display.oled",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x3c",
+     "0x3d"
+    ],
+    "supply": "1.65–3.3 V",
+    "class": "A2"
+   },
+   {
+    "id": "gc9a01",
+    "title": "GC9A01 240x240 round TFT LCD controller (4-wire SPI)",
+    "category": "display.tft",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": null,
+    "class": "B"
+   },
+   {
+    "id": "ili9341",
+    "title": "ILI9341 240x320 TFT LCD driver (4-line SPI)",
+    "category": "display.tft",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "2.5–3.3 V",
+    "class": "A2"
+   },
+   {
+    "id": "st7735s",
+    "title": "ST7735S 132x162 TFT LCD controller (4-line SPI, 3.3 V logic)",
+    "category": "display.tft",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "2.5–4.8 V",
+    "class": "A2"
+   },
+   {
+    "id": "st7789v",
+    "title": "ST7789V 240x320 TFT LCD controller (4-line SPI)",
+    "category": "display.tft",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "2.4–3.3 V",
+    "class": "A2"
+   },
+   {
+    "id": "tpl7407l",
+    "title": "TPL7407L 7-channel 40 V low-side MOSFET driver (ULN2003A pin-compatible)",
+    "category": "driver.array",
+    "kind": "ic",
+    "interfaces": [
+     "digital"
+    ],
+    "addresses": [],
+    "supply": "8.5–40 V",
+    "class": "A"
+   },
+   {
+    "id": "uln2003a",
+    "title": "ULN2003A 7-channel Darlington transistor array",
+    "category": "driver.array",
+    "kind": "ic",
+    "interfaces": [
+     "digital"
+    ],
+    "addresses": [],
+    "supply": null,
+    "class": "A"
+   },
+   {
+    "id": "uln2803a",
+    "title": "ULN2803A 8-channel Darlington transistor array",
+    "category": "driver.array",
+    "kind": "ic",
+    "interfaces": [
+     "digital"
+    ],
+    "addresses": [],
+    "supply": null,
+    "class": "A2"
+   },
+   {
+    "id": "uln2803c",
+    "title": "ULN2803C 8-channel Darlington transistor array",
+    "category": "driver.array",
+    "kind": "ic",
+    "interfaces": [
+     "digital"
+    ],
+    "addresses": [],
+    "supply": null,
+    "class": "A"
+   },
+   {
+    "id": "drv8833",
+    "title": "DRV8833 dual H-bridge motor driver",
+    "category": "driver.motor",
+    "kind": "ic",
+    "interfaces": [
+     "pwm"
+    ],
+    "addresses": [],
+    "supply": "2.7–10.8 V",
+    "class": "A"
+   },
+   {
+    "id": "drv8871",
+    "title": "DRV8871 3.6 A brushed DC motor H-bridge with current limit (ILIM)",
+    "category": "driver.motor",
+    "kind": "ic",
+    "interfaces": [
+     "pwm"
+    ],
+    "addresses": [],
+    "supply": "6.5–45 V",
+    "class": "A"
+   },
+   {
+    "id": "l298n",
+    "title": "L298 dual full-bridge driver (L298N)",
+    "category": "driver.motor",
+    "kind": "ic",
+    "interfaces": [
+     "digital"
+    ],
+    "addresses": [],
+    "supply": "4.5–7 V",
+    "class": "A1"
+   },
+   {
+    "id": "tb6612fng",
+    "title": "TB6612FNG dual DC motor driver",
+    "category": "driver.motor",
+    "kind": "ic",
+    "interfaces": [
+     "pwm"
+    ],
+    "addresses": [],
+    "supply": "2.7–5.5 V",
+    "class": "A1"
+   },
+   {
+    "id": "a4988",
+    "title": "A4988 microstepping stepper driver (STEP/DIR)",
+    "category": "driver.stepper",
+    "kind": "ic",
+    "interfaces": [
+     "digital"
+    ],
+    "addresses": [],
+    "supply": "3–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "drv8825",
+    "title": "DRV8825 stepper motor driver (STEP/DIR)",
+    "category": "driver.stepper",
+    "kind": "ic",
+    "interfaces": [
+     "digital"
+    ],
+    "addresses": [],
+    "supply": "8.2–45 V",
+    "class": "A"
+   },
+   {
+    "id": "tmc2208",
+    "title": "TMC2208 stepper driver (STEP/DIR, single-wire UART)",
+    "category": "driver.stepper",
+    "kind": "ic",
+    "interfaces": [
+     "digital",
+     "uart"
+    ],
+    "addresses": [],
+    "supply": "5.5–36 V",
+    "class": "A1"
+   },
+   {
+    "id": "tmc2209",
+    "title": "TMC2209 stepper driver (STEP/DIR, UART)",
+    "category": "driver.stepper",
+    "kind": "ic",
+    "interfaces": [
+     "digital",
+     "uart"
+    ],
+    "addresses": [],
+    "supply": "5.5–29 V",
+    "class": "A1"
+   },
+   {
+    "id": "mcp23008",
+    "title": "MCP23008 8-bit I²C I/O expander",
+    "category": "io.expander",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x20",
+     "0x21",
+     "0x22",
+     "0x23",
+     "0x24",
+     "0x25",
+     "0x26",
+     "0x27"
+    ],
+    "supply": "1.8–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "mcp23017",
+    "title": "MCP23017 16-bit I²C I/O expander",
+    "category": "io.expander",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x20",
+     "0x21",
+     "0x22",
+     "0x23",
+     "0x24",
+     "0x25",
+     "0x26",
+     "0x27"
+    ],
+    "supply": "1.8–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "pca9555",
+    "title": "PCA9555 16-bit I²C/SMBus I/O port with interrupt",
+    "category": "io.expander",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x20",
+     "0x21",
+     "0x22",
+     "0x23",
+     "0x24",
+     "0x25",
+     "0x26",
+     "0x27"
+    ],
+    "supply": "2.3–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "pcf8574",
+    "title": "PCF8574 8-bit quasi-bidirectional I²C I/O expander",
+    "category": "io.expander",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x20",
+     "0x21",
+     "0x22",
+     "0x23",
+     "0x24",
+     "0x25",
+     "0x26",
+     "0x27"
+    ],
+    "supply": "2.5–6 V",
+    "class": "A"
+   },
+   {
+    "id": "pcf8574a",
+    "title": "PCF8574A 8-bit quasi-bidirectional I²C I/O expander (address 0x38–0x3F)",
+    "category": "io.expander",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x38",
+     "0x39",
+     "0x3a",
+     "0x3b",
+     "0x3c",
+     "0x3d",
+     "0x3e",
+     "0x3f"
+    ],
+    "supply": "2.5–6 V",
+    "class": "A"
+   },
+   {
+    "id": "pcf8575",
+    "title": "PCF8575 16-bit quasi-bidirectional I²C I/O expander",
+    "category": "io.expander",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x20",
+     "0x21",
+     "0x22",
+     "0x23",
+     "0x24",
+     "0x25",
+     "0x26",
+     "0x27"
+    ],
+    "supply": "2.5–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "tca9555",
+    "title": "TCA9555 16-bit I²C I/O expander with interrupt and internal pull-ups",
+    "category": "io.expander",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x20",
+     "0x21",
+     "0x22",
+     "0x23",
+     "0x24",
+     "0x25",
+     "0x26",
+     "0x27"
+    ],
+    "supply": "1.65–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "pca9548a",
+    "title": "PCA9548A 8-channel I²C switch (mux) with reset",
+    "category": "io.i2c_mux",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x70",
+     "0x71",
+     "0x72",
+     "0x73",
+     "0x74",
+     "0x75",
+     "0x76",
+     "0x77"
+    ],
+    "supply": "2.3–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "tca9548a",
+    "title": "TCA9548A 8-channel I²C switch (mux) with reset",
+    "category": "io.i2c_mux",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x70",
+     "0x71",
+     "0x72",
+     "0x73",
+     "0x74",
+     "0x75",
+     "0x76",
+     "0x77"
+    ],
+    "supply": "1.65–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "pca9685",
+    "title": "PCA9685 16-channel 12-bit PWM / LED controller (I²C)",
+    "category": "io.pwm",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x40",
+     "0x41",
+     "0x42",
+     "0x43",
+     "0x44",
+     "0x45",
+     "0x46",
+     "0x47",
+     "0x48",
+     "0x49",
+     "0x4a",
+     "0x4b",
+     "0x4c",
+     "0x4d",
+     "0x4e",
+     "0x4f",
+     "0x50",
+     "0x51",
+     "0x52",
+     "0x53",
+     "0x54",
+     "0x55",
+     "0x56",
+     "0x57",
+     "0x58",
+     "0x59",
+     "0x5a",
+     "0x5b",
+     "0x5c",
+     "0x5d",
+     "0x5e",
+     "0x5f",
+     "0x60",
+     "0x61",
+     "0x62",
+     "0x63",
+     "0x64",
+     "0x65",
+     "0x66",
+     "0x67",
+     "0x68",
+     "0x69",
+     "0x6a",
+     "0x6b",
+     "0x6c",
+     "0x6d",
+     "0x6e",
+     "0x6f",
+     "0x70",
+     "0x71",
+     "0x72",
+     "0x73",
+     "0x74",
+     "0x75",
+     "0x76",
+     "0x77",
+     "0x78",
+     "0x79",
+     "0x7a",
+     "0x7b",
+     "0x7c",
+     "0x7d",
+     "0x7e",
+     "0x7f"
+    ],
+    "supply": "2.3–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "6n137",
+    "title": "6N137 high-speed optocoupler, 10 MBd, open-drain output",
+    "category": "isolation.opto",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "4.5–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "el817",
+    "title": "EL817 phototransistor optocoupler (DIP-4, PC817 type)",
+    "category": "isolation.opto",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": null,
+    "class": "A"
+   },
+   {
+    "id": "ltv817",
+    "title": "LTV-817 phototransistor optocoupler (DIP-4, PC817 type)",
+    "category": "isolation.opto",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": null,
+    "class": "A1"
+   },
+   {
+    "id": "pc817",
+    "title": "PC817 phototransistor optocoupler (DIP-4)",
+    "category": "isolation.opto",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": null,
+    "class": "A"
+   },
+   {
+    "id": "apa102c",
+    "title": "APA102C addressable RGB LED (clocked two-wire, 5050)",
+    "category": "led.addressable",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": null,
+    "class": "B"
+   },
+   {
+    "id": "sk6812",
+    "title": "SK6812 addressable RGB LED (single-wire, 5050)",
+    "category": "led.addressable",
+    "kind": "ic",
+    "interfaces": [
+     "led_serial"
+    ],
+    "addresses": [],
+    "supply": "4.5–5.5 V",
+    "class": "A2"
+   },
+   {
+    "id": "ws2812b",
+    "title": "WS2812B addressable RGB LED (single-wire, 5050)",
+    "category": "led.addressable",
+    "kind": "ic",
+    "interfaces": [
+     "led_serial"
+    ],
+    "addresses": [],
+    "supply": "≥3.7 V",
+    "class": "A"
+   },
+   {
+    "id": "ws2813",
+    "title": "WS2813B addressable RGB LED with backup data input (5050)",
+    "category": "led.addressable",
+    "kind": "ic",
+    "interfaces": [
+     "led_serial"
+    ],
+    "addresses": [],
+    "supply": "≥3.7 V",
+    "class": "A"
+   },
+   {
+    "id": "ws2815",
+    "title": "WS2815B addressable RGB LED, 12 V supply, dual data input (5050)",
+    "category": "led.addressable",
+    "kind": "ic",
+    "interfaces": [
+     "led_serial"
+    ],
+    "addresses": [],
+    "supply": "≥9.5 V",
+    "class": "A"
+   },
+   {
+    "id": "bss138",
+    "title": "BSS138 N-channel logic-level MOSFET as I²C level shifter (NXP AN10441 circuit)",
+    "category": "logic.level_shifter",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": null,
+    "class": "A"
+   },
+   {
+    "id": "pca9306",
+    "title": "PCA9306 dual bidirectional I²C/SMBus voltage-level translator (pass switch)",
+    "category": "logic.level_shifter",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "1.2–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "sn74ahct125",
+    "title": "SN74AHCT125 quad bus buffer with 3-state outputs (TTL inputs, 5 V)",
+    "category": "logic.level_shifter",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "4.5–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "sn74lv1t34",
+    "title": "SN74LV1T34 single buffer, single-supply level shifter (5 V tolerant input)",
+    "category": "logic.level_shifter",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "1.6–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "sn74lvc125a",
+    "title": "SN74LVC125A quad 3-state buffer, 5.5 V tolerant inputs (1.65–3.6 V)",
+    "category": "logic.level_shifter",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "1.65–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "sn74lvc1t45",
+    "title": "SN74LVC1T45 1-bit dual-supply bus transceiver with direction pin (1.65–5.5 V)",
+    "category": "logic.level_shifter",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "1.65–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "sn74lvc8t245",
+    "title": "SN74LVC8T245 8-bit dual-supply bus transceiver with DIR and OE (1.65–5.5 V)",
+    "category": "logic.level_shifter",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "1.65–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "txb0104",
+    "title": "TXB0104 4-bit bidirectional level translator, auto direction (push-pull only)",
+    "category": "logic.level_shifter",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "1.2–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "txs0108e",
+    "title": "TXS0108E 8-bit bidirectional level translator for open-drain and push-pull",
+    "category": "logic.level_shifter",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "1.4–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "cd74hc4051",
+    "title": "CD74HC4051 8-channel analog multiplexer/demultiplexer",
+    "category": "logic.mux",
+    "kind": "ic",
+    "interfaces": [
+     "analog"
+    ],
+    "addresses": [],
+    "supply": "2–6 V",
+    "class": "A"
+   },
+   {
+    "id": "cd74hc4067",
+    "title": "CD74HC4067 16-channel analog multiplexer/demultiplexer",
+    "category": "logic.mux",
+    "kind": "ic",
+    "interfaces": [
+     "analog"
+    ],
+    "addresses": [],
+    "supply": "2–6 V",
+    "class": "A"
+   },
+   {
+    "id": "cd74hct4067",
+    "title": "CD74HCT4067 16-channel analog multiplexer/demultiplexer (TTL control inputs, 5 V)",
+    "category": "logic.mux",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "4.5–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "sn74hc165",
+    "title": "SN74HC165 8-bit parallel-in, serial-out shift register",
+    "category": "logic.shift_register",
+    "kind": "ic",
+    "interfaces": [
+     "digital"
+    ],
+    "addresses": [],
+    "supply": "2–6 V",
+    "class": "A"
+   },
+   {
+    "id": "sn74hc595",
+    "title": "SN74HC595 8-bit serial-in, parallel-out shift register with 3-state output latches",
+    "category": "logic.shift_register",
+    "kind": "ic",
+    "interfaces": [
+     "digital"
+    ],
+    "addresses": [],
+    "supply": "2–6 V",
+    "class": "A"
+   },
+   {
+    "id": "sn74hct595",
+    "title": "SN74HCT595 8-bit shift register with 3-state output latch (TTL inputs, 5 V)",
+    "category": "logic.shift_register",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "4.5–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "24aa32a",
+    "title": "24AA32A 32-Kbit I²C serial EEPROM (24LC32A as variant)",
+    "category": "memory",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x50",
+     "0x51",
+     "0x52",
+     "0x53",
+     "0x54",
+     "0x55",
+     "0x56",
+     "0x57"
+    ],
+    "supply": "1.7–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "24lc256",
+    "title": "24LC256 256-Kbit I²C serial EEPROM (24AA256/24FC256 as variants)",
+    "category": "memory",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x50",
+     "0x51",
+     "0x52",
+     "0x53",
+     "0x54",
+     "0x55",
+     "0x56",
+     "0x57"
+    ],
+    "supply": "2.5–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "at24c256",
+    "title": "AT24C256C 256-Kbit I²C serial EEPROM",
+    "category": "memory",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x50",
+     "0x51",
+     "0x52",
+     "0x53",
+     "0x54",
+     "0x55",
+     "0x56",
+     "0x57"
+    ],
+    "supply": "1.7–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "at24c32",
+    "title": "AT24C32D 32-Kbit I²C serial EEPROM",
+    "category": "memory",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x50",
+     "0x51",
+     "0x52",
+     "0x53",
+     "0x54",
+     "0x55",
+     "0x56",
+     "0x57"
+    ],
+    "supply": "1.7–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "lm2596",
+    "title": "LM2596 3 A step-down (buck) regulator, 150 kHz (adjustable)",
+    "category": "power.buck",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "4.5–40 V",
+    "class": "A"
+   },
+   {
+    "id": "mp1584",
+    "title": "MP1584 3 A, 1.5 MHz, 28 V step-down converter (SOIC8E)",
+    "category": "power.buck",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "4.5–28 V",
+    "class": "A1"
+   },
+   {
+    "id": "tps563201",
+    "title": "TPS563201 4.5–17 V input 3 A synchronous buck converter, Eco-mode (SOT-23-6)",
+    "category": "power.buck",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "4.5–17 V",
+    "class": "A"
+   },
+   {
+    "id": "bq24074",
+    "title": "BQ24074 1-cell Li-Ion linear charger 1.5 A with power path, 10.5 V OVP (VQFN-16)",
+    "category": "power.charger",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "4.35–10.2 V",
+    "class": "A"
+   },
+   {
+    "id": "mcp73831",
+    "title": "MCP73831 single-cell Li-Ion/Li-Polymer charge controller, 15–500 mA (SOT-23-5)",
+    "category": "power.charger",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "3.75–6 V",
+    "class": "A"
+   },
+   {
+    "id": "tp4056",
+    "title": "TP4056 1 A standalone linear Li-Ion battery charger (ESOP8)",
+    "category": "power.charger",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "4–8 V",
+    "class": "A"
+   },
+   {
+    "id": "ap2112k_33",
+    "title": "AP2112K-3.3 600 mA CMOS LDO regulator with enable (SOT25)",
+    "category": "power.ldo",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "2.5–6 V",
+    "class": "A"
+   },
+   {
+    "id": "ht7333",
+    "title": "HT7333 3.3 V low quiescent current LDO (SOT89, up to 12 V input)",
+    "category": "power.ldo",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "≤12 V",
+    "class": "A"
+   },
+   {
+    "id": "mcp1700",
+    "title": "MCP1700-3302 3.3 V low quiescent current LDO, 250 mA (SOT-23)",
+    "category": "power.ldo",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "2.3–6 V",
+    "class": "A"
+   },
+   {
+    "id": "me6211",
+    "title": "ME6211C33 3.3 V high-speed LDO with CE, 500 mA (SOT23-5)",
+    "category": "power.ldo",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "1.2–6 V",
+    "class": "A2"
+   },
+   {
+    "id": "tlv75533p",
+    "title": "TLV75533P 3.3 V 500 mA low-IQ LDO regulator with enable and output discharge",
+    "category": "power.ldo",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "1.45–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "xc6206",
+    "title": "XC6206P332 3.3 V positive voltage regulator, 200 mA class (SOT-23)",
+    "category": "power.ldo",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "1.8–6 V",
+    "class": "A1"
+   },
+   {
+    "id": "ina219",
+    "title": "INA219 current/power monitor, I²C, 26 V, external shunt",
+    "category": "power.monitor",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x40",
+     "0x41",
+     "0x42",
+     "0x43",
+     "0x44",
+     "0x45",
+     "0x46",
+     "0x47",
+     "0x48",
+     "0x49",
+     "0x4a",
+     "0x4b",
+     "0x4c",
+     "0x4d",
+     "0x4e",
+     "0x4f"
+    ],
+    "supply": "3–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "ina226",
+    "title": "INA226 current/power monitor, I²C, 36 V, external shunt",
+    "category": "power.monitor",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x40",
+     "0x41",
+     "0x42",
+     "0x43",
+     "0x44",
+     "0x45",
+     "0x46",
+     "0x47",
+     "0x48",
+     "0x49",
+     "0x4a",
+     "0x4b",
+     "0x4c",
+     "0x4d",
+     "0x4e",
+     "0x4f"
+    ],
+    "supply": "2.7–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "ina228",
+    "title": "INA228 20-bit power/energy/charge monitor, I²C, external shunt",
+    "category": "power.monitor",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x40",
+     "0x41",
+     "0x42",
+     "0x43",
+     "0x44",
+     "0x45",
+     "0x46",
+     "0x47",
+     "0x48",
+     "0x49",
+     "0x4a",
+     "0x4b",
+     "0x4c",
+     "0x4d",
+     "0x4e",
+     "0x4f"
+    ],
+    "supply": "2.7–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "ina260",
+    "title": "INA260 current/power monitor, I²C, 36 V, integrated 2 mΩ shunt",
+    "category": "power.monitor",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x40",
+     "0x41",
+     "0x42",
+     "0x43",
+     "0x44",
+     "0x45",
+     "0x46",
+     "0x47",
+     "0x48",
+     "0x49",
+     "0x4a",
+     "0x4b",
+     "0x4c",
+     "0x4d",
+     "0x4e",
+     "0x4f"
+    ],
+    "supply": "2.7–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "ina3221",
+    "title": "INA3221 three-channel shunt and bus voltage monitor, I²C, 26 V",
+    "category": "power.monitor",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x40",
+     "0x41",
+     "0x42",
+     "0x43"
+    ],
+    "supply": "2.7–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "ds1307",
+    "title": "DS1307 I²C real-time clock with 56 bytes of NV SRAM (5 V)",
+    "category": "rtc",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x68"
+    ],
+    "supply": "4.5–5.5 V",
+    "class": "A1"
+   },
+   {
+    "id": "ds3231",
+    "title": "DS3231 I²C real-time clock with integrated TCXO and crystal",
+    "category": "rtc",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x68"
+    ],
+    "supply": "2.3–5.5 V",
+    "class": "A1"
+   },
+   {
+    "id": "mcp7940n",
+    "title": "MCP7940N battery-backed I²C real-time clock/calendar with SRAM",
+    "category": "rtc",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x6f"
+    ],
+    "supply": "1.8–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "pcf8563",
+    "title": "PCF8563 low-power I²C real-time clock/calendar",
+    "category": "rtc",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x51"
+    ],
+    "supply": "1.8–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "rv3028c7",
+    "title": "RV-3028-C7 extreme low power I²C real-time clock module",
+    "category": "rtc",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x52"
+    ],
+    "supply": "1.2–5.5 V",
+    "class": "A1"
+   },
+   {
+    "id": "max30101",
+    "title": "MAX30101 pulse oximeter and heart-rate sensor (red, IR, green)",
+    "category": "sensor.bio",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x57"
+    ],
+    "supply": "1.7–2 V",
+    "class": "A1"
+   },
+   {
+    "id": "max30102",
+    "title": "MAX30102 pulse oximeter and heart-rate sensor",
+    "category": "sensor.bio",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x57"
+    ],
+    "supply": "1.7–2 V",
+    "class": "A1"
+   },
+   {
+    "id": "acs712",
+    "title": "ACS712 Hall-effect current sensor, analog output, 5 V",
+    "category": "sensor.current",
+    "kind": "ic",
+    "interfaces": [
+     "analog"
+    ],
+    "addresses": [],
+    "supply": "4.5–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "hcsr04",
+    "title": "HC-SR04 ultrasonic ranging module (unverified vendor sheet)",
+    "category": "sensor.distance",
+    "kind": "module",
+    "interfaces": [
+     "digital"
+    ],
+    "addresses": [],
+    "supply": null,
+    "class": "B"
+   },
+   {
+    "id": "vl53l0x",
+    "title": "VL53L0X time-of-flight ranging sensor (up to 2 m)",
+    "category": "sensor.distance",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x29"
+    ],
+    "supply": "2.6–3.5 V",
+    "class": "A1"
+   },
+   {
+    "id": "vl53l1x",
+    "title": "VL53L1X time-of-flight long-distance ranging sensor (up to 4 m)",
+    "category": "sensor.distance",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x29"
+    ],
+    "supply": "2.6–3.5 V",
+    "class": "A1"
+   },
+   {
+    "id": "vl6180x",
+    "title": "VL6180X time-of-flight proximity and ambient light sensor",
+    "category": "sensor.distance",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x29"
+    ],
+    "supply": "2.6–3 V",
+    "class": "A1"
+   },
+   {
+    "id": "aht20",
+    "title": "AHT20 humidity and temperature sensor",
+    "category": "sensor.environment",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x38"
+    ],
+    "supply": "2.2–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "bme280",
+    "title": "BME280 humidity, pressure and temperature sensor",
+    "category": "sensor.environment",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x76",
+     "0x77"
+    ],
+    "supply": "1.71–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "bmp280",
+    "title": "BMP280 pressure and temperature sensor",
+    "category": "sensor.environment",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x76",
+     "0x77"
+    ],
+    "supply": "1.71–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "bmp388",
+    "title": "BMP388 pressure and temperature sensor",
+    "category": "sensor.environment",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x76",
+     "0x77"
+    ],
+    "supply": "1.65–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "bmp390",
+    "title": "BMP390 barometric pressure and temperature sensor",
+    "category": "sensor.environment",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x76",
+     "0x77"
+    ],
+    "supply": "1.65–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "sen55",
+    "title": "SEN55 environmental sensor node (PM, RH/T, VOC, NOx)",
+    "category": "sensor.environment",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x69"
+    ],
+    "supply": "4.5–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "sht31",
+    "title": "SHT31 (SHT3x-DIS) humidity and temperature sensor",
+    "category": "sensor.environment",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x44",
+     "0x45"
+    ],
+    "supply": "2.15–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "sht40",
+    "title": "SHT40/SHT41/SHT45 (SHT4x) humidity and temperature sensor",
+    "category": "sensor.environment",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x44"
+    ],
+    "supply": "1.08–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "shtc3",
+    "title": "SHTC3 humidity and temperature sensor",
+    "category": "sensor.environment",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x70"
+    ],
+    "supply": "1.62–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "si7021",
+    "title": "Si7021-A20 humidity and temperature sensor",
+    "category": "sensor.environment",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x40"
+    ],
+    "supply": "1.9–3.6 V",
+    "class": "A1"
+   },
+   {
+    "id": "bme680",
+    "title": "BME680 gas, pressure, humidity and temperature sensor",
+    "category": "sensor.gas",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x76",
+     "0x77"
+    ],
+    "supply": "1.71–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "bme688",
+    "title": "BME688 gas, pressure, humidity and temperature sensor",
+    "category": "sensor.gas",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x76",
+     "0x77"
+    ],
+    "supply": "1.71–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "ens160",
+    "title": "ENS160 digital metal-oxide multi-gas sensor (TVOC, eCO2, AQI)",
+    "category": "sensor.gas",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x52",
+     "0x53"
+    ],
+    "supply": "1.71–1.98 V",
+    "class": "A"
+   },
+   {
+    "id": "scd4x",
+    "title": "SCD40/SCD41 CO2, humidity and temperature sensor",
+    "category": "sensor.gas",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x62"
+    ],
+    "supply": "2.4–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "sgp40",
+    "title": "SGP40 VOC sensor",
+    "category": "sensor.gas",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x59"
+    ],
+    "supply": "1.7–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "drv5032",
+    "title": "DRV5032 ultra-low-power digital-switch Hall sensor (push-pull, 20 Hz: FA/DU/FD)",
+    "category": "sensor.hall",
+    "kind": "ic",
+    "interfaces": [
+     "digital"
+    ],
+    "addresses": [],
+    "supply": "1.65–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "drv5055",
+    "title": "DRV5055 ratiometric linear Hall-effect sensor (analog output)",
+    "category": "sensor.hall",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": "3–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "tsop38238",
+    "title": "TSOP38238 IR receiver module, 38 kHz",
+    "category": "sensor.ir",
+    "kind": "ic",
+    "interfaces": [
+     "digital"
+    ],
+    "addresses": [],
+    "supply": "2–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "apds9960",
+    "title": "APDS-9960 proximity, ambient light, RGB and gesture sensor",
+    "category": "sensor.light",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x39"
+    ],
+    "supply": "2.4–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "bh1750fvi",
+    "title": "BH1750FVI ambient light sensor",
+    "category": "sensor.light",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x23",
+     "0x5c"
+    ],
+    "supply": "2.4–3.6 V",
+    "class": "A1"
+   },
+   {
+    "id": "tsl2591",
+    "title": "TSL2591 light-to-digital converter",
+    "category": "sensor.light",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x29"
+    ],
+    "supply": "2.7–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "veml7700",
+    "title": "VEML7700 ambient light sensor",
+    "category": "sensor.light",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x10"
+    ],
+    "supply": "2.5–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "adxl345",
+    "title": "ADXL345 3-axis digital accelerometer",
+    "category": "sensor.motion",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x1d",
+     "0x53"
+    ],
+    "supply": "2–3.6 V",
+    "class": "A1"
+   },
+   {
+    "id": "bmi270",
+    "title": "BMI270 6-axis accelerometer and gyroscope (IMU)",
+    "category": "sensor.motion",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x68",
+     "0x69"
+    ],
+    "supply": "1.71–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "bno055",
+    "title": "BNO055 9-axis absolute orientation sensor (sensor fusion)",
+    "category": "sensor.motion",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x28",
+     "0x29"
+    ],
+    "supply": "2.4–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "icm20948",
+    "title": "ICM-20948 9-axis accelerometer, gyroscope and magnetometer",
+    "category": "sensor.motion",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x68",
+     "0x69"
+    ],
+    "supply": "1.71–3.6 V",
+    "class": "A1"
+   },
+   {
+    "id": "lis3dh",
+    "title": "LIS3DH 3-axis ultra-low-power accelerometer",
+    "category": "sensor.motion",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x18",
+     "0x19"
+    ],
+    "supply": "1.71–3.6 V",
+    "class": "A1"
+   },
+   {
+    "id": "lsm6ds3trc",
+    "title": "LSM6DS3TR-C 6-axis accelerometer and gyroscope",
+    "category": "sensor.motion",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x6a",
+     "0x6b"
+    ],
+    "supply": "1.71–3.6 V",
+    "class": "A1"
+   },
+   {
+    "id": "mpu6050",
+    "title": "MPU-6050 6-axis accelerometer and gyroscope",
+    "category": "sensor.motion",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x68",
+     "0x69"
+    ],
+    "supply": "2.375–3.46 V",
+    "class": "A1"
+   },
+   {
+    "id": "qmc5883l",
+    "title": "QMC5883L 3-axis magnetometer",
+    "category": "sensor.motion",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x0d"
+    ],
+    "supply": "2.16–3.6 V",
+    "class": "A"
+   },
+   {
+    "id": "ds18b20",
+    "title": "DS18B20 1-Wire digital thermometer",
+    "category": "sensor.temperature",
+    "kind": "ic",
+    "interfaces": [
+     "onewire"
+    ],
+    "addresses": [],
+    "supply": "≤5.5 V",
+    "class": "A1"
+   },
+   {
+    "id": "max31855",
+    "title": "MAX31855 thermocouple-to-digital converter (SPI, read-only)",
+    "category": "sensor.temperature",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "3–3.6 V",
+    "class": "A1"
+   },
+   {
+    "id": "max31856",
+    "title": "MAX31856 thermocouple-to-digital converter, SPI",
+    "category": "sensor.temperature",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "3–3.6 V",
+    "class": "A1"
+   },
+   {
+    "id": "max31865",
+    "title": "MAX31865 RTD-to-digital converter for PT100/PT1000 (SPI)",
+    "category": "sensor.temperature",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "3–3.6 V",
+    "class": "A1"
+   },
+   {
+    "id": "max6675",
+    "title": "MAX6675 K-thermocouple-to-digital converter (SPI, read-only)",
+    "category": "sensor.temperature",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "3–5.5 V",
+    "class": "A2"
+   },
+   {
+    "id": "ntcle100e3",
+    "title": "Vishay NTCLE100E3 NTC thermistor, radial leaded",
+    "category": "sensor.temperature",
+    "kind": "ic",
+    "interfaces": [
+     "analog"
+    ],
+    "addresses": [],
+    "supply": null,
+    "class": "A"
+   },
+   {
+    "id": "tmp117",
+    "title": "TMP117 high-accuracy digital temperature sensor",
+    "category": "sensor.temperature",
+    "kind": "ic",
+    "interfaces": [
+     "i2c"
+    ],
+    "addresses": [
+     "0x48",
+     "0x49",
+     "0x4a",
+     "0x4b"
+    ],
+    "supply": "1.7–5.5 V",
+    "class": "A"
+   },
+   {
+    "id": "ttp223",
+    "title": "TTP223 one-key capacitive touch detector (TTP223-BA6, preliminary datasheet)",
+    "category": "sensor.touch",
+    "kind": "ic",
+    "interfaces": [
+     "digital"
+    ],
+    "addresses": [],
+    "supply": null,
+    "class": "B"
+   },
+   {
+    "id": "sdcard",
+    "title": "SD / microSD memory card in SPI mode",
+    "category": "storage.sd",
+    "kind": "ic",
+    "interfaces": [
+     "spi"
+    ],
+    "addresses": [],
+    "supply": "2.7–3.6 V",
+    "class": "A2"
+   },
+   {
+    "id": "g5le",
+    "title": "Omron G5LE-1 PCB power relay, SPDT (5 VDC coil; 12/24 VDC variants)",
+    "category": "switch.relay",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": null,
+    "class": "A1"
+   },
+   {
+    "id": "srd_05vdc_sl_c",
+    "title": "Songle SRD-05VDC-SL-C relay, 5 V coil (0.36 W), SPDT",
+    "category": "switch.relay",
+    "kind": "ic",
+    "interfaces": [],
+    "addresses": [],
+    "supply": null,
+    "class": "A1"
+   }
+  ]
+ },
+ "checks": [],
+ "warnings": [],
+ "assumptions": [],
+ "sources": [],
+ "simulated": false,
+ "error": null
+}

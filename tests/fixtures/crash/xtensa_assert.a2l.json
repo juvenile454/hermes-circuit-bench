@@ -1,0 +1,13 @@
+{
+ "addresses": {
+  "0x40375b4a": "panic_abort at /esp/esp-idf/components/esp_system/panic.c:477",
+  "0x4037a1d5": "esp_system_abort at /esp/esp-idf/components/esp_system/port/esp_system_chip.c:87",
+  "0x40380e8d": "__assert_func at /esp/esp-idf/components/esp_libc/src/assert.c:80",
+  "0x42008d3f": [
+   "copy_frame at {project}/main/main.c:41",
+   "read_sensor at {project}/main/main.c:42"
+  ],
+  "0x42008d6e": "app_main at {project}/main/main.c:57",
+  "0x420196b3": "main_task at /esp/esp-idf/components/freertos/app_startup.c:208"
+ }
+}

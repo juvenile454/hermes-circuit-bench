@@ -1,0 +1,821 @@
+{
+ "schema": 1,
+ "wp": "thermo",
+ "note": "Values only from manufacturer documents; 'evidence' quotes a line of tests/corpus/excerpts/mod-thermo-*.txt.",
+ "modules": [
+  {
+   "id": "max31855",
+   "aliases": [
+    "max31855k",
+    "max31855kasa",
+    "max31855j",
+    "max31855n",
+    "max31855t",
+    "max31855s",
+    "max31855r",
+    "max31855e"
+   ],
+   "title": "MAX31855 thermocouple-to-digital converter (SPI, read-only)",
+   "category": "sensor.temperature",
+   "manufacturer": "Maxim Integrated (Analog Devices)",
+   "kind": "ic",
+   "source_ids": [
+    "mod-thermo-max31855-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 3.0,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Power-Supply Voltage VCC (Note 2) 3.0 3.3 3.6 V"
+     },
+     "typ": {
+      "value": 3.3,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Power-Supply Voltage VCC (Note 2) 3.0 3.3 3.6 V"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Power-Supply Voltage VCC (Note 2) 3.0 3.3 3.6 V"
+     },
+     "abs_max": {
+      "value": 4.0,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Supply Voltage Range (VCC to GND)...................-0.3V to +4.0V"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "value": 2.1,
+     "unit": "V",
+     "page": 2,
+     "evidence": "Input Logic 1 VIH 2.1 VCC + 0.3 V"
+    },
+    "vil": {
+     "value": 0.8,
+     "unit": "V",
+     "page": 2,
+     "evidence": "Input Logic 0 VIL -0.3 +0.8 V"
+    },
+    "voh": {
+     "rel_offset": -0.4,
+     "of": "VCC",
+     "unit": "V",
+     "page": 2,
+     "evidence": "Output High Voltage VOH IOUT = -1.6mA VCC - 0.4 V",
+     "conditions": "min at IOUT = −1.6 mA"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 2,
+     "evidence": "Output Low Voltage VOL IOUT = 1.6mA 0.4 V",
+     "conditions": "max at IOUT = 1.6 mA"
+    },
+    "v_in_max": {
+     "rel_offset": 0.3,
+     "of": "VCC",
+     "unit": "V",
+     "page": 2,
+     "evidence": "All Other Pins............................................. -0.3V to (VCC + 0.3V)",
+     "conditions": "absolute maximum rating, all pins other than VCC"
+    },
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "GND",
+     "signal": "gnd",
+     "tie": "GND"
+    },
+    {
+     "name": "T-",
+     "signal": "analog_in",
+     "note": "thermocouple input; do not connect to GND (p. 7)"
+    },
+    {
+     "name": "T+",
+     "signal": "analog_in",
+     "note": "thermocouple input (p. 7)"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply"
+    },
+    {
+     "name": "SCK",
+     "signal": "spi_sck"
+    },
+    {
+     "name": "CS",
+     "signal": "spi_cs",
+     "active_low": true
+    },
+    {
+     "name": "SO",
+     "signal": "spi_sdo",
+     "output": "tristate"
+    },
+    {
+     "name": "DNC",
+     "signal": "nc",
+     "note": "do not connect (p. 7)"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "spi",
+     "f_max_hz": {
+      "value": 5000000,
+      "unit": "Hz",
+      "page": 4,
+      "evidence": "Serial-Clock Frequency fSCL 5 MHz"
+     },
+     "note": "read-only SPI (no SDI); the datasheet names no SPI mode: SO changes within tDO of the falling edge of SCK (p. 9), so the master samples on the rising edge"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "typ": {
+     "value": 0.0009,
+     "unit": "A",
+     "page": 2,
+     "evidence": "Power-Supply Current ICC 900 1500 µA"
+    },
+    "max": {
+     "value": 0.0015,
+     "unit": "A",
+     "page": 2,
+     "evidence": "Power-Supply Current ICC 900 1500 µA"
+    }
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VCC"
+     ],
+     "to": "GND",
+     "page": 11,
+     "evidence": [
+      "minimized by placing a 0.1µF ceramic bypass capacitor",
+      "close to the VCC pin of the device and to GND."
+     ],
+     "note": "recommendation against supply noise (p. 11)"
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "10nF",
+     "pins": [
+      "T+"
+     ],
+     "to": "T-",
+     "page": 11,
+     "evidence": [
+      "noise sources. It is strongly recommended to add a",
+      "10nF ceramic surface-mount differential capacitor, placed",
+      "across the T+ and T- pins"
+     ],
+     "note": "recommended differential filter capacitor across T+ and T- (p. 11)"
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "T- must not be connected to GND: the chip references T- to ground internally and its fault detection tests T+/T- for shorts to GND and VCC (p. 7, 9).",
+     "page": 7,
+     "evidence": "2 T- Thermocouple Input. See Table 1. Do not connect to GND.",
+     "verified": true
+    },
+    {
+     "text": "Use an ungrounded (insulated) thermocouple junction; a grounded or exposed junction touching grounded metal looks like a short to GND (fault bit SCG).",
+     "verified": false
+    },
+    {
+     "text": "Output: 32 bits, signed 14-bit thermocouple temperature with 0.25 °C resolution plus the 12-bit internal temperature and fault bits (p. 1, 4, 9).",
+     "page": 4,
+     "evidence": [
+      "Thermocouple Temperature Data",
+      "Resolution 0.25 °C"
+     ],
+     "verified": true
+    },
+    {
+     "text": "Conversion time 70 ms typical, 100 ms max (p. 4).",
+     "page": 4,
+     "evidence": "tCONV (Note 5) 70 100 ms",
+     "verified": true
+    },
+    {
+     "text": "One part number per thermocouple type (K, J, N, T, S, R, E); MAX31855KASA+ is type K, -200 °C to +1350 °C (p. 12).",
+     "page": 12,
+     "evidence": "MAX31855KASA+ K -200°C to +1350°C 8 SO",
+     "verified": true
+    },
+    {
+     "text": "3.3 V only (VCC 3.0–3.6 V, absolute maximum 4.0 V); breakouts with a regulator and level shifter accept 5 V, the bare chip does not.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "max6675",
+   "aliases": [
+    "max6675isa"
+   ],
+   "title": "MAX6675 K-thermocouple-to-digital converter (SPI, read-only)",
+   "category": "sensor.temperature",
+   "manufacturer": "Maxim Integrated (Analog Devices)",
+   "kind": "ic",
+   "source_ids": [
+    "mod-thermo-max6675-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 3.0,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Supply Voltage V CC 3.0 5.5 V"
+     },
+     "max": {
+      "value": 5.5,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Supply Voltage V CC 3.0 5.5 V"
+     },
+     "abs_max": {
+      "value": 6.0,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Supply Voltage (VCC to GND) ................................ -0.3V to +6V"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "rel": 0.7,
+     "of": "VCC",
+     "unit": "V",
+     "page": 2,
+     "evidence": "Input High Voltage V IH 0.7 xVCC V"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VCC",
+     "unit": "V",
+     "page": 2,
+     "evidence": "Input Low Voltage V IL 0.3 xVCC V"
+    },
+    "voh": {
+     "rel_offset": -0.4,
+     "of": "VCC",
+     "unit": "V",
+     "page": 3,
+     "evidence": "Output High Voltage V OH ISOURCE = 1.6mA VCC -0.4 V",
+     "conditions": "min at ISOURCE = 1.6 mA"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 3,
+     "evidence": "Output Low Voltage V OL ISINK = 1.6mA 0.4 V",
+     "conditions": "max at ISINK = 1.6 mA"
+    },
+    "v_in_max": {
+     "rel_offset": 0.3,
+     "of": "VCC",
+     "unit": "V",
+     "page": 2,
+     "evidence": "SO, SCK, CS, T-, T+ to GND .......................-0.3V to V CC + 0.3V",
+     "conditions": "absolute maximum rating"
+    },
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "GND",
+     "signal": "gnd",
+     "tie": "GND"
+    },
+    {
+     "name": "T-",
+     "signal": "analog_in",
+     "tie": "GND",
+     "note": "alumel lead of the type-K thermocouple; connect to ground externally (p. 4, 5)"
+    },
+    {
+     "name": "T+",
+     "signal": "analog_in",
+     "note": "chromel lead of the type-K thermocouple (p. 4)"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply"
+    },
+    {
+     "name": "SCK",
+     "signal": "spi_sck"
+    },
+    {
+     "name": "CS",
+     "signal": "spi_cs",
+     "active_low": true
+    },
+    {
+     "name": "SO",
+     "signal": "spi_sdo",
+     "output": "tristate"
+    },
+    {
+     "name": "N.C.",
+     "signal": "nc"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "spi",
+     "f_max_hz": {
+      "value": 4300000,
+      "unit": "Hz",
+      "page": 3,
+      "evidence": "Serial Clock Frequency f SCL 4.3 MHz"
+     },
+     "note": "read-only SPI, 16 bits; 'Read the 16 output bits on the falling edge of the clock' (p. 5); the datasheet names no SPI mode number"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "typ": {
+     "value": 0.0007,
+     "unit": "A",
+     "page": 2,
+     "evidence": "Supply Current I CC 0.7 1.5 mA"
+    },
+    "max": {
+     "value": 0.0015,
+     "unit": "A",
+     "page": 2,
+     "evidence": "Supply Current I CC 0.7 1.5 mA"
+    }
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VCC"
+     ],
+     "to": "GND",
+     "page": 4,
+     "evidence": "4 VCC Positive Supply. Bypass with a 0.1µFcapacitor to GND."
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "T- must be grounded for the open-thermocouple detection (bit D2); make the ground connection close to the GND pin (p. 5).",
+     "page": 5,
+     "evidence": [
+      "open thermocouple detector, T- must be grounded.",
+      "Make the ground connection as close to the GND pin"
+     ],
+     "verified": true
+    },
+    {
+     "text": "12-bit result, 0.25 °C resolution, 0 °C to +1024 °C, type K only (p. 1).",
+     "page": 1,
+     "evidence": [
+      "The data is output in a 12-bit resolution, SPI",
+      "This converter resolves temperatures to 0.25°C, allows",
+      "readings as high as +1024°C"
+     ],
+     "verified": true
+    },
+    {
+     "text": "Conversion time 0.17 s typical, 0.22 s max; pulling CS low stops a running conversion (p. 2, 5).",
+     "page": 2,
+     "evidence": "Conversion Time (Note 2) 0.17 0.22 s",
+     "verified": true
+    },
+    {
+     "text": "At VCC = 5 V the inputs need VIH = 0.7 × VCC = 3.5 V and SO drives up to VCC: run the chip at 3.3 V next to an ESP32 (VCC range 3.0–5.5 V).",
+     "page": 2,
+     "evidence": "Input High Voltage V IH 0.7 xVCC V",
+     "verified": true
+    },
+    {
+     "text": "Datasheet copy hosted by Adafruit (Maxim document 19-2235 Rev 1); many cheap 'MAX6675' boards are clones or have no bypass capacitor.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "max31865",
+   "aliases": [
+    "max31865aap",
+    "max31865atp"
+   ],
+   "title": "MAX31865 RTD-to-digital converter for PT100/PT1000 (SPI)",
+   "category": "sensor.temperature",
+   "manufacturer": "Maxim Integrated (Analog Devices)",
+   "kind": "ic",
+   "source_ids": [
+    "mod-thermo-max31865-ds"
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 3.0,
+      "unit": "V",
+      "page": 2,
+      "evidence": "VDD VDD 3.0 3.3 3.6 V"
+     },
+     "typ": {
+      "value": 3.3,
+      "unit": "V",
+      "page": 2,
+      "evidence": "VDD VDD 3.0 3.3 3.6 V"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 2,
+      "evidence": "VDD VDD 3.0 3.3 3.6 V"
+     },
+     "abs_max": {
+      "value": 4.0,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Voltage Range on VDD Relative to GND1 ............-0.3V to +4.0V"
+     }
+    },
+    "DVDD": {
+     "min": {
+      "value": 3.0,
+      "unit": "V",
+      "page": 2,
+      "evidence": "DVDD VDVDD 3.0 3.3 3.6 V"
+     },
+     "typ": {
+      "value": 3.3,
+      "unit": "V",
+      "page": 2,
+      "evidence": "DVDD VDVDD 3.0 3.3 3.6 V"
+     },
+     "max": {
+      "value": 3.6,
+      "unit": "V",
+      "page": 2,
+      "evidence": "DVDD VDVDD 3.0 3.3 3.6 V"
+     },
+     "abs_max": {
+      "value": 4.0,
+      "unit": "V",
+      "page": 2,
+      "evidence": "Voltage Range on DVDD Relative to DGND  ........-0.3V to +4.0V"
+     }
+    }
+   },
+   "io": {
+    "domain": "DVDD",
+    "vih": {
+     "rel": 0.7,
+     "of": "DVDD",
+     "unit": "V",
+     "page": 2,
+     "evidence": "Input Logic 1 VIH CS, SDI, SCLK 0.7 x VDVDD VDVDD + 0.3 V"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "DVDD",
+     "unit": "V",
+     "page": 2,
+     "evidence": "Input Logic 0 VIL CS, SDI, SCLK -0.3 0.3 x VDVDD V"
+    },
+    "voh": {
+     "rel_offset": -0.4,
+     "of": "DVDD",
+     "unit": "V",
+     "page": 3,
+     "evidence": "Output High Voltage VOH IOUT = -1.6mA VDVDD - 0.4 V",
+     "conditions": "min at IOUT = −1.6 mA"
+    },
+    "vol": {
+     "value": 0.4,
+     "unit": "V",
+     "page": 3,
+     "evidence": "Output Low Voltage VOL IOUT = 1.6mA 0.4 V",
+     "conditions": "max at IOUT = 1.6 mA"
+    },
+    "v_in_max": {
+     "rel_offset": 0.3,
+     "of": "DVDD",
+     "unit": "V",
+     "page": 2,
+     "evidence": [
+      "Voltage Range on All Digital Pins",
+      "-0.3V to (VDVDD + 0.3V)"
+     ],
+     "conditions": "absolute maximum rating, digital pins relative to DGND"
+    },
+    "outputs": "push_pull"
+   },
+   "pins": [
+    {
+     "name": "BIAS",
+     "signal": "power_out",
+     "note": "bias voltage output VBIAS 2.0 V typ (p. 3, 8)"
+    },
+    {
+     "name": "REFIN+",
+     "signal": "analog_in",
+     "tie": "BIAS",
+     "note": "connect to BIAS; reference resistor between REFIN+ and REFIN- (p. 8)"
+    },
+    {
+     "name": "REFIN-",
+     "signal": "analog_in",
+     "note": "low side of RREF (p. 8)"
+    },
+    {
+     "name": "ISENSOR",
+     "signal": "analog_in",
+     "tie": "REFIN-",
+     "note": "connect to REFIN- (p. 8)"
+    },
+    {
+     "name": "FORCE+",
+     "signal": "power_out",
+     "note": "high-side RTD drive; to FORCE2 in 3-wire (p. 8)"
+    },
+    {
+     "name": "FORCE2",
+     "signal": "analog_in",
+     "note": "3-wire: connect to FORCE+; 2-wire or 4-wire: connect to ground (p. 8)"
+    },
+    {
+     "name": "RTDIN+",
+     "signal": "analog_in"
+    },
+    {
+     "name": "RTDIN-",
+     "signal": "analog_in"
+    },
+    {
+     "name": "FORCE-",
+     "signal": "analog_in",
+     "note": "low-side RTD return (p. 8)"
+    },
+    {
+     "name": "GND2",
+     "signal": "gnd",
+     "tie": "GND"
+    },
+    {
+     "name": "SDI",
+     "signal": "spi_sdi"
+    },
+    {
+     "name": "SCLK",
+     "signal": "spi_sck"
+    },
+    {
+     "name": "CS",
+     "signal": "spi_cs",
+     "active_low": true
+    },
+    {
+     "name": "SDO",
+     "signal": "spi_sdo",
+     "output": "tristate"
+    },
+    {
+     "name": "DGND",
+     "signal": "gnd",
+     "tie": "GND"
+    },
+    {
+     "name": "GND1",
+     "signal": "gnd",
+     "tie": "GND"
+    },
+    {
+     "name": "N.C.",
+     "signal": "nc"
+    },
+    {
+     "name": "DRDY",
+     "signal": "digital_out",
+     "active_low": true,
+     "output": "push_pull",
+     "note": "active-low push-pull data-ready output (p. 8)"
+    },
+    {
+     "name": "DVDD",
+     "signal": "supply"
+    },
+    {
+     "name": "VDD",
+     "signal": "supply"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "spi",
+     "mode": 1,
+     "f_max_hz": {
+      "value": 5000000,
+      "unit": "Hz",
+      "page": 4,
+      "evidence": "SCLK Frequency tCLK (Note 9) DC 5.0 MHz"
+     },
+     "note": "SPI modes 1 and 3 (p. 16); CPHA must be 1 (p. 17)"
+    }
+   ],
+   "current": {
+    "supply": "VDD",
+    "typ": {
+     "value": 0.002,
+     "unit": "A",
+     "page": 3,
+     "evidence": "IDD Bias on, active conversion 2 3.5 mA",
+     "conditions": "bias on, active conversion; sum of analog and digital current (note 6)"
+    },
+    "max": {
+     "value": 0.0035,
+     "unit": "A",
+     "page": 3,
+     "evidence": "IDD Bias on, active conversion 2 3.5 mA",
+     "conditions": "bias on, active conversion; sum of analog and digital current (note 6)"
+    }
+   },
+   "requires": [
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "VDD"
+     ],
+     "to": "GND",
+     "page": 8,
+     "evidence": "Bypass to GND1 with a 0.1µF bypass capacitor."
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "value": "100nF",
+     "pins": [
+      "DVDD"
+     ],
+     "to": "GND",
+     "page": 8,
+     "evidence": "Bypass to DGND with a 0.1µF bypass capacitor."
+    }
+   ],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "Reference resistor RREF 350 Ω–10 kΩ (p. 2); optimum RREF = 4 × R0: 400 Ω for a PT100, 4 kΩ for a PT1000 (p. 10). calc.rtd computes resistance, code and temperature.",
+     "page": 10,
+     "evidence": [
+      "resistor equal to four times the RTD’s 0 NC resistance is",
+      "a 400 I reference resistor, and a PT1000 uses a 4k I"
+     ],
+     "verified": true
+    },
+    {
+     "text": "RRTD = ADC code × RREF / 2^15 (15-bit ratio, D0 of the LSB register is the fault bit; p. 15, 19).",
+     "page": 19,
+     "evidence": "RRTD = (ADC Code x R REF)/215",
+     "verified": true
+    },
+    {
+     "text": "2-, 3- or 4-wire RTD; cable resistance up to 50 Ω per lead; with a PT100, 0.4 Ω in series (2-wire) is about 1 °C error (p. 2, 10).",
+     "page": 10,
+     "evidence": [
+      "close to the MAX31865. Note that, for a PT100, series",
+      "resistance of 0.4I causes an error of approximately 1 NC."
+     ],
+     "verified": true
+    },
+    {
+     "text": "Shutdown supply current (bias off, ADC off) is 1.5 mA typical, 3 mA max (p. 3).",
+     "page": 3,
+     "evidence": "Shutdown Bias off, ADC off 1.5 3 mA",
+     "verified": true
+    },
+    {
+     "text": "3.3 V only (VDD and DVDD 3.0–3.6 V, absolute maximum 4.0 V).",
+     "page": 2,
+     "evidence": "DVDD VDVDD 3.0 3.3 3.6 V",
+     "verified": true
+    },
+    {
+     "text": "Common breakouts fit RREF 430 Ω (PT100) or 4.3 kΩ (PT1000) and add a 3.3 V regulator; read the resistor value on your board and pass it to calc.rtd.",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "ntcle100e3",
+   "aliases": [
+    "ntcle100e3103",
+    "ntcle100e3103jb0",
+    "ntcle100e3472"
+   ],
+   "title": "Vishay NTCLE100E3 NTC thermistor, radial leaded",
+   "category": "sensor.temperature",
+   "manufacturer": "Vishay BCcomponents",
+   "kind": "ic",
+   "source_ids": [
+    "mod-thermo-ntcle100e3-ds"
+   ],
+   "pins": [
+    {
+     "name": "1",
+     "signal": "analog_out",
+     "note": "no polarity; usually the divider node to an ESP ADC pin"
+    },
+    {
+     "name": "2",
+     "signal": "power_out",
+     "note": "no polarity; to GND or the divider supply"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "analog",
+     "note": "resistive sensor: needs a divider resistor; calc.ntc gives the divider voltage over temperature, the ADC range and the self-heating"
+    }
+   ],
+   "requires": [],
+   "hazards": [],
+   "notes": [
+    {
+     "text": "R25 3.3 Ω to 470 kΩ, B25/85 2880 K to 4570 K by type; the 10 kΩ type NTCLE100E3103 has B25/85 = 3977 K ± 0.75 % (p. 1, 2).",
+     "page": 2,
+     "evidence": "10 000 2, 3, 5 3977 0.75",
+     "verified": true
+    },
+    {
+     "text": "Operating range -40 °C to +125 °C at zero power, up to 150 °C for short periods (p. 1).",
+     "page": 1,
+     "evidence": [
+      "continuously -40 to +125",
+      "for short periods ≤ 150"
+     ],
+     "verified": true
+    },
+    {
+     "text": "Dissipation factor 7 mW/K (8.5 mW/K for R25 ≤ 680 Ω), for information only; maximum power 500 mW at 55 °C (p. 1).",
+     "page": 1,
+     "evidence": [
+      "Dissipation factor δ",
+      "7",
+      "mW/K8.5",
+      "(for R25-value ≤ 680 Ω)"
+     ],
+     "verified": true
+    },
+    {
+     "text": "Zero power means at most 1 % of the maximum power; the voltage on the NTC should always stay below 50 VDC (p. 2).",
+     "page": 2,
+     "evidence": [
+      "• Zero power is considered as measuring power max. 1 % of max.",
+      "power. Voltage on the NTC should always be below 50 VDC"
+     ],
+     "verified": true
+    },
+    {
+     "text": "The coating has no specified insulation properties: do not let the leads or the body touch live parts (p. 1).",
+     "page": 1,
+     "evidence": [
+      "colored dot. The coating ha s no specified insulation",
+      "properties."
+     ],
+     "verified": true
+    },
+    {
+     "text": "Resistance vs temperature: extended Steinhart-Hart formula with per-material constants A–D and A1–D1 (p. 4) and R/T tables (p. 5–13).",
+     "page": 4,
+     "evidence": "following interpolation laws (extended “Steinhart and Hart”):",
+     "verified": true
+    }
+   ]
+  }
+ ]
+}

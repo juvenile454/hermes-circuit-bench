@@ -1,0 +1,55 @@
+# source_id: mod-power-lm2596-ds
+# document: Texas Instruments LM2596 SIMPLE SWITCHER Power Converter 150-kHz 3-A Step-Down Voltage Regulator, SNVS124G (revised March 2023)
+# url: https://www.ti.com/lit/ds/symlink/lm2596.pdf
+# corpus: mod/power/lm2596.pdf sha256 2eec90879908cf711b84d4f0c5d534c3cd12c576d25254b7019247435af4ab0f
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+3-A Step-Down Voltage Regulator
+• Adjustable version output voltage range: 1.2-V to 
+37-V ±4% maximum over line and load conditions
+• 3-A output load current
+@@ page 4
+1 VIN I
+This is the positive input supply for the IC switching regulator. A suitable input bypass 
+capacitor must be present at this pin to minimize voltage transients and to supply the 
+2 Output O
+3 Ground — Circuit ground
+4 Feedback I Senses the regulated output voltage to complete the feedback loop.
+5 ON/OFF I
+voltage of approximately 1.3 V turns the regulator on, and pulling this pin above 1.3 V (up 
+to a maximum of 25 V) shuts the regulator down. If this shutdown feature is not required, 
+SNVS124G – NOVEMBER 1999 – REVISED MARCH 2023
+@@ page 5
+Maximum supply voltage (VIN) 45 V
+Maximum junction temperature 150 °C
+Supply voltage 4.5 40 V
+RθJA Junction-to-ambient thermal resistance(2) (3)
+See(5) 50 —
+(5) Junction to ambient thermal resistance with the TO-263 package tab soldered to a single sided printed circuit board with 0.5 in2 of 1-oz 
+copper area.
+@@ page 6
+7.8 Electrical Characteristics – Adjustable Voltage Version
+VFB Feedback voltage
+4.5 V ≤ VIN ≤ 40 V, 0.2 A ≤ ILOAD ≤ 3 A 1.23
+TJ = 25°C 1.193 1.267
+–40°C ≤ TJ ≤ 125°C 1.18 1.28
+@@ page 7
+fO Oscillator frequency(3) TJ = 25°C 127 150 173 kHz–40°C ≤ TJ ≤ 125°C 110 173
+VSAT Saturation voltage(4) (5) IOUT = 3 A TJ = 25°C 1.16 1.4 V–40°C ≤ TJ ≤ 125°C 1.5
+ICL Current limit(4) (5) Peak current TJ = 25°C 3.6 4.5 6.9 A–40°C ≤ TJ ≤ 125°C 3.4 7.5
+IQ Operating quiescent current(6) See (6) 5 10 mA
+quiescent ON/OFF pin = 5 V (OFF)(7) TJ = 25°C 80 200 μA–40°C ≤ TJ ≤ 125°C 250 μA
+Low (regulator ON)
+–40°C ≤ TJ ≤ 125°C 0.6
+VIL High (regulator OFF)
+–40°C ≤ TJ ≤ 125°C 2
+@@ page 27
+40-V Schottky Rectifier, 1N5825 L1 — 68 μH, L38 R1 — 1 kΩ, 1% CFF — See Section 9.1.2
+@@ page 28
+VOUT = VREF 1 +
+R2
+R1  where VREF  = 1.23 V (5)
+Select a value for R 1 between 240 Ω and 1.5 k Ω. The lower resistor values minimize noise pickup in the 
+Select R1 to be 1 kΩ, 1%. Solve for R2 in Equation 7.
+R2 = 1 k (16.26 − 1) = 15.26 k, closest 1% value is 15.4 kΩ.

@@ -1,0 +1,701 @@
+{
+ "schema": 1,
+ "chip": "esp32c6",
+ "title": "ESP32-C6",
+ "generated_from": {
+  "repo": "espressif/esp-idf",
+  "tag": "v6.1",
+  "tag_object": "4dc1c65503e98e9a6b4c3c5646237280ba79829b",
+  "commit": "fff9895c82d744c7237be8847347bdd1b07c6643",
+  "generator": "scripts/gen_pins.py",
+  "files": [
+   {
+    "path": "docs/en/api-reference/peripherals/gpio/esp32c6.inc",
+    "sha256": "bc6dbfbf11be2e5d728b7f1c470030540bdade492e2308a4d575d5dbdfa8ff85",
+    "source_id": "idf-v6.1-gpio-esp32c6"
+   },
+   {
+    "path": "components/soc/esp32c6/include/soc/soc_caps.h",
+    "sha256": "3fac01ec0fa52d68b1e8eafadaceeb93ed208bf74276565e944ee786d2202f2f",
+    "source_id": "idf-v6.1-soccaps-esp32c6"
+   },
+   {
+    "path": "components/soc/esp32c6/include/soc/adc_channel.h",
+    "sha256": "db06168289bbb76025d761e536a91c802940dc3eb4e227875282a3469ca0cb5d",
+    "source_id": "idf-v6.1-adc-channel-esp32c6"
+   },
+   {
+    "path": "components/soc/esp32c6/register/soc/io_mux_reg.h",
+    "sha256": "a88d2e0363a57d9aa7cdb5d00738509f6be3c572c1834482defbf810d028ed46",
+    "source_id": "idf-v6.1-iomux-esp32c6"
+   },
+   {
+    "repo": "espressif/esp-dev-kits",
+    "commit": "5c06bf1835329d6525f316475f7218aab6acfe79",
+    "path": "docs/en/esp32-c6-devkitc-1/user_guide.rst",
+    "sha256": "0c5d5b143e380f9e34844f1782a38a23558eba04a36574d0a7679e184c8d607d",
+    "source_id": "devkitc1-c6-v1.2"
+   },
+   {
+    "url": "https://www.espressif.com/sites/default/files/documentation/esp32-c6-mini-1_mini-1u_datasheet_en.pdf",
+    "excerpt": "tests/corpus/excerpts/esp32-c6-mini-1-datasheet-v1.5.txt",
+    "sha256": "26691033f31cbebf623842c16624e61151b152533c13a850c091c8e858c510a2",
+    "source_id": "ds-esp32-c6-mini-1"
+   },
+   {
+    "url": "https://www.espressif.com/sites/default/files/documentation/esp32-c6-wroom-1_wroom-1u_datasheet_en.pdf",
+    "excerpt": "tests/corpus/excerpts/esp32-c6-wroom-1-datasheet-v1.4.txt",
+    "sha256": "163020762fa6d499e0c611c5a13e78ad9d4720b421c6bc5e14e16fc748862b73",
+    "source_id": "ds-esp32-c6-wroom-1"
+   }
+  ]
+ },
+ "gpio_count": 31,
+ "capabilities": {
+  "gpio": {
+   "source_id": "idf-v6.1-gpio-esp32c6"
+  },
+  "output": {
+   "source_id": "idf-v6.1-soccaps-esp32c6"
+  },
+  "adc": {
+   "source_id": "idf-v6.1-adc-channel-esp32c6"
+  },
+  "functions": {
+   "source_id": "idf-v6.1-iomux-esp32c6"
+  },
+  "touch": {
+   "supported": false,
+   "source_id": "idf-v6.1-soccaps-esp32c6"
+  }
+ },
+ "gpios": [
+  {
+   "num": 0,
+   "name": "GPIO0",
+   "rtc": true,
+   "adc": {
+    "unit": 1,
+    "channel": 0
+   },
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO0",
+    "LP_GPIO0",
+    "ADC1_CH0"
+   ],
+   "tags": []
+  },
+  {
+   "num": 1,
+   "name": "GPIO1",
+   "rtc": true,
+   "adc": {
+    "unit": 1,
+    "channel": 1
+   },
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO1",
+    "LP_GPIO1",
+    "ADC1_CH1"
+   ],
+   "tags": []
+  },
+  {
+   "num": 2,
+   "name": "GPIO2",
+   "rtc": true,
+   "adc": {
+    "unit": 1,
+    "channel": 2
+   },
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO2",
+    "FSPIQ",
+    "LP_GPIO2",
+    "ADC1_CH2"
+   ],
+   "tags": []
+  },
+  {
+   "num": 3,
+   "name": "GPIO3",
+   "rtc": true,
+   "adc": {
+    "unit": 1,
+    "channel": 3
+   },
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO3",
+    "LP_GPIO3",
+    "ADC1_CH3"
+   ],
+   "tags": []
+  },
+  {
+   "num": 4,
+   "name": "GPIO4",
+   "rtc": true,
+   "adc": {
+    "unit": 1,
+    "channel": 4
+   },
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "MTMS",
+    "GPIO4",
+    "FSPIHD",
+    "LP_GPIO4",
+    "ADC1_CH4"
+   ],
+   "tags": [
+    "Strapping pin"
+   ]
+  },
+  {
+   "num": 5,
+   "name": "GPIO5",
+   "rtc": true,
+   "adc": {
+    "unit": 1,
+    "channel": 5
+   },
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "MTDI",
+    "GPIO5",
+    "FSPIWP",
+    "LP_GPIO5",
+    "ADC1_CH5"
+   ],
+   "tags": [
+    "Strapping pin"
+   ]
+  },
+  {
+   "num": 6,
+   "name": "GPIO6",
+   "rtc": true,
+   "adc": {
+    "unit": 1,
+    "channel": 6
+   },
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "MTCK",
+    "GPIO6",
+    "FSPICLK",
+    "LP_GPIO6",
+    "ADC1_CH6"
+   ],
+   "tags": []
+  },
+  {
+   "num": 7,
+   "name": "GPIO7",
+   "rtc": true,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "MTDO",
+    "GPIO7",
+    "FSPID",
+    "LP_GPIO7"
+   ],
+   "tags": []
+  },
+  {
+   "num": 8,
+   "name": "GPIO8",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO8"
+   ],
+   "tags": [
+    "Strapping pin"
+   ]
+  },
+  {
+   "num": 9,
+   "name": "GPIO9",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO9"
+   ],
+   "tags": [
+    "Strapping pin"
+   ]
+  },
+  {
+   "num": 10,
+   "name": "GPIO10",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO10"
+   ],
+   "tags": []
+  },
+  {
+   "num": 11,
+   "name": "GPIO11",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO11"
+   ],
+   "tags": []
+  },
+  {
+   "num": 12,
+   "name": "GPIO12",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO12"
+   ],
+   "tags": [
+    "USB-JTAG"
+   ]
+  },
+  {
+   "num": 13,
+   "name": "GPIO13",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO13"
+   ],
+   "tags": [
+    "USB-JTAG"
+   ]
+  },
+  {
+   "num": 14,
+   "name": "GPIO14",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO14"
+   ],
+   "tags": []
+  },
+  {
+   "num": 15,
+   "name": "GPIO15",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO15"
+   ],
+   "tags": [
+    "Strapping pin"
+   ]
+  },
+  {
+   "num": 16,
+   "name": "GPIO16",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "U0TXD",
+    "GPIO16",
+    "FSPICS0"
+   ],
+   "tags": []
+  },
+  {
+   "num": 17,
+   "name": "GPIO17",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "U0RXD",
+    "GPIO17",
+    "FSPICS1"
+   ],
+   "tags": []
+  },
+  {
+   "num": 18,
+   "name": "GPIO18",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "SDIO_CMD",
+    "GPIO18",
+    "FSPICS2"
+   ],
+   "tags": []
+  },
+  {
+   "num": 19,
+   "name": "GPIO19",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "SDIO_CLK",
+    "GPIO19",
+    "FSPICS3"
+   ],
+   "tags": []
+  },
+  {
+   "num": 20,
+   "name": "GPIO20",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "SDIO_DATA0",
+    "GPIO20",
+    "FSPICS4"
+   ],
+   "tags": []
+  },
+  {
+   "num": 21,
+   "name": "GPIO21",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "SDIO_DATA1",
+    "GPIO21",
+    "FSPICS5"
+   ],
+   "tags": []
+  },
+  {
+   "num": 22,
+   "name": "GPIO22",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "SDIO_DATA2",
+    "GPIO22"
+   ],
+   "tags": []
+  },
+  {
+   "num": 23,
+   "name": "GPIO23",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "SDIO_DATA3",
+    "GPIO23"
+   ],
+   "tags": []
+  },
+  {
+   "num": 24,
+   "name": "GPIO24",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "SPICS0",
+    "GPIO24"
+   ],
+   "tags": [
+    "SPI0/1"
+   ]
+  },
+  {
+   "num": 25,
+   "name": "GPIO25",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "SPIQ",
+    "GPIO25"
+   ],
+   "tags": [
+    "SPI0/1"
+   ]
+  },
+  {
+   "num": 26,
+   "name": "GPIO26",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "SPIWP",
+    "GPIO26"
+   ],
+   "tags": [
+    "SPI0/1"
+   ]
+  },
+  {
+   "num": 27,
+   "name": "GPIO27",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "GPIO27"
+   ],
+   "tags": [
+    "SPI0/1"
+   ]
+  },
+  {
+   "num": 28,
+   "name": "GPIO28",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "SPIHD",
+    "GPIO28"
+   ],
+   "tags": [
+    "SPI0/1"
+   ]
+  },
+  {
+   "num": 29,
+   "name": "GPIO29",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "SPICLK",
+    "GPIO29"
+   ],
+   "tags": [
+    "SPI0/1"
+   ]
+  },
+  {
+   "num": 30,
+   "name": "GPIO30",
+   "rtc": false,
+   "adc": null,
+   "touch": null,
+   "input_only": false,
+   "internal_pulls": true,
+   "functions": [
+    "SPID",
+    "GPIO30"
+   ],
+   "tags": [
+    "SPI0/1"
+   ]
+  }
+ ],
+ "variants": [
+  {
+   "id": "mini-1",
+   "label": "MINI-1",
+   "module": "ESP32-C6-MINI-1",
+   "flash_mb": null,
+   "psram": null,
+   "psram_mb": 0,
+   "source_id": "ds-esp32-c6-mini-1",
+   "evidence": "At the core of the modules is ESP32-C6FH4/ESP32-C6FH8, a 32-bit RISC-V single-core processor."
+  },
+  {
+   "id": "wroom-1",
+   "label": "WROOM-1",
+   "module": "ESP32-C6-WROOM-1",
+   "flash_mb": null,
+   "psram": null,
+   "psram_mb": 0,
+   "source_id": "ds-esp32-c6-wroom-1",
+   "evidence": "At the core of the modules is ESP32-C6, a 32-bit RISC-V single-core processor."
+  }
+ ],
+ "rules": [
+  {
+   "id": "c6.strapping",
+   "title": "strapping pin",
+   "severity": "caution",
+   "pins": [
+    4,
+    5,
+    8,
+    9,
+    15
+   ],
+   "when": {},
+   "modes": [
+    "*"
+   ],
+   "message": "Strapping pin: its level at reset is part of the boot configuration (see the ESP32-C6 datasheet). Avoid loads or pull resistors that change it at reset.",
+   "source_id": "idf-v6.1-gpio-esp32c6",
+   "evidence": "GPIO4, GPIO5, GPIO8, GPIO9, and GPIO15 are strapping pins"
+  },
+  {
+   "id": "c6.spi_flash",
+   "title": "SPI flash",
+   "severity": "blocked",
+   "pins": [
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+   ],
+   "when": {},
+   "modes": [
+    "*"
+   ],
+   "message": "Used for the SPI flash. Espressif: not recommended for other uses.",
+   "source_id": "idf-v6.1-gpio-esp32c6",
+   "evidence": "GPIO24 ~ GPIO30 are usually used for SPI flash and not recommended for other uses"
+  },
+  {
+   "id": "c6.usb_jtag",
+   "title": "USB-JTAG",
+   "severity": "caution",
+   "pins": [
+    12,
+    13
+   ],
+   "when": {},
+   "modes": [
+    "*"
+   ],
+   "message": "Used by USB-Serial/JTAG by default (USB D-/D+). Using it as a GPIO disables USB-JTAG.",
+   "source_id": "idf-v6.1-gpio-esp32c6",
+   "evidence": "GPIO12 and GPIO13 are used by USB-JTAG by default"
+  },
+  {
+   "id": "c6.uart0",
+   "title": "UART0 (console)",
+   "severity": "caution",
+   "pins": [
+    16,
+    17
+   ],
+   "when": {},
+   "modes": [
+    "*"
+   ],
+   "message": "UART0 U0TXD (GPIO16) / U0RXD (GPIO17): console and flashing over the USB-to-UART bridge.",
+   "source_id": "devkitc1-c6-v1.2",
+   "evidence": "U0TXD, GPIO16, FSPICS0"
+  },
+  {
+   "id": "c6.sip_flash",
+   "title": "not led out (in-package flash)",
+   "severity": "blocked",
+   "pins": [
+    10,
+    11
+   ],
+   "when": {
+    "variant": "mini-1"
+   },
+   "modes": [
+    "*"
+   ],
+   "message": "Not led out to any chip pin on ESP32-C6 variants with in-package (SiP) flash, such as the ESP32-C6FH4/FH8 of the ESP32-C6-MINI-1.",
+   "source_id": "idf-v6.1-gpio-esp32c6",
+   "evidence": "GPIO10 ~ GPIO11 are not led out to any chip pins"
+  },
+  {
+   "id": "c6.no_sip_flash",
+   "title": "not led out (no in-package flash)",
+   "severity": "blocked",
+   "pins": [
+    14
+   ],
+   "when": {
+    "variant": "wroom-1"
+   },
+   "modes": [
+    "*"
+   ],
+   "message": "Not led out to any chip pin on ESP32-C6 variants without in-package flash, such as the ESP32-C6 of the ESP32-C6-WROOM-1.",
+   "source_id": "idf-v6.1-gpio-esp32c6",
+   "evidence": "For chip variants without an in-package flash, GPIO14 is not led out to any chip pins"
+  }
+ ]
+}

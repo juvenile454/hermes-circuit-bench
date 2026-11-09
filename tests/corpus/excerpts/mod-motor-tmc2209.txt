@@ -1,0 +1,64 @@
+# source_id: mod-motor-tmc2209-ds
+# document: Trinamic (Analog Devices) TMC2209 Datasheet Rev. 1.09 / 2023-FEB-16
+# url: https://web.archive.org/web/20261004082311id_/https://www.analog.com/media/en/technical-documentation/data-sheets/tmc2209_datasheet_rev1.09.pdf
+# corpus: mod/motor/tmc2209_datasheet_rev1.09.pdf sha256 1d9e8eed9ad2edc17b112c1d54e3c468c34102a629bc3dbf729828919a7b0893
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+2-phase stepper motors up to 2.8A coil current (peak), 2A RMS
+Voltage Range 4.75… 29V DC
+@@ page 9
+ENN 2 DI Enable not input. The power stage becomes switched off (all motor outputs floating) when this pin becomes driven to a high level.
+CPI 5  Charge pump capacitor input. Tie to CPO using 22nF 50V capacitor.
+VCP 6  Charge pump voltage. Tie to VS using 100nF capacitor.
+Output of internal 5V regulator. Attach 2.2µF to 4.7µF ceramic
+For UART based configuration selection of UART Address 0…3 MS2_AD1 10 DI (pd)
+CLK 13 DI CLK input. Tie to GND using short wire for internal clock or supply external clock.
+Optional UART Input/Output. Power down function can be disabled
+@@ page 10
+VCC_IO 15  3.3V to 5V IO supply voltage for all digital pins (does not supply IC logic part).
+VS 22, 28  Motor supply voltage. Provide filtering capacity near pin with shortest possible loop to GND pad.
+BRA 23  Sense resistor connection for coil A. Place sense resistor to GND near pin. Tie to GND when using internal sense resistor.
+possible vias for heat transfer to GND plane. Serves as GND pin for
+@@ page 53
+2.5V: 100% …
+0.5V: 20%
+>2.5V: 100%
+<0.5V: not recommended
+Select the sense resistor to deliver enough current for the motor at full current scale (VREF=2.5V). This
+STANDALONE MODE RMS RUN CURRENT CALCULATION:
+𝐼𝑅𝑀𝑆 = 325𝑚𝑉𝑅𝑆𝐸𝑁𝑆𝐸 + 20𝑚Ω ∗ 1√2 ∗ 𝑉𝑉𝑅𝐸𝐹2.5𝑉
+RMS CURRENT CALCULATION WITH UART CONTROL OPTIONS OR HOLD CURRENT SETTING:
+𝐼𝑅𝑀𝑆 = 𝐶𝑆 + 132 ∗ 𝑉𝐹𝑆𝑅𝑆𝐸𝑁𝑆𝐸 + 20𝑚Ω ∗ 1√2
+VSRTL and VSRTH). Default is 325mV.
+@@ page 54
+with VVREF the voltage on pin VREF in the range 0V to V5VOUT/2
+For best precision of current setting, measure, and fine tune the current in the application.
+@@ page 75
+Supply voltage operating with inductive load  VVS -0.5 32 V
+I/O supply voltage VVIO -0.5 5.5 V
+Logic input voltage VI -0.5 VVIO+0.5 V
+VVREF -0.5 6 V
+Power bridge repetitive output current IOx  3 A
+*) Stray inductivity of GND and VS connections will lead to ringing of the supply voltage when driving
+Supply voltage (using internal +5V regulator) VVS 5.5 29 V
+Supply voltage (internal +5V regulator bridged: V5VOUT=VVS) VVS 4.7 5.4 V
+I/O supply voltage VVIO 3.00 5.25 V
+RMS motor coil current per coil (value for design guideline) IRMS  1.4 A
+Peak output current per motor coil output (sine wave peak)
+IOx  2.8 A
+@@ page 76
+Total supply current, standby IS ENN=0V, VREF=0V  160 300 µA
+Total supply current, operating,
+IS fCLK=12MHz, 35kHz
+ 7.5  mA
+@@ page 78
+VSRTL vsense=0
+ 325  mV
+VSRTH vsense=1
+ 180  mV
+@@ page 79
+Input voltage low level VINLO  -0.3  0.3 VVIO V
+Input voltage high level VINHI  0.7 VVIO  VVIO+0.3 V
+Output voltage low level VOUTLO IOUTLO = 2mA   0.2 V
+Output voltage high level VOUTHI IOUTHI = -2mA VVIO-0.2   V

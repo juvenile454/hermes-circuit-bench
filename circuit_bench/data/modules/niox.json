@@ -1,0 +1,2171 @@
+{
+ "schema": 1,
+ "wp": "niox",
+ "note": "Values only from manufacturer documents; 'evidence' quotes lines of tests/corpus/excerpts/mod-niox-*.txt (pypdf).",
+ "modules": [
+  {
+   "id": "rv3028c7",
+   "aliases": [
+    "rv3028",
+    "rv-3028-c7"
+   ],
+   "title": "RV-3028-C7 extreme low power I²C real-time clock module",
+   "category": "rtc",
+   "manufacturer": "Micro Crystal",
+   "kind": "ic",
+   "source_ids": [
+    "mod-niox-rv3028-am"
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 1.2,
+      "page": 97,
+      "evidence": "I2C-bus (100 kHz) 1.2  5.5",
+      "unit": "V",
+      "conditions": "I²C active at 100 kHz; 2.0 V for 400 kHz; timekeeping alone from 1.1 V"
+     },
+     "max": {
+      "value": 5.5,
+      "page": 97,
+      "evidence": "I2C-bus (400 kHz) 2.0  5.5",
+      "unit": "V"
+     },
+     "abs_max": {
+      "value": 6.0,
+      "page": 96,
+      "evidence": "VDD Power Supply Voltage  -0.3  6.0 V",
+      "unit": "V",
+      "conditions": "absolute maximum rating"
+     }
+    },
+    "VBACKUP": {
+     "max": {
+      "value": 5.5,
+      "page": 97,
+      "evidence": "VBACKUP Backup Supply Voltage  1.1  5.5 V",
+      "unit": "V",
+      "conditions": "backup source; no minimum modelled: unused VBACKUP goes to VSS (through 10 kΩ)"
+     }
+    }
+   },
+   "io": {
+    "domain": "VDD",
+    "vih": {
+     "rel": 0.8,
+     "of": "VDD",
+     "unit": "V",
+     "page": 98,
+     "evidence": [
+      "VIH HIGH level input voltage VDD = 1.1 V to 5.5 V",
+      "Pins: SCL, SDA, EVI",
+      "0.8 VDD"
+     ],
+     "conditions": "SCL, SDA, EVI; VDD 1.1–5.5 V"
+    },
+    "vil": {
+     "rel": 0.2,
+     "of": "VDD",
+     "unit": "V",
+     "page": 98,
+     "evidence": [
+      "VIL LOW level input voltage",
+      "0.2 VDD V"
+     ]
+    },
+    "vol": {
+     "value": 0.4,
+     "page": 98,
+     "evidence": [
+      "VOL LOW level output voltage Pins: SDA",
+      "V VDD = 3.0 V, IOL = 3.0 mA   0.4"
+     ],
+     "unit": "V",
+     "conditions": "SDA, INT; VDD 1.2–5.0 V (IOL 3.0 mA at 3.0 V, 0.5 mA at 1.2 V; 0.3 V max at 5.0 V)"
+    },
+    "v_in_max": {
+     "rel_offset": 0.3,
+     "of": "VDD",
+     "unit": "V",
+     "page": 96,
+     "evidence": "VI Input voltage Input Pin -0.3  VDD +0.3 V",
+     "conditions": "absolute maximum rating (VDD + 0.3 V): not 5 V tolerant"
+    },
+    "outputs": "open_drain",
+    "five_v_tolerant": false
+   },
+   "pins": [
+    {
+     "name": "CLKOUT",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "push-pull clock output, 32.768 kHz enabled by default (CLKOE = 1) (p. 9, 48)"
+    },
+    {
+     "name": "INT",
+     "signal": "open_drain_out",
+     "active_low": true,
+     "note": "open drain, pull-up when used (p. 9)"
+    },
+    {
+     "name": "SCL",
+     "signal": "i2c_scl"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda"
+    },
+    {
+     "name": "VSS",
+     "signal": "gnd"
+    },
+    {
+     "name": "VBACKUP",
+     "signal": "supply",
+     "must_connect": true,
+     "note": "backup source 1.1–5.5 V; when unused tie to VSS through 10 kΩ, not directly (p. 9)"
+    },
+    {
+     "name": "VDD",
+     "signal": "supply"
+    },
+    {
+     "name": "EVI",
+     "signal": "digital_in",
+     "must_connect": true,
+     "note": "external event input; should not be left floating (p. 9)"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "value": [
+       "0x52"
+      ],
+      "page": 93,
+      "evidence": "the 7-bit slave address 1010010b is reserved for the RV-3028-C7"
+     },
+     "default": "0x52",
+     "f_max_hz": {
+      "value": 400000.0,
+      "page": 102,
+      "evidence": "fSCL SCL input clock frequency 0 100 0 400 kHz",
+      "unit": "Hz",
+      "conditions": "fast mode; needs VDD ≥ 2.0 V (p. 97)"
+     },
+     "note": "fixed address 1010010b = 0x52 (write A4h, read A5h); no address pins"
+    }
+   ],
+   "current": {
+    "supply": "VDD",
+    "typ": {
+     "value": 5e-06,
+     "page": 97,
+     "evidence": [
+      "VDD supply current during",
+      "µA VDD = 3.0 V, SCL = 400 kHz(3)  5 40"
+     ],
+     "unit": "A",
+     "conditions": "I²C burst read/write at 400 kHz, VDD 3.0 V, without pull-up current"
+    },
+    "max": {
+     "value": 4e-05,
+     "page": 97,
+     "evidence": [
+      "VDD supply current during",
+      "µA VDD = 3.0 V, SCL = 400 kHz(3)  5 40"
+     ],
+     "unit": "A",
+     "conditions": "I²C burst read/write at 400 kHz, VDD 3.0 V, without pull-up current (5.0 V: 60 µA)"
+    },
+    "sleep": {
+     "value": 6e-08,
+     "page": 97,
+     "evidence": [
+      "VDD supply current timekeeping",
+      "VDD = 3.0 V(2), TA = 25°C  45 60"
+     ],
+     "unit": "A",
+     "conditions": "timekeeping, I²C inactive, CLKOUT disabled, VDD 3.0 V, 25 °C, max (typ 45 nA; 330 nA max over −40…85 °C)"
+    }
+   },
+   "requires": [
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "page": 9,
+     "evidence": [
+      "SCL 3 I2C Serial Clock Input; requires pull-up resistor.",
+      "SDA 4 I2C Serial Data Input-Output; open-drain; requires pull-up resistor."
+     ],
+     "note": "value from the I²C pull-up calculator"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Fixed I²C address 0x52; the input high threshold is 0.8 × VDD (stricter than the usual 0.7 × VDD).",
+     "verified": true,
+     "page": 98,
+     "evidence": "0.8 VDD"
+    },
+    {
+     "text": "Without a backup source, VBACKUP must be tied to VSS with a 10 kΩ resistor.",
+     "verified": true,
+     "page": 9,
+     "evidence": "VBACKUP must be tied to VSS with a 10 kΩ resistor."
+    },
+    {
+     "text": "Backup supply range VBACKUP 1.1–5.5 V.",
+     "verified": true,
+     "page": 97,
+     "evidence": "VBACKUP Backup Supply Voltage  1.1  5.5 V"
+    },
+    {
+     "text": "The trickle charger for the backup source is disabled on delivery (EEPROM 37h, bit TCE).",
+     "verified": true,
+     "page": 48,
+     "evidence": "Trickle Charger is enabled with bit TCE  (default value on delivery is disabled)"
+    },
+    {
+     "text": "Keep the trickle charger off with a primary (non-rechargeable) cell on VBACKUP.",
+     "verified": false
+    },
+    {
+     "text": "CLKOUT drives 32.768 kHz after power-on by default; disable it (CLKOE = 0) to save current.",
+     "verified": true,
+     "page": 48,
+     "evidence": "output to CLKOUT pin since the bit CLKOE is set to 1 (default)"
+    },
+    {
+     "text": "0x52 is also the address of the ENS160 gas sensor (ADDR low) and of 24xx/AT24 EEPROMs with A1 high; the RV-3028-C7 address cannot be changed, so move the other device or use a mux channel.",
+     "verified": false
+    }
+   ],
+   "hazards": []
+  },
+  {
+   "id": "mcp7940n",
+   "aliases": [
+    "mcp7940n-i-sn",
+    "mcp7940n-i-ms"
+   ],
+   "title": "MCP7940N battery-backed I²C real-time clock/calendar with SRAM",
+   "category": "rtc",
+   "manufacturer": "Microchip Technology",
+   "kind": "ic",
+   "source_ids": [
+    "mod-niox-mcp7940n-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 1.8,
+      "page": 3,
+      "evidence": "Industrial (I): V CC = +1.8V to 5.5V T A = -40°C to +85°C",
+      "unit": "V",
+      "conditions": "−40…85 °C (I)"
+     },
+     "max": {
+      "value": 5.5,
+      "page": 3,
+      "evidence": "Industrial (I): V CC = +1.8V to 5.5V T A = -40°C to +85°C",
+      "unit": "V"
+     },
+     "abs_max": {
+      "value": 6.5,
+      "page": 3,
+      "evidence": [
+       "VCC....",
+       "6.5V"
+      ],
+      "unit": "V",
+      "conditions": "absolute maximum rating"
+     }
+    },
+    "VBAT": {
+     "max": {
+      "value": 5.5,
+      "page": 3,
+      "evidence": [
+       "D13 V BAT Backup supply voltage",
+       "1.3 — 5.5 V (Note 1)"
+      ],
+      "unit": "V",
+      "conditions": "backup supply; no minimum modelled: unused VBAT is tied to VSS"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "rel": 0.7,
+     "of": "VCC",
+     "unit": "V",
+     "page": 3,
+     "evidence": "D1 V IH High-level input voltage 0.7 V CC"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VCC",
+     "unit": "V",
+     "page": 3,
+     "evidence": [
+      "D2 V IL Low-level input voltage — — 0.3 V CC",
+      "VCC ≥ 2.5V"
+     ],
+     "conditions": "VCC 2.5–5.5 V (0.2 × VCC below 2.5 V)"
+    },
+    "vol": {
+     "value": 0.4,
+     "page": 3,
+     "evidence": [
+      "(MFP , SDA pins)",
+      "0 . 4 0 V I OL = 3.0 mA @ VCC = 4.5V"
+     ],
+     "unit": "V",
+     "conditions": "MFP, SDA; VCC 2.5–5.5 V (IOL 3.0 mA at 4.5 V, 2.1 mA at 2.5 V)"
+    },
+    "v_in_max": {
+     "value": 6.5,
+     "page": 3,
+     "evidence": [
+      "SDA and SCL w.r.t. VSS",
+      "-0.6V to 6.5V"
+     ],
+     "unit": "V",
+     "conditions": "absolute maximum rating for SDA/SCL, independent of VCC"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "VBAT",
+     "signal": "supply",
+     "tie": "GND",
+     "note": "backup supply 1.3–5.5 V; connect to VSS if not used (p. 8); default tie GND"
+    },
+    {
+     "name": "VSS",
+     "signal": "gnd"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda"
+    },
+    {
+     "name": "SCL",
+     "signal": "i2c_scl"
+    },
+    {
+     "name": "MFP",
+     "signal": "open_drain_out",
+     "note": "alarm/square-wave/GPO output, open drain, pull-up ~10 kΩ to VCC; may float if unused (p. 8)"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "value": [
+       "0x6f"
+      ],
+      "page": 11,
+      "evidence": "I2C Address: 1101111x"
+     },
+     "default": "0x6f",
+     "f_max_hz": {
+      "value": 400000.0,
+      "page": 5,
+      "evidence": [
+       "1F CLK Clock frequency",
+       "400",
+       "2.5V ≤ VCC ≤ 5.5V"
+      ],
+      "unit": "Hz",
+      "conditions": "VCC 2.5–5.5 V; 100 kHz for 1.8 V ≤ VCC < 2.5 V"
+     },
+     "note": "fixed control byte 1101111x = 7-bit 0x6F; no address pins"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "max": {
+     "value": 0.0004,
+     "page": 3,
+     "evidence": "ICCWRITE —— 4 0 0 μAV CC = 5.5V, SCL = 400 kHz",
+     "unit": "A",
+     "conditions": "write, VCC 5.5 V, SCL 400 kHz (read: 300 µA)"
+    },
+    "sleep": {
+     "value": 1.2e-06,
+     "page": 3,
+     "evidence": "D11 I CCT Timekeeping current — 1.2 — μAV CC = 3.3V (Note 1)",
+     "unit": "A",
+     "conditions": "timekeeping, typical, VCC 3.3 V, characterized only"
+    }
+   },
+   "requires": [
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "to": "VCC",
+     "page": 8,
+     "evidence": [
+      "terminal. Therefore, the SDA bus requires a pull-up",
+      "resistor to V CC (typically 10 k"
+     ],
+     "note": "datasheet: typically 10 kΩ at 100 kHz, 2 kΩ at 400 kHz"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Needs an external 32.768 kHz crystal with load capacitors on X1/X2 (crystals with 6–9 pF load capacitance); X1/X2 are not modelled as pins.",
+     "verified": true,
+     "page": 8,
+     "evidence": [
+      "32.768 kHz quartz crystal and load capacitors. X1 is the",
+      "of 6-9 pF."
+     ]
+    },
+    {
+     "text": "Backup supply VBAT 1.3–5.5 V; tie VBAT to VSS when no battery is used.",
+     "verified": true,
+     "page": 3,
+     "evidence": [
+      "D13 V BAT Backup supply voltage",
+      "1.3 — 5.5 V (Note 1)"
+     ]
+    },
+    {
+     "text": "Battery switchover only works after firmware sets VBATEN (RTCWKDAY register).",
+     "verified": true,
+     "page": 18,
+     "evidence": "bit 3 VBATEN: External Battery Backup Supply (VBAT) Enable bit"
+    },
+    {
+     "text": "At VCC 5 V the SDA/SCL input high threshold is 0.7 × VCC = 3.5 V, above a 3.3 V bus.",
+     "verified": true,
+     "page": 3,
+     "evidence": "D1 V IH High-level input voltage 0.7 V CC"
+    },
+    {
+     "text": "MCP79410/MCP79411/MCP79412 are the variants with an extra EEPROM block at 0x57; the MCP7940N has none.",
+     "verified": false
+    }
+   ],
+   "hazards": []
+  },
+  {
+   "id": "24lc256",
+   "aliases": [
+    "24lc256-i-p",
+    "24lc256-i-sn"
+   ],
+   "title": "24LC256 256-Kbit I²C serial EEPROM (24AA256/24FC256 as variants)",
+   "category": "memory",
+   "manufacturer": "Microchip Technology",
+   "kind": "ic",
+   "source_ids": [
+    "mod-niox-24lc256-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 2.5,
+      "page": 1,
+      "evidence": "24LC256 2.5V-5.5V 400 kHz I, E",
+      "unit": "V",
+      "conditions": "24LC256 (24AA256/24FC256: 1.7 V)"
+     },
+     "max": {
+      "value": 5.5,
+      "page": 1,
+      "evidence": "24LC256 2.5V-5.5V 400 kHz I, E",
+      "unit": "V"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "rel": 0.7,
+     "of": "VCC",
+     "unit": "V",
+     "page": 3,
+     "evidence": "D1 V IH High-Level Input Voltage 0.7 V CC"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VCC",
+     "unit": "V",
+     "page": 3,
+     "evidence": "D2 V IL Low-Level Input Voltage — 0.3 V CC",
+     "conditions": "VCC 2.5–5.5 V (0.2 × VCC below 2.5 V)"
+    },
+    "vol": {
+     "value": 0.4,
+     "page": 3,
+     "evidence": "D4 V OL Low-Level Output Voltage — 0.40 V I OL = 3.0 mA @ VCC = 4.5V",
+     "unit": "V",
+     "conditions": "VCC 2.5–5.5 V (IOL 3.0 mA at 4.5 V, 2.1 mA at 2.5 V)"
+    },
+    "v_in_max": {
+     "rel_offset": 1.0,
+     "of": "VCC",
+     "unit": "V",
+     "page": 3,
+     "evidence": [
+      "All inputs and outputs w.r.t. VSS",
+      "-0.6V to VCC +1.0V"
+     ],
+     "conditions": "absolute maximum rating (VCC + 1.0 V)"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "A0",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "must be connected to VCC or VSS, no internal pull-down (p. 7)"
+    },
+    {
+     "name": "A1",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "must be connected to VCC or VSS, no internal pull-down (p. 7)"
+    },
+    {
+     "name": "A2",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "must be connected to VCC or VSS, no internal pull-down (p. 7)"
+    },
+    {
+     "name": "VSS",
+     "signal": "gnd"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda"
+    },
+    {
+     "name": "SCL",
+     "signal": "i2c_scl"
+    },
+    {
+     "name": "WP",
+     "signal": "digital_in",
+     "must_connect": true,
+     "note": "write protect, must be connected: VSS = writes enabled, VCC = writes inhibited (p. 7)"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "value": [
+       "0x50",
+       "0x51",
+       "0x52",
+       "0x53",
+       "0x54",
+       "0x55",
+       "0x56",
+       "0x57"
+      ],
+      "page": 10,
+      "evidence": [
+       "is set as ‘1010’ binary for read and write operations.",
+       "Select bits (A2, A1, A0)"
+      ],
+      "conditions": "7-bit address 1010 A2 A1 A0"
+     },
+     "default": "0x50",
+     "select": {
+      "pins": [
+       "A2",
+       "A1",
+       "A0"
+      ],
+      "map": {
+       "GND,GND,GND": "0x50",
+       "GND,GND,VCC": "0x51",
+       "GND,VCC,GND": "0x52",
+       "GND,VCC,VCC": "0x53",
+       "VCC,GND,GND": "0x54",
+       "VCC,GND,VCC": "0x55",
+       "VCC,VCC,GND": "0x56",
+       "VCC,VCC,VCC": "0x57"
+      }
+     },
+     "f_max_hz": {
+      "value": 400000.0,
+      "page": 1,
+      "evidence": "24LC256 2.5V-5.5V 400 kHz I, E",
+      "unit": "Hz",
+      "conditions": "24LC256, VCC 2.5–5.5 V"
+     },
+     "note": "0x50–0x57 by A2..A0; the pins must be tied (no internal pull-down)"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "max": {
+     "value": 0.003,
+     "page": 3,
+     "evidence": "ICC Write — 3 mA V CC = 5.5V",
+     "unit": "A",
+     "conditions": "write, VCC 5.5 V (read: 400 µA)"
+    },
+    "sleep": {
+     "value": 1e-06,
+     "page": 3,
+     "evidence": "D9 I CCS Standby Current — 1 µA SDA = SCL = V CC =3 . 6 V",
+     "unit": "A",
+     "conditions": "max, VCC 3.6 V, I-temp (1.5 µA at 5.5 V)"
+    }
+   },
+   "requires": [
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "to": "VCC",
+     "page": 7,
+     "evidence": [
+      "terminal. Therefore, the SDA bus requires a pull-up",
+      "resistor to V CC (typical 10 k"
+     ],
+     "note": "datasheet: typical 10 kΩ at 100 kHz, 2 kΩ at 400 kHz and 1 MHz"
+    }
+   ],
+   "notes": [
+    {
+     "text": "A0–A2 must be tied to VCC or VSS: unlike the AT24C256C there is no internal pull-down.",
+     "verified": true,
+     "page": 7,
+     "evidence": "connected to either VCC or VSS."
+    },
+    {
+     "text": "MSOP package: A0 and A1 are not connected (only A2 selects the address, two devices per bus).",
+     "verified": true,
+     "page": 7,
+     "evidence": [
+      "Note: For the MSOP package only, pins A0 and",
+      "A1 are not connected."
+     ]
+    },
+    {
+     "text": "The absolute maximum VCC value is not in the PDF text layer; no abs_max is modelled.",
+     "verified": false
+    },
+    {
+     "text": "Generic '24C256' breakouts may carry an AT24C256 or a clone instead of the Microchip part.",
+     "verified": false
+    }
+   ],
+   "hazards": [],
+   "variants": [
+    {
+     "id": "24aa256",
+     "title": "24AA256 (1.7–5.5 V, 400 kHz)",
+     "overrides": {
+      "supplies": {
+       "VCC": {
+        "min": {
+         "value": 1.7,
+         "page": 1,
+         "evidence": "24AA256 1.7V-5.5V 400 kHz (1) I, E",
+         "unit": "V",
+         "conditions": "24AA256: 100 kHz below 2.5 V (Note 1)"
+        },
+        "max": {
+         "value": 5.5,
+         "page": 1,
+         "evidence": "24AA256 1.7V-5.5V 400 kHz (1) I, E",
+         "unit": "V"
+        }
+       }
+      },
+      "interfaces": [
+       {
+        "type": "i2c",
+        "addresses": {
+         "value": [
+          "0x50",
+          "0x51",
+          "0x52",
+          "0x53",
+          "0x54",
+          "0x55",
+          "0x56",
+          "0x57"
+         ],
+         "page": 10,
+         "evidence": [
+          "is set as ‘1010’ binary for read and write operations.",
+          "Select bits (A2, A1, A0)"
+         ],
+         "conditions": "7-bit address 1010 A2 A1 A0"
+        },
+        "default": "0x50",
+        "select": {
+         "pins": [
+          "A2",
+          "A1",
+          "A0"
+         ],
+         "map": {
+          "GND,GND,GND": "0x50",
+          "GND,GND,VCC": "0x51",
+          "GND,VCC,GND": "0x52",
+          "GND,VCC,VCC": "0x53",
+          "VCC,GND,GND": "0x54",
+          "VCC,GND,VCC": "0x55",
+          "VCC,VCC,GND": "0x56",
+          "VCC,VCC,VCC": "0x57"
+         }
+        },
+        "f_max_hz": {
+         "value": 400000.0,
+         "page": 1,
+         "evidence": "24AA256 1.7V-5.5V 400 kHz (1) I, E",
+         "unit": "Hz",
+         "conditions": "24AA256 at VCC ≥ 2.5 V"
+        },
+        "note": "0x50–0x57 by A2..A0; the pins must be tied (no internal pull-down)"
+       }
+      ]
+     }
+    },
+    {
+     "id": "24fc256",
+     "title": "24FC256 (1.7–5.5 V, 1 MHz)",
+     "overrides": {
+      "supplies": {
+       "VCC": {
+        "min": {
+         "value": 1.7,
+         "page": 1,
+         "evidence": "24FC256 1.7V-5.5V 1 MHz (2) I",
+         "unit": "V",
+         "conditions": "24FC256: 400 kHz below 2.5 V (Note 2)"
+        },
+        "max": {
+         "value": 5.5,
+         "page": 1,
+         "evidence": "24FC256 1.7V-5.5V 1 MHz (2) I",
+         "unit": "V"
+        }
+       }
+      },
+      "interfaces": [
+       {
+        "type": "i2c",
+        "addresses": {
+         "value": [
+          "0x50",
+          "0x51",
+          "0x52",
+          "0x53",
+          "0x54",
+          "0x55",
+          "0x56",
+          "0x57"
+         ],
+         "page": 10,
+         "evidence": [
+          "is set as ‘1010’ binary for read and write operations.",
+          "Select bits (A2, A1, A0)"
+         ],
+         "conditions": "7-bit address 1010 A2 A1 A0"
+        },
+        "default": "0x50",
+        "select": {
+         "pins": [
+          "A2",
+          "A1",
+          "A0"
+         ],
+         "map": {
+          "GND,GND,GND": "0x50",
+          "GND,GND,VCC": "0x51",
+          "GND,VCC,GND": "0x52",
+          "GND,VCC,VCC": "0x53",
+          "VCC,GND,GND": "0x54",
+          "VCC,GND,VCC": "0x55",
+          "VCC,VCC,GND": "0x56",
+          "VCC,VCC,VCC": "0x57"
+         }
+        },
+        "f_max_hz": {
+         "value": 1000000.0,
+         "page": 1,
+         "evidence": "24FC256 1.7V-5.5V 1 MHz (2) I",
+         "unit": "Hz",
+         "conditions": "24FC256 at VCC ≥ 2.5 V"
+        },
+        "note": "0x50–0x57 by A2..A0; the pins must be tied (no internal pull-down)"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "24aa32a",
+   "aliases": [
+    "24aa32a-i-p",
+    "24aa32a-i-sn"
+   ],
+   "title": "24AA32A 32-Kbit I²C serial EEPROM (24LC32A as variant)",
+   "category": "memory",
+   "manufacturer": "Microchip Technology",
+   "kind": "ic",
+   "source_ids": [
+    "mod-niox-24aa32a-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 1.7,
+      "page": 1,
+      "evidence": "24AA32A 1.7-5.5 400 kHz (1) I",
+      "unit": "V",
+      "conditions": "24AA32A, I-temp (24LC32A: 2.5 V)"
+     },
+     "max": {
+      "value": 5.5,
+      "page": 1,
+      "evidence": "24AA32A 1.7-5.5 400 kHz (1) I",
+      "unit": "V"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "rel": 0.7,
+     "of": "VCC",
+     "unit": "V",
+     "page": 2,
+     "evidence": "D2 V IH High-level input voltage 0.7 V CC"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VCC",
+     "unit": "V",
+     "page": 2,
+     "evidence": "D3 V IL Low-level input voltage — — 0.3 V CC",
+     "conditions": "VCC 2.5–5.5 V (0.2 × VCC below 2.5 V)"
+    },
+    "vol": {
+     "value": 0.4,
+     "page": 2,
+     "evidence": "D5 V OL Low-level output voltage — — 0.40 V I OL = 3.0 mA, VCC = 4.5V",
+     "unit": "V",
+     "conditions": "VCC 2.5–5.5 V (IOL 3.0 mA at 4.5 V, 2.1 mA at 2.5 V)"
+    },
+    "v_in_max": {
+     "rel_offset": 1.0,
+     "of": "VCC",
+     "unit": "V",
+     "page": 2,
+     "evidence": [
+      "All inputs and outputs w.r.t. VSS",
+      "-0.3V to VCC +1.0V"
+     ],
+     "conditions": "absolute maximum rating (VCC + 1.0 V)"
+    },
+    "outputs": "open_drain"
+   },
+   "pins": [
+    {
+     "name": "A0",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "must be connected to VCC or VSS, no internal pull-down (p. 5)"
+    },
+    {
+     "name": "A1",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "must be connected to VCC or VSS, no internal pull-down (p. 5)"
+    },
+    {
+     "name": "A2",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "must be connected to VCC or VSS, no internal pull-down (p. 5)"
+    },
+    {
+     "name": "VSS",
+     "signal": "gnd"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda"
+    },
+    {
+     "name": "SCL",
+     "signal": "i2c_scl"
+    },
+    {
+     "name": "WP",
+     "signal": "digital_in",
+     "must_connect": true,
+     "note": "write protect, must be connected: VSS = writes enabled, VCC = writes inhibited (p. 5)"
+    },
+    {
+     "name": "VCC",
+     "signal": "supply"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "value": [
+       "0x50",
+       "0x51",
+       "0x52",
+       "0x53",
+       "0x54",
+       "0x55",
+       "0x56",
+       "0x57"
+      ],
+      "page": 7,
+      "evidence": [
+       "the 24XX32A, this is set as ‘1010’ binary for read and",
+       "1010 A2 A1 A0 R/W"
+      ],
+      "conditions": "7-bit address 1010 A2 A1 A0"
+     },
+     "default": "0x50",
+     "select": {
+      "pins": [
+       "A2",
+       "A1",
+       "A0"
+      ],
+      "map": {
+       "GND,GND,GND": "0x50",
+       "GND,GND,VCC": "0x51",
+       "GND,VCC,GND": "0x52",
+       "GND,VCC,VCC": "0x53",
+       "VCC,GND,GND": "0x54",
+       "VCC,GND,VCC": "0x55",
+       "VCC,VCC,GND": "0x56",
+       "VCC,VCC,VCC": "0x57"
+      }
+     },
+     "f_max_hz": {
+      "value": 400000.0,
+      "page": 1,
+      "evidence": [
+       "24AA32A 1.7-5.5 400 kHz (1) I",
+       "Note 1: 100 kHz for VCC <2.5V."
+      ],
+      "unit": "Hz",
+      "conditions": "400 kHz at VCC ≥ 2.5 V, 100 kHz below"
+     },
+     "note": "0x50–0x57 by A2..A0; the pins must be tied (no internal pull-down)"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "typ": {
+     "value": 0.0001,
+     "page": 2,
+     "evidence": "D9 I CC write Operating current —0 . 1 3m A V CC = 5.5V, SCL = 400 kHz",
+     "unit": "A",
+     "conditions": "write, VCC 5.5 V, 400 kHz (typ 0.1 mA, max 3 mA)"
+    },
+    "max": {
+     "value": 0.003,
+     "page": 2,
+     "evidence": "D9 I CC write Operating current —0 . 1 3m A V CC = 5.5V, SCL = 400 kHz",
+     "unit": "A",
+     "conditions": "write, VCC 5.5 V, 400 kHz"
+    }
+   },
+   "requires": [
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "to": "VCC",
+     "page": 5,
+     "evidence": [
+      "terminal, therefore, the SDA bus requires a pull-up",
+      "resistor to V CC (typical 10 k"
+     ],
+     "note": "datasheet: typical 10 kΩ at 100 kHz, 2 kΩ at 400 kHz"
+    }
+   ],
+   "notes": [
+    {
+     "text": "A0–A2 must be tied to VCC or VSS (no internal pull-down).",
+     "verified": true,
+     "page": 5,
+     "evidence": "inputs must be connected to either VCC or VSS."
+    },
+    {
+     "text": "SOT-23 and chip-scale packages have no address pins.",
+     "verified": true,
+     "page": 5,
+     "evidence": [
+      "before normal device operation can proceed. Address",
+      "pins are not available in the SOT-23 and chip scale"
+     ]
+    },
+    {
+     "text": "Standby current 1 µA max (I-temp) at VCC 5.5 V; the table cells are split in the text layer.",
+     "verified": true,
+     "page": 2,
+     "evidence": "D11 I CCS Standby current"
+    },
+    {
+     "text": "The absolute maximum VCC value is not in the PDF text layer; no abs_max is modelled.",
+     "verified": false
+    },
+    {
+     "text": "The AT24C32 on ZS-042 RTC boards is the Atmel/Microchip AT24C32 (module at24c32), not this part.",
+     "verified": false
+    }
+   ],
+   "hazards": [],
+   "variants": [
+    {
+     "id": "24lc32a",
+     "title": "24LC32A (2.5–5.5 V, 400 kHz)",
+     "overrides": {
+      "supplies": {
+       "VCC": {
+        "min": {
+         "value": 2.5,
+         "page": 1,
+         "evidence": "24LC32A 2.5-5.5 400 kHz I, E",
+         "unit": "V",
+         "conditions": "24LC32A, I- and E-temp"
+        },
+        "max": {
+         "value": 5.5,
+         "page": 1,
+         "evidence": "24LC32A 2.5-5.5 400 kHz I, E",
+         "unit": "V"
+        }
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "tca9555",
+   "aliases": [
+    "tca9555pwr",
+    "tca9555rtwr"
+   ],
+   "title": "TCA9555 16-bit I²C I/O expander with interrupt and internal pull-ups",
+   "category": "io.expander",
+   "manufacturer": "Texas Instruments",
+   "kind": "ic",
+   "source_ids": [
+    "mod-niox-tca9555-ds"
+   ],
+   "supplies": {
+    "VCC": {
+     "min": {
+      "value": 1.65,
+      "page": 5,
+      "evidence": "VCC Supply voltage 1.65 5.5 V",
+      "unit": "V",
+      "conditions": "recommended operating conditions, −40…85 °C"
+     },
+     "max": {
+      "value": 5.5,
+      "page": 5,
+      "evidence": "VCC Supply voltage 1.65 5.5 V",
+      "unit": "V"
+     },
+     "abs_max": {
+      "value": 6.0,
+      "page": 5,
+      "evidence": "VCC Supply voltage –0.5 6 V",
+      "unit": "V",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "VCC",
+    "vih": {
+     "rel": 0.7,
+     "of": "VCC",
+     "unit": "V",
+     "page": 5,
+     "evidence": [
+      "VIH High-level input voltage",
+      "SCL, SDA 0.7 × VCC VCC (1)"
+     ],
+     "conditions": "SCL, SDA; VCC 1.65–5.5 V (A0–A2 and P-ports also 0.7 × VCC)"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VCC",
+     "unit": "V",
+     "page": 5,
+     "evidence": [
+      "VIL Low-level input voltage",
+      "SCL, SDA –0.5 0.3 × VCC"
+     ]
+    },
+    "vol": {
+     "value": 0.4,
+     "page": 6,
+     "evidence": "SDA VOL = 0.4 V 1.65 V to 5.5 V 3 mA",
+     "unit": "V",
+     "conditions": "SDA sinks ≥ 3 mA at 0.4 V; VCC 1.65–5.5 V"
+    },
+    "v_in_max": {
+     "value": 6.0,
+     "page": 5,
+     "evidence": "VI Input voltage (2) –0.5 6 V",
+     "unit": "V",
+     "conditions": "absolute maximum rating; SCL/SDA above VCC raise ICC (note 1, p. 5)"
+    },
+    "outputs": "open_drain",
+    "five_v_tolerant": true
+   },
+   "pins": [
+    {
+     "name": "VCC",
+     "signal": "supply"
+    },
+    {
+     "name": "GND",
+     "signal": "gnd"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda"
+    },
+    {
+     "name": "SCL",
+     "signal": "i2c_scl"
+    },
+    {
+     "name": "A0",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "connect directly to VCC or GND (p. 4)"
+    },
+    {
+     "name": "A1",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "connect directly to VCC or GND (p. 4)"
+    },
+    {
+     "name": "A2",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "connect directly to VCC or GND (p. 4)"
+    },
+    {
+     "name": "INT",
+     "signal": "open_drain_out",
+     "output": "open_drain",
+     "active_low": true,
+     "note": "pull-up to VCC when used, typically 10 kΩ (p. 4, 16)"
+    },
+    {
+     "name": "P00",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "push-pull I/O, input with 100 kΩ pull-up to VCC at power-on (p. 3, 4); modelled as output"
+    },
+    {
+     "name": "P01",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "push-pull I/O, input with 100 kΩ pull-up to VCC at power-on (p. 3, 4); modelled as output"
+    },
+    {
+     "name": "P02",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "push-pull I/O, input with 100 kΩ pull-up to VCC at power-on (p. 3, 4); modelled as output"
+    },
+    {
+     "name": "P03",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "push-pull I/O, input with 100 kΩ pull-up to VCC at power-on (p. 3, 4); modelled as output"
+    },
+    {
+     "name": "P04",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "push-pull I/O, input with 100 kΩ pull-up to VCC at power-on (p. 3, 4); modelled as output"
+    },
+    {
+     "name": "P05",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "push-pull I/O, input with 100 kΩ pull-up to VCC at power-on (p. 3, 4); modelled as output"
+    },
+    {
+     "name": "P06",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "push-pull I/O, input with 100 kΩ pull-up to VCC at power-on (p. 3, 4); modelled as output"
+    },
+    {
+     "name": "P07",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "push-pull I/O, input with 100 kΩ pull-up to VCC at power-on (p. 3, 4); modelled as output"
+    },
+    {
+     "name": "P10",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "push-pull I/O, input with 100 kΩ pull-up to VCC at power-on (p. 3, 4); modelled as output"
+    },
+    {
+     "name": "P11",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "push-pull I/O, input with 100 kΩ pull-up to VCC at power-on (p. 3, 4); modelled as output"
+    },
+    {
+     "name": "P12",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "push-pull I/O, input with 100 kΩ pull-up to VCC at power-on (p. 3, 4); modelled as output"
+    },
+    {
+     "name": "P13",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "push-pull I/O, input with 100 kΩ pull-up to VCC at power-on (p. 3, 4); modelled as output"
+    },
+    {
+     "name": "P14",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "push-pull I/O, input with 100 kΩ pull-up to VCC at power-on (p. 3, 4); modelled as output"
+    },
+    {
+     "name": "P15",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "push-pull I/O, input with 100 kΩ pull-up to VCC at power-on (p. 3, 4); modelled as output"
+    },
+    {
+     "name": "P16",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "push-pull I/O, input with 100 kΩ pull-up to VCC at power-on (p. 3, 4); modelled as output"
+    },
+    {
+     "name": "P17",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "push-pull I/O, input with 100 kΩ pull-up to VCC at power-on (p. 3, 4); modelled as output"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "value": [
+       "0x20",
+       "0x21",
+       "0x22",
+       "0x23",
+       "0x24",
+       "0x25",
+       "0x26",
+       "0x27"
+      ],
+      "page": 23,
+      "evidence": [
+       "L L L 32 (decimal), 0x20 (hexadecimal)",
+       "H H H 39 (decimal), 0x27 (hexadecimal)"
+      ],
+      "conditions": "7-bit address 0100 A2 A1 A0"
+     },
+     "default": "0x20",
+     "select": {
+      "pins": [
+       "A2",
+       "A1",
+       "A0"
+      ],
+      "map": {
+       "GND,GND,GND": "0x20",
+       "GND,GND,VCC": "0x21",
+       "GND,VCC,GND": "0x22",
+       "GND,VCC,VCC": "0x23",
+       "VCC,GND,GND": "0x24",
+       "VCC,GND,VCC": "0x25",
+       "VCC,VCC,GND": "0x26",
+       "VCC,VCC,VCC": "0x27"
+      }
+     },
+     "f_max_hz": {
+      "value": 400000.0,
+      "page": 7,
+      "evidence": "fscl I2C clock frequency 0 400 kHz",
+      "unit": "Hz",
+      "conditions": "fast mode"
+     },
+     "note": "same address range as PCF8574/PCF8575/MCP23017 (0x20–0x27)"
+    }
+   ],
+   "current": {
+    "supply": "VCC",
+    "typ": {
+     "value": 2.2e-05,
+     "page": 7,
+     "evidence": [
+      "I/O = inputs, fSCL = 400 kHz, tr",
+      "5.5 V 22 40"
+     ],
+     "unit": "A",
+     "conditions": "operating, VCC 5.5 V, fSCL 400 kHz, inputs, no load"
+    },
+    "max": {
+     "value": 4e-05,
+     "page": 7,
+     "evidence": [
+      "I/O = inputs, fSCL = 400 kHz, tr",
+      "5.5 V 22 40"
+     ],
+     "unit": "A",
+     "conditions": "operating, VCC 5.5 V, fSCL 400 kHz, inputs, no load"
+    },
+    "sleep": {
+     "value": 3.5e-06,
+     "page": 7,
+     "evidence": [
+      "VI = VCC, IO = 0, I/O = inputs,",
+      "5.5 V 2.5 3.5"
+     ],
+     "unit": "A",
+     "conditions": "standby, inputs high, VCC 5.5 V, max"
+    }
+   },
+   "requires": [
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "to": "VCC",
+     "page": 4,
+     "evidence": [
+      "SCL 22 19 Input Serial clock bus. Connect to VCC through a pull-up resistor",
+      "SDA 23 20 Input Serial data bus. Connect to VCC through a pull-up resistor"
+     ],
+     "note": "value from the I²C pull-up calculator"
+    },
+    {
+     "code": "decoupling",
+     "kind": "ceramic",
+     "pins": [
+      "VCC"
+     ],
+     "to": "GND",
+     "page": 31,
+     "evidence": "capacitors are commonly used to control the voltage on the VCC pin, using a larger capacitor to provide",
+     "note": "TI gives no value; 100 nF ceramic close to VCC is common practice (unverified)"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Identical to the TCA9535 except for the internal I/O pull-ups (inputs read high when undriven).",
+     "verified": true,
+     "page": 3,
+     "evidence": "The TCA9555 is identical to the TCA9535, except for the inclusion of the internal I/O pull-up resistor"
+    },
+    {
+     "text": "Same fixed address bits as PCF8574/PCF8575: up to eight of these parts in any mix share 0x20–0x27.",
+     "verified": true,
+     "page": 3,
+     "evidence": "PCF8575, PCF8575C, and PCF8574, allowing up to eight of these devices in any combination to share the same"
+    },
+    {
+     "text": "Inputs held low draw current through the internal pull-ups: standby up to 1.5 mA at VCC 5.5 V.",
+     "verified": true,
+     "page": 7,
+     "evidence": [
+      "VI = GND, IO = 0, I/O = inputs,",
+      "5.5 V 1.1 1.5"
+     ]
+    },
+    {
+     "text": "Each I/O sinks at most 25 mA; 100 mA per octal and 200 mA for the device.",
+     "verified": true,
+     "page": 6,
+     "evidence": "(2) Each I/O must be externally limited to a maximum of 25 mA, and each octal (P07–P00 and P17–P10) must be limited to a maximum"
+    },
+    {
+     "text": "Breakouts (e.g. 'CJMCU-9555') often carry the NXP PCA9555 instead; the address range is the same.",
+     "verified": false
+    }
+   ],
+   "hazards": []
+  },
+  {
+   "id": "pca9555",
+   "aliases": [
+    "pca9555pw",
+    "pca9555d"
+   ],
+   "title": "PCA9555 16-bit I²C/SMBus I/O port with interrupt",
+   "category": "io.expander",
+   "manufacturer": "NXP Semiconductors",
+   "kind": "ic",
+   "source_ids": [
+    "mod-niox-pca9555-ds"
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 2.3,
+      "page": 18,
+      "evidence": "VDD supply voltage 2.3 - 5.5 V",
+      "unit": "V",
+      "conditions": "−40…85 °C"
+     },
+     "max": {
+      "value": 5.5,
+      "page": 18,
+      "evidence": "VDD supply voltage 2.3 - 5.5 V",
+      "unit": "V"
+     },
+     "abs_max": {
+      "value": 6.0,
+      "page": 17,
+      "evidence": [
+       "VDD supply voltage",
+       "0.5 +6.0 V"
+      ],
+      "unit": "V",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "VDD",
+    "vih": {
+     "rel": 0.7,
+     "of": "VDD",
+     "unit": "V",
+     "page": 18,
+     "evidence": "VIH HIGH-level input voltage 0.7VDD -5 . 5 V",
+     "conditions": "SCL, SDA (I/Os and A0–A2 also 0.7 × VDD), max 5.5 V"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VDD",
+     "unit": "V",
+     "page": 18,
+     "evidence": [
+      "VIL LOW-level input voltage",
+      "0.5 - +0.3V DD V"
+     ]
+    },
+    "vol": {
+     "value": 0.4,
+     "page": 18,
+     "evidence": "IOL LOW-level output current V OL =0 . 4V 3 - - m A",
+     "unit": "V",
+     "conditions": "SDA sinks ≥ 3 mA at 0.4 V; VDD 2.3–5.5 V"
+    },
+    "v_in_max": {
+     "value": 6.0,
+     "unit": "V",
+     "page": 17,
+     "evidence": "VI/O voltage on an input/output pin VSS  0.5 6 V",
+     "conditions": "limiting value of the I/O pins (Table: Limiting values); in operation VIH up to 5.5 V (p. 18)"
+    },
+    "outputs": "open_drain",
+    "five_v_tolerant": true
+   },
+   "pins": [
+    {
+     "name": "VDD",
+     "signal": "supply"
+    },
+    {
+     "name": "VSS",
+     "signal": "gnd"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda"
+    },
+    {
+     "name": "SCL",
+     "signal": "i2c_scl"
+    },
+    {
+     "name": "A0",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "address input 0–2 (p. 5); tie to VDD or VSS"
+    },
+    {
+     "name": "A1",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "address input 0–2 (p. 5); tie to VDD or VSS"
+    },
+    {
+     "name": "A2",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "address input 0–2 (p. 5); tie to VDD or VSS"
+    },
+    {
+     "name": "INT",
+     "signal": "open_drain_out",
+     "output": "open_drain",
+     "active_low": true,
+     "note": "interrupt output (open-drain), pull-up when used (p. 5)"
+    },
+    {
+     "name": "IO0_0",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "I/O, input with weak pull-up to VDD after reset (p. 8); modelled as output"
+    },
+    {
+     "name": "IO0_1",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "I/O, input with weak pull-up to VDD after reset (p. 8); modelled as output"
+    },
+    {
+     "name": "IO0_2",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "I/O, input with weak pull-up to VDD after reset (p. 8); modelled as output"
+    },
+    {
+     "name": "IO0_3",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "I/O, input with weak pull-up to VDD after reset (p. 8); modelled as output"
+    },
+    {
+     "name": "IO0_4",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "I/O, input with weak pull-up to VDD after reset (p. 8); modelled as output"
+    },
+    {
+     "name": "IO0_5",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "I/O, input with weak pull-up to VDD after reset (p. 8); modelled as output"
+    },
+    {
+     "name": "IO0_6",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "I/O, input with weak pull-up to VDD after reset (p. 8); modelled as output"
+    },
+    {
+     "name": "IO0_7",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "I/O, input with weak pull-up to VDD after reset (p. 8); modelled as output"
+    },
+    {
+     "name": "IO1_0",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "I/O, input with weak pull-up to VDD after reset (p. 8); modelled as output"
+    },
+    {
+     "name": "IO1_1",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "I/O, input with weak pull-up to VDD after reset (p. 8); modelled as output"
+    },
+    {
+     "name": "IO1_2",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "I/O, input with weak pull-up to VDD after reset (p. 8); modelled as output"
+    },
+    {
+     "name": "IO1_3",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "I/O, input with weak pull-up to VDD after reset (p. 8); modelled as output"
+    },
+    {
+     "name": "IO1_4",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "I/O, input with weak pull-up to VDD after reset (p. 8); modelled as output"
+    },
+    {
+     "name": "IO1_5",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "I/O, input with weak pull-up to VDD after reset (p. 8); modelled as output"
+    },
+    {
+     "name": "IO1_6",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "I/O, input with weak pull-up to VDD after reset (p. 8); modelled as output"
+    },
+    {
+     "name": "IO1_7",
+     "signal": "digital_out",
+     "output": "push_pull",
+     "note": "I/O, input with weak pull-up to VDD after reset (p. 8); modelled as output"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "value": [
+       "0x20",
+       "0x21",
+       "0x22",
+       "0x23",
+       "0x24",
+       "0x25",
+       "0x26",
+       "0x27"
+      ],
+      "page": 6,
+      "evidence": "0 1 0 0 A2 A1 A0",
+      "conditions": "7-bit address 0100 A2 A1 A0"
+     },
+     "default": "0x20",
+     "select": {
+      "pins": [
+       "A2",
+       "A1",
+       "A0"
+      ],
+      "map": {
+       "GND,GND,GND": "0x20",
+       "GND,GND,VDD": "0x21",
+       "GND,VDD,GND": "0x22",
+       "GND,VDD,VDD": "0x23",
+       "VDD,GND,GND": "0x24",
+       "VDD,GND,VDD": "0x25",
+       "VDD,VDD,GND": "0x26",
+       "VDD,VDD,VDD": "0x27"
+      }
+     },
+     "f_max_hz": {
+      "value": 400000.0,
+      "page": 20,
+      "evidence": "fSCL SCL clock frequency 0 100 0 400 kHz",
+      "unit": "Hz",
+      "conditions": "fast mode"
+     },
+     "note": "same address range as PCF8575/TCA9555/MCP23017 (0x20–0x27)"
+    }
+   ],
+   "current": {
+    "supply": "VDD",
+    "typ": {
+     "value": 0.000135,
+     "page": 18,
+     "evidence": [
+      "IDD supply current Operating mode; VDD = 5.5 V; no load;",
+      "135 200"
+     ],
+     "unit": "A",
+     "conditions": "operating, VDD 5.5 V, fSCL 100 kHz, no load"
+    },
+    "max": {
+     "value": 0.0002,
+     "page": 18,
+     "evidence": [
+      "IDD supply current Operating mode; VDD = 5.5 V; no load;",
+      "135 200"
+     ],
+     "unit": "A",
+     "conditions": "operating, VDD 5.5 V, fSCL 100 kHz, no load"
+    },
+    "sleep": {
+     "value": 1e-06,
+     "page": 18,
+     "evidence": [
+      "VI =V DD; fSCL = 0 kHz; I/O = inputs",
+      "-0 . 2 5 1"
+     ],
+     "unit": "A",
+     "conditions": "standby, inputs at VDD, VDD 5.5 V, max (typ 0.25 µA)"
+    }
+   },
+   "requires": [
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "page": 14,
+     "evidence": "connected to a positive supply via a pull-up resistor when connected to the output stages",
+     "note": "value from the I²C pull-up calculator"
+    }
+   ],
+   "notes": [
+    {
+     "text": "After reset all 16 I/Os are inputs with a pull-up to VDD.",
+     "verified": true,
+     "page": 8,
+     "evidence": "reset, the device's ports are inputs with a pull-up to VDD."
+    },
+    {
+     "text": "Inputs held low draw current through the pull-ups: standby 1.1 mA typ / 1.5 mA max at VDD 5.5 V.",
+     "verified": true,
+     "page": 18,
+     "evidence": [
+      "VI =V SS; fSCL = 0 kHz; I/O = inputs",
+      "-1 . 1 1 . 5 m A"
+     ]
+    },
+    {
+     "text": "Pin- and address-compatible with the PCF8575, but the registers differ (software change, AN469).",
+     "verified": true,
+     "page": 1,
+     "evidence": "address compatible with the PCF8575, software changes are required due to the"
+    },
+    {
+     "text": "Decoupling: NXP gives no value; 100 nF ceramic close to VDD is common practice.",
+     "verified": false
+    }
+   ],
+   "hazards": []
+  },
+  {
+   "id": "pca9548a",
+   "aliases": [
+    "pca9548apw",
+    "pca9548ad"
+   ],
+   "title": "PCA9548A 8-channel I²C switch (mux) with reset",
+   "category": "io.i2c_mux",
+   "manufacturer": "NXP Semiconductors",
+   "kind": "ic",
+   "source_ids": [
+    "mod-niox-pca9548a-ds"
+   ],
+   "supplies": {
+    "VDD": {
+     "min": {
+      "value": 2.3,
+      "page": 1,
+      "evidence": "Operating power supply voltage range of 2.3 V to 5.5 V",
+      "unit": "V",
+      "conditions": "static tables cover 2.3–3.6 V and 4.5–5.5 V"
+     },
+     "max": {
+      "value": 5.5,
+      "page": 1,
+      "evidence": "Operating power supply voltage range of 2.3 V to 5.5 V",
+      "unit": "V"
+     },
+     "abs_max": {
+      "value": 7.0,
+      "page": 13,
+      "evidence": [
+       "VDD supply voltage",
+       "0.5 +7.0 V"
+      ],
+      "unit": "V",
+      "conditions": "absolute maximum rating"
+     }
+    }
+   },
+   "io": {
+    "domain": "VDD",
+    "vih": {
+     "rel": 0.7,
+     "of": "VDD",
+     "unit": "V",
+     "page": 14,
+     "evidence": "VIH HIGH-level input voltage 0.7VDD -6 V",
+     "conditions": "SCL, SDA; VDD 2.3–3.6 V (Table 7; Table 8 gives the same factor for 5 V supplies)"
+    },
+    "vil": {
+     "rel": 0.3,
+     "of": "VDD",
+     "unit": "V",
+     "page": 14,
+     "evidence": [
+      "VIL LOW-level input voltage",
+      "0.5 - +0.3V DD V"
+     ],
+     "conditions": "VDD 2.3–3.6 V (Table 7)"
+    },
+    "vol": {
+     "value": 0.4,
+     "page": 14,
+     "evidence": "IOL LOW-level output current V OL =0 . 4V 3 6 - m A",
+     "unit": "V",
+     "conditions": "SDA sinks ≥ 3 mA at 0.4 V; VDD 2.3–3.6 V (Table 7)"
+    },
+    "v_in_max": {
+     "value": 7.0,
+     "unit": "V",
+     "page": 13,
+     "evidence": "VI input voltage 0.5 +7.0 V",
+     "conditions": "limiting value (Table 5); all I/O pins 6 V tolerant in operation (p. 1)"
+    },
+    "outputs": "open_drain",
+    "five_v_tolerant": true
+   },
+   "pins": [
+    {
+     "name": "VDD",
+     "signal": "supply"
+    },
+    {
+     "name": "VSS",
+     "signal": "gnd"
+    },
+    {
+     "name": "SDA",
+     "signal": "i2c_sda",
+     "note": "upstream bus"
+    },
+    {
+     "name": "SCL",
+     "signal": "i2c_scl",
+     "note": "upstream bus"
+    },
+    {
+     "name": "A0",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "no internal pull-up: pull HIGH or LOW (p. 6)"
+    },
+    {
+     "name": "A1",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "no internal pull-up: pull HIGH or LOW (p. 6)"
+    },
+    {
+     "name": "A2",
+     "signal": "addr_select",
+     "must_connect": true,
+     "note": "no internal pull-up: pull HIGH or LOW (p. 6)"
+    },
+    {
+     "name": "RESET",
+     "signal": "reset_in",
+     "active_low": true,
+     "must_connect": true,
+     "note": "connect to VDD through a pull-up resistor (p. 7)"
+    },
+    {
+     "name": "SD0",
+     "signal": "i2c_sda",
+     "note": "channel 0 data; own pull-up to the channel voltage"
+    },
+    {
+     "name": "SC0",
+     "signal": "i2c_scl",
+     "note": "channel 0 clock; own pull-up to the channel voltage"
+    },
+    {
+     "name": "SD1",
+     "signal": "i2c_sda",
+     "note": "channel 1 data; own pull-up to the channel voltage"
+    },
+    {
+     "name": "SC1",
+     "signal": "i2c_scl",
+     "note": "channel 1 clock; own pull-up to the channel voltage"
+    },
+    {
+     "name": "SD2",
+     "signal": "i2c_sda",
+     "note": "channel 2 data; own pull-up to the channel voltage"
+    },
+    {
+     "name": "SC2",
+     "signal": "i2c_scl",
+     "note": "channel 2 clock; own pull-up to the channel voltage"
+    },
+    {
+     "name": "SD3",
+     "signal": "i2c_sda",
+     "note": "channel 3 data; own pull-up to the channel voltage"
+    },
+    {
+     "name": "SC3",
+     "signal": "i2c_scl",
+     "note": "channel 3 clock; own pull-up to the channel voltage"
+    },
+    {
+     "name": "SD4",
+     "signal": "i2c_sda",
+     "note": "channel 4 data; own pull-up to the channel voltage"
+    },
+    {
+     "name": "SC4",
+     "signal": "i2c_scl",
+     "note": "channel 4 clock; own pull-up to the channel voltage"
+    },
+    {
+     "name": "SD5",
+     "signal": "i2c_sda",
+     "note": "channel 5 data; own pull-up to the channel voltage"
+    },
+    {
+     "name": "SC5",
+     "signal": "i2c_scl",
+     "note": "channel 5 clock; own pull-up to the channel voltage"
+    },
+    {
+     "name": "SD6",
+     "signal": "i2c_sda",
+     "note": "channel 6 data; own pull-up to the channel voltage"
+    },
+    {
+     "name": "SC6",
+     "signal": "i2c_scl",
+     "note": "channel 6 clock; own pull-up to the channel voltage"
+    },
+    {
+     "name": "SD7",
+     "signal": "i2c_sda",
+     "note": "channel 7 data; own pull-up to the channel voltage"
+    },
+    {
+     "name": "SC7",
+     "signal": "i2c_scl",
+     "note": "channel 7 clock; own pull-up to the channel voltage"
+    }
+   ],
+   "interfaces": [
+    {
+     "type": "i2c",
+     "addresses": {
+      "value": [
+       "0x70",
+       "0x71",
+       "0x72",
+       "0x73",
+       "0x74",
+       "0x75",
+       "0x76",
+       "0x77"
+      ],
+      "page": 6,
+      "evidence": "1 1 1 0 A2 A1 A0 R/W",
+      "conditions": "7-bit address 1110 A2 A1 A0"
+     },
+     "default": "0x70",
+     "select": {
+      "pins": [
+       "A2",
+       "A1",
+       "A0"
+      ],
+      "map": {
+       "GND,GND,GND": "0x70",
+       "GND,GND,VDD": "0x71",
+       "GND,VDD,GND": "0x72",
+       "GND,VDD,VDD": "0x73",
+       "VDD,GND,GND": "0x74",
+       "VDD,GND,VDD": "0x75",
+       "VDD,VDD,GND": "0x76",
+       "VDD,VDD,VDD": "0x77"
+      }
+     },
+     "f_max_hz": {
+      "value": 400000.0,
+      "page": 16,
+      "evidence": "fSCL SCL clock frequency 0 100 0 400 kHz",
+      "unit": "Hz",
+      "conditions": "fast mode"
+     },
+     "mux_channels": [
+      [
+       "SD0",
+       "SC0"
+      ],
+      [
+       "SD1",
+       "SC1"
+      ],
+      [
+       "SD2",
+       "SC2"
+      ],
+      [
+       "SD3",
+       "SC3"
+      ],
+      [
+       "SD4",
+       "SC4"
+      ],
+      [
+       "SD5",
+       "SC5"
+      ],
+      [
+       "SD6",
+       "SC6"
+      ],
+      [
+       "SD7",
+       "SC7"
+      ]
+     ],
+     "note": "channels 0–7 = control register bits B0–B7; any combination can be enabled, none after power-up/reset (p. 1, 7)"
+    }
+   ],
+   "current": {
+    "supply": "VDD",
+    "typ": {
+     "value": 6.5e-05,
+     "page": 15,
+     "evidence": [
+      "IDD supply current operating mode; VDD =5 . 5V ;",
+      "fSCL = 100 kHz",
+      "- 65 100"
+     ],
+     "unit": "A",
+     "conditions": "operating, VDD 5.5 V, fSCL 100 kHz, no load (3.6 V: 30/50 µA)"
+    },
+    "max": {
+     "value": 0.0001,
+     "page": 15,
+     "evidence": [
+      "IDD supply current operating mode; VDD =5 . 5V ;",
+      "fSCL = 100 kHz",
+      "- 65 100"
+     ],
+     "unit": "A",
+     "conditions": "operating, VDD 5.5 V, fSCL 100 kHz, no load"
+    },
+    "sleep": {
+     "value": 1e-06,
+     "page": 15,
+     "evidence": [
+      "Istb standby current standby mode; VDD =5 . 5V ;",
+      "-0 . 2 1"
+     ],
+     "unit": "A",
+     "conditions": "standby, VDD 5.5 V, max (typ 0.2 µA)"
+    }
+   },
+   "requires": [
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "SDA",
+      "SCL"
+     ],
+     "page": 9,
+     "evidence": "connected to a positive supply via a pull-up resistor when connected to the output stages",
+     "note": "upstream bus; each channel needs its own pull-ups"
+    },
+    {
+     "code": "pullup",
+     "kind": "resistor",
+     "pins": [
+      "RESET"
+     ],
+     "to": "VDD",
+     "page": 7,
+     "evidence": "must be connected to VDD through a pull-up resistor."
+    }
+   ],
+   "notes": [
+    {
+     "text": "Any combination of channels can be enabled at the same time: devices with the same address on two enabled channels collide. Enable one channel at a time for duplicate addresses.",
+     "verified": true,
+     "page": 7,
+     "evidence": "Remark: Multiple channels can be enabled at the same time."
+    },
+    {
+     "text": "After power-up all channels are deselected.",
+     "verified": true,
+     "page": 1,
+     "evidence": "Power-up with all switch channels deselected"
+    },
+    {
+     "text": "Each SDx/SCx pair is pulled up to its own bus voltage; 1.8/2.5/3.3 V and 5 V buses can be mixed.",
+     "verified": true,
+     "page": 1,
+     "evidence": "with 5 V parts without any additional protection. External pull-up resistors pull the bus up"
+    },
+    {
+     "text": "VDD limits the voltage passed between buses: for translation set VDD so that the pass-gate output Vo(sw) is at or below the lowest bus voltage.",
+     "verified": true,
+     "page": 8,
+     "evidence": "voltage should be equal to, or lower than the lowest bus voltage. For example, if the main"
+    },
+    {
+     "text": "A power-on reset needs VDD below 0.2 V for at least 5 µs.",
+     "verified": true,
+     "page": 14,
+     "evidence": "[2] V DD must be lowered to 0.2 V for at least 5"
+    },
+    {
+     "text": "Pin- and address-compatible with the TI TCA9548A (0x70–0x77); a PCA9685 All Call (0x70) on an enabled channel collides with a mux at 0x70.",
+     "verified": false
+    },
+    {
+     "text": "Breakouts add A0–A2 pull-downs, a RESET pull-up and upstream pull-ups; downstream pull-ups vary.",
+     "verified": false
+    }
+   ],
+   "hazards": []
+  }
+ ]
+}

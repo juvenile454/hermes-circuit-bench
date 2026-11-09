@@ -1,0 +1,63 @@
+{
+  "ok": true,
+  "action": "health",
+  "summary": "Circuit Bench 0.1.0 ready: pio 6.2.0, esptool 5.6.0, hardware access off (simulated boards only).",
+  "result": {
+    "plugin": "circuit-bench",
+    "version": "0.1.0",
+    "hermes": "0.22.5",
+    "dependencies": {
+      "schemdraw": "0.23",
+      "pyserial": "3.5"
+    },
+    "tools": {
+      "pio": "6.2.0",
+      "esptool": "5.6.0",
+      "addr2line": true,
+      "toolchains": {
+        "esp32": {
+          "addr2line": false,
+          "prefix": "xtensa-esp32-elf"
+        },
+        "esp32s2": {
+          "addr2line": true,
+          "prefix": "xtensa-esp32s2-elf"
+        },
+        "esp32s3": {
+          "addr2line": true,
+          "prefix": "xtensa-esp32s3-elf"
+        },
+        "esp32c3": {
+          "addr2line": true,
+          "prefix": "riscv32-esp-elf"
+        },
+        "esp32c6": {
+          "addr2line": true,
+          "prefix": "riscv32-esp-elf"
+        }
+      }
+    },
+    "hardware_access": false,
+    "allow_flash": false,
+    "epoch": "6aed78c4-4ad39a65"
+  },
+  "checks": [],
+  "warnings": [
+    {
+      "code": "hardware_off",
+      "severity": "info",
+      "message": "hardware access is off: only simulated boards (sim://) are reachable",
+      "source_ids": []
+    },
+    {
+      "code": "toolchain_missing",
+      "severity": "info",
+      "message": "no addr2line for esp32 (xtensa-esp32-elf), esp32s2 (xtensa-esp32s2-elf): build once for this chip; pio installs its toolchain",
+      "source_ids": []
+    }
+  ],
+  "assumptions": [],
+  "sources": [],
+  "simulated": true,
+  "error": null
+}

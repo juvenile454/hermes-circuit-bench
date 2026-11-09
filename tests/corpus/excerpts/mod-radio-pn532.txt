@@ -1,0 +1,66 @@
+# source_id: mod-radio-pn532-ds
+# document: NXP PN532/C1 Near Field Communication (NFC) controller, Product data sheet Rev. 3.6
+# url: https://cache.nxp.com/docs/en/nxp/data-sheets/PN532_C1.pdf
+# corpus: mod/radio/PN532_C1.pdf sha256 46c4f04c44a36dfded8088e62cbcfe8cd3f785c460bb14f161ce0160ef84822d
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+Rev. 3.6 — 28 November 2017
+@@ page 4
+[1] DV DD, AVDD and TVDD must always be at the same supply voltage.
+[4] The antenna should be tuned not to exceed this curr ent limit (the detuning effect when coupling with 
+VBAT battery supply voltage 2.7 - 5.5 V
+PVDD Supply voltage 
+for host interface
+VSS = 0 V 1.6 - 3.6 V
+IHPD Hard-Power-Down 
+VBAT =5V - - 2 A
+IDVDD Digital supply current V BAT =5  V ,  
+[1] -2 5 - m A
+ITVDD Transmitter supply current During RF transmission, 
+VBAT =5  V
+-6 0 [3] 150[4] mA
+@@ page 8
+I0 16 I DVDD Host interface selector 0.
+I1 17 I DVDD Host interface selector 1.
+TESTEN 18 I DVDD Reserved for test: connect to ground for normal operation.
+PVDD 23 PWR Pad power supply.
+P70_IRQ 25 IO PVDD General purpose IO. Can be used as Interrupt request to host.
+27 IO PVDD Host interface pin: SPI Not Slave Selected (NSS) or I 2C clock 
+(SCL) or HSU receive (HSU_RX). Refer to Table 72 on 
+28 IO PVDD Host interface pin: SPI Master Out Slave In (MOSI) or I 2C 
+data (SDA) or HSU transmit (HSU_TX). Refer to Table 72 on 
+MISO / P71 29 IO PVDD Host interface pin: SPI  Master In Slave Out (MISO). Refer to 
+@@ page 9
+30 IO PVDD Host interface pin: SPI serial clock. Refer to Table 72 on 
+RSTPD_N 38 I PVDD Reset and Power-Down: When low, internal current sources 
+DVDD 39 O Internal digital power supply.
+VBAT 40 PWR Main external power supply.
+@@ page 48
+The firmware must copy the value of the pads I0 and I1 to respectively selif[0] and selif[1].
+Table 72. HOST interface selection
+Selif [1:0] 00 01 10 11
+Host interface selected HSU SPI I2C Reserved
+@@ page 49
+In I2C mode, P50_SCL and SDA are configured in Open Drain mode.
+@@ page 79
+• Synchronous, Serial, Half-Duplex communication, 5 MHz max
+@@ page 194
+Table 290. Limiting values
+PVDD Supply Voltage -0.5 4 V
+VBAT Power Supply Voltage -0.5 6.0 V
+ITVDD Maximum current in TVDD [1] 150 mA
+Table 291. Operating conditions
+VBAT Power Supply Voltage V SS = 0 V [1]
+2.7 5.5 V
+PVDD Supply Voltage for host interface V SS =0V [3] 1.6 1.8 to 3.3 3.6 V
+@@ page 195
+Cdec DVDD decoupling capacitor Low ESR, like X7R or 
+[1] 10 F
+@@ page 203
+Table 307. Input pin charac teristics for NSS / HSU_RX for HSU / SPI interfaces
+VIH High level Input voltage PV DD > 1.6V [1]
+0.7  PVDD PVDD V
+VIL Low level Input voltage PV DD > 1.6V [2] 00 . 3  PVDD V
+@@ page 211
+fSCL SCL clock frequency 0 400 kHz

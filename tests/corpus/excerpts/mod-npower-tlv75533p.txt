@@ -1,0 +1,74 @@
+# source_id: mod-npower-tlv755p-ds
+# document: Texas Instruments TLV755P 500mA, Low-IQ, Small-Size, Low-Dropout Regulator, Data sheet SBVS320D (revised September 2024)
+# url: https://web.archive.org/web/20261025050805id_/https://www.ti.com/lit/ds/symlink/tlv755p.pdf
+# corpus: mod/npower/tlv755p.pdf sha256 96e2706d4b13656d2d550fdbb5be9861c56b058822109bb39a906d4ad1beb019
+# retrieved: 2026-11-09
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+TLV755P 500mA, Low-IQ, Small-Size, Low-Dropout Regulator
+• Input voltage range: 1.45V to 5.5V
+• Stable with a 1µF ceramic output capacitor
+@@ page 3
+EN 3 3 3 4 I
+Enable pin. Drive EN greater than VHI to turn on the regulator.
+Drive EN less than VLO to place the low-dropout regulator (LDO) 
+GND 2 2 2 3 — Ground pin.
+IN 4 1 1 6 I
+Input pin. A capacitor with a value of 1µF or larger is required from 
+NC — 4 4 2, 5 — No internal connection.
+OUT 1 5 5 1 O
+Regulated output voltage pin. A capacitor with a value of 1µF or 
+(1) Make sure the nominal input and output capacitance is greater than 0.47µF. Throughout this document the nominal derating on these 
+@@ page 4
+Supply voltage, VIN −0.3 6.0 V
+Enable voltage, VEN −0.3 6.0 V
+Operating junction temperature TJ −40 150 °C
+VIN Input voltage 1.45 5.5 V
+VEN Enable voltage 0 5.5 V
+IOUT Output current 0 500 mA
+CIN Input capacitor 1 μF
+COUT Output capacitor 1 200 μF
+TJ Junction temperature –40 125 °C
+@@ page 5
+UNITDYD (SOT-23-5) DQN (X2SON) DBV (SOT-23-5) DRV (WSON)
+RθJA Junction-to-ambient thermal resistance 60.3 N/A 100.8 N/A
+RθJA Junction-to-ambient thermal resistance 92.5 168.4 231.1 100.2
+at operating temperature range (TJ =–40°C to 125°C), VIN=VOUT(NOM) + 0.5V or 2.0V (whichever is greater), IOUT = 1mA, VEN 
+VIN Input voltage 1.45 5.5 V
+−40°C ≤ TJ ≤ +85°C, DBV and DRV package −1 1 %
+VOUT ≥ 1V −1.5 1.5 %
+IGND Ground current
+TJ = 25°C, IOUT = 0mA 14 25 31
+µA−40°C ≤ TJ ≤ +85°C, IOUT = 0mA 33
+−40°C ≤ TJ ≤ +125°C, IOUT = 0mA 40
+ISHDN Shutdown current VEN ≤ 0.4V, 1.4V ≤ VIN ≤ 5.5V, −40°C ≤ TJ ≤ +125°C 0.1 1 µA
+ICL Output current limit
+VDO(MAX) + 
+VOUT = 0.9 x VOUT, 1.5V < VOUT ≤ 4.5V 560 720 865
+ISC Short-circuit current limit VOUT = 0V 355 mA
+@@ page 6
+at operating temperature range (TJ =–40°C to 125°C), VIN=VOUT(NOM) + 0.5V or 2.0V (whichever is greater), IOUT = 1mA, VEN 
+VDO Dropout voltage
+500mA,
++85°C
+3.3V ≤ VOUT < 5.0V 150 215
+3.3V ≤ VOUT < 5.0V, DYD package 150 238
+500mA,
++125°C
+3.3V ≤ VOUT < 5.0V 238
+3.3V ≤ VOUT < 5.0V, DYD package 258
+VHI EN pin high voltage (enabled) 1 V
+VLO EN pin low voltage (enabled) 0.3 V
+IEN Enable pin current EN = 5.5V 10 nA
+TSD Thermal shutdown
+Shutdown, temperature increasing 165
+RPULLDOWN Pulldown resistance VIN = 5.5V 120 Ω
+@@ page 15
+The TLV755P requires an output capacitance of 0.47µF or larger for stability. Use X5R- and X7R-type 
+Place a 1µF or greater capacitor on the input pin of the LDO. Some input supplies have a high impedance. 
+@@ page 23
+xx(x) is the nominal output voltage. For output voltages with a resolution of 100mV, two digits are used 
+in the ordering number; otherwise, three digits are used (for example, 28 = 2.8V; 125 = 1.25V).
+P indicates an active output discharge feature. All members of the TLV755P family actively discharge 
+@@ page 28
+TLV75533PDBVR Active Production SOT-23 (DBV) | 5 3000 | LARGE T&R Yes SN Level-1-260C-UNLIM -40 to 125 1FWF

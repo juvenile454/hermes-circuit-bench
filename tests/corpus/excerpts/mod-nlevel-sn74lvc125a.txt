@@ -1,0 +1,56 @@
+# source_id: mod-nlevel-sn74lvc125a-ds
+# document: TI SN74LVC125A Quadruple Bus Buffer Gate With 3-State Outputs, data sheet SCAS290T
+# url: https://www.ti.com/lit/ds/symlink/sn74lvc125a.pdf
+# corpus: mod/nlevel/sn74lvc125a.pdf sha256 06ff124c6c762b7c8e0e6f2df79edd1dacb1368a40039542da0b5cedb7c54b28
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+• Operates from 1.65V to 3.6V
+• Inputs accept voltages to 5.5V
+@@ page 3
+1OE 1 Input Output Enable
+1A 2 Input Input A
+1Y 3 Output Output Y
+2OE 4 Input Output Enable
+2A 5 Input Input A
+2Y 6 Output Output Y
+GND 7 — Ground
+3Y 8 Output Output Y
+3A 9 Input Input A
+3OE 10 Input Output Enable
+4Y 11 Output Output Y
+4A 12 Input Input A
+4OE 13 Input Output Enable
+VCC 14 — Positive Supply
+@@ page 4
+VCC Supply voltage range –0.5 6.5 V
+VI Input voltage range(2) –0.5 6.5 V
+VO Output voltage range(2) (3) –0.5 VCC + 0.5 V
+@@ page 5
+VCC Supply voltage
+Operating 1.65 3.6 1.65 3.6 1.65 3.6
+VIH High-levelinput voltage
+VCC = 2.7V to 3.6V 2 2 2
+VIL Low-levelinput voltage
+VCC = 2.7V to 3.6V 0.8 0.8 0.8
+VI Input voltage 0 5.5 0 5.5 0 5.5 V
+VO Output voltage 0 VCC 0 VCC 0 VCC V
+(1) All unused inputs of the device must be held at VCC or GND to ensure proper device operation. Refer to the TI application report, 
+@@ page 6
+VOH
+IOH = –100μA 1.65V to3.6V VCC – 0.2 VCC – 0.2 VCC – 0.3
+ICC VI = VCC or GND, IO = 0 3.6V 1 10 40 μA
+ΔICC One input at VCC – 0.6V,Other inputs at VCC or GND 2.7V to3.6V 500 500 5000 μA
+@@ page 9
+• Allows down voltage translation
+• Inputs accept voltages to 5.5V
+YOE A
+L H H
+L L L
+H X Z
+@@ page 10
+• Inputs are overvoltage tolerant allowing them to go as high as (VI max) in the Section 5.3 table at any 
+valid VCC.
+• Outputs should not be pulled above VCC.
+@@ page 11
+supply, 0.1 μf is recommended; if there are multiple V CC pins, then 0.01 μf or 0.022 μf is recommended for each 

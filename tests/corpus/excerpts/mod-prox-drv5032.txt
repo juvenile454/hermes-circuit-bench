@@ -1,0 +1,40 @@
+# source_id: mod-prox-drv5032-ds
+# document: DRV5032 Ultra-Low-Power Digital-Switch Hall Effect Sensor, SLVSDC7H
+# url: https://www.ti.com/lit/ds/symlink/drv5032.pdf
+# corpus: mod/prox/drv5032.pdf sha256 0bdec04d64591bbb62c74f2e5d4dc10f21de5f76b0b0f12fca5c6a277037ceee
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+– DG Version: 3.4mT
+– DU Version: 3.9mT
+– FA, FB, FC, FD Versions: 4.8mT
+– AJ Version: 9.5mT
+– ZE Version: 63mT
+BOP threshold, the device outputs a low voltage. The
+@@ page 2
+DRV5032DG 3.4 mT Unipolar Push-pull 80 Hz X2SON
+@@ page 3
+GND 3 3 2 2 2 2 — Ground reference
+OUT 2 — 3 — 4 — O Omnipolar output that responds to north and south magnetic poles
+VCC 1 1 1 1 1 1 — 1.65-V to 5.5-V power supply. TI recommends connecting this pin to a ceramic capacitor to ground with a value of at least 0.1 µF.
+@@ page 4
+Power supply voltage VCC –0.3 5.5 V
+VCC Power supply voltage 1.65 5.5 V
+@@ page 5
+PUSH-PULL OUTPUT DRIVER
+VOH High-level output voltage IOUT = –1mA VCC – 0.35 VCC – 0.1 V
+VOL Low-level output voltage IOUT = 1mA 0.1 0.3 V
+OPEN-DRAIN OUTPUT
+VOL Low-level output voltage IOUT = 1mA 0.1 0.3 V
+DU, FA, FC, FD, AJ, ZE VERSIONS
+ICC(AVG) Average current consumption
+µAVCC = 3V 1.6 3.5
+FB VERSION
+ICC(AVG) Average current consumption
+µAVCC = 3V 0.69 1.8
+ALL VERSIONS
+ICC(PK) Peak current consumption 2 2.7 mA
+@@ page 13
+The DU, DG, FA, FB, and FD device versions have push-pull CMOS outputs that can drive a V CC or ground
+level. The FC, AJ, and ZE device versions have open-drain outputs that can become high impedance or drive
+ground. For these versions, an external pullup resistor must be used.

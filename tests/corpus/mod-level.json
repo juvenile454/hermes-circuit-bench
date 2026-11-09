@@ -1,0 +1,46 @@
+{
+ "files": [
+  {
+   "url": "https://web.archive.org/web/20261029144954id_/https://www.ti.com/lit/ds/symlink/sn74ahct125.pdf",
+   "path": "mod/level/sn74ahct125.pdf",
+   "source_id": "mod-level-sn74ahct125-ds",
+   "excerpt": "excerpts/mod-level-sn74ahct125.txt",
+   "sha256": "66da72e586dbca7a1548164adf28e238484c5c1ad250fcb28ec972e4732c6fc2"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/sn74lv1t34.pdf",
+   "path": "mod/level/sn74lv1t34.pdf",
+   "source_id": "mod-level-sn74lv1t34-ds",
+   "excerpt": "excerpts/mod-level-sn74lv1t34.txt",
+   "sha256": "07c6cf783df4d2762f18760217310ef48174adc9984f791fde64bcd21f13d360"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/txs0108e.pdf",
+   "path": "mod/level/txs0108e.pdf",
+   "source_id": "mod-level-txs0108e-ds",
+   "excerpt": "excerpts/mod-level-txs0108e.txt",
+   "sha256": "a6ddbe03088d291d1a1f8012189086b4b9962d1c878a462a8393c59fe225c883"
+  },
+  {
+   "url": "https://www.ti.com/lit/ds/symlink/txb0104.pdf",
+   "path": "mod/level/txb0104.pdf",
+   "source_id": "mod-level-txb0104-ds",
+   "excerpt": "excerpts/mod-level-txb0104.txt",
+   "sha256": "9a852f7bcc4104df0676d7ee3e4918429c3db2cbd79a5338aca0a1d34471e400"
+  },
+  {
+   "url": "https://www.onsemi.cn/download/data-sheet/pdf/bss138-d.pdf",
+   "path": "mod/level/bss138-d.pdf",
+   "source_id": "mod-level-bss138-ds",
+   "excerpt": "excerpts/mod-level-bss138.txt",
+   "sha256": "cd98f819a8d80b65f0e855309274a23d51c28d58a8a7d1dea704fe7505bd9883"
+  },
+  {
+   "url": "https://web.archive.org/web/20231201131917id_/https://assets.nexperia.com/documents/application-note/AN10441.pdf",
+   "path": "mod/level/AN10441.pdf",
+   "source_id": "mod-level-an10441",
+   "excerpt": "excerpts/mod-level-an10441.txt",
+   "sha256": "67a04c7ece897c95123a1f9ea76068dad6b076927ea53859abd50ccdd55bf295"
+  }
+ ]
+}

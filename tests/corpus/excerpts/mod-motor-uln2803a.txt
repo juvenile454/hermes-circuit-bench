@@ -1,0 +1,20 @@
+# source_id: mod-motor-uln2803a-ds
+# document: Texas Instruments ULN2803A Darlington Transistor Array data sheet, SLRS049C (revised August 2004), copy hosted by SparkFun
+# url: https://cdn.sparkfun.com/assets/f/0/6/6/5/uln2803a.pdf
+# corpus: mod/motor/uln2803a-sparkfun.pdf sha256 95f7684f3c9710adf9c998e279f4f5d3bd7a8c1012272136d704c905dd2f4c4e
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+diodes for switching inductive loads. The collector-current rating of
+drivers, and logic buffers. The ULN2803A has a 2.7-kΩ series base resistor for each Darlington pair for operation
+directly with TTL or 5-V CMOS devices.
+@@ page 3
+Collector-emitter voltage  50 V. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Input voltage (see Note 1) 30 V. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Continuous collector current 500 mA. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Output clamp diode current 500 mA. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Total substrate-terminal current  −2.5 A. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+II(on) Input current VI = 3.85 V, See Figure 3 0.93 1.35 mA
+IC = 200 mA 2.4
+VCE(sat) Collector-emitter saturation voltage II = 350 µA,See Figure 5 IC = 200 mA, 1 1.3 V
+VF Clamp diode forward voltage IF = 350 mA, See Figure 7 1.7 2 V

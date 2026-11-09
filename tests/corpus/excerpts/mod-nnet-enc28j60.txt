@@ -1,0 +1,38 @@
+# source_id: mod-nnet-enc28j60-ds
+# document: Microchip ENC28J60 data sheet DS39662E (2006-2012)
+# url: https://ww1.microchip.com/downloads/en/DeviceDoc/39662e.pdf
+# corpus: mod/nnet/ENC28J60-39662e.pdf sha256 b52e8531a128c7590ce2775b27497139e309d3fd14f0865a87d85546afaf004c
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 4
+capacitor, with a typical value of 10 µF and a minimum value of 1 µF to ground,
+must be placed on this pin.
+3: Pins are 5V tolerant.
+@@ page 7
+that an external 2.32 k, 1% resistor be attached from
+1:1 center taped pulse transformers, rated for Ethernet
+ground node. Each VDD and VSS pin pair should have
+a 0.1 F ceramic bypass capacitor (not shown in the
+@@ page 79
+Voltage on VDD, VDDOSC, VDDPLL, VDDRX and VDDTX, with respect to VSS ................................................. -0.3V to 3.6V
+Voltage on RESET, CS, SCK and SI, with respect to VSS ........................................................................... -0.3V to 6.0V
+@@ page 80
+D001 V DD Supply Voltage 3.10 3.30 3.60 V
+VIH Input High Voltage
+D004 SCK, CS , SI, RESET 2.25 — 5.5 V
+VIL Input Low Voltage
+D006 SCK, CS , SI, RESET VSS —1 . 0 V
+VOH Output High Voltage
+INT, SO
+VDD – 0.7
+VOL Output Low Voltage
+INT, SO
+0.4
+Transmitting Ethernet
+—1 6 0 1 8 0 m A V DD = 3.30V, FSCK = 10 MHz,
+IDDS Standby Current
+— 1.2 2.0 mA CS  = VDD, Inputs tied to VDD
+@@ page 81
+FOSC Clock In Frequency 25 25 MHz
+@@ page 82
+FSCK Clock Frequency DC 20 MHz

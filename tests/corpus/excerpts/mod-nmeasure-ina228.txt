@@ -1,0 +1,49 @@
+# source_id: mod-nmeasure-ina228-ds
+# document: Texas Instruments INA228 85-V, 20-Bit, Ultra-Precise Power/Energy/Charge Monitor With I2C Interface, SLYS021A (January 2021, revised May 2022)
+# url: https://www.ti.com/lit/ds/symlink/ina228.pdf
+# corpus: mod/nmeasure/ina228.pdf sha256 a138d39eeee04f8388426fed204c2f4012e75d36e95b60b0751ef003cd277447
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 3
+1 A1 Digital input I2C address pin. Connect to GND, SCL, SDA, or VS.
+2 A0 Digital input I2C address pin. Connect to GND, SCL, SDA, or VS.
+3 ALERT Digital output Open-drain alert output, default state is active low.
+VS Supply voltage 6 V
+VIN+, VIN– (2) Differential (VIN+) – (VIN–) –40 40 VCommon-mode –0.3 85 V
+VVBUS –0.3 85 V
+VALERT ALERT –0.3 VS + 0.3 V
+VIO SDA, SCL –0.3 6 V
+@@ page 5
+VCM Common-mode input range TA = –40°C to +125°C –0.3 85 V
+VVBUS Bus voltage input range 0 85 V
+TA = –40°C to +125°C, ADCRANGE = 0 –163.84 163.84 mV
+TA = –40°C to +125°C, ADCRANGE = 1 –40.96 40.96 mV
+@@ page 6
+VS Supply voltage 2.7 5.5 V
+IQ Quiescent current
+VSENSE = 0 V 640 750 µA
+VSENSE = 0 V, TA = –40°C to +125°C 1.1 mA
+IQSD Quiescent current, shutdown Shutdown mode 2.8 5 µA
+VIH Logic input level, high SDA, SCL 1.2 5.5 V
+VIL Logic input level, low GND 0.4 V
+VOL Logic output level, low IOL = 3 mA GND 0.4 V
+@@ page 7
+I2C BUS (FAST MODE)
+F(SCL) I2C clock frequency 1 400 kHz
+I2C BUS (HIGH-SPEED MODE)
+F(SCL) I2C clock frequency 10 2940 kHz
+@@ page 19
+The device has two address pins, A0 and A1. Table 7-2 lists the pin logic levels for each of the 16 possible 
+Table 7-2. Address Pins and Secondary Device Addresses
+GND GND 1000000
+SCL SCL 1001111
+@@ page 20
+When the bus is idle, both the SDA and SCL lines are pulled high by the pullup resistors. The main device 
+@@ page 31
+IN+ and IN– pins. Use Equation 2 for ADCRANGE = 0. For ADCRANGE = 1, the value of SHUNT_CAL must be 
+SHUNT_CAL = 13107.2 x 106 x CURRENT_LSB x RSHUNT
+CURRENT_LSB  =
+Maximum Expected Current
+219
+@@ page 39
+the device. A typical value for this supply bypass capacitor is 0.1 µF. Applications with noisy or high-impedance 

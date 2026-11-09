@@ -1,0 +1,43 @@
+# source_id: mod-net-neom8n-ds
+# document: u-blox NEO-M8 (FW3) u-blox M8 concurrent GNSS modules Data sheet UBX-15031086 R14
+# url: https://content.u-blox.com/sites/default/files/NEO-M8-FW3_DataSheet_UBX-15031086.pdf
+# corpus: mod/net/NEO-M8-FW3_DataSheet_UBX-15031086.pdf sha256 5dc7a6c044873a04e2dcc08a7f54e9e7374c5c69dcce694054ac4730c81a04a5
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 2
+Document number UBX-15031086  
+Revision and date R14 30-Sep-2025 
+NEO-M8N NEO-M8N-0-12 Flash FW SPG 3.01  UBXDOC-963802114-12646, UBX-21015025, UBX-22039049 
+@@ page 15
+2 D_SEL - I Interface select 
+8 RESET_N - I RESET_N 
+10 GND - I Ground 
+18 SDA /    
+20 TXD / 
+6 O Serial port if D_SEL =1 (or open) 
+21 RXD / 
+7 I Serial port if D_SEL =1 (or open) 
+22 V_BCKP - I Backup voltage supply 
+23 VCC  I Supply voltage 
+@@ page 18
+Power supply voltage VCC  –0.5 3.6 V 
+Backup battery voltage V_BCKP  –0.5 3.6 V 
+Input pin voltage  VIN If VCC < 3.1V 
+If VCC > 3.1V 
+VCC+0.5 
+3.6 
+These are stress ratings only. The product is not protected against overvoltage or reversed 
+Power supply voltage NEO-M8N/Q/J  VCC 2.7 3.0 3.6 V  
+Backup battery voltage V_BCKP 1.4  3.6 V  
+Input pin voltage range VIN 0  VCC V  
+Digital IO pin low level input voltage VIL 0  0.2*VCC V  
+Digital IO pin high level input voltage VIH 0.7*VCC  VCC V   
+@@ page 19
+Digital IO pin low level output voltage VOL   0.4 V IOL = 4mA 
+Digital IO pin high level output voltage VOH VCC–0.4   V IOH = 4mA 
+Pull-up resistor for RESET_N (internal) RPU  11  kΩ  
+Max. supply current 13 ICCP All   67 mA  
+NEO-M8N 32 25  mA Estimated at 3 V 
+@@ page 25
+9600 baud, 8 bits, no parity bit, 1 stop bit. 
+UART input 9600 baud, 8 bits, no parity bit, 1 stop bit, autobauding disabled. 

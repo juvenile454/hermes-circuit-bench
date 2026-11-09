@@ -1,0 +1,23 @@
+# source_id: mod-prox-hcsr04-sheet
+# document: Ultrasonic Ranging Module HC-SR04 (Elecfreaks vendor sheet, no revision)
+# url: https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf
+# corpus: mod/prox/HCSR04.pdf sha256 4ebdc3e1f70d84a1ca856d8fcd7f8b1f9e548a94e4012cd86d14ca0b30543b06
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+/circle6 5V Supply
+/circle6 Trigger Pulse Input
+/circle6 Echo Pulse Output
+/circle6 0V Ground
+Working Voltage DC 5 V
+Working Current 15mA
+Max Range 4m
+Min Range 2cm
+Trigger Input Signal 10uS TTL pulse
+Echo Output Signal Input TTL lever signal and the r ange in
+@@ page 2
+calculate the range through the time interval between sending trigger signal and
+receiving echo signal. Formula: uS / 58 = centimeters or uS / 148 =inch; or: the
+range = high level time * velocity (340M/S) / 2; we suggest to use over 60ms
+@@ page 3
+electric, the GND terminal should be connected the module first, otherwise,

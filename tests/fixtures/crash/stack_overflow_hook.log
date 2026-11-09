@@ -1,0 +1,6 @@
+***ERROR*** A stack overflow in task sensor_task has been detected.
+
+
+Backtrace: 0x40375b4a:0x3fc9d2e0 0x4037a1d5:0x3fc9d300 0x4037b6e2:0x3fc9d320 0x4037c9b4:0x3fc9d3a0 0x4037b7a8:0x3fc9d3c0 0x4037b75e:0x00000000 |<-CORRUPTED
+
+Rebooting...

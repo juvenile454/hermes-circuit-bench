@@ -1,0 +1,47 @@
+# source_id: mod-nmeasure-mcp3208-ds
+# document: Microchip MCP3204/3208 2.7V 4-Channel/8-Channel 12-Bit A/D Converters with SPI Serial Interface, DS21298E (2008)
+# url: https://ww1.microchip.com/downloads/en/DeviceDoc/21298e.pdf
+# corpus: mod/nmeasure/21298e.pdf sha256 89bc1e17c35e2bb1c7b8fbf0b775b3729ce9fe4d27f7e9c052a774757afc0c20
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 1
+• SPI serial interface (modes 0,0 and 1,1)
+• Single supply operation: 2.7V - 5.5V
+• 100 ksps max. sampling rate at V DD = 5V
+- 500 nA typical standby current, 2 µA max.
+@@ page 2
+VDD...................................................................................7.0V
+All inputs and outputs w.r.t. VSS ............... -0.6V to VDD +0.6V
+Voltage Range 0.25 — V DD V Note 2
+Input Voltage Range for CH0-
+VSS —V REF V
+3: Because the sample cap will eventually lose charge, effective clock rates below 10 kHz can affect linearity 
+@@ page 3
+High Level Input Voltage V IH 0.7 VDD ——V
+Low Level Input Voltage V IL — — 0.3 V DD V
+High Level Output Voltage V OH 4.1 — — V I OH = -1 mA, VDD = 4.5V
+Low Level Output Voltage V OL —— 0 . 4 V I OL = 1 mA, VDD = 4.5V
+Clock Frequency f CLK —
+2.0
+1.0
+MHz
+VDD = 5V (Note 3)
+VDD = 2.7V (Note 3)
+Operating Voltage V DD 2.7 — 5.5 V
+Operating Current I DD —
+320
+225
+400
+µA V DD=VREF = 5V, DOUT unloaded
+Standby Current I DDS —0 . 5 2 . 0 µ A C S  = VDD = 5.0V 
+@@ page 17
+Digital Output Code
+4096 V IN×
+VREF
+@@ page 22
+period and the time that all 12 data bits have been
+clocked out must not exceed  1.2 ms (effective clock
+frequency of 10 kHz). Failure to meet this criterion may
+@@ page 23
+possible to the device pin. A bypass capacitor value of
+1 µF is recommended.

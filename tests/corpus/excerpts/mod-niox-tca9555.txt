@@ -1,0 +1,36 @@
+# source_id: mod-niox-tca9555-ds
+# document: TCA9555 Low-Voltage 16-Bit I2C and SMBus I/O Expander with Interrupt Output and Configuration Registers, SCPS200E
+# url: https://www.ti.com/lit/ds/symlink/tca9555.pdf
+# corpus: mod/niox/tca9555.pdf sha256 9706a3ccbf0bc915387949ab82bc0020a1a5bfdd67d8f51c4605a8d4b16bb231
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 3
+The TCA9555 is identical to the TCA9535, except for the inclusion of the internal I/O pull-up resistor, which pulls
+PCF8575, PCF8575C, and PCF8574, allowing up to eight of these devices in any combination to share the same
+@@ page 4
+SCL 22 19 Input Serial clock bus. Connect to VCC through a pull-up resistor
+SDA 23 20 Input Serial data bus. Connect to VCC through a pull-up resistor
+@@ page 5
+VCC Supply voltage –0.5 6 V
+VI Input voltage (2) –0.5 6 V
+VCC Supply voltage 1.65 5.5 V
+VIH High-level input voltage
+SCL, SDA 0.7 × VCC VCC (1)
+VIL Low-level input voltage
+SCL, SDA –0.5 0.3 × VCC
+@@ page 6
+(2) Each I/O must be externally limited to a maximum of 25 mA, and each octal (P07–P00 and P17–P10) must be limited to a maximum
+SDA VOL = 0.4 V 1.65 V to 5.5 V 3 mA
+@@ page 7
+I/O = inputs, fSCL = 400 kHz, tr
+5.5 V 22 40
+VI = GND, IO = 0, I/O = inputs,
+5.5 V 1.1 1.5
+VI = VCC, IO = 0, I/O = inputs,
+5.5 V 2.5 3.5
+fscl I2C clock frequency 0 400 kHz
+@@ page 23
+L L L 32 (decimal), 0x20 (hexadecimal)
+H H H 39 (decimal), 0x27 (hexadecimal)
+@@ page 31
+capacitors are commonly used to control the voltage on the VCC pin, using a larger capacitor to provide

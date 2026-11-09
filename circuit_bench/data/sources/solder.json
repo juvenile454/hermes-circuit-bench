@@ -1,0 +1,72 @@
+[
+ {
+  "id": "solder-nichicon-al-guidelines",
+  "title": "Nichicon, Application Guidelines for Aluminum Electrolytic Capacitors (CAT.8100Z-2)",
+  "url": "https://www.nichicon.co.jp/english/products/pdf/e-al_gui.pdf",
+  "retrieved": "2026-11-06",
+  "note": "PDF SHA-256 e88167a180d93782b585ceafba3031a04f033fc5dd09b2b123812d2dd49476de. 1.(4): 'Aluminum electrolytic capacitors are polarized.' 2.(5): 'Please confirm polarity before installing capacitors on the P.C. board.' 2.(12) Hand soldering: 'solder iron does not touch any portion of capacitor body'. 2.(17): 'Do not tilt lay down or twist the capacitor body after the capacitor are soldered'."
+ },
+ {
+  "id": "solder-nichicon-al-technical-notes",
+  "title": "Nichicon, General Descriptions of Aluminum Electrolytic Capacitors, Technical Notes (CAT.8101H)",
+  "url": "https://www.nichicon.co.jp/english/products/pdf/aluminum.pdf",
+  "retrieved": "2026-11-06",
+  "note": "PDF SHA-256 ec7f6f9d954d10802c97b8c28e56240f69b292b055ed70151b525ef49dbc2879. 'The pressure relief vent may operate due to generation of gas caused by reverse voltage, over-voltage, extreme ripple or AC voltage.'"
+ },
+ {
+  "id": "solder-rubycon-zlj-spec",
+  "title": "Rubycon, Specification Sheet 50 ZLJ 560 M 12.5X20 (Drawing No. RER-215026, 08 May 2023), 4. Marking",
+  "url": "https://media.digikey.com/pdf/Data%20Sheets/Rubycon%20PDFs/50ZLJ560M12.5X20.pdf",
+  "retrieved": "2026-11-06",
+  "note": "Manufacturer specification, hosted by Digi-Key. PDF SHA-256 81aeac22ede5fb048e69e8e7ecf035fa44f04ac4dbf68e52234bb4a30e59dd90. '(4)Polarity (Negative Polarity)': the stripe on the sleeve marks the negative lead (drawing, page 1)."
+ },
+ {
+  "id": "solder-onsemi-1n4001",
+  "title": "onsemi, 1N4001-1N4007 Axial Lead Standard Recovery Rectifiers, data sheet Rev. 18 (June 2024), Mechanical Characteristics",
+  "url": "https://www.onsemi.com/pdf/datasheet/1n4001-d.pdf",
+  "retrieved": "2026-11-06",
+  "note": "PDF SHA-256 9efcce68a866b5c59a823bdbac49a1c927852a27b6b07d6deb42ee9eecac7364. 'Polarity: Cathode Indicated by Polarity Band'."
+ },
+ {
+  "id": "solder-onsemi-pn2222",
+  "title": "onsemi, PN2222 NPN Epitaxial Silicon Transistor, data sheet PN2222T/D Rev. 4 (June 2024)",
+  "url": "https://www.onsemi.com/pdf/datasheet/pn2222t-d.pdf",
+  "retrieved": "2026-11-06",
+  "note": "PDF SHA-256 180565c7d7448be49ce6633bb16643ad5f2bd14657e5b0de9356b7895d6122a5. TO-92-3 pin list: '1. Emitter 2. Base 3. Collector'."
+ },
+ {
+  "id": "solder-onsemi-p2n2222a",
+  "title": "onsemi, P2N2222A Amplifier Transistors NPN Silicon, data sheet P2N2222A/D Rev. 7 (January 2013)",
+  "url": "https://www.onsemi.com/pdf/datasheet/p2n2222a-d.pdf",
+  "retrieved": "2026-11-06",
+  "note": "PDF SHA-256 e67cb25a25529a21b464d2422c676b1c6194efd1069c8162425f4fdeda443618. TO-92 pin symbol: 'COLLECTOR 1, BASE 2, EMITTER 3'."
+ },
+ {
+  "id": "solder-kingbright-wp7113gd",
+  "title": "Kingbright, WP7113GD T-1 3/4 (5mm) Solid State Lamp, data sheet DSAE9335 Rev. V.12B (04/02/2019)",
+  "url": "https://www.kingbrightusa.com/images/catalog/SPEC/WP7113GD.pdf",
+  "retrieved": "2026-11-06",
+  "note": "PDF SHA-256 55c3ea5f4b7cc7c9f0f058b3cfa8d579993bd19b2afe08339f912df104e2ad45. Package drawing (page 1): the shorter lead is labelled 'Cathode'. Page 5: 'The tip of the soldering iron should never touch the lens epoxy.' 'Do not perform lead forming once the component has been mounted onto the PCB.'"
+ },
+ {
+  "id": "solder-panasonic-battery-guideline",
+  "title": "Panasonic Energy, Battery Safety Guideline, Precautions for use (lithium batteries)",
+  "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/9053/Battery%20Safety%20Guideline.pdf",
+  "retrieved": "2026-11-06",
+  "note": "Manufacturer document, hosted by Digi-Key. PDF SHA-256 c2c87c0d5fecd0b5c042a41db9d4d7f85956e07a2be497e79435cd7237d1e58b. 'Direct soldering onto batteries may damage the resin in crimping, separator and other parts, causing electrolyte leak, internal short circuit, fire and explosion.' 'Insert the batteries in correct polarity position.'"
+ },
+ {
+  "id": "solder-panasonic-liion-precautions",
+  "title": "Panasonic, Safety Precautions for the Lithium Ion Battery Pack (January 2007)",
+  "url": "https://www.epectec.com/downloads/Panasonic-Lithium-Ion-Battery-Precautions.pdf",
+  "retrieved": "2026-11-06",
+  "note": "Manufacturer document, hosted by Epec. PDF SHA-256 4ee42d28b49e683f7337e32e77020ace3100e9a80e83c7da3f1be48766a9e02d. 'Do not solder directly onto the battery.' 'Do not install the battery backwards so that the polarity is reversed.'"
+ },
+ {
+  "id": "solder-fda-laser-faq",
+  "title": "U.S. FDA, Frequently Asked Questions About Lasers",
+  "url": "https://www.fda.gov/radiation-emitting-products/laser-products-and-instruments/frequently-asked-questions-about-lasers",
+  "retrieved": "2026-11-06",
+  "note": "'As a rule, you should never look directly into any laser beam.' 'Never aim or shine a laser pointer at anyone.'"
+ }
+]

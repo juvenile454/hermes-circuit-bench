@@ -1,0 +1,34 @@
+[
+  {
+    "id": "mod-npixel-ws2813-ds",
+    "title": "Worldsemi WS2813B-V5/W Intelligent control LED integrated light source, datasheet V6.0",
+    "url": "https://www.world-semi.com/web/userfiles/productfile/WS2813B-V5WDatasheet_V6.0_EN.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Revision V6.0 (2021/12/02, modify record p. 8); VIH 0.7·VDD; pages 1, 2, 3, 4, 8 (the typical application circuit on p. 4 is an image); the current files under world-semi.com/downloads/datasheets/en/ws2813*.pdf have no text layer; sha256 7cfac6bcd3a602fdc1b7cc4475b4fa99576ff1ad22581bc3afd001955fa8b7a4"
+  },
+  {
+    "id": "mod-npixel-ws2815-ds",
+    "title": "Worldsemi WS2815B-V1 Intelligent control LED integrated light source, datasheet V2.2",
+    "url": "https://www.world-semi.com/downloads/datasheets/en/ws2815b-v1-v1.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Revision V2.2 (2023/03/15, modify record p. 8), linked from world-semi.com/products-rgbic-led.html; pages 1, 2, 3, 4, 8; sha256 5abda6670b053011fa6d2043c3c6d681077268be35590c603b0e9d28413dde6c"
+  },
+  {
+    "id": "mod-npixel-ltv817-ds",
+    "title": "Lite-On Photocoupler Product Data Sheet LTV-817/827/847 (M, S, S-TA, S-TA1, S-TP) Series (archived)",
+    "url": "https://web.archive.org/web/20240619113556id_/https://optoelectronics.liteon.com/upload/download/DS-70-96-0016/LTV-8X7%20series%20RevQ.PDF",
+    "retrieved": "2026-11-08",
+    "class": "A1",
+    "note": "Spec No. DS-70-96-0016, Revision Q, effective 12/05/2018; Wayback snapshot 2024-06-19 of optoelectronics.liteon.com; the live file 'ltv-8x7 series 201610 .pdf' answers 'Request Rejected' (WAF) to scripts and the browser; pages 1, 2, 9, 10, 11 (pin drawing is an image); sha256 89fff3d8b1ce1a66b79a5b6c33705ace957fd4a5a3676e8cb296797f51368c54"
+  },
+  {
+    "id": "mod-npixel-el817-ds",
+    "title": "Everlight EL817 Series 4 PIN DIP Phototransistor Photocoupler, datasheet",
+    "url": "https://www.everlighteurope.com/custom/files/datasheets/DPC-0000046.pdf",
+    "retrieved": "2026-11-08",
+    "class": "A",
+    "note": "Issue No. DPC-0000046 Rev. 20, release date 20 Jan 2025; hosted by Everlight Europe (the manufacturer's European subsidiary; the footer names www.everlight.com); pages 1, 2, 3; sha256 d9b52e28759df28e6ce862ab5ab5f449136e9ef467c90755c8d90f80db279f69"
+  }
+]

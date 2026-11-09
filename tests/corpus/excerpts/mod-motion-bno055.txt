@@ -1,0 +1,46 @@
+# source_id: mod-motion-bno055-ds
+# document: BNO055 Intelligent 9-axis absolute orientation sensor, Data sheet BST-BNO055-DS000-18
+# url: https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bno055-ds000.pdf
+# corpus: mod/motion/bst-bno055-ds000.pdf sha256 5bab02a74fb63c261d6e25a05a44c34855f33fdebfd7a775d68705e41d7552f2
+# retrieved: 2026-11-08
+# extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
+@@ page 13
+VDD -- 2.4 -- 3.6 V
+VDDIO -- 1.7 -- 3.6 V
+VDDIO_VIL VDDIO = 1.7-2.7V -- -- 0.25 VDDIO V
+VDDIO = 2.7-3.6V -- -- 0.3 VDDIO V
+VDDIO_VIH VDDIO = 1.7-2.7V 0.7 VDDIO -- -- V
+VDDIO = 2.7-3.6V 0.55 VDDIO -- -- V
+VDDIO_VOL VDDIO > 3V , IOL =20mA -- 0.1 VDDIO 0.2 VDDIO V
+VDDIO_VOH VDDIO > 3V , IOH =10mA 0.8 VDDIO 0.9 VDDIO -- V
+IDD + IDDIO VDD = 3V, VDDIO = 2.5V -- -- 12.3 mA
+IDD_SuM VDD = 3V, VDDIO = 2.5V -- -- 0.04* mA
+@@ page 18
+Voltage at Supply Pin VDD Pin  -0.3 4.2 V
+VDDIO Pin  -0.3 3.6 V
+Voltage at any Logic Pin Vnon-supply Pin  -0.3 VDDIO+0.3 V
+@@ page 19
+For the switching sequence of power supply VDD and VDDIO it is mandatory that VDD is powered
+@@ page 60
+BNO055 CHIP ID <7:0> Chip identification code, read-only fixed value 0xA0
+@@ page 99
+0 0 Standard/Fast I2C Interface
+1 0 UART Interface
+It is not allowed to keep the protocol select pins floating.
+COM3 I2C address select
+COM3 pin Rup
+20 40 60 k
+I²C Bus Load
+CI2C_Load    400 pF
+@@ page 100
+output) signal lines. Both lines are connected to V DDIO externally via pull-up resistors so that
+fast mode, only 7 -bit address mode is supported.  The BNO055 I²C interface uses clock
+stretching.
+The default I²C address of the BNO055 device is 0101001b (0x29). The alternative address
+0101000b (0x28), in I2C mode the input pin COM3 can be used to select between the primary
+Slave HIGH 0x29
+Slave LOW 0x28
+Clock Frequency fSCL   400 kHz
+@@ page 106
+9 CAP -- External capacitor  CAP
+17 COM3 Digital In Digital interface pin
