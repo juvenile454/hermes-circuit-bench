@@ -12,7 +12,7 @@ import pytest
 import test_api_support as sup  # noqa: F401
 from test_api_support import *  # noqa: F403
 
-from circuit_bench import tools
+from circuit_bench import hooks, tools
 from circuit_bench.bench_core import board, boards, chips, contracts, guard, pins
 
 NEW = ("esp32-s2-devkitc-1", "esp32-c6-devkitc-1", "esp32-c6-devkitm-1", "wt32-eth01")
@@ -39,8 +39,11 @@ def host():
     return tools.Host(hook_active=True)
 
 
+TASK = "t"  # the task id Hermes passes to the hook and the handler alike
+
+
 def call(host, name, **args):
-    env = json.loads(tools.make_handlers(host)[name](args))
+    env = json.loads(tools.make_handlers(host)[name](args, task_id=TASK))
     assert contracts.validate_envelope(env) == [], env
     return env
 
@@ -113,6 +116,7 @@ def test_tool_detect_hands_the_devkit_to_board_detect(host, monkeypatch):
 
     monkeypatch.setattr(board, "detect", fake_detect)
     monkeypatch.setattr(guard, "check_serial", lambda **kw: None)
+    assert hooks.decide(host, "bench_board", {"action": "detect", "port": "/dev/ttyUSB7"}, TASK)["action"] == "approve"
     env = call(host, "bench_board", action="detect", port="/dev/ttyUSB7", project=pid)
     assert seen.get("devkit") == "wt32-eth01"
     assert env["error"]["code"] == "timeout"

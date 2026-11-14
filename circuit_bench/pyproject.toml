@@ -2,7 +2,7 @@
 # Not published to PyPI and not a buildable package: Hermes loads the plugin from this folder.
 [project]
 name = "hermes-circuit-bench"
-version = "0.1.0"
+version = "0.1.1"
 description = "Hermes Agent plugin: ESP32 electronics bench (pins, parts, schematics, soldering, build, flash, serial, crash decoding)"
 requires-python = ">=3.11"
 license = "MIT"

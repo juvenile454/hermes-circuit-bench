@@ -173,7 +173,7 @@ def _text(value: Any, where: str, max_len: int, *, none: bool = False, pattern: 
     allowed = "\t\n" if multiline else ""
     if not value or len(value) > max_len or any((ord(c) < 32 or ord(c) == 127) and c not in allowed for c in value):
         raise _bad(where, f"expected 1 to {max_len} characters without control characters", hint)
-    if pattern is not None and not pattern.match(value):
+    if pattern is not None and not pattern.fullmatch(value):
         raise _bad(where, f"bad value {value[:60]!r}", hint)
     return value
 
@@ -207,7 +207,7 @@ def _iso(value: Any, where: str, *, default_now: bool = False, none: bool = Fals
         return _now()
     if value is None and none:
         return None
-    if not isinstance(value, str) or not _ISO_RE.match(value):
+    if not isinstance(value, str) or not _ISO_RE.fullmatch(value):
         raise _bad(where, "expected an ISO 8601 UTC time like 2026-11-06T21:41:07Z")
     return value
 
@@ -248,7 +248,7 @@ def _home_dirs() -> set[Path]:
 
 
 def _check_id(pid: Any) -> str:
-    if not isinstance(pid, str) or not _ID_RE.match(pid):
+    if not isinstance(pid, str) or not _ID_RE.fullmatch(pid):
         raise BenchError("invalid_args", f"bad project id {str(pid)[:60]!r}",
                          "project ids are 1 to 48 characters a-z, 0-9 and '-', e.g. laser-trigger")
     return pid
@@ -323,7 +323,7 @@ def _detected(obj: Any, where: str = "set_detected") -> dict[str, Any]:
     mac = _text(f.get("mac"), f"{where}.mac", 23, none=True)
     if mac is not None:
         mac = mac.strip().lower()
-        if not _MAC_RE.match(mac):
+        if not _MAC_RE.fullmatch(mac):
             raise _bad(f"{where}.mac", f"bad MAC address {mac!r}")
     features = f.get("features") or []
     if not isinstance(features, _SEQ) or len(features) > 32:
@@ -409,7 +409,7 @@ def _flash(obj: Any, where: str = "set_flash") -> dict[str, Any]:
     mac = _text(f.get("mac"), f"{where}.mac", 23, none=True)
     if mac is not None:
         mac = mac.strip().lower()
-        if not _MAC_RE.match(mac):
+        if not _MAC_RE.fullmatch(mac):
             raise _bad(f"{where}.mac", f"bad MAC address {mac!r}")
     return {
         "ok": _bool(f["ok"], f"{where}.ok"),
@@ -495,12 +495,13 @@ def _assignment(obj: Any, where: str, by: str) -> dict[str, Any]:
             "verdict": "ok", "rule_ids": [], "updated_by": by}
 
 
-def _part(obj: Any, where: str, *, stored: bool = False) -> dict[str, Any]:
-    """Normalised part. ``stored``: the check of a stored project (only the form of the module fields, no catalog)."""
+def _part(obj: Any, where: str, *, stored: bool = False, aliases: list[dict[str, Any]] | None = None) -> dict[str, Any]:
+    """Normalised part. ``stored``: the check of a stored project (only the form of the module fields, no catalog).
+    ``aliases``: collects the pin_alias assumptions of a module part's conn (see ``_conn``)."""
     f = _fields(obj, where, PART_ALL_FIELDS, required=("ref", "kind", "value"))
     ref = _text(f["ref"], f"{where}.ref", 16, hint="references look like R1, C2, LED3, SW1")
     ref = ref.strip().upper()
-    if not _REF_RE.match(ref):
+    if not _REF_RE.fullmatch(ref):
         raise _bad(f"{where}.ref", f"bad reference {ref!r}", "references look like R1, C2, LED3, SW1")
     kind = f["kind"]
     if kind not in bom.kinds():
@@ -513,11 +514,12 @@ def _part(obj: Any, where: str, *, stored: bool = False) -> dict[str, Any]:
     if "from_calc" in f:
         out["from_calc"] = _text(f["from_calc"], f"{where}.from_calc", 32, pattern=_SLUG_RE)
     if any(k in f for k in PART_MODULE_FIELDS):
-        out.update(_module_fields(f, where, stored=stored))
+        out.update(_module_fields(f, where, stored=stored, aliases=aliases))
     return out
 
 
-def _module_fields(f: Mapping[str, Any], where: str, *, stored: bool) -> dict[str, Any]:
+def _module_fields(f: Mapping[str, Any], where: str, *, stored: bool,
+                   aliases: list[dict[str, Any]] | None = None) -> dict[str, Any]:
     """module, variant, conn, address, facts of a part, in stored order. Writing (``stored`` False) resolves
     the module in the catalog and checks variant, conn pins and address against it; null there means "not given".
     A stored project is checked for form only, so a module that left the catalog never damages it."""
@@ -540,8 +542,8 @@ def _module_fields(f: Mapping[str, Any], where: str, *, stored: bool) -> dict[st
             if vid is not None:
                 out["variant"] = vid
     if "conn" in f:
-        pin_names = _pin_names(entry) if entry is not None else None
-        conn = _conn(f["conn"], f"{where}.conn", pin_names, module="module" in f, module_id=out.get("module"))
+        conn = _conn(f["conn"], f"{where}.conn", _pins(entry) if entry is not None else None, module="module" in f,
+                     module_id=out.get("module"), aliases=aliases)
         if conn:  # never stored empty (a stored {} is then not in the stored form)
             out["conn"] = conn
     if "address" in f:
@@ -672,27 +674,62 @@ def _pin_names(entry: Mapping[str, Any]) -> list[str]:
     return [p["name"] for p in entry.get("pins") or [] if isinstance(p, Mapping) and isinstance(p.get("name"), str)]
 
 
-def _conn(value: Any, where: str, pin_names: list[str] | None, *, module: bool, module_id: str | None = None,
-          deletes: bool = False) -> dict[str, str | None]:
-    """{pin: net}. ``pin_names``: the module's pins (writing a module part); None for plain parts (pins
-    ``[A-Za-z0-9_+.-]{1,16}``) and for stored module parts (form only). ``deletes``: null values allowed (connect)."""
+def _pins(entry: Mapping[str, Any]) -> list[dict[str, Any]]:
+    return [p for p in entry.get("pins") or [] if isinstance(p, Mapping) and isinstance(p.get("name"), str)]
+
+
+def _pins_hint(pins: list[dict[str, Any]]) -> str:
+    """``pins: …`` with the breakout labels (modspec.pins_hint), cut at a pin boundary near 300 characters."""
+    text = modspec.pins_hint(pins)
+    if len(text) > 300:
+        text = text[:text.rfind(", ", 0, 298)] + ", …"
+    return f"pins: {text}"
+
+
+def _conn(value: Any, where: str, pins: list[dict[str, Any]] | None, *, module: bool, module_id: str | None = None,
+          deletes: bool = False, aliases: list[dict[str, Any]] | None = None,
+          stored: frozenset[str] | set[str] = frozenset()) -> dict[str, str | None]:
+    """{pin: net}. ``pins``: the module's pins (writing a module part, variant applied); None for plain parts (pins
+    ``[A-Za-z0-9_+.-]{1,16}``) and for stored module parts (form only). ``deletes``: null values allowed (connect).
+
+    With ``pins`` a key is a pin name (exact, else the one pin of that name in any case) or a breakout label
+    (``modspec.resolve_pin``: SDA, VCC, MOSI ... when exactly one pin carries that signal). A label that fits several
+    pins is refused, never guessed. The chip pin name is kept; each mapping goes to ``aliases`` as an assumption
+    ``pin_alias``. ``stored``: the pins of the part's saved conn; a null for one of them unlinks it as written."""
     if not isinstance(value, Mapping) or len(value) > modspec.MAX_CONN:
         raise _bad(where, f"expected an object {{pin: net}} with at most {modspec.MAX_CONN} entries")
     out: dict[str, str | None] = {}
-    for pin, net in value.items():
-        if pin_names is not None:
-            if pin not in pin_names:
-                raise _bad(where, f"module {module_id} has no pin {str(pin)[:32]!r}",
-                           f"pins: {', '.join(pin_names)[:300]}")
+    given: dict[str, Any] = {}  # pin -> the key that named it
+    found: list[dict[str, Any]] = []
+    for key, net in value.items():
+        pin = key
+        if pins is not None and not (deletes and net is None and key in stored):
+            res = modspec.resolve_pin(pins, key)
+            if res["pin"] is None and res["candidates"]:
+                raise _bad(where, f"{str(key)[:32]!r} fits more than one pin of {module_id} "
+                                  f"({', '.join(res['candidates'])}): name the pin", _pins_hint(pins))
+            if res["pin"] is None:
+                raise _bad(where, f"module {module_id} has no pin {str(key)[:32]!r}", _pins_hint(pins))
+            pin = res["pin"]
+            if res["via"] != "name":
+                info = next(p for p in pins if p["name"] == pin)
+                found.append(assumption("pin_alias", f"{key} → {pin}",
+                                        modspec.alias_text(str(module_id), info, key, res["via"])))
         elif module:
             _text(pin, f"{where} pin", 32)
         else:
             _text(pin, f"{where} pin", 16, pattern=_PIN_NAME_RE, hint=PLAIN_PIN_HINT)
+        if pin in given:
+            raise _bad(where, f"{str(given[pin])[:32]!r} and {str(key)[:32]!r} both name pin {pin} of {module_id}",
+                       "give each pin once")
+        given[pin] = key
         if net is None and deletes:
             out[pin] = None
             continue
-        out[pin] = _text(net, f"{where}.{pin}", 32, pattern=_NET_RE,
+        out[pin] = _text(net, f"{where}.{key}", 32, pattern=_NET_RE,
                          hint="net: [A-Za-z0-9_+.-]{1,32}; GND, 3V3, 5V, GPIO<n> or a net name like SDA0")
+    if aliases is not None:
+        aliases.extend(a for a in found if a not in aliases)
     return out
 
 
@@ -715,14 +752,14 @@ def _i2c_addresses(entry: Mapping[str, Any]) -> list[str]:
             addrs = addrs.get("value")
         for a in [*(addrs if isinstance(addrs, _SEQ) else []), iface.get("default")]:
             h = _hex_addr(a)
-            if h and modspec.I2C_ADDR_RE.match(h) and h not in out:
+            if h and modspec.I2C_ADDR_RE.fullmatch(h) and h not in out:
                 out.append(h)
     return out
 
 
 def _address(value: Any, where: str, entry: Mapping[str, Any] | None, module_id: str | None) -> str:
     addr = _hex_addr(value)
-    if addr is None or not modspec.I2C_ADDR_RE.match(addr):
+    if addr is None or not modspec.I2C_ADDR_RE.fullmatch(addr):
         raise _bad(where, f"expected a 7-bit I²C address like 0x76, not {str(value)[:20]!r}")
     if entry is not None:
         known = _i2c_addresses(entry)
@@ -1193,7 +1230,7 @@ def list_projects() -> dict[str, Any]:
     try:
         root = _projects_root()
         for pdir in sorted(root.iterdir()):
-            if not pdir.is_dir() or not _ID_RE.match(pdir.name) or not (pdir / "project.json").exists():
+            if not pdir.is_dir() or not _ID_RE.fullmatch(pdir.name) or not (pdir / "project.json").exists():
                 continue
             try:
                 entries.append(_list_entry(_read(pdir)))
@@ -1217,6 +1254,7 @@ class _Update:
         self.now = _now()
         self.recompute = False
         self.touched: set[str] = set()  # roles (re)assigned in this update
+        self.aliases: list[dict[str, Any]] = []  # pin_alias assumptions: breakout labels mapped to chip pins
 
     # ---- board
     def set_board(self, op: dict[str, Any]) -> None:
@@ -1269,7 +1307,7 @@ class _Update:
         parts = op.get("parts")
         if not isinstance(parts, _SEQ) or not parts or len(parts) > MAX_PARTS:
             raise _bad("add_parts.parts", f"expected a list of 1 to {MAX_PARTS} parts")
-        new = [_part(x, f"add_parts.parts[{i}]") for i, x in enumerate(parts)]
+        new = [_part(x, f"add_parts.parts[{i}]", aliases=self.aliases) for i, x in enumerate(parts)]
         _unique(new, "ref", "add_parts.parts")
         items = self.p["parts"]
         for part in new:
@@ -1293,7 +1331,7 @@ class _Update:
         have = {x["ref"] for x in items}
         if op.get("ref") is not None:
             ref = _text(op["ref"], "add_module.ref", 16, hint="references look like U1, U2").strip().upper()
-            if not _REF_RE.match(ref):
+            if not _REF_RE.fullmatch(ref):
                 raise _bad("add_module.ref", f"bad reference {ref!r}", "references look like U1, U2")
             if ref in have:
                 raise _bad("add_module.ref", f"{ref} is already used in this project",
@@ -1306,7 +1344,7 @@ class _Update:
         if vid is not None:
             part["variant"] = vid
         part.update({k: op[k] for k in ("qty", "conn", "address", "facts") if op.get(k) is not None})
-        items.append(_part(part, "add_module"))
+        items.append(_part(part, "add_module", aliases=self.aliases))
 
     def connect(self, op: dict[str, Any]) -> None:
         """Change a part in place: merge {pin: net} into its conn (null removes a pin; a pin that is not connected:
@@ -1337,12 +1375,17 @@ class _Update:
             _, vid, entry = _module_entry(part["module"], vid, "connect")
             if vid is not None:
                 new["variant"] = vid
+        elif is_mod and isinstance(op.get("conn"), Mapping) and op["conn"]:
+            # only unlinks: the catalog maps labels (SDA -> SDI); a module that left it still unlinks saved pins
+            with contextlib.suppress(BenchError):
+                _, _, entry = _module_entry(part["module"], part.get("variant"), "connect")
         if "conn" in op:
             conn = op.get("conn")
             if not isinstance(conn, Mapping) or not conn:
                 raise _bad("connect.conn", "expected an object {pin: net} with at least one entry (null removes a pin)")
-            changes = _conn(conn, "connect.conn", _pin_names(entry) if entry is not None else None, module=is_mod,
-                            module_id=part.get("module"), deletes=True)
+            changes = _conn(conn, "connect.conn", _pins(entry) if entry is not None else None, module=is_mod,
+                            module_id=part.get("module"), deletes=True, aliases=self.aliases,
+                            stored=set(part.get("conn") or {}))
             merged = dict(part.get("conn") or {})
             for pin, net in changes.items():
                 if net is None:
@@ -1600,7 +1643,7 @@ def update(id: str, expected_rev: int, ops: Any, *, by: str, trusted: bool = Fal
     except BenchError:
         srcs = []
     return envelope(action, summary, {"rev": new["rev"], "project": new, "changed": changed}, warnings=warns,
-                    sources=srcs, simulated=new["simulated"])
+                    assumptions=job.aliases, sources=srcs, simulated=new["simulated"])
 
 
 def _trash_target(pid: str) -> Path:

@@ -60,8 +60,11 @@ def host():
     return tools.Host(hook_active=True)
 
 
+TASK = "t"  # the task id Hermes passes to the hook and the handler alike
+
+
 def call(host, name, **args):
-    out = tools.make_handlers(host)[name](args)
+    out = tools.make_handlers(host)[name](args, task_id=TASK)
     env = json.loads(out)
     assert contracts.validate_envelope(env) == [], env
     assert len(out.encode("utf-8")) <= tools.MAX_BYTES
@@ -138,6 +141,7 @@ def test_tool_build_passes_the_refusal_through(host, tmp_path, monkeypatch, code
     pid = _project_with_firmware(host, tmp_path)
     hint = "pin platform = espressif32@8.0.0 (or newer)" if code == "platform_too_old" else "check the env's board"
     monkeypatch.setattr(board, "build", lambda *a, **k: contracts.fail("board.build", code, f"refused: {code}", hint))
+    assert hooks.decide(host, "bench_board", {"action": "build", "project": pid}, TASK)["action"] == "approve"
     env = call(host, "bench_board", action="build", project=pid)
     assert env["ok"] is False and env["error"]["code"] == code and env["error"]["hint"] == hint
     assert project.get(pid)["result"]["project"]["firmware"]["last_build"] is None  # a refusal is no build
@@ -153,6 +157,7 @@ def test_tool_build_hands_the_project_chip_to_board_build(host, tmp_path, monkey
         return contracts.fail("board.build", "platform_too_old", "too old")
 
     monkeypatch.setattr(board, "build", fake_build)
+    assert hooks.decide(host, "bench_board", {"action": "build", "project": pid}, TASK)["action"] == "approve"
     call(host, "bench_board", action="build", project=pid)
     assert seen == {"chip": "esp32s3"}
 
@@ -211,6 +216,7 @@ def test_c6_build_with_platform_713_is_refused_without_pio(host, tmp_path, monke
     (fw / "platformio.ini").write_text("[env:c6]\nplatform = espressif32@7.1.3\nboard = esp32-c6-devkitc-1\n"
                                        "board_build.mcu = esp32c6\nframework = arduino\n", encoding="utf-8")
     assert call(host, "bench_project", action="set_firmware", id="c6-old", firmware_dir=str(fw), env="c6")["ok"]
+    assert hooks.decide(host, "bench_board", {"action": "build", "project": "c6-old"}, TASK)["action"] == "approve"
     env = call(host, "bench_board", action="build", project="c6-old")
     assert env["error"]["code"] == "platform_too_old" and "8.0.0" in (env["error"].get("hint") or "")
     assert not [c for c in calls if c[1:2] == ["run"]], calls

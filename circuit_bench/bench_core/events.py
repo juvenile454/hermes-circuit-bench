@@ -39,7 +39,7 @@ def wire_name(event: str) -> str:
 
 
 def _check_name(event: Any) -> str:
-    if not isinstance(event, str) or len(event) > 128 or not _EVENT_RE.match(event):
+    if not isinstance(event, str) or len(event) > 128 or not _EVENT_RE.fullmatch(event):
         raise ValueError(f"invalid event name {event!r}: expected dot-separated segments of [A-Za-z0-9_-]")
     if event not in EVENTS:
         raise ValueError(f"unknown event {event!r}: known events are {', '.join(EVENTS)}")

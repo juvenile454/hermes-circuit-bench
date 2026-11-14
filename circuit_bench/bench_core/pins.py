@@ -325,7 +325,7 @@ def _shared_bus_pins(items: list[dict[str, Any]], counts: Mapping[int, int]) -> 
 def _validate_role(role: Any) -> str | None:
     if role is None:
         return None
-    if not isinstance(role, str) or not _ROLE.match(role):
+    if not isinstance(role, str) or not _ROLE.fullmatch(role):
         raise BenchError("invalid_args", f"bad role {role!r}", "role: [A-Z0-9_]{1,24}, e.g. LASER or BUTTON")
     return role
 

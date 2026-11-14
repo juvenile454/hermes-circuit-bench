@@ -1,4 +1,4 @@
-# CI for hermes-circuit-bench. On every push and pull request:
+# CI for hermes-circuit-bench. On every push and pull request, and on main every Monday and Thursday:
 # - python (Linux): ruff, pytest on Python 3.11 and 3.14, pytest with the lowest declared dependency versions, and
 #   the citation tests against the pinned corpus (scripts/fetch_corpus.py);
 # - node (Linux): node --test and the desktop build check;
@@ -8,6 +8,9 @@
 # - macos: pytest on Python 3.11, node --test, the desktop build check and the hermes steps for the newest release;
 #   on every push and pull request in a public repository. In a private copy, where macOS minutes are billed at a
 #   higher rate, only on main, on tags, on a manual run and for a commit whose message contains [macos].
+# The schedule only runs on the default branch (main). It keeps the corpus cache alive: GitHub deletes a cache entry
+# that nobody restored for 7 days, and a cold fetch of the corpus takes about 15 minutes and depends on every vendor
+# host answering. A separate workflow (corpus-drift.yml) fetches the corpus cold once a month.
 # Development packages = DEV_DEPS in scripts/dev_deps.sh (tests/test_p0_ci.py keeps both in step). No hardware:
 # CIRCUIT_BENCH_HW=off, only simulated sim:// ports. Network only for packages, the corpus and the Hermes checkout.
 # Third-party actions are pinned to a full commit SHA (the comment names the release); each Hermes checkout is
@@ -18,6 +21,9 @@ on:
   push:
   pull_request:
   workflow_dispatch:
+  schedule:
+    # Monday and Thursday, 04:17 UTC: never more than 4 days between two runs, inside the 7-day cache expiry
+    - cron: "17 4 * * 1,4"
 
 permissions:
   contents: read
@@ -80,7 +86,7 @@ jobs:
       - run: node scripts/build-desktop.mjs --check
 
   macos:
-    name: macOS (pytest Python 3.11, node 22, Hermes v0.23.0)
+    name: macOS (pytest Python 3.11, node 22, Hermes v0.23.1)
     if: >-
       github.event.repository.private == false || github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/') ||
       github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[macos]')
@@ -112,13 +118,13 @@ jobs:
           node-version: "22"
       - run: node --test tests-js/*.mjs
       - run: node scripts/build-desktop.mjs --check
-      - name: Hermes v0.23.0 (uv sync --locked)
+      - name: Hermes v0.23.1 (uv sync --locked)
         run: |
-          git clone --depth 1 --branch v0.23.0 -c advice.detachedHead=false \
+          git clone --depth 1 --branch v0.23.1 -c advice.detachedHead=false \
             https://github.com/NousResearch/hermes-agent "$RUNNER_TEMP/hermes-agent"
-          test "$(git -C "$RUNNER_TEMP/hermes-agent" rev-parse HEAD)" = 2bd378ed1b8d6bf2192cb26e0a55ff3091e6bd19
+          test "$(git -C "$RUNNER_TEMP/hermes-agent" rev-parse HEAD)" = 3b421578588243f920886e6fe79a6faa87ea026e
           cd "$RUNNER_TEMP/hermes-agent" && uv sync --locked --python 3.14
-      - name: plugins validate --install-deps (Hermes v0.23.0)
+      - name: plugins validate --install-deps (Hermes v0.23.1)
         # same as the hermes job: temporary HOME and HERMES_HOME
         run: |
           set -o pipefail
@@ -140,12 +146,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        hermes: [v0.22.5, v0.23.0]
+        hermes: [v0.22.5, v0.23.0, v0.23.1]
         include:
           - hermes: v0.22.5
             sha: bf0203a794a07aac3ff764972ab9087baa4e4f4e
           - hermes: v0.23.0
             sha: 2bd378ed1b8d6bf2192cb26e0a55ff3091e6bd19
+          - hermes: v0.23.1
+            sha: 3b421578588243f920886e6fe79a6faa87ea026e
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
       - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2  # v10.3.3

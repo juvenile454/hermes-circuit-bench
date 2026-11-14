@@ -94,7 +94,7 @@ def decide(host, args):
 
 
 def call(host, name, **args):
-    env = json.loads(tools.make_handlers(host)[name](args))
+    env = json.loads(tools.make_handlers(host)[name](args, task_id="t"))  # the task id of decide()
     assert contracts.validate_envelope(env) == [], env
     return env
 
@@ -111,14 +111,14 @@ def test_sim_build_without_pio_never_asks(tmp_path):
     assert call(no_hook_host(), "bench_board", **args)["ok"] is True
 
 
-def test_sim_build_that_starts_pio_asks(tmp_path):
-    d = fw_dir(tmp_path)
+def test_sim_build_that_starts_pio_asks(short_tmp):
+    d = fw_dir(short_tmp)
     board.register_provider("sim://", Asking())
     d1 = decide(hook_host(), args_sim(d))
     assert d1["action"] == "approve"
     assert d1["rule_key"] == hooks.build_rule_key(str(d.resolve()), "s3")
-    assert d1["message"].endswith("The board is simulated; the build is a real offline build.")
-    assert f"Build {d.resolve()} (env s3) with PlatformIO?" in d1["message"]
+    assert d1["message"].endswith(f'The board is simulated; the build is a real offline build. Folder: "{d.resolve()}"')
+    assert d1["message"].startswith("Build env s3 with PlatformIO?")
 
 
 def test_sim_build_that_starts_pio_shares_the_rule_key_with_a_real_build(tmp_path):
@@ -127,7 +127,7 @@ def test_sim_build_that_starts_pio_shares_the_rule_key_with_a_real_build(tmp_pat
     sim_key = decide(hook_host(), args_sim(d))["rule_key"]
     real = decide(hook_host(), {"action": "build", "project_dir": str(d), "env": "s3"})
     assert real["action"] == "approve" and real["rule_key"] == sim_key
-    assert not real["message"].endswith("real offline build.")
+    assert "real offline build." not in real["message"]
 
 
 def test_sim_build_that_starts_pio_is_refused_in_cron_and_without_hook(tmp_path):
@@ -147,7 +147,9 @@ def test_sim_build_that_starts_pio_runs_after_the_hook(tmp_path):
     d = fw_dir(tmp_path)
     prov = Asking()
     board.register_provider("sim://", prov)
-    env = call(hook_host(), "bench_board", **args_sim(d))
+    host = hook_host()
+    assert decide(host, args_sim(d))["action"] == "approve"
+    env = call(host, "bench_board", **args_sim(d))
     assert env["ok"] is True and env["simulated"] is True
     assert prov.builds == [(str(d.resolve()), "s3")]
 
@@ -167,15 +169,15 @@ def test_build_runs_pio_by_port(tmp_path):
     assert board.build_runs_pio(d, "s3", SIM) is False  # provider without the method
 
 
-def test_sim_project_asks_like_an_explicit_sim_port(tmp_path):
-    d = fw_dir(tmp_path)
+def test_sim_project_asks_like_an_explicit_sim_port(short_tmp):
+    d = fw_dir(short_tmp)
     board.register_provider("sim://", Asking())
     assert project.create("laser-trigger", "Laser trigger", "esp32s3", "n16r8")["ok"]
     ops = [{"op": "set_firmware", "dir": str(d), "env": "s3"},
            {"op": "set_detected", "port": SIM, "mac": "aa:bb:cc:dd:ee:ff", "chip": "ESP32-S3 (QFN56)"}]
     assert project.update("laser-trigger", 1, ops, by="ui", trusted=True)["ok"]
     d1 = decide(hook_host(), {"action": "build", "project": "laser-trigger"})
-    assert d1["action"] == "approve" and d1["message"].endswith("the build is a real offline build.")
+    assert d1["action"] == "approve" and 'the build is a real offline build. Folder: "' in d1["message"]
 
 
 def test_simboard_prediction_and_build_share_one_condition(monkeypatch, tmp_path):
@@ -247,7 +249,9 @@ def test_crash_decode_with_project_never_starts_pio(tmp_path, monkeypatch):
     fake_tools.scenario("board-pio-build-ok.json")
     d = fw_dir(tmp_path)
     mk_real_project(hook_host(), d)
-    env = call(hook_host(), "bench_board", action="build", project="laser-trigger")
+    host = hook_host()
+    assert decide(host, {"action": "build", "project": "laser-trigger"})["action"] == "approve"
+    env = call(host, "bench_board", action="build", project="laser-trigger")
     assert env["ok"] and env["simulated"] is False, env
     before = len(fake_tools.calls("pio"))
     assert before >= 1

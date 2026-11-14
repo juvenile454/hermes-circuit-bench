@@ -125,7 +125,7 @@ def _project_dir(project_dir: Any) -> Path:
 
 
 def _env(pdir: Path, env: Any) -> str:
-    if not isinstance(env, str) or not _ENV_RE.match(env):
+    if not isinstance(env, str) or not _ENV_RE.fullmatch(env):
         raise BenchError("invalid_args", f"bad PlatformIO environment name {env!r}", "use the [env:<name>] from platformio.ini")
     ini = (pdir / "platformio.ini").read_text(encoding="utf-8", errors="replace")
     if not re.search(rf"^\s*\[env:{re.escape(env)}\]", ini, re.MULTILINE):
@@ -779,7 +779,7 @@ def _write_private(path: Path, text: str) -> None:
 def copy_example(name: str, project_id: str) -> Path:
     """Copy ``data/examples/<name>`` to ``projects/<project_id>/firmware/`` (files are overwritten, nothing else is
     removed) and return the folder."""
-    if not isinstance(name, str) or not _ID_RE.match(name) or not (EXAMPLES_DIR / name).is_dir():
+    if not isinstance(name, str) or not _ID_RE.fullmatch(name) or not (EXAMPLES_DIR / name).is_dir():
         raise BenchError("invalid_args", f"no example {str(name)[:40]!r}", "examples: laser-trigger")
     dest = project.path(project_id) / "firmware"
     shutil.copytree(EXAMPLES_DIR / name, dest, dirs_exist_ok=True,
@@ -812,7 +812,7 @@ def demo(project_id: str = DEMO_ID, *, by: str = "agent") -> dict[str, Any]:
     ``data/demo/laser-trigger.project.json`` with bench_core (calc, pins, schematic, solder) and stored only through
     project.create/project.update. An existing project with this id is returned unchanged (same rev)."""
     try:
-        if not isinstance(project_id, str) or not _ID_RE.match(project_id):
+        if not isinstance(project_id, str) or not _ID_RE.fullmatch(project_id):
             raise BenchError("invalid_args", f"bad project id {str(project_id)[:60]!r}",
                              "project ids are 1 to 48 characters a-z, 0-9 and '-', e.g. laser-trigger")
         if by not in ("agent", "ui"):

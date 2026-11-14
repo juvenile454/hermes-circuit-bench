@@ -26,17 +26,17 @@
   {
     "id": "elec-ds-esp32c3",
     "title": "Espressif ESP32-C3 Series Datasheet v2.4",
-    "url": "https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf",
-    "retrieved": "2026-11-08",
-    "note": "Manufacturer document. Version 2.4. Table 5-1 Absolute Maximum Ratings and Table 5-2 Recommended Operating Conditions (page 54), Table 5-4 DC Characteristics (3.3 V, 25 °C) (page 55); page numbers are 1-based PDF pages. The URL redirects to https://documentation.espressif.com/esp32-c3_datasheet_en.pdf (same bytes). PDF sha256 833fc000b4b3c3d39c496fcbd597fed5806956503ce7390b19cc8ae82f19f968.",
+    "url": "https://web.archive.org/web/20261104145406id_/https://documentation.espressif.com/esp32-c3_datasheet_en.pdf",
+    "retrieved": "2026-11-13",
+    "note": "Manufacturer document. Version 2.4. Table 5-1 Absolute Maximum Ratings and Table 5-2 Recommended Operating Conditions (page 54), Table 5-4 DC Characteristics (3.3 V, 25 °C) (page 55); page numbers are 1-based PDF pages. Archived copy: web.archive.org snapshot 2026-11-04 of https://documentation.espressif.com/esp32-c3_datasheet_en.pdf (espressif.com now serves v2.5; the snapshot has the same bytes as the pinned v2.4 file). PDF sha256 833fc000b4b3c3d39c496fcbd597fed5806956503ce7390b19cc8ae82f19f968.",
     "class": "A"
   },
   {
     "id": "elec-ds-esp32c6",
     "title": "Espressif ESP32-C6 Series Datasheet v1.5",
-    "url": "https://www.espressif.com/sites/default/files/documentation/esp32-c6_datasheet_en.pdf",
-    "retrieved": "2026-11-08",
-    "note": "Manufacturer document. Version 1.5. Table 5-1 Absolute Maximum Ratings and Table 5-2 Recommended Operating Conditions (page 64), Table 5-4 DC Characteristics (3.3 V, 25 °C) (page 65); page numbers are 1-based PDF pages. The URL redirects to https://documentation.espressif.com/esp32-c6_datasheet_en.pdf (same bytes). PDF sha256 372a5b42b2900c83ef4309149c8835e9ae2d1be19244995bf2fb83af4dc5edf1.",
+    "url": "https://web.archive.org/web/20261105173933id_/https://documentation.espressif.com/esp32-c6_datasheet_en.pdf",
+    "retrieved": "2026-11-13",
+    "note": "Manufacturer document. Version 1.5. Table 5-1 Absolute Maximum Ratings and Table 5-2 Recommended Operating Conditions (page 64), Table 5-4 DC Characteristics (3.3 V, 25 °C) (page 65); page numbers are 1-based PDF pages. Archived copy: web.archive.org snapshot 2026-11-05 of https://documentation.espressif.com/esp32-c6_datasheet_en.pdf (espressif.com now serves v1.6; the snapshot has the same bytes as the pinned v1.5 file). PDF sha256 372a5b42b2900c83ef4309149c8835e9ae2d1be19244995bf2fb83af4dc5edf1.",
     "class": "A"
   }
 ]

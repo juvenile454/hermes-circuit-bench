@@ -76,10 +76,11 @@ def test_fake_pio_fails_without_targets(tmp_path):
     """The fake refuses `pio run` without -t (run through python: the audit hook would stop the plain call first)."""
     fake = bf.FAKES_BIN / "pio"
     res = subprocess.run([sys.executable, str(fake), "run", "-d", str(tmp_path), "-e", "s3"], capture_output=True,
-                         text=True, check=False, env={**os.environ, "CB_FAKE_SCENARIO": ""})
+                         text=True, check=False, env={**os.environ, "CB_FAKE_SCENARIO": ""}, timeout=30)
     assert res.returncode == 97 and "without -t" in res.stderr
     ok = subprocess.run([sys.executable, str(fake), "run", "-d", str(tmp_path), "-e", "s3", "-t", "buildprog"],
-                        capture_output=True, text=True, check=False, env={**os.environ, "CB_FAKE_SCENARIO": ""})
+                        capture_output=True, text=True, check=False, env={**os.environ, "CB_FAKE_SCENARIO": ""},
+                        timeout=30)
     assert ok.returncode == 0
 
 
@@ -88,7 +89,7 @@ def test_audit_hook_refuses_pio_run_without_targets():
     with pytest.raises(HardwareAccessRefused):
         subprocess.run([fake, "run", "-d", "x"], check=False)
     assert subprocess.run([fake, "run", "-d", "x", "-t", "buildprog"], check=False,
-                          capture_output=True).returncode == 0
+                          capture_output=True, timeout=30).returncode == 0
 
 
 def test_audit_hook_toolchain_mode_allows_only_build_targets(monkeypatch):

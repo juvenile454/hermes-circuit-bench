@@ -10,10 +10,10 @@
   {
     "id": "mod-switch-6n137-ds",
     "title": "Vishay 6N137, VO2601, VO2611, VO2630, VO2631, VO4661 High Speed Optocoupler, Single and Dual, 10 MBd",
-    "url": "https://www.vishay.com/docs/84732/6n137.pdf",
-    "retrieved": "2026-11-08",
-    "class": "A",
-    "note": "Document Number 84732, Rev. 2.2, 15-Mar-2023; pages 1-4; the pypdf text layer spaces some table digits oddly (e.g. 'I FH 51 5 m A' = IFH 5 / 15 mA): such values carry a 'conditions' note; sha256 e838b59beab53ddad0fedf094df8bd32fc35297fda7d500fd24ddd188924f6d2"
+    "url": "https://web.archive.org/web/20251022204009id_/https://www.vishay.com/docs/84732/6n137.pdf",
+    "retrieved": "2026-11-13",
+    "class": "A1",
+    "note": "Document Number 84732, Rev. 2.2, 15-Mar-2023; web.archive.org snapshot 2025-10-22 of the official vishay.com file (vishay.com answers script downloads with HTTP 404); pages 1-4; the pypdf text layer spaces some table digits oddly (e.g. 'I FH 51 5 m A' = IFH 5 / 15 mA): such values carry a 'conditions' note; sha256 e838b59beab53ddad0fedf094df8bd32fc35297fda7d500fd24ddd188924f6d2"
   },
   {
     "id": "mod-switch-srd-ds",

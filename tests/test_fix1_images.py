@@ -1,12 +1,13 @@
 """The build records the SHA-256 of firmware.bin (and bootloader.bin, partitions.bin); the flash writes
 only exactly those images."""
 import json
+from pathlib import Path
 
 import pytest
 import board_fixtures as bf
 from board_fixtures import *  # noqa: F403
 
-from circuit_bench.bench_core import board, project
+from circuit_bench.bench_core import board, project, storage
 
 SHA = "a" * 64
 
@@ -86,9 +87,9 @@ def test_flash_with_matching_images_uploads(fake_tools, fw, hw_on, pty_port, mon
                       expected_images=r["images"])
     assert env["ok"], env["error"]
     (write,) = [c for c in fake_tools.calls("esptool") if "write-flash" in c["argv"]]
-    out = str(fw.resolve() / ".pio" / "build" / "s3")
-    assert [a for a in write["argv"] if a.startswith(out)] == [f"{out}/bootloader.bin", f"{out}/partitions.bin",
-                                                                f"{out}/firmware.bin"]  # exactly the checked images
+    snap = storage.data_dir() / "tmp"  # esptool reads private copies of the checked images
+    assert [(Path(a).parent.parent, Path(a).name) for a in write["argv"] if a.endswith(".bin")] == [
+        (snap, "bootloader.bin"), (snap, "partitions.bin"), (snap, "boot_app0.bin"), (snap, "firmware.bin")]
     env = board.flash(fw, "s3", pty_port.name, expected_elf_sha256=r["elf_sha256"], guard=lambda: None,
                       expected_images={"bootloader.bin": r["images"]["bootloader.bin"]})
     assert env["error"]["code"] == "elf_mismatch" and "firmware.bin" in env["error"]["message"]

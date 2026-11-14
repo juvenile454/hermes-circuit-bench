@@ -4,9 +4,9 @@
 # and whitespace-insensitive, against the pinned file.
 # source_id: wiki-wt32-eth01-resources
 # document: wireless-tag Wiki, 'WT32-ETH01 Development Board Related Materials', version 1.0.0 (2025-06-19).
-# url: https://wiki.wireless-tag.com/docs/en/WT32-ETH01/board_resources.html
-# corpus: wireless-tag/wiki/WT32-ETH01/board_resources.html sha256 2f0c3c60a988f5ded096767d6f80342942a2dd3dc8bab4ab080d8ccb2704b8db
-# retrieved: 2026-11-06
+# url: https://web.archive.org/web/20261113194536id_/https://wiki.wireless-tag.com/docs/en/WT32-ETH01/board_resources.html
+# corpus: wireless-tag/wiki/WT32-ETH01/board_resources.html sha256 9e801e8b979ff086a6aa88127e7663c54c2099912f179f2dbb195fbcfa0d7d89
+# retrieved: 2026-11-13
 # extracted: html.parser text of the pinned HTML (tests/test_c0_corpus.py: html_text)
 # The page links the datasheet and schematic PDFs pinned as ds-wt32-eth01-v1.4 and sch-wt32-eth01-v1.4
 # (href https://res.8ms.xyz/wiki_assets/WT32-ETH01/...).

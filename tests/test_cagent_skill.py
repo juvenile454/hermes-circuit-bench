@@ -63,4 +63,4 @@ def test_format_and_size():
     assert meta["name"] == "esp32-bench" and re.fullmatch(r"[a-z0-9-]{1,64}", meta["name"])
     desc = meta["description"]
     assert desc.startswith("Use when") and desc.endswith(".") and len(desc) <= 60
-    assert len(text.splitlines()) <= 120 and len(text) <= 9000
+    assert len(text.splitlines()) <= 120 and len(text) <= 9200

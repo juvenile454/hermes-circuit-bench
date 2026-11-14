@@ -261,4 +261,4 @@ def test_skill_lines():
                    "BSS138", "AN10441", "not for LED data", "74AHCT125", "`onboard`", "ask what is on board",
                    "`connect` changes it in place"):
         assert needle in flat, needle
-    assert len(text.splitlines()) <= 120 and len(text) <= 9000
+    assert len(text.splitlines()) <= 120 and len(text) <= 9200

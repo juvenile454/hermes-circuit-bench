@@ -18,9 +18,10 @@ manifests downloads about 300 MB from many hosts; name manifests to fetch a subs
 - A module manifest mod-<name>.json may only place files under mod/<name>/.
 - A file is written to a temporary name and then renamed over the target, so a hard-linked copy of the corpus keeps
   its old file.
-- ti.com serves files under /lit/ with a new stamp every day, so their hash never stays the same. On a mismatch for
-  such a URL the run prints a hint to pin a web.archive.org snapshot (https://web.archive.org/web/<timestamp>id_/<url>)
-  of the same document revision instead.
+- A hash mismatch, and an HTTP 403 or 404 (hosts that turn scripts away or move a file), print a hint to pin a
+  web.archive.org snapshot (https://web.archive.org/web/<timestamp>id_/<url>) of the same document revision
+  instead; a URL that already points into web.archive.org gets none. ti.com serves files under /lit/ with a new
+  stamp every day, so their hash never stays the same: for such a URL the hint says so as well.
 """
 from __future__ import annotations
 
@@ -136,6 +137,23 @@ def ti_lit_url(url: str) -> bool:
     return (host == "ti.com" or host.endswith(".ti.com")) and u.path.startswith("/lit/")
 
 
+def archived_url(url: str) -> bool:
+    """A web.archive.org copy: a failure there is not cured by pinning another snapshot."""
+    host = (urllib.parse.urlsplit(url).hostname or "").lower()
+    return host == "archive.org" or host.endswith(".archive.org")
+
+
+def snapshot_hint(url: str) -> list[str]:
+    """Hint lines for a document that cannot be pinned as it is (none for an archived copy)."""
+    if archived_url(url):
+        return []
+    snapshot = f"https://web.archive.org/web/<timestamp>id_/{url}"
+    lines = [f"hint    pin a web.archive.org snapshot {snapshot} of the same document revision (CONTRIBUTING.md)"]
+    if ti_lit_url(url):
+        lines.append("hint    ti.com re-stamps files under /lit/ daily")
+    return lines
+
+
 def write_atomic(target: Path, data: bytes) -> None:
     """Write to a temporary file next to ``target`` and rename it over the target (never in place)."""
     target.parent.mkdir(parents=True, exist_ok=True)
@@ -189,15 +207,17 @@ def run(names: list[str], pin: bool, *, corpus: Path | None = None, manifests: P
                 data = fetcher(entry["url"], entry["path"])
             except (OSError, EOFError, ValueError) as err:  # URLError is an OSError; broken gzip: OSError/EOFError
                 print(f"FAILED  {rel}: {err}")
+                if isinstance(err, urllib.error.HTTPError) and err.code in (403, 404):
+                    for line in snapshot_hint(entry["url"]):
+                        print(line)
                 _close(err)
                 bad += 1
                 continue
             got = sha256(data)
             if want and got != want:
                 print(f"MISMATCH {rel}: expected {want}, got {got}")
-                if ti_lit_url(entry["url"]):
-                    print(f"hint    ti.com re-stamps files under /lit/ daily: pin a web.archive.org snapshot "
-                          f"https://web.archive.org/web/<timestamp>id_/{entry['url']} of the same document revision")
+                for line in snapshot_hint(entry["url"]):
+                    print(line)
                 bad += 1
                 continue
             if not want:

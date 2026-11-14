@@ -29,11 +29,11 @@
    "sha256": "4ebdc3e1f70d84a1ca856d8fcd7f8b1f9e548a94e4012cd86d14ca0b30543b06"
   },
   {
-   "url": "https://www.ti.com/lit/ds/symlink/drv5032.pdf",
+   "url": "https://web.archive.org/web/20261113194329id_/https://www.ti.com/lit/ds/symlink/drv5032.pdf",
    "path": "mod/prox/drv5032.pdf",
    "source_id": "mod-prox-drv5032-ds",
    "excerpt": "excerpts/mod-prox-drv5032.txt",
-   "sha256": "0bdec04d64591bbb62c74f2e5d4dc10f21de5f76b0b0f12fca5c6a277037ceee"
+   "sha256": "9a15811a5aa536d683e286814d415dbd86c13a5e38a1e6c732cbaba18741bde7"
   },
   {
    "url": "https://www.tontek.com.tw/uploads/product/243/TTP223-BA6_V2.1_EN.pdf",

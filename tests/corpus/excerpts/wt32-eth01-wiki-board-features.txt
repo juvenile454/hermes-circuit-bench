@@ -4,9 +4,9 @@
 # and whitespace-insensitive, against the pinned file.
 # source_id: wiki-wt32-eth01-features
 # document: wireless-tag Wiki, 'WT32-ETH01 Feature Introduction', version 1.0.1 (2026-05-12, Yobie Zhou).
-# url: https://wiki.wireless-tag.com/docs/en/WT32-ETH01/board_features.html
-# corpus: wireless-tag/wiki/WT32-ETH01/board_features.html sha256 66070a754fd4b6c75d664d80b2356b4776cebae427474754e1e147c8bc4546e5
-# retrieved: 2026-11-06
+# url: https://web.archive.org/web/20261113194420id_/https://wiki.wireless-tag.com/docs/en/WT32-ETH01/board_features.html
+# corpus: wireless-tag/wiki/WT32-ETH01/board_features.html sha256 fb452c9768a6db14c72695370958379d8bf411d3f2b6c641a95042f33407bdaf
+# retrieved: 2026-11-13
 # extracted: html.parser text of the pinned HTML (tests/test_c0_corpus.py: html_text)
 # English manufacturer wiki. Ranked below the datasheet.
 @@ html

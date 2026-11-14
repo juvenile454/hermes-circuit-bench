@@ -1,0 +1,17 @@
+# Citation excerpt (planning current of addressable LEDs). '#' lines are metadata; '@@ html' starts a segment of
+# sentences copied verbatim from the visible text of the pinned HTML (script/style dropped; html.parser text as in
+# tests/test_c0_corpus.py: html_text). The tests check every line, in order and whitespace-insensitive, against the
+# pinned file and the values in circuit_bench/data/parts/pixel.json against these lines.
+# source_id: adafruit-neopixel-uberguide-powering
+# document: Adafruit NeoPixel Uberguide, chapter 'Powering NeoPixels' (vendor guide, not a datasheet), Internet Archive snapshot of 2026-10-12 13:19:18 UTC
+# url: https://web.archive.org/web/20261012131918id_/https://learn.adafruit.com/adafruit-neopixel-uberguide/powering-neopixels
+# corpus: calc/adafruit-neopixel-uberguide-powering-20261012131918.html sha256 754fb1eedf9c0b0b2bcd15d6e40b4e06abf078381017cd259e9d8cbc9580cd3d
+# retrieved: 2026-11-13
+# extracted: html.parser text of the pinned HTML (tests/test_c0_corpus.py: html_text)
+# Class B: a distributor's guide naming the NeoPixel (Adafruit's WS2812-family LED), not the part number; ranked below the datasheet.
+@@ html
+Each individual NeoPixel draws up to 60 milliamps at maximum brightness white (red + green + blue).
+It’s impossible to estimate a single number for all circumstances, but we’ve been using 1/3 this (20 mA per pixel) as a gross rule of thumb with no ill effects.
+But if you know for a fact that you need every pixel on at maximum brightness, use the full 60 mA figure.
+60 NeoPixels × 60 mA ÷ 1,000 = 3.6 Amps minimum
+Keep in mind, 60 mA is a worst case estimate!

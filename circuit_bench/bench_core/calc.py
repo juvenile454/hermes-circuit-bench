@@ -83,15 +83,32 @@ def _pin_values(chip: str = PIN_LIMIT_CHIP) -> dict[str, Any] | None:
         return None
 
 
+def _pin_shown(i_pin: float, ioh: float) -> str:
+    """The pin current as text. The comparison with the limit is exact; when the 3-digit display of a current that is
+    really above or below the limit would read the same as the limit, show as many digits as it takes to tell them."""
+    shown = _f(i_pin, "A")
+    if abs(i_pin - ioh) <= PIN_TOLERANCE or shown != _f(ioh, "A"):
+        return shown
+    for digits in range(4, 12):
+        if _f(i_pin, "A", digits) != _f(ioh, "A", digits):
+            return _f(i_pin, "A", digits)
+    return shown
+
+
 def _gpio_current(i_pin: float) -> dict[str, Any]:
     """Note on the pin current (led, npn): a caution above the sourced high-level source current, else an info."""
     esp = _pin_values()
     ioh = None if esp is None else esp.get("ioh")
     if isinstance(ioh, int | float) and i_pin > ioh + PIN_TOLERANCE:
         return warning("gpio_current", "caution",
-                       f"The driving pin would have to source {_f(i_pin, 'A')}, above the {_f(ioh, 'A')} high-level "
+                       f"The driving pin would have to source {_pin_shown(i_pin, ioh)}, above the {_f(ioh, 'A')} high-level "
                        "source current of an ESP32-S3 pin (a typical value; chip not given). Do not drive this from a "
                        "GPIO: use a MOSFET (bench_calc mosfet) or a driver stage.", list(esp.get("source_ids") or []))
+    if esp is not None and isinstance(ioh, int | float):  # the value is compared: at or below it (above is the caution)
+        rel = "below" if i_pin < ioh - PIN_TOLERANCE else "at"
+        return warning("gpio_current", "info",
+                       f"The driving pin sources {_pin_shown(i_pin, ioh)}, {rel} the {_f(ioh, 'A')} high-level source current "
+                       "of an ESP32-S3 pin (a typical value, not a maximum; chip not given).")
     return warning("gpio_current", "info", f"The driving pin sources {_f(i_pin, 'A')}. GPIO current limits are not "
                    "checked here (unverified); see the chip datasheet.")
 
@@ -159,7 +176,7 @@ def _hfe_from_part(part: str, i_c: float) -> tuple[dict[str, Any] | None, str]:
         rec = parts.hfe_min(part, i_c)
     except BenchError as e:
         if e.code == "rule_data_missing":
-            return None, f"no datasheet data for part {part!r} (known: {', '.join(parts.ids())})"
+            return None, parts.unknown_text(part, parts.BJT_KINDS, ", ".join(parts.ids()))
         raise
     if rec is None:
         rng = parts.hfe_range(part)
@@ -453,14 +470,23 @@ def _adc_range(adc_range: object) -> tuple[float, float]:
     return lo_v, hi_v
 
 
+DIVIDER_TARGETS: tuple[str, ...] = ("esp_pin", "other")  # what the divider output feeds; esp_pin is the default
+DIVIDER_TARGET_OTHER_DETAIL = "the output does not feed an ESP pin (target=other)"
+
+
 @_action("calc.divider")
-def divider(v_in_max: object, r1: object, r2: object, *, adc_range: object = None) -> dict[str, Any]:
+def divider(v_in_max: object, r1: object, r2: object, *, adc_range: object = None,
+            target: object = DIVIDER_TARGETS[0]) -> dict[str, Any]:
     """Unloaded voltage divider R1 (top) / R2 (bottom): output, current, power, source impedance.
 
     ``adc_range`` ([min, max] in V, or max only) is compared, but stays ``not_checked``: there is no sourced ADC
     range in the data yet (ESP-IDF v6.1 ADC docs point to the chip datasheet), so the comparison is a hint only.
+    ``target`` says what the output feeds: ``esp_pin`` (the default, V_out is held against the pin limit) or
+    ``other`` (not an ESP pin: the pin limit check is ``not_checked`` and the overvoltage warning does not apply).
+    ``esp_pin`` or no ``target`` gives the answer the calculator gave before the input existed.
     """
     vin, ra, rb = _num(v_in_max, "V", "v_in_max"), _num(r1, "Ω", "r1"), _num(r2, "Ω", "r2")
+    tgt = DIVIDER_TARGETS[0] if target is None else _choice(target, DIVIDER_TARGETS, "target")
     total = ra + rb
     ratio = rb / total
     vout = vin * ratio
@@ -468,6 +494,8 @@ def divider(v_in_max: object, r1: object, r2: object, *, adc_range: object = Non
     p1, p2 = i ** 2 * ra, i ** 2 * rb
     r_src = ra * rb / total
     inputs: dict[str, Any] = {"v_in_max": _q(vin, "V"), "r1": _q(ra, "Ω"), "r2": _q(rb, "Ω")}
+    if tgt == "other":
+        inputs["target"] = tgt
     warns: list[dict[str, Any]] = []
     assum = [assumption("load", "none", "unloaded divider: the ADC input current is neglected; see r_source"),
              assumption("adc_pin", "add about 100 nF from the ADC pin to GND",
@@ -477,7 +505,11 @@ def divider(v_in_max: object, r1: object, r2: object, *, adc_range: object = Non
     div_sources = [RULE]
     esp = _pin_values()
     limit = None if esp is None else esp.get("v_in_max")
-    if isinstance(limit, int | float) and vout > limit + PIN_TOLERANCE:
+    if tgt == "other":
+        checks.append(check("calc.divider.pin_max", "not_checked", DIVIDER_TARGET_OTHER_DETAIL))
+        assum.append(assumption("target", "other", "the divider output does not feed an ESP pin, so the pin voltage "
+                                "limit is not applied; check the limit of whatever it feeds"))
+    elif isinstance(limit, int | float) and vout > limit + PIN_TOLERANCE:
         from .calc_power import S3_DEFAULT_NOTE
         checks.append(check("calc.divider.pin_max", "failed", f"V_out max {_f(vout, 'V')} > {_f(limit, 'V', 3)}"))
         warns.append(warning("divider_overvoltage", "danger",
@@ -716,7 +748,7 @@ _PARAMS: dict[str, tuple[tuple[str, str, bool, Any], ...]] = {
             ("v_be", "V", False, NPN_V_BE_DEFAULT), ("r_pulldown", "Ω", False, None), ("hfe_min", "", False, None),
             ("part", "str", False, None), ("load", "str", False, None), ("forced_beta", "", False, None)),
     "divider": (("v_in_max", "V", True, None), ("r1", "Ω", True, None), ("r2", "Ω", True, None),
-                ("adc_range", "range", False, None)),
+                ("adc_range", "range", False, None), ("target", "str", False, DIVIDER_TARGETS[0])),
     "i2c_pullup": (("v_dd", "V", True, None), ("c_bus", "F", False, None), ("mode", "str", False, "standard"),
                    ("v_ol", "V", False, I2C_V_OL), ("i_ol", "A", False, I2C_I_OL), ("r_pullup", "Ω", False, None),
                    ("devices", "int", False, None), ("project", "str", False, None)),
@@ -728,6 +760,7 @@ calckit.register("npn", npn, _PARAMS["npn"], title="NPN low-side switch", group=
 calckit.register("divider", divider, _PARAMS["divider"], title="Voltage divider", group="basics",
                  summary="Unloaded divider R1/R2: V_out, current, power, source impedance; adc_range [min, max] in V, "
                          "e.g. [0, 2.9].")
+divider.choices = {"target": DIVIDER_TARGETS}  # type: ignore[attr-defined]  # calckit.meta
 calckit.register("i2c_pullup", i2c_pullup, _PARAMS["i2c_pullup"], title="I²C pull-up resistors", group="basics",
                  summary="Pull-up window of an I²C bus from sink current and rise time (NXP UM10204).")
 

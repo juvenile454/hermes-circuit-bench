@@ -71,7 +71,7 @@ PROJECT = _tool(
     {"action": _action(list(PROJECT_ACTIONS)),
      "id": _s(), "title": _s(), **_BOARD,
      "variant": _s("ESP variant (create, set_board); add_module: catalog variant"),
-     "module": _s("bench_pins modules id"), "ref": _s("e.g. U1"), "conn": _map("pin -> net, role or GPIO<n>; null unlinks"),
+     "module": _s("bench_pins modules id"), "ref": _s("e.g. U1"), "conn": _map("pin/label (SDA)->net/role/GPIO<n>; null unlinks"),
      "address": _s("e.g. 0x76"), "facts": _map("bool: level_shifter, mains; pullups none/unknown/4k7; pullups_to "
                                           "pin/net/V; regulator none/3V3/unknown; onboard [decoupling,pullups,"
                                           "reset_rc,protection]; i_max A, whole part incl. qty (measured or "

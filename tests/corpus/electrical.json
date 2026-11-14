@@ -26,19 +26,19 @@
    "sha256": "2d5a7cb7fd559d8d972bd88db32669c0196d23f22d7afaafb0f63d099b589a3f"
   },
   {
-   "url": "https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf",
+   "url": "https://web.archive.org/web/20261104145406id_/https://documentation.espressif.com/esp32-c3_datasheet_en.pdf",
    "path": "electrical/esp32-c3_datasheet_en.pdf",
    "source_id": "elec-ds-esp32c3",
    "excerpt": "excerpts/esp-esp32c3-dc.txt",
-   "note": "source elec-ds-esp32c3; ESP32-C3 Series Datasheet v2.4; espressif.com redirects to https://documentation.espressif.com/esp32-c3_datasheet_en.pdf (same bytes)",
+   "note": "source elec-ds-esp32c3; ESP32-C3 Series Datasheet v2.4; web.archive.org snapshot 2026-11-04 of https://documentation.espressif.com/esp32-c3_datasheet_en.pdf (espressif.com now serves v2.5; the snapshot has the same bytes as the pinned v2.4 file)",
    "sha256": "833fc000b4b3c3d39c496fcbd597fed5806956503ce7390b19cc8ae82f19f968"
   },
   {
-   "url": "https://www.espressif.com/sites/default/files/documentation/esp32-c6_datasheet_en.pdf",
+   "url": "https://web.archive.org/web/20261105173933id_/https://documentation.espressif.com/esp32-c6_datasheet_en.pdf",
    "path": "electrical/esp32-c6_datasheet_en.pdf",
    "source_id": "elec-ds-esp32c6",
    "excerpt": "excerpts/esp-esp32c6-dc.txt",
-   "note": "source elec-ds-esp32c6; ESP32-C6 Series Datasheet v1.5; espressif.com redirects to https://documentation.espressif.com/esp32-c6_datasheet_en.pdf (same bytes)",
+   "note": "source elec-ds-esp32c6; ESP32-C6 Series Datasheet v1.5; web.archive.org snapshot 2026-11-05 of https://documentation.espressif.com/esp32-c6_datasheet_en.pdf (espressif.com now serves v1.6; the snapshot has the same bytes as the pinned v1.5 file)",
    "sha256": "372a5b42b2900c83ef4309149c8835e9ae2d1be19244995bf2fb83af4dc5edf1"
   }
  ]

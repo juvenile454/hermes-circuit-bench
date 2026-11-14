@@ -18,10 +18,10 @@
   {
     "id": "mod-pixel-gc9a01-ds",
     "title": "GalaxyCore GC9A01 datasheet V1.0 Preliminary (module vendor copy, Waveshare wiki)",
-    "url": "https://www.waveshare.com/w/upload/5/5e/GC9A01A.pdf",
-    "retrieved": "2026-11-08",
+    "url": "https://web.archive.org/web/20251217183447id_/https://www.waveshare.com/w/upload/5/5e/GC9A01A.pdf",
+    "retrieved": "2026-11-13",
     "class": "B",
-    "note": "LCD-DST-3014, Rev.1.0 Preliminary; no GalaxyCore download found; preliminary, therefore hints only; pages 10, 11, 182, 183, 189; sha256 af8f6f0a03f4a340510fc06321eb78a2d9bb49670ff1f59164bd6ccf71a2bd47"
+    "note": "LCD-DST-3014, Rev.1.0 Preliminary; no GalaxyCore download found; preliminary, therefore hints only; archived copy: web.archive.org snapshot 2025-12-17 of the Waveshare file (waveshare.com refuses script downloads); pages 10, 11, 182, 183, 189; sha256 af8f6f0a03f4a340510fc06321eb78a2d9bb49670ff1f59164bd6ccf71a2bd47"
   },
   {
     "id": "mod-pixel-ws2812b-ds",

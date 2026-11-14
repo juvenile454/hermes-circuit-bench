@@ -36,8 +36,11 @@ def _env(monkeypatch):
         b.shutdown()
 
 
+TASK = "t"  # the task id Hermes passes to the hook and the handler alike
+
+
 def call(host, name, **args):
-    env = json.loads(tools.make_handlers(host)[name](args))
+    env = json.loads(tools.make_handlers(host)[name](args, task_id=TASK))
     assert contracts.validate_envelope(env) == [], env
     return env
 
@@ -114,7 +117,7 @@ def _approved_real_flash(fake_tools, pty_port, monkeypatch, tmp_path, pid):  # n
     assert upd["ok"], upd
     host = tools.Host(hook_active=True)
     args = {"action": "flash", "project": pid, "elf_sha256": built["result"]["elf_sha256"]}
-    assert hooks.decide(host, "bench_board", args)["action"] == "approve"
+    assert hooks.decide(host, "bench_board", args, TASK)["action"] == "approve"
     return host, args, Path(built["result"]["elf_path"])
 
 

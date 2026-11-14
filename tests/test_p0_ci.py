@@ -9,12 +9,13 @@ CI = ROOT / ".github" / "workflows" / "ci.yml"
 # actions the workflow may use, each pinned to a full commit SHA with the release in a comment. Dependabot keeps the
 # pins current (.github/dependabot.yml), so the test checks the form and that all jobs share one pin per action.
 ACTIONS = {"actions/checkout", "astral-sh/setup-uv", "actions/setup-node", "actions/cache"}
-HERMES_TAGS = ["v0.22.5", "v0.23.0"]
+HERMES_TAGS = ["v0.22.5", "v0.23.0", "v0.23.1"]
 MACOS_IF = ("github.event.repository.private == false", "github.ref == 'refs/heads/main'", "startsWith(github.ref, 'refs/tags/')",
             "github.event_name == 'workflow_dispatch'", "contains(github.event.head_commit.message, '[macos]')")
 # commit SHA of each Hermes release tag (git rev-parse <tag>^{commit}); the workflow refuses a moved tag
 HERMES_SHAS = {"v0.22.5": "bf0203a794a07aac3ff764972ab9087baa4e4f4e",
-               "v0.23.0": "2bd378ed1b8d6bf2192cb26e0a55ff3091e6bd19"}
+               "v0.23.0": "2bd378ed1b8d6bf2192cb26e0a55ff3091e6bd19",
+               "v0.23.1": "3b421578588243f920886e6fe79a6faa87ea026e"}
 HERMES_CLONE = "https://github.com/NousResearch/hermes-agent"
 HERMES_BIN = '"$RUNNER_TEMP/hermes-agent/.venv/bin/hermes"'
 
@@ -36,7 +37,7 @@ def test_ci_dev_deps_match_dev_deps_sh():
 
 def test_ci_triggers_permissions_and_timeouts(wf):
     on = wf.get("on", wf.get(True))  # YAML 1.1 reads the bare key `on` as True
-    assert set(on) == {"push", "pull_request", "workflow_dispatch"}
+    assert set(on) == {"push", "pull_request", "workflow_dispatch", "schedule"}
     assert wf["permissions"] == {"contents": "read"}
     assert wf["env"]["CIRCUIT_BENCH_HW"] == "off"
     assert set(wf["jobs"]) == {"python", "node", "macos", "hermes"}

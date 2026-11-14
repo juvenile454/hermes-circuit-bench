@@ -1,8 +1,8 @@
 # source_id: mod-pixel-gc9a01-ds
 # document: GalaxyCore GC9A01 Datasheet LCD-DST-3014, V1.0 Preliminary (file GC9A01A.pdf, hosted by Waveshare)
-# url: https://www.waveshare.com/w/upload/5/5e/GC9A01A.pdf
+# url: https://web.archive.org/web/20251217183447id_/https://www.waveshare.com/w/upload/5/5e/GC9A01A.pdf
 # corpus: mod/pixel/GC9A01A.pdf sha256 af8f6f0a03f4a340510fc06321eb78a2d9bb49670ff1f59164bd6ccf71a2bd47
-# retrieved: 2026-11-08
+# retrieved: 2026-11-13
 # extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
 @@ page 1
 Rev.1.0 Preliminary 

@@ -85,7 +85,12 @@ def test_excerpt_metadata_matches_sources_and_manifest(source_id, name):
 
 def test_every_plus_source_has_an_excerpt_and_every_part_a_source():
     ids = [s["id"] for s in json.loads(PLUS_SOURCES.read_text(encoding="utf-8"))]
-    assert sorted(ids) == sorted(FILES)
+    assert len(ids) == len(set(ids)), sorted(i for i in set(ids) if ids.count(i) > 1)  # a source id appears once
+    # the planning-current guides have their own excerpts (pixel-planning-*.txt, tests/test_u011_led_strip.py)
+    other = [i for i in ids if i not in FILES]
+    assert sorted(set(ids) - set(other)) == sorted(FILES)
+    assert sorted(other) == ["adafruit-neopixel-uberguide-powering", "sparkfun-apa102-hookup-guide"]
+    assert all(ex.by_source("pixel-planning-*.txt").get(i) for i in other)
     for part in json.loads(POWER.read_text(encoding="utf-8"))["parts"]:
         assert part["source_id"] in FILES
     sources.resolve([calc_power.WROOM, calc_power.RULE])

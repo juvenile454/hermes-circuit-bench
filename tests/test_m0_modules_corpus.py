@@ -189,7 +189,8 @@ def test_encrypted_pdf_is_read(aes_pdf, tmp_path):
 # --- scripts/excerpt.py -------------------------------------------------------------------------------------------
 def _excerpt_cli(*args, env=None) -> subprocess.CompletedProcess:
     return subprocess.run([sys.executable, str(ROOT / "scripts" / "excerpt.py"), *map(str, args)],
-                          capture_output=True, text=True, env={**os.environ, **(env or {})}, check=False)
+                          capture_output=True, text=True, env={**os.environ, **(env or {})}, check=False,
+                          timeout=120)
 
 
 def test_excerpt_cli_prints_a_segment_with_header(pdf):
@@ -378,10 +379,11 @@ def test_cb_corpus_dir_overrides_the_target(tmp_path):
             "m=importlib.util.module_from_spec(s);s.loader.exec_module(m);print(m.CORPUS)")
     script = str(ROOT / "scripts" / "fetch_corpus.py")
     r = subprocess.run([sys.executable, "-c", code, script], capture_output=True, text=True, check=True,
-                       env={**os.environ, "CB_CORPUS_DIR": str(tmp_path)})
+                       env={**os.environ, "CB_CORPUS_DIR": str(tmp_path)}, timeout=60)
     assert r.stdout.strip() == str(tmp_path)
     env = {k: v for k, v in os.environ.items() if k != "CB_CORPUS_DIR"}
-    r = subprocess.run([sys.executable, "-c", code, script], capture_output=True, text=True, check=True, env=env)
+    r = subprocess.run([sys.executable, "-c", code, script], capture_output=True, text=True, check=True, env=env,
+                       timeout=60)
     assert r.stdout.strip().endswith("tests/.corpus")
 
 

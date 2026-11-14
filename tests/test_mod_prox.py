@@ -37,7 +37,7 @@ def tof(ref, mid="vl53l0x", xshut=None, **kw):
 def test_prox_entries_load_with_their_classes():
     cat = modules.catalog()
     assert cat.problems == []
-    want = {"vl53l0x": "A1", "vl53l1x": "A1", "tsop38238": "A", "hcsr04": "B", "drv5032": "A", "ttp223": "B"}
+    want = {"vl53l0x": "A1", "vl53l1x": "A1", "tsop38238": "A", "hcsr04": "B", "drv5032": "A1", "ttp223": "B"}
     for mid, cls in want.items():
         e = cat.get(mid)
         assert e["_wp"] == "prox" and e["_class"] == cls, mid

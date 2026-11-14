@@ -26,5 +26,21 @@
   "url": "https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
   "retrieved": "2026-11-06",
   "note": "Page 27: VDD33 3.0 to 3.6 V, I_VDD min 0.5 A, V_OH min 0.8 x VDD. Page 28: Wi-Fi TX peak 355 mA. PDF SHA-256 27d71971da07c280c6068d08c74720d1a25b8f20cf8494dc1765bdd28d40d435 (tests/corpus/pins.json)."
+ },
+ {
+  "id": "adafruit-neopixel-uberguide-powering",
+  "title": "Adafruit NeoPixel Uberguide, chapter 'Powering NeoPixels' (vendor guide, not a datasheet)",
+  "url": "https://web.archive.org/web/20261012131918id_/https://learn.adafruit.com/adafruit-neopixel-uberguide/powering-neopixels",
+  "retrieved": "2026-11-13",
+  "class": "B",
+  "note": "Internet Archive snapshot of 2026-10-12 13:19:18 UTC of https://learn.adafruit.com/adafruit-neopixel-uberguide/powering-neopixels (the live page changes). Names the NeoPixel, not a part number; 'Each individual NeoPixel draws up to 60 milliamps at maximum brightness white (red + green + blue).' and 'Keep in mind, 60 mA is a worst case estimate!'; the same section uses 20 mA per pixel as a gross rule of thumb. A planning value (rule of thumb, worst case), not a datasheet value. HTML SHA-256 754fb1eedf9c0b0b2bcd15d6e40b4e06abf078381017cd259e9d8cbc9580cd3d (gzip unpacked); the archive's gzip file has eec3f6dcc49e29b3dfaadd71950cd1528b14add1af3e9a9de6c5e3d2be80da2a."
+ },
+ {
+  "id": "sparkfun-apa102-hookup-guide",
+  "title": "SparkFun APA102 Addressable LED Hookup Guide, section 'Power Supply' (vendor guide, not a datasheet)",
+  "url": "https://web.archive.org/web/20260626110410id_/https://learn.sparkfun.com/tutorials/apa102-addressable-led-hookup-guide/all",
+  "retrieved": "2026-11-13",
+  "class": "B",
+  "note": "Internet Archive snapshot of 2026-06-26 11:04:10 UTC of https://learn.sparkfun.com/tutorials/apa102-addressable-led-hookup-guide/all (the live page changes). 'Each APA102C can draw as much as 60mA when red, green and blue are all full-on'. A planning value (rule of thumb, worst case), not a datasheet value. HTML SHA-256 aa6d736db19e36f431aa1ce4dd666629cec454d16a5a2488975fc913386f0bd6 (gzip unpacked); the archive's gzip file has 3e0c49793c4d2c6c9b3a32052dedf506062ab6eb2cd7594cc219f548a2450557."
  }
 ]

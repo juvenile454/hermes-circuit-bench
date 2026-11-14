@@ -34,3 +34,5 @@ def test_sim_texts_point_to_the_demo_firmware():
     for needle in ("sim_not_demo_firmware", "rom_boot_only", "returns it unchanged", "not emulated", "forced_beta",
                    "allocation"):
         assert needle in skill, needle
+    # the answer for an existing demo project does not say whether its firmware was fixed: the skill has to
+    assert "returns it unchanged (maybe fixed)" in skill

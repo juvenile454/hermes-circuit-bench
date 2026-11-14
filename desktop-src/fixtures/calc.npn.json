@@ -170,7 +170,7 @@
   {
    "code": "gpio_current",
    "severity": "info",
-   "message": "The driving pin sources 2.60 mA. GPIO current limits are not checked here (unverified); see the chip datasheet.",
+   "message": "The driving pin sources 2.60 mA, below the 40.0 mA high-level source current of an ESP32-S3 pin (a typical value, not a maximum; chip not given).",
    "source_ids": []
   },
   {

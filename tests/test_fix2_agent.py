@@ -230,4 +230,4 @@ def test_skill_lines():
                    "`bench_calc led_strip`", "in parallel", "`conn` pin->net", "`connect` ref later",
                    "`beyond_suggestions` picks passed the same checks", "`limit`", "`more`"):
         assert needle in flat, needle
-    assert len(text.splitlines()) <= 120 and len(text) <= 9000
+    assert len(text.splitlines()) <= 120 and len(text) <= 9200

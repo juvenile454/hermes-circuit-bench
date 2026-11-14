@@ -78,12 +78,30 @@ class PtyPort:
                 pass
 
 
-@pytest.fixture
-def pty_port():
+def shutdown_broker() -> None:
+    """Close every monitor of the process-wide broker (a no-op if none was created)."""
+    from circuit_bench.bench_core import runtime
+    broker = runtime.peek("broker")
+    if broker is not None:
+        broker.shutdown()
+
+
+def pty_port_lifecycle():
+    """A pty pair for one test. At the end the monitors are closed BEFORE the pty is: a /dev/pts/N number is free as
+    soon as both ends are closed, another test process on the machine may take it at once, and a monitor that still
+    runs would reopen that name (reconnect) and read the foreign pty's bytes."""
     p = PtyPort()
     assert p.name.startswith("/dev/pts/")
-    yield p
-    p.close()
+    try:
+        yield p
+    finally:
+        shutdown_broker()
+        p.close()
+
+
+@pytest.fixture
+def pty_port():
+    yield from pty_port_lifecycle()
 
 
 def mock_comports(monkeypatch, entries: list[tuple]) -> list:
@@ -173,7 +191,4 @@ def _board_isolation(monkeypatch):
     monkeypatch.delattr(core, "sim", raising=False)
     monkeypatch.setitem(sys.modules, "circuit_bench.bench_core.sim", None)
     yield
-    from circuit_bench.bench_core import runtime
-    b = runtime.peek("broker")
-    if b is not None:
-        b.shutdown()
+    shutdown_broker()

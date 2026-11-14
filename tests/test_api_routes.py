@@ -517,7 +517,7 @@ def test_health(api, fake_tools, monkeypatch):  # noqa: F811
                          "version": {"stdout": "esptool v5.6.0\n"}})
     env = api.ok(api.get("/health"))
     res = env["result"]
-    assert res["plugin"] == "circuit-bench" and res["version"] == "0.1.0"
+    assert res["plugin"] == "circuit-bench" and res["version"] == "0.1.1"
     assert res["tools"]["pio"] == "6.2.0" and res["tools"]["esptool"] == "5.6.0"
     assert res["hardware_access"] is False and res["allow_flash"] is False and env["simulated"] is True
     assert res["epoch"] == sup.route_module("runtime").get("serial.epoch", str)

@@ -8,6 +8,7 @@ once across all files, else loading fails (ValueError). Kind-specific shape chec
 """
 from __future__ import annotations
 
+import difflib
 import json
 import math
 from functools import lru_cache
@@ -93,6 +94,43 @@ def find(name: object, kind: str | None = None) -> dict[str, Any] | None:
     if rec is None or (kind is not None and rec["kind"] != kind):
         return None
     return _copy(rec)
+
+
+_CLOSEST_MIN_RATIO = 0.8  # similarity of two normalised names; below it nothing is named
+_CLOSEST_MIN_PREFIX = 4  # a name that starts the other one counts as close from this length on
+
+
+def closest(name: object, kinds: str | tuple[str, ...]) -> str | None:
+    """Id of the known part of ``kinds`` whose name looks most like ``name``, or None.
+
+    Only for a hint next to "no datasheet data": a similar name is a different part with its own ratings, so the
+    caller must never use the record in place of the asked one. A name that resolves is never its own closest.
+    """
+    if not isinstance(name, str) or not name.strip():
+        return None
+    wanted = (kinds,) if isinstance(kinds, str) else tuple(kinds)
+    key = normalize(name)
+    exact = _load_all().get(key)
+    if exact is not None and exact["kind"] in wanted:
+        return None
+    best: tuple[float, str] | None = None
+    for known, rec in _load_all().items():  # data order: the first of equal scores wins
+        if rec["kind"] not in wanted:
+            continue
+        short, long_ = sorted((key, known), key=len)
+        ratio = 1.0 if len(short) >= _CLOSEST_MIN_PREFIX and long_.startswith(short) else \
+            difflib.SequenceMatcher(None, key, known).ratio()
+        if ratio >= _CLOSEST_MIN_RATIO and (best is None or ratio > best[0]):
+            best = (ratio, rec["id"])
+    return best[1] if best else None
+
+
+def unknown_text(name: str, kinds: str | tuple[str, ...], known: str) -> str:
+    """"no datasheet data for part 'X' (closest: Y, a different type with its own ratings; known: ...)" (the closest
+    part only when there is a similar name; ``known`` is the caller's list of valid part numbers)."""
+    near = closest(name, kinds)
+    hint = f"closest: {near}, a different type with its own ratings; " if near else ""
+    return f"no datasheet data for part {name!r} ({hint}known: {known})"
 
 
 def ids() -> list[str]:

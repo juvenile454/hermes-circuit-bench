@@ -1,8 +1,8 @@
 # source_id: mod-switch-6n137-ds
 # document: Vishay 6N137, VO2601, VO2611, VO2630, VO2631, VO4661 High Speed Optocoupler, 10 MBd, Document Number 84732, Rev. 2.2, 15-Mar-2023
-# url: https://www.vishay.com/docs/84732/6n137.pdf
+# url: https://web.archive.org/web/20251022204009id_/https://www.vishay.com/docs/84732/6n137.pdf
 # corpus: mod/switch/vishay-6n137.pdf sha256 e838b59beab53ddad0fedf094df8bd32fc35297fda7d500fd24ddd188924f6d2
-# retrieved: 2026-11-08
+# retrieved: 2026-11-13
 # extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
 @@ page 1
 The detector has an open dr ain NMOS-transistor output, 

@@ -230,9 +230,12 @@ def test_excerpt_header_matches_manifest_and_source(chip):
     meta, segs = excerpt(chip)
     e = manifest()[sid]
     src = sources.get(sid)
-    assert meta["source_id"] == sid and meta["retrieved"] == src["retrieved"] == "2026-11-08"
+    # C3 and C6 are pinned to web.archive.org snapshots (espressif.com now serves newer revisions)
+    archived = chip in ("esp32c3", "esp32c6")
+    assert meta["source_id"] == sid and meta["retrieved"] == src["retrieved"] == ("2026-11-13" if archived else "2026-11-08")
     assert meta["url"] == e["url"] == src["url"]
-    assert meta["url"].startswith("https://www.espressif.com/sites/default/files/documentation/")
+    assert meta["url"].startswith("https://web.archive.org/web/" if archived
+                                  else "https://www.espressif.com/sites/default/files/documentation/")
     assert meta["corpus"] == f"{e['path']} sha256 {e['sha256']}"
     assert e["path"].startswith("electrical/") and e["excerpt"] == f"excerpts/esp-{chip}-dc.txt"
     assert f"sha256 {e['sha256']}" in src["note"]

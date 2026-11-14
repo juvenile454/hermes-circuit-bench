@@ -83,7 +83,9 @@ def test_every_manifest_entry_has_a_source():
 
 def test_the_chips_excerpts_are_covered():
     assert set(CHIPS_EXCERPTS.items()) <= set(EXCERPTS)
-    assert all(sources.get(sid)["retrieved"] == "2026-11-06" for sid in CHIPS_EXCERPTS)
+    snapshot_2026_11_13 = {"wiki-wt32-eth01-features", "wiki-wt32-eth01-resources"}  # Wayback snapshots of that day
+    assert all(sources.get(sid)["retrieved"] == ("2026-11-13" if sid in snapshot_2026_11_13 else "2026-11-06")
+               for sid in CHIPS_EXCERPTS)
 
 
 @pytest.mark.parametrize(("sid", "name"), EXCERPTS, ids=[n for _, n in EXCERPTS])

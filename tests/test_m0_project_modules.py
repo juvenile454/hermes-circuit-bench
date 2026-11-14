@@ -206,7 +206,7 @@ def test_conn_validation(proj):
     assert p["parts"][0]["conn"] == {"SDA": "SDA0", "SCL": "SCL0", "SDO": "GND", "VDD": "3V3", "GND": "GND",
                                      "CSB": "GPIO10"}
     _bad({"op": "add_module", "module": "bme280", "conn": {"MISO": "X"}}, contains="has no pin 'MISO'")
-    _bad({"op": "add_module", "module": "bme280", "conn": {"sda": "X"}}, contains="pins: SDA, SCL")  # exact names
+    _bad({"op": "add_module", "module": "bme280", "conn": {"sdx": "X"}}, contains="pins: SDA, SCL")  # unknown name
     _bad({"op": "add_module", "module": "bme280", "conn": {"SDA": "bad net"}}, contains="net:")
     _bad({"op": "add_module", "module": "bme280", "conn": {"SDA": "N" * 33}})
     _bad({"op": "add_module", "module": "bme280", "conn": {"SDA": None}})  # null only in connect

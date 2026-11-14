@@ -26,9 +26,9 @@
   {
     "id": "mod-ndisplay-st7735s-ds",
     "title": "Sitronix ST7735S 132RGB x 162dot 262K Color with Frame Memory Single-Chip TFT Controller/Driver, data sheet V1.1, copy hosted by Waveshare",
-    "url": "https://www.waveshare.com/w/upload/e/e2/ST7735S_V1.1_20111121.pdf",
-    "retrieved": "2026-11-08",
+    "url": "https://web.archive.org/web/20230729195332id_/https://www.waveshare.com/w/upload/e/e2/ST7735S_V1.1_20111121.pdf",
+    "retrieved": "2026-11-13",
     "class": "A2",
-    "note": "ST7735S Version 1.1 (2011/11), Sitronix header 'ST7735S / V 1.1 Page N of 193' on every page; PDF of 2011-11-22 (Ghostscript). PDF page = printed page + 8. Pages 1, 11, 23, 24, 28, 29, 30, 36, 93; sha256 37b93f0ef6d5ac0bafe76868e048b67dce682d92fb9bf5a7ca8d8070a45fcc94"
+    "note": "ST7735S Version 1.1 (2011/11), Sitronix header 'ST7735S / V 1.1 Page N of 193' on every page; PDF of 2011-11-22 (Ghostscript). PDF page = printed page + 8. Archived copy: web.archive.org snapshot 2023-07-29 of the Waveshare file (waveshare.com refuses script downloads). Pages 1, 11, 23, 24, 28, 29, 30, 36, 93; sha256 37b93f0ef6d5ac0bafe76868e048b67dce682d92fb9bf5a7ca8d8070a45fcc94"
   }
 ]

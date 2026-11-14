@@ -36,12 +36,15 @@ import logging
 import math
 import os
 import re
+import shutil
+import stat
 import tempfile
+import time
 from collections.abc import Callable, Mapping
 from pathlib import Path
 from typing import Any
 
-from . import boards, chips, clitools, runtime, serialport, sources
+from . import boards, chips, clitools, runtime, serialport, sources, storage
 from . import settings as _settings
 from .contracts import BenchError, check, envelope, fail, from_error, validate_envelope, warning
 
@@ -107,6 +110,7 @@ _USB_TABLE: dict[tuple[int, int], tuple[str, str, bool, tuple[str, ...]]] = {
 }
 _KIND_LABELS = {"usb_cdc_app": "ESP32 firmware USB CDC, no auto-reset", "unknown": "unknown USB serial", "sim": "simulated"}
 
+# checked with fullmatch: with re.match, "$" also accepts a final line break ("s3\n")
 _ENV_RE = re.compile(r"^[A-Za-z0-9_][A-Za-z0-9_.:-]{0,63}$")
 _SHA_RE = re.compile(r"^[0-9a-f]{64}$")
 _PSRAM_RE = re.compile(r"Embedded PSRAM (\d+)MB(?: \(([^)]*)\))?")
@@ -143,7 +147,7 @@ def _providers() -> dict[str, Any]:
 
 def register_provider(prefix: str, provider: Any) -> None:
     """Route ports starting with ``prefix`` (e.g. ``"sim://"``) to ``provider`` (protocol: module docstring)."""
-    if not isinstance(prefix, str) or not re.match(r"^[a-z][a-z0-9+.-]*://$", prefix):
+    if not isinstance(prefix, str) or not re.fullmatch(r"[a-z][a-z0-9+.-]*://", prefix):
         raise BenchError("invalid_args", f"bad provider prefix {prefix!r}", "use a URL scheme like 'sim://'")
     for name in ("ports", "detect", "build", "flash", "line_source"):
         if not callable(getattr(provider, name, None)):
@@ -238,7 +242,7 @@ def _check_real_port(port: str) -> None:
 
 
 def _check_env(env: Any) -> str:
-    if not isinstance(env, str) or not _ENV_RE.match(env):
+    if not isinstance(env, str) or not _ENV_RE.fullmatch(env):
         raise BenchError("invalid_args", f"bad PlatformIO environment name {env!r}", "use the [env:<name>] from platformio.ini")
     return env
 
@@ -255,7 +259,7 @@ def _check_project(project_dir: Any) -> Path:
 
 
 def _check_sha(value: Any) -> str:
-    if not isinstance(value, str) or not _SHA_RE.match(value.strip().lower()):
+    if not isinstance(value, str) or not _SHA_RE.fullmatch(value.strip().lower()):
         raise BenchError("invalid_args", "expected_elf_sha256 must be the 64-digit SHA-256 of the built ELF",
                          "run build first and pass its elf_sha256")
     return value.strip().lower()
@@ -833,13 +837,15 @@ def metadata(project_dir: str | Path, env: str, *, timeout: float = METADATA_TIM
     extra = entry.get("extra") if isinstance(entry.get("extra"), dict) else {}
     images = []
     for item in extra.get("flash_images") or []:
-        if isinstance(item, dict) and _OFFSET_RE.match(str(item.get("offset") or "")) and item.get("path"):
+        if isinstance(item, dict) and _OFFSET_RE.fullmatch(str(item.get("offset") or "")) and item.get("path"):
             images.append({"offset": str(item["offset"]).lower(), "path": str(item["path"])})
     app_offset = str(extra.get("application_offset") or "")
-    return {"env": env, "cc_path": cc, "prog_path": entry.get("prog_path") or None, "toolchain_prefix": prefix,
+    prog = entry.get("prog_path")
+    prog = prog if isinstance(prog, str) and prog else None  # anything but text names no ELF (elf_missing)
+    return {"env": env, "cc_path": cc, "prog_path": prog, "toolchain_prefix": prefix,
             "addr2line": prefix + "addr2line" if prefix else None, "gdb_path": entry.get("gdb_path") or None,
             "build_type": entry.get("build_type"), "flash_images": images,
-            "app_offset": app_offset.lower() if _OFFSET_RE.match(app_offset) else None}
+            "app_offset": app_offset.lower() if _OFFSET_RE.fullmatch(app_offset) else None}
 
 
 def parse_sizes(lines: list[str]) -> dict[str, Any]:
@@ -1152,13 +1158,17 @@ def build(project_dir: str | Path, env: str, *, timeout: float | None = None, po
     ``port``: optional target port; a provider port (sim://) lets the provider build (simulated).
     ``chip``: the project chip (data/chips.json id). With it ``build_precheck`` runs before pio starts and refuses
     a wrong MCU (``chip_mismatch``) or a too old pinned platform (``platform_too_old``); without it (offline builds
-    of a bare folder) nothing is compared."""
+    of a bare folder) nothing is compared. A provider build that does not start pio (``build_runs_pio`` false) keeps
+    the refusals but drops the ``chip_unchecked`` notes: nothing is compiled for that MCU."""
     action = "board.build"
     result: dict[str, Any] | None = None
     pre: dict[str, Any] = {"warnings": [], "source_ids": [], "mcu": None}
     try:
         if chip is not None:
             pre = build_precheck(_check_project(project_dir), _check_env(env), chip)
+            if port is not None and not build_runs_pio(project_dir, env, port):
+                # a simulated build compiles nothing: an MCU that could not be read is no news for the user
+                pre = {**pre, "warnings": [w for w in pre["warnings"] if w.get("code") != "chip_unchecked"]}
         if port is not None:
             provider = provider_for(_check_port(port))
             if provider is not None:
@@ -1326,29 +1336,213 @@ def _ini_requests_erase(pdir: Path) -> bool:
     return False
 
 
-def _check_images(expected: Any, elf: Path) -> None:
+def _check_images(expected: Any, elf: Path, entries: list[tuple[str, Path]],
+                  copies: Mapping[Path, Path | None]) -> None:
     """The flash images must be the ones of the approved build. ``expected``: last_build.images
-    ({name: sha256}); without it (projects built before images were recorded) only the age check of firmware.bin."""
+    ({name: sha256}); without it (projects built before images were recorded) only the age check of the app image.
+    ``elf``, ``entries``: the ELF and the write list of ``_write_entries`` (the app image is the last entry);
+    ``copies``: its snapshot ({key: copy, None if it was missing}). Names are the names of the keys, nothing else.
+
+    Every entry whose name is an approved image name (the app entry's name or bootloader.bin/partitions.bin, with
+    a hash in ``expected``; compared without case) is hashed at its copy and must have the approved hash, whatever
+    folder or spelling the metadata used for it; two such entries must both match. An entry without a copy stops
+    the flash (tool_failed).
+    Only an approved image whose name is on no entry (so it is never written) is checked in place in the build
+    folder. Other entries (boot_app0.bin from the framework, extra images) have no approved hash: they are written
+    as they were when the copies were made."""
     build_dir = elf.parent
-    image = elf.with_suffix(".bin")
-    if not image.is_file():
-        raise BenchError("elf_missing", f"no firmware image {image.name} next to {elf.name}", "run build first")
+    app = entries[-1][1]
+    image = _copy_of(app, copies)
+    if image is None or not image.is_file():
+        raise BenchError("elf_missing", f"no firmware image {app.name} next to {elf.name}", "run build first")
     if not isinstance(expected, Mapping) or not expected:
         if image.stat().st_mtime_ns < elf.stat().st_mtime_ns:
-            raise BenchError("elf_mismatch", f"{image.name} is older than {elf.name}: the image does not belong to the "
+            raise BenchError("elf_mismatch", f"{app.name} is older than {elf.name}: the image does not belong to the "
                              "approved ELF", "build again and approve the new firmware")
         return
-    if image.name not in expected:
-        raise BenchError("elf_mismatch", f"the approved build has no hash of {image.name}",
+    own = {n.casefold() for n in (app.name, *EXTRA_IMAGES)}  # the build's own images (as image_names)
+    approved = {name.casefold(): (name, str(want).lower()) for name, want in expected.items()
+                if isinstance(name, str) and name.casefold() in own}
+    if app.name.casefold() not in approved:
+        raise BenchError("elf_mismatch", f"the approved build has no hash of {app.name}",
                          "rebuild (bench_board build) and approve the new firmware")
-    for name, want in sorted(expected.items()):
-        if name not in image_names(elf):
+    checks: list[tuple[str, str, Path | None, str]] = []  # (approved name, label, file to hash, approved hash)
+    for _offset, key in entries:
+        if key.name.casefold() not in approved:
             continue
-        path = build_dir / name
-        actual = sha256_file(path) if path.is_file() else None
-        if actual != str(want).lower():
-            what = "is missing" if actual is None else f"changed after the build ({actual[:8]}… != {str(want)[:8]}…)"
-            raise BenchError("elf_mismatch", f"{name} {what}", "rebuild (bench_board build) and approve the new firmware")
+        name, want = approved[key.name.casefold()]
+        label = name if key == build_dir / name else f"{key.name} ({key})"
+        checks.append((name, label, _copy_of(key, copies), want))  # the copy: the bytes that are written
+    written = {key.name.casefold() for _offset, key in entries}
+    for folded, (name, want) in approved.items():
+        if folded not in written:  # never written: checked in place
+            checks.append((name, name, build_dir / name, want))
+    for _name, label, path, want in sorted(checks, key=lambda c: c[0]):
+        actual = sha256_file(path) if path is not None and path.is_file() else None
+        if actual != want:
+            what = "is missing" if actual is None else f"changed after the build ({actual[:8]}… != {want[:8]}…)"
+            raise BenchError("elf_mismatch", f"{label} {what}", "rebuild (bench_board build) and approve the new firmware")
+
+
+def _snap_key(path: str | Path, base: Path) -> Path:
+    """The key of a file named by the pio metadata: its lexically normalised absolute path (a relative path is
+    taken from the project folder ``base``, where PlatformIO runs). No file system access (symlinks are not
+    resolved), so swapping the file, its folder or any part of its path for a symlink later cannot change it. The
+    name of the key (``key.name``) is the name of the file everywhere: copy, checks, esptool call and result."""
+    return Path(os.path.normpath(os.path.join(base, os.fspath(path))))
+
+
+def _write_entries(meta: Mapping[str, Any], base: Path) -> tuple[Path | None, list[tuple[str, Path]]]:
+    """The one place where the files of a flash get their path: (ELF key or None, write list). The write list is
+    ``[(offset, key)]`` from ``extra.flash_images`` plus the app image next to the ELF at ``application_offset``
+    (last), every path normalised once by ``_snap_key``. Snapshot, checks, esptool call and result.images use only
+    this list.
+
+    A ``prog_path`` that is no usable path (not text, normalised to a folder without a name such as ``/``) gives
+    no ELF key (the flash answers elf_missing); such a flash image path is tool_failed."""
+    elf = _usable_key(meta.get("prog_path"), base) if meta.get("prog_path") else None
+    entries = []
+    for item in meta.get("flash_images") or []:
+        key = _usable_key(item["path"], base)
+        if key is None:
+            raise BenchError("tool_failed", "pio project metadata names a flash image that is no file path",
+                             "check extra_scripts and the platform of platformio.ini, then build again")
+        entries.append((item["offset"], key))
+    if elf is not None:
+        entries.append((meta.get("app_offset") or "0x10000", elf.with_suffix(".bin")))
+    return elf, entries
+
+
+def _usable_key(path: Any, base: Path) -> Path | None:
+    """``_snap_key`` of ``path``, or None when it is no usable file path: not text (also a path object whose
+    ``__fspath__`` gives no text, or bytes) or a key without a file name (``/``). A NUL character stays: the
+    file checks report such a path as missing."""
+    try:
+        raw = os.fspath(path)
+        if not isinstance(raw, str):
+            return None
+        key = _snap_key(raw, base)
+    except (TypeError, ValueError):
+        return None
+    return key if key.name else None
+
+
+def _copy_of(key: Path, copies: Mapping[Path, Path | None]) -> Path | None:
+    """The private copy of the write-list entry ``key`` (None: it was missing when the snapshot was made). Never
+    falls back to the original: without a snapshot entry the flash stops (tool_failed)."""
+    if key not in copies:
+        raise BenchError("tool_failed", f"{key.name} is on the write list but has no private copy",
+                         "flash again; nothing was written")
+    return copies[key]
+
+
+def _require_snapshot_paths(paths: list[Path], folder: Path) -> None:
+    """Every image path of the esptool calls must lie in the snapshot folder; otherwise no esptool starts."""
+    base = os.path.abspath(folder)
+    for path in paths:
+        full = os.path.abspath(path)
+        if full == base or os.path.commonpath([base, full]) != base:
+            raise BenchError("tool_failed", f"flash image {Path(path).name} is not one of the private copies",
+                             "flash again; nothing was written")
+
+
+SNAPSHOT_DIR = "tmp"  # below the plugin data folder
+SNAPSHOT_PREFIX = "flash-"
+SNAPSHOT_MAX_AGE_S = 3600.0  # leftovers (a killed process) older than this go at the next flash
+
+
+def _sweep_snapshots(root: Path) -> None:
+    """Remove ``flash-*`` folders older than SNAPSHOT_MAX_AGE_S (never follows a symlink)."""
+    limit = time.time() - SNAPSHOT_MAX_AGE_S
+    try:
+        entries = list(root.iterdir())
+    except OSError:
+        return
+    for entry in entries:
+        if not entry.name.startswith(SNAPSHOT_PREFIX):
+            continue
+        try:
+            st = entry.lstat()
+        except OSError:
+            continue
+        if stat.S_ISDIR(st.st_mode) and st.st_mtime < limit:
+            shutil.rmtree(entry, ignore_errors=True)
+
+
+def _copy_file(src: Path, dst: Path) -> None:
+    """Copy the regular file ``src`` to the new file ``dst`` (mode 0600), keeping the modification time of what was
+    read. ``src`` is opened without blocking and without becoming a controlling terminal and must be a regular file
+    when it is open (a FIFO, device or folder swapped in after the snapshot looked at it: tool_failed, never a
+    wait); exactly the size it had then is read (a source that grows is cut there, one that shrinks is
+    tool_failed)."""
+    fd = os.open(src, os.O_RDONLY | getattr(os, "O_NONBLOCK", 0) | getattr(os, "O_NOCTTY", 0)
+                 | getattr(os, "O_CLOEXEC", 0) | getattr(os, "O_BINARY", 0))
+    try:
+        st = os.fstat(fd)
+        if stat.S_ISREG(st.st_mode) and os.name == "posix":
+            os.set_blocking(fd, True)  # a regular file: plain reads from here on
+    except BaseException:
+        os.close(fd)
+        raise
+    if not stat.S_ISREG(st.st_mode):
+        os.close(fd)
+        raise BenchError("tool_failed", f"could not copy {src.name} for the flash: it is not a regular file",
+                         "check the build folder (a pipe, device or folder took the place of an image)")
+    with os.fdopen(fd, "rb", buffering=0) as r:
+        left = st.st_size
+        out = os.open(dst, os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0), 0o600)
+        with os.fdopen(out, "wb") as w:
+            os.fchmod(w.fileno(), 0o600)
+            while left > 0:
+                chunk = r.read(min(left, 1 << 20))
+                if not chunk:
+                    break
+                w.write(chunk)
+                left -= len(chunk)
+    if left > 0:
+        raise BenchError("tool_failed", f"could not copy {src.name} for the flash: it changed while it was copied",
+                         "build again and do not touch the build folder during the flash")
+    os.utime(dst, ns=(st.st_atime_ns, st.st_mtime_ns))
+
+
+def _snapshot(keys: list[Path]) -> tuple[Path, dict[Path, Path | None]]:
+    """Copy the files of the write list (``keys``: the normalised paths of ``_write_entries``) into a new folder
+    ``<data>/tmp/flash-<random>`` (0700, files 0600, mtimes kept); each copy has the name of its key. Returns
+    (folder, {key: copy}); a file that does not exist maps to None (the checks report it with their usual code).
+    Any OSError while making the folder or the copies is tool_failed; the folder is gone then."""
+    try:
+        root = storage.sub_dir(SNAPSHOT_DIR)
+        _sweep_snapshots(root)
+        folder = Path(tempfile.mkdtemp(prefix=SNAPSHOT_PREFIX, dir=root))  # mode 0700
+    except OSError as e:
+        raise BenchError("tool_failed", f"could not create a private folder for the flash images ({type(e).__name__})",
+                         "check free disk space and the permissions of the plugin data folder") from None
+    copies: dict[Path, Path | None] = {}
+    try:
+        for i, key in enumerate(keys):
+            if key in copies:
+                continue
+            try:
+                if not key.is_file():
+                    copies[key] = None
+                    continue
+                dst = folder / key.name
+                if dst.exists():  # same name from another folder (e.g. a framework image): its own subfolder
+                    (folder / str(i)).mkdir(mode=0o700)
+                    dst = folder / str(i) / key.name
+                try:
+                    _copy_file(key, dst)
+                except FileNotFoundError:
+                    copies[key] = None  # gone since the look: reported like any missing image
+                    continue
+            except OSError as e:
+                raise BenchError("tool_failed", f"could not copy {key.name} for the flash ({type(e).__name__})",
+                                 "check the permissions of the build folder and free disk space") from None
+            copies[key] = dst
+    except BaseException:
+        shutil.rmtree(folder, ignore_errors=True)
+        raise
+    return folder, copies
 
 
 def image_info(image: str | Path) -> dict[str, str]:
@@ -1373,23 +1567,23 @@ def image_info(image: str | Path) -> dict[str, str]:
             "flash_freq": found["flash_freq"].lower()}
 
 
-def _write_list(meta: Mapping[str, Any], elf: Path, expected: Any) -> tuple[list[tuple[str, Path]], list[dict[str, Any]]]:
-    """(offset, file) pairs for ``write-flash`` and their description for the result. Images from the build folder
-    were checked against ``expected`` (``_check_images``); others (boot_app0.bin of the framework) are hashed here."""
+def _write_list(entries: list[tuple[str, Path]],
+                copies: Mapping[Path, Path | None]) -> tuple[list[tuple[str, Path]], list[dict[str, Any]]]:
+    """(offset, file) pairs for ``write-flash`` and their description for the result, from the write list of
+    ``_write_entries`` and its snapshot ``copies``. The pairs name the copies (never an original), the description
+    the names of the entries and the SHA-256 of each copy, i.e. of the bytes that are written."""
     pairs: list[tuple[str, Path]] = []
-    for item in meta.get("flash_images") or []:
-        path = Path(item["path"])
-        if not path.is_file():
-            raise BenchError("elf_missing", f"flash image {path.name} is missing ({path})", "run build first")
-        pairs.append((item["offset"], path))
-    pairs.append((meta.get("app_offset") or "0x10000", elf.with_suffix(".bin")))
+    for offset, key in entries:
+        read = _copy_of(key, copies)
+        if read is None or not read.is_file():
+            raise BenchError("elf_missing", f"flash image {key.name} is missing ({key})", "run build first")
+        pairs.append((offset, read))
     offsets = [int(o, 16) for o, _ in pairs]
     if len(set(offsets)) != len(offsets):
         raise BenchError("tool_failed", "pio project metadata lists two images at the same offset",
                          "check platformio.ini (board_build.partitions, extra images)")
-    known = expected if isinstance(expected, Mapping) else {}
-    described = [{"offset": o, "name": f.name, "sha256": known.get(f.name) if f.parent == elf.parent and f.name in known
-                  else sha256_file(f)} for o, f in pairs]
+    described = [{"offset": o, "name": key.name, "sha256": sha256_file(r)}
+                 for (o, key), (_, r) in zip(entries, pairs, strict=True)]
     return pairs, described
 
 
@@ -1456,10 +1650,12 @@ def flash(project_dir: str | Path, env: str, port: str, *, expected_elf_sha256: 
 
     Order: inputs -> hardware switch -> ``guard()`` (no tool runs without its OK) -> the computed PlatformIO
     configuration (``pio project config``: no upload_protocol = custom, no upload_command, no erase flags)
-    -> ELF hash against
-    ``expected_elf_sha256`` and the image hashes against ``expected_images`` (last_build.images; ``elf_mismatch``)
-    -> image header (``image_info``) -> broker pauses the port -> write. Never erases (beyond the sectors written),
-    never builds.
+    -> ELF hash against ``expected_elf_sha256`` (in place) -> private copies of every image to write
+    (``<data folder>/tmp/flash-<random>``, 0700/0600, removed on every exit; leftovers older than an hour go at the
+    next flash; one write list whose paths are normalised once, never re-resolved, no fallback to an original:
+    tool_failed) -> the copies' hashes against ``expected_images`` (last_build.images; ``elf_mismatch``) -> every image path of the esptool calls
+    lies in the snapshot folder (else tool_failed) -> image header of the copy (``image_info``) -> broker pauses the
+    port -> esptool writes the copies. Never erases (beyond the sectors written), never builds.
 
     ``expected_board``: ``project.board.detected``. Real ports only:
     - before any tool, the USB identity on the port (VID, PID, serial number) must equal ``usb_id``;
@@ -1474,6 +1670,7 @@ def flash(project_dir: str | Path, env: str, port: str, *, expected_elf_sha256: 
     result: dict[str, Any] | None = None
     refusal_checks: list[dict[str, Any]] = []
     provider = None
+    snap_dir: Path | None = None
     try:
         port = _check_port(port)
         sha = _check_sha(expected_elf_sha256)
@@ -1524,21 +1721,26 @@ def flash(project_dir: str | Path, env: str, port: str, *, expected_elf_sha256: 
             if on_line is not None:
                 on_line(f"warning: {NO_AUTO_RESET_HINT}")
         meta = metadata(pdir, env)
-        elf = Path(meta["prog_path"]) if meta["prog_path"] else None
+        # the one write list: every path below (ELF, copies, checks, esptool call, result) comes from here
+        elf, entries = _write_entries(meta, pdir)
         if elf is None or not elf.is_file():
             raise BenchError("elf_missing", f"no built firmware for env {env} ({elf})", "run build first")
         actual = sha256_file(elf)
         if actual != sha:
             raise BenchError("elf_mismatch", f"{elf.name} changed after the approved build ({actual[:8]}… != {sha[:8]}…)",
                              "build again and approve the new firmware")
-        if not meta.get("flash_images"):  # never the app alone onto an unknown bootloader/partition table
+        if len(entries) < 2:  # never the app alone onto an unknown bootloader/partition table
             raise BenchError("elf_missing", "pio project metadata lists no bootloader or partition table; "
                              "Circuit Bench writes only complete image sets",
                              "check board_build.partitions in platformio.ini and the platform version (pio project "
                              "metadata must list bootloader.bin and partitions.bin), then build again")
-        _check_images(expected_images, elf)
-        pairs, written = _write_list(meta, elf, expected_images)
-        header = image_info(elf.with_suffix(".bin"))
+        # private copies of the write list: checked and written are the same bytes, whatever changes in the build
+        # folder from now on (the ELF itself is never written and was hashed in place above)
+        snap_dir, copies = _snapshot([key for _offset, key in entries])
+        _check_images(expected_images, elf, entries, copies)
+        pairs, written = _write_list(entries, copies)
+        _require_snapshot_paths([path for _, path in pairs], snap_dir)  # image-info and write-flash read only these
+        header = image_info(pairs[-1][1])
         exe = _tool("esptool")
         log = _Log("flash", on_line)
         argv = [exe, "--chip", header["chip"], "--port", port, "--baud", str(baud), "--before", "default-reset",
@@ -1579,6 +1781,9 @@ def flash(project_dir: str | Path, env: str, port: str, *, expected_elf_sha256: 
     except BenchError as e:
         return from_error(action, e, result=result, warnings=warns, sources=_resolve_sources(ids),
                           checks=refusal_checks, simulated=provider is not None)
+    finally:
+        if snap_dir is not None:
+            shutil.rmtree(snap_dir, ignore_errors=True)
     mac = watch.mac or next((m.group(1).lower() for m in (_MAC_RE.match(ln.strip()) for ln in lines) if m), None)
     verified = sum("Hash of data verified" in ln for ln in lines) >= len(pairs)
     result.update({"ok": True, "mac": mac, "verified": verified, "elf": str(elf)})

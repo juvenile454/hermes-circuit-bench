@@ -107,7 +107,7 @@ def _lookup(name: str | None, kind: str) -> tuple[dict[str, Any] | None, str]:
             what = ", ".join(missing) if isinstance(missing, list) and missing else "a value this calculator needs"
             return None, (f"{partial['id']} has only partial datasheet data (missing: {what}); "
                           f"complete parts: {known}")
-        return None, f"no datasheet data for part {name!r} (known: {known})"
+        return None, parts.unknown_text(name, (kind,), known)
 
 
 def _chip(chip: object) -> str | None:

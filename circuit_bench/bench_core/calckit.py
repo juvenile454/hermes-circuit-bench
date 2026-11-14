@@ -203,7 +203,7 @@ def _check_params(kind: str, fn: Callable[..., Any], params: Any) -> tuple[tuple
 
 def register(kind: str, fn: Callable[..., dict[str, Any]], params: tuple[tuple[str, str, bool, Any], ...], *,
              title: str, group: str, summary: str) -> None:
-    if not isinstance(kind, str) or not KIND_RE.match(kind):
+    if not isinstance(kind, str) or not KIND_RE.fullmatch(kind):
         raise ValueError(f"calc kind must match {KIND_RE.pattern}, got {kind!r}")
     if f"calc.{kind}" not in contracts.ACTIONS:
         raise ValueError(f"calc {kind}: action calc.{kind} is not in contracts.ACTIONS (add it there first)")

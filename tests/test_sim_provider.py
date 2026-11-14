@@ -276,17 +276,20 @@ def test_sim_decode_is_simulated_and_points_to_main_cpp(fw):
     assert len(json.dumps(env)) <= contracts.MAX_RESULT_BYTES
 
 
-def test_a_sim_build_that_would_start_pio_asks_first_and_is_refused_in_cron(fw, monkeypatch):
+def test_a_sim_build_that_would_start_pio_asks_first_and_is_refused_in_cron(short_tmp, monkeypatch):
     """The real provider: once pio and every package are there (forced here), hook and handler treat the sim build
     like any build that runs the project's scripts; without them it stays simulated and nobody is asked."""
     from circuit_bench import hooks, tools
+    fw = short_tmp / "fw"
+    shutil.copytree(EXAMPLE, fw)
     started = []
     monkeypatch.setattr(sim, "_real_build_ready", lambda pdir, env: (True, []))
     monkeypatch.setattr(sim.SimBoard, "_real_build", lambda self, pdir, env, crash: started.append(env))
     args = {"action": "build", "project_dir": str(fw), "env": "s3", "port": sim.PORT}
     chat, cron = tools.Host(hook_active=True), tools.Host(cron=lambda: True, hook_active=True)
     asked = hooks.decide(chat, "bench_board", args)
-    assert asked["action"] == "approve" and asked["message"].endswith("the build is a real offline build.")
+    assert asked["action"] == "approve"
+    assert asked["message"].endswith(f"the build is a real offline build. Folder: \"{fw.resolve()}\"")
     assert asked["rule_key"] == hooks.build_rule_key(str(fw.resolve()), "s3")
     assert hooks.decide(cron, "bench_board", args)["action"] == "block"
     assert tools.run_tool("bench_board", args, cron)["error"]["code"] == "unattended_blocked"

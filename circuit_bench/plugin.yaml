@@ -1,5 +1,5 @@
 name: circuit-bench
-version: 0.1.0
+version: 0.1.1
 manifest_version: 2
 api_version: 1
 description: "ESP32 workbench for Hermes: checks pins against Espressif data, sizes parts, draws schematics, plans soldering, builds, flashes and monitors firmware and decodes crashes. Every value comes from code with its source: 180 cited modules, a simulation mode, tested on real boards, live Desktop bench."
@@ -35,7 +35,7 @@ config_schema:
     type: int
     default: 120
     label: "Monitor time limit (seconds)"
-    description: "Upper limit for one agent serial monitor run."
+    description: "Longest serial monitor run in seconds (1-3600, default 120). Hermes ends a tool call after its own deadline (420 s by default), so the monitor listens at most that deadline minus 20 s and warns with `monitor_capped` when it cuts a run."
   build_timeout_seconds:
     type: int
     default: 900

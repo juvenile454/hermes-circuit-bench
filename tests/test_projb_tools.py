@@ -76,8 +76,11 @@ def settings(monkeypatch, **values):
     monkeypatch.setenv("CIRCUIT_BENCH_SETTINGS_JSON", json.dumps(values))
 
 
+TASK = "t"  # the task id Hermes passes to the hook and the handler alike
+
+
 def call(host, name, **args):
-    out = tools.make_handlers(host)[name](args)
+    out = tools.make_handlers(host)[name](args, task_id=TASK)
     assert isinstance(out, str)
     env = json.loads(out)
     assert contracts.validate_envelope(env) == [], env
@@ -580,7 +583,7 @@ def test_real_flash_passes_guard_and_hash(bf_hw_on, host, monkeypatch, tmp_path)
 
     monkeypatch.setattr(board, "flash", fake_flash)
     args = {"action": "flash", "project": "laser-trigger", "elf_sha256": SHA[:12]}
-    assert hooks.decide(host, "bench_board", args)["action"] == "approve"  # Hermes asks; the user says yes
+    assert hooks.decide(host, "bench_board", args, TASK)["action"] == "approve"  # Hermes asks; the user says yes
     env = call(host, "bench_board", **args)
     assert env["ok"] and seen == {"dir": p["firmware"]["dir"], "env": "s3", "port": REAL, "sha": SHA, "verdict": None,
                                   "mac": "aa:bb:cc:dd:ee:ff"}  # the detection goes along
@@ -588,7 +591,7 @@ def test_real_flash_passes_guard_and_hash(bf_hw_on, host, monkeypatch, tmp_path)
     seen.clear()
     env = call(host, "bench_board", **args)  # one approval, one flash
     assert env["error"]["code"] == "not_confirmed" and seen == {}
-    hooks.decide(host, "bench_board", args)
+    hooks.decide(host, "bench_board", args, TASK)
     host.hook_active = False
     env = call(host, "bench_board", **args)
     assert env["error"]["code"] == "not_confirmed" and "hook" in env["error"]["message"] and seen == {}
@@ -596,7 +599,7 @@ def test_real_flash_passes_guard_and_hash(bf_hw_on, host, monkeypatch, tmp_path)
 
 def _approved(host, sha=SHA):
     args = {"action": "flash", "project": "laser-trigger", "elf_sha256": sha}
-    d = hooks.decide(host, "bench_board", args)
+    d = hooks.decide(host, "bench_board", args, TASK)
     assert d["action"] == "approve", d
     return args
 
@@ -661,6 +664,7 @@ def test_detect_on_real_port_records_and_warns_on_chip_mismatch(bf_hw_on, host, 
               "description": "x", "features": ["Wi-Fi"], "flash_size": "4MB", "variant_suggestion": None,
               "at": "2026-11-06T10:00:00Z", "simulated": False, "log_tail": ["..."]}
     monkeypatch.setattr(board, "detect", lambda port, **kw: contracts.envelope("board.detect", "detected", dict(result)))
+    assert hooks.decide(host, "bench_board", {"action": "detect", "port": REAL}, TASK)["action"] == "approve"
     env = call(host, "bench_board", action="detect", port=REAL, project="laser-trigger")
     assert any(w["code"] == "chip_mismatch" for w in env["warnings"])
     det = project.get("laser-trigger")["result"]["project"]["board"]["detected"]
@@ -681,6 +685,7 @@ def test_offline_build_and_decode_with_fake_pio(host, tmp_path, monkeypatch):
     (d / "src").mkdir()
     (d / "src" / "main.cpp").write_text("void setup() {}\nvoid loop() {}\n", encoding="utf-8")
     call(host, "bench_project", action="set_firmware", id="laser-trigger", firmware_dir=str(d), env="s3")
+    assert hooks.decide(host, "bench_board", {"action": "build", "project": "laser-trigger"}, TASK)["action"] == "approve"
     env = call(host, "bench_board", action="build", project="laser-trigger")
     assert env["ok"] and env["simulated"] is False, env
     build = project.get("laser-trigger")["result"]["project"]["firmware"]["last_build"]

@@ -96,10 +96,10 @@ def test_led_reports_gpio_current_like_npn():
     w = [w for w in env["warnings"] if w["code"] == "gpio_current"]
     assert len(w) == 1 and w[0]["severity"] == "info"
     i_act = env["result"]["i_actual"]["display"]
-    assert w[0]["message"] == (f"The driving pin sources {i_act}. GPIO current limits are not checked here "
-                               "(unverified); see the chip datasheet.")
+    assert w[0]["message"] == (f"The driving pin sources {i_act}, below the 40.0 mA high-level source current of an "
+                               "ESP32-S3 pin (a typical value, not a maximum; chip not given).")
     npn = next(w for w in calc.npn(3.3, 1000, 0.013)["warnings"] if w["code"] == "gpio_current")
-    assert npn["message"].split(". ", 1)[1] == w[0]["message"].split(". ", 1)[1]  # same text after the current
+    assert npn["message"].split(", ", 1)[1] == w[0]["message"].split(", ", 1)[1]  # same text after the current
 
 
 def test_led_without_headroom_has_no_gpio_current():

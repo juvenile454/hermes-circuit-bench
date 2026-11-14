@@ -123,7 +123,7 @@ def test_npn_laser_driver_mandatory_case():
     assert _assumption(env, "v_be") == {"key": "v_be", "value": "0.7 V",
                                         "reason": "typical small-signal silicon BJT; check the datasheet"}
     gpio = next(w for w in env["warnings"] if w["code"] == "gpio_current")
-    assert gpio["severity"] == "info" and "unverified" in gpio["message"]
+    assert gpio["severity"] == "info" and "below the 40.0 mA high-level source current" in gpio["message"]
     assert env["summary"] == ("NPN low side at 3.30 V drive: base 2.53 mA net, forced beta 5.1; "
                               "saturation not checked (no hFE given).")
     assert all(c["status"] != "passed" for c in env["checks"] if c["id"] != "calc.npn.base_drive")

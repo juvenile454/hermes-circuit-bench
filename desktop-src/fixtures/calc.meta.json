@@ -127,6 +127,16 @@
       "unit": "range",
       "required": false,
       "default": null
+     },
+     {
+      "name": "target",
+      "unit": "str",
+      "required": false,
+      "default": "esp_pin",
+      "choices": [
+       "esp_pin",
+       "other"
+      ]
      }
     ]
    },

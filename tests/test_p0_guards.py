@@ -51,4 +51,4 @@ def test_toolchain_mode_allows_offline_only(monkeypatch):
 
 def test_fakes_are_allowed():
     fake = Path(__file__).resolve().parent / "fakes" / "bin" / "cb-fake-tool"
-    assert subprocess.run([str(fake), "x"], check=False).returncode == 0
+    assert subprocess.run([str(fake), "x"], check=False, timeout=30).returncode == 0

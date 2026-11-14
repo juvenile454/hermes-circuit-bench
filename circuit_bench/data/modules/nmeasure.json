@@ -1242,6 +1242,11 @@
      "name": "REFP0",
      "signal": "analog_in",
      "note": "external reference input 0, positive"
+    },
+    {
+     "name": "SCLK",
+     "signal": "spi_sck",
+     "note": "serial clock input (p. 4)"
     }
    ],
    "interfaces": [

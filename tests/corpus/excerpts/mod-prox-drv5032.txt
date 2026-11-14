@@ -1,8 +1,8 @@
 # source_id: mod-prox-drv5032-ds
 # document: DRV5032 Ultra-Low-Power Digital-Switch Hall Effect Sensor, SLVSDC7H
-# url: https://www.ti.com/lit/ds/symlink/drv5032.pdf
-# corpus: mod/prox/drv5032.pdf sha256 0bdec04d64591bbb62c74f2e5d4dc10f21de5f76b0b0f12fca5c6a277037ceee
-# retrieved: 2026-11-08
+# url: https://web.archive.org/web/20261113194329id_/https://www.ti.com/lit/ds/symlink/drv5032.pdf
+# corpus: mod/prox/drv5032.pdf sha256 9a15811a5aa536d683e286814d415dbd86c13a5e38a1e6c732cbaba18741bde7
+# retrieved: 2026-11-13
 # extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
 @@ page 1
 – DG Version: 3.4mT

@@ -174,7 +174,9 @@ def test_manifest_and_sources_name_the_pinned_files():
     for e in [*MANIFESTS["boards"]["files"], *MANIFESTS["wt32"]["files"]]:
         if e["source_id"] in used:
             src = known[e["source_id"]]
-            assert src["retrieved"] == "2026-11-06" and e["sha256"] in src["note"], e["source_id"]
+            day = "2026-11-13" if e["source_id"] in ("wiki-wt32-eth01-features", "wiki-wt32-eth01-resources") \
+                else "2026-11-06"  # the two wiki pages are pinned to Wayback snapshots of 2026-11-13
+            assert src["retrieved"] == day and e["sha256"] in src["note"], e["source_id"]
     for sid in ("devkitc1-s2", "devkitc1-s2-ordering", "devkitc1-c6-v1.2", "devkitc1-c6-ordering", "devkitm1-c6",
                 "devkitm1-c6-ordering", "devkits-eol"):
         assert sid in used and "5c06bf1835329d6525f316475f7218aab6acfe79" in known[sid]["url"], sid

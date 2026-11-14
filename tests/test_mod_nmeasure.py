@@ -86,6 +86,31 @@ def test_limits_in_code_quote_the_excerpts():
         assert set(lim["pins"]) <= names, mid
 
 
+def test_ads1220_pins_are_the_sixteen_of_the_datasheet_table():
+    """Datasheet p. 4, Table 5-1 (RVA/PW pin numbers; the thermal pad is no signal pin): 16 pins, SCLK among them."""
+    pins = {p["name"]: p for p in modules.catalog().get("ads1220")["pins"]}
+    assert sorted(pins) == sorted([
+        "AIN0/REFP1", "AIN1", "AIN2", "AIN3/REFN1", "AVDD", "AVSS", "CLK", "CS", "DGND", "DIN", "DOUT/DRDY", "DRDY",
+        "DVDD", "REFN0", "REFP0", "SCLK"])
+    assert pins["SCLK"]["signal"] == "spi_sck" and "p. 4" in pins["SCLK"]["note"]
+    assert pins["CLK"]["signal"] == "digital_in"  # the external clock source input, not the SPI clock
+    assert _cited("mod-nmeasure-ads1220-ds", 4, ["SCLK 15 1 Digital input Serial clock input"])
+    assert _cited("mod-nmeasure-ads1220-ds", 4, ["CLK 1 3 Digital input External clock source pin."])
+
+
+def test_ads1220_external_clock_pin_is_not_the_spi_clock():
+    """Only CLK (external clock source) wired to the SPI clock net leaves SCLK open: reported as a half-wired bus."""
+    wired = ads1220(CLK="GND")
+    assert wired["conn"]["SCLK"] == "SCK"
+    assert not [w for w in mk.run(electrical=ESP, assignments=SPI, parts=[wired]).warnings
+                if w["code"] == "mod_unconnected" and "SCLK" in w["message"]]
+    conn = {k: v for k, v in wired["conn"].items() if k != "SCLK"}
+    conn["CLK"] = "SCK"
+    rep = mk.run(electrical=ESP, assignments=SPI, parts=[mk.mod("U2", "ads1220", conn)])
+    half = [w for w in rep.warnings if w["code"] == "mod_unconnected" and "SCLK" in w["message"]]
+    assert len(half) == 1 and "half wired" in half[0]["message"]
+
+
 def test_key_numbers_of_the_entries():
     cat = modules.catalog()
     m = cat.get("max31856")

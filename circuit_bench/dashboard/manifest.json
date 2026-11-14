@@ -3,7 +3,7 @@
   "label": "Circuit Bench",
   "description": "Backend routes of the ESP32 electronics bench. The bench itself is the Desktop half (Capabilities > Plugins).",
   "icon": "Cpu",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "tab": {
     "path": "/circuit-bench",
     "hidden": true

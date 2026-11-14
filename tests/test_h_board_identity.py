@@ -295,7 +295,7 @@ def test_agent_flash_passes_the_detection_and_stores_a_refused_flash(fake_tools,
     assert upd["ok"], upd
     host = tools.Host(hook_active=True)
     args = {"action": "flash", "project": "hb-agent", "elf_sha256": build["elf_sha256"]}
-    assert hooks.decide(host, "bench_board", args)["action"] == "approve"
+    assert hooks.decide(host, "bench_board", args, "t")["action"] == "approve"
     seen = {}
     real_flash = board.flash
 
@@ -304,7 +304,7 @@ def test_agent_flash_passes_the_detection_and_stores_a_refused_flash(fake_tools,
         return real_flash(*a, **kw)
 
     monkeypatch.setattr(board, "flash", spy)
-    env = json.loads(tools.make_handlers(host)["bench_board"](args))
+    env = json.loads(tools.make_handlers(host)["bench_board"](args, task_id="t"))
     assert seen["expected_board"]["mac"] == MAC and seen["expected_board"]["usb_id"] == USB
     assert env["error"]["code"] == "not_confirmed", env
     assert any(w["code"] == "board_identity" and w["severity"] == "danger" for w in env["warnings"])

@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "note": "Addressable LEDs for calc led_strip. Values from the datasheets in data/sources/mod-pixel.json; 'evidence' quotes a line of tests/corpus/excerpts/mod-pixel-*.txt. kind addressable_led: i_channel is the per-colour current of a datasheet test condition (basis 'test_condition'), not a guaranteed maximum. APA102C: image-only class B datasheet, every value verified false (read from the page images).",
+ "note": "Addressable LEDs for calc led_strip. Values from the datasheets in data/sources/mod-pixel.json; 'evidence' quotes a line of tests/corpus/excerpts/mod-pixel-*.txt. kind addressable_led: i_channel is the per-colour current of a datasheet test condition (basis 'test_condition'), not a guaranteed maximum. APA102C: image-only class B datasheet, every value verified false (read from the page images). i_planning (WS2812B, APA102C only): a second, larger per-pixel current at full white from a vendor guide of class B (basis 'rule_of_thumb', verified false, not a datasheet value); 'quote' is a sentence of tests/corpus/excerpts/pixel-planning-*.txt. No source names the SK6812, so it has no planning value.",
  "parts": [
   {
    "id": "WS2812B",
@@ -78,6 +78,17 @@
     "page": 3,
     "evidence": "RES Frameunit,lowvoltagetime >280µs",
     "conditions": "frame (reset) low time, minimum"
+   },
+   "i_planning": {
+    "value": 0.06,
+    "unit": "A",
+    "basis": "rule_of_thumb",
+    "class": "B",
+    "verified": false,
+    "source_id": "adafruit-neopixel-uberguide-powering",
+    "quote": "Each individual NeoPixel draws up to 60 milliamps at maximum brightness white (red + green + blue).",
+    "caveat_quote": "Keep in mind, 60 mA is a worst case estimate!",
+    "conditions": "per pixel at full white (red, green and blue at maximum brightness); a worst-case rule of thumb from a vendor guide that names the NeoPixel, not the part number; not a datasheet value"
    }
   },
   {
@@ -206,6 +217,16 @@
     "page": 3,
     "conditions": "Input High Voltage min, read from the page image (unverified)",
     "verified": false
+   },
+   "i_planning": {
+    "value": 0.06,
+    "unit": "A",
+    "basis": "rule_of_thumb",
+    "class": "B",
+    "verified": false,
+    "source_id": "sparkfun-apa102-hookup-guide",
+    "quote": "Each APA102C can draw as much as 60mA when red, green and blue are all full-on",
+    "conditions": "per pixel at full white (red, green and blue all full-on); a worst-case rule of thumb from a vendor guide, not a datasheet value"
    }
   }
  ]

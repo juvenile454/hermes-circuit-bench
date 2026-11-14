@@ -66,6 +66,11 @@ OPEN_RETRY_S = 0.7
 RECONNECT_S = 10.0  # a board RESET re-enumerates a native USB port: the open monitor reopens it
 RECONNECT_POLL_S = 0.25
 PARTIAL_FLUSH_S = 1.0
+HERMES_DEADLINE_DEFAULT_S = 420.0  # Hermes ends a tool call after this long unless it is configured otherwise
+HERMES_DEADLINE_MAX_S = 31_536_000.0  # 365 days: the longest deadline Hermes accepts, a longer one is cut to this
+HERMES_DEADLINE_ENV = "HERMES_CONCURRENT_TOOL_TIMEOUT_S"
+MONITOR_DEADLINE_MARGIN_S = 20.0  # kept free for the answer before Hermes gives the tool call up
+MONITOR_MIN_S = 1.0  # a deadline never shortens a monitor run below this
 PAUSE_POLL_S = 0.1
 PAUSE_LOCK_WAIT_S = 5.0
 PAUSE_STALE_S = 15 * 60
@@ -101,7 +106,7 @@ def artifacts_dir() -> Path:
 def open_artifact(kind: str) -> tuple[str, Any]:
     """New log file ``<kind>-YYYYmmdd-HHMMSS[-n].log`` under artifacts/ (0600): (log_ref, text file). Prunes the
     folder afterwards (``prune_artifacts``; never the new file)."""
-    if not re.match(r"^[a-z]+$", kind):
+    if not re.fullmatch(r"[a-z]+", kind):
         raise BenchError("invalid_args", f"bad artifact kind {kind!r}")
     folder = artifacts_dir()
     stamp = _dt.datetime.now(_dt.UTC).strftime("%Y%m%d-%H%M%S")
@@ -195,7 +200,7 @@ def prune_artifacts(folder: Path | None = None, keep: tuple[str, ...] = ()) -> i
 
 def artifact_path(log_ref: str) -> Path:
     """Path of an artifact by its ``log_ref`` (no path traversal)."""
-    if not isinstance(log_ref, str) or not _REF_RE.match(log_ref):
+    if not isinstance(log_ref, str) or not _REF_RE.fullmatch(log_ref):
         raise BenchError("invalid_args", f"bad log_ref {log_ref!r}")
     path = artifacts_dir() / log_ref
     if not path.is_file():
@@ -517,15 +522,15 @@ def normalize_port(port: Any) -> str:
     if not isinstance(port, str) or not port.strip() or len(port) > 256 or any(c in port for c in "\0\n\r"):
         raise BenchError("invalid_args", "port must be a device path like /dev/ttyACM0 or a sim:// port")
     port = port.strip()
-    if "://" in port or _COM_RE.match(port):
+    if "://" in port or _COM_RE.fullmatch(port):
         return port
     dev = _dev_mode()
-    if not (_DEVICE_RE.match(port) or _ALIAS_RE.match(port) or (dev and _PTS_RE.match(port))):
+    if not (_DEVICE_RE.fullmatch(port) or _ALIAS_RE.fullmatch(port) or (dev and _PTS_RE.fullmatch(port))):
         raise BenchError("invalid_args", f"bad port {port[:80]!r}: not a serial device", PORT_HINT)
     real = _realpath(port)
-    if _ALIAS_RE.match(port) and real == port:
+    if _ALIAS_RE.fullmatch(port) and real == port:
         raise BenchError("port_not_found", f"{port[:120]} does not exist", "replug the board and list the ports again")
-    if not (_DEVICE_RE.match(real) or (dev and _PTS_RE.match(real))):
+    if not (_DEVICE_RE.fullmatch(real) or (dev and _PTS_RE.fullmatch(real))):
         raise BenchError("invalid_args", f"{port[:80]} resolves to {real[:80]}, not a serial device", PORT_HINT)
     return real
 
@@ -1023,8 +1028,56 @@ def _monitor_notes(port: str) -> dict[str, Any] | None:
                          and w.get("severity") in ("info", "caution", "danger")]}
 
 
+def _deadline_value(raw: Any) -> tuple[bool, float | None]:
+    """One level of Hermes' deadline chain as Hermes reads it: ``(usable, deadline)``.
+
+    Usable is a number or a text holding one (``float()``, bool and NaN are not); more than 365 days counts as 365
+    days, 0 or negative as no deadline (``None``). A value Hermes cannot use is skipped: ``(False, None)``.
+    """
+    if raw is None or isinstance(raw, bool):
+        return False, None
+    try:
+        value = float(raw)
+    except (TypeError, ValueError, OverflowError):  # Hermes does not catch the overflow of a huge integer
+        return False, None
+    if value != value:
+        return False, None
+    return True, (None if value <= 0 else min(value, HERMES_DEADLINE_MAX_S))
+
+
+def _hermes_tool_deadline() -> tuple[float | None, str]:
+    """Seconds Hermes lets one tool call run, and the setting that says so; ``(None, ...)`` = no deadline.
+
+    The same chain as Hermes: ``timeouts.tools.sequential_call`` (plugin tools run one after the other), else
+    ``timeouts.tools.concurrent_batch``, else the environment variable ``HERMES_CONCURRENT_TOOL_TIMEOUT_S``, else
+    420 s. The first level with a usable value decides; 0 or negative there means no deadline, a later level
+    does not bring one back. A config.yaml that Hermes cannot read counts with the fallback values Hermes itself
+    keeps using (the last known good config, its defaults or nothing), so the monitor never listens longer than
+    Hermes waits. Without Hermes or with a configuration that cannot be read at all, the two configuration levels
+    are not set. Never raises.
+    """
+    for key in ("sequential_call", "concurrent_batch"):
+        try:
+            usable, deadline = _deadline_value(_settings.hermes_value("timeouts", "tools", key, last_known_good=True))
+        except Exception:  # noqa: BLE001 - the reader never raises; whatever happens, this level is not set
+            usable, deadline = False, None
+        if usable:
+            return deadline, f"timeouts.tools.{key}"
+    env_raw = os.environ.get(HERMES_DEADLINE_ENV, "").strip()
+    if env_raw:
+        try:
+            value = float(env_raw)
+        except ValueError:
+            pass
+        else:  # as Hermes: a NaN in the variable ends up as no deadline
+            return (None if value != value or value <= 0 else min(value, HERMES_DEADLINE_MAX_S)), HERMES_DEADLINE_ENV
+    return HERMES_DEADLINE_DEFAULT_S, "Hermes default"
+
+
 def monitor(port: str, seconds: float, baud: int | None = None, *, reset: bool = False) -> dict[str, Any]:
-    """Action serial.monitor (tool): listen ``seconds`` (<= monitor_max_seconds) and return at most 200 lines.
+    """Action serial.monitor (tool): listen ``seconds`` (<= monitor_max_seconds, and <= Hermes' deadline for a tool
+    call minus 20 s, never under 1 s; a cut by the deadline is the warning ``monitor_capped``) and return at most
+    200 lines.
     ``log_ref``: the first panic block (for bench_crash decode); without a panic the full capture when it does not
     fit (with a panic that capture is named in the assumption ``capture_ref``). A port the broker already holds
     (e.g. the desktop stream) is only listened to, not reopened."""
@@ -1040,6 +1093,15 @@ def monitor(port: str, seconds: float, baud: int | None = None, *, reset: bool =
         if seconds > max_s:
             assumptions.append(assumption("seconds", f"{max_s:g}", f"limited by the monitor_max_seconds setting ({max_s:g} s)"))
             seconds = max_s
+        deadline, setting = _hermes_tool_deadline()
+        if deadline is not None:  # Hermes gives the tool call up at its deadline: answer before that
+            allowed = max(MONITOR_MIN_S, deadline - MONITOR_DEADLINE_MARGIN_S)
+            if seconds > allowed:
+                warns.append(warning("monitor_capped", "info",
+                                     f"the monitor was shortened from {seconds:g} s to {allowed:g} s: Hermes ends a tool "
+                                     f"call after {deadline:g} s ({setting}) and {MONITOR_DEADLINE_MARGIN_S:g} s are kept "
+                                     f"free for the answer; listen again to see more"))
+                seconds = allowed
         baud = _check_baud(baud)
         events: list[dict[str, Any]] = []
         guard = threading.Lock()

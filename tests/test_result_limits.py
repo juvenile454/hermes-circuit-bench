@@ -78,10 +78,12 @@ def test_pin_current_up_to_ioh_stays_info():
     led = calc.led("3V3", "1.8V", "20mA")
     w = next(w for w in led["warnings"] if w["code"] == "gpio_current")
     assert w["severity"] == "info" and w["message"].startswith("The driving pin sources ")
-    assert "GPIO current limits are not checked here (unverified)" in w["message"]
+    assert "below the 40.0 mA high-level source current of an ESP32-S3 pin" in w["message"]
+    assert "not checked" not in w["message"]
     assert w["source_ids"] == []
     # exactly 40 mA through the pin: no new line (strict comparison)
     assert calc._gpio_current(0.04)["severity"] == "info"
+    assert ", at the 40.0 mA high-level" in calc._gpio_current(0.04)["message"]  # equal is not "below"
     assert calc._gpio_current(0.0400001)["severity"] == "caution"
 
 

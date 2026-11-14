@@ -14,6 +14,7 @@
 """
 from __future__ import annotations
 
+import copy
 import datetime as _dt
 import json
 import logging
@@ -56,7 +57,16 @@ CONN_VIEW_MAX = 12  # project_view: at most this many conn entries per part
 ADDED_VIEW_MAX = 12  # add_parts answer: at most this many added parts listed (result.added)
 NO_HOOK_MSG = "the Circuit Bench approval hook is not active, so the agent cannot use real boards"
 NO_HOOK_HINT = "reload the plugin (it registers the hook) or use the Bench UI; sim:// ports still work"
-FLASH_APPROVAL_TTL_S = 3600.0  # an approval card may stay open for a while; older hook entries are void
+NO_GRANT_MSG = "this call did not pass the Circuit Bench approval hook, so the agent cannot use real boards with it"
+# the hook is registered, but this call has no pass of it (expired, another task, a handler called directly)
+NO_GRANT_HINT = "call bench_board {action} again: Hermes asks the user first; sim:// ports still work"
+_TOOL_ACTION = {"board.detect": "detect", "serial.monitor": "monitor", "board.build": "build", "board.flash": "flash"}
+# lifetime of a hook pass (grant): Hermes' approvals.timeout plus GRANT_TTL_EXTRA_S, kept within the limits; a value
+# that is no whole number gives GRANT_TTL_DEFAULT_S
+GRANT_TTL_EXTRA_S = 60
+GRANT_TTL_MIN_S = 120
+GRANT_TTL_MAX_S = 3600
+GRANT_TTL_DEFAULT_S = 360
 SHA_ARG_RE = re.compile(r"^[0-9a-f]{12,64}$")
 SHA_ARG_HINT = "pass elf_sha256 from the last bench_board build (the full hash or its first 12+ hex digits)"
 
@@ -69,30 +79,83 @@ def __getattr__(name: str) -> Any:
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 
 
-class Host:
-    """What a handler needs from Hermes: cron detection, whether the approval hook is registered, and the flashes
-    the hook put to the user (the handler flashes only the exact project, port, MAC and ELF the user saw)."""
+def grant_ttl() -> float:
+    """Seconds a hook pass stays valid: ``approvals.timeout`` (read like Hermes, with ``int()``) plus 60 s, kept within
+    120-3600 s; not readable as a whole number: 360 s."""
+    from .bench_core import settings as S
+    try:
+        timeout = int(S.hermes_value("approvals", "timeout", default=300))
+    except (TypeError, ValueError, OverflowError):
+        return float(GRANT_TTL_DEFAULT_S)
+    return float(min(max(timeout + GRANT_TTL_EXTRA_S, GRANT_TTL_MIN_S), GRANT_TTL_MAX_S))
 
-    def __init__(self, cron: Callable[[], bool] | None = None, hook_active: bool = False):
+
+def _task(task_id: Any) -> str:
+    """A usable task id, or "" (missing, empty, not text)."""
+    return task_id if isinstance(task_id, str) and task_id.strip() else ""
+
+
+class Host:
+    """What a handler needs from Hermes: cron detection, whether the approval hook is registered, and the calls the
+    hook let through (grants).
+
+    The ``pre_tool_call`` hook first removes the unused grants of its task (``clear``) and, as its last step before it
+    answers, stores at most one grant for task, action and target (``grant``); the handler of the same task takes it
+    when it starts (``take``): one hook pass, one handler run, at most one unused grant per task. Without a task id
+    nothing is stored or found. ``bound(task_id)`` is the view a single handler call works with (it shares the
+    grants)."""
+
+    def __init__(self, cron: Callable[[], bool] | None = None, hook_active: bool = False,
+                 clock: Callable[[], float] | None = None):
         self._cron = cron
         self.hook_active = hook_active
-        self._flash_lock = threading.Lock()
-        self._flash_approvals: dict[tuple[str, str], dict[str, Any]] = {}
+        self.task_id = ""
+        self._clock = clock or time.monotonic
+        self._grant_lock = threading.Lock()
+        self._grants: dict[tuple[str, str, str], dict[str, Any]] = {}
 
-    def remember_flash(self, project: str, port: str, mac: str, elf_sha256: str) -> None:
-        """The pre_tool_call hook stores what its approval question names (one entry per project and port)."""
-        with self._flash_lock:
-            now = time.monotonic()
-            for key in [k for k, v in self._flash_approvals.items() if now - v["at"] > FLASH_APPROVAL_TTL_S]:
-                del self._flash_approvals[key]
-            self._flash_approvals[(project, port)] = {"project": project, "port": port, "mac": mac,
-                                                      "elf_sha256": elf_sha256, "at": now}
+    def bound(self, task_id: Any) -> Host:
+        """This host for one handler call of task ``task_id`` (same hook state, same grants)."""
+        view = copy.copy(self)
+        view.task_id = _task(task_id)
+        return view
 
-    def take_flash(self, project: str, port: str) -> dict[str, Any] | None:
-        """The entry the hook stored for this flash, removed (one approval, one flash); None if none or expired."""
-        with self._flash_lock:
-            entry = self._flash_approvals.pop((project, port), None)
-        if entry is None or time.monotonic() - entry["at"] > FLASH_APPROVAL_TTL_S:
+    @staticmethod
+    def build_grant_target(target: BuildTarget) -> str:
+        """The target of a build grant: folder, env and the sim:// port (or none)."""
+        return f"{target.dir}|{target.env}|{target.port or ''}"
+
+    def grant(self, task_id: Any, action: str, target: str, **details: Any) -> bool:
+        """The hook let ``action`` on ``target`` through for task ``task_id``. Replaces an older grant of the same
+        key; removes expired ones. False (nothing stored) without a task id."""
+        task = _task(task_id)
+        if not task:
+            return False
+        ttl = grant_ttl()
+        with self._grant_lock:
+            now = self._clock()
+            for key in [k for k, v in self._grants.items() if now >= v["expires"]]:
+                del self._grants[key]
+            self._grants[(task, action, target)] = {**details, "expires": now + ttl}
+        return True
+
+    def clear(self, task_id: Any) -> None:
+        """Removes every unused grant of task ``task_id`` (each action, each target) and the expired ones. The hook
+        does this first on every pass, so a pass that blocks, needs no grant or fails leaves none of its task."""
+        task = _task(task_id)
+        with self._grant_lock:
+            now = self._clock()
+            for key in [k for k, v in self._grants.items() if (task and k[0] == task) or now >= v["expires"]]:
+                del self._grants[key]
+
+    def take(self, action: str, target: str) -> dict[str, Any] | None:
+        """The grant for ``action`` on ``target`` of this call's task, removed (one grant, one run); None if there is
+        none, it expired, or the call has no task id."""
+        if not self.task_id:
+            return None
+        with self._grant_lock:
+            entry = self._grants.pop((self.task_id, action, target), None)
+        if entry is None or self._clock() >= entry["expires"]:
             return None
         return entry
 
@@ -1112,8 +1175,19 @@ def _solder_tool(args: Mapping[str, Any], host: Host) -> dict[str, Any]:
 
 # --------------------------------------------------------------------------------------------- bench_board
 
-def _no_hook(action: str) -> dict[str, Any]:
-    return fail(action, "not_confirmed", NO_HOOK_MSG, NO_HOOK_HINT)
+def _no_hook(action: str, message: str = NO_HOOK_MSG) -> dict[str, Any]:
+    return fail(action, "not_confirmed", message, NO_HOOK_HINT)
+
+
+def _hook_refusal(host: Host, action: str, granted: Mapping[str, Any] | None) -> dict[str, Any] | None:
+    """not_confirmed unless the hook is registered and let exactly this call through (its grant); None = OK. Without
+    the hook the hint says to reload the plugin; with the hook but without a pass, to call the action again."""
+    if not host.hook_active:
+        return _no_hook(action)
+    if granted is None:
+        return fail(action, "not_confirmed", NO_GRANT_MSG,
+                    NO_GRANT_HINT.format(action=_TOOL_ACTION.get(action, action)))
+    return None
 
 
 def _sim_port_of(proj: Mapping[str, Any] | None) -> str | None:
@@ -1163,18 +1237,24 @@ REBUILD_HINT = "run bench_board build with project {pid} again, then flash with 
 INCOMPLETE_BUILD_HINT = "run bench_board build with project {pid} again: the build output is incomplete"
 
 
-def _flash_binding(host: Host, proj: Mapping[str, Any], port: str, sha: str,
-                   given: str | None) -> dict[str, Any] | None:
+def flash_grant_target(project_id: str, port: str) -> str:
+    """The target of a flash grant: project and port (the grant itself names MAC, ELF, folder and env)."""
+    return f"{project_id}|{port}"
+
+
+def _flash_binding(proj: Mapping[str, Any], port: str, sha: str, given: str | None,
+                   approved: Mapping[str, Any] | None) -> dict[str, Any] | None:
     """Refuse unless the flash is exactly the one the hook asked about (None = OK).
 
-    elf_sha256 must name the current last build; the hook's entry (project, port, MAC, ELF) must equal the project
-    now (a build or a detection between the approval card and this handler changes it)."""
+    elf_sha256 must name the current last build; the hook's grant (port, MAC, ELF, folder, env, and the images and
+    time ``at`` of the last build) must equal the project now: a build (also one with the same ELF and another
+    partition table), a detection or a new firmware folder between the approval card and this handler is refused
+    with not_confirmed or elf_mismatch. A build without images or time (older projects) matches only one without."""
     from .bench_core import guard
     action = "board.flash"
     det = (proj.get("board") or {}).get("detected") or {}
     mac = str(det.get("mac") or "").lower()
-    # one approval, one handler run: the hook's entry is used up by this call, whatever it answers
-    approved = None if guard.is_sim(port) else host.take_flash(proj["id"], port)
+    fw = proj.get("firmware") or {}
     if given is not None and not sha.startswith(given):
         return fail(action, "elf_mismatch", f"elf_sha256 {given[:16]}… is not the last build ({sha[:12]}…)",
                     REBUILD_HINT.format(pid=proj["id"]))
@@ -1189,9 +1269,16 @@ def _flash_binding(host: Host, proj: Mapping[str, Any], port: str, sha: str,
     if approved["elf_sha256"] != sha:
         return fail(action, "elf_mismatch", f"the firmware changed after the approval ({approved['elf_sha256'][:12]}… "
                     f"was approved, the last build is {sha[:12]}…)", "flash again: the user approves the new build")
+    build = fw.get("last_build") or {}
+    if (approved.get("images"), approved.get("at")) != (build.get("images"), build.get("at")):
+        return fail(action, "not_confirmed", "the build changed after the approval",
+                    "flash again: the user approves the new build")
     if (approved["port"], approved["mac"]) != (port, mac):
         return fail(action, "not_confirmed", "the detected board changed after the approval",
                     "flash again: the user approves the new board")
+    if (approved.get("dir"), approved.get("env")) != (fw.get("dir"), fw.get("env")):
+        return fail(action, "not_confirmed", "the firmware folder changed after the approval",
+                    "flash again: the user approves the new firmware")
     return None
 
 
@@ -1208,13 +1295,14 @@ def _detect(args: Mapping[str, Any], host: Host) -> dict[str, Any]:
     from .bench_core import board, guard
     action = "board.detect"
     port = _port(_req(args, "port", action, PORT_HINT), action)
+    granted = None if guard.is_sim(port) else host.take("detect", port)  # used up by this run, whatever it answers
     pid = _str(args, "project", action)
     proj = _get_project(pid) if pid else None
     refusal = guard.check_serial(via="tool", settings=None, port=port, cron=host.cron(), action=action)
     if refusal is not None:
         return _model_sources(refusal)
-    if not guard.is_sim(port) and not host.hook_active:
-        return _no_hook(action)
+    if not guard.is_sim(port) and (refusal := _hook_refusal(host, action, granted)) is not None:
+        return refusal
     env = _model_sources(board.detect(port, devkit=((proj or {}).get("board") or {}).get("devkit")))
     if proj is None or not env.get("ok") or not isinstance(env.get("result"), dict):
         return env
@@ -1292,10 +1380,18 @@ def _build(args: Mapping[str, Any], host: Host) -> dict[str, Any]:
     target = build_target(args)
     if build_asks(target):
         # a build that starts pio runs the project's own scripts: only after the hook's approval, never in cron
+        granted = host.take("build", Host.build_grant_target(target))  # used up by this run, whatever it answers
         if host.cron():
             return fail(action, "unattended_blocked", BUILD_CRON_MSG, "run it in a chat or from the Bench UI")
-        if not host.hook_active:
-            return _no_hook(action)
+        if host.hook_active and granted is None:
+            # the hook lets a folder without platformio.ini pass unasked (nothing can build there): name that error
+            try:
+                board._check_project(target.dir)
+                board._check_env(target.env)
+            except BenchError as e:
+                return from_error(action, e)
+        if (refusal := _hook_refusal(host, action, granted)) is not None:
+            return refusal
     proj = target.project
     # the build pre-check compares env MCU and project chip before pio runs (chip_mismatch, platform_too_old)
     env = _model_sources(board.build(target.dir, target.env, port=target.port,
@@ -1324,8 +1420,10 @@ def _flash(args: Mapping[str, Any], host: Host) -> dict[str, Any]:
     from .bench_core import settings as S
     action = "board.flash"
     proj, port = flash_target(args)
-    given = flash_sha_arg(args)
     pid = proj["id"]
+    # one hook pass, one handler run: the grant is used up by this call, whatever it answers
+    granted = None if guard.is_sim(port) else host.take("flash", flash_grant_target(pid, port))
+    given = flash_sha_arg(args)
     fw = proj.get("firmware") or {}
     build = fw.get("last_build") or {}
     sha = build.get("elf_sha256") if build.get("ok") is True else None
@@ -1346,7 +1444,7 @@ def _flash(args: Mapping[str, Any], host: Host) -> dict[str, Any]:
     if not sha or not fw.get("dir") or not fw.get("env"):
         return fail(action, "not_confirmed", f"project {pid} has no successful build",
                     f"run bench_board build with project {pid} first")
-    refusal = _flash_binding(host, proj, port, sha, given)
+    refusal = _flash_binding(proj, port, sha, given, granted)
     if refusal is not None:
         return refusal
     env = _model_sources(board.flash(fw["dir"], fw["env"], port, expected_elf_sha256=sha, guard=approval,
@@ -1366,14 +1464,15 @@ def _monitor(args: Mapping[str, Any], host: Host) -> dict[str, Any]:
     from .bench_core import guard, serialport
     action = "serial.monitor"
     port = _port(_req(args, "port", action, PORT_HINT), action)
+    granted = None if guard.is_sim(port) else host.take("monitor", port)  # used up by this run, whatever it answers
     seconds = _num(args, "seconds", action, MONITOR_DEFAULT_S)
     baud = _int(args, "baud", action)
     reset = _bool(args, "reset", action, default=False)
     refusal = guard.check_serial(via="tool", settings=None, port=port, cron=host.cron(), action=action)
     if refusal is not None:
         return _model_sources(refusal)
-    if not guard.is_sim(port) and not host.hook_active:
-        return _no_hook(action)
+    if not guard.is_sim(port) and (refusal := _hook_refusal(host, action, granted)) is not None:
+        return refusal
     return _model_sources(serialport.monitor(port, seconds, baud, reset=bool(reset)))
 
 
@@ -1474,7 +1573,8 @@ def run_tool(name: str, args: Any, host: Host) -> dict[str, Any]:
 def _guarded(name: str, host: Host) -> Callable[..., str]:
     def handler(args: Any, **kw: Any) -> str:
         try:
-            return _dump(fit(run_tool(name, args, host)))
+            # task_id: the hook's grants are bound to the task that Hermes passes to hook and handler alike
+            return _dump(fit(run_tool(name, args, host.bound(kw.get("task_id")))))
         except Exception as e:  # noqa: BLE001 - last line of defence (e.g. a result that cannot be serialised)
             logger.warning("circuit-bench: %s answer failed (%s)", name, type(e).__name__)
             return json.dumps({"ok": False, "action": DEFAULT_ACTION[name], "summary": f"{name} failed",

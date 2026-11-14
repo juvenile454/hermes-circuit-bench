@@ -124,6 +124,107 @@ SIGNAL_DIRECTION: dict[str, str] = {
     "digital_out": "out", "open_drain_out": "out_od", "analog_out": "analog",
 }
 
+# --- breakout labels -------------------------------------------------------------------------------------------------
+# A breakout board prints common names (SDA, VCC, MOSI ...) where the datasheet names the chip pin (SDI, VDD, DIN ...).
+# A label is naming, not a rule: it follows from the pin's cited ``signal`` and counts only when exactly one pin of the
+# active variant carries that signal. Left out on purpose: VIN/3V3/5V (on a breakout often the input of a regulator,
+# not the chip pin) and RX/TX (named from the other side on module and ESP). power_out pins never match.
+# Supply and ground labels only stand in for each other: VCC/VDD or GND/VSS counts only when that one pin is itself
+# named VCC/VDD or GND/VSS (any case); on a pin named VIN, VM, VBAT, COIL1, IN- ... it is refused as unknown.
+# An I²C or SPI label is ambiguous when any other pin's name starts with it (any case), e.g. CLK next to CLKOUT.
+PIN_LABELS: dict[str, tuple[str, ...]] = {
+    "i2c_sda": ("SDA",), "i2c_scl": ("SCL",),
+    "spi_sck": ("SCK", "SCLK", "CLK"), "spi_sdi": ("MOSI", "SDI", "DIN", "SI"),
+    "spi_sdo": ("MISO", "SDO", "DOUT", "SO"), "spi_cs": ("CS", "SS", "NSS", "CSN"),
+    "gnd": ("GND", "VSS"), "supply": ("VCC", "VDD"),
+}
+LABEL_SIGNAL: dict[str, str] = {label: sig for sig, labels in PIN_LABELS.items() for label in labels}
+POWER_SIGNALS = frozenset({"gnd", "supply"})  # their labels map only onto a pin named like one of them
+LABEL_TEXT: dict[str, str] = {  # what the pin is, for the assumption text
+    "i2c_sda": "I²C data pin", "i2c_scl": "I²C clock pin", "spi_sck": "SPI clock pin", "spi_sdi": "SPI data input",
+    "spi_sdo": "SPI data output", "spi_cs": "SPI chip select", "gnd": "ground pin", "supply": "supply pin",
+}
+
+
+def _pin_list(pins: object) -> list[dict]:
+    return [p for p in pins if isinstance(p, dict) and isinstance(p.get("name"), str)] \
+        if isinstance(pins, list | tuple) else []
+
+
+def resolve_pin(pins: object, name: object) -> dict:
+    """The pin a ``conn`` key means, among ``pins`` (the ``pins`` list of a catalog entry with its variant applied).
+
+    ``{"pin", "via", "candidates"}``: via ``name`` (exact pin name), ``case`` (the one pin of that name ignoring case),
+    ``label`` (a breakout label of ``PIN_LABELS`` that exactly one pin's signal carries; for a supply or ground label
+    that pin must itself be named like one of the row's labels; for a bus label no other pin's name may start with
+    it, else that pin and those are the candidates). No match: pin None with the sorted candidates (two or more:
+    ambiguous, never guessed; none: unknown)."""
+    items = _pin_list(pins)
+    none = {"pin": None, "via": None, "candidates": []}
+    if not isinstance(name, str) or not name:
+        return none
+    names = [p["name"] for p in items]
+    if name in names:
+        return {"pin": name, "via": "name", "candidates": []}
+    same = [n for n in names if n.casefold() == name.casefold()]
+    if len(same) == 1:
+        return {"pin": same[0], "via": "case", "candidates": []}
+    if len(same) > 1:
+        return {**none, "candidates": sorted(same)}
+    sig = LABEL_SIGNAL.get(name.upper())
+    if sig is None:
+        return none
+    fits = [p["name"] for p in items if p.get("signal") == sig]
+    if len(fits) == 1:
+        if sig in POWER_SIGNALS:
+            if fits[0].upper() not in PIN_LABELS[sig]:
+                return none  # VCC on VIN, VM, COIL1 ...: not sure which terminal the label means
+        else:
+            key = name.casefold()
+            alike = [n for n in names if n != fits[0] and n.casefold().startswith(key)]
+            if alike:  # CLK next to a clock output CLKOUT: the board may print CLK on either pin
+                return {**none, "candidates": sorted([fits[0], *alike])}
+        return {"pin": fits[0], "via": "label", "candidates": []}
+    return {**none, "candidates": sorted(fits)}
+
+
+def label_table(pins: object) -> dict[str, dict]:
+    """Every label of ``PIN_LABELS`` that names a pin (or several) of ``pins``: label -> ``resolve_pin`` answer."""
+    out = {}
+    for label in LABEL_SIGNAL:
+        res = resolve_pin(pins, label)
+        if res["pin"] is not None or res["candidates"]:
+            out[label] = res
+    return out
+
+
+def pins_hint(pins: object) -> str:
+    """'GND, CSB, SDI (SDA), SCK (SCL), SDO, VDDIO, VDD': the pin names, each with the labels that map to it. A pin
+    whose own name already is a label of its signal (GND, VDD, CLK ...) gets none."""
+    items = _pin_list(pins)
+    table = label_table(items)
+    out = []
+    for p in items:
+        own = PIN_LABELS.get(str(p.get("signal")), ())
+        labels = [] if p["name"].upper() in own else \
+            [lb for lb, res in table.items() if res["via"] == "label" and res["pin"] == p["name"]]
+        out.append(f"{p['name']} ({', '.join(labels)})" if labels else p["name"])
+    return ", ".join(out)
+
+
+def alias_text(module_id: str, pin: dict, label: str, via: str) -> str:
+    """Reason of the assumption ``pin_alias``: what the pin is and how the catalog names it, plus its note."""
+    name = pin.get("name")
+    if via == "case":
+        text = f"{module_id}: the catalog spells the pin {name}"
+    else:
+        text = f"{module_id}: {LABEL_TEXT.get(LABEL_SIGNAL.get(label.upper(), ''), 'pin')}, catalog pin {name}"
+    note = pin.get("note")
+    if isinstance(note, str) and note.strip():
+        text += f" ({note.strip()[:120]})"
+    return text
+
+
 INTERFACE_TYPES: tuple[str, ...] = ("i2c", "spi", "uart", "onewire", "i2s", "analog", "digital", "pwm",
                                     "led_serial", "parallel")
 INTERFACE_KEYS = frozenset({"type", "addresses", "default", "select", "reserved", "f_max_hz", "mux_channels",

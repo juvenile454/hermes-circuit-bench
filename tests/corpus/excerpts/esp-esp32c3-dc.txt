@@ -4,9 +4,9 @@
 # checks data/electrical/<chip>.json against it and, with the corpus present, every line in order on the page.
 # source_id: elec-ds-esp32c3
 # document: Espressif ESP32-C3 Series Datasheet v2.4, chapter 5 Electrical Characteristics (Tables 5-1, 5-2 and the DC Characteristics table of section 5.4). Copyright Espressif Systems; quoted for citation only.
-# url: https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf
+# url: https://web.archive.org/web/20261104145406id_/https://documentation.espressif.com/esp32-c3_datasheet_en.pdf
 # corpus: electrical/esp32-c3_datasheet_en.pdf sha256 833fc000b4b3c3d39c496fcbd597fed5806956503ce7390b19cc8ae82f19f968
-# retrieved: 2026-11-08
+# retrieved: 2026-11-13
 # extracted: pypdf 6.21.4, PdfReader(pdf).pages[N - 1].extract_text()
 # IOH and IOL are in the Typ column (no Min/Max given); VDD in the DC table is the I/O voltage of the pin's
 # power domain.

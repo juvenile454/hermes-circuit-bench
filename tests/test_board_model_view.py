@@ -54,8 +54,11 @@ def spy_core(monkeypatch) -> dict:
     return seen
 
 
+TASK = "t"  # the task id Hermes passes to the hook and the handler alike
+
+
 def call(host, name, **args):
-    raw = tools.make_handlers(host)[name](args)
+    raw = tools.make_handlers(host)[name](args, task_id=TASK)
     env = json.loads(raw)
     assert contracts.validate_envelope(env) == [], env
     return env, len(raw.encode("utf-8"))
@@ -141,7 +144,7 @@ def test_real_board_flash_keeps_the_ids_without_notes(fake_tools, hw_on, pty_por
     assert upd["ok"], upd
     host = tools.Host(hook_active=True)
     args = {"action": "flash", "project": pid, "elf_sha256": built["result"]["elf_sha256"]}
-    assert hooks.decide(host, "bench_board", args)["action"] == "approve"
+    assert hooks.decide(host, "bench_board", args, TASK)["action"] == "approve"
     seen = spy_core(monkeypatch)
     env, _ = call(host, "bench_board", **args)
     assert env["ok"], env["error"]

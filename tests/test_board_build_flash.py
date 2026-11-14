@@ -171,13 +171,15 @@ def test_flash_writes_all_images_with_esptool(fake_tools, project, hw_on, pty_po
     assert not [c for c in fake_tools.calls("pio") if "upload" in c["argv"]]
     info, write = [c for c in fake_tools.calls("esptool")]
     build = project.resolve() / ".pio" / "build" / "s3"
-    assert info["argv"] == ["image-info", str(build / "firmware.bin")]
+    snap = Path(info["argv"][-1]).parent  # esptool reads private copies of the images, never the build folder
+    assert snap.parent == storage.data_dir() / "tmp" and snap.name.startswith("flash-") and not snap.exists()
+    assert info["argv"] == ["image-info", str(snap / "firmware.bin")]
     assert write["argv"] == ["--chip", "esp32s3", "--port", pty_port.name, "--baud", "460800", "--before", "default-reset",
                              "--after", "hard-reset", "write-flash", "-z", "--flash-mode", "dio", "--flash-freq", "80m",
-                             "--flash-size", "detect", "0x0000", str(build / "bootloader.bin"),
-                             "0x8000", str(build / "partitions.bin"),
-                             "0xe000", str(project.resolve() / ".pio" / "fake-framework" / "boot_app0.bin"),
-                             "0x10000", str(build / "firmware.bin")]
+                             "--flash-size", "detect", "0x0000", str(snap / "bootloader.bin"),
+                             "0x8000", str(snap / "partitions.bin"),
+                             "0xe000", str(snap / "boot_app0.bin"),
+                             "0x10000", str(snap / "firmware.bin")]
     assert write["home"] == write["cwd"] and write["cwd"] != str(project.resolve())  # no esptool.cfg of the user
     assert not any("erase" in a for c in fake_tools.calls() for a in c["argv"])
     r = env["result"]
@@ -204,7 +206,8 @@ def test_flash_upload_speed_and_app_offset_come_from_the_project(fake_tools, pro
     ini.write_text(ini.read_text() + "upload_speed = 921600\n")
     _ok(board.flash(project, "s3", pty_port.name, expected_elf_sha256=sha, guard=allow))
     argv = fake_tools.calls("esptool")[-1]["argv"]
-    assert argv[argv.index("--baud") + 1] == "921600" and argv[-2:] == ["0x20000", str(project.resolve() / ".pio/build/s3/firmware.bin")]
+    assert argv[argv.index("--baud") + 1] == "921600" and argv[-2] == "0x20000"
+    assert Path(argv[-1]).name == "firmware.bin" and Path(argv[-1]).parent.parent == storage.data_dir() / "tmp"
 
 
 def test_flash_without_extra_images_is_refused(fake_tools, project, hw_on, pty_port, monkeypatch):

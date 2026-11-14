@@ -161,7 +161,7 @@ def test_sim_build_runs_a_project_script_only_after_approval(tmp_path, monkeypat
     args = {"action": "build", "project_dir": str(fw), "env": "s3", "port": sim.PORT}
 
     def run(host):
-        env = json.loads(tools.make_handlers(host)["bench_board"](args))
+        env = json.loads(tools.make_handlers(host)["bench_board"](args, task_id="t"))
         assert contracts.validate_envelope(env) == [], env
         return env
 
@@ -170,7 +170,7 @@ def test_sim_build_runs_a_project_script_only_after_approval(tmp_path, monkeypat
     assert run(cron)["error"]["code"] == "unattended_blocked"
     assert not marker.exists()
     host = tools.Host(hook_active=True)
-    decision = hooks.decide(host, "bench_board", args)
+    decision = hooks.decide(host, "bench_board", args, "t")
     assert decision["action"] == "approve" and decision["rule_key"] == hooks.build_rule_key(str(fw.resolve()), "s3")
     assert not marker.exists()  # asking runs nothing
     env = run(host)

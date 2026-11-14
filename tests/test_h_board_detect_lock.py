@@ -1,7 +1,6 @@
 """Detect runs esptool inside serialport.pause (the port's flock), for the agent and the
 route; the route no longer pauses itself (a nested pause would wait for its own lock). pty ports and fakes only."""
 import json
-import subprocess
 import sys
 import textwrap
 import time
@@ -10,9 +9,10 @@ import board_fixtures as bf
 import pytest
 import test_api_support as sup
 from board_fixtures import fake_tools, hw_on, pty_port  # noqa: F401 - fixtures
+from child_io import Child
 from test_api_support import api  # noqa: F401 - fixture
 
-from circuit_bench import tools
+from circuit_bench import hooks, tools
 from circuit_bench.bench_core import board, serialport
 
 HOLDER = textwrap.dedent("""
@@ -29,13 +29,17 @@ class Holder:
     yield)."""
 
     def __init__(self, lock_file):
-        self.proc = subprocess.Popen([sys.executable, "-c", HOLDER, str(lock_file)], stdin=subprocess.PIPE,
-                                     stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        assert self.proc.stdout.readline().strip() == "READY", self.proc.stderr.read()
+        self.child = Child([sys.executable, "-c", HOLDER, str(lock_file)])
+        try:
+            assert self.child.readline("READY of the lock holder").strip() == "READY"
+        except AssertionError:
+            self.child.kill()
+            raise
 
     def release(self):
-        if self.proc.poll() is None:
-            self.proc.communicate("\n", timeout=15)
+        if self.child.returncode is None:
+            self.child.finish("\n")
+        self.child.kill()  # nothing left over after a failed finish; closes the pipes
 
 
 @pytest.fixture
@@ -88,8 +92,9 @@ def test_agent_detect_ends_with_port_busy_while_another_process_holds_the_lock(f
     fake_tools.scenario("board-esptool-s3.json")
     h = holder(serialport.lock_path(pty_port.name))
     t0 = time.monotonic()
-    env = json.loads(tools.make_handlers(tools.Host(hook_active=True))["bench_board"](
-        {"action": "detect", "port": pty_port.name}))
+    host = tools.Host(hook_active=True)
+    assert hooks.decide(host, "bench_board", {"action": "detect", "port": pty_port.name}, "t")["action"] == "approve"
+    env = json.loads(tools.make_handlers(host)["bench_board"]({"action": "detect", "port": pty_port.name}, task_id="t"))
     took = time.monotonic() - t0
     assert env["ok"] is False and env["error"]["code"] == "port_busy", env
     assert env["action"] == "board.detect"

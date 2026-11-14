@@ -35,9 +35,9 @@ def settings(monkeypatch, **values):
 
 
 @pytest.fixture
-def ready(tmp_path):
+def ready(short_tmp):
     """Project with a detected real board and a successful build."""
-    fw = tmp_path / "fw"
+    fw = short_tmp / "fw"
     fw.mkdir()
     (fw / "platformio.ini").write_text("[env:s3]\n", encoding="utf-8")
     assert project.create("laser-trigger", "Laser trigger", "esp32s3", "n16r8")["ok"]
@@ -61,7 +61,8 @@ def flash(**extra):
 def test_flash_ok_asks_with_board_details(ready):
     d = decide(flash())
     assert d["action"] == "approve"
-    assert d["message"].startswith(f"Flash firmware s3 from {ready['firmware']['dir']} to ESP32-S3 (QFN56) (MAC {MAC}) on {REAL}?")
+    assert d["message"].startswith(f"Flash firmware s3 to ESP32-S3 (QFN56) (MAC {MAC}) on {REAL}?")
+    assert d["message"].endswith(f"Firmware folder: \"{ready['firmware']['dir']}\"")
     assert f"ELF {SHA}" in d["message"]
     assert d["rule_key"] == "circuit-bench:flash:" + hashlib.sha256(f"{REAL}|{MAC}|{SHA}".encode()).hexdigest()
     assert decide(flash(port=REAL)) == d

@@ -108,7 +108,12 @@ def envelope(action: str, summary: str, result: Any = None, *, checks: Iterable[
 def fail(action: str, code: str, message: str, hint: str | None = None, *, result: Any = None,
          checks: Iterable[Mapping] = (), warnings: Iterable[Mapping] = (), sources: Iterable[Mapping] = (),
          simulated: bool = False) -> dict[str, Any]:
-    """Error envelope. ``summary`` repeats the message so CLI/Telegram users see it."""
+    """Error envelope. ``summary`` repeats the message so CLI/Telegram users see it. Message, hint and summary show
+    format, direction and separator characters, lone surrogates, C1 controls and default-ignorable code points as
+    ``\\uXXXX`` (``shown.for_model``): a path or chip text in an error cannot hide text from the reader or start a
+    line that looks like another answer. The input itself is not refused for them."""
+    from .shown import for_model
+    message, hint = for_model(message), for_model(hint)
     err = BenchError(code, message, hint)  # validates the code
     env = envelope(action, message, result, checks=checks, warnings=warnings, sources=sources, simulated=simulated)
     env["ok"] = False

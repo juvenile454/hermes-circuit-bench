@@ -13,6 +13,7 @@ CS 16 2 Digital input Chip select; active low. Connect to DGND if not used.
 DOUT/ DRDY 13 15 Digital output Serial data output combined with data ready; active low
 DRDY 12 14 Digital output Data ready, active low.Leave unconnected or tie to DVDD using a weak pull-up resistor if not used.
 DVDD 11 13 Digital supply Positive digital power supply. Connect a 100nF (or larger) capacitor to DGND.
+SCLK 15 1 Digital input Serial clock input
 @@ page 5
 AVDD to AVSS –0.3 7 V
 DVDD to DGND –0.3 7 V

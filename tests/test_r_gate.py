@@ -88,7 +88,7 @@ def decide(args, host=None):
 
 
 def call(host, **args):
-    out = tools.make_handlers(host)["bench_board"](args)
+    out = tools.make_handlers(host)["bench_board"](args, task_id="t")  # the task id of decide()
     env = json.loads(out)
     assert contracts.validate_envelope(env) == [], env
     return env
@@ -126,12 +126,13 @@ def test_sim_build_gets_no_directive(tmp_path, no_build):
     assert decide({"action": "build", "project": "demo-like"}) is None
 
 
-def test_real_build_asks_with_exact_rule_key(tmp_path, no_build):
-    d = fw_dir(tmp_path)
+def test_real_build_asks_with_exact_rule_key(short_tmp, no_build):
+    d = fw_dir(short_tmp)
     d_res = d.resolve()
     want = {"action": "approve",
-            "message": f"Build {d_res} (env s3) with PlatformIO? This runs the project's own build scripts "
-                       "(platformio.ini, extra_scripts) with your user rights. Nothing is uploaded to a board.",
+            "message": "Build env s3 with PlatformIO? This runs the project's own build scripts "
+                       "(platformio.ini, extra_scripts) with your user rights. Nothing is uploaded to a board. "
+                       f"Folder: \"{d_res}\"",
             "rule_key": key(str(d_res), "s3")}
     assert decide({"action": "build", "project_dir": str(d), "env": "s3"}) == want
     assert hooks.build_rule_key(str(d_res), "s3") == want["rule_key"]
@@ -149,7 +150,7 @@ def test_same_folder_same_key_other_env_other_key(tmp_path, no_build):
     assert decide({"action": "build", "project_dir": str(link), "env": "s3"})["rule_key"] == base
     assert decide({"action": "build", "project_dir": str(tmp_path / "sub" / ".." / "fw"), "env": "s3"})["rule_key"] == base
     other = decide({"action": "build", "project_dir": str(d), "env": "c3"})
-    assert other["action"] == "approve" and other["rule_key"] != base and "(env c3)" in other["message"]
+    assert other["action"] == "approve" and other["rule_key"] != base and other["message"].startswith("Build env c3 with")
     assert decide({"action": "build", "project_dir": str(fw_dir(tmp_path, "fw2")), "env": "s3"})["rule_key"] != base
 
 
@@ -216,7 +217,9 @@ def test_handler_builds_exactly_the_target(tmp_path, built):
     d = fw_dir(tmp_path)
     link = tmp_path / "link"
     link.symlink_to(d, target_is_directory=True)
-    env = call(tools.Host(hook_active=True), action="build", project_dir=str(link), env="s3", port=REAL)
+    host = tools.Host(hook_active=True)
+    assert decide({"action": "build", "project_dir": str(link), "env": "s3", "port": REAL}, host)["action"] == "approve"
+    env = call(host, action="build", project_dir=str(link), env="s3", port=REAL)
     assert env["error"]["code"] == "tool_missing"
     assert built == [(d.resolve(), "s3", None)]
 

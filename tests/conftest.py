@@ -13,7 +13,9 @@ from __future__ import annotations
 
 import os
 import re
+import shutil
 import sys
+import tempfile
 import types
 from pathlib import Path
 
@@ -135,6 +137,32 @@ def _isolate(tmp_path, monkeypatch):
     runtime.reset()
     yield
     runtime.reset()
+
+
+# Approval texts show a folder of at most 120 characters whole and shorten longer ones (" (path shortened)"). Tests that
+# check the exact text of a short folder must not depend on how long the system temp path is (macOS: /private/var/folders/...,
+# CI runners and TMPDIR settings can be longer still). The longest sub-folder name below such a path is "my fw<U+2003>x",
+# shown as 14 characters (the separator, "my fw", a six-character escape, "x"); 90 + 14 = 104 leaves 16 characters to spare
+# under the 120 limit.
+SHORT_TMP_MAX = 90
+
+
+@pytest.fixture
+def short_tmp(tmp_path):
+    """A folder whose resolved path is at most SHORT_TMP_MAX characters long: ``tmp_path`` itself when it is short
+    enough, else a fresh folder under the resolved ``/tmp`` that is removed after the test. Isolation (HOME,
+    HERMES_HOME, data folder) stays in ``tmp_path``; only project folders for approval texts go here."""
+    resolved = tmp_path.resolve()
+    if len(str(resolved)) <= SHORT_TMP_MAX:
+        yield resolved
+        return
+    base = Path("/tmp").resolve()
+    folder = Path(tempfile.mkdtemp(prefix="cb-short-", dir=base)).resolve()
+    try:
+        assert len(str(folder)) <= SHORT_TMP_MAX, folder
+        yield folder
+    finally:
+        shutil.rmtree(folder, ignore_errors=True)
 
 
 # Linux-only: the shared pty_port fixture (tests/board_fixtures.py) expects /dev/pts/N pseudo-terminals; macOS names

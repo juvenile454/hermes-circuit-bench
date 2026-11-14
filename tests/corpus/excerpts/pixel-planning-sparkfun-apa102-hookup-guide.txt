@@ -1,0 +1,13 @@
+# Citation excerpt (planning current of addressable LEDs). '#' lines are metadata; '@@ html' starts a segment of
+# sentences copied verbatim from the visible text of the pinned HTML (script/style dropped; html.parser text as in
+# tests/test_c0_corpus.py: html_text). The tests check every line, in order and whitespace-insensitive, against the
+# pinned file and the values in circuit_bench/data/parts/pixel.json against these lines.
+# source_id: sparkfun-apa102-hookup-guide
+# document: SparkFun APA102 Addressable LED Hookup Guide, section 'Power Supply' (vendor guide, not a datasheet), Internet Archive snapshot of 2026-06-26 11:04:10 UTC
+# url: https://web.archive.org/web/20260626110410id_/https://learn.sparkfun.com/tutorials/apa102-addressable-led-hookup-guide/all
+# corpus: calc/sparkfun-apa102-hookup-guide-20260626110410.html sha256 aa6d736db19e36f431aa1ce4dd666629cec454d16a5a2488975fc913386f0bd6
+# retrieved: 2026-11-13
+# extracted: html.parser text of the pinned HTML (tests/test_c0_corpus.py: html_text)
+# Class B: a distributor's guide, ranked below the datasheet.
+@@ html
+Each APA102C can draw as much as 60mA when red, green and blue are all full-on, so you'll want to have something a little beefy.

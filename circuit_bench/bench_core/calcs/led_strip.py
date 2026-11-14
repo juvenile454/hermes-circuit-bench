@@ -12,6 +12,10 @@ data/sources/mod-pixel.json (excerpts tests/corpus/excerpts/mod-pixel-*.txt).
   needed / recommended / not needed.
 - Frame time (single-wire parts): n · bits / bit rate + reset time.
 - APA102C: image-only class B datasheet, so every value is unverified and no check is hard (not_checked, info).
+- Planning current: a part record with ``i_planning`` (a sourced class B rule of thumb, per pixel at full white, not a
+  datasheet value) adds ``result.i_planning``, the assumption ``planning_current`` and the planning value to the
+  summary; the supply is sized for the larger of the two currents and ``high_current`` uses that value. It changes no
+  check status. A part without ``i_planning`` answers exactly as before.
 """
 from __future__ import annotations
 
@@ -25,6 +29,7 @@ ACTION = "calc.led_strip"
 PARTS = ("ws2812b", "sk6812", "apa102c")
 KIND = "addressable_led"
 CHIP_DEFAULT = "esp32s3"
+PLANNING_TEXT = "rule of thumb, worst case at full white, not a datasheet value"
 HIGH_CURRENT_A = 1.0  # rule of thumb: from here on wiring, connectors and the supply need attention
 MAX_COUNT = 100000
 FORMULA = "I = n · (channels · I_ch · brightness + I_q); P = V_supply · I; VIH = k · V_supply (or the datasheet value)"
@@ -73,7 +78,8 @@ def led_strip(count: object, *, part: object = "ws2812b", brightness: object = 1
     cid, esp = _chip(chip)
     sure = rec.get("verified") is True and rec.get("class") in ("A", "A1", "A2")
     sid = rec["source_id"]
-    src_ids = [sid, *esp.get("source_ids", []), ck.RULE]
+    src_ids = [sid, *esp.get("source_ids", []), *([rec["i_planning"]["source_id"]] if rec.get("i_planning") else []),
+               ck.RULE]
     ch = int(rec["channels"])
     i_ch = float(rec["i_channel"]["value"])
     i_q = float(rec["i_quiescent"]["value"]) if rec.get("i_quiescent") else 0.0
@@ -82,11 +88,17 @@ def led_strip(count: object, *, part: object = "ws2812b", brightness: object = 1
     i_dark = n * i_q
     p_tot = vs * i_tot
     tag = "" if sure else " (unverified)"
+    plan = rec.get("i_planning")
+    i_pl = float(plan["value"]) if plan else None
+    i_plan_tot = n * i_pl if plan else None
+    i_big = max(i_tot, i_plan_tot) if plan else i_tot
 
     steps = [ck.step("I_LED", f"{ch} · {ck.fmt(i_ch, 'A')} · {b:g} + {ck.fmt(i_q, 'A')}", i_led, "A"),
              ck.step("I", f"{n} · {ck.fmt(i_led, 'A')}", i_tot, "A"),
              ck.step("I_dark", f"{n} · {ck.fmt(i_q, 'A')}", i_dark, "A"),
              ck.step("P", f"{ck.fmt(vs, 'V')} · {ck.fmt(i_tot, 'A')}", p_tot, "W")]
+    if plan:
+        steps.append(ck.step("I_planning", f"{n} · {ck.fmt(i_pl, 'A')}", i_plan_tot, "A"))
     assum = [
         assumption("i_channel", f"{ck.fmt(i_ch, 'A')} per colour{tag}",
                    f"{rec['id']} datasheet {rec['i_channel'].get('basis', '')} ({rec['i_channel']['conditions']}); "
@@ -97,6 +109,10 @@ def led_strip(count: object, *, part: object = "ws2812b", brightness: object = 1
                    f"{rec['id']} datasheet ({rec['i_quiescent']['conditions']})" if i_q else
                    "the dark current is not included"),
     ]
+    if plan:
+        assum.append(assumption("planning_current", f"{ck.fmt(i_pl, 'A')} per pixel at full white",
+                                f"{PLANNING_TEXT}; source {plan['source_id']} (class {plan['class']}); the supply "
+                                "is sized for the larger of this and the datasheet test-condition current"))
     if not sure:
         assum.append(assumption("source", "class B, image-only datasheet",
                                 f"{rec['id']}: values read from the page images; hints only, nothing checked"))
@@ -168,12 +184,13 @@ def led_strip(count: object, *, part: object = "ws2812b", brightness: object = 1
         assum.append(assumption("p_rated", ck.fmt(rec["p_rated"]["value"], "W") + " per LED",
                                 f"{rec['id']} datasheet power rating, for comparison with P_LED"))
 
-    if i_tot >= HIGH_CURRENT_A:
+    if i_big >= HIGH_CURRENT_A:
+        basis = f" ({PLANNING_TEXT}: {ck.fmt(i_pl, 'A')} per pixel)" if plan and i_plan_tot > i_tot else ""
         warns.append(warning("high_current", "info",
-                             f"{ck.fmt(i_tot, 'A')} at full setting: use a separate 5 V supply sized for it, thick "
-                             "supply wires with power fed in at several points of long strips, a fuse, and a common "
-                             "GND with the ESP; do not draw it through the DevKit's USB or 5 V pin (rule of thumb).",
-                             [ck.RULE]))
+                             f"{ck.fmt(i_big, 'A')} at full setting{basis}: use a separate 5 V supply sized for it, "
+                             "thick supply wires with power fed in at several points of long strips, a fuse, and a "
+                             "common GND with the ESP; do not draw it through the DevKit's USB or 5 V pin (rule of "
+                             "thumb).", [*([plan["source_id"]] if plan and i_plan_tot > i_tot else []), ck.RULE]))
 
     result = {
         "inputs": {"part": rec["id"], "count": n, "brightness": b, "v_supply": ck.q(vs, "V"), "chip": cid},
@@ -186,8 +203,17 @@ def led_strip(count: object, *, part: object = "ws2812b", brightness: object = 1
         "level_shifter": shifter, "t_frame": ck.q(t_frame, "s") if t_frame is not None else None,
         "formula": FORMULA, "steps": steps,
     }
+    both = ""
+    if plan:
+        result["i_planning"] = {
+            **ck.q(i_plan_tot, "A"), "per_pixel": ck.q(i_pl, "A"), "basis": plan["basis"], "class": plan["class"],
+            "verified": False, "source_id": plan["source_id"], "conditions": plan["conditions"],
+            "size_supply_for": ck.q(i_big, "A"),
+            "larger": "planning" if i_plan_tot > i_tot + _EPS else "datasheet" if i_tot > i_plan_tot + _EPS else "equal"}
+        both = (f"; planning value {ck.fmt(i_plan_tot, 'A')} ({PLANNING_TEXT}), size the supply for the larger "
+                f"current, {ck.fmt(i_big, 'A')}")
     summary = (f"{n} × {rec['id']} at {ck.fmt(vs, 'V')}, brightness {b:g}: {ck.fmt(i_tot, 'A')}, {ck.fmt(p_tot, 'W')} "
-               f"(datasheet test condition{tag}); level shifter {shifter.replace('_', ' ')}.")
+               f"(datasheet test condition{tag}){both}; level shifter {shifter.replace('_', ' ')}.")
     return envelope(ACTION, summary, result, checks=checks, warnings=warns, assumptions=assum,
                     sources=ck.sources.resolve(src_ids))
 

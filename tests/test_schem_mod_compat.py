@@ -101,7 +101,7 @@ SNAPSHOTS: dict[str, str] = {  # generated on the base tag modules-m0 with the o
     'button_pullup:plain:short:j1': 'b847e560bf62617b5761',
     'button_pullup:plain:short:j3': '53c57a0a1bdd99209810',
     'divider:plain:long:bare': '1c22b18673dc78338be1',
-    'divider:plain:long:c3': 'b0b7270a30fe707d8f32',
+    'divider:plain:long:c3': 'e5608fac10bc1b4a8fa2',
     'divider:plain:long:gpio_only': '27ae88b5121033da5a48',
     'divider:plain:long:j1': 'e7ff634a473a42386c61',
     'divider:plain:long:j3': '5c096285e6d29f5e0271',
@@ -111,7 +111,7 @@ SNAPSHOTS: dict[str, str] = {  # generated on the base tag modules-m0 with the o
     'divider:plain:short:j1': 'e1e34a732a80be337d5c',
     'divider:plain:short:j3': '3afe0e9e94f15e74a09c',
     'divider:role': '1057a39d1969624fac5a',
-    'err:board': 'd59a197aeba3f78b2606',
+    'err:board': 'f6038e33eb188d44cdcd',  # regenerated when the unknown_board hint gained the leave-devkit-out advice
     'err:gpio': '09cbe9a613054bb04d75',
     'err:missing': '722ff725d9580ad050dc',
     'err:pin': '2f3310525f106fab2b38',

@@ -1,0 +1,34 @@
+# Corpus drift check for hermes-circuit-bench. Once a month and on a manual run, this fetches every pinned source
+# file of the citation tests (scripts/fetch_corpus.py) cold: into an empty directory, with no cache. It exists
+# because the cache in ci.yml can hide a vendor that changed a file after it was pinned. A mismatch, a 403 or a 404
+# fails the run; the log then names the file and suggests pinning a web.archive.org snapshot of the same revision.
+# Nothing else depends on this workflow, so a red run blocks no push or pull request.
+# Network only for the corpus. Third-party actions are pinned to a full commit SHA, the same one as in ci.yml.
+name: Corpus drift
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 1st of the month, 03:23 UTC (scheduled runs only happen on the default branch)
+    - cron: "23 3 1 * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: corpus-drift
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    name: Cold corpus fetch
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - name: Fetch corpus (cold)
+        # an empty directory under RUNNER_TEMP: no cache step, so every file is downloaded and hashed again
+        timeout-minutes: 40
+        run: |
+          export CB_CORPUS_DIR="$RUNNER_TEMP/corpus"
+          python3 scripts/fetch_corpus.py

@@ -203,17 +203,53 @@ def test_run_closes_the_output_pipe_and_reaps_the_tool(monkeypatch, case):
     assert [w for w in caught if issubclass(w.category, ResourceWarning)] == []
 
 
-def test_run_tolerates_a_pipe_closed_under_the_reader(monkeypatch):
-    """A pipe closed while the reader still iterates ends the reader quietly; the result stays intact."""
+def _run_closing_the_pipe_on_the_first_line(monkeypatch, code, *args, after_close=None):
+    """clitools.run of ``code`` while the reader closes the tool's output pipe from inside its own on_line callback.
+    ``after_close`` runs right after the close, still inside the callback."""
     started = _spy_popen(monkeypatch)
     seen, thread_errors = [], []
-    monkeypatch.setattr(threading, "excepthook", lambda args: thread_errors.append(args.exc_type))
+    monkeypatch.setattr(threading, "excepthook", lambda hook_args: thread_errors.append(hook_args.exc_type))
 
     def close_on_first(line):
         seen.append(line)
         started[0].stdout.close()
+        if after_close is not None:
+            after_close()
 
-    res = clitools.run([sys.executable, "-c", "print('a'); print('b')"], timeout=10, hardware=False,
-                       on_line=close_on_first)
+    res = clitools.run([sys.executable, "-c", code, *args], timeout=30, hardware=False, on_line=close_on_first)
+    return res, seen, thread_errors, started[0]
+
+
+def test_run_tolerates_a_pipe_closed_under_the_reader(monkeypatch):
+    """A pipe closed while the reader still iterates ends the reader quietly; the result stays intact.
+
+    The tool writes both lines in one write, so everything is in the pipe before the reader closes it and the tool
+    cannot meet a closed pipe: its exit code is 0 on any machine, however loaded."""
+    code = "import os; os.write(1, b'a\\nb\\n')"
+    res, seen, thread_errors, proc = _run_closing_the_pipe_on_the_first_line(monkeypatch, code)
     assert res["rc"] == 0 and res["out_tail"] == ["a"] and seen == ["a"]
-    assert started[0].stdout.closed and thread_errors == []
+    assert res["timed_out"] is False and res["stopped"] is False
+    assert proc.stdout.closed and thread_errors == []
+
+
+def test_run_tolerates_a_tool_that_writes_into_a_pipe_closed_under_the_reader(monkeypatch, tmp_path):
+    """The other order: the tool writes its second line only after the reader has closed the pipe. The tool gets a
+    broken pipe (its own exit code 3 here, nothing clitools decides); the reader still ended quietly, the result is
+    intact and the tool is reaped."""
+    gate = tmp_path / "closed"
+    code = ("import os, sys, time\n"
+            "os.write(1, b'a\\n')\n"
+            "end = time.monotonic() + 20\n"
+            "while not os.path.exists(sys.argv[1]):\n"
+            "    if time.monotonic() > end:\n"
+            "        sys.exit(4)\n"  # the reader never closed the pipe
+            "    time.sleep(0.01)\n"
+            "try:\n"
+            "    os.write(1, b'b\\n')\n"
+            "except BrokenPipeError:\n"
+            "    sys.exit(3)\n")
+    res, seen, thread_errors, proc = _run_closing_the_pipe_on_the_first_line(
+        monkeypatch, code, str(gate), after_close=lambda: gate.write_text("closed", encoding="utf-8"))
+    assert res["rc"] == 3 and res["out_tail"] == ["a"] and seen == ["a"]
+    assert res["timed_out"] is False and res["stopped"] is False
+    assert proc.stdout.closed and proc.returncode == 3 and thread_errors == []

@@ -653,11 +653,18 @@ _WRITER = textwrap.dedent("""
     import json, sys, time
     from circuit_bench.bench_core import project
     name, n, go = sys.argv[1], int(sys.argv[2]), sys.argv[3]
+    deadline = time.monotonic() + 90  # a writer never outlives a failed test
     while not __import__("os").path.exists(go):
+        if time.monotonic() > deadline:
+            print("start signal never came", file=sys.stderr)
+            sys.exit(4)
         time.sleep(0.001)
     conflicts = 0
     for i in range(n):
         while True:
+            if time.monotonic() > deadline:
+                print("writer ran out of time", file=sys.stderr)
+                sys.exit(5)
             rev = project.get("race")["result"]["rev"]
             res = project.update("race", rev, [{"op": "note", "text": f"{name}-{i}"},
                                                {"op": "add_parts", "parts": [{"ref": f"R{i + 1}", "kind": "resistor",
@@ -679,8 +686,14 @@ def test_two_processes_write_in_parallel(tmp_path):
     env = dict(os.environ, PYTHONPATH=str(ROOT), CIRCUIT_BENCH_DATA_DIR=str(data))
     procs = [subprocess.Popen([sys.executable, "-c", _WRITER, name, "30", str(go)], env=env, cwd=ROOT,
                               stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True) for name in ("a", "b")]
-    go.write_text("go", encoding="utf-8")
-    outs = [p.communicate(timeout=120) for p in procs]
+    try:
+        go.write_text("go", encoding="utf-8")
+        outs = [p.communicate(timeout=120) for p in procs]
+    finally:  # a failed or timed-out test leaves no writer and no open pipe behind
+        for p in procs:
+            if p.poll() is None:
+                p.kill()
+            p.communicate()
     assert [p.returncode for p in procs] == [0, 0], outs
     assert all(o[0].strip().isdigit() for o in outs)  # each writer prints its number of rev conflicts
     p = _ok(project.get("race"))["result"]["project"]

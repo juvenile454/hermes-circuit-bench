@@ -204,8 +204,14 @@ def _run() -> dict[str, Any]:
         warns.append(warning("data_dir", "danger", f"the data folder is not writable: {data.get('reason', '')}"))
 
     invalid = _settings.invalid_keys()
-    checks.append(check("doctor.settings", "failed" if invalid else "passed",
-                        f"unreadable: {', '.join(invalid)}" if invalid else "all settings readable"))
+    unreadable = _settings.read_error()
+    if unreadable is not None:
+        checks.append(check("doctor.settings", "failed", f"plugin settings could not be read ({unreadable}): real "
+                            "hardware and flashing off, port approval on, numbers and paths: the default"))
+        warns.append(warning("settings_unreadable", "caution", _settings.unreadable_hint(unreadable)))
+    else:
+        checks.append(check("doctor.settings", "failed" if invalid else "passed",
+                            f"unreadable: {', '.join(invalid)}" if invalid else "all settings readable"))
     if invalid:
         warns.append(warning("settings_invalid", "caution", f"unreadable plugin settings ({', '.join(invalid)}) use a "
                              "safe value instead (switches: real hardware and flashing off, port approval on; numbers "
@@ -213,9 +219,10 @@ def _run() -> dict[str, Any]:
 
     bypassed = guard.approvals_bypassed()
     if not hw:
+        why = (" (CIRCUIT_BENCH_HW=off)" if os.environ.get(_settings.ENV_HW, "").lower() == "off"
+               else " (plugin settings unreadable)" if unreadable is not None else " (setting hardware_access)")
         warns.append(warning("hardware_off", "info", "hardware access is off: only simulated boards (sim://) are "
-                             "reachable" + (" (CIRCUIT_BENCH_HW=off)" if os.environ.get(_settings.ENV_HW, "").lower() == "off"
-                                            else " (setting hardware_access)")))
+                             "reachable" + why))
     if bypassed:
         warns.append(warning("approvals_bypassed", "caution", "approvals are off, YOLO is on or Hermes may "
                              "auto-approve (approvals.single_query_mode / unattended_mode): the agent cannot "

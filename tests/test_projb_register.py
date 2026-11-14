@@ -146,7 +146,7 @@ def test_optional_surfaces_never_stop_the_tools():
 
 def test_skill_frontmatter_parser():
     meta = circuit_bench.skill_frontmatter(SKILL.read_text(encoding="utf-8"))
-    assert meta["name"] == "esp32-bench" and meta["version"] == "0.1.0"
+    assert meta["name"] == "esp32-bench" and meta["version"] == "0.1.1"
     assert circuit_bench.skill_frontmatter("no frontmatter") == {}
     assert circuit_bench.skill_frontmatter("---\nname: x\n") == {}  # not closed
     assert circuit_bench.skill_frontmatter("\ufeff---\nname: 'x'\n# c\n  nested: y\n---\n") == {"name": "x"}
@@ -180,6 +180,8 @@ def test_bench_without_projects():
 
 
 def test_bench_subcommands(monkeypatch):
+    # The autouse fixture blocks the simulator import; this test lists the simulated port, so let it load.
+    monkeypatch.delitem(sys.modules, "circuit_bench.bench_core.sim", raising=False)
     assert project.create("laser-trigger", "Laser trigger", "esp32s3", "n16r8")["ok"]
     bench = commands.make_command()
     assert "laser-trigger: Laser trigger (esp32s3 N16R8), rev 1" in bench("projects")

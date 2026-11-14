@@ -3,6 +3,160 @@
 All notable changes to Circuit Bench. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);
 versions follow [Semantic Versioning](https://semver.org/).
 
+## [0.1.1] — 2026-11-14
+
+Safety and accuracy fixes to the agent half, two small additions to the calculators, and the source files of the
+citation tests pinned again. No new tools, no new dependencies, no new network access. One run on a real board
+(detect, build, flash, monitor and crash decode on an ESP32-S3 over its native USB port, Linux); apart from that the
+flash and serial paths were tested with fake tools and a simulated board.
+
+### Fixed
+
+- **Unreadable plugin settings no longer turn real hardware on.** In 0.1.0, when the plugin settings could not be
+  read from Hermes' configuration, the plugin used its defaults, which include `hardware_access: true`. Now real
+  hardware and flashing stay off (`hardware_access` and `allow_flash` `false`) and port approval stays on
+  (`approve_serial` `true`), while numbers and paths keep their defaults. `/bench doctor` marks the check `settings` as
+  `FAIL` (the Bench's doctor dialog shows it as a failed row) and shows the warning `settings_unreadable` (it starts
+  with `the plugin settings could not be read from Hermes' configuration, so real boards stay off`), and agent calls for
+  real boards end with `sim_only` and a hint that names the cause. A readable configuration without an entry for the
+  plugin still gives the defaults.
+- **Agent handlers are tied to the approval hook.** `bench_board` `detect`, `monitor` and `flash` on a real port, and
+  a `build` that starts PlatformIO (a real build, or a `sim://` build when `pio` and every package it needs are
+  installed), now run only if the plugin's approval hook let exactly that call through for the same task, action and
+  target; otherwise the tool answers `not_confirmed`. One hook pass serves one run, also when no question is asked
+  (**Ask before opening serial ports** off). In 0.1.0 only a flash was tied to the question; the other three only
+  checked that the hook was registered.
+- **Shorter life for the approval record.** The record that lets a handler run now lives `approvals.timeout` + 60 s,
+  kept between 120 and 3600 s (360 s when the setting is absent, unreadable or no number); in 0.1.0 a flash
+  record was stored before the question and kept for 3600 s. Every hook pass first removes the unused records of its
+  task, one record serves one handler run, and a pass that blocks, needs no record or fails inside leaves none behind.
+- **Flash writes from a private snapshot.** `bench_board flash` (agent tool and Bench) now copies every file it will
+  write into a private folder `tmp/flash-<random>` in the plugin data folder (mode `0700`, files `0600`), compares
+  the copies with the hashes recorded at build time (`elf_mismatch` on a difference), passes only the copies to
+  `esptool`, and removes the folder on every exit (a folder left behind by a killed process is removed by a later
+  flash once it is older than an hour); a file that cannot be copied ends the flash with `tool_failed` before
+  `esptool` starts. Every written file named `firmware.bin`, `bootloader.bin` or `partitions.bin` (compared
+  without case) is checked at its private copy, whatever folder or spelling PlatformIO's metadata names it by. In
+  0.1.0 these files were hashed in the build folder and then written from there. `boot_app0.bin` and extra images of a
+  project have no recorded hash and are written as they were when copied; see SECURITY.md, "Known gaps".
+- **Flash approval covers the build.** The approval record of an agent flash holds the images and the time of the last
+  build as well as the ELF, port and MAC; a build made while the question is open is not flashed: the same ELF with
+  other images or time ends with `not_confirmed`, another ELF with `elf_mismatch`.
+- **Approval questions show hidden characters and long paths, and put the folder last.** In 0.1.0 the folder name went
+  into the question for a build or a flash unshortened and unfiltered. Now the question starts with its fixed wording
+  and the checked values (env, chip, MAC, port, ELF hash), and the firmware folder, the only free text, comes last and
+  in quotes (`Firmware folder: "<path>"` for a flash, `Folder: "<path>"` for a build), so a folder name cannot read
+  like the rest of the question. Control characters, line breaks, Unicode direction marks, space variants other than
+  U+0020, every `Default_Ignorable_Code_Point` (zero-width characters, variation selectors and others) and `"` are
+  shown as `\uXXXX` (`\UXXXXXXXX` above U+FFFF). In the folder every other quotation mark (all characters with the
+  Unicode property `Quotation_Mark` except the apostrophe U+0027) and the characters that look like `"` (primes and a
+  few others) are shown that way too, so nothing in a folder name can look like the end of the quoted field; a folder
+  `Lab’s` (typographic apostrophe, U+2019) now appears as `Lab\u2019s`. Letters stay as they are: look-alike letters,
+  and letters of right-to-left scripts, which can change the displayed order of the path parts in a folder name. The
+  chip shows only its fixed name and revision. A path longer than 120 characters is shortened in the middle, also in its
+  last part, so the shown path is never longer than 120 characters, and the question then ends with ` (path shortened)`,
+  which also appears when a character was only replaced. The rule key for "always" of a build still uses the full folder
+  path and the env; that of a flash is made of port, MAC and ELF hash. A build env that is no PlatformIO name is refused
+  before the question.
+- **Detect and monitor questions show the port strictly and refuse port URLs first.** In 0.1.0 the port went into the
+  question of a detection or a serial monitor unfiltered, and a port URL other than `sim://` was only refused by the
+  handler after the user had approved: `x:// on sim://esp32? Simulated board, nothing is reset. OK` appeared in the
+  question `Detect the board on … with esptool?`. Now the port in all three questions (flash, detect, monitor) keeps
+  only letters, digits and `._:/-` as they are and shows every other character as `\uXXXX`, so
+  `/dev/ttyACM0?Simulated,nothing-is-reset.OK` appears as `/dev/ttyACM0\u003fSimulated\u002cnothing-is-reset.OK`. A
+  port URL other than `sim://` is blocked by the hook before the question, for a detection, a monitor and a flash,
+  also when **Ask before opening serial ports** is off, with the words of the handler: `Circuit Bench blocked board
+  detection: unsupported port URL 'rfc2217://h:1' (invalid_args); use a local device path or a sim:// port.` (`the
+  serial monitor` or `the flash` in place of `board detection`). The question and the rule key of a normal port such as
+  `/dev/ttyACM0` or `COM3` are unchanged.
+- **Messages to the model show hidden characters.** The message and hint of an error answer and the message of a block
+  by the hook show format and direction characters, line and paragraph separators, lone surrogates, DEL, C1 controls
+  and every `Default_Ignorable_Code_Point` as `\uXXXX`; input is not refused for them. Spaces such as the no-break
+  space stay as they are. Warnings, assumptions and serial lines are unchanged.
+- **Hint for a call without an approval pass.** When the approval hook is active but a call has no pass of it (expired,
+  or another task), the error hint says `call bench_board <action> again: Hermes asks the user first; sim:// ports
+  still work`.
+- **A simulated build without `pio` no longer reports `chip_unchecked`.** A simulated build (`sim://` port) that does
+  not start PlatformIO, because `pio` or a package it needs is missing, compiles nothing, so the info warning is gone.
+  A wrong chip is still refused, other warnings stay, and builds that do start `pio` keep their pre-check.
+- **Names with a trailing line break are refused.** The name checks ended in `$` and were applied with `re.match`, and
+  `$` also matches right before a final line break: a build env such as `s3` followed by a line break passed the check
+  and `board.build` started `pio` with it, and `project.create` accepted a project id with a final line break and
+  created a project whose id and folder name contain it. The input checks of the core now compare the whole text
+  (`fullmatch`), so these names, and the same ending in other checked texts (ISO times, serial port names, event
+  names, pin roles and others), are refused with `invalid_args`. Valid names are unchanged. The agent tool
+  `bench_board` removes outer whitespace from its text arguments before any check, so an env given there with a
+  trailing line break reaches the question, the rule key and the build as the plain name; an env with a line break
+  inside is blocked by the hook before the question.
+- **Pin labels for modules.** `add_module`, `connect` and `add_parts` (with a module) now accept common breakout
+  labels in `conn` and map them to a pin of the catalog entry, so `conn={SDA, SCL, GND}` works for `bme280` where
+  0.1.0 refused `SDA`. Bus labels (`SDA`, `SCL`, `SCK`/`SCLK`/`CLK`, `MOSI`/`SDI`/`DIN`/`SI`, `MISO`/`SDO`/`DOUT`/`SO`,
+  `CS`/`SS`/`NSS`/`CSN`) count when exactly one pin of the module's active variant carries that signal and no other
+  pin's name starts with the label; `VCC`/`VDD` and `GND`/`VSS` only stand in for each other. A real pin name always
+  wins (on the `l298n`, `VSS` is the logic supply, not ground). An ambiguous label is refused with its candidates, for
+  example `'CLK' fits more than one pin of enc28j60 (CLKOUT, SCK): name the pin`; `VCC` is refused the same way on a
+  module with two supply pins, such as `bme280` (`VDD`, `VDDIO`), so `conn={SDA, SCL, VCC, GND}` still needs `VDD` and
+  `VDDIO` named. The project stores the catalog pin name, and every mapping appears in the answer under `assumptions`
+  with code `pin_alias`, for example `SDA → SDI` (`bme280: I²C data pin, catalog pin SDI (SDA in I²C mode)`).
+- **`ads1220` gets its serial clock pin.** The catalog entry had no pin for the SPI clock input; it now has `SCLK`
+  (datasheet p. 4), so `SCK` and `SCLK` map to it. `CLK` stays the external clock input. A test now requires a clock
+  pin for every entry with SPI and data and clock pins for every entry with I²C.
+- **Pin-current note names the comparison.** The LED and NPN calculators no longer say `GPIO current limits are not
+  checked here (unverified)` when the pin current can be compared: at or below the ESP32-S3 value the `gpio_current`
+  note (`info`) now reads `The driving pin sources 10.0 mA, below the 40.0 mA high-level source current of an ESP32-S3
+  pin (a typical value, not a maximum; chip not given).` Above that value it stays the caution `The driving pin would
+  have to source …`, and without pin data the old sentence stays. A current that is a little above or below the limit
+  but would round to it shows more digits (`39.9996 mA, below the 40.0 mA …`).
+- **Unknown part numbers name the closest known part.** The message now says which known part is most similar and that
+  it is a different type with its own ratings, for example `no datasheet data for part '2N2222' (closest: 2N2222A, a
+  different type with its own ratings; known: 2N2222A)`. The calculation does not use the data of that part, and no
+  alias is created.
+- **`unknown_board` says what to do next.** Its hint lists the known boards and ends with `or leave devkit out: the
+  chip checks still run, pins.broken_out and pins.board are skipped`. Where a board is asked for by id (the Bench's
+  board layout), `devkit` cannot be left out, so the hint only lists the boards.
+
+### Changed
+
+- `bench_calc divider` takes a new optional input `target` with the values `esp_pin` (default) and `other`. With
+  `target=other` the check `calc.divider.pin_max` is `not_checked` (`the output does not feed an ESP pin
+  (target=other)`) and the warning `divider_overvoltage` is not raised, so a 12 V → 5 V divider (7k/5k) that feeds
+  something other than an ESP pin no longer reports a failed check and a `danger` warning. With `target=other` the
+  pin limit is not applied: check the limit of whatever the divider feeds. Without `target` the answer is unchanged.
+- `led_strip` gives a second, larger current as a planning value for `ws2812b`: 60 × `WS2812B` at 5 V still show
+  `2.20 A` from the datasheet test condition, and the answer adds `result.i_planning` of `3.60 A` (60 mA per pixel at
+  full white; source class B, `rule of thumb, worst case at full white, not a datasheet value`) and says to size the
+  supply for the larger current. `apa102c` has the same planning value, which equals its datasheet value at full
+  brightness (`brightness` 1, the default: `3.60 A` for 60 pixels) and is the larger one below it; its summary also
+  says to size the supply for the larger current. `sk6812` has no planning value and answers as before. The warning
+  `high_current` (from 1 A) uses the larger value and names the planning value only when that is the larger one, not
+  for `apa102c` at full brightness (`3.60 A at full setting (rule of thumb, worst case at full white, not a datasheet
+  value: 60.0 mA per pixel): …`).
+- The agent's serial monitor now listens at most for Hermes' deadline for a tool call minus 20 s, and never shorter
+  than 1 s; the deadline is `timeouts.tools.sequential_call`, else `timeouts.tools.concurrent_batch`, else the
+  environment variable `HERMES_CONCURRENT_TOOL_TIMEOUT_S`, else 420 s. A shortened run carries the warning
+  `monitor_capped` (`info`), for example with `monitor_max_seconds` at `3600` and a call for 3000 s: `the monitor was
+  shortened from 3000 s to 400 s: Hermes ends a tool call after 420 s (Hermes default) and 20 s are kept free for
+  the answer; listen again to see more`. The `monitor_max_seconds` limit (default `120`, valid `1` to `3600`)
+  applies first. This is the agent path only; the Bench console and stream are
+  not affected.
+- Eight cited vendor files that could no longer be fetched as pinned (a newer revision is served, the vendor refuses
+  script downloads or answers `404`, or the file is re-stamped) are now pinned to `web.archive.org` copies of the same
+  document revision; the matching sources carry `retrieved` `2026-11-13`. For the ESP32-C3, ESP32-C6, ST7735S,
+  GC9A01A and 6N137 datasheets the archived file has the same SHA-256 as before; the DRV5032 datasheet and two
+  WT32-ETH01 wiki pages have a new pinned SHA-256. Fetching the whole corpus cold into an empty folder was verified
+  locally on 2026-11-13. When `scripts/fetch_corpus.py` finds a hash mismatch or an HTTP `403` or `404` for a pinned
+  file, it now suggests a `web.archive.org` snapshot for every vendor (see CONTRIBUTING.md).
+- CI is configured to run on a schedule, Mondays and Thursdays at 04:17 UTC, so there are never more than four days
+  between two runs; this keeps the cached test corpus alive, because GitHub deletes a cache entry that nobody restored
+  for 7 days.
+- A new workflow, `corpus-drift.yml`, is configured to fetch every pinned source file of the citation tests cold (into
+  an empty directory, with no cache) on the 1st of each month and on a manual run. A hash mismatch, a `403` or a `404`
+  fails that run. Nothing else depends on it, so a red run blocks no push or pull request.
+- CI is configured to also test against Hermes v0.23.1 (commit `3b421578588243f920886e6fe79a6faa87ea026e`) in
+  addition to v0.22.5 and v0.23.0, and the macOS job runs on v0.23.1. Each Hermes checkout is compared with the commit
+  SHA of its release tag, so a moved tag fails the job. The minimum stays Hermes ≥ 0.22.5. The plugin's end-to-end
+  probe also passed locally against Hermes v0.22.5, v0.23.0, v0.23.1 and Hermes main.
+
 ## [0.1.0] — 2026-11-10
 
 First release: an agent half for Hermes and an optional Desktop half for Hermes Desktop. Requires Hermes ≥ 0.22.5;
@@ -156,4 +310,5 @@ validated in CI against Hermes v0.22.5 and v0.23.0, and against the Hermes devel
   Only the 180 catalog entries can be added as modules. Bench jobs do not survive a restart of the Hermes backend.
 - See the README section "Limits" for the full list.
 
+[0.1.1]: https://github.com/juvenile454/hermes-circuit-bench/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/juvenile454/hermes-circuit-bench/releases/tag/v0.1.0

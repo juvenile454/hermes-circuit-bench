@@ -1,10 +1,10 @@
 {
   "ok": true,
   "action": "health",
-  "summary": "Circuit Bench 0.1.0 ready: pio 6.2.0, esptool 5.6.0, hardware access off (simulated boards only).",
+  "summary": "Circuit Bench 0.1.1 ready: pio 6.2.0, esptool 5.6.0, hardware access off (simulated boards only).",
   "result": {
     "plugin": "circuit-bench",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "hermes": "0.22.5",
     "dependencies": {
       "schemdraw": "0.23",

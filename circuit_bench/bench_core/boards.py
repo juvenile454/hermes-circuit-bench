@@ -23,13 +23,17 @@ _PART_KEYS = {"kind", "label", "ref", "gpio", "connector", "edge", "order", "zon
               "figure", "note"}
 
 
+LEAVE_DEVKIT_OUT = "; or leave devkit out: the chip checks still run, pins.broken_out and pins.board are skipped"
+
+
 @lru_cache(maxsize=16)
 def _read(board_id: str) -> dict[str, Any]:
     if not board_id or "/" in board_id or board_id.startswith("."):
         raise BenchError("unknown_board", f"unknown board {board_id!r}")
     path = BOARDS_DIR / f"{board_id}.json"
     if not path.is_file():
-        raise BenchError("unknown_board", f"unknown board {board_id!r}", f"known boards: {', '.join(ids())}")
+        raise BenchError("unknown_board", f"unknown board {board_id!r}",
+                         f"known boards: {', '.join(ids())}{LEAVE_DEVKIT_OUT}")
     return json.loads(path.read_text(encoding="utf-8"))
 
 
@@ -74,7 +78,10 @@ def layout(board_id: str) -> dict[str, Any]:
     ``flash_hint``. ``buttons: []`` means the board has no buttons. ``drawing`` is passed
     through unchanged; without it the desktop draws a generic, marked model.
     """
-    b = _read(board_id)
+    try:
+        b = _read(board_id)
+    except BenchError as e:  # asked for by id: devkit cannot be left out here, so the hint only lists the boards
+        raise BenchError(e.code, e.message, e.hint.removesuffix(LEAVE_DEVKIT_OUT) if e.hint else e.hint) from None
     sides: dict[str, list[dict[str, Any]]] = {"left": [], "right": []}
     for header in b["headers"]:
         for pin in header["pins"]:

@@ -14,6 +14,7 @@ from pathlib import Path
 import board_fixtures as bf
 import pytest
 from board_fixtures import *  # noqa: F403
+from child_io import Child
 
 import circuit_bench
 from circuit_bench.bench_core import board, contracts, serialport, storage
@@ -244,28 +245,24 @@ def test_pause_file_makes_another_process_release_the_port(hw_on, pty_port):
         sys.stdin.readline()
         serialport.close_port(port)
     """)
-    proc = subprocess.Popen([sys.executable, "-c", code, pty_port.name], env=_child_env(storage.data_dir()),
-                            stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    try:
-        assert proc.stdout.readline().strip().startswith("{")  # state open
-        assert proc.stdout.readline().strip() == "READY"
+    with Child([sys.executable, "-c", code, pty_port.name], env=_child_env(storage.data_dir())) as child:
+        assert child.readline("the open state of the holder").strip().startswith("{")  # state open
+        assert child.readline("READY of the holder").strip() == "READY"
         with pytest.raises(contracts.BenchError) as e:
             serialport.open_port(pty_port.name, 115200)
         assert e.value.code == "port_busy"
         t0 = time.monotonic()
         with serialport.pause(pty_port.name):
             waited = time.monotonic() - t0
-            paused = json.loads(proc.stdout.readline())
+            paused = json.loads(child.readline("the paused state of the holder"))
             assert paused["t"] == "state" and paused["state"] == "paused"
-        reopened = json.loads(proc.stdout.readline())
+        reopened = json.loads(child.readline("the reopened state of the holder"))
         assert reopened["state"] == "open"
         pty_port.write("hello after flash")
-        line = json.loads(proc.stdout.readline())
+        line = json.loads(child.readline("the line written after the flash"))
         assert line["t"] == "line" and line["text"] == "hello after flash" and line["seq"] == 1
         assert waited < serialport.PAUSE_LOCK_WAIT_S
-    finally:
-        proc.communicate("\n", timeout=15)
-    assert proc.returncode == 0, proc.stderr
+        assert child.finish("\n") == 0, child.stderr_text()
 
 
 def test_pause_times_out_with_port_busy_if_holder_does_not_yield(hw_on, pty_port, monkeypatch):
@@ -462,6 +459,36 @@ def test_read_error_sets_state_error(hw_on, pty_port, monkeypatch):
     assert any(m["state"] == "reconnecting" for m in states)  # it tried to reopen first (seen in the hardware test)
     fd = serialport._try_lock(pty_port.name)  # the reader released the lock
     serialport._unlock(fd)
+
+
+def _monitor_threads(name):
+    import threading
+    return [t for t in threading.enumerate() if t.name == f"cb-serial-{name}" and t.is_alive()]
+
+
+@pytest.mark.skipif(sys.platform != "linux", reason="Linux pseudo-terminals only: bf.PtyPort pairs (/dev/pts/N)")
+def test_pty_fixture_closes_the_monitor_before_it_frees_the_pty_name(hw_on, monkeypatch):
+    """A pty name is free for any other process as soon as both ends are closed. The teardown of the pty_port fixture
+    must have ended the monitor by then: a monitor that still runs reopens the name (reconnect) and would read the
+    bytes of a foreign pty."""
+    closed_with_monitors = []
+    real_close = bf.PtyPort.close
+
+    def spying_close(self):
+        closed_with_monitors.append(list(_monitor_threads(self.name)))
+        real_close(self)
+
+    monkeypatch.setattr(bf.PtyPort, "close", spying_close)
+    lifecycle = bf.pty_port_lifecycle()
+    pty = next(lifecycle)
+    name = pty.name
+    serialport.open_port(name, 115200)
+    pty.write("one line")
+    assert bf.wait_for(lambda: serialport.tail(name)["lines"], timeout=SLOW_S)
+    assert _monitor_threads(name)  # the monitor runs and holds the name
+    next(lifecycle, None)  # the fixture teardown (pytest resumes the generator like this)
+    assert closed_with_monitors == [[]]  # no monitor was left when the pty was closed
+    assert not serialport.port_is_open(name) and _monitor_threads(name) == []
 
 
 # ------------------------------------------------------------------------------------------------ providers, copies

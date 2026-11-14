@@ -34,10 +34,10 @@
   {
     "id": "mod-prox-drv5032-ds",
     "title": "Texas Instruments DRV5032 Ultra-Low-Power Digital-Switch Hall Effect Sensor, datasheet",
-    "url": "https://www.ti.com/lit/ds/symlink/drv5032.pdf",
-    "retrieved": "2026-11-08",
-    "class": "A",
-    "note": "Document SLVSDC7H (April 2017, revised December 2024); pages 1, 2, 3, 4, 5, 13; sha256 0bdec04d64591bbb62c74f2e5d4dc10f21de5f76b0b0f12fca5c6a277037ceee"
+    "url": "https://web.archive.org/web/20261113194329id_/https://www.ti.com/lit/ds/symlink/drv5032.pdf",
+    "retrieved": "2026-11-13",
+    "class": "A1",
+    "note": "Document SLVSDC7H (April 2017, revised December 2024); Wayback copy of the ti.com file, snapshot 2026-11-13 19:43:29 UTC (ti.com re-stamps files under /lit/, so the manufacturer URL no longer serves the pinned bytes); pages 1, 2, 3, 4, 5, 13; sha256 9a15811a5aa536d683e286814d415dbd86c13a5e38a1e6c732cbaba18741bde7"
   },
   {
     "id": "mod-prox-ttp223-ds",

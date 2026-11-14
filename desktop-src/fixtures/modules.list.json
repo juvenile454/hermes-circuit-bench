@@ -892,7 +892,7 @@
     ],
     "addresses": [],
     "supply": "8.2–45 V",
-    "class": "A"
+    "class": "A1"
    },
    {
     "id": "tmc2208",
@@ -1002,7 +1002,7 @@
      "0x27"
     ],
     "supply": "2.5–6 V",
-    "class": "A"
+    "class": "A1"
    },
    {
     "id": "pcf8574a",
@@ -1023,7 +1023,7 @@
      "0x3f"
     ],
     "supply": "2.5–6 V",
-    "class": "A"
+    "class": "A1"
    },
    {
     "id": "pcf8575",
@@ -1194,7 +1194,7 @@
     "interfaces": [],
     "addresses": [],
     "supply": "4.5–5.5 V",
-    "class": "A"
+    "class": "A1"
    },
    {
     "id": "el817",
@@ -1314,7 +1314,7 @@
     "interfaces": [],
     "addresses": [],
     "supply": "4.5–5.5 V",
-    "class": "A"
+    "class": "A1"
    },
    {
     "id": "sn74lv1t34",
@@ -1558,7 +1558,7 @@
     "interfaces": [],
     "addresses": [],
     "supply": "4.5–17 V",
-    "class": "A"
+    "class": "A1"
    },
    {
     "id": "bq24074",
@@ -1638,7 +1638,7 @@
     "interfaces": [],
     "addresses": [],
     "supply": "1.45–5.5 V",
-    "class": "A"
+    "class": "A1"
    },
    {
     "id": "xc6206",
@@ -2175,7 +2175,7 @@
     ],
     "addresses": [],
     "supply": "1.65–5.5 V",
-    "class": "A"
+    "class": "A1"
    },
    {
     "id": "drv5055",

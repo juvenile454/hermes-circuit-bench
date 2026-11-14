@@ -96,7 +96,7 @@ def test_settings_json_counts_outside_hermes(monkeypatch):
 
     def no_hermes(name, *a, **kw):
         if name.split(".")[0] == "hermes_cli":
-            raise ImportError("no Hermes here")
+            raise ModuleNotFoundError("No module named 'hermes_cli'", name="hermes_cli")  # the package is missing
         return real_import(name, *a, **kw)
 
     monkeypatch.delitem(sys.modules, "hermes_cli", raising=False)

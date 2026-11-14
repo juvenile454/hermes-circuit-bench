@@ -66,6 +66,37 @@ flashes or erases.
 Details and licences: [tests/corpus/README.md](tests/corpus/README.md). Pin data is generated from the pinned
 ESP-IDF sources by `scripts/gen_pins.py` (`--check` compares); do not edit `circuit_bench/data/pins/` by hand.
 
+## When a pinned file no longer matches
+
+A pinned vendor file can change after it was pinned: the vendor serves a newer revision, refuses downloads from
+scripts, answers `404`, or re-stamps the file daily (`ti.com` does for files under `/lit/`: the bytes change from day to
+day). Then `scripts/fetch_corpus.py` reports a hash mismatch, or an HTTP `403` or `404`, and prints a hint pointing
+here. The monthly workflow `corpus-drift.yml` is configured to fetch every pinned file cold (no cache) and to fail in
+the same way; it blocks no push or pull request.
+
+1. Find a [Wayback Machine](https://web.archive.org/) capture of **the same document revision** that the value and the
+   excerpt rest on. Check the revision on the document itself (revision or date on the first page) and every quoted
+   line; a capture of a newer revision is a new source, not a replacement: its values need the full review above.
+2. Use the raw form `https://web.archive.org/web/<timestamp>id_/<url>` (14-digit timestamp, `id_` after it). It serves
+   the original bytes, without the banner and the link rewriting of the archive's viewer.
+3. In the manifest under `tests/corpus/`, set `url` to that address and remove the old `sha256`. Run
+   `scripts/fetch_corpus.py --pin <name>` and review the value it writes. `<name>` is the manifest's file name without
+   folder and `.json` (`mod-prox` for `tests/corpus/mod-prox.json`); a path is not accepted. The SHA-256 is that of the
+   unpacked file (a gzip body is unpacked before it is hashed). If the archived file is byte for byte the one you
+   pinned before, the hash is unchanged.
+4. Check every quoted line again against the archived file. The citation tests (`pytest -m corpus`) compare the
+   excerpt with the pinned file; where the file's text differs, regenerate the excerpt with `scripts/excerpt.py` and
+   read it. Update `url`, `corpus` (path and SHA-256) and `retrieved` in the excerpt header.
+5. Update the source entry in `circuit_bench/data/sources/`: `url`, `retrieved` and the note (name the snapshot and
+   the SHA-256). In the module catalog sources (`circuit_bench/data/sources/mod-*.json`) also update `class`: **A** is
+   the manufacturer's own file from the manufacturer's domain; **A1** is that same file served only as a
+   `web.archive.org` copy, so a module source that was **A** and is now reachable only as an archive copy becomes
+   **A1**; **A2** is a manufacturer document hosted by a third party (title "copy hosted by …"); **B** is no
+   manufacturer document, a preliminary version, or a module seller. A, A1 and A2 may support a `danger` verdict,
+   **B** at most an `info` marked unverified. A snapshot never raises a class: A2 and B stay as they are. Source
+   files outside the module catalog (for example `electrical.json`) keep their class; the note names the snapshot.
+6. Run the checks above and say in the pull request which files you re-pinned and why.
+
 ## Desktop half
 
 - Edit `desktop-src/`, then run `node scripts/build-desktop.mjs`. `circuit_bench/desktop/plugin.js` is generated;

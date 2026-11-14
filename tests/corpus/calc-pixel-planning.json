@@ -1,0 +1,21 @@
+{
+ "note": "Planning-current sources for the addressable-LED calculator: two vendor guides pinned as Internet Archive snapshots (id_ form, gzip unpacked before the hash), each with a committed excerpt. Neither is a datasheet; both give a rule-of-thumb worst case per pixel.",
+ "files": [
+  {
+   "url": "https://web.archive.org/web/20261012131918id_/https://learn.adafruit.com/adafruit-neopixel-uberguide/powering-neopixels",
+   "path": "calc/adafruit-neopixel-uberguide-powering-20261012131918.html",
+   "source_id": "adafruit-neopixel-uberguide-powering",
+   "note": "snapshot of https://learn.adafruit.com/adafruit-neopixel-uberguide/powering-neopixels taken 2026-10-12 13:19:18 UTC; the archive serves it gzip-compressed, the hash is of the unpacked HTML",
+   "excerpt": "excerpts/pixel-planning-adafruit-neopixel-uberguide.txt",
+   "sha256": "754fb1eedf9c0b0b2bcd15d6e40b4e06abf078381017cd259e9d8cbc9580cd3d"
+  },
+  {
+   "url": "https://web.archive.org/web/20260626110410id_/https://learn.sparkfun.com/tutorials/apa102-addressable-led-hookup-guide/all",
+   "path": "calc/sparkfun-apa102-hookup-guide-20260626110410.html",
+   "source_id": "sparkfun-apa102-hookup-guide",
+   "note": "snapshot of https://learn.sparkfun.com/tutorials/apa102-addressable-led-hookup-guide/all taken 2026-06-26 11:04:10 UTC; the archive serves it gzip-compressed, the hash is of the unpacked HTML",
+   "excerpt": "excerpts/pixel-planning-sparkfun-apa102-hookup-guide.txt",
+   "sha256": "aa6d736db19e36f431aa1ce4dd666629cec454d16a5a2488975fc913386f0bd6"
+  }
+ ]
+}

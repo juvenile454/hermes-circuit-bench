@@ -13,7 +13,7 @@ body:
     attributes:
       label: Circuit Bench version
       description: Version or commit, e.g. from `hermes plugins list`.
-      placeholder: "0.1.0"
+      placeholder: "0.1.1"
     validations:
       required: true
   - type: input
